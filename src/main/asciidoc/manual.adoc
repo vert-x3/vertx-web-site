@@ -1,0 +1,48 @@
+= Vert.x User Manual
+:toc: right
+
+Vert.x - a Swiss Army Knife for creating reactive applications on the JVM.
+
+== Introduction
+
+=== What is Vert.x?
+
+* What is it good for it? (absolutely nothing, say it again... )
+* What problem does it solve?
+* Who is it useful for?
+
+== Key Concepts
+
+=== Non blocking
+
+=== Event loops
+
+=== Reactor
+
+== The different bits
+
+Core and Ext
+
+== Vert.x Core
+
+Vert.x Core docs are link:vertx-core/index.html[here]
+
+== Vert.x Extensions
+
+=== Official extensions
+
+* Apex
+* Redis
+* MongoDB
+* JDBC
+* AMQP
+* Auth
+* Mail
+* JCA adaptor
+
+== Performance tuning
+
+
+
+
+
