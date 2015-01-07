@@ -9,16 +9,15 @@ Vert.x - the toolkit for creating reactive applications on the JVM.
 
 You can think of Vert.x as a set of Lego bricks for building reactive applications.
 
-Vert.x is *general purpose* toolkit. You can use it for all kinds of applications e.g. web applications and enterprise back-end
+Vert.x is a *general purpose* tool-kit. You can use it for all kinds of applications, for example: web applications and enterprise back-end
 applications.
 
 Vert.x is *un-opinionated*. It's not a framework or a container and we don't tell you a "correct" way to write an application.
-Instead we give you a lot of useful bricks and let you create your app the way *you* want.
+Instead we give you a lot of useful bricks and let you create your app the way *you* want to.
 
 Vert.x is *polyglot*. You can use it with multiple JVM languages including Java, JavaScript, Ruby and Groovy.
-We don't get into squabbles about what language is best - you use what language(s) that *you* want depending on the
-task at hand and the skill-set of your team. We don't just expose the Java API in those other languages we
-create *idiomatic* APIs for each language.
+Vert.x doesn't care what language is "best" - you use what language(s) that *you* want depending on the
+task at hand and the skill-set of your team.
 
 Vert.x is *lightweight* - Vert.x core is around 650kB in size.
 
@@ -26,8 +25,10 @@ Vert.x is *fast*. Don't just take our word for it. [link]
 
 Vert.x is *modular* - when you need more bits just add the bits you need and nothing more.
 
-Vert.x is *not an application server*. You don't have a monolithic Vert.x instance into which you deploy applications.
-You just run your apps wherever you want. Vert.x digs micro-services more than app servers.
+Vert.x is *not an application server*. There's no monolithic Vert.x instance into which you deploy applications.
+You just run your apps wherever you want to.
+
+Vert.x is an ideal choice for creating light-weight, high-performance, *micro-services*.
 
 Vert.x is *event driven* and *non blocking*. This means you can handle a lot of concurrency in your apps using a small
 number of threads. Vert.x lets your apps *scale* with minimal hardware.
@@ -37,7 +38,7 @@ Vert.x is *simple but not simplistic*. Vert.x allows you to create powerful apps
 Vert.x is a stack for creating compelling, 21st century, reactive applications. As well as low level functionality Vert.x provides
  higher level building blocks for creating real-world applications.
 
-Vert.x is *fun*. Enjoy being a developer again. Spare a thought for your less fortunate colleagues still working on JavaEE.
+Vert.x is *fun*. Enjoy being a developer again. Spare a thought for your less fortunate colleagues still deploying WARs to application servers.
 
 == Vert.x feature list
 
@@ -69,20 +70,46 @@ Please select your language below:
 
 === Official extensions
 
-* Apex
-* Redis
-* MongoDB
-* JDBC
-* AMQP
-* Auth
-* Mail
-* JCA adaptor
-* RX
-* ReactiveStreams
+Vert.x provides a set of "official" extensions that you can use to create real applications. Think of extensions as higher
+level building blocks.
 
-== Performance tuning
+This list will grow over time. And of course the community, can, and will, provide their own extensions that you can use.
+
+Current extensions include:
+
+Apex:: Apex is a a tool-kit for creating modern web applications with Vert.x
++ It's a bit like Express in the Node.js world, and has a wealth of functionality.
+
+Redis:: This is a 100% asynchronous Redis client for Vert.x
+
+MongoDB:: This is a 100% asynchronous MongoDB client for Vert.x
+
+MySQL/PostgreSQL:: This is a 100% asynchronous client for MySQL or PostgreSQL
+
+JDBC:: This extension allows Vert.x to access any database for which a JDBC driver exists (e.g. Oracle)
+
+Mail:: An SMTP/IMAP client for Vert.x
+
+AMQP:: An AMQP client / Embedded AMQP server for Vert.x
+
+Auth:: Authorisation / Authentication support for Vert.x
+
+Rx:: Reactive Extensions for Vert.x. If you're sick of callback hell, you can use an Rx-ified version of any Vert.x
+APIs in order to elegantly compose your asynchronous operations together.
+
+Reactive Streams:: An implementation of the http://www.reactive-streams.org/[Reactive Stream specification] for Vert.x.
++ Reactive streams provides interoperability with other asynchronous frameworks/toolkits
+
+JCA Adaptor:: We provide a JCA adaptor that enables a JavaEE application server to interoperate with Vert.x over the
+Vert.x event bus.
+
+Metrics:: Exposes various Vert.x metrics over JMX and the event bus.
+
+More to come!
 
 == Migrating from Vert.x 2.x
+
+
 
 
 
