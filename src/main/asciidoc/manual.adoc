@@ -1,31 +1,69 @@
 = Vert.x User Manual
 :toc: right
 
-Vert.x - a Swiss Army Knife for creating reactive applications on the JVM.
+Vert.x - the toolkit for creating reactive applications on the JVM.
 
 == Introduction
 
 === What is Vert.x?
 
-* What is it good for it? (absolutely nothing, say it again... )
-* What problem does it solve?
-* Who is it useful for?
+You can think of Vert.x as a set of Lego bricks for building reactive applications.
+
+Vert.x is *general purpose* toolkit. You can use it for all kinds of applications e.g. web applications and enterprise back-end
+applications.
+
+Vert.x is *un-opinionated*. It's not a framework or a container and we don't tell you a "correct" way to write an application.
+Instead we give you a lot of useful bricks and let you create your app the way *you* want.
+
+Vert.x is *polyglot*. You can use it with multiple JVM languages including Java, JavaScript, Ruby and Groovy.
+We don't get into squabbles about what language is best - you use what language(s) that *you* want depending on the
+task at hand and the skill-set of your team. We don't just expose the Java API in those other languages we
+create *idiomatic* APIs for each language.
+
+Vert.x is *lightweight* - Vert.x core is around 650kB in size.
+
+Vert.x is *fast*. Don't just take our word for it. [link]
+
+Vert.x is *modular* - when you need more bits just add the bits you need and nothing more.
+
+Vert.x is *not an application server*. You don't have a monolithic Vert.x instance into which you deploy applications.
+You just run your apps wherever you want. Vert.x digs micro-services more than app servers.
+
+Vert.x is *event driven* and *non blocking*. This means you can handle a lot of concurrency in your apps using a small
+number of threads. Vert.x lets your apps *scale* with minimal hardware.
+
+Vert.x is *simple but not simplistic*. Vert.x allows you to create powerful apps, simply.
+
+Vert.x is a stack for creating compelling, 21st century, reactive applications. As well as low level functionality Vert.x provides
+ higher level building blocks for creating real-world applications.
+
+Vert.x is *fun*. Enjoy being a developer again. Spare a thought for your less fortunate colleagues still working on JavaEE.
+
+== Vert.x feature list
+
+== The Vert.x Stack
+
+Vert.x is made up of two main parts:
+
+Vert.x Core:: This contains fairly low level functionality including things like TCP, HTTP, File System, Event Bus and many
+other things.
+
+Vert.x Extensions:: These are normally more high level pieces of functionality and include many of the things that you need
+to make real-world applications, e.g. database access, authorisation/authentication support and messaging system integration.
+
+Core and Extensions together make up the Vert.x stack. Over time we expect the number of extensions to grow.
 
 == Key Concepts
 
-=== Non blocking
+== Vert.x Core Documentation
 
-=== Event loops
+The Vert.x Core Manual is available for each programming language that Vert.x supports.
 
-=== Reactor
+Please select your language below:
 
-== The different bits
-
-Core and Ext
-
-== Vert.x Core
-
-Vert.x Core docs are link:vertx-core/index.html[here]
+*  link:vertx-core/index.html[Java Vert.x Core Manual]
+*  link:vertx-core/index.html[JavaScript Vert.x Core Manual]
+*  link:vertx-core/index.html[Groovy Vert.x Core Manual]
 
 == Vert.x Extensions
 
@@ -43,6 +81,10 @@ Vert.x Core docs are link:vertx-core/index.html[here]
 * ReactiveStreams
 
 == Performance tuning
+
+== Migrating from Vert.x 2.x
+
+
 
 
 
