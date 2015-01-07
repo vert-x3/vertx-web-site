@@ -1,0 +1,270 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2011-2014 The original author or authors
+  ~
+  ~  All rights reserved. This program and the accompanying materials
+  ~  are made available under the terms of the Eclipse Public License v1.0
+  ~  and Apache License v2.0 which accompanies this distribution.
+  ~
+  ~      The Eclipse Public License is available at
+  ~      http://www.eclipse.org/legal/epl-v10.html
+  ~
+  ~      The Apache License v2.0 is available at
+  ~      http://www.opensource.org/licenses/apache2.0.php
+  ~
+  ~  You may elect to redistribute this code under either of these licenses.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <repositories>
+    <repository>
+      <id>sonatype-nexus-releases</id>
+      <url>https://oss.sonatype.org/content/repositories/releases</url>
+      <layout>default</layout>
+    </repository>
+    <repository>
+      <id>sonatype-nexus-snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <layout>default</layout>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </repository>
+  </repositories>
+    
+  <parent>
+    <groupId>io.vertx</groupId>
+    <artifactId>vertx-parent</artifactId>
+    <version>3.0.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>vertx-web-site</artifactId>
+  <version>3.0.0-SNAPSHOT</version>
+
+  <name>Vert.x Website</name>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <properties>
+
+    <vertx.version>3.0.0-SNAPSHOT</vertx.version>
+    <netty.version>4.0.24.Final</netty.version>
+    <jackson.version>2.4.3</jackson.version>
+    <metrics.version>3.0.2</metrics.version>
+    <log4j.version>1.2.17</log4j.version>
+    <slf4j.version>1.7.7</slf4j.version>
+    <junit.version>4.11</junit.version>
+    <asciidoclet.version>1.5.1</asciidoclet.version>
+    <apacheds-protocol-dns.version>1.5.7</apacheds-protocol-dns.version>
+    <asciidoc.dir>${project.basedir}/src/main/asciidoc</asciidoc.dir>
+
+  </properties>
+
+  <dependencies>
+    
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-docgen</artifactId>
+      <version>${vertx.version}</version>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-core</artifactId>
+      <version>${vertx.version}</version>
+      <classifier>html</classifier>
+      <type>zip</type>
+    </dependency>
+
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>site</id>
+      <activation>
+        <property>
+          <name>!nosite</name>
+        </property>
+      </activation>
+
+      <build>
+        <resources>
+          <resource>
+            <directory>src/main/resources</directory>
+            <filtering>false</filtering>
+          </resource>
+          <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+            <includes>
+              <include>**/*.html</include>
+            </includes>
+          </resource>
+        </resources>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <version>3.4</version>
+            <configuration>
+              <skip>true</skip>
+              <skipDeploy>true</skipDeploy>
+            </configuration>
+          </plugin>
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.8</version>
+            <executions>
+              <execution>
+                <configuration>
+                  <target>
+
+                    <property name="site" value="${project.build.directory}/output/"/>
+
+                    <unzip src="${io.vertx:vertx-core:zip:html}" dest="${site}" />
+
+                    <!--<copy file="${site}/index.html" tofile="${site}/1.2/reference.html" />-->
+                    <!--<unzip src="${org.crsh:crsh.doc.cookbook:zip:html}" dest="${cookbook}" />-->
+                    <!--<copy file="${cookbook}/index.html" tofile="${site}/1.2/cookbook.html" />-->
+                    <!--<copy todir="${site}/1.2/css">-->
+                      <!--<fileset dir="${reference}/css">-->
+                        <!--<include name="bootstrap/bootstrap.css" />-->
+                        <!--<include name="wikbook.css" />-->
+                        <!--<include name="bootstrap/prettify.css" />-->
+                      <!--</fileset>-->
+                    <!--</copy>-->
+                    <!--<copy todir="${site}/1.2/js">-->
+                      <!--<fileset dir="${reference}/js" />-->
+                    <!--</copy>-->
+                    <!--<unzip src="${org.crsh:crsh.doc.reference:jar:javadoc}" dest="${site}/1.2/javadoc" />-->
+
+                    <!--&lt;!&ndash; Cleanup temp dirs &ndash;&gt;-->
+                    <!--<delete dir="${reference}"/>-->
+                    <!--<delete dir="${cookbook}"/>-->
+
+                    <!--&lt;!&ndash; 1.3 &ndash;&gt;-->
+                    <!--<unzip src="${org.crashub:crash.doc.reference:zip:html}" dest="${reference}" />-->
+                    <!--<copy file="${reference}/book.html" tofile="${site}/1.3/reference.html" />-->
+                    <!--<unzip src="${org.crashub:crash.doc.cookbook:zip:html}" dest="${cookbook}" />-->
+                    <!--<copy file="${cookbook}/book.html" tofile="${site}/1.3/cookbook.html" />-->
+                    <!--<copy todir="${site}/1.3">-->
+                      <!--<fileset dir="${reference}">-->
+                        <!--<include name="foundation.css" />-->
+                        <!--<include name="foundation-lime.css" />-->
+                      <!--</fileset>-->
+                    <!--</copy>-->
+                    <!--<unzip src="${org.crashub:crash.doc.api:jar:javadoc}" dest="${site}/1.3/javadoc" />-->
+
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <phase>site</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <!--<plugin>-->
+            <!--<groupId>br.com.ingenieux</groupId>-->
+            <!--<artifactId>jbake-maven-plugin</artifactId>-->
+            <!--<version>0.0.6</version>-->
+            <!--<executions>-->
+              <!--<execution>-->
+                <!--<goals>-->
+                  <!--<goal>generate</goal>-->
+                <!--</goals>-->
+                <!--<phase>site</phase>-->
+                <!--<configuration>-->
+                  <!--<inputDirectory>${project.basedir}</inputDirectory>-->
+                  <!--<outputDirectory>${project.build.directory}/output</outputDirectory>-->
+                <!--</configuration>-->
+              <!--</execution>-->
+            <!--</executions>-->
+          <!--</plugin>-->
+
+          <!--<plugin>-->
+            <!--<groupId>org.lesscss</groupId>-->
+            <!--<artifactId>lesscss-maven-plugin</artifactId>-->
+            <!--<version>1.7.0.1.1</version>-->
+            <!--<executions>-->
+              <!--<execution>-->
+                <!--<phase>site</phase>-->
+                <!--<goals>-->
+                  <!--<goal>compile</goal>-->
+                <!--</goals>-->
+                <!--<configuration>-->
+                  <!--<sourceDirectory>${project.basedir}/assets/less</sourceDirectory>-->
+                  <!--<outputDirectory>${project.build.directory}/output/css</outputDirectory>-->
+                  <!--<compress>true</compress>-->
+                  <!--<includes>-->
+                    <!--<include>site.less</include>-->
+                  <!--</includes>-->
+                <!--</configuration>-->
+              <!--</execution>-->
+            <!--</executions>-->
+          <!--</plugin>-->
+
+
+          <!--<plugin>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-scm-publish-plugin</artifactId>-->
+            <!--<version>1.0</version>-->
+            <!--<configuration>-->
+              <!--<pubScmUrl>scm:git:https://github.com/crashub/crashub.github.com</pubScmUrl>-->
+              <!--<scmBranch>master</scmBranch>-->
+              <!--<username>${github.global.userName}</username>-->
+              <!--<password>${github.global.password}</password>-->
+              <!--<content>${project.build.directory}/output</content>-->
+              <!--<tryUpdate>true</tryUpdate>-->
+            <!--</configuration>-->
+            <!--<executions>-->
+              <!--<execution>-->
+                <!--<phase>site-deploy</phase>-->
+                <!--<goals>-->
+                  <!--<goal>publish-scm</goal>-->
+                <!--</goals>-->
+              <!--</execution>-->
+            <!--</executions>-->
+          <!--</plugin>-->
+
+          <!--
+                    <plugin>
+                      <groupId>com.github.github</groupId>
+                      <artifactId>site-maven-plugin</artifactId>
+                      <version>0.9</version>
+                      <configuration>
+                        <message>Deploy documentation for ${project.version}</message>
+                        <outputDirectory>${project.build.directory}/output</outputDirectory>
+                        <branch>refs/heads/master</branch>
+                      </configuration>
+                      <executions>
+                        <execution>
+                          <goals>
+                            <goal>site</goal>
+                          </goals>
+                          <phase>site</phase>
+                        </execution>
+                      </executions>
+                    </plugin>
+          -->
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+  
+</project>
