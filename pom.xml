@@ -81,7 +81,7 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-core</artifactId>
-      <version>${vertx.version}</version>
+      <version>${vertx.version}_docs</version>
       <classifier>html</classifier>
       <type>zip</type>
     </dependency>

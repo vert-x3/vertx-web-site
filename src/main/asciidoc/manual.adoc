@@ -39,6 +39,8 @@ Vert.x Core docs are link:vertx-core/index.html[here]
 * Auth
 * Mail
 * JCA adaptor
+* RX
+* ReactiveStreams
 
 == Performance tuning
 
