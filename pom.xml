@@ -80,8 +80,8 @@
 
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-core</artifactId>
-      <version>${vertx.version}_docs</version>
+      <artifactId>vertx-core-docs</artifactId>
+      <version>${vertx.version}</version>
       <classifier>html</classifier>
       <type>zip</type>
     </dependency>
@@ -139,7 +139,7 @@
 
                     <property name="site" value="${project.build.directory}/site/"/>
 
-                    <unzip src="${io.vertx:vertx-core:zip:html}" dest="${site}/vertx-core"/>
+                    <unzip src="${io.vertx:vertx-core-docs:zip:html}" dest="${site}/vertx-core"/>
 
                     <!--<copy file="${site}/index.html" tofile="${site}/1.2/reference.html" />-->
 
