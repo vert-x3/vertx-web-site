@@ -86,6 +86,22 @@
       <type>zip</type>
     </dependency>
 
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-lang-js-docs</artifactId>
+      <version>${vertx.version}</version>
+      <classifier>html</classifier>
+      <type>zip</type>
+    </dependency>
+
+    <!--<dependency>-->
+      <!--<groupId>io.vertx</groupId>-->
+      <!--<artifactId>vertx-lang-groovy-docs</artifactId>-->
+      <!--<version>${vertx.version}</version>-->
+      <!--<classifier>html</classifier>-->
+      <!--<type>zip</type>-->
+    <!--</dependency>-->
+
   </dependencies>
 
   <profiles>
@@ -140,6 +156,8 @@
                     <property name="site" value="${project.build.directory}/site/"/>
 
                     <unzip src="${io.vertx:vertx-core-docs:zip:html}" dest="${site}/vertx-core"/>
+                    <unzip src="${io.vertx:vertx-lang-js-docs:zip:html}" dest="${site}/vertx-lang-js"/>
+                    <!--<unzip src="${io.vertx:vertx-lang-groovy-docs:zip:html}" dest="${site}/vertx-lang-groovy"/>-->
 
                     <!--<copy file="${site}/index.html" tofile="${site}/1.2/reference.html" />-->
 
