@@ -13,6 +13,7 @@ To build it:
 
 Run it from the web site project root:
 
+    cd ..
     java -jar dev-web-server/target/dev-web-server-3.0.0-SNAPSHOT-fat.jar
 
 Now build the site:
