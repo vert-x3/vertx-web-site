@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Example Swatch · JBoss Community</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <link href="/vertx/stylesheets/bootstrap-community.css" media="screen" rel="stylesheet">
+    <!-- IE 6-8 support of HTML 5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://static.jboss.org/theme/js/libs/html5/pre3.6/html5.min.js"></script>
+    <![endif]-->
+    <!-- Defines the project favicon. Change these URLs to your specific project folder on static.jboss.org. -->
+    <link href="http://static.jboss.org/example/images/favicon.ico" rel="shortcut icon">
+    <link href="http://static.jboss.org/example/images/apple-touch-icon-144x144-precomposed.png" rel="apple-touch-icon-precomposed" sizes="144x144">
+    <link href="http://static.jboss.org/example/images/apple-touch-icon-114x114-precomposed.png" rel="apple-touch-icon-precomposed" sizes="114x114">
+    <link href="http://static.jboss.org/example/images/apple-touch-icon-72x72-precomposed.png" rel="apple-touch-icon-precomposed" sizes="72x72">
+    <link href="http://static.jboss.org/example/images/apple-touch-icon-precomposed.png" rel="apple-touch-icon-precomposed">
+    <!-- Defines the project banner. Change these URLs to your specific project folder on static.jboss.org -->
+    <style>
+      @media (min-width: 980px) {
+        .banner { background-image: url(http://static.jboss.org/example/images/example-banner-1180px.png); height: 110px;  }
+      }
+      @media (max-width: 979px) {
+        .banner { background-image: url(http://static.jboss.org/example/images/example-logo.png); background-repeat:no-repeat; background-position: center bottom; height: 60px; }
+      }
+      @media (max-width: 650px) {
+        .banner { width: 100%; margin: 0px auto; }
+      }
+      @media (max-width: 450px) {
+        .banner { height: 90px; }
+      }
+    </style>
+    <script src="http://static.jboss.org/theme/js/libs/jquery/jquery-1.9.1.js"></script>
+    <style>
+      /* adjusting the vertical spacing for when a stickynav is engaged */
+      .breadcrumb-fixed > .active {
+        color: #8c8f91;
+      }
+      .breadcrumb-fixed {
+        margin: 70px 0 10px;
+        padding: 8px 15px;
+        margin-bottom: 20px;
+        list-style: none;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+      }
+      
+      .breadcrumb-fixed > li {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="">
+      <!-- begin accesibility skip to top -->
+      <ul class="visuallyhidden" id="top">
+        <li>
+          <a accesskey="n" href="#nav" title="Skip to navigation">Skip to navigation</a>
+        </li>
+        <li>
+          <a accesskey="c" href="#page" title="Skip to content">Skip to content</a>
+        </li>
+      </ul>
+      <div class="container" id="content">
+        <div class="dropup">
+          <div id="ajbossproject">A JBoss Project</div>
+          <a class="tabnav-closed" href="#" id="tab">Red Hat</a>
+          <script>
+            window.addEventListener('load', function() { renderTabzilla("Example","example" , false ) }, false);
+          </script>
+        </div>
+        <br>
+        <br>
+        <div class="navbar navbar-inverse navbar-fix" id="sticky-navbar">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button class="navbar-toggle collapsed" data-target="#navbar-1" data-toggle="collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-1">
+              <ul class="nav navbar-nav">
+                <li class=""><a href="/vertx/index.html">Home</a></li>
+                <li class=""><a href="/vertx/downloads.html">Downloads</a></li>
+                <li class=""><a href="/vertx/docs.html">Docs</a></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Community <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Overview</a></li>
+                    <li><a href="#">Wiki</a></li>
+                    <li><a href="#">User Forum</a></li>
+                    <li><a href="#">Mailing Lists</a></li>
+                    <li><a href="#">Chat</a></li>
+                    <li><a href="#">Blog</a></li>
+                  </ul>
+                </li>
+                <li class=""><a href="/vertx/issues.html">Issues</a></li>
+                <li class=""><a href="/vertx/source.html">Source Code</a></li>
+                <li class=""><a href="/vertx/build.html">Build</a></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Follow Us <b class="caret"></b></a>
+                  <ul class="dropdown-menu projectsocialmedia">
+                    <li><a href="#"><img src="http://static.jboss.org/theme/images/common/socialmedia_icon40_twitter.png"></a></li>
+                    <li><a href="#"><img src="http://static.jboss.org/theme/images/common/socialmedia_icon40_googleplus.png"></a></li>
+                    <li><a href="#"><img src="http://static.jboss.org/theme/images/common/socialmedia_icon40_facebook.png"></a></li>
+                    <li><a href="#"><img src="http://static.jboss.org/theme/images/common/socialmedia_icon40_youtube.png"></a></li>
+                    <li><a href="#"><img src="http://static.jboss.org/theme/images/common/socialmedia_icon40_linkedin.png"></a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Layouts <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/vertx/rightcol.html">Right Column</a></li>
+                    <li><a href="/vertx/leftcol.html">Left Column</a></li>
+                    <li><a href="/vertx/bothcol.html">3 Columns</a></li>
+                  </ul>
+                </li>
+                <li class="divider"></li>
+              </ul>
+              <form class="navbar-form navbar-right">
+                <input class="form-control" placeholder="Search" type="text">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class='breadcrumb'><a class='breadcrumb_anchor ' href='/vertx/index.html'
+                >Example Homepage</a> / <a class='breadcrumb_anchor active' href='/vertx/no-banner.html'
+                >Example Swatch</a></div>
+        <!-- =========================Announcement========================= -->
+        <div class="alert alert-warning alert-dismissible" id="accordionAnnounce">
+          <button class="close" data-dismiss="alert" type="button">&times;</button>
+          <h4 class="alert-heading">
+            <div class="icon icon-asterisk">Announcement!</div>
+          </h4>
+          <p>
+            Use this code for announcing releases, etc. Remove the class .alert-dismissible and the button to make it permanent on the page
+            <a class="alert-link" href="#">You can also add links to this announcement.</a>
+          </p>
+        </div>
+        <!-- =========================Masthead========================= -->
+        <header class="jumbotron subhead" id="overview">
+          <div class="row">
+            <div class="col-md-12">
+              <h1>Project Swatch</h1>
+              <p class="lead">This swatch page shows the styling of various Bootstrap elements.</p>
+            </div>
+          </div>
+          <div class="subnav">
+            <ul class="nav nav-pills">
+              <li class="active"><a href="#typography">Typography</a></li>
+              <li><a href="#carousel">Carousel</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#equalheight">Equal Height Cols</a></li>
+              <li><a href="#iconcallouts">Icon Callouts</a></li>
+              <li><a href="#tables">Tables</a></li>
+              <li><a href="#tabbedcontent">Tabbed</a></li>
+              <li><a href="#navbar">Navbar</a></li>
+              <li><a href="#stacked-nav">Stacked Nav</a></li>
+              <li><a href="#buttons">Buttons</a></li>
+              <li><a href="#codesnippets">Code</a></li>
+              <li><a href="#forms">Forms</a></li>
+              <li><a href="#miscellaneous">Misc.</a></li>
+              <li><a href="#fontawesome">Icons</a></li>
+              <li><a href="#phrasing">Phrasing</a></li>
+            </ul>
+          </div>
+        </header>
+        <!-- =========================Typography========================= -->
+        <section id="typography">
+          <div class="page-header">
+            <h1>Typography</h1>
+          </div>
+          <!-- Headings & Paragraph Copy -->
+          <div class="row">
+            <div class="col-md-4">
+              <div class="well">
+                <h1>h1. Heading 1</h1>
+                <h2>h2. Heading 2</h2>
+                <h3>h3. Heading 3</h3>
+                <h4>h4. Heading 4</h4>
+                <h5>h5. Heading 5</h5>
+                <h6>h6. Heading 6</h6>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <h3>Example body text</h3>
+              <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui.</p>
+            </div>
+            <div class="col-md-4">
+              <h3>Example addresses</h3>
+              <address>
+                <strong>Company, Inc.</strong><br>
+                1234 Main Street<br/>
+                Raliegh, NC 12345<br/>
+                <abbr title="Phone">P:</abbr> (123) 456-7890
+              </address>
+              <address>
+                <strong>Full Name</strong><br>
+                <a href="mailto:#">first.last@gmail.com</a>
+              </address>
+            </div>
+          </div>
+        </section>
+        <!-- =========================Modal & Carousel========================= -->
+        <section id="carousel">
+          <div class="page-header">
+            <h1>Modal and Carousel</h1>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <h3>Modal Pop-up</h3>
+              <!-- Button to trigger modal -->
+              <a class="btn btn-default" data-toggle="modal" href="#myModal" role="button">Launch demo modal</a>
+              <!-- Modal -->
+              <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
+                      <h3 class="modal-title">Modal header</h3>
+                    </div>
+                    <div class="modal-body">
+                      <p>One fine body…</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button aria-hidden="true" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="carousel slide" id="myCarousel">
+                <ol class="carousel-indicators">
+                  <li class="active" data-slide-to="0" data-target="#myCarousel"></li>
+                  <li data-slide-to="1" data-target="#myCarousel"></li>
+                  <li data-slide-to="2" data-target="#myCarousel"></li>
+                </ol>
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img alt="" src="http://static.jboss.org/common/images/carousel/carousel_img1.png">
+                  </div>
+                  <div class="item">
+                    <img alt="" src="http://static.jboss.org/common/images/carousel/carousel_img2.png">
+                  </div>
+                  <div class="item">
+                    <img alt="" src="http://static.jboss.org/common/images/carousel/carousel_img3.png">
+                  </div>
+                </div>
+                <!-- Carousel nav -->
+                <a class="left carousel-control" data-slide="prev" href="#myCarousel">‹</a>
+                <a class="right carousel-control" data-slide="next" href="#myCarousel">›</a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- =========================Tab Toggles========================= -->
+        <section id="faq">
+          <div class="page-header">
+            <h1>FAQ Toggles</h1>
+          </div>
+        </section>
+        <div class="panel-group" id="accordion2">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a class="accordion-toggle" data-parent="#accordion2" data-toggle="collapse" href="#collapseOne">
+                  Collapsible Group Item #1
+                </a>
+              </h4>
+            </div>
+            <div class="panel-collapse collapse in" id="collapseOne">
+              <div class="panel-body">
+                Content 1 goes here (headlines, photos, whatever).
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a class="accordion-toggle" data-parent="#accordion2" data-toggle="collapse" href="#collapseTwo">
+                  Collapsible Group Item #2
+                </a>
+              </h4>
+            </div>
+            <div class="panel-collapse collapse in" id="collapseTwo">
+              <div class="panel-body">
+                Content 2 goes here (headlines, photos, whatever).
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- =========================Equal Heights Columns========================= -->
+        <section id="equalheight">
+          <div class="page-header">
+            <h1>Equal Height Columns</h1>
+          </div>
+        </section>
+        <!-- begin equalHeights columns 4 -->
+        <div class="row equalHero" id="equalHeightsB">
+          <div class="col-md-3">
+            <div class="row">
+              <h3>
+                <a href="about.html">Crisp is the industry leader of real world iteration.</a>
+              </h3>
+              <p>
+                <i class="icon-cloud-download icon-4x pull-left"></i>
+                Public domain images. We will increase our aptitude to evolve without decrementing our capacity to leverage. It may seem marvelous, but it's true!
+              </p>
+              <p class="right">
+                <a class="btn btn-primary pull-right" href="about.html">Details →</a>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="row">
+              <h3>
+                <a href="about.html">It is better to maximize virally than to exploit holistically.</a>
+              </h3>
+              <p>
+                <i class="icon-dashboard icon-4x pull-left"></i>
+                If all of this seems stunning to you, that's because it is! The capability to strategize extensibly leads to the aptitude to upgrade compellingly.
+              </p>
+              <p class="right">
+                <a class="btn btn-primary pull-right" href="about.html">Details →</a>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="row">
+              <h3>
+                <a href="about.html">What do we incubate? Anything and everything, regardless of anonymity!</a>
+              </h3>
+              <p>
+                <i class="icon-cogs icon-4x pull-left"></i>
+                A company that can implement correctly will (eventually) be able to architect correctly. If you generate intuitively, you may have to synergize robustly.
+              </p>
+              <p class="right">
+                <a class="btn btn-primary pull-right" href="about.html">Details →</a>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="row">
+              <h3>
+                <a href="about.html">A company that can implement correctly will (eventually) be able to architect correctly</a>
+              </h3>
+              <p>
+                <i class="icon-magic icon-4x pull-left"></i>
+                A company that can implement correctly will (eventually) be able to architect correctly. If you generate intuitively, you may have to synergize robustly.
+              </p>
+              <p class="right">
+                <a class="btn btn-primary pull-right" href="about.html">Details →</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- =========================Icon Callouts========================= -->
+        <section id="iconcallouts">
+          <div class="page-header">
+            <h1>Icon Callouts</h1>
+          </div>
+        </section>
+        <div class="row">
+          <div class="col-md-2 pull-center">
+            <i class="enormous-icon icon-magnet circled pull-center"></i>
+          </div>
+          <div class="col-md-10">
+            <h3>Get Involved</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tempor lacus risus, nec facilisis libero semper sed. Vestibulum vel interdum augue. Ut commodo laoreet viverra. Ut vitae eleifend ante. Pellentesque ac justo consectetur Duis tempor lacus risus, nec nec facilisis libero facilisis.
+              <br>
+            </p>
+            <div class="pull-left">
+              <div class="label label-info">New</div>
+            </div>
+            <a class="btn pull-right btn-primary">Get Involved Now</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 pull-center">
+            <i class="enormous-icon icon-bullhorn circled pull-center"></i>
+          </div>
+          <div class="col-md-10">
+            <h3>Get Working</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tempor lacus risus, nec facilisis libero semper sed. Vestibulum vel interdum augue. Ut commodo laoreet viverra. Ut vitae eleifend ante. Pellentesque ac justo consectetur Duis tempor lacus risus, nec nec facilisis libero facilisis.
+              <br>
+            </p>
+            <div class="pull-left">
+              <div class="label label-warning">Unstable</div>
+            </div>
+            <a class="btn pull-right btn-primary">Get Working Now</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 pull-center">
+            <i class="enormous-icon icon-trophy circled pull-center"></i>
+          </div>
+          <div class="col-md-10">
+            <h3>Get Started</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tempor lacus risus, nec facilisis libero semper sed. Vestibulum vel interdum augue. Ut commodo laoreet viverra. Ut vitae eleifend ante. Pellentesque ac justo consectetur Duis tempor lacus risus, nec nec facilisis libero facilisis.
+              <br>
+            </p>
+            <div class="pull-left">
+              <div class="label label-success">Stable</div>
+            </div>
+            <a class="btn pull-right btn-primary">Get Started Now</a>
+          </div>
+        </div>
+        <!-- =========================Tables========================= -->
+        <section id="tables">
+          <div class="page-header">
+            <h1>Tables</h1>
+          </div>
+          <h3>Quickstarts</h3>
+          <p>Get up to speed quickly. Let us walk you through it!</p>
+          <dl class="dl-horizontal quickstarts">
+            <dt>5.2.x Quickstart</dt>
+            <dd>
+              <a>html</a>
+              |
+              <a>PDF</a>
+              |
+              <a>ePub</a>
+            </dd>
+            <dt>5.1.x Quickstart</dt>
+            <dd>
+              <a>html</a>
+              |
+              <a>PDF</a>
+              |
+              <a>ePub</a>
+            </dd>
+            <dt>5.0.x Quickstart</dt>
+            <dd>
+              <a>html</a>
+              |
+              <a>PDF</a>
+              |
+              <a>ePub</a>
+            </dd>
+          </dl>
+          <br>
+          <h3>Documentation Table</h3>
+          <p>Learn more detail about our software.</p>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Version</th>
+                  <th>User Guide</th>
+                  <th>Getting Started Guide</th>
+                  <th>Wiki</th>
+                  <th>FAQs</th>
+                  <th>Javadocs</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>5.2.x</td>
+                  <td>
+                    <a>html</a>
+                    |
+                    <a>PDF</a>
+                    |
+                    <a>ePub</a>
+                  </td>
+                  <td>
+                    <a>html</a>
+                    |
+                    <a>PDF</a>
+                    |
+                    <a>ePub</a>
+                  </td>
+                  <td>
+                    <a>html</a>
+                    |
+                    <a>PDF</a>
+                    |
+                    <a>ePub</a>
+                  </td>
+                  <td>
+                    <a>html</a>
+                    |
+                    <a>PDF</a>
+                    |
+                    <a>ePub</a>
+                  </td>
+                  <td>
+                    <a>html</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>5.1.x</td>
+                  <td>
+                    <a>html</a>
+                    |
+                    <a>PDF</a>
+                    |
+                    <a>ePub</a>
+                  </td>
+                  <td>
+                    <a>html</a>
+                    |
+                    <a>PDF</a>
+                    |
+                    <a>ePub</a>
+                  </td>
+                  <td>
+                    <a>html</a>
+                    |
+                    <a>PDF</a>
+                    |
+                    <a>ePub</a>
+                  </td>
+                  <td>
+                    <a>html</a>
+                    |
+                    <a>PDF</a>
+                    |
+                    <a>ePub</a>
+                  </td>
+                  <td>
+                    <a>html</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>5.0.x</td>
+                  <td>
+                    <a>html</a>
+                    |
+                    <a>PDF</a>
+                    |
+                    <a>ePub</a>
+                  </td>
+                  <td>
+                    <a>html</a>
+                    |
+                    <a>PDF</a>
+                    |
+                    <a>ePub</a>
+                  </td>
+                  <td>
+                    <a>html</a>
+                    |
+                    <a>PDF</a>
+                    |
+                    <a>ePub</a>
+                  </td>
+                  <td>
+                    <a>html</a>
+                    |
+                    <a>PDF</a>
+                    |
+                    <a>ePub</a>
+                  </td>
+                  <td>
+                    <a>html</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <!-- =========================Tabbed Content========================= -->
+        <section id="tabbedcontent">
+          <div class="page-header">
+            <h1>Tabbed Content</h1>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="well">
+                <h1>News</h1>
+                <ul class="nav nav-tabs" id="myTab">
+                  <li class="active">
+                    <a data-toggle="tab" href="#home" role="tab">Home</a>
+                  </li>
+                  <li>
+                    <a data-toggle="tab" href="#profile" role="tab">Profile</a>
+                  </li>
+                  <li>
+                    <a data-toggle="tab" href="#messages" role="tab">Messages</a>
+                  </li>
+                  <li>
+                    <a data-toggle="tab" href="#settings" role="tab">Settings</a>
+                  </li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane active" id="home">Home content - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis sagittis accumsan. Donec tincidunt metus vitae felis vulputate, in cursus felis congue. Suspendisse in nisl mi. Sed eu fermentum sem, sit amet aliquet mauris. Phasellus et eros interdum, lobortis nibh et, tempor felis.</div>
+                  <div class="tab-pane" id="profile">Profile content - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis sagittis accumsan. Donec tincidunt metus vitae felis vulputate, in cursus felis congue. Suspendisse in nisl mi. Sed eu fermentum sem, sit amet aliquet mauris. Phasellus et eros interdum, lobortis nibh et, tempor felis.</div>
+                  <div class="tab-pane" id="messages">Messages content - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis sagittis accumsan. Donec tincidunt metus vitae felis vulputate, in cursus felis congue. Suspendisse in nisl mi. Sed eu fermentum sem, sit amet aliquet mauris. Phasellus et eros interdum, lobortis nibh et, tempor felis.</div>
+                  <div class="tab-pane" id="settings">Settings content - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis sagittis accumsan. Donec tincidunt metus vitae felis vulputate, in cursus felis congue. Suspendisse in nisl mi. Sed eu fermentum sem, sit amet aliquet mauris. Phasellus et eros interdum, lobortis nibh et, tempor felis.</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h1>Forums</h1>
+              <ul class="nav nav-tabs" id="myTab">
+                <li class="active">
+                  <a href="#home2">Home</a>
+                </li>
+                <li>
+                  <a href="#downloads">Downloads</a>
+                </li>
+                <li>
+                  <a href="#irc">IRC</a>
+                </li>
+                <li>
+                  <a href="#twitter">Twitter</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="home2">Home content - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis sagittis accumsan. Donec tincidunt metus vitae felis vulputate, in cursus felis congue. Suspendisse in nisl mi. Sed eu fermentum sem, sit amet aliquet mauris. Phasellus et eros interdum, lobortis nibh et, tempor felis.</div>
+                <div class="tab-pane" id="downloads">Downloads content - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis sagittis accumsan. Donec tincidunt metus vitae felis vulputate, in cursus felis congue. Suspendisse in nisl mi. Sed eu fermentum sem, sit amet aliquet mauris. Phasellus et eros interdum, lobortis nibh et, tempor felis.</div>
+                <div class="tab-pane" id="irc">IRC content - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis sagittis accumsan. Donec tincidunt metus vitae felis vulputate, in cursus felis congue. Suspendisse in nisl mi. Sed eu fermentum sem, sit amet aliquet mauris. Phasellus et eros interdum, lobortis nibh et, tempor felis.</div>
+                <div class="tab-pane" id="twitter">Twitter content - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis sagittis accumsan. Donec tincidunt metus vitae felis vulputate, in cursus felis congue. Suspendisse in nisl mi. Sed eu fermentum sem, sit amet aliquet mauris. Phasellus et eros interdum, lobortis nibh et, tempor felis.</div>
+              </div>
+            </div>
+            <script>
+              $('#myTab a').click(function (e) {
+              e.preventDefault();
+              $(this).tab('show');
+              })
+            </script>
+          </div>
+        </section>
+        <!-- =========================Navbar========================= -->
+        <section id="navbar">
+          <div class="page-header">
+            <h1>Navbars</h1>
+          </div>
+          <div class="navbar navbar-default">
+            <div class="container-fluid" style="width: auto;">
+              <!-- / Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-target="#example-navbar-collapse-1" data-toggle="collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Project name</a>
+              </div>
+              <!-- / Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="#">Home</a></li>
+                  <li><a href="#">Link</a></li>
+                  <li><a href="#">Link</a></li>
+                  <li><a href="#">Link</a></li>
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <form action="" class="navbar-form navbar-left">
+                  <input class="form-control" placeholder="Search" type="text">
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#">Link</a></li>
+                  <li class="divider-vertical"></li>
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="navbar navbar-inverse">
+            <div class="container-fluid" style="width: auto;">
+              <!-- / Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-target="#example-navbar-collapse-2" data-toggle="collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Project name</a>
+              </div>
+              <!-- / Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="example-navbar-collapse-2">
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="#">Home</a></li>
+                  <li><a href="#">Link</a></li>
+                  <li><a href="#">Link</a></li>
+                  <li><a href="#">Link</a></li>
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <form action="" class="navbar-form navbar-left">
+                  <input class="form-control navbar-search search-query" placeholder="Search" type="text">
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#">Link</a></li>
+                  <li class="divider-vertical"></li>
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- =========================Stacked Navigation========================= -->
+        <section id="stacked-nav">
+          <div class="page-header">
+            <h1>Stacked Navigation</h1>
+          </div>
+          <div class="div clearfix">
+            <div class="col-md-4">
+              <ul class="nav nav-pills nav-stacked">
+                <li class="active">
+                  <a href="#">
+                    <i class="icon-fixed-width icon-home"></i>
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="icon-fixed-width icon-book"></i>
+                    Library
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="icon-fixed-width icon-pencil"></i>
+                    Applications
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="icon-fixed-width icon-cogs"></i>
+                    Settings
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <!-- =========================Buttons========================= -->
+        <section id="buttons">
+          <div class="page-header">
+            <h1>Buttons</h1>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Button</th>
+                  <th>Large Button</th>
+                  <th>Small Button</th>
+                  <th>Disabled Button</th>
+                  <th>Button with Icon</th>
+                  <th>Split Button</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a class="btn btn-default" href="#">Default</a></td>
+                  <td><a class="btn btn-default btn-lg" href="#">Default</a></td>
+                  <td><a class="btn btn-default btn-sm" href="#">Default</a></td>
+                  <td><a class="btn btn-default disabled" href="#">Default</a></td>
+                  <td><a class="btn btn-default" href="#"><i class="icon-cog"></i> Default</a></td>
+                  <td>
+                    <div class="btn-group">
+                      <button class="btn btn-default" type="button">Default</button>
+                      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button"><span class="caret"></span>
+                      <span class="sr-only">Toggle Dropdown</span></button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><a class="btn btn-primary" href="#">Primary</a></td>
+                  <td><a class="btn btn-primary btn-lg" href="#">Primary</a></td>
+                  <td><a class="btn btn-primary btn-sm" href="#">Primary</a></td>
+                  <td><a class="btn btn-primary disabled" href="#">Primary</a></td>
+                  <td><a class="btn btn-primary" href="#"><i class="icon-shopping-cart icon-white"></i> Primary</a></td>
+                  <td>
+                    <div class="btn-group">
+                      <a class="btn btn-primary" href="#">Primary</a>
+                      <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><a class="btn btn-info" href="#">Info</a></td>
+                  <td><a class="btn btn-info btn-lg" href="#">Info</a></td>
+                  <td><a class="btn btn-info btn-sm" href="#">Info</a></td>
+                  <td><a class="btn btn-info disabled" href="#">Info</a></td>
+                  <td><a class="btn btn-info" href="#"><i class="icon-exclamation-sign icon-white"></i> Info</a></td>
+                  <td>
+                    <div class="btn-group">
+                      <a class="btn btn-info" href="#">Info</a>
+                      <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><a class="btn btn-success" href="#">Success</a></td>
+                  <td><a class="btn btn-success btn-lg" href="#">Success</a></td>
+                  <td><a class="btn btn-success btn-sm" href="#">Success</a></td>
+                  <td><a class="btn btn-success disabled" href="#">Success</a></td>
+                  <td><a class="btn btn-success" href="#"><i class="icon-ok icon-white"></i> Success</a></td>
+                  <td>
+                    <div class="btn-group">
+                      <a class="btn btn-success" href="#">Success</a>
+                      <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><a class="btn btn-warning" href="#">Warning</a></td>
+                  <td><a class="btn btn-warning btn-lg" href="#">Warning</a></td>
+                  <td><a class="btn btn-warning btn-sm" href="#">Warning</a></td>
+                  <td><a class="btn btn-warning disabled" href="#">Warning</a></td>
+                  <td><a class="btn btn-warning" href="#"><i class="icon-warning-sign icon-white"></i> Warning</a></td>
+                  <td>
+                    <div class="btn-group">
+                      <a class="btn btn-warning" href="#">Warning</a>
+                      <a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><a class="btn btn-danger" href="#">Danger</a></td>
+                  <td><a class="btn btn-danger btn-lg" href="#">Danger</a></td>
+                  <td><a class="btn btn-danger btn-sm" href="#">Danger</a></td>
+                  <td><a class="btn btn-danger disabled" href="#">Danger</a></td>
+                  <td><a class="btn btn-danger" href="#"><i class="icon-remove icon-white"></i> Danger</a></td>
+                  <td>
+                    <div class="btn-group">
+                      <a class="btn btn-danger" href="#">Danger</a>
+                      <a class="btn btn-danger dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <!-- =========================Code Snippets========================= -->
+        <section id="codesnippets">
+          <div class="page-header">
+            <h1>Code Snippets</h1>
+          </div>
+        </section>
+        <pre>&lt;p&gt;XML Code Snipped goes here...&lt;/p&gt;&#x000A;&#x000A;</pre>
+        <!-- =========================Forms========================= -->
+        <section id="forms">
+          <div class="page-header">
+            <h1>Forms</h1>
+          </div>
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+              <form class="form-inline well">
+                <div class="form-group">
+                  <label class="sr-only" for="search1"></label>
+                  <input class="form-control" id="search1" type="text">
+                </div>
+                <button class="btn btn-default" type="submit">Search</button>
+              </form>
+              <form class="form-inline well">
+                <div class="form-group">
+                  <label class="sr-only" for="email">Email</label>
+                  <input class="form-control" id="email" placeholder="Email" type="text">
+                </div>
+                <div class="form-group">
+                  <label class="sr-only" for="password">Password</label>
+                  <input class="form-control" id="password" placeholder="Password" type="password">
+                </div>
+                <button class="btn btn-default" type="submit">Go</button>
+              </form>
+              <form class="form-horizontal well">
+                <fieldset>
+                  <legend>Controls Bootstrap supports</legend>
+                  <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label" for="input01">Text input</label>
+                    <div class="col-md-10 col-sm-9">
+                      <div class="col-md-5 col-xs-12">
+                        <input class="form-control" id="input01" type="text">
+                      </div>
+                      <div class="col-xs-12">
+                        <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label" for="optionsCheckbox">Checkbox</label>
+                    <div class="col-md-10 col-sm-9">
+                      <div class="col-md-10 col-xs-12">
+                        <div class="checkbox">
+                          <label>
+                            <input class="col-md-5 col-xs-12" id="optionsCheckbox" type="checkbox" value="option1">Option one is this and that&mdash;be sure to include why it's great</input>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label" for="select01">Select list</label>
+                    <div class="col-md-10 col-sm-9">
+                      <div class="col-md-5 col-xs-12">
+                        <select class="form-control" id="select01">
+                          <option>something</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label" for="multiSelect">Multicon-select</label>
+                    <div class="col-md-10 col-sm-9">
+                      <div class="col-md-5 col-xs-12">
+                        <select class="form-control" id="multiSelect" multiple="multiple">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label" for="fileInput">File input</label>
+                    <div class="col-md-10 col-sm-9">
+                      <div class="col-md-5 col-xs-12">
+                        <input id="fileInput" type="file">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label" for="textarea">Textarea</label>
+                    <div class="col-md-10 col-sm-9">
+                      <div class="col-md-5 col-xs-12">
+                        <textarea class="form-control" id="textarea" rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label" for="focusedInput">Focused input</label>
+                    <div class="col-md-10 col-sm-9">
+                      <div class="col-md-5 col-xs-12">
+                        <input class="form-control" id="focusedInput" type="text" value="This is focused…">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label">Uneditable input</label>
+                    <div class="col-md-10 col-sm-9">
+                      <div class="col-md-5 col-xs-12">
+                        <span class="form-control uneditable-input">Some value here</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label" for="disabledInput">Disabled input</label>
+                    <div class="col-md-10 col-sm-9">
+                      <div class="col-md-5 col-xs-12">
+                        <input class="form-control disabled" disabled id="disabledInput" placeholder="Disabled input here…" type="text">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-2 col-sm-3 control-label" for="optionsCheckbox2">Disabled checkbox</label>
+                    <div class="col-md-10 col-sm-9">
+                      <div class="col-md-5 col-xs-12">
+                        <div class="checkbox">
+                          <label>
+                            <input disabled id="optionsCheckbox2" type="checkbox" value="option1">This is a disabled checkbox</input>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group has-warning">
+                    <label class="col-md-2 col-sm-3 control-label" for="inputWarning">Input with warning</label>
+                    <div class="col-md-10 col-sm-9">
+                      <div class="col-md-5 col-xs-12">
+                        <input class="form-control" type="text">
+                        <span class="help-block">Something may have gone wrong</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group has-error">
+                    <llabel class="col-md-2 col-sm-3 control-label" for="inputError">Input with error</llabel>
+                    <div class="col-md-10 col-sm-9">
+                      <div class="col-md-5 col-xs-12">
+                        <input class="form-control" id="inputError" type="text">
+                        <span class="help-block">Please correct the error</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group has-success">
+                    <label class="col-md-2 col-sm-3 control-label" for="inputSuccess">Input with success</label>
+                    <div class="col-md-10 col-sm-9">
+                      <div class="col-md-5 col-xs-12">
+                        <input class="form-control" id="inputSuccess" type="text">
+                        <span class="help-block">Woohoo!</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group has-succes">
+                    <label class="col-md-2 col-sm-3 control-label" for="selectError">Select with success</label>
+                    <div class="col-md-10 col-sm-9">
+                      <div class="col-md-5 col-xs-12">
+                        <select class="form-control" id="selectError">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                        <span class="help-block">Woohoo!</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-offset-2">
+                    <button class="btn btn-primary" type="submit">Save changes</button>
+                    <button class="btn btn-default" type="reset">Cancel</button>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </section>
+        <!-- =========================Miscellaneous========================= -->
+        <section id="miscellaneous">
+          <div class="page-header">
+            <h1>Miscellaneous</h1>
+          </div>
+          <div class="row">
+            <div class="col-md-5">
+              <h3>Breadcrumbs</h3>
+              <ol class="breadcrumb">
+                <li class="active">Home</li>
+              </ol>
+              <ol class="list-unstyled breadcrumb">
+                <li>
+                  <a href="#">Home</a>
+                </li>
+                <li class="active">Library</li>
+              </ol>
+              <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Library</a></li>
+                <li class="active">Data</li>
+              </ol>
+            </div>
+            <div class="col-md-6 col-md-offset-1">
+              <h3 id="pagination">Pagination</h3>
+              <ul>
+                <div class="pagination">
+                  <li class="disabled"><a href="#">&laquo;</a></li>
+                  <li class="active"><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">&raquo;</a></li>
+                </div>
+              </ul>
+              <ul>
+                <div class="pagination">
+                  <li><a href="#">&larr;</a></li>
+                  <li class="active"><a href="#">10</a></li>
+                  <li class="disabled"><a href="#">...</a></li>
+                  <li><a href="#">20</a></li>
+                  <li><a href="#">&rarr;</a></li>
+                </div>
+              </ul>
+              <div class="text-center">
+                <ul class="pagination">
+                  <li class="active"><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- =========================Labels========================= -->
+          <div class="row">
+            <div class="col-md-6">
+              <h3 id="labels">Labels</h3>
+              <span class="label label-default">Default</span>
+              <span class="label label-success">Success</span>
+              <span class="label label-warning">Warning</span>
+              <span class="label label-important">Important</span>
+              <span class="label label-info">Info</span>
+            </div>
+            <div class="col-md-6">
+              <h3 id="labels">Definition Lists</h3>
+              <dl class="dl-horizontal">
+                <dt>User Forums</dt>
+                <dd>Can help answer questios you may have and be a point of discussion and reference for using this Project</dd>
+                <dt>IRC</dt>
+                <dd>
+                  is our real-time chat location. Join us on the #project freenode channel. Join in to talk to us in real time.
+                  <a>(Freenode IRC instructions)</a>
+                </dd>
+              </dl>
+            </div>
+          </div>
+          <br>
+          <!-- =========================Progress bars========================= -->
+          <h3 id="progressbars">Progress bars</h3>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="progress">
+                <div class="progress-bar" style="width: 60%;"></div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="progress">
+                <div class="progress-bar progress-bar-info progress-bar-striped" style="width: 20%;"></div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="progress progress-danger progress-striped active">
+                <div class="progress-bar progress-bar-danger progress-bar-striped" style="width: 45%"></div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <!-- =========================Alerts & Messages========================= -->
+          <h3 id="alerts">Alerts</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="alert alert-warning alert-dismissible">
+                <button class="close" data-dismiss="alert" type="button">&times;</button>
+                <h4 class="alert-heading">Alert block</h4>
+                <p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+                <a class="alert-link" href="#">Here is a link in an alert.</a>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="alert alert-danger alert-dismissible">
+                <button class="close" data-dismiss="alert" type="button">&times;</button>
+                <b>Error</b>
+                Change a few things up and try submitting again.
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="alert alert-success alert-dismissible">
+                <button class="close" data-dismiss="alert" type="button">&times;</button>
+                <b>Success</b>
+                You successfully read this important alert message.
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="alert alert-info alert-dismissible">
+                <button class="close" data-dismiss="alert" type="button">&times;</button>
+                <b>Information</b>
+                This alert needs your attention, but it's not super important.
+              </div>
+            </div>
+          </div>
+          <br>
+          <!-- =========================List Group========================= -->
+          <h3 id="list-group">List Group</h3>
+          <div class="row">
+            <div class="col-md-4">
+              <ul class="list-group">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Morbi leo risus</li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <span class="badge">14</span>
+                  Cras justo odio
+                </li>
+                <li class="list-group-item">
+                  <span class="badge">2</span>
+                  Dapibus ac facilisis in
+                </li>
+                <li class="list-group-item">
+                  <span class="badge">1</span>
+                  Morbi leo risus
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <div class="list-group">
+                <a class="list-group-item active" href="#">Cras justo odio</a>
+                <a class="list-group-item" href="#">Dapibus ac facilisis in</a>
+                <a class="list-group-item" href="#">Morbi leo risus</a>
+              </div>
+            </div>
+          </div>
+          <br>
+          <!-- =========================Panels========================= -->
+          <h3 id="panels">Panels</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Panel Title</h3>
+                </div>
+                <div class="panel-body">
+                  Panel Content
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Panel Title</h3>
+                </div>
+                <div class="panel-body">
+                  Panel Content
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Panel Title</h3>
+                </div>
+                <div class="panel-body">
+                  Panel Content
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="panel panel-success">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Panel Title</h3>
+                </div>
+                <div class="panel-body">
+                  Panel Content
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="panel panel-warning">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Panel Title</h3>
+                </div>
+                <div class="panel-body">
+                  Panel Content
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="panel panel-danger">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Panel Title</h3>
+                </div>
+                <div class="panel-body">
+                  Panel Content
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  Basic panel example
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- =========================Font Awesome Icons========================= -->
+        <section id="fontawesome">
+          <div class="page-header">
+            <h1>Font Awesome Icons</h1>
+          </div>
+          <p>This theme uses "Font Awesome" as an icon set to increase the flexibility and presentation of the icons. We've included a small sampling of this font on in this section.</p>
+          Go to the Font Awesome website to see the
+          <a href="http://fortawesome.github.io/Font-Awesome/icons/">list of available icons</a>
+          and
+          <a href="http://fortawesome.github.io/Font-Awesome/examples/">examples</a>
+          of how to implement them.
+          <div class="row">
+            <div class="col-md-4">
+              <h3>Inline & Large Icons</h3>
+              <div class="well">
+                <div>
+                  <i class="icon-camera-retro"></i>
+                  icon-camera-retro (regular)
+                  <p></p>
+                  <i class="icon-camera-retro icon-lg"></i>
+                  icon-camera-retro (large)
+                  <p></p>
+                  <i class="icon-camera-retro icon-2x"></i>
+                  icon-camera-retro (2XL)
+                  <p></p>
+                  <i class="icon-camera-retro icon-3x"></i>
+                  icon-camera-retro (3XL)
+                  <p></p>
+                  <i class="icon-camera-retro icon-4x"></i>
+                  icon-camera-retro (4XL)
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <h3>Buttons</h3>
+              <div class="well">
+                <div>
+                  <p>
+                    <a class="btn btn-default" href="#">
+                      <i class="icon-repeat"></i>
+                      Reload
+                    </a>
+                    <a class="btn btn-success" href="#">
+                      <i class="icon-shopping-cart icon-lg"></i>
+                      Checkout
+                    </a>
+                  </p>
+                  <p>
+                    <a class="btn btn-lg btn-primary" href="#">
+                      <i class="icon-comment"></i>
+                      Comment
+                    </a>
+                    <a class="btn btn-sm btn-info" href="#">
+                      <i class="icon-info-sign"></i>
+                      Info
+                    </a>
+                  </p>
+                  <p>
+                    <a class="btn btn-danger" href="#">
+                      <i class="icon-trash icon-lg"></i>
+                      Delete
+                    </a>
+                    <a class="btn btn-default btn-sm" href="#">
+                      <i class="icon-cog"></i>
+                      Settings
+                    </a>
+                  </p>
+                  <p>
+                    <a class="btn btn-lg btn-danger" href="#">
+                      <i class="icon-flag icon-2x pull-left"></i>
+                      Font Awesome<br>Version
+                    </a>
+                  </p>
+                  <p>
+                    <a class="btn btn-primary" href="#">
+                      <i class="icon-refresh icon-spin"></i>
+                      Synchronizing Content...
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <h3>Better Bulleted Lists</h3>
+              <div class="well">
+                <div>
+                  <ul class="icons-ul">
+                    <li><i class="icon-li icon-chevron-sign-right"></i>New bulleted lists
+                    </li>
+                    <li><i class="icon-li icon-bullseye"></i>Fix some old bugs
+                    </li>
+                    <li><i class="icon-li icon-play-sign"></i>And deal with arbitrary
+                    </li>
+                    <li><i class="icon-li icon-ok-sign"></i>Font sizes better
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <h3>Icon Stacks</h3>
+              <div class="well">
+                <span class="icon-stack">
+                  <i class="icon-check-empty icon-stack-base"></i>
+                  <i class="icon-twitter"></i>
+                </span>
+                icon-twitter on icon-check-empty
+                <br>
+                <span class="icon-stack">
+                  <i class="icon-circle icon-stack-base"></i>
+                  <i class="icon-flag icon-light"></i>
+                </span>
+                icon-flag on icon-circle
+                <br>
+                <span class="icon-stack">
+                  <i class="icon-sign-blank icon-stack-base"></i>
+                  <i class="icon-terminal icon-light"></i>
+                </span>
+                icon-terminal on icon-sign-blank
+              </div>
+            </div>
+            <div class="col-md-4">
+              <h3>Pulled & Bordered Icons</h3>
+              <div class="well">
+                <i class="icon-quote-left icon-4x pull-left"></i>
+                Use a few of the new styles together, and you've got easy pull quotes or a great introductory article image. Or spinning icons for loading and refreshing content. Or fun big icons in multi-line buttons. You can combine all of them in any combination to get lots of new possibilities.
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- =========================Blogs, Jira, Newsletter, Testimonials========================= -->
+        <section id="blogs">
+          <div class="page-header">
+            <h1>Blogs, Newsletter, & Testimonials</h1>
+          </div>
+          <div class="row">
+            <!-- section containing newsletter signup -->
+            <div class="col-md-4">
+              <section>
+                <h4>Stay Updated</h4>
+                <p>Sign up for our newsletter. We won't share your email address.</p>
+                <form action="yourscript.php" class="form-inline" method="post">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input class="form-control" name="email" placeholder="Email Address" type="email">
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary">Sign Up</button>
+                      </span>
+                    </div>
+                  </div>
+                </form>
+                <!-- Rotating Testimonials - set the speed in application.js -->
+                <div class="rotating-testimonials">
+                  <!-- "rotating-testimonials" is a required class -->
+                  <h4 class="short_headline">
+                    <span>Testimonials</span>
+                  </h4>
+                  <div class="panels">
+                    <div id="t1">
+                      <blockquote>
+                        <p>One isn’t necessarily born with courage, but one is born with potential. Without courage, we cannot practice any other virtue with consistency. We can’t be kind, true, merciful, generous, or honest.</p>
+                        <footer>Maya Angelou</footer>
+                      </blockquote>
+                    </div>
+                    <!-- close #t1 -->
+                    <div id="t2">
+                      <blockquote>
+                        <p>When the highest type of people hear Tao (Truth), they diligently practice it. When the average type of people hear Tao, they half believe in it. When the lowest type of people hear Tao, they laugh at it. If they did not laugh, it would not be Tao.</p>
+                        <footer>Lao-Tzu</footer>
+                      </blockquote>
+                    </div>
+                    <!-- close #t2 -->
+                    <div id="t3">
+                      <blockquote>
+                        <p>The human being is part of the whole, called by us the ‘universe’, a part limited in time and space. He experiences himself, his thoughts and feelings, as something separate from the rest — a kind of optical delusion of consciousness.</p>
+                        <footer>Albert Einstein</footer>
+                      </blockquote>
+                    </div>
+                    <!-- close #t3 -->
+                    <div id="t4">
+                      <blockquote>
+                        <p>Whatever course you decide upon, there is always someone to tell you that you are wrong. There are always difficulties arising which tempt you to believe that your critics are right. To map out a course of action and follow it to an end requires courage.</p>
+                        <footer>Ralph Waldo Emerson</footer>
+                      </blockquote>
+                    </div>
+                    <!-- close #t4 -->
+                  </div>
+                  <ul class="tabs">
+                    <li class="tab">
+                      <a href="#t1">maya-angelou</a>
+                    </li>
+                    <li class="tab">
+                      <a href="#t2">lao-tzu</a>
+                    </li>
+                    <li class="tab">
+                      <a href="#t3">albert-einstein</a>
+                    </li>
+                    <li class="tab">
+                      <a href="#t4">ralph-waldo-emerson</a>
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </div>
+            <!-- JIRA Issues widget -->
+            <div class="col-md-4">
+              <section>
+                <div class="twocol_right" style="text-align:right;">
+                  <div id="jiraDiv"></div>
+                  <script>
+                    $(document).ready(function () {
+                      processJiraWidget(  {
+                        jqlQuery : 'project = ORG AND (status = Open OR status = Reopened)',
+                        maxResults : 5,
+                        startAt : 0,
+                        divId : 'jiraDiv',
+                        title : 'Jira Issues'
+                      })
+                    });
+                  </script>
+                </div>
+              </section>
+            </div>
+            <!-- section containing blog posts -->
+            <div class="col-md-4">
+              <section>
+                <h4>Latest Blog Posts</h4>
+                <div id="blogDiv"></div>
+                <script>
+                  $(document).ready(function () {
+                    $('#blogDiv').FeedEk({
+                      FeedUrl: 'http://planet.jboss.org/xml/all?type=atom',
+                      MaxCount: 6,
+                      ShowDesc: false,
+                      CharacterLimit: 200
+                    });
+                  });
+                </script>
+              </section>
+            </div>
+          </div>
+        </section>
+        <!-- =========================Definition Table (Project Team)========================= -->
+        <section id="definitiontable">
+          <div class="page-header">
+            <h1>Definition Table</h1>
+          </div>
+          <table cellspacing="0" class="deftable" width="75%">
+            <tbody>
+              <tr>
+                <td class="termFirst" width="15%">User Community</td>
+                <td class="defFirst">
+                  Our
+                  <a href="http://www.jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=64">user forums</a>
+                  are the main channel of communication between all community members.  If you experience problems, have questions, or simply want to meet the community, visit the forums.
+                </td>
+              </tr>
+              <tr>
+                <td class="term" width="15%">Developers</td>
+                <td class="def">
+                  There are many
+                  <a href="/portal/community">community developers</a>
+                  contributing to JBoss Clustering.  If you are not on this list and you are a contributor, or have been in the past, send an email to labs-admin at jboss.com with a short bio, a picture, and a list of the projects to which you contributed, and we will happily add you to this list of rock star programmers.
+                </td>
+              </tr>
+              <tr>
+                <td class="term" width="15%">Getting Involved</td>
+                <td class="def">
+                  If you wish to get involved as a developer in the JBoss Clustering project, please visit
+                  <a href="http://www.jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=155">the JBoss Clustering design forum</a>
+                  and get to know people.  Joining the
+                </td>
+              </tr>
+              <tr>
+                <td class="term" width="15%">More information</td>
+                <td class="def">
+                  <a href="http://jboss.org/jbossas/docs/5-x/clustering.html">JBoss Clustering Official Documentation</a>
+                  <br>
+                  <a href="http://jboss.org/wiki/Wiki.jsp?page=JBossHA">Wiki Knowledge Base</a>
+                </td>
+              </tr>
+              <tr>
+                <td class="term" width="15%">Project Status</td>
+                <td class="def">
+                  JBoss Clustering uses the
+                  <a href="http://jira.jboss.com/jira/browse/JBAS">JIRA tracking and project management system</a>
+                  to organize and prioritize tasks. JBoss Clustering issues can be found by searching for issues with 'Clustering' as their Component.
+                </td>
+              </tr>
+              <tr>
+                <td class="term" width="15%">Acknowledgements</td>
+                <td class="def">
+                  JBoss Clustering was created by
+                  <a href="/portal/community">professional open source developers from around the world.</a>
+                  JBoss Clustering is built on top of the
+                  <a href="/portal/jgroups">JGroups</a>
+                  distributed messaging technology. Check out the great work
+                  <b>Bela Ban</b>
+                  has done to allow for the quick development of JBoss Clustering. JBoss Clustering originally began in 2001 as a small prototype built on top of
+                  <a hrefo="/portal/jgroups">JGroups</a>
+                  and coded by
+                  <b>Sacha Labourey</b>.
+                  <b>Bill Burke</b>
+                  joined Sacha and for the AS 3.0 release they together built the JBoss Clustering core that's still in use today.  Under
+                  <b>Ben Wang's</b>
+                  leadership, use of
+                  <a href="/portal/jbosscache">JBoss Cache</a>
+                  for state replication was introduced in AS 3.2.6.  The project is now led and maintained by
+                  <b>Brian Stansberry</b>.
+                </td>
+              </tr>
+              <tr>
+                <td class="term" width="15%">Professional Support</td>
+                <td class="def">
+                  Red Hat Inc. delivers the
+                  <a href="http://www.jboss.com/services/profsupport">Professional Support</a>,
+                  <a href="http://www.jboss.com/services/consulting">Consulting</a>,
+                  and
+                  <a href="http://www.jboss.com/services/training">Training</a>
+                  that you need whether you are testing a proof of concept, deploying a mission-critical application, or rolling out JBoss across your enterprise.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <!-- =========================Phrase Elements========================= -->
+        <section id="phrasing">
+          <div class="page-header">
+            <h1>Phrase Elements</h1>
+          </div>
+          <h5>Em</h5>
+          <p>
+            Element used to
+            <em>put emphasis on certain information</em>.
+            Most browsers display emphased text in italics by default.
+          </p>
+          <p>
+            Sample:
+            <em>This is emphasied text</em>.
+          </p>
+          <h5>Strong</h5>
+          <p>This element stands for "stronger emphasis" and is used for marking more important text.</p>
+          <p>
+            Sample:
+            <strong>This is text with stronger emphasis</strong>
+          </p>
+          <h5>Cite</h5>
+          <p>
+            According to
+            <cite>W3C specification</cite>,
+            we use
+            <code>cite</code>
+            element to define source of a quotation or reference.
+          </p>
+          <p>
+            Sample:
+            <cite>This is quotation source</cite>
+          </p>
+          <h5>Dfn</h5>
+          <p>Element used to markup inline definition of a single term.</p>
+          <p>
+            Sample:
+            <dfn>This is definition</dfn>
+          </p>
+          <h5>code</h5>
+          <p>This element informs the browser that it contains a computer code, such as XHTML markup.</p>
+          <p>
+            Sample:
+            <code>document.write("Hello world");</code>
+          </p>
+          <h5>samp</h5>
+          <p>Defines computer output data, for example we can use it to markup error messages</p>
+          <p>
+            Sample:
+            <samp>Error: no such file or directory</samp>
+          </p>
+          <h5>kbd</h5>
+          <p>Means information that should be entered by the user.</p>
+          <p>
+            Sample: press
+            <kbd>Alt + F4</kbd>
+            to close this window.
+            <kbd>ESC</kbd>
+          </p>
+          <h5>var</h5>
+          <p>Means variables used in computer programs or scripts.</p>
+          <p>
+            Sample:
+            <var>counter</var>
+          </p>
+          <h5>abbr</h5>
+          <p>Abbreviation / a shortened form of a word or phrase</p>
+          <p>
+            Sample:
+            <abbr title="doctor">dr</abbr>
+          </p>
+          <h5>q: inline quotation</h5>
+          <p>
+            Sample:
+            <q>This is a sample inline quotation</q>
+          </p>
+          <h5>Other elements</h5>
+          <h6>Subscript and superscript samples</h6>
+          <p>
+            H<sub>2</sub>O,
+          </p>
+          <p>
+            E = mc<sup>2</sup>,
+          </p>
+          <p>
+            The 14
+            <sup>th</sup>
+            of September
+          </p>
+          <h5>Insertion and deletion samples</h5>
+          <p>
+            <ins datetime="2009-07-12T08:15:30+02:00" title="Added new information according to suggestions">This information was just added.</ins>
+            <br>
+            <del>While this information is no longer valid.</del>
+          </p>
+          <h5>Presentational elements</h5>
+          <p>
+            <strong>Bold text</strong>
+            <br>
+            <em>Italic text</em>
+            <br>
+            <small>Small</small>
+          </p>
+          <h5>Horizontal rule:</h5>
+        </section>
+        <!-- =========================Boostrap Thumbnails========================= -->
+        <section id="thumbnails">
+          <div class="page-header">
+            <h1>Thumbnails</h1>
+          </div>
+          <p>Be sure that the content is same height, these are not controlled by jQuery.</p>
+          <div class="row">
+            <ul class="thumbnails list-unstyled">
+              <li class="col-sm-4">
+                <div class="thumbnail">
+                  <img alt="" src="http://placehold.it/330x150">
+                  <div class="caption">
+                    <h3>Thumbnail label</h3>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p>
+                      <a class="btn btn-primary" href="#">Action</a>
+                      <a class="btn btn-default" href="#">Action</a>
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="col-sm-4">
+                <div class="thumbnail">
+                  <img alt="" src="http://placehold.it/330x150">
+                  <div class="caption">
+                    <h3>Thumbnail label</h3>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p>
+                      <a class="btn btn-primary" href="#">Action</a>
+                      <a class="btn btn-default" href="#">Action</a>
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="col-sm-4">
+                <div class="thumbnail">
+                  <img alt="" src="http://placehold.it/330x150">
+                  <div class="caption">
+                    <h3>Thumbnail label</h3>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p>
+                      <a class="btn btn-primary" href="#">Action</a>
+                      <a class="btn btn-default" href="#">Action</a>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="row">
+            <ul class="thumbnails list-unstyled">
+              <li class="col-xs-6 col-sm-3">
+                <a class="thumbnail" href="#">
+                  <img alt="" src="http://placehold.it/260x180">
+                </a>
+              </li>
+              <li class="col-xs-6 col-sm-3">
+                <a class="thumbnail" href="#">
+                  <img alt="" src="http://placehold.it/260x180">
+                </a>
+              </li>
+              <li class="col-xs-6 col-sm-3">
+                <a class="thumbnail" href="#">
+                  <img alt="" src="http://placehold.it/260x180">
+                </a>
+              </li>
+              <li class="col-xs-6 col-sm-3">
+                <a class="thumbnail" href="#">
+                  <img alt="" src="http://placehold.it/260x180">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+      <footer class="container-fluid">
+        <div class="row">
+          <div class="col-md-2 col-md-offset-1">
+            <h4>Navigate</h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#" title="Learn">Learn</a>
+              </li>
+              <li>
+                <a href="#" title="Get Started">Get Started</a>
+              </li>
+              <li>
+                <a href="#" title="Forums">Forums</a>
+              </li>
+              <li>
+                <a href="#" title="Get Involved">Get Involved</a>
+              </li>
+              <li>
+                <a href="#" title="Download">Download</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-2">
+            <h4>Follow Us</h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#" title="Blog">Blog</a>
+              </li>
+              <li>
+                <a href="#" title="Twitter">Twitter</a>
+              </li>
+              <li>
+                <a href="#" title="Google+">Google+</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-2">
+            <h4>Contribute</h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#" title="Submit a bug">Submit a bug</a>
+              </li>
+              <li>
+                <a href="#" title="Write code">Write Code</a>
+              </li>
+              <li>
+                <a href="#" title="Join the team">Join the team</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3 col-md-offset-1">
+            <h4>LGPL 2.1 License</h4>
+            <p>All dependencies of this project are available under the LGPL or a compatible license.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="redhatlogo">
+            <div id="logospacer"></div>
+            <a href="http://www.redhat.com/"><img src="http://static.jboss.org/theme/images/common/redhat_logo.png"></a>
+          </div>
+        </div>
+      </footer>
+      <div class="container-fluid" id="companyfooter">
+        <div class="redhatlogo">
+          <div id="logospacer"></div>
+          <a href="http://www.redhat.com/"><img src="http://static.jboss.org/theme/images/common/redhat_logo.png"></a>
+        </div>
+      </div>
+      <span class="backToTop">
+        <a href="#top">back to top</a>
+      </span>
+      <script src="/vertx/javascripts/bootstrap-community.js"></script>
+      <!-- begin eloqua tracking -->
+      <script type='text/javascript' language='JavaScript' src='http://www.redhat.com/j/elqNow/elqCfg.js'></script>
+      <script type='text/javascript' language='JavaScript' src='http://www.redhat.com/j/elqNow/elqImg.js'></script>
+      <!-- end eloqua tracking -->
+      
+      <div id="oTags">
+        <script type="text/javascript" src="//www.redhat.com/j/s_code.js"></script>
+        <script type="text/javascript"><!--
+        var coreUrl = encodeURI(document.URL.split("?")[0]).replace(/-/g," ");
+        var urlSplit = coreUrl.toLowerCase().split(/\//);
+        var urlLast = urlSplit[urlSplit.length-1];
+        var pageNameString = "";
+        var siteName = "";
+        var minorSectionIndex = 3
+        if (urlLast == "") {
+            urlSplit.splice(-1,1);
+        }
+        if (urlLast.search(/\./) >= 0) {
+            if (urlLast == "index.html") {
+                urlSplit.splice(-1,1);
+            }
+            else {
+                urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+            }
+        }
+        siteName = urlSplit[2].split(".")[1];
+        s.prop14 = s.eVar27 = siteName || "";
+        s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+        s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+        pageNameString = urlSplit.splice(3).join(" | ");
+        s.pageName = "jboss | community | " + siteName + " | " + pageNameString;
+        s.server = "jboss";
+        s.channel = "jboss | community";
+        s.prop4 = s.eVar23 = encodeURI(document.URL);
+        s.prop21 = s.eVar18 = coreUrl;
+        s.prop2 = s.eVar22 = "en";
+        s.prop3 = s.eVar19 = "us";
+        //--></script>
+        <script type="text/javascript" src="//www.redhat.com/j/rh_omni_footer.js"></script>
+        <script language="JavaScript" type="text/javascript"><!--
+        if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+        //--></script>
+        <noscript><a href="http://www.omniture.com" title="Web Analytics"><img
+        src="https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]&cdp=3&[AQE]"
+        height="1" width="1" border="0" alt="" /></a></noscript>
+      </div>
+      <!-- End oTags -->
+      
+      <!-- Google Analytics part -->
+      <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+      try {
+      var pageTracker = _gat._getTracker("UA-10656779-1");
+      pageTracker._trackPageview();
+      } catch(err) {}</script>
+    </div>
+  </body>
+</html>

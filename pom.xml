@@ -51,6 +51,12 @@
 
   <name>Vert.x Website</name>
 
+  <scm>
+    <connection>scm:git:git@github.com:vert-x3/vert-web-site.x.git</connection>
+    <developerConnection>scm:git:git@github.com:vert-x3/vert-web-site.x.git</developerConnection>
+    <url>git@github.com:vert-x3/vert-web-site.x.git</url>
+  </scm>
+
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -123,7 +129,7 @@
             <configuration>
               <sourceDirectory>${asciidoc.dir}</sourceDirectory>
               <sourceDocumentName>manual.adoc</sourceDocumentName>
-              <outputDirectory>${project.build.directory}/site</outputDirectory>
+              <outputDirectory>${project.build.directory}/site/docs</outputDirectory>
               <backend>html</backend>
               <doctype>book</doctype>
             </configuration>
@@ -155,16 +161,40 @@
 
                     <property name="site" value="${project.build.directory}/site/"/>
 
-                    <unzip src="${io.vertx:vertx-core-docs:zip:html}" dest="${site}/vertx-core"/>
-                    <unzip src="${io.vertx:vertx-lang-js-docs:zip:html}" dest="${site}/vertx-lang-js"/>
-                    <unzip src="${io.vertx:vertx-lang-groovy-docs:zip:html}" dest="${site}/vertx-lang-groovy"/>
+                    <copy todir="${site}">
+                      <fileset dir="src/site/resources"/>
+                    </copy>
+
+                    <unzip src="${io.vertx:vertx-core-docs:zip:html}" dest="${site}/docs/vertx-core"/>
+                    <unzip src="${io.vertx:vertx-lang-js-docs:zip:html}" dest="${site}/docs/vertx-lang-js"/>
+                    <unzip src="${io.vertx:vertx-lang-groovy-docs:zip:html}" dest="${site}/docs/vertx-lang-groovy"/>
 
                     <!--<copy file="${site}/index.html" tofile="${site}/1.2/reference.html" />-->
+
+
 
                   </target>
                 </configuration>
                 <goals>
                   <goal>run</goal>
+                </goals>
+                <phase>site</phase>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- Push site to github pages -->
+          <plugin>
+            <groupId>com.github.github</groupId>
+            <artifactId>site-maven-plugin</artifactId>
+            <version>0.9</version>
+            <configuration>
+              <message>Creating site for ${project.version}</message>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>site</goal>
                 </goals>
                 <phase>site</phase>
               </execution>

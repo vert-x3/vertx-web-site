@@ -1,7 +1,7 @@
 = Vert.x User Manual
 :toc: right
 
-Vert.x - the toolkit for creating reactive applications on the JVM.
+Vert.x - a toolkit for creating reactive applications on the JVM.
 
 == Introduction
 

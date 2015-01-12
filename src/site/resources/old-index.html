@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Example Homepage · JBoss Community</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <link href="/stylesheets/bootstrap-community.css" media="screen" rel="stylesheet">
+    <!-- IE 6-8 support of HTML 5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://static.jboss.org/theme/js/libs/html5/pre3.6/html5.min.js"></script>
+    <![endif]-->
+    <!-- Defines the project favicon. Change these URLs to your specific project folder on static.jboss.org. -->
+    <link href="http://static.jboss.org/example/images/favicon.ico" rel="shortcut icon">
+    <link href="http://static.jboss.org/example/images/apple-touch-icon-144x144-precomposed.png" rel="apple-touch-icon-precomposed" sizes="144x144">
+    <link href="http://static.jboss.org/example/images/apple-touch-icon-114x114-precomposed.png" rel="apple-touch-icon-precomposed" sizes="114x114">
+    <link href="http://static.jboss.org/example/images/apple-touch-icon-72x72-precomposed.png" rel="apple-touch-icon-precomposed" sizes="72x72">
+    <link href="http://static.jboss.org/example/images/apple-touch-icon-precomposed.png" rel="apple-touch-icon-precomposed">
+    <!-- Defines the project banner. Change these URLs to your specific project folder on static.jboss.org -->
+    <style>
+      @media (min-width: 980px) {
+        .banner { background-image: url(http://static.jboss.org/example/images/example-banner-1180px.png); height: 110px;  }
+      }
+      @media (max-width: 979px) {
+        .banner { background-image: url(http://static.jboss.org/example/images/example-logo.png); background-repeat:no-repeat; background-position: center bottom; height: 60px; }
+      }
+      @media (max-width: 650px) {
+        .banner { width: 100%; margin: 0px auto; }
+      }
+      @media (max-width: 450px) {
+        .banner { height: 90px; }
+      }
+    </style>
+    <script src="http://static.jboss.org/theme/js/libs/jquery/jquery-1.9.1.js"></script>
+    <style>
+      /* adjusting the vertical spacing for when a stickynav is engaged */
+      .breadcrumb-fixed > .active {
+        color: #8c8f91;
+      }
+      .breadcrumb-fixed {
+        margin: 70px 0 10px;
+        padding: 8px 15px;
+        margin-bottom: 20px;
+        list-style: none;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+      }
+      
+      .breadcrumb-fixed > li {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="">
+      <!-- begin accesibility skip to top -->
+      <ul class="visuallyhidden" id="top">
+        <li>
+          <a accesskey="n" href="#nav" title="Skip to navigation">Skip to navigation</a>
+        </li>
+        <li>
+          <a accesskey="c" href="#page" title="Skip to content">Skip to content</a>
+        </li>
+      </ul>
+      <div class="container" id="content">
+        <div class="dropup">
+          <div id="ajbossproject">A JBoss Project</div>
+          <a class="tabnav-closed" href="#" id="tab">Red Hat</a>
+          <script>
+            window.addEventListener('load', function() { renderTabzilla("Example","example" , false ) }, false);
+          </script>
+        </div>
+        <div class="banner">
+          <a href="#"></a>
+          <div class="taglinelight visible-lg">This text is for the project tagline.</div>
+        </div>
+        
+        <br>
+        <div class="col-md-9">
+          <h1>
+            Welcome!
+          </h1>
+          <h4 class="alert alert-warning">
+            Before you get started here are the upstream project requirements for &lt;project&gt;.jboss.org
+          </h4>
+          If you're hosting your project at
+          <strong>
+            http://&lt;project&gt;.jboss.org
+          </strong>
+          then you need to use the
+          <a href="https://github.com/jbossorg/bootstrap-community">bootstrap-community L&F</a>
+          , as shown on this page. This provides the following required elements which ensure your project has the necessary Red Hat branding and your project specific subdomain has a basic level of consistency with the rest of jboss.org:
+          <h4>General</h4>
+          <ul>
+            <li>Red Hat dropdown tab at top of page</li>
+            <li>Red Hat logo at bottom of page</li>
+          </ul>
+          <h4>jboss.org specific</h4>
+          <ul>
+            <li>Project Banner with optional tagline</li>
+            <li>Fixed width content area</li>
+            <li>Background gradient</li>
+            <li>
+              Font Awesome for content
+            </li>
+          </ul>
+          Within this projects are encouraged to experiment with their own layouts and navigation to find what works best for them. See the Template Library for examples of what's possible.
+        </div>
+        <div class="col-md-3 alert alert-info">
+          <h3>Template Library</h3>
+          If you'd like to see what's possible using our templates, take a look at the following examples:
+          <br>
+          <br>
+          <ul>
+            <li>
+              <a href="/project.html">Homepage</a>
+            </li>
+            <li>
+              <a href="/hibernate.html">Group homepage</a>
+            </li>
+            <li>
+              <a href="/subproject.html">Subproject homepage</a>
+            </li>
+            <li>
+              <a href="/leftcol.html">Left column</a>
+            </li>
+            <li>
+              <a href="/rightcol.html">Right column</a>
+            </li>
+            <li>
+              <a href="/bothcol.html">3 columns</a>
+            </li>
+          </ul>
+        </div>
+        <br>
+        <br>
+      </div>
+      
+      <div class="container-fluid" id="companyfooter">
+        <div class="redhatlogo">
+          <div id="logospacer"></div>
+          <a href="http://www.redhat.com/"><img src="http://static.jboss.org/theme/images/common/redhat_logo.png"></a>
+        </div>
+      </div>
+      <span class="backToTop">
+        <a href="#top">back to top</a>
+      </span>
+      <script src="/javascripts/bootstrap-community.js"></script>
+      <!-- begin eloqua tracking -->
+      <script type='text/javascript' language='JavaScript' src='http://www.redhat.com/j/elqNow/elqCfg.js'></script>
+      <script type='text/javascript' language='JavaScript' src='http://www.redhat.com/j/elqNow/elqImg.js'></script>
+      <!-- end eloqua tracking -->
+      
+      <div id="oTags">
+        <script type="text/javascript" src="//www.redhat.com/j/s_code.js"></script>
+        <script type="text/javascript"><!--
+        var coreUrl = encodeURI(document.URL.split("?")[0]).replace(/-/g," ");
+        var urlSplit = coreUrl.toLowerCase().split(/\//);
+        var urlLast = urlSplit[urlSplit.length-1];
+        var pageNameString = "";
+        var siteName = "";
+        var minorSectionIndex = 3
+        if (urlLast == "") {
+            urlSplit.splice(-1,1);
+        }
+        if (urlLast.search(/\./) >= 0) {
+            if (urlLast == "index.html") {
+                urlSplit.splice(-1,1);
+            }
+            else {
+                urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+            }
+        }
+        siteName = urlSplit[2].split(".")[1];
+        s.prop14 = s.eVar27 = siteName || "";
+        s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+        s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+        pageNameString = urlSplit.splice(3).join(" | ");
+        s.pageName = "jboss | community | " + siteName + " | " + pageNameString;
+        s.server = "jboss";
+        s.channel = "jboss | community";
+        s.prop4 = s.eVar23 = encodeURI(document.URL);
+        s.prop21 = s.eVar18 = coreUrl;
+        s.prop2 = s.eVar22 = "en";
+        s.prop3 = s.eVar19 = "us";
+        //--></script>
+        <script type="text/javascript" src="//www.redhat.com/j/rh_omni_footer.js"></script>
+        <script language="JavaScript" type="text/javascript"><!--
+        if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+        //--></script>
+        <noscript><a href="http://www.omniture.com" title="Web Analytics"><img
+        src="https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]&cdp=3&[AQE]"
+        height="1" width="1" border="0" alt="" /></a></noscript>
+      </div>
+      <!-- End oTags -->
+      
+      <!-- Google Analytics part -->
+      <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+      try {
+      var pageTracker = _gat._getTracker("UA-10656779-1");
+      pageTracker._trackPageview();
+      } catch(err) {}</script>
+    </div>
+  </body>
+</html>
