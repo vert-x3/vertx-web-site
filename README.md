@@ -1,5 +1,12 @@
 # Vert.x 3.x web-site
 
+This repository contains the Vert.x 3.x web site.
+
+This includes both the static site and the documentation.
+
+The documentation is generated, by pulling in the *-html.zip files created by sub projects (e.g. vertx-core, vertx-lang-js)
+and unzipping them into the site.
+
 ## Viewing the web-site during development
 
 This project comes with a simple web server so you can view the site easily during development.
