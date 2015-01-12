@@ -15,5 +15,9 @@ Run it from the web site project root:
 
     java -jar dev-web-server/target/dev-web-server-3.0.0-SNAPSHOT-fat.jar
 
-Now point your browser at localhost:8080
+Now build the site:
+
+    mvn site
+
+And point your browser at `localhost:8080`
 
