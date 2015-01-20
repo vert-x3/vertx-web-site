@@ -1,5 +1,5 @@
 = Vert.x User Manual
-:toc: right
+:toc: left
 
 Vert.x - a toolkit for creating reactive applications on the JVM.
 
@@ -108,6 +108,17 @@ Metrics:: Exposes various Vert.x metrics over JMX and the event bus.
 More to come!
 
 == Migrating from Vert.x 2.x
+
+== Using Vert.x in a Maven build
+
+Hello world
+fatjars
+
+== Using Vert.x in a Gradle build
+
+== Running Vert.x at the command line
+
+== Testing Vert.x applications
 
 
 
