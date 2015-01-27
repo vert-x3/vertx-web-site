@@ -1,0 +1,60 @@
+= Getting started
+
+== Getting started with Java
+
+=== Maven / Gradle
+
+Vert.x can easily be used in a standard Maven or Gradle project.
+
+First create a vanilla Maven or Gradle project using your favourite IDE.
+
+Add a dependency to the Maven artifact: `io.vertx:vertx-core:3.0`
+
+Create a new class `HelloWorld.java`:
+
+----
+public class HelloWorld {
+
+  public static void main(String[] args) {
+    Vertx.vertx().createHttpServer().requestHandler(req -> {
+      req.response().end("Hello World!");
+    }).listen(8080);
+  }
+
+}
+----
+
+Right click on it in your IDE, and run it.
+
+Now open your browser and point it at `http://localhost:8080`.
+
+=== At the command line
+
+Vert.x can also be used at the command line to run code directly.
+
+To use Vert.x in this way, you first need to link:install_guide.html[download and install the distribution]
+
+Open a text editor and save the following in a file called `HelloWorld.java`:
+
+----
+public class HelloWorld {
+
+  public static void main(String[] args) {
+    Vertx.vertx().createHttpServer().requestHandler(req -> {
+      req.response().end("Hello World!");
+    }).listen(8080);
+  }
+
+}
+----
+
+Now type the following at the command line:
+
+ vertx run HelloWorld.java
+
+Now open your browser and point it at `http://localhost:8080`.
+
+== Getting started with JavaScript
+
+TODO
+

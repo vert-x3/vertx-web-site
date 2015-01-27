@@ -1,0 +1,26 @@
+= Vert.x install guide
+
+You can use Vert.x in your Maven or Gradle projects by simply adding dependencies to the Vert.x artifacts, but if
+you want to use Vert.x at the command line you will need to install it first.
+
+== Download Vert.x
+
+The Vert.x distribution can be downloaded from https://bintray.com/vertx/downloads/distribution/view[Bintray].
+
+A good place to unzip the distribution is into your home directory:
+
+----
+cd
+tar -zxf ../Downloads/vertx-3.0.0-dist.tar.gz
+----
+
+Now add the Vert.x install `bin` directory to your `PATH` environment variable.
+
+Now check it's installed:
+
+----
+> vertx version
+3.0.0
+----
+
+You should see output similar to the above.
