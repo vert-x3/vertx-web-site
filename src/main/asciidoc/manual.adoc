@@ -17,7 +17,8 @@ Instead we give you a lot of useful bricks and let you create your app the way *
 
 Vert.x is *polyglot*. You can use it with multiple JVM languages including Java, JavaScript, Ruby and Groovy.
 Vert.x doesn't care what language is "best" - you use what language(s) that *you* want depending on the
-task at hand and the skill-set of your team.
+task at hand and the skill-set of your team. We don't just force you to use our Java API in other languages - we provide
+*idiomatic* APIs for every language that Vert.x supports.
 
 Vert.x is *lightweight* - Vert.x core is around 650kB in size.
 

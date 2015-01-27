@@ -8749,7 +8749,7 @@ ul.supportedin li a {
   background-attachment: fixed;
   /* This is what makes the background image rescale based
      on the container's size */
-  max-height: 450px;
+  max-height: 150px;
   width: 100%;
   padding: 10% 20%;
   color: #fff;
