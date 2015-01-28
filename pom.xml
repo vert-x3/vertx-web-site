@@ -21,29 +21,10 @@
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <repositories>
-    <repository>
-      <id>sonatype-nexus-releases</id>
-      <url>https://oss.sonatype.org/content/repositories/releases</url>
-      <layout>default</layout>
-    </repository>
-    <repository>
-      <id>sonatype-nexus-snapshots</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <layout>default</layout>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-    </repository>
-  </repositories>
-
   <parent>
     <groupId>io.vertx</groupId>
     <artifactId>vertx-parent</artifactId>
-    <version>3.0.0-SNAPSHOT</version>
+    <version>2</version>
   </parent>
 
   <artifactId>vertx-web-site</artifactId>
@@ -62,6 +43,7 @@
   <properties>
 
     <vertx.version>3.0.0-SNAPSHOT</vertx.version>
+    <vertx.docs.version>3.0.0-docs-SNAPSHOT</vertx.docs.version>
 
     <asciidoclet.version>1.5.1</asciidoclet.version>
     <apacheds-protocol-dns.version>1.5.7</apacheds-protocol-dns.version>
@@ -80,16 +62,16 @@
 
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-core-docs</artifactId>
-      <version>${vertx.version}</version>
+      <artifactId>vertx-core</artifactId>
+      <version>${vertx.docs.version}</version>
       <classifier>html</classifier>
       <type>zip</type>
     </dependency>
 
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-lang-js-docs</artifactId>
-      <version>${vertx.version}</version>
+      <artifactId>vertx-lang-js</artifactId>
+      <version>${vertx.docs.version}</version>
       <classifier>html</classifier>
       <type>zip</type>
     </dependency>
@@ -155,8 +137,8 @@
 
                     <property name="site" value="${project.build.directory}/site/"/>
 
-                    <unzip src="${io.vertx:vertx-core-docs:zip:html}" dest="${site}/vertx-core"/>
-                    <unzip src="${io.vertx:vertx-lang-js-docs:zip:html}" dest="${site}/vertx-lang-js"/>
+                    <unzip src="${io.vertx:vertx-core:zip:html}" dest="${site}/vertx-core"/>
+                    <unzip src="${io.vertx:vertx-lang-js:zip:html}" dest="${site}/vertx-lang-js"/>
                     <!--<unzip src="${io.vertx:vertx-lang-groovy-docs:zip:html}" dest="${site}/vertx-lang-groovy"/>-->
 
                     <!--<copy file="${site}/index.html" tofile="${site}/1.2/reference.html" />-->
