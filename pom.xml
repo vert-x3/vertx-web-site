@@ -68,6 +68,7 @@
   <properties>
 
     <vertx.version>3.0.0-SNAPSHOT</vertx.version>
+    <vertx.docs.version>3.0.0-docs-SNAPSHOT</vertx.docs.version>
 
     <asciidoclet.version>1.5.1</asciidoclet.version>
     <apacheds-protocol-dns.version>1.5.7</apacheds-protocol-dns.version>
@@ -88,24 +89,24 @@
 
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-core-docs</artifactId>
-      <version>${vertx.version}</version>
+      <artifactId>vertx-core</artifactId>
+      <version>${vertx.docs.version}</version>
       <classifier>html</classifier>
       <type>zip</type>
     </dependency>
 
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-lang-js-docs</artifactId>
-      <version>${vertx.version}</version>
+      <artifactId>vertx-lang-js</artifactId>
+      <version>${vertx.docs.version}</version>
       <classifier>html</classifier>
       <type>zip</type>
     </dependency>
 
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-lang-groovy-docs</artifactId>
-      <version>${vertx.version}</version>
+      <artifactId>vertx-lang-groovy</artifactId>
+      <version>${vertx.docs.version}</version>
       <classifier>html</classifier>
       <type>zip</type>
     </dependency>
@@ -117,7 +118,7 @@
       <id>site</id>
       <activation>
         <property>
-          <name>!nosite</name>
+          <name>!skipSite</name>
         </property>
       </activation>
 
@@ -166,9 +167,9 @@
                       <fileset dir="src/site/resources"/>
                     </copy>
 
-                    <unzip src="${io.vertx:vertx-core-docs:zip:html}" dest="${site}/docs/vertx-core"/>
-                    <unzip src="${io.vertx:vertx-lang-js-docs:zip:html}" dest="${site}/docs/vertx-lang-js"/>
-                    <unzip src="${io.vertx:vertx-lang-groovy-docs:zip:html}" dest="${site}/docs/vertx-lang-groovy"/>
+                    <unzip src="${io.vertx:vertx-core:zip:html}" dest="${site}/docs/vertx-core"/>
+                    <unzip src="${io.vertx:vertx-lang-js:zip:html}" dest="${site}/docs/vertx-lang-js"/>
+                    <unzip src="${io.vertx:vertx-lang-groovy:zip:html}" dest="${site}/docs/vertx-lang-groovy"/>
 
                   </target>
                 </configuration>
