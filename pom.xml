@@ -53,7 +53,7 @@
 
     <asciidoclet.version>1.5.1</asciidoclet.version>
     <apacheds-protocol-dns.version>1.5.7</apacheds-protocol-dns.version>
-    <asciidoc.dir>${project.basedir}/src/main/asciidoc</asciidoc.dir>
+    <asciidoc.dir>${project.build.directory}/asciidoc</asciidoc.dir>
 
     <github.global.server>github</github.global.server>
 
@@ -72,23 +72,21 @@
       <groupId>io.vertx</groupId>
       <artifactId>vertx-core</artifactId>
       <version>${vertx.docs.version}</version>
-      <classifier>html</classifier>
+      <classifier>docs</classifier>
       <type>zip</type>
     </dependency>
-
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-lang-js</artifactId>
-      <version>${vertx.docs.version}</version>
-      <classifier>html</classifier>
-      <type>zip</type>
-    </dependency>
-
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-lang-groovy</artifactId>
       <version>${vertx.docs.version}</version>
-      <classifier>html</classifier>
+      <classifier>docs</classifier>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-lang-js</artifactId>
+      <version>${vertx.docs.version}</version>
+      <classifier>docs</classifier>
       <type>zip</type>
     </dependency>
 
@@ -105,16 +103,57 @@
 
       <build>
 
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <artifactId>maven-antrun-plugin</artifactId>
+              <version>1.8</version>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+
         <plugins>
+
+          <plugin>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+
+              <!-- Unpack docs -->
+              <execution>
+                <id>unpack-vertx-core</id>
+                <goals>
+                  <goal>unpack-dependencies</goal>
+                </goals>
+                <phase>site</phase>
+                <configuration>
+                  <includeGroupIds>io.vertx</includeGroupIds>
+                  <includeArtifactIds>vertx-core,vertx-lang-groovy,vertx-lang-js</includeArtifactIds>
+                  <useSubDirectoryPerArtifact>true</useSubDirectoryPerArtifact>
+                  <includeTypes>zip</includeTypes>
+                  <includeClassifiers>docs</includeClassifiers>
+                  <stripClassifier>true</stripClassifier>
+                  <stripVersion>true</stripVersion>
+                  <outputDirectory>${project.build.directory}/docs</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- Process all adoc files -->
           <plugin>
             <groupId>org.asciidoctor</groupId>
             <artifactId>asciidoctor-maven-plugin</artifactId>
-            <version>1.5.0</version>
+            <version>1.5.2</version>
             <configuration>
-              <sourceDirectory>${asciidoc.dir}</sourceDirectory>
-              <outputDirectory>${project.build.directory}/site/docs</outputDirectory>
+              <sourceDirectory>${project.build.directory}/docs</sourceDirectory>
+              <outputDirectory>${project.build.directory}/generated</outputDirectory>
               <backend>html</backend>
               <doctype>book</doctype>
+              <relativeBaseDir>true</relativeBaseDir>
+              <preserveDirectories>true</preserveDirectories>
+              <attributes>
+                <stylesheet>${basedir}/asciidoctor-stylesheet-factory/stylesheets/vertx.css</stylesheet>
+              </attributes>
             </configuration>
             <executions>
               <execution>
@@ -134,24 +173,26 @@
               <skipDeploy>true</skipDeploy>
             </configuration>
           </plugin>
+
+          <!-- Copy the docs to the site dir -->
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.8</version>
             <executions>
               <execution>
                 <configuration>
                   <target>
-
-                    <property name="site" value="${project.build.directory}/site/"/>
-
-                    <copy todir="${site}">
-                      <fileset dir="src/site/resources"/>
+                    <copy todir="${project.build.directory}/site/vertx-core/java">
+                      <file file="${project.build.directory}/generated/vertx-core-docs-zip/asciidoc/index.html"/>
+                      <fileset dir="${project.build.directory}/generated/vertx-core-docs-zip" includes="apidocs/**"/>
                     </copy>
-
-                    <unzip src="${io.vertx:vertx-core:zip:html}" dest="${site}/docs/vertx-core"/>
-                    <unzip src="${io.vertx:vertx-lang-js:zip:html}" dest="${site}/docs/vertx-lang-js"/>
-                    <unzip src="${io.vertx:vertx-lang-groovy:zip:html}" dest="${site}/docs/vertx-lang-groovy"/>
-
+                    <copy todir="${project.build.directory}/site/vertx-core/groovy">
+                      <file file="${project.build.directory}/generated/vertx-lang-groovy-docs-zip/asciidoc/index.html"/>
+                      <fileset dir="${project.build.directory}/generated/vertx-lang-groovy-docs-zip" includes="groovydoc/**"/>
+                    </copy>
+                    <copy todir="${project.build.directory}/site/vertx-core/js">
+                      <file file="${project.build.directory}/generated/vertx-lang-js-docs-zip/asciidoc/index.html"/>
+                      <fileset dir="${project.build.directory}/generated/vertx-lang-js-docs-zip" includes="jsdoc/**"/>
+                    </copy>
                   </target>
                 </configuration>
                 <goals>
