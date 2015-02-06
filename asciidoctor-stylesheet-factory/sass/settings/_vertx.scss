@@ -1,0 +1,57 @@
+$base-font-size: 14px;
+$global-radius: 4px;
+
+// Body
+$body-font-color: #656565;
+$body-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+@import "defaults";
+
+// General settings
+
+// $primary-color: #069;
+// $global-radius: 0;
+$primary-color: #ffffff;
+
+// title
+$title-font-weight: normal;
+$title-font-color: $body-font-color;
+
+// Headings
+$header-font-family: "Source Sans Pro", "TitilliumText22LMedium", Helvetica, Arial, sans-serif;
+$header-font-weight: normal;
+$header-font-color: $body-font-color;
+$header-line-height: 1.1;
+$header-top-margin: 1.5em;
+
+$h1-font-size: 2.6em;  // 36px
+$h2-font-size: 2.15em; // 30px
+$h3-font-size: 1.7em;  // 24px
+$h4-font-size: 1.25em; // 18px
+$h5-font-size: 1em;    // 14px
+$h6-font-size: 0.85em; // 12px
+
+// Paragraph
+$paragraph-font-family: $body-font-family;
+
+// Links
+$anchor-font-color: #336699;
+$anchor-font-color-hover: darken($anchor-font-color, 15%);
+
+
+// TOC ????
+
+// Inline Code
+$code-font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+$code-color: #c7254e;
+$code-font-weight: normal;
+$code-bg-color: #f9f2f4;
+
+// Code Blocks
+$pre-bg: #f5f5f5;
+$pre-font-color: #656565;
+$pre-font-size: 0.95em; // 13px
+$pre-border-color: #ddd;
+$pre-border-style: solid;
+$pre-border-size: 1px;
+$pre-padding: emCalc(10px);
