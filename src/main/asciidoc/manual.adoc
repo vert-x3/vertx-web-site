@@ -81,6 +81,12 @@ Current extensions include:
 Apex:: Apex is a a tool-kit for creating modern web applications with Vert.x
 + It's a bit like Express in the Node.js world, and has a wealth of functionality.
 
+Please select your language below:
+
+*  link:vertx-apex/java/index.html[Java Apex Manual]
+*  link:vertx-apex/js/index.html[JavaScript Apex Manual]
+*  link:vertx-apex/groovy/index.html[Groovy Apex Manual]
+
 Redis:: This is a 100% asynchronous Redis client for Vert.x
 
 MongoDB:: This is a 100% asynchronous MongoDB client for Vert.x
