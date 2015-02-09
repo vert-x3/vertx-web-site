@@ -63,9 +63,9 @@ The Vert.x Core Manual is available for each programming language that Vert.x su
 
 Please select your language below:
 
-*  link:vertx-core/java/index.html[Java Vert.x Core Manual]
-*  link:vertx-core/js/index.html[JavaScript Vert.x Core Manual]
-*  link:vertx-core/groovy/index.html[Groovy Vert.x Core Manual]
+*  link:vertx-core/java/index.html[Java Vert.x Core Manual] | link:vertx-core/java/apidocs/index.html[Core Api]
+*  link:vertx-core/js/index.html[JavaScript Vert.x Core Manual] | link:vertx-core/js/jsdoc/index.html[Core Api]
+*  link:vertx-core/groovy/index.html[Groovy Vert.x Core Manual] | link:vertx-core/groovy/groovydoc/index.html[Core Api]
 
 == Vert.x Extensions
 
@@ -83,9 +83,9 @@ Apex:: Apex is a a tool-kit for creating modern web applications with Vert.x
 
 Please select your language below:
 
-*  link:vertx-apex/java/index.html[Java Apex Manual]
-*  link:vertx-apex/js/index.html[JavaScript Apex Manual]
-*  link:vertx-apex/groovy/index.html[Groovy Apex Manual]
+*  link:vertx-apex/java/index.html[Java Apex Manual] | link:vertx-apex/java/apidocs/index.html[Apex Api]
+*  link:vertx-apex/js/index.html[JavaScript Apex Manual] | link:vertx-apex/js/jsdoc/index.html[Apex Api]
+*  link:vertx-apex/groovy/index.html[Groovy Apex Manual] | link:vertx-apex/groovy/groovydoc/index.html[Apex Api]
 
 Redis:: This is a 100% asynchronous Redis client for Vert.x
 
