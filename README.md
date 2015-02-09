@@ -29,3 +29,7 @@ Now build the site:
 
 And point your browser at `localhost:8080`
 
+# Todo
+
+- stack component page
+- who is using vert.x page
