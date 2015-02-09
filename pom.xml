@@ -145,8 +145,6 @@
             <artifactId>asciidoctor-maven-plugin</artifactId>
             <version>1.5.2</version>
             <configuration>
-              <sourceDirectory>${project.build.directory}/docs</sourceDirectory>
-              <outputDirectory>${project.build.directory}/generated</outputDirectory>
               <backend>html</backend>
               <doctype>book</doctype>
               <relativeBaseDir>true</relativeBaseDir>
@@ -157,10 +155,26 @@
             </configuration>
             <executions>
               <execution>
+                <id>process-vertx-docs</id>
                 <goals>
                   <goal>process-asciidoc</goal>
                 </goals>
                 <phase>site</phase>
+                <configuration>
+                  <sourceDirectory>${project.build.directory}/docs</sourceDirectory>
+                  <outputDirectory>${project.build.directory}/generated</outputDirectory>
+                </configuration>
+              </execution>
+              <execution>
+                <id>process-site-docs</id>
+                <goals>
+                  <goal>process-asciidoc</goal>
+                </goals>
+                <phase>site</phase>
+                <configuration>
+                  <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
+                  <outputDirectory>${project.build.directory}/site/docs/</outputDirectory>
+                </configuration>
               </execution>
             </executions>
           </plugin>
@@ -181,15 +195,18 @@
               <execution>
                 <configuration>
                   <target>
-                    <copy todir="${project.build.directory}/site/vertx-core/java">
+                    <copy todir="${project.build.directory}/site">
+                      <fileset dir="${basedir}/src/site/resources"/>
+                    </copy>
+                    <copy todir="${project.build.directory}/site/docs/vertx-core/java">
                       <file file="${project.build.directory}/generated/vertx-core-docs-zip/asciidoc/index.html"/>
                       <fileset dir="${project.build.directory}/generated/vertx-core-docs-zip" includes="apidocs/**"/>
                     </copy>
-                    <copy todir="${project.build.directory}/site/vertx-core/groovy">
+                    <copy todir="${project.build.directory}/site/docs/vertx-core/groovy">
                       <file file="${project.build.directory}/generated/vertx-lang-groovy-docs-zip/asciidoc/index.html"/>
                       <fileset dir="${project.build.directory}/generated/vertx-lang-groovy-docs-zip" includes="groovydoc/**"/>
                     </copy>
-                    <copy todir="${project.build.directory}/site/vertx-core/js">
+                    <copy todir="${project.build.directory}/site/docs/vertx-core/js">
                       <file file="${project.build.directory}/generated/vertx-lang-js-docs-zip/asciidoc/index.html"/>
                       <fileset dir="${project.build.directory}/generated/vertx-lang-js-docs-zip" includes="jsdoc/**"/>
                     </copy>

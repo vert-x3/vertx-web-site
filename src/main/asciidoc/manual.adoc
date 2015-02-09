@@ -63,9 +63,9 @@ The Vert.x Core Manual is available for each programming language that Vert.x su
 
 Please select your language below:
 
-*  link:vertx-core/index.html[Java Vert.x Core Manual]
-*  link:vertx-lang-js/index.html[JavaScript Vert.x Core Manual]
-*  link:vertx-lang-groovy/index.html[Groovy Vert.x Core Manual]
+*  link:vertx-core/java/index.html[Java Vert.x Core Manual]
+*  link:vertx-core/js/index.html[JavaScript Vert.x Core Manual]
+*  link:vertx-core/groovy/index.html[Groovy Vert.x Core Manual]
 
 == Vert.x Extensions
 
