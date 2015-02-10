@@ -9,27 +9,14 @@ and unzipping them into the site.
 
 ## Viewing the web-site during development
 
-This project comes with a simple web server so you can view the site easily during development.
+You can build the site with `mvn site`, this will assemble and transforms the various parts of the site and place
+it in `target/site`.
 
-The web-server is in the Maven sub-module `dev-web-server`.
+If you only change the site pages, you can activate the jbake watch mode (after having build the site once) with
+`mvn jbake:watch`, this will scan the changes and rebuild the part of the site that needs to be refreshed.
 
-To build it:
 
-    cd dev-web-server
-    mvn package
-
-Run it from the web site project root:
-
-    cd ..
-    java -jar dev-web-server/target/dev-web-server-3.0.0-SNAPSHOT-fat.jar
-
-Now build the site:
-
-    mvn site
-
-And point your browser at `localhost:8080`
-
-# Todo
+## Todo
 
 - stack component page
 - who is using vert.x page
