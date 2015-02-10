@@ -88,7 +88,11 @@ ${content.body}
         polyglot
         applications on the JVM, with the minimum of fuss.</h3>
 
-      <div class="text-center"><a class="btn btn-info" href="docs/manual.html" role="button">Learn more »</a> &nbsp; <a class="btn btn-info" href="docs/getting_started.html" role="button">Get started »</a></div>
+      <div class="text-center">
+        <a class="btn btn-info" href="docs/manual.html" role="button">Learn more »</a> &nbsp;
+        <a class="btn btn-info" href="docs/getting_started.html" role="button">Get started »</a>
+        <a class="btn btn-info" href="stack.html" role="button">Stack »</a>
+      </div>
 
     </div>
 
