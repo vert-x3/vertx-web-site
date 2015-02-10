@@ -98,6 +98,12 @@
       <type>zip</type>
     </dependency>
 
+    <dependency>
+      <groupId>org.jbake</groupId>
+      <artifactId>jbake-core</artifactId>
+      <version>2.3.2</version>
+    </dependency>
+
   </dependencies>
 
   <profiles>
@@ -221,9 +227,11 @@
               <execution>
                 <configuration>
                   <target>
+<!--
                     <copy todir="${project.build.directory}/site">
                       <fileset dir="${basedir}/src/site/resources"/>
                     </copy>
+-->
                     <copy todir="${project.build.directory}/site/docs/vertx-core/java">
                       <file file="${project.build.directory}/generated/vertx-core-docs-zip/asciidoc/index.html"/>
                       <fileset dir="${project.build.directory}/generated/vertx-core-docs-zip" includes="apidocs/**"/>
@@ -247,6 +255,31 @@
                 <phase>site</phase>
               </execution>
             </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>br.com.ingenieux</groupId>
+            <artifactId>jbake-maven-plugin</artifactId>
+            <version>0.0.9</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+                <phase>site</phase>
+                <configuration>
+                  <inputDirectory>${basedir}/src/site/resources</inputDirectory>
+                  <outputDirectory>${project.build.directory}/site</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>2.3.20</version>
+              </dependency>
+            </dependencies>
           </plugin>
 
           <!-- Push site to github pages -->
