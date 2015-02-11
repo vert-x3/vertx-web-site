@@ -200,6 +200,7 @@
               <attributes>
                 <stylesheet>${basedir}/asciidoctor-stylesheet-factory/stylesheets/vertx.css</stylesheet>
               </attributes>
+              <sourceHighlighter>prettify</sourceHighlighter>
             </configuration>
             <executions>
               <execution>
