@@ -104,6 +104,12 @@ Auth:: Authorisation / Authentication support for Vert.x
 Rx:: Reactive Extensions for Vert.x. If you're sick of callback hell, you can use an Rx-ified version of any Vert.x
 APIs in order to elegantly compose your asynchronous operations together.
 
+Please select your language below:
+
+*  link:vertx-rx/java/index.html[Java Rx Manual] | link:vertx-rx/java/apidocs/index.html[Rx Api]
+*  link:vertx-rx/js/index.html[JavaScript Rx Rx] | link:vertx-rx/js/jsdoc/index.html[Rx Api]
+*  link:vertx-rx/groovy/index.html[Groovy Apex Manual] | link:vertx-rx/groovy/groovydoc/index.html[Rx Api]
+
 Reactive Streams:: An implementation of the http://www.reactive-streams.org/[Reactive Stream specification] for Vert.x.
 + Reactive streams provides interoperability with other asynchronous frameworks/toolkits
 
