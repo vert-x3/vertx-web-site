@@ -69,16 +69,16 @@
       </div>
     </div>
   </div>
-  <div class="row col-sm-12 vertx-banner">
-    <div class="col-sm-10">
-      <h1>The reactive application tool-kit for the JVM.</h1>
-    </div>
-  </div>
 </div>
 
 <#if content.body??>
 ${content.body}
 <#else>
+<div class="row col-sm-12 vertx-banner">
+  <div class="col-sm-10">
+    <h1>The reactive application tool-kit for the JVM.</h1>
+  </div>
+</div>
 <div class="container">
   <div class="col-sm-12">
 
