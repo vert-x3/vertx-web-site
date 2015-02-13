@@ -247,6 +247,9 @@
                 </goals>
                 <phase>site</phase>
                 <configuration>
+                  <attributes>
+                    <toc>left</toc>
+                  </attributes>
                   <sourceDirectory>${project.build.directory}/docs</sourceDirectory>
                   <outputDirectory>${project.build.directory}/generated</outputDirectory>
                 </configuration>
@@ -258,6 +261,9 @@
                 </goals>
                 <phase>site</phase>
                 <configuration>
+                  <attributes>
+                    <toc>left</toc>
+                  </attributes>
                   <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
                   <outputDirectory>${project.build.directory}/site/docs/</outputDirectory>
                 </configuration>
