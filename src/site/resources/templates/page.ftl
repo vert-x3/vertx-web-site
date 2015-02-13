@@ -84,39 +84,38 @@ ${content.body}
 
     <div class="row">
 
-      <h3>Vert.x is a general purpose, un-opinionated tool-kit for building high performance, scalable, concurrent,
-        polyglot
-        applications on the JVM, with the minimum of fuss.</h3>
+      <div class="col-md-9">
+        <h3>Vert.x is a general purpose, un-opinionated tool-kit for building high performance, scalable, concurrent,
+          polyglot
+          applications on the JVM, with the minimum of fuss.</h3>
+      </div>
 
-      <div class="text-center">
-        <a class="btn btn-info" href="docs/manual.html" role="button">Learn more »</a> &nbsp;
-        <a class="btn btn-info" href="docs/getting_started.html" role="button">Get started »</a>
-        <a class="btn btn-info" href="stack.html" role="button">Stack »</a>
+      <div class="col-md-3">
+        <h3>
+          <a href="docs/manual.html" role="button">Learn more »</a> &nbsp;
+        </h3>
+        <h3>
+          <a href="docs/getting_started.html" role="button">Get started »</a>
+        </h3>
+        <h3>
+          <a href="stack.html" role="button">Stack »</a>
+        </h3>
       </div>
 
     </div>
 
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-4">
         <h2>Polyglot</h2>
-        <p>Write your application components in Java, JavaScript, CoffeeScript, Ruby, Python or Groovy...</p>
-        <p>... or mix and match several programming languages in a single app.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu placerat magna. Vivamus mauris ex, euismod et nisi sed, porttitor dignissim massa. Cras non tortor auctor, interdum quam eu, lobortis purus. Quisque ac turpis justo.</p>
       </div>
-      <div class="col-md-3">
-        <h2>Simplicity</h2>
-        <p>...without being simplistic.</p>
-        <p>Simple, powerful, APIs enable you to write non-blocking network enabled applications with ease.
-          No complex configuration or boilerplate required.</p>
+      <div class="col-md-4">
+        <h2>Reactive</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu placerat magna. Vivamus mauris ex, euismod et nisi sed, porttitor dignissim massa. Cras non tortor auctor, interdum quam eu, lobortis purus. Quisque ac turpis justo.</p>
       </div>
-      <div class="col-md-3">
-        <h2>Scalability</h2>
-        <p>Scales using messaging passing to efficiently utilise your server cores.</p>
-        <p>Uses non blocking I/O to serve many connections with minimal threads.</p>
-      </div>
-      <div class="col-md-3">
-        <h2>Concurrency</h2>
-        <p>Simple actor-<i>like</i> concurrency model frees you from the pitfalls of traditional
-          multi-threaded programming.</p>
+      <div class="col-md-4">
+        <h2>Microservices</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu placerat magna. Vivamus mauris ex, euismod et nisi sed, porttitor dignissim massa. Cras non tortor auctor, interdum quam eu, lobortis purus. Quisque ac turpis justo.</p>
       </div>
     </div>
 
