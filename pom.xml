@@ -114,6 +114,21 @@
 
     <dependency>
       <groupId>io.vertx</groupId>
+      <artifactId>vertx-sql-common</artifactId>
+      <version>${vertx.docs.version}</version>
+      <classifier>docs</classifier>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-jdbc-service</artifactId>
+      <version>${vertx.docs.version}</version>
+      <classifier>docs</classifier>
+      <type>zip</type>
+    </dependency>
+
+    <dependency>
+      <groupId>io.vertx</groupId>
       <artifactId>vertx-apex</artifactId>
       <version>${vertx.docs.version}</version>
       <classifier>docs</classifier>
@@ -197,7 +212,7 @@
                 <phase>site</phase>
                 <configuration>
                   <includeGroupIds>io.vertx</includeGroupIds>
-                  <includeArtifactIds>vertx-apex</includeArtifactIds>
+                  <includeArtifactIds>vertx-sql-common,vertx-jdbc-service,vertx-apex</includeArtifactIds>
                   <useSubDirectoryPerArtifact>true</useSubDirectoryPerArtifact>
                   <includeTypes>zip</includeTypes>
                   <includeClassifiers>docs</includeClassifiers>
@@ -289,6 +304,12 @@
                     <copy todir="${project.build.directory}/site/docs/vertx-rx/js">
                       <file file="${project.build.directory}/generated/vertx-rx-js-docs-zip/asciidoc/index.html"/>
                       <fileset dir="${project.build.directory}/generated/vertx-rx-js-docs-zip" includes="jsdoc/**"/>
+                    </copy>
+                    <copy todir="${project.build.directory}/site/docs/vertx-sql-common/">
+                      <fileset dir="${project.build.directory}/generated/vertx-sql-common-docs-zip"/>
+                    </copy>
+                    <copy todir="${project.build.directory}/site/docs/vertx-jdbc-service/">
+                      <fileset dir="${project.build.directory}/generated/vertx-jdbc-service-docs-zip"/>
                     </copy>
                     <copy todir="${project.build.directory}/site/docs/vertx-apex/">
                       <fileset dir="${project.build.directory}/generated/vertx-apex-docs-zip"/>
