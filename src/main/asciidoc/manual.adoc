@@ -31,18 +31,18 @@ Vert.x is *modular* - when you need more bits just add the bits you need and not
 Vert.x is *not an application server*. There's no monolithic Vert.x instance into which you deploy applications.
 You just run your apps wherever you want to.
 
-
 Vert.x is *event driven* and *non blocking*. This means you can handle a lot of concurrency in your apps using a small
 number of threads. Vert.x lets your apps *scale* with minimal hardware.
 
 Vert.x is *simple but not simplistic*. Vert.x allows you to create powerful apps, simply.
 
+Vert.x is *fun*. Enjoy being a developer again. Spare a thought for your less fortunate colleagues still deploying WARs to application servers.
+
 Vert.x is a stack for creating compelling, 21st century, reactive applications. As well as low level functionality Vert.x provides
  higher level building blocks for creating real-world applications.
 
-Vert.x is *fun*. Enjoy being a developer again. Spare a thought for your less fortunate colleagues still deploying WARs to application servers.
 
-Vert.x is a growing stack for building reactive applications.
+
 
 
 
