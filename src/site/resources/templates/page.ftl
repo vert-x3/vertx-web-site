@@ -84,39 +84,19 @@ ${content.body}
 
     <div class="row">
 
-      <div class="col-md-9">
-        <h3>Vert.x is a general purpose, un-opinionated tool-kit for building high performance, scalable, concurrent,
-          polyglot
-          applications on the JVM, with the minimum of fuss.</h3>
-      </div>
+      <#--<div class="col-md-9">-->
+        <#--<h3>Vert.x is a set of Lego bricks for building reactive applications.</h3>-->
+      <#--</div>-->
 
-      <div class="col-md-3">
+      <div class="col-md-12">
         <h3>
-          <a href="docs/manual.html" role="button">Learn more »</a> &nbsp;
+          <a href="docs/manual.html" role="button">What is Vert.x? »</a> &nbsp;
         </h3>
         <h3>
-          <a href="docs/getting_started.html" role="button">Get started »</a>
-        </h3>
-        <h3>
-          <a href="stack.html" role="button">Stack »</a>
+          <a href="stack.html" role="button">Explore Vert.x »</a>
         </h3>
       </div>
 
-    </div>
-
-    <div class="row">
-      <div class="col-md-4">
-        <h2>Polyglot</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu placerat magna. Vivamus mauris ex, euismod et nisi sed, porttitor dignissim massa. Cras non tortor auctor, interdum quam eu, lobortis purus. Quisque ac turpis justo.</p>
-      </div>
-      <div class="col-md-4">
-        <h2>Reactive</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu placerat magna. Vivamus mauris ex, euismod et nisi sed, porttitor dignissim massa. Cras non tortor auctor, interdum quam eu, lobortis purus. Quisque ac turpis justo.</p>
-      </div>
-      <div class="col-md-4">
-        <h2>Microservices</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu placerat magna. Vivamus mauris ex, euismod et nisi sed, porttitor dignissim massa. Cras non tortor auctor, interdum quam eu, lobortis purus. Quisque ac turpis justo.</p>
-      </div>
     </div>
 
   </div>
