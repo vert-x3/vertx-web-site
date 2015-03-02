@@ -315,17 +315,10 @@
               <execution>
                 <configuration>
                   <target>
-                    <copy todir="${project.build.directory}/site/docs/vertx-core/java">
-                      <file file="${project.build.directory}/generated/vertx-core-docs-zip/asciidoc/index.html"/>
-                      <fileset dir="${project.build.directory}/generated/vertx-core-docs-zip" includes="apidocs/**"/>
-                    </copy>
-                    <copy todir="${project.build.directory}/site/docs/vertx-core/groovy">
-                      <file file="${project.build.directory}/generated/vertx-lang-groovy-docs-zip/asciidoc/index.html"/>
-                      <fileset dir="${project.build.directory}/generated/vertx-lang-groovy-docs-zip" includes="groovydoc/**"/>
-                    </copy>
-                    <copy todir="${project.build.directory}/site/docs/vertx-core/js">
-                      <file file="${project.build.directory}/generated/vertx-lang-js-docs-zip/asciidoc/index.html"/>
-                      <fileset dir="${project.build.directory}/generated/vertx-lang-js-docs-zip" includes="jsdoc/**"/>
+                    <copy todir="${project.build.directory}/site/docs/vertx-core/">
+                      <fileset dir="${project.build.directory}/generated/vertx-core-docs-zip"/>
+                      <fileset dir="${project.build.directory}/generated/vertx-lang-groovy-docs-zip"/>
+                      <fileset dir="${project.build.directory}/generated/vertx-lang-js-docs-zip"/>
                     </copy>
                     <copy todir="${project.build.directory}/site/docs/vertx-unit/">
                       <fileset dir="${project.build.directory}/generated/vertx-unit-docs-zip"/>
