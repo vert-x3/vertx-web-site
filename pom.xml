@@ -170,6 +170,20 @@
       <type>zip</type>
     </dependency>
 
+    <!-- Sources dependencies for building JavaDoc -->
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-core</artifactId>
+      <version>${vertx.docs.version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-unit</artifactId>
+      <version>${vertx.docs.version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+
     <dependency>
       <groupId>org.jbake</groupId>
       <artifactId>jbake-core</artifactId>
@@ -215,6 +229,30 @@
         </pluginManagement>
 
         <plugins>
+
+          <plugin>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>javadoc</goal>
+                </goals>
+                <phase>site</phase>
+                <configuration>
+                  <includeDependencySources>true</includeDependencySources>
+                  <reportOutputDirectory>${project.build.directory}/site/docs/</reportOutputDirectory>
+                  <additionalparam>-Xdoclint:none</additionalparam>
+                  <sourceFileExcludes>
+                    <sourceFileExclude>**/package-info.java</sourceFileExclude>
+                    <sourceFileExclude>**/impl/**</sourceFileExclude>
+                  </sourceFileExcludes>
+                  <sourceFileIncludes>
+                    <sourceFileInclude>io/vertx/**/*.java</sourceFileInclude>
+                  </sourceFileIncludes>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
 
           <plugin>
             <artifactId>maven-dependency-plugin</artifactId>
