@@ -201,6 +201,24 @@
       <version>${vertx.docs.version}</version>
       <classifier>sources</classifier>
     </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-metrics</artifactId>
+      <version>${vertx.docs.version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-auth-service</artifactId>
+      <version>${vertx.docs.version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-rx-java</artifactId>
+      <version>${vertx.docs.version}</version>
+      <classifier>sources</classifier>
+    </dependency>
 
     <dependency>
       <groupId>org.jbake</groupId>
@@ -389,17 +407,10 @@
                     <copy todir="${project.build.directory}/site/docs/vertx-metrics/">
                       <fileset dir="${project.build.directory}/generated/vertx-metrics-docs-zip"/>
                     </copy>
-                    <copy todir="${project.build.directory}/site/docs/vertx-rx/java">
-                      <file file="${project.build.directory}/generated/vertx-rx-java-docs-zip/asciidoc/index.html"/>
-                      <fileset dir="${project.build.directory}/generated/vertx-rx-java-docs-zip" includes="apidocs/**"/>
-                    </copy>
-                    <copy todir="${project.build.directory}/site/docs/vertx-rx/groovy">
-                      <file file="${project.build.directory}/generated/vertx-rx-groovy-docs-zip/asciidoc/index.html"/>
-                      <fileset dir="${project.build.directory}/generated/vertx-rx-groovy-docs-zip" includes="groovydoc/**"/>
-                    </copy>
-                    <copy todir="${project.build.directory}/site/docs/vertx-rx/js">
-                      <file file="${project.build.directory}/generated/vertx-rx-js-docs-zip/asciidoc/index.html"/>
-                      <fileset dir="${project.build.directory}/generated/vertx-rx-js-docs-zip" includes="jsdoc/**"/>
+                    <copy todir="${project.build.directory}/site/docs/vertx-rx">
+                      <fileset dir="${project.build.directory}/generated/vertx-rx-java-docs-zip"/>
+                      <fileset dir="${project.build.directory}/generated/vertx-rx-groovy-docs-zip"/>
+                      <fileset dir="${project.build.directory}/generated/vertx-rx-js-docs-zip"/>
                     </copy>
                     <copy todir="${project.build.directory}/site/docs/vertx-mongo-service/">
                       <fileset dir="${project.build.directory}/generated/vertx-mongo-service-docs-zip"/>
