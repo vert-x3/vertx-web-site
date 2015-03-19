@@ -26,7 +26,7 @@
 
       <p>Vert.x is <em>un-opinionated</em>. It's not a framework or a container and we don't tell you a <em>correct</em> way to write an application.
         Instead we give you a lot of useful bricks and let you create your app the way <em>you</em> want to.</p>
-      
+
       <p>Vert.x is an ideal choice for creating light-weight, high-performance, <em>micro-services</em>.</p>
 
       <p>Vert.x is <em>not an application server</em>. There's no monolithic Vert.x instance into which you deploy applications.
@@ -75,7 +75,7 @@
 
       <h2>Core</h2>
 
-      <div class="col-md-3">
+      <div class="col-md-6">
         <h4>Vert.x Core</h4>
         <p>Vert.x core contains much low(ish) level functionality including HTTP, TCP, file system access, etc</p>
         <ul class="list-unstyled">
@@ -85,8 +85,15 @@
           <li>Groovy: <a href="docs/vertx-core/groovy/index.html">Manual</a> | <a href="docs/vertx-core/groovy/groovydoc/index.html">Api</a></li>
         </ul>
       </div>
+    </div>
+
+    <div class="row">
+
+      <h2>Metrics and monitoring</h2>
+
       <div class="col-md-3">
         <h4>Vert.x Metrics</h4>
+        <p>Metrics using DropWizard metrics library</p>
         <ul class="list-unstyled">
           <li><a href="https://github.com/vert-x3/vertx-metrics">Source</a></li>
           <li>Java: <a href="docs/vertx-metrics/java/index.html">Manual</a> | <a href="docs/apidocs/index.html">Api</a></li>
@@ -113,7 +120,7 @@
 
     <div class="row">
       <h2>Web</h2>
-      <div class="col-md-3">
+      <div class="col-md-6">
         <h4>Apex</h4>
         <p>Write sophisticated modern web applications and HTTP microservices using Vert.x</p>
         <ul class="list-unstyled">
@@ -174,10 +181,10 @@
     </div>
 
     <div class="row">
-      <h2>Auth</h2>
+      <h2>Authentication and Authorisation</h2>
       <div class="col-md-3">
-        <h4>Vert.x Auth</h4>
-        <p>Authentication and Authorisation service for Vert.x</p>
+        <h4>Vert.x Auth service</h4>
+        <p>Auth service with default Apache Shiro implementation, but pluggable.</p>
         <ul class="list-unstyled">
           <li><a href="https://github.com/vert-x3/vertx-auth-service">Source</a></li>
           <li>Java: <a href="docs/vertx-auth-service/java/index.html">Manual</a> | <a href="docs/apidocs/index.html">Api</a></li>
@@ -272,14 +279,17 @@
 
     <div class="row">
       <h2>Cluster Managers</h2>
+      <p>Cluster managers handle discovery of Vert.x nodes in a cluster and other features such as distributed maps.</p>
       <div class="col-md-3">
         <h4>Hazelcast</h4>
+        <p>Cluster manager implementation that uses Hazelcast</p>
         <ul class="list-unstyled">
           <li><a href="https://github.com/vert-x3/vertx-hazelcast">Source</a></li>
         </ul>
       </div>
       <div class="col-md-3">
         <h4>JGroups (experimental)</h4>
+        <p>Cluster manager implementation that uses JGroups</p>
         <ul class="list-unstyled">
           <li><a href="https://github.com/vert-x3/vertx-jgroups">Source</a></li>
         </ul>
@@ -288,7 +298,7 @@
 
     <div class="row">
       <h2>Advanced</h2>
-      <p>Some of the more advanced bits and pieces. You won't normally use these in your own projects. They're
+      <p>Some of the more advanced or internal bits and pieces. You won't normally use these in your own projects. They're
       mainly stuff we use internally.</p>
       <div class="col-md-3">
         <h4>Codegen</h4>
