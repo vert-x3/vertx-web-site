@@ -63,7 +63,7 @@
           <!--<li class=""><a href="vertx-home.html">HOME</a></li>-->
           <li class=""><a href="https://bintray.com/vertx/downloads/distribution/view">Download</a></li>
           <li class=""><a href="https://groups.google.com/forum/?fromgroups#!forum/vertx">User Google Group</a></li>
-          <li class=""><a href="https://groups.google.com/forum/?fromgroups#!forum/vertx-dev">Developer User Group</a></li>
+          <li class=""><a href="https://groups.google.com/forum/?fromgroups#!forum/vertx-dev">Developer Group</a></li>
           <li class=""><a href="https://github.com/vert-x3/issues-and-wiki/wiki">Wiki</a></li>
           <!--<li class=""><a href="followus.html">FOLLOW US</a></li>-->
         </ul>
