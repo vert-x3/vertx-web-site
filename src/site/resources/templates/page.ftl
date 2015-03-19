@@ -74,35 +74,8 @@
 <#if content.body??>
 ${content.body}
 <#else>
-<div class="row col-sm-12 vertx-banner">
-  <div class="col-sm-10">
-    <h1>The reactive application tool-kit for the JVM.</h1>
-  </div>
-</div>
-<div class="container">
-  <div class="col-sm-12">
-
-    <div class="row">
-
-      <#--<div class="col-md-9">-->
-        <#--<h3>Vert.x is a set of Lego bricks for building reactive applications.</h3>-->
-      <#--</div>-->
-
-      <div class="col-md-12">
-        <h3>
-          <a href="docs/manual.html" role="button">What is Vert.x? »</a> &nbsp;
-        </h3>
-        <h3>
-          <a href="stack.html" role="button">Explore Vert.x »</a>
-        </h3>
-      </div>
-
-    </div>
-
-  </div>
-</div>
+  <#include "index.html">
 </#if>
-
 
 <footer class="container-fluid" style="margin-top: 130px">
   <div class="row">
