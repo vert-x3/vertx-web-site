@@ -62,8 +62,9 @@
         <ul class="nav navbar-nav navbar-right">
           <!--<li class=""><a href="vertx-home.html">HOME</a></li>-->
           <li class=""><a href="https://bintray.com/vertx/downloads/distribution/view">Download</a></li>
-          <li class=""><a href="https://groups.google.com/forum/?fromgroups#!forum/vertx">Google Group</a></li>
-          <li class=""><a href="https://github.com/vert-x3/">GitHub</a></li>
+          <li class=""><a href="https://groups.google.com/forum/?fromgroups#!forum/vertx">User Google Group</a></li>
+          <li class=""><a href="https://groups.google.com/forum/?fromgroups#!forum/vertx-dev">Developer User Group</a></li>
+          <li class=""><a href="https://github.com/vert-x3/issues-and-wiki/wiki">Wiki</a></li>
           <!--<li class=""><a href="followus.html">FOLLOW US</a></li>-->
         </ul>
       </div>
@@ -77,229 +78,61 @@ ${content.body}
   <#include "index.html">
 </#if>
 
-<footer class="container-fluid" style="margin-top: 130px">
-  <div class="row">
-    <div class="col-md-2 col-md-offset-1">
-      <h4>Navigate</h4>
-      <ul class="list-unstyled">
-        <li>
-          <a href="docs/manual.html" title="Learn">Learn</a>
-        </li>
-        <li>
-          <a href="docs/getting_started.html" title="Get Started">Get Started</a>
-        </li>
-        <!--
-                    <li>
-                      <a href="#" title="Download">Download</a>
-                    </li>
-        -->
-      </ul>
-    </div>
-    <div class="col-md-2">
-      <h4>Community</h4>
-      <ul class="list-unstyled">
-        <li>
-          <a href="https://groups.google.com/forum/vertx" title="Forums">Forums</a>
-        </li>
-        <li>
-          <a href="https://twitter.com/vertx_project" title="Twitter">Twitter</a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-md-2">
-      <h4>Project</h4>
-      <ul class="list-unstyled">
-        <li>
-          <a href="https://groups.google.com/d/forum/vertx-dev" title="Join the team">Join the team</a>
-        </li>
-        <li>
-          <a href="https://github.com/vert-x3/" title="Join the team">Repository</a>
-        </li>
-        <li>
-          <a href="https://vertx.ci.cloudbees.com/view/vert.x-3/" title="Continuous integration">Continuous integration</a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-md-3 col-md-offset-1">
-      <!--<h4>LGPL 2.1 License</h4>-->
-      <!--<p>All dependencies of this project are available under the LGPL or a compatible license.</p>-->
-    </div>
-  </div>
-</footer>
+<#--<footer class="container-fluid" style="margin-top: 130px">-->
+  <#--<div class="row">-->
+    <#--<div class="col-md-2 col-md-offset-1">-->
+      <#--<h4>Navigate</h4>-->
+      <#--<ul class="list-unstyled">-->
+        <#--<li>-->
+          <#--<a href="docs/manual.html" title="Learn">Learn</a>-->
+        <#--</li>-->
+        <#--<li>-->
+          <#--<a href="docs/getting_started.html" title="Get Started">Get Started</a>-->
+        <#--</li>-->
+        <#--<!---->
+                    <#--<li>-->
+                      <#--<a href="#" title="Download">Download</a>-->
+                    <#--</li>-->
+        <#--&ndash;&gt;-->
+      <#--</ul>-->
+    <#--</div>-->
+    <#--<div class="col-md-2">-->
+      <#--<h4>Community</h4>-->
+      <#--<ul class="list-unstyled">-->
+        <#--<li>-->
+          <#--<a href="https://groups.google.com/forum/vertx" title="Forums">Forums</a>-->
+        <#--</li>-->
+        <#--<li>-->
+          <#--<a href="https://twitter.com/vertx_project" title="Twitter">Twitter</a>-->
+        <#--</li>-->
+      <#--</ul>-->
+    <#--</div>-->
+    <#--<div class="col-md-2">-->
+      <#--<h4>Project</h4>-->
+      <#--<ul class="list-unstyled">-->
+        <#--<li>-->
+          <#--<a href="https://groups.google.com/d/forum/vertx-dev" title="Join the team">Join the team</a>-->
+        <#--</li>-->
+        <#--<li>-->
+          <#--<a href="https://github.com/vert-x3/" title="Join the team">Repository</a>-->
+        <#--</li>-->
+        <#--<li>-->
+          <#--<a href="https://vertx.ci.cloudbees.com/view/vert.x-3/" title="Continuous integration">Continuous integration</a>-->
+        <#--</li>-->
+      <#--</ul>-->
+    <#--</div>-->
+    <#--<div class="col-md-3 col-md-offset-1">-->
+    <#--</div>-->
+  <#--</div>-->
+<#--</footer>-->
 
 <div class="container">
   <div class="row">
-    <!--
-            <ul class="list-unstyled">
-            <li class="col-sm-2">
-            <img alt="" src="assets/icons/bars-icon.png">
-            </li>
-            <li class="col-sm-2">
-            <img alt="" src="assets/icons/cycle-icon.png">
-            </li>
-            <li class="col-sm-2">
-            <img alt="" src="assets/icons/earth-icon.png">
-            </li>
-            <li class="col-sm-2">
-            <img alt="" src="assets/icons/puzzle-icon.png">
-            </li>
-            <li class="col-sm-2">
-            <img alt="" src="assets/icons/swissknife-icon.png">
-            </li>
-            <li class="col-sm-2">
-            <img alt="" src="assets/icons/thumbsup-icon.png">
-            </li>
-            </ul>
-    -->
   </div>
 </div>
-
-
-<!--<div class="row">-->
-<!--<ul class="list-unstyled">-->
-<!--<li class="col-sm-2">-->
-<!--<img alt="" src="assets/icons/bars-icon.png">-->
-<!--</li>-->
-<!--<li class="col-sm-2">-->
-<!--<img alt="" src="assets/icons/cycle-icon.png">-->
-<!--</li>-->
-<!--<li class="col-sm-2">-->
-<!--<img alt="" src="assets/icons/earth-icon.png">-->
-<!--</li>-->
-<!--<li class="col-sm-2">-->
-<!--<img alt="" src="assets/icons/puzzle-icon.png">-->
-<!--</li>-->
-<!--<li class="col-sm-2">-->
-<!--<img alt="" src="assets/icons/swissknife-icon.png">-->
-<!--</li>-->
-<!--<li class="col-sm-2">-->
-<!--<img alt="" src="assets/icons/thumbsup-icon.png">-->
-<!--</li>-->
-<!--</ul>-->
-<!--</div>-->
-<!--<footer class="container-fluid">-->
-<!--<div class="row">-->
-<!--<div class="col-md-2 col-md-offset-1">-->
-<!--<h4>Navigate</h4>-->
-<!--<ul class="list-unstyled">-->
-<!--<li>-->
-<!--<a href="#" title="Learn">Learn</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a href="#" title="Get Started">Get Started</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a href="#" title="Forums">Forums</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a href="#" title="Get Involved">Get Involved</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a href="#" title="Download">Download</a>-->
-<!--</li>-->
-<!--</ul>-->
-<!--</div>-->
-<!--<div class="col-md-2">-->
-<!--<h4>Follow Us</h4>-->
-<!--<ul class="list-unstyled">-->
-<!--<li>-->
-<!--<a href="#" title="Blog">Blog</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a href="#" title="Twitter">Twitter</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a href="#" title="Google+">Google+</a>-->
-<!--</li>-->
-<!--</ul>-->
-<!--</div>-->
-<!--<div class="col-md-2">-->
-<!--<h4>Contribute</h4>-->
-<!--<ul class="list-unstyled">-->
-<!--<li>-->
-<!--<a href="#" title="Submit a bug">Submit a bug</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a href="#" title="Write code">Write Code</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a href="#" title="Join the team">Join the team</a>-->
-<!--</li>-->
-<!--</ul>-->
-<!--</div>-->
-<!--<div class="col-md-3 col-md-offset-1">-->
-<!--&lt;!&ndash;<h4>LGPL 2.1 License</h4>&ndash;&gt;-->
-<!--&lt;!&ndash;<p>All dependencies of this project are available under the LGPL or a compatible license.</p>&ndash;&gt;-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="row">-->
-<!--<div class="redhatlogo">-->
-<!--<div id="logospacer"></div>-->
-<!--&lt;!&ndash;<a href="http://www.redhat.com/"><img src="http://static.jboss.org/theme/images/common/redhat_logo.png"></a>&ndash;&gt;-->
-<!--</div>-->
-<!--</div>-->
-<!--</footer>-->
     <span class="backToTop">
       <a href="#top">back to top</a>
     </span>
 <script src="javascripts/bootstrap-community.js"></script>
-<!-- begin eloqua tracking -->
-<!--<script type='text/javascript' language='JavaScript' src='http://www.redhat.com/j/elqNow/elqCfg.js'></script>-->
-<!--<script type='text/javascript' language='JavaScript' src='http://www.redhat.com/j/elqNow/elqImg.js'></script>-->
-<!-- end eloqua tracking -->
-
-<!--<div id="oTags">-->
-<!--<script type="text/javascript" src="//www.redhat.com/j/s_code.js"></script>-->
-<!--<script type="text/javascript">&lt;!&ndash;-->
-<!--var coreUrl = encodeURI(document.URL.split("?")[0]).replace(/-/g," ");-->
-<!--var urlSplit = coreUrl.toLowerCase().split(/\//);-->
-<!--var urlLast = urlSplit[urlSplit.length-1];-->
-<!--var pageNameString = "";-->
-<!--var siteName = "";-->
-<!--var minorSectionIndex = 3-->
-<!--if (urlLast == "") {-->
-<!--urlSplit.splice(-1,1);-->
-<!--}-->
-<!--if (urlLast.search(/\./) >= 0) {-->
-<!--if (urlLast == "index.html") {-->
-<!--urlSplit.splice(-1,1);-->
-<!--}-->
-<!--else {-->
-<!--urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);-->
-<!--}-->
-<!--}-->
-<!--siteName = urlSplit[2].split(".")[1];-->
-<!--s.prop14 = s.eVar27 = siteName || "";-->
-<!--s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";-->
-<!--s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";-->
-<!--pageNameString = urlSplit.splice(3).join(" | ");-->
-<!--s.pageName = "jboss | community | " + siteName + " | " + pageNameString;-->
-<!--s.server = "jboss";-->
-<!--s.channel = "jboss | community";-->
-<!--s.prop4 = s.eVar23 = encodeURI(document.URL);-->
-<!--s.prop21 = s.eVar18 = coreUrl;-->
-<!--s.prop2 = s.eVar22 = "en";-->
-<!--s.prop3 = s.eVar19 = "us";-->
-<!--//&ndash;&gt;</script>-->
-<!--<script type="text/javascript" src="//www.redhat.com/j/rh_omni_footer.js"></script>-->
-<!--<script language="JavaScript" type="text/javascript">&lt;!&ndash;-->
-<!--if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')-->
-<!--//&ndash;&gt;</script>-->
-<!--<noscript><a href="http://www.omniture.com" title="Web Analytics"><img-->
-<!--src="https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]&cdp=3&[AQE]"-->
-<!--height="1" width="1" border="0" alt="" /></a></noscript>-->
-<!--</div>-->
-<!-- End oTags -->
-
-<!-- Google Analytics part -->
-<!--<script type="text/javascript">-->
-<!--var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");-->
-<!--document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));-->
-<!--</script>-->
-<!--<script type="text/javascript">-->
-<!--try {-->
-<!--var pageTracker = _gat._getTracker("UA-10656779-1");-->
-<!--pageTracker._trackPageview();-->
-<!--} catch(err) {}</script>-->
 </body>
 </html>
