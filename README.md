@@ -15,6 +15,11 @@ it in `target/site`.
 If you only change the site pages, you can activate the jbake watch mode (after having build the site once) with
 `mvn jbake:watch`, this will scan the changes and rebuild the part of the site that needs to be refreshed.
 
+## Publishing web-site
+
+```
+mvn site-deploy
+```
 
 ## Todo
 

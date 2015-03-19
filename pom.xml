@@ -452,25 +452,28 @@
             </executions>
           </plugin>
 
-          <!-- Push site to github pages -->
-          <!--<plugin>-->
-            <!--<groupId>com.github.github</groupId>-->
-            <!--<artifactId>site-maven-plugin</artifactId>-->
-            <!--<version>0.10</version>-->
-            <!--<configuration>-->
-              <!--<message>Creating site for ${project.version}</message>-->
-              <!--<repositoryName>web-site</repositoryName>-->
-              <!--<repositoryOwner>vert-x3</repositoryOwner>-->
-            <!--</configuration>-->
-            <!--<executions>-->
-              <!--<execution>-->
-                <!--<goals>-->
-                  <!--<goal>site</goal>-->
-                <!--</goals>-->
-                <!--<phase>site</phase>-->
-              <!--</execution>-->
-            <!--</executions>-->
-          <!--</plugin>-->
+
+          <!-- Publish to website -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-scm-publish-plugin</artifactId>
+            <version>1.1</version>
+            <configuration>
+              <pubScmUrl>scm:git:git@github.com:vert-x3/web-site.git</pubScmUrl>
+              <scmBranch>gh-pages</scmBranch>
+              <content>${project.build.directory}/site</content>
+              <tryUpdate>true</tryUpdate>
+            </configuration>
+            <executions>
+              <execution>
+                <phase>site-deploy</phase>
+                <goals>
+                  <goal>publish-scm</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
         </plugins>
       </build>
     </profile>
