@@ -459,8 +459,8 @@
             <artifactId>maven-scm-publish-plugin</artifactId>
             <version>1.1</version>
             <configuration>
-              <pubScmUrl>scm:git:git@github.com:vert-x3/web-site.git</pubScmUrl>
-              <scmBranch>gh-pages</scmBranch>
+              <pubScmUrl>scm:git:git@github.com:vert-x3/vert-x3.github.io.git</pubScmUrl>
+              <scmBranch>master</scmBranch>
               <content>${project.build.directory}/site</content>
               <tryUpdate>true</tryUpdate>
             </configuration>
