@@ -66,6 +66,10 @@
           <li class=""><a href="https://groups.google.com/forum/?fromgroups#!forum/vertx-dev">Developer Group</a></li>
           <li class=""><a href="https://github.com/vert-x3/wiki/wiki">Wiki</a></li>
           <li class=""><a href="http://vertx.io">Vert.x 2 web-site</a></li>
+          <li class=""><iframe src="https://ghbtns.com/github-btn.html?user=eclipse&repo=vert.x&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></li>
+
+
+
         </ul>
       </div>
     </div>
