@@ -35,6 +35,15 @@
 </head>
 <body>
 
+<a href="http://www.reactivemanifesto.org/">
+  <img style="border: 0; position: fixed; left: 0; top:0; z-index: 9000"
+       src="http://d379ifj7s9wntv.cloudfront.net/reactivemanifesto/images/ribbons/we-are-reactive-blue-left.png">
+</a>
+
+<a href="http://jaxenter.com/jax-innovation-awards-2014-champions-declared-50132.html">
+  <img style="border: 0; position: fixed; left: 0; top:200px; z-index: 9000" src="assets/JAX_winner.gif">
+</a>
+
 <!-- begin accesibility skip to top -->
 <ul class="visuallyhidden" id="top">
   <li>
