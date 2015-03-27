@@ -98,7 +98,7 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-metrics</artifactId>
+      <artifactId>vertx-dropwizard-metrics</artifactId>
       <version>${vertx.docs.version}</version>
       <classifier>docs</classifier>
       <type>zip</type>
@@ -210,7 +210,7 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-metrics</artifactId>
+      <artifactId>vertx-dropwizard-metrics</artifactId>
       <version>${vertx.docs.version}</version>
       <classifier>sources</classifier>
     </dependency>
@@ -308,7 +308,7 @@
                 <phase>pre-site</phase>
                 <configuration>
                   <includeGroupIds>io.vertx</includeGroupIds>
-                  <includeArtifactIds>vertx-core,vertx-lang-groovy,vertx-lang-js,vertx-unit,vertx-metrics,vertx-rx-java,vertx-rx-groovy,vertx-rx-js,vertx-sql-common,vertx-mongo-service,vertx-jdbc-service,vertx-mysql-postgresql-service,vertx-auth-service,vertx-apex,vertx-reactive-streams</includeArtifactIds>
+                  <includeArtifactIds>vertx-core,vertx-lang-groovy,vertx-lang-js,vertx-unit,vertx-dropwizard-metrics,vertx-rx-java,vertx-rx-groovy,vertx-rx-js,vertx-sql-common,vertx-mongo-service,vertx-jdbc-service,vertx-mysql-postgresql-service,vertx-auth-service,vertx-apex,vertx-reactive-streams</includeArtifactIds>
                   <useSubDirectoryPerArtifact>true</useSubDirectoryPerArtifact>
                   <includeTypes>zip</includeTypes>
                   <includeClassifiers>docs</includeClassifiers>
@@ -409,8 +409,8 @@
                     <copy todir="${project.build.directory}/site/docs/vertx-unit/">
                       <fileset dir="${project.build.directory}/generated/vertx-unit-docs-zip"/>
                     </copy>
-                    <copy todir="${project.build.directory}/site/docs/vertx-metrics/">
-                      <fileset dir="${project.build.directory}/generated/vertx-metrics-docs-zip"/>
+                    <copy todir="${project.build.directory}/site/docs/vertx-dropwizard-metrics/">
+                      <fileset dir="${project.build.directory}/generated/vertx-dropwizard-metrics-docs-zip"/>
                     </copy>
                     <copy todir="${project.build.directory}/site/docs/vertx-rx">
                       <fileset dir="${project.build.directory}/generated/vertx-rx-java-docs-zip"/>
