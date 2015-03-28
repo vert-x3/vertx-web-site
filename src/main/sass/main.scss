@@ -199,6 +199,15 @@ $sticky-navbar-height: 60px;
         }
     }
 
+    &.highlight-general {
+        font-size: $font-size-base;
+        img {
+            max-height: $line-height-computed * 5;
+            padding-top: $line-height-computed / 4;
+            padding-bottom: $line-height-computed / 1.5;
+        }
+    }
+
     &.highlight-polyglot {
         margin-bottom: 0;
         background-color: #eee;
