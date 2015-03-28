@@ -246,3 +246,27 @@ $sticky-navbar-height: 60px;
         }
     }
 }
+
+footer {
+    background-color: #eee;
+    margin-top: $line-height-computed * 2;
+    padding-bottom: $line-height-computed * 3;
+
+    h2 {
+        font-size: $font-size-base;
+    }
+
+    p {
+        color: $gray-light;
+
+        &:first-child {
+            padding-top: $line-height-computed;
+        }
+    }
+
+    .cloudbees-logo {
+        position: absolute;
+        clip: rect(12px, 196px, 60px, 12px);
+        right: 0;
+    }
+}
