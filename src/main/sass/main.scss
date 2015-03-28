@@ -212,9 +212,18 @@ $sticky-navbar-height: 60px;
             margin-top: 0;
         }
     }
-}
 
-.highlights {
-    margin-top: $line-height-computed;
-    margin-bottom: $line-height-computed;
+    &.highlight-fun {
+        background-color: #eee;
+
+        .highlight-fun-right {
+            font-size: $font-size-base;
+            padding-top: $line-height-computed;
+        }
+
+        .highlight-stack p {
+            font-size: $font-size-base * 1.4;
+            font-style: italic;
+        }
+    }
 }
