@@ -1,0 +1,193 @@
+@import "bootstrap-variables";
+@import "bootstrap-custom";
+
+/* skip sticky navbar */
+body {
+    // padding-top: 70px;
+}
+
+.btn-md {
+    @include button-size($padding-large-vertical * 0.9, $padding-large-horizontal * 0.9, $font-size-large * 0.9, $line-height-large, $border-radius-large * 0.9);
+}
+
+.navbar {
+    font-weight: 500;
+    font-size: $font-size-base * 1.2;
+
+    .navbar-brand {
+        img {
+            height: 36px;
+        }
+
+        // center logo vertically
+        padding-top: ($navbar-height - 36px) / 2 + 1;
+    }
+
+    .navbar-nav {
+        li {
+            // dividers between navbar items
+            &:not(:last-child) {
+                border-right: 2px solid $gray-lighter;
+            }
+
+            // center items vertically
+            margin-top: (($navbar-height - $line-height-computed) / 4);
+        }
+
+        // navbar link colors
+        a {
+            color: $gray-base;
+            transform: scale(0.85, 1.0);
+
+            &.vertx-2-link {
+                color: #999;
+            }
+
+            &:hover {
+                color: $brand-primary;
+            }
+        }
+    }
+}
+
+.index-header {
+    background-color: $brand-primary;
+    color: #fff;
+    padding-top: 60px;
+    padding-bottom: 95px;
+
+    h2 {
+        font-weight: 400;
+        font-size: $font-size-base * 2.4;
+
+        strong {
+            font-weight: 500;
+        }
+    }
+
+    .buttons {
+        padding-top: 10px;
+    }
+
+    .btn {
+        color: #fff;
+        float: left;
+        font-weight: 500;
+        background-color: transparent;
+
+        &:hover {
+            background-color: #fff;
+            color: $brand-primary;
+        }
+
+        i {
+            margin-top: 4px;
+            margin-right: 6px;
+            line-height: 1em;
+            float: left;
+        }
+    }
+
+    .github-btn {
+        padding-top: 8px;
+        margin-left: 10px;
+        display: inline-block;
+    }
+
+    .code-samples, .code-samples .prettyprint {
+        font-size: $font-size-small;
+    }
+
+    .code-samples {
+        margin-top: $line-height-computed - 7px;
+
+        .nav-pills {
+            border: none;
+            margin-left: 5px;
+
+            a {
+                color: #ccc;
+                padding-top: 5px;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            .active {
+                font-weight: 500;
+                a {
+                    color: #fff;
+                }
+            }
+
+            .active::after {
+                content: " ";
+                width: 0;
+                height: 0;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-bottom: 8px solid #fff;
+                position: absolute;
+                top: -5px;
+                left: 50%;
+            }
+        }
+
+        .prettyprint {
+            padding: 20px;
+            margin-top: 5px;
+            background-color: #fff;
+            border-radius: $border-radius-large;
+            border: none;
+        }
+    }
+}
+
+.highlight {
+    padding-top: $line-height-computed * 1.5;
+    margin-bottom: $line-height-computed * 2.2;
+    font-size: $font-size-base * 1.2;
+
+    img {
+        max-width: 90%;
+        padding-top: $line-height-computed;
+    }
+
+    h2 {
+        font-size: $font-size-h1;
+        border-left: 8px solid $brand-primary;
+        padding: 10px 15px 10px 15px;
+        margin-bottom: $line-height-computed;
+    }
+
+    .text-right {
+        img {
+            padding-top: $line-height-computed * 3;
+        }
+
+        h2 {
+            border-left: none;
+            border-right: 8px solid $brand-primary;
+        }
+    }
+
+    &.highlight-polyglot {
+        margin-bottom: 0;
+        background-color: #eee;
+
+        img {
+            padding-top: $line-height-computed * 3;
+            margin-bottom: 0;
+        }
+
+        & + hr {
+            margin-top: 0;
+        }
+    }
+}
+
+.highlights {
+    margin-top: $line-height-computed;
+    margin-bottom: $line-height-computed;
+}

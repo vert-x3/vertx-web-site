@@ -1,89 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Vert.x homepage</title>
+  <title>Vert.x</title>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="description">
-  <meta content="" name="author">
-  <link href="stylesheets/bootstrap-community.css" media="screen" rel="stylesheet">
+  <meta content="Vert.x is a tool-kit for building reactive applications on the JVM." name="description">
+  <link href="stylesheets/main.css" media="screen" rel="stylesheet">
+  <link href="assets/fonts/entypo/styles.css" media="screen" rel="stylesheet">
   <!-- IE 6-8 support of HTML 5 elements -->
   <!--[if lt IE 9]>
   <script src="http://static.jboss.org/theme/js/libs/html5/pre3.6/html5.min.js"></script>
   <![endif]-->
   <link href="assets/favicons/vertx-favicon-5.ico" rel="shortcut icon">
-
-  <script src="http://static.jboss.org/theme/js/libs/jquery/jquery-1.9.1.js"></script>
-  <style>
-    /* adjusting the vertical spacing for when a stickynav is engaged */
-    .breadcrumb-fixed > .active {
-      color: #8c8f91;
-    }
-    .breadcrumb-fixed {
-      margin: 70px 0 10px;
-      padding: 8px 15px;
-      margin-bottom: 20px;
-      list-style: none;
-      background-color: #f5f5f5;
-      border-radius: 4px;
-    }
-
-    .breadcrumb-fixed > li {
-      display: inline-block;
-    }
-  </style>
+  <link href="http://fonts.googleapis.com/css?family=Ubuntu:400,500,700,400italic" rel="stylesheet" type="text/css">
 </head>
 <body>
 
 <a href="http://www.reactivemanifesto.org/">
-  <img style="border: 0; position: fixed; left: 0; top:0; z-index: 9000"
-       src="http://d379ifj7s9wntv.cloudfront.net/reactivemanifesto/images/ribbons/we-are-reactive-blue-left.png">
+  <img style="border: 0; position: fixed; right: 0; top:0; z-index: 9000"
+    src="http://d379ifj7s9wntv.cloudfront.net/reactivemanifesto/images/ribbons/we-are-reactive-black-right.png">
 </a>
 
-<a href="http://jaxenter.com/jax-innovation-awards-2014-champions-declared-50132.html">
-  <img style="border: 0; position: fixed; left: 0; top:200px; z-index: 9000" src="assets/JAX_winner.gif">
-</a>
+<a id="skippy" class="sr-only sr-only-focusable" href="#content"><div class="container"><span class="skiplink-text">Skip to main content</span></div></a>
 
-<!-- begin accesibility skip to top -->
-<ul class="visuallyhidden" id="top">
-  <li>
-    <a accesskey="n" href="#nav" title="Skip to navigation">Skip to navigation</a>
-  </li>
-  <li>
-    <a accesskey="c" href="#page" title="Skip to content">Skip to content</a>
-  </li>
-</ul>
-
-<div class="container-fluid" id="content" style="padding-right: 0;">
-  <div class="navbar navbar-default navbar-fixed" id="sticky-navbar">
-    <div class="container">
-      <div class="navbar-header">
-        <button class="navbar-toggle collapsed" data-target="#navbar-1" data-toggle="collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/vertx-home.html">
-          <img alt="Brand" src="assets/logo-sm.png">
-        </a>
-      </div>
-      <div class="collapse navbar-collapse" id="navbar-1">
-        <ul class="nav navbar-nav navbar-right">
-          <!--<li class=""><a href="vertx-home.html">HOME</a></li>-->
-          <li class=""><a href="https://bintray.com/vertx/downloads/distribution/view">Download</a></li>
-          <li class=""><a href="https://groups.google.com/forum/?fromgroups#!forum/vertx">User Google Group</a></li>
-          <li class=""><a href="https://groups.google.com/forum/?fromgroups#!forum/vertx-dev">Developer Group</a></li>
-          <li class=""><a href="https://github.com/vert-x3/wiki/wiki">Wiki</a></li>
-          <li class=""><a href="http://vertx.io">Vert.x 2 web-site</a></li>
-          <li class=""><iframe src="https://ghbtns.com/github-btn.html?user=eclipse&repo=vert.x&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></li>
-
-
-
-        </ul>
-      </div>
+<header class="navbar navbar-static-top" id="top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="index.html" class="navbar-brand"><img alt="Brand" src="assets/logo-sm.png"></a>
     </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <!--<li class=""><a href="vertx-home.html">HOME</a></li>-->
+        <li class=""><a href="https://bintray.com/vertx/downloads/distribution/view">Download</a></li>
+        <li class=""><a href="https://groups.google.com/forum/?fromgroups#!forum/vertx">User Google Group</a></li>
+        <li class=""><a href="https://groups.google.com/forum/?fromgroups#!forum/vertx-dev">Developer Group</a></li>
+        <li class=""><a href="https://github.com/vert-x3/wiki/wiki">Wiki</a></li>
+        <li class=""><a href="http://vertx.io" class="vertx-2-link">Vert.x 2</a></li>
+      </ul>
+    </nav>
   </div>
-</div>
+</header>
 
 <#if content.body??>
 ${content.body}
@@ -139,13 +101,8 @@ ${content.body}
   <#--</div>-->
 <#--</footer>-->
 
-<div class="container">
-  <div class="row">
-  </div>
-</div>
-    <span class="backToTop">
-      <a href="#top">back to top</a>
-    </span>
-<script src="javascripts/bootstrap-community.js"></script>
+<script src="http://static.jboss.org/theme/js/libs/jquery/jquery-1.9.1.js"></script>
+<script src="javascripts/bootstrap.js"></script>
+
 </body>
 </html>
