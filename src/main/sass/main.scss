@@ -28,7 +28,7 @@ $sticky-navbar-height: 60px;
     }
 
     .navbar-nav {
-        li {
+        & > li {
             transition: all $transition-time ease;
 
             // dividers between navbar items
@@ -53,6 +53,20 @@ $sticky-navbar-height: 60px;
                 color: $brand-primary;
             }
         }
+
+        .dropdown-menu {
+            box-shadow: none;
+            border: 1px solid #e7e7e7;
+            margin-right: 11.5px;
+
+            & > li > a:hover, & > li > a:focus {
+                background-color: transparent;
+            }
+
+            & > li:hover, & > li:focus {
+                background-color: #e7e7e7;
+            }
+        }
     }
 
     &.sticky {
@@ -66,11 +80,11 @@ $sticky-navbar-height: 60px;
             padding-top: ($sticky-navbar-height - $navbar-brand-height) / 2 + 1;
         }
 
-        .navbar-nav li {
+        .navbar-nav > li {
             // center items vertically
             margin-top: (($sticky-navbar-height - $line-height-computed) / 4);
 
-            a {
+            & > a {
                 padding-top: (($sticky-navbar-height - $line-height-computed) / 4);
                 padding-bottom: (($sticky-navbar-height - $line-height-computed) / 4);
             }
