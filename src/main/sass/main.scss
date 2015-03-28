@@ -222,6 +222,7 @@ $sticky-navbar-height: 60px;
 
     &.highlight-fun {
         background-color: #eee;
+        margin-bottom: 0;
 
         .highlight-fun-right {
             font-size: $font-size-base;
@@ -231,6 +232,17 @@ $sticky-navbar-height: 60px;
         .highlight-stack p {
             font-size: $font-size-base * 1.4;
             font-style: italic;
+        }
+    }
+
+    &.highlight-who {
+        text-align: center;
+        background-color: $brand-primary;
+        color: white;
+        padding-bottom: $line-height-computed * 3;
+
+        img {
+            margin: $line-height-computed / 4 $line-height-computed / 2;
         }
     }
 }
