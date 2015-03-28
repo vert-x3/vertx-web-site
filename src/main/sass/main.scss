@@ -58,7 +58,7 @@ body {
 
     h2 {
         font-weight: 400;
-        font-size: $font-size-base * 2.4;
+        font-size: $font-size-base * 3.5;
 
         strong {
             font-weight: 500;
@@ -66,12 +66,11 @@ body {
     }
 
     .buttons {
-        padding-top: 10px;
+        padding-top: 15px;
     }
 
     .btn {
         color: #fff;
-        float: left;
         font-weight: 500;
         background-color: transparent;
 
@@ -89,7 +88,7 @@ body {
     }
 
     .github-btn {
-        padding-top: 8px;
+        padding-top: 16px;
         margin-left: 10px;
         display: inline-block;
     }
