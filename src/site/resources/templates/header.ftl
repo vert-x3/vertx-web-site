@@ -7,6 +7,7 @@
   <meta content="Vert.x is a tool-kit for building reactive applications on the JVM." name="description">
   <link href="stylesheets/main.css" media="screen" rel="stylesheet">
   <link href="assets/fonts/entypo/styles.css" media="screen" rel="stylesheet">
+  <link href="javascripts/styles/rainbow.min.css" media="screen" rel="stylesheet">
   <!-- IE 6-8 support of HTML 5 elements -->
   <!--[if lt IE 9]>
   <script src="http://static.jboss.org/theme/js/libs/html5/pre3.6/html5.min.js"></script>

@@ -245,6 +245,12 @@
       <version>3.3.1</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>highlightjs</artifactId>
+      <version>8.4-4</version>
+    </dependency>
+
   </dependencies>
 
   <profiles>
@@ -333,7 +339,7 @@
                 <phase>pre-site</phase>
                 <configuration>
                   <includeGroupIds>org.webjars</includeGroupIds>
-                  <includeArtifactIds>bootstrap-sass</includeArtifactIds>
+                  <includeArtifactIds>bootstrap-sass,highlightjs</includeArtifactIds>
                   <includes>META-INF/resources/webjars/**/*</includes>
                   <useSubDirectoryPerArtifact>false</useSubDirectoryPerArtifact>
                   <outputDirectory>${project.build.directory}/webjars</outputDirectory>
@@ -469,6 +475,10 @@
                       <fileset dir="${project.build.directory}/webjars/META-INF/resources/webjars/bootstrap-sass/3.3.1/fonts" />
                     </copy>
                     -->
+                    <copy todir="${project.build.directory}/site/javascripts/"
+                      file="${project.build.directory}/webjars/META-INF/resources/webjars/highlightjs/8.4-4/highlight.min.js" />
+                    <copy todir="${project.build.directory}/site/javascripts/styles"
+                      file="${project.build.directory}/webjars/META-INF/resources/webjars/highlightjs/8.4-4/styles/rainbow.min.css" />
                   </target>
                 </configuration>
                 <goals>

@@ -11,66 +11,6 @@
           </span>
         </div>
       </div>
-
-      <!-- code samples -->
-      <div class="col-sm-6 code-samples hidden">
-        <div class="tab-content">
-          <div class="tab-pane active" id="ws_js">
-            <pre class="prettyprint"><#noparse>
-var vertx = require('vertx');
-
-vertx.createHttpServer().requestHandler(function(req) {
-  var f = req.path() === '/' ? 'index.html' : req.path();
-  req.response.sendFile('webroot/' + f);
-}).listen(8080)</#noparse></pre>
-          </div>
-
-          <div class="tab-pane" id="ws_java">
-            <pre class="prettyprint"><#noparse>
-import org.vertx.java.core.Handler;
-import org.vertx.java.core.http.HttpServerRequest;
-import org.vertx.java.platform.Verticle;
-
-public class Server extends Verticle {
-    public void start() {
-        vertx.createHttpServer().requestHandler(new Handler&lt;HttpServerRequest&gt;() {
-            public void handle(HttpServerRequest req) {
-                String file = req.path().equals("/") ? "index.html" : req.path();
-                req.response().sendFile("webroot/" + file);
-            }
-        }).listen(8080);
-    }
-}</#noparse></pre>
-          </div>
-
-          <div class="tab-pane" id="ws_ruby">
-            <pre class="prettyprint"><#noparse>
-require "vertx"
-
-Vertx::HttpServer.new.request_handler do |req|
-    file = req.uri == "/" ? "index.html" : req.uri
-    req.response.send_file "webroot/#{file}"
-end.listen(8080)</#noparse></pre>
-          </div>
-
-          <div class="tab-pane" id="ws_groovy">
-            <pre class="prettyprint"><#noparse>
-vertx.createHttpServer().requestHandler { req ->
-    def file = req.uri == "/" ? "index.html" : req.uri
-    req.response.sendFile "webroot/$file"
-}.listen(8080)</#noparse></pre>
-          </div>
-        </div>
-
-        <ul class="nav nav-pills">
-          <li class="active"><a href="#ws_js" data-toggle="tab">JavaScript</a></li>
-          <li><a href="#ws_java" data-toggle="tab">Java</a></li>
-          <li><a href="#ws_ruby" data-toggle="tab">Ruby</a></li>
-          <li><a href="#ws_groovy" data-toggle="tab">Groovy</a></li>
-        </ul>
-
-      </div>
-
     </div>
   </div>
 </div>
@@ -92,8 +32,56 @@ vertx.createHttpServer().requestHandler { req ->
 <div class="highlight highlight-polyglot">
   <div class="container">
     <div class="row">
-      <div class="col-sm-6">
-        <img src="assets/screenshot-polyglot.png">
+      <div class="col-sm-6 code-samples">
+        <!-- code samples -->
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#ws_java" data-toggle="tab">Java</a></li>
+          <li><a href="#ws_js" data-toggle="tab">JavaScript</a></li>
+          <li><a href="#ws_ruby" data-toggle="tab">Ruby</a></li>
+          <li><a href="#ws_groovy" data-toggle="tab">Groovy</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="ws_java">
+            <pre class="prettyprint"><code class="java"><#noparse>import io.vertx.core.AbstractVerticle;
+
+public class Server extends AbstractVerticle {
+  @Override
+  public void start() throws Exception {
+    vertx.createHttpServer().requestHandler(req -> {
+      req.response()
+        .putHeader("content-type", "text/html")
+        .end("&lt;html>&lt;body>&lt;h1>Hello from vert.x!" +
+          "&lt;/h1>&lt;/body>&lt;/html>");
+    }).listen(8080);
+  }
+}</#noparse></code></pre>
+          </div>
+
+          <div class="tab-pane" id="ws_js">
+            <pre class="prettyprint"><code class="javascript"><#noparse>var vertx = require('vertx');
+
+vertx.createHttpServer().requestHandler(function(req) {
+  var f = req.path() === '/' ? 'index.html' : req.path();
+  req.response.sendFile('webroot/' + f);
+}).listen(8080)</#noparse></code></pre>
+          </div>
+
+          <div class="tab-pane" id="ws_ruby">
+            <pre class="prettyprint"><code class="ruby"><#noparse>require "vertx"
+
+Vertx::HttpServer.new.request_handler do |req|
+    file = req.uri == "/" ? "index.html" : req.uri
+    req.response.send_file "webroot/#{file}"
+end.listen(8080)</#noparse></code></pre>
+          </div>
+
+          <div class="tab-pane" id="ws_groovy">
+            <pre class="prettyprint"><code class="groovy"><#noparse>vertx.createHttpServer().requestHandler { req ->
+    def file = req.uri == "/" ? "index.html" : req.uri
+    req.response.sendFile "webroot/$file"
+}.listen(8080)</#noparse></code></pre>
+          </div>
+        </div>
       </div>
       <div class="col-sm-6 text-right">
         <h2>Polyglot</h2>

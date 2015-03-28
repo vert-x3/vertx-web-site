@@ -134,55 +134,6 @@ $sticky-navbar-height: 60px;
         margin-left: 10px;
         display: inline-block;
     }
-
-    .code-samples, .code-samples .prettyprint {
-        font-size: $font-size-small;
-    }
-
-    .code-samples {
-        margin-top: $line-height-computed - 7px;
-
-        .nav-pills {
-            border: none;
-            margin-left: 5px;
-
-            a {
-                color: #ccc;
-                padding-top: 5px;
-
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-
-            .active {
-                font-weight: 500;
-                a {
-                    color: #fff;
-                }
-            }
-
-            .active::after {
-                content: " ";
-                width: 0;
-                height: 0;
-                border-left: 5px solid transparent;
-                border-right: 5px solid transparent;
-                border-bottom: 8px solid #fff;
-                position: absolute;
-                top: -5px;
-                left: 50%;
-            }
-        }
-
-        .prettyprint {
-            padding: 20px;
-            margin-top: 5px;
-            background-color: #fff;
-            border-radius: $border-radius-large;
-            border: none;
-        }
-    }
 }
 
 .highlight {
@@ -226,9 +177,42 @@ $sticky-navbar-height: 60px;
         margin-bottom: 0;
         background-color: #eee;
 
-        img {
-            padding-top: $line-height-computed * 3;
+        .code-samples, .code-samples .prettyprint {
+            font-size: $font-size-small;
+        }
+
+        .code-samples {
+            padding-top: $line-height-computed * 2.2;
             margin-bottom: 0;
+            code {
+                min-height: 340px;
+                margin-bottom: 0;
+                padding: 20px;
+                border-top-right-radius: $border-radius-large;
+            }
+
+            .nav-tabs {
+                border: none;
+
+                li {
+                    &.active a {
+                        background-color: #474949;
+                        color: #fff;
+                    }
+                }
+
+                a {
+                    border: none;
+                }
+            }
+
+            .prettyprint {
+                min-height: 340px;
+                padding: 0;
+                margin: 0;
+                border-radius: 0;
+                border: none;
+            }
         }
 
         & + hr {
