@@ -1,30 +1,36 @@
 @import "bootstrap-variables";
 @import "bootstrap-custom";
 
-/* skip sticky navbar */
-body {
-    // padding-top: 70px;
-}
+$navbar-brand-height: 36px;
+$sticky-navbar-height: 60px;
 
 .btn-md {
     @include button-size($padding-large-vertical * 0.9, $padding-large-horizontal * 0.9, $font-size-large * 0.9, $line-height-large, $border-radius-large * 0.9);
 }
 
 .navbar {
+    $transition-time: 0.2s;
+
+    background-color: #fff;
+    transition: all $transition-time ease;
     font-weight: 500;
     font-size: $font-size-base * 1.2;
 
     .navbar-brand {
+        transition: all $transition-time ease;
+
         img {
-            height: 36px;
+            height: $navbar-brand-height;
         }
 
         // center logo vertically
-        padding-top: ($navbar-height - 36px) / 2 + 1;
+        padding-top: ($navbar-height - $navbar-brand-height) / 2 + 1;
     }
 
     .navbar-nav {
         li {
+            transition: all $transition-time ease;
+
             // dividers between navbar items
             &:not(:last-child) {
                 border-right: 2px solid $gray-lighter;
@@ -48,12 +54,34 @@ body {
             }
         }
     }
+
+    &.sticky {
+        min-height: $sticky-navbar-height;
+        height: $sticky-navbar-height;
+
+        .navbar-brand {
+            height: $sticky-navbar-height;
+
+            // center logo vertically
+            padding-top: ($sticky-navbar-height - $navbar-brand-height) / 2 + 1;
+        }
+
+        .navbar-nav li {
+            // center items vertically
+            margin-top: (($sticky-navbar-height - $line-height-computed) / 4);
+
+            a {
+                padding-top: (($sticky-navbar-height - $line-height-computed) / 4);
+                padding-bottom: (($sticky-navbar-height - $line-height-computed) / 4);
+            }
+        }
+    }
 }
 
 .index-header {
     background-color: $brand-primary;
     color: #fff;
-    padding-top: 60px;
+    padding-top: 60px + $navbar-height; // skip sticky navbar
     padding-bottom: 95px;
 
     h2 {

@@ -23,7 +23,7 @@
 
 <a id="skippy" class="sr-only sr-only-focusable" href="#content"><div class="container"><span class="skiplink-text">Skip to main content</span></div></a>
 
-<header class="navbar navbar-static-top" id="top" role="banner">
+<header class="navbar navbar-default navbar-fixed-top" id="top" role="banner">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
@@ -103,6 +103,8 @@ ${content.body}
 
 <script src="http://static.jboss.org/theme/js/libs/jquery/jquery-1.9.1.js"></script>
 <script src="javascripts/bootstrap.js"></script>
+
+<script src="javascripts/sticky_header.js"></script>
 
 </body>
 </html>
