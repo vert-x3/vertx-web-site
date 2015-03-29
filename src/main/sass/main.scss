@@ -36,65 +36,72 @@ $sticky-navbar-height: 60px;
     }
 
     .navbar-nav {
-        & > li {
-            transition: all $transition-time ease;
-
-            // dividers between navbar items
-            &:not(:last-child) {
-                border-right: 2px solid $gray-lighter;
-            }
-
-            // center items vertically
-            margin-top: (($navbar-height - $line-height-computed) / 4);
-        }
-
-        // navbar link colors
         a {
-            color: $gray-base;
             transform: scale(0.85, 1.0);
-
-            &.vertx-2-link {
-                color: #999;
-            }
-
-            &:hover {
-                color: $brand-primary;
-            }
-        }
-
-        .dropdown-menu {
-            box-shadow: none;
-            border: 1px solid #e7e7e7;
-            margin-right: 11.5px;
-
-            & > li > a:hover, & > li > a:focus {
-                background-color: transparent;
-            }
-
-            & > li:hover, & > li:focus {
-                background-color: #e7e7e7;
-            }
         }
     }
 
-    &.sticky {
-        min-height: $sticky-navbar-height;
-        height: $sticky-navbar-height;
+    @media (min-width: $grid-float-breakpoint) {
+        .navbar-nav {
+            & > li {
+                transition: all $transition-time ease;
 
-        .navbar-brand {
-            height: $sticky-navbar-height;
+                // dividers between navbar items
+                &:not(:last-child) {
+                    border-right: 2px solid $gray-lighter;
+                }
 
-            // center logo vertically
-            padding-top: ($sticky-navbar-height - $navbar-brand-height) / 2 + 1;
+                // center items vertically
+                margin-top: (($navbar-height - $line-height-computed) / 4);
+            }
+
+            // navbar link colors
+            a {
+                color: $gray-base;
+
+                &.vertx-2-link {
+                    color: #999;
+                }
+
+                &:hover {
+                    color: $brand-primary;
+                }
+            }
+
+            .dropdown-menu {
+                box-shadow: none;
+                border: 1px solid #e7e7e7;
+                margin-right: 11.5px;
+
+                & > li > a:hover, & > li > a:focus {
+                    background-color: transparent;
+                }
+
+                & > li:hover, & > li:focus {
+                    background-color: #e7e7e7;
+                }
+            }
         }
 
-        .navbar-nav > li {
-            // center items vertically
-            margin-top: (($sticky-navbar-height - $line-height-computed) / 4);
+        &.sticky {
+            min-height: $sticky-navbar-height;
+            height: $sticky-navbar-height;
 
-            & > a {
-                padding-top: (($sticky-navbar-height - $line-height-computed) / 4);
-                padding-bottom: (($sticky-navbar-height - $line-height-computed) / 4);
+            .navbar-brand {
+                height: $sticky-navbar-height;
+
+                // center logo vertically
+                padding-top: ($sticky-navbar-height - $navbar-brand-height) / 2 + 1;
+            }
+
+            .navbar-nav > li {
+                // center items vertically
+                margin-top: (($sticky-navbar-height - $line-height-computed) / 4);
+
+                & > a {
+                    padding-top: (($sticky-navbar-height - $line-height-computed) / 4);
+                    padding-bottom: (($sticky-navbar-height - $line-height-computed) / 4);
+                }
             }
         }
     }

@@ -3,6 +3,7 @@
 <head>
   <title>${content.title!"Vert.x"}</title>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="Vert.x is a tool-kit for building reactive applications on the JVM." name="description">
   <link href="stylesheets/main.css" media="screen" rel="stylesheet">
@@ -27,7 +28,7 @@
 <header class="navbar navbar-default <#if content.type == "index">navbar-fixed-top<#else>navbar-static-top</#if>" id="top" role="banner">
   <div class="container">
     <div class="navbar-header">
-      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#vertx-navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -35,12 +36,12 @@
       </button>
       <a href="index.html" class="navbar-brand"><img alt="Brand" src="assets/logo-sm.png"></a>
     </div>
-    <nav class="collapse navbar-collapse bs-navbar-collapse">
+    <nav class="collapse navbar-collapse" id="vertx-navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         <!--<li class=""><a href="vertx-home.html">HOME</a></li>-->
-        <li class=""><a href="https://bintray.com/vertx/downloads/distribution/view">Download</a></li>
-        <li class=""><a href="docs.html">Documentation</a></li>
-        <li class=""><a href="https://github.com/vert-x3/wiki/wiki">Wiki</a></li>
+        <li><a href="https://bintray.com/vertx/downloads/distribution/view">Download</a></li>
+        <li><a href="docs.html">Documentation</a></li>
+        <li><a href="https://github.com/vert-x3/wiki/wiki">Wiki</a></li>
         <li class="dropdown">
           <a id="nav-community-label" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="button">
             Community
@@ -51,7 +52,7 @@
             <li role="presentation"><a role="menuitem" href="https://groups.google.com/forum/?fromgroups#!forum/vertx-dev">Developer Group</a></li>
           </ul>
         </li>
-        <li class=""><a href="http://vertx.io" class="vertx-2-link">Vert.x 2</a></li>
+        <li><a href="http://vertx.io" class="vertx-2-link">Vert.x 2</a></li>
       </ul>
     </nav>
   </div>
