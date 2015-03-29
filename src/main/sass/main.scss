@@ -4,6 +4,14 @@
 $navbar-brand-height: 36px;
 $sticky-navbar-height: 60px;
 
+#reactive-manifesto-banner {
+    // banner is 143px wide. hide it when screen is too small so it
+    // doesn't block the navbar.
+    @media (max-width: $container-lg + (143px * 2)) {
+        display: none;
+    }
+}
+
 .btn-md {
     @include button-size($padding-large-vertical * 0.9, $padding-large-horizontal * 0.9, $font-size-large * 0.9, $line-height-large, $border-radius-large * 0.9);
 }
