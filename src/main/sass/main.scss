@@ -265,7 +265,21 @@ $sticky-navbar-height: 60px;
         padding-bottom: $line-height-computed * 3;
 
         img {
-            margin: $line-height-computed / 4 $line-height-computed / 2;
+            margin: $line-height-computed $line-height-computed / 2;
+            padding: 0;
+        }
+
+        .wanttobelisted {
+            padding-top: $line-height-computed;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: underline;
+
+            &:hover {
+                color: #999;
+            }
         }
     }
 }
