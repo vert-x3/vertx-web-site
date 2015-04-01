@@ -1,31 +1,27 @@
-<!--<div class="row col-sm-12 vertx-banner">-->
-  <!--<div class="col-sm-10">-->
-    <!--<h1>The reactive application tool-kit for the JVM.</h1>-->
-  <!--</div>-->
-<!--</div>-->
+
+<div class="row">
+	<div class="jumbotron">
+	  <div class="container">
+        <h2>Vert.x is a tool-kit for building reactive applications on the JVM.</h2>
+        <br>
+        <iframe src="https://ghbtns.com/github-btn.html?user=eclipse&repo=vert.x&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+	</div>
+</div>
 
 <div class="container vertx-container">
-  <div class="col-sm-12">
+	<div class="row">
+		<div class="col-md-12">
 
-    <div class="row">
-      <div class="span12">
-        <div class="hero-unit" style="padding: 30px;background-color:#3399FF">
+			<div class="row">
+	  <h2>About</h2>
 
-          <h2>Vert.x is a tool-kit for building reactive applications on the JVM.</h2>
+	  <div class="pull-right" style="padding: 10px;">
+        <a href="http://jaxenter.com/jax-innovation-awards-2014-champions-declared-50132.html">
+  		<img src="assets/JAX_winner.gif">
+	</a>
+</div>   
 
-        </div>
-      </div>
-
-    </div>
-
-
-    <div class="row">
-
-      <br/>
-
-      <p>Vert.x is <em>event driven</em> and <em>non blocking</em>. This means you can handle a lot of concurrency in your apps using a small
-        number of threads. Vert.x lets your apps scale with minimal hardware.</p>
-
+      <p>Vert.x is <em>event driven</em> and <em>non blocking</em>. This means you can handle a lot of concurrency in your apps using a small number of threads. Vert.x lets your apps scale with minimal hardware. </p>         
       <p>Vert.x is <em>polyglot</em>. You can use it with multiple JVM languages including Java, JavaScript and Groovy.
         Vert.x doesn't care what language is <em>best</em> - you use what language(s) that <em>you</em> want depending on the
         task at hand and the skill-set of your team. We don't just force you to use our Java API in other languages - we provide
@@ -52,8 +48,9 @@
 
       <p>Vert.x is <em>fun</em>. Enjoy being a developer again. Spare a thought for your less fortunate colleagues using legacy technologies.</p>
 
-      <p>Vert.x is a stack for creating compelling, 21st century, reactive applications. As well as low level functionality Vert.x provides
-        higher level building blocks for creating real-world applications.</p>
+      <p>Vert.x is a stack for creating compelling, 21st century, reactive applications. As well as low level functionality Vert.x provides higher level building blocks for creating real-world applications.</p>
+
+
 
     </div>
 
@@ -361,9 +358,17 @@
         <img src="assets/Button-Built-on-CB-1.png" align="center"/>
       </div>
 
+
+
     </div>
 
 
 
   </div>
+</div>
+
+
+
+		</div>
+	</div>
 </div>

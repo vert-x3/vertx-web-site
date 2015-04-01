@@ -1,0 +1,61 @@
+.vertx-navbar {
+	background-color: rgba(255, 255, 255, 0.90);
+	-webkit-box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.30);
+	box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.30);
+	border: none;
+}
+
+.vertx-navbar .navbar-nav > li > a {
+  border-top: 3px solid rgba(0,0,0,0);
+  color: #454545;
+  font-weight: bold;
+}
+
+.vertx-navbar .navbar-nav > li > a:hover {
+  border-top: 3px solid #664B84;
+  background-color: rgba(112, 112, 112, 0.04) !important;
+}
+
+.jumbotron {
+	background-color: #664B84;
+	color: white;
+	padding: 137px 75px 75px 75px;
+}
+
+.navbar-brand img {
+	max-width: 100px;
+}
+
+body {
+	color: #656565;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: "Source Sans Pro", "TitilliumText22LMedium", Helvetica, Arial, sans-serif;
+}
+
+footer {
+	margin: 50px 0 0;
+	background: #343434;
+	color: white;
+	text-align: center;
+}
+
+/* --------------- Back to Top (Crisp) ---------------------  */
+.backToTop {
+  position: fixed;
+  bottom: 10px;
+  z-index: 1000;
+  right: 10px;
+}
+.backToTop a {
+  width: 50px;
+  height: 50px;
+  text-indent: -9999px;
+  display: block;
+  margin: 0;
+  background: #243446 url(http://static.jboss.org/common/images/top.png) no-repeat center center;
+}
+.backToTop a:hover {
+  background-color: #4a5d75;
+}
