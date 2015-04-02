@@ -1,7 +1,7 @@
 <footer>
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-sm-3 col-sm-offset-sm-3 col-lg-3 col-lg-offset-0">
+      <div class="col-xs-12 col-sm-3 col-sm-offset-3 col-lg-3 col-lg-offset-0">
         <h2>Vert.x</h2>
         <ul class="list-unstyled">
           <li><a href="index.html">Home</a></li>
