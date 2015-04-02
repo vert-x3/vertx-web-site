@@ -312,8 +312,14 @@ footer {
             text-align: center;
         }
     }
-     
-    @media (min-width: $screen-sm-min) {
+    
+    @media (max-width: $screen-md-max) {
+        #license {
+            text-align: center;
+        }
+    }
+    
+    @media (min-width: $screen-lg-min) {
         #license {
             text-align: right;
         }
