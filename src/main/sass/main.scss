@@ -306,4 +306,17 @@ footer {
         clip: rect(12px, 196px, 60px, 12px);
         right: 0;
     }
+    
+    @media (max-width: $screen-xs-max) {
+        .col-xs-12 {
+            text-align: center;
+        }
+    }
+     
+    @media (min-width: $screen-sm-min) {
+        #license {
+            text-align: right;
+        }
+    }
+
 }
