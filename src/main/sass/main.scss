@@ -314,6 +314,9 @@ footer {
     }
     
     @media (max-width: $screen-md-max) {
+        .cloudbees-logo {
+            position: relative;
+        }
         #license {
             text-align: center;
         }
