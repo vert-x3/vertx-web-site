@@ -34,7 +34,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="index.html" class="navbar-brand"><img alt="Brand" src="assets/logo-sm.png"></a>
+      <a href="/" class="navbar-brand"><img alt="Brand" src="assets/logo-sm.png"></a>
     </div>
     <nav class="collapse navbar-collapse" id="vertx-navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
