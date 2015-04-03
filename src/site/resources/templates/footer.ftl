@@ -1,7 +1,7 @@
 <footer>
   <div class="container">
     <div class="row">
-      <div class="col-sm-2">
+      <div class="col-xs-12 col-sm-3 col-sm-offset-3 col-lg-3 col-lg-offset-0">
         <h2>Vert.x</h2>
         <ul class="list-unstyled">
           <li><a href="index.html">Home</a></li>
@@ -11,7 +11,7 @@
           <li class=""><a href="http://vertx.io" class="vertx-2-link">Vert.x 2</a></li>
         </ul>
       </div>
-      <div class="col-sm-2">
+      <div class="col-xs-12 col-sm-3 col-lg-3">
         <h2>Community</h2>
         <ul class="list-unstyled">
           <li><a href="https://groups.google.com/forum/?fromgroups#!forum/vertx">User Google Group</a></li>
@@ -19,7 +19,7 @@
         </ul>
       </div>
 
-      <div class="col-sm-offset-2 col-sm-6 text-right">
+      <div id="license" class="col-xs-12 col-lg-6">
         <p>Vert.x is 100% open source. Licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
         <p>This website is licensed under the <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0 License</a>.<br>
         Design by <a href="http://www.michel-kraemer.com">Michel Kr&auml;mer</a>. <a href="http://www.entypo.com">Entypo pictograms</a> by Daniel Bruce.</p>

@@ -304,4 +304,26 @@ footer {
     .logo {
         margin: $line-height-computed / 2 0;
     }
+    
+    @media (max-width: $screen-xs-max) {
+        .col-xs-12 {
+            text-align: center;
+        }
+    }
+    
+    @media (max-width: $screen-md-max) {
+        .cloudbees-logo {
+            position: relative;
+        }
+        #license {
+            text-align: center;
+        }
+    }
+    
+    @media (min-width: $screen-lg-min) {
+        #license {
+            text-align: right;
+        }
+    }
+
 }
