@@ -19,6 +19,8 @@ it in `target/site`.
 If you only change the site pages, you can activate the jbake watch mode (after having build the site once) with
 `mvn jbake:watch`, this will scan the changes and rebuild the part of the site that needs to be refreshed.
 
+All CSS stylesheets are generated from SASS/SCSS sources. You can watch for changes on these files and have them recompiled automatically with `mvn sass:watch`.
+
 ## Publishing web-site
 
 ```
