@@ -301,9 +301,7 @@ footer {
         }
     }
 
-    .cloudbees-logo {
-        position: absolute;
-        clip: rect(12px, 196px, 60px, 12px);
-        right: 0;
+    .logo {
+        margin: $line-height-computed / 2 0;
     }
 }
