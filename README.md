@@ -21,6 +21,9 @@ If you only change the site pages, you can activate the jbake watch mode (after 
 
 All CSS stylesheets are generated from SASS/SCSS sources. You can watch for changes on these files and have them recompiled automatically with `mvn sass:watch`.
 
+You can preview the generated site with `mvn jetty:run`. Open your web browser and go to
+<http://localhost:8080>.
+
 ## Publishing web-site
 
 ```
