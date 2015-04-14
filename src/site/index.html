@@ -48,7 +48,7 @@ stickyheader: true
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="ws_java">
-            <pre class="prettyprint"><code class="java"><#noparse>import io.vertx.core.AbstractVerticle;
+            <pre class="prettyprint"><code class="java">import io.vertx.core.AbstractVerticle;
 
 public class Server extends AbstractVerticle {
   @Override
@@ -60,32 +60,32 @@ public class Server extends AbstractVerticle {
           "&lt;/h1>&lt;/body>&lt;/html>");
     }).listen(8080);
   }
-}</#noparse></code></pre>
+}</code></pre>
           </div>
 
           <div class="tab-pane" id="ws_js">
-            <pre class="prettyprint"><code class="javascript"><#noparse>var vertx = require('vertx');
+            <pre class="prettyprint"><code class="javascript">var vertx = require('vertx');
 
 vertx.createHttpServer().requestHandler(function(req) {
   var f = req.path() === '/' ? 'index.html' : req.path();
   req.response.sendFile('webroot/' + f);
-}).listen(8080)</#noparse></code></pre>
+}).listen(8080)</code></pre>
           </div>
 
           <div class="tab-pane" id="ws_ruby">
-            <pre class="prettyprint"><code class="ruby"><#noparse>require "vertx"
+            <pre class="prettyprint"><code class="ruby">require "vertx"
 
 Vertx::HttpServer.new.request_handler do |req|
     file = req.uri == "/" ? "index.html" : req.uri
     req.response.send_file "webroot/#{file}"
-end.listen(8080)</#noparse></code></pre>
+end.listen(8080)</code></pre>
           </div>
 
           <div class="tab-pane" id="ws_groovy">
-            <pre class="prettyprint"><code class="groovy"><#noparse>vertx.createHttpServer().requestHandler { req ->
+            <pre class="prettyprint"><code class="groovy">vertx.createHttpServer().requestHandler { req ->
     def file = req.uri == "/" ? "index.html" : req.uri
     req.response.sendFile "webroot/$file"
-}.listen(8080)</#noparse></code></pre>
+}.listen(8080)</code></pre>
           </div>
         </div>
       </div>
