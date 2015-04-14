@@ -10,6 +10,7 @@
     "consolidate": "^0.12.1",
     "del": "^1.1.1",
     "gulp": "^3.8.11",
+    "gulp-bower": "0.0.10",
     "gulp-decompress": "^1.0.2",
     "gulp-streamify": "0.0.5",
     "gulp-util": "^3.0.4",

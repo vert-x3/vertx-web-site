@@ -71,12 +71,6 @@
 
     <dependency>
       <groupId>org.webjars</groupId>
-      <artifactId>bootstrap</artifactId>
-      <version>3.3.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.webjars</groupId>
       <artifactId>highlightjs</artifactId>
       <version>8.4-4</version>
     </dependency>
@@ -138,7 +132,7 @@
                 <phase>pre-site</phase>
                 <configuration>
                   <includeGroupIds>org.webjars</includeGroupIds>
-                  <includeArtifactIds>bootstrap,highlightjs</includeArtifactIds>
+                  <includeArtifactIds>highlightjs</includeArtifactIds>
                   <includes>META-INF/resources/webjars/**/*</includes>
                   <useSubDirectoryPerArtifact>false</useSubDirectoryPerArtifact>
                   <outputDirectory>${project.build.directory}/webjars</outputDirectory>
@@ -211,14 +205,7 @@
               <execution>
                 <configuration>
                   <target>
-                    <!-- Copy assets from webjars site dir -->
-                    <copy todir="${project.build.directory}/site/javascripts/"
-                          file="${project.build.directory}/webjars/META-INF/resources/webjars/bootstrap/3.3.1/js/bootstrap.min.js" />
-                    <!--
-                    <copy todir="${project.build.directory}/site/fonts/">
-                      <fileset dir="${project.build.directory}/webjars/META-INF/resources/webjars/bootstrap/3.3.1/fonts" />
-                    </copy>
-                    -->
+                    <!-- Copy assets from webjars to site dir -->
                     <copy todir="${project.build.directory}/site/javascripts/"
                           file="${project.build.directory}/webjars/META-INF/resources/webjars/highlightjs/8.4-4/highlight.min.js" />
                     <copy todir="${project.build.directory}/site/javascripts/styles"

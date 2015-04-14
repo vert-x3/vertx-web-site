@@ -1,3 +1,4 @@
+var bower = require("gulp-bower");
 var compress = require("compression");
 var connect = require("connect");
 var decompress = require("gulp-decompress");
@@ -20,14 +21,16 @@ var less = require("metalsmith-less");
 var templates = require("metalsmith-templates");
 
 var paths = {
+  bootstrap_js: "bower_components/bootstrap/dist/js/bootstrap.min.js",
   less_includes: [
     "src/site/stylesheets",
     "src/main/less",
-    "target/webjars/META-INF/resources/webjars/bootstrap/3.3.1/less"
+    "bower_components/bootstrap/less"
   ],
   src: "src/site",
   site: "target/site",
   target_asciidoctor_bs_themes: "target/asciidoctor-bs-themes",
+  target_scripts: "target/site/javascripts",
   target_stylesheets: "target/site/stylesheets",
   templates: "src/main/templates"
 };
@@ -76,6 +79,11 @@ function build(done, dev) {
     .build(done);
 }
 
+// install bower dependencies
+gulp.task("bower", function() {
+  return bower();
+});
+
 // download bootstrap themes for AsciiDoc
 gulp.task("install-asciidoc-bs-themes", function(done) {
   if (fs.existsSync(paths.target_asciidoctor_bs_themes)) {
@@ -88,8 +96,14 @@ gulp.task("install-asciidoc-bs-themes", function(done) {
     .pipe(gulp.dest(paths.target_asciidoctor_bs_themes));
 });
 
+// copy required javascripts
+gulp.task("scripts", ["bower"], function() {
+  return gulp.src(paths.bootstrap_js)
+    .pipe(gulp.dest(paths.target_scripts));
+});
+
 // build site
-gulp.task("site", ["install-asciidoc-bs-themes"], function(done) {
+gulp.task("site", ["scripts", "install-asciidoc-bs-themes"], function(done) {
   build(done);
 });
 
