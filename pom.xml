@@ -71,7 +71,7 @@
 
     <dependency>
       <groupId>org.webjars</groupId>
-      <artifactId>bootstrap-sass</artifactId>
+      <artifactId>bootstrap</artifactId>
       <version>3.3.1</version>
     </dependency>
 
@@ -138,7 +138,7 @@
                 <phase>pre-site</phase>
                 <configuration>
                   <includeGroupIds>org.webjars</includeGroupIds>
-                  <includeArtifactIds>bootstrap-sass,highlightjs</includeArtifactIds>
+                  <includeArtifactIds>bootstrap,highlightjs</includeArtifactIds>
                   <includes>META-INF/resources/webjars/**/*</includes>
                   <useSubDirectoryPerArtifact>false</useSubDirectoryPerArtifact>
                   <outputDirectory>${project.build.directory}/webjars</outputDirectory>
@@ -211,10 +211,10 @@
                   <target>
                     <!-- Copy assets from webjars site dir -->
                     <copy todir="${project.build.directory}/site/javascripts/"
-                          file="${project.build.directory}/webjars/META-INF/resources/webjars/bootstrap-sass/3.3.1/javascripts/bootstrap.js" />
+                          file="${project.build.directory}/webjars/META-INF/resources/webjars/bootstrap/3.3.1/js/bootstrap.min.js" />
                     <!--
                     <copy todir="${project.build.directory}/site/fonts/">
-                      <fileset dir="${project.build.directory}/webjars/META-INF/resources/webjars/bootstrap-sass/3.3.1/fonts" />
+                      <fileset dir="${project.build.directory}/webjars/META-INF/resources/webjars/bootstrap/3.3.1/fonts" />
                     </copy>
                     -->
                     <copy todir="${project.build.directory}/site/javascripts/"
@@ -225,37 +225,6 @@
                 </configuration>
                 <goals>
                   <goal>run</goal>
-                </goals>
-                <phase>site</phase>
-              </execution>
-            </executions>
-          </plugin>
-
-          <!-- Compile sass sources -->
-          <plugin>
-            <groupId>org.jasig.maven</groupId>
-            <artifactId>sass-maven-plugin</artifactId>
-            <version>1.1.1</version>
-            <configuration>
-              <resources>
-                <resource>
-                  <source>
-                    <directory>${basedir}/src/main/sass</directory>
-                  </source>
-                  <destination>${project.build.directory}/site/stylesheets</destination>
-                </resource>
-                <resource>
-                  <source>
-                    <directory>${project.build.directory}/webjars/META-INF/resources/webjars/bootstrap-sass/3.3.1/stylesheets</directory>
-                  </source>
-                  <destination>${project.build.directory}/site/stylesheets</destination>
-                </resource>
-              </resources>
-            </configuration>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>update-stylesheets</goal>
                 </goals>
                 <phase>site</phase>
               </execution>

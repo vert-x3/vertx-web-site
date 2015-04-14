@@ -8,11 +8,15 @@ var serveStatic = require("serve-static");
 var swig = require("swig");
 
 var Metalsmith = require("metalsmith");
+var ignore = require("metalsmith-ignore");
+var less = require("metalsmith-less");
 var templates = require("metalsmith-templates");
 
 var paths = {
+  less_includes: [ "src/main/less", "target/webjars/META-INF/resources/webjars/bootstrap/3.3.1/less" ],
   src: "src/site",
   site: "target/site",
+  target_stylesheets: "target/site/stylesheets",
   templates: "src/main/templates"
 };
 
@@ -26,13 +30,31 @@ function build(done, dev) {
   Metalsmith(__dirname)
     .source(paths.src)
     .destination(paths.site)
-    .clean(false) // do not remove files already in the target directory
+
+    // do not remove files already in the target directory
+    .clean(false)
+
+    // compile LESS sources to CSS
+    .use(less({
+      render: {
+        paths: paths.less_includes
+      }
+    }))
+
+    // remove LESS sources
+    .use(ignore([
+      "**/*.less"
+    ]))
+
+    // apply templates
     .use(templates({
       engine: "swig",
       cache: useTemplateCache,
       directory: paths.templates,
       pattern: "**/*.html"
     }))
+
+    // build site
     .build(done);
 }
 
