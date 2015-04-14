@@ -12,6 +12,8 @@
     "gulp": "^3.8.11",
     "gulp-util": "^3.0.4",
     "metalsmith": "^1.5.0",
+    "metalsmith-autoprefixer": "^1.0.2",
+    "metalsmith-clean-css": "^2.0.0",
     "metalsmith-ignore": "^0.1.2",
     "metalsmith-less": "^2.0.0",
     "metalsmith-templates": "^0.7.0",

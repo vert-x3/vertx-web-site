@@ -8,6 +8,8 @@ var serveStatic = require("serve-static");
 var swig = require("swig");
 
 var Metalsmith = require("metalsmith");
+var autoprefixer = require("metalsmith-autoprefixer");
+var cleanCSS = require("metalsmith-clean-css");
 var ignore = require("metalsmith-ignore");
 var less = require("metalsmith-less");
 var templates = require("metalsmith-templates");
@@ -45,6 +47,12 @@ function build(done, dev) {
     .use(ignore([
       "**/*.less"
     ]))
+
+    // compress css
+    .use(cleanCSS())
+
+    // autoprefix css
+    .use(autoprefixer())
 
     // apply templates
     .use(templates({
