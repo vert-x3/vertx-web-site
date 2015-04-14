@@ -41,9 +41,9 @@
 <script src="javascripts/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<#if content.type == "index">
+{% if stickyheader %}
 <script src="javascripts/sticky_header.js"></script>
-</#if>
+{% endif %}
 
 </body>
 </html>

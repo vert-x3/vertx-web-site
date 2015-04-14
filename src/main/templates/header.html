@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>${content.title!"Vert.x"}</title>
+  <title>{{ title }}</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -25,7 +25,7 @@
 
 <a id="skippy" class="sr-only sr-only-focusable" href="#content"><div class="container"><span class="skiplink-text">Skip to main content</span></div></a>
 
-<header class="navbar navbar-default <#if content.type == "index">navbar-fixed-top<#else>navbar-static-top</#if>" id="top" role="banner">
+<header class="navbar navbar-default {% if stickyheader %}navbar-fixed-top{% else %}navbar-static-top{% endif %}" id="top" role="banner">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#vertx-navbar-collapse">
