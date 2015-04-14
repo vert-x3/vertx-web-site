@@ -24,3 +24,5 @@ src/gen
 src/main/resources/vertx-js/*.js
 src/test/resources/testmodel-js/*.js
 src/scratchpad
+node/
+node_modules/

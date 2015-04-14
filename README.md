@@ -16,8 +16,8 @@ and unzipping them into the site.
 You can build the site with `mvn site`, this will assemble and transforms the various parts of the site and place
 it in `target/site`.
 
-If you only change the site pages, you can activate the jbake watch mode (after having build the site once) with
-`mvn jbake:watch`, this will scan the changes and rebuild the part of the site that needs to be refreshed.
+If you only change the site pages, you can activate the gulp watch mode (after having build the site once) with
+`gulp watch`, this will scan the changes and rebuild the part of the site that needs to be refreshed.
 
 All CSS stylesheets are generated from SASS/SCSS sources. You can watch for changes on these files and have them recompiled automatically with `mvn sass:watch`.
 

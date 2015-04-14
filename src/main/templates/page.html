@@ -1,18 +1,17 @@
-<#include "header.ftl">
+{% include "header.html" %}
 
-<#if content.body??>
+{% if heading %}
   <div class="page-header" id="content">
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <h1>${content.heading!"Vert.x"}</h1>
+          <h1>{{ heading }}</h1>
         </div>
       </div>
     </div>
   </div>
-  ${content.body}
-<#else>
-  <#include "index.html">
-</#if>
+{% endif %}
 
-<#include "footer.ftl">
+{{ contents | safe }}
+
+{% include "footer.html" %}
