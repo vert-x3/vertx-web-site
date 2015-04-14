@@ -1,10 +1,15 @@
 var compress = require("compression");
 var connect = require("connect");
+var decompress = require("gulp-decompress");
 var del = require("del");
+var fs = require("fs");
 var gulp = require("gulp");
 var gutil = require("gulp-util");
 var prettyHrtime = require("pretty-hrtime");
+var request = require("request");
 var serveStatic = require("serve-static");
+var source = require("vinyl-source-stream");
+var streamify = require("gulp-streamify");
 var swig = require("swig");
 
 var Metalsmith = require("metalsmith");
@@ -15,9 +20,14 @@ var less = require("metalsmith-less");
 var templates = require("metalsmith-templates");
 
 var paths = {
-  less_includes: [ "src/main/less", "target/webjars/META-INF/resources/webjars/bootstrap/3.3.1/less" ],
+  less_includes: [
+    "src/site/stylesheets",
+    "src/main/less",
+    "target/webjars/META-INF/resources/webjars/bootstrap/3.3.1/less"
+  ],
   src: "src/site",
   site: "target/site",
+  target_asciidoctor_bs_themes: "target/asciidoctor-bs-themes",
   target_stylesheets: "target/site/stylesheets",
   templates: "src/main/templates"
 };
@@ -66,7 +76,20 @@ function build(done, dev) {
     .build(done);
 }
 
-gulp.task("site", function(done) {
+// download bootstrap themes for AsciiDoc
+gulp.task("install-asciidoc-bs-themes", function(done) {
+  if (fs.existsSync(paths.target_asciidoctor_bs_themes)) {
+    done();
+    return;
+  }
+  return request("https://github.com/nerk/asciidoctor-bs-themes/archive/92dd167181d3c4ea48061ad4cba40ebc99d7151a.tar.gz")
+    .pipe(source("asciidoctor-bs-themes.tar.gz"))
+    .pipe(streamify(decompress({ strip: 1 })))
+    .pipe(gulp.dest(paths.target_asciidoctor_bs_themes));
+});
+
+// build site
+gulp.task("site", ["install-asciidoc-bs-themes"], function(done) {
   build(done);
 });
 

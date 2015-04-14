@@ -158,7 +158,9 @@
               <relativeBaseDir>true</relativeBaseDir>
               <preserveDirectories>true</preserveDirectories>
               <attributes>
-                <stylesheet>${basedir}/asciidoctor-stylesheet-factory/stylesheets/vertx.css</stylesheet>
+                <stylesheet>docs.css</stylesheet>
+                <stylesdir>/stylesheets</stylesdir>
+                <linkcss></linkcss>
               </attributes>
               <sourceHighlighter>prettify</sourceHighlighter>
             </configuration>
