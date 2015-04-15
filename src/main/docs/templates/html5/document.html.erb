@@ -1,7 +1,7 @@
 <%#encoding:UTF-8%>---
 template: page.html
 type: docs
-title: <%= doctitle(:sanitize => true) || (attr 'untitled-label') %>
+title: <%= doctitle(:sanitize => true) || (attr 'untitled-label') %> &middot; Vert.x
 heading: <%= doctitle(:sanitize => true) || (attr 'untitled-label') %>
 stylesheet: docs.css
 ---
@@ -20,32 +20,31 @@ stylesheet: docs.css
           <%= converter.convert self, 'outline' %>
         </div>
         <%= content %>
+
+        <% unless !footnotes? || attr?(:nofootnotes) %>
+          <div id="footnotes">
+          <% footnotes.each do |fn| %>
+            <div class="footnote" id="_footnote_<%= fn.index %>">
+              <a href="#_footnoteref_<%= fn.index %>"><%= fn.index %></a>. <%= fn.text %>
+            </div>
+          <% end %>
+        </div>
+        <% end %>
+
+        <% unless nofooter %>
+          <div id="footer">
+            <div id="footer-text">
+              <% if attr? :revnumber %>
+                <%= %(#{attr 'version-label'} #{attr :revnumber}) %><br>
+              <% end
+                if attr? 'last-update-label' %>
+                <%= %(#{attr 'last-update-label'} #{attr :docdatetime}) %>
+              <% end %>
+              <%= (docinfo_content = (docinfo :footer)).empty? ? nil : %(#{docinfo_content}) %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
-
-<% unless !footnotes? || attr?(:nofootnotes) %>
-  <div id="footnotes" class="container">
-  <hr>
-  <% footnotes.each do |fn| %>
-    <div class="footnote" id="_footnote_<%= fn.index %>">
-      <a href="#_footnoteref_<%= fn.index %>"><%= fn.index %></a>. <%= fn.text %>
-    </div>
-  <% end %>
-</div>
-<% end %>
-
-<% unless nofooter %>
-  <div id="footer" class="container">
-    <div id="footer-text">
-      <% if attr? :revnumber %>
-        <%= %(#{attr 'version-label'} #{attr :revnumber}) %><br>
-      <% end
-        if attr? 'last-update-label' %>
-        <%= %(#{attr 'last-update-label'} #{attr :docdatetime}) %>
-      <% end %>
-      <%= (docinfo_content = (docinfo :footer)).empty? ? nil : %(#{docinfo_content}) %>
-    </div>
-  </div>
-<% end %>
