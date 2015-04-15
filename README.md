@@ -19,8 +19,6 @@ it in `target/site`.
 If you only change the site pages, you can activate the gulp watch mode (after having build the site once) with
 `gulp watch`, this will scan the changes and rebuild the part of the site that needs to be refreshed.
 
-All CSS stylesheets are generated from SASS/SCSS sources. You can watch for changes on these files and have them recompiled automatically with `mvn sass:watch`.
-
 ## Publishing web-site
 
 ```

@@ -24,5 +24,6 @@ src/gen
 src/main/resources/vertx-js/*.js
 src/test/resources/testmodel-js/*.js
 src/scratchpad
+bower_components/
 node/
 node_modules/
