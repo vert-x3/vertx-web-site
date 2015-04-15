@@ -22,6 +22,7 @@ var templates = require("metalsmith-templates");
 
 var paths = {
   bootstrap_js: "bower_components/bootstrap/dist/js/bootstrap.min.js",
+  docs_generated: "target/docs-generated",
   less_includes: [
     "src/site/stylesheets",
     "src/main/less",
@@ -30,6 +31,7 @@ var paths = {
   src: "src/site",
   site: "target/site",
   target_asciidoctor_bs_themes: "target/asciidoctor-bs-themes",
+  target_docs: "target/site/docs",
   target_scripts: "target/site/javascripts",
   target_stylesheets: "target/site/stylesheets",
   templates: "src/main/templates"
@@ -79,6 +81,26 @@ function build(done, dev) {
     .build(done);
 }
 
+// build docs
+function buildDocs(done) {
+  Metalsmith(__dirname)
+    .source(paths.docs_generated)
+    .destination(paths.target_docs)
+
+    // do not remove files already in the target directory
+    .clean(false)
+
+    // apply templates
+    .use(templates({
+      engine: "swig",
+      directory: paths.templates,
+      pattern: "**/*.html"
+    }))
+
+    // build site
+    .build(done);
+}
+
 // install bower dependencies
 gulp.task("bower", function() {
   return bower();
@@ -102,8 +124,13 @@ gulp.task("scripts", ["bower"], function() {
     .pipe(gulp.dest(paths.target_scripts));
 });
 
+// build docs
+gulp.task("site-docs", function(done) {
+  buildDocs(done);
+})
+
 // build site
-gulp.task("site", ["scripts", "install-asciidoc-bs-themes"], function(done) {
+gulp.task("site", ["scripts", "site-docs", "install-asciidoc-bs-themes"], function(done) {
   build(done);
 });
 

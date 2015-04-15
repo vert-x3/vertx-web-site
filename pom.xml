@@ -151,9 +151,10 @@
               <doctype>book</doctype>
               <relativeBaseDir>true</relativeBaseDir>
               <preserveDirectories>true</preserveDirectories>
+              <eruby>erb</eruby>
+              <templateDir>${basedir}/src/main/docs/templates</templateDir>
               <attributes>
-                <stylesheet>docs.css</stylesheet>
-                <stylesdir>/stylesheets</stylesdir>
+                <stylesheet>/stylesheets/docs.css</stylesheet>
                 <linkcss></linkcss>
               </attributes>
               <sourceHighlighter>prettify</sourceHighlighter>
@@ -170,7 +171,7 @@
                     <toc>left</toc>
                   </attributes>
                   <sourceDirectory>${project.build.directory}/docs</sourceDirectory>
-                  <outputDirectory>${project.build.directory}/site/docs</outputDirectory>
+                  <outputDirectory>${project.build.directory}/docs-generated</outputDirectory>
                 </configuration>
               </execution>
               <execution>
@@ -184,7 +185,7 @@
                     <toc>left</toc>
                   </attributes>
                   <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
-                  <outputDirectory>${project.build.directory}/site/docs/</outputDirectory>
+                  <outputDirectory>${project.build.directory}/docs-generated</outputDirectory>
                 </configuration>
               </execution>
             </executions>
