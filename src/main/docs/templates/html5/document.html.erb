@@ -1,24 +1,32 @@
 <%#encoding:UTF-8%>---
 template: page.html
+type: docs
 title: <%= doctitle(:sanitize => true) || (attr 'untitled-label') %>
 heading: <%= doctitle(:sanitize => true) || (attr 'untitled-label') %>
 stylesheet: docs.css
 ---
 
-<div id="header" class="container">
-  <h1><%= doctitle(:sanitize => true) || (attr 'untitled-label') %></h1>
-  <div id="toc" class="<%= attr 'toc-class', 'toc' %>">
-    <div id="toctitle"><%= attr 'toc-title' %></div>
-    <%= converter.convert self, 'outline' %>
+<div id="content">
+  <div class="container docs-content">
+    <div class="row">
+      <div class="col-sm-12 col-md-push-9 col-md-3 hidden-xs hidden-sm">
+        <div id="sidebar" data-spy="affix">
+          <%= converter.convert self, 'outline' %>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-pull-3 col-md-9">
+        <div class="toc hidden-md hidden-lg">
+          <h2><%= attr 'toc-title' %></h2>
+          <%= converter.convert self, 'outline' %>
+        </div>
+        <%= content %>
+      </div>
+    </div>
   </div>
 </div>
 
-<div id="content" class="container">
-  <%= content %>
-</div>
-
 <% unless !footnotes? || attr?(:nofootnotes) %>
-  <div id="footnotes">
+  <div id="footnotes" class="container">
   <hr>
   <% footnotes.each do |fn| %>
     <div class="footnote" id="_footnote_<%= fn.index %>">
