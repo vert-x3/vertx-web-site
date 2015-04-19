@@ -43,7 +43,7 @@ stickyheader: true
         <ul class="nav nav-tabs">
           <li class="active"><a href="#ws_java" data-toggle="tab">Java</a></li>
           <li><a href="#ws_js" data-toggle="tab">JavaScript</a></li>
-          <li><a href="#ws_ruby" data-toggle="tab">Ruby</a></li>
+          <!--<li><a href="#ws_ruby" data-toggle="tab">Ruby</a></li>-->
           <li><a href="#ws_groovy" data-toggle="tab">Groovy</a></li>
         </ul>
         <div class="tab-content">
@@ -55,8 +55,8 @@ public class Server extends AbstractVerticle {
   public void start() throws Exception {
     vertx.createHttpServer().requestHandler(req -> {
       req.response()
-        .putHeader("content-type", "text/html")
-        .end("&lt;html>&lt;body>&lt;h1>Hello from vert.x!" +
+        .putHeader("Content-Type", "text/html")
+        .end("&lt;html>&lt;body>&lt;h1>Hello from Vert.x!" +
           "&lt;/h1>&lt;/body>&lt;/html>");
     }).listen(8080);
   }
@@ -64,28 +64,30 @@ public class Server extends AbstractVerticle {
           </div>
 
           <div class="tab-pane" id="ws_js">
-            <pre class="prettyprint"><code class="javascript">var vertx = require('vertx');
-
-vertx.createHttpServer().requestHandler(function(req) {
-  var f = req.path() === '/' ? 'index.html' : req.path();
-  req.response.sendFile('webroot/' + f);
-}).listen(8080)</code></pre>
+            <pre class="prettyprint"><code class="javascript">vertx.createHttpServer().requestHandler(function (req) {
+  req.response()
+    .putHeader("Content-Type", "text/html")
+    .end("&lt;html>&lt;body>&lt;h1>Hello from Vert.x!" +
+      "&lt;/h1>&lt;/body>&lt;/html>");
+}).listen(8080);</code></pre>
           </div>
 
-          <div class="tab-pane" id="ws_ruby">
-            <pre class="prettyprint"><code class="ruby">require "vertx"
+<!--          <div class="tab-pane" id="ws_ruby">
+            <pre class="prettyprint"><code class="ruby"><#noparse>require "vertx"
 
 Vertx::HttpServer.new.request_handler do |req|
     file = req.uri == "/" ? "index.html" : req.uri
     req.response.send_file "webroot/#{file}"
 end.listen(8080)</code></pre>
-          </div>
+          </div>-->
 
           <div class="tab-pane" id="ws_groovy">
-            <pre class="prettyprint"><code class="groovy">vertx.createHttpServer().requestHandler { req ->
-    def file = req.uri == "/" ? "index.html" : req.uri
-    req.response.sendFile "webroot/$file"
-}.listen(8080)</code></pre>
+            <pre class="prettyprint"><code class="groovy">vertx.createHttpServer().requestHandler({ req ->
+  req.response()
+    .putHeader("Content-Type", "text/html")
+    .end("&lt;html>&lt;body>&lt;h1>Hello from Vert.x!" +
+      "&lt;/h1>&lt;/body>&lt;/html>")
+}).listen(8080)</code></pre>
           </div>
         </div>
       </div>

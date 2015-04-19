@@ -207,8 +207,6 @@
                 <configuration>
                   <target>
                     <!-- Copy assets from webjars to site dir -->
-                    <copy todir="${project.build.directory}/site/javascripts/"
-                          file="${project.build.directory}/webjars/META-INF/resources/webjars/highlightjs/8.4-4/highlight.min.js" />
                     <copy todir="${project.build.directory}/site/javascripts/styles"
                           file="${project.build.directory}/webjars/META-INF/resources/webjars/highlightjs/8.4-4/styles/rainbow.min.css" />
                   </target>
