@@ -196,7 +196,7 @@ gulp.task("watch", ["site-dev"], function() {
     app.use(contextPathDev, serveStatic(paths.site, {
         "index": ["index.html"]
     }));
-    app.listen(4000, function() {
+    app.listen(devPort, function() {
         gutil.log("Listening on port", gutil.colors.cyan("4000"), "...");
     });
 
