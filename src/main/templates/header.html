@@ -6,14 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="Vert.x is a tool-kit for building reactive applications on the JVM." name="description">
-  <link href="/stylesheets/{% if stylesheet %}{{ stylesheet }}{% else %}main.css{% endif %}" media="screen" rel="stylesheet">
-  <link href="/assets/fonts/entypo/styles.css" media="screen" rel="stylesheet">
-  <link href="/javascripts/styles/rainbow.min.css" media="screen" rel="stylesheet">
+  <link href="{{ site_url }}stylesheets/{% if stylesheet %}{{ stylesheet }}{% else %}main.css{% endif %}" media="screen" rel="stylesheet">
+  <link href="{{ site_url }}assets/fonts/entypo/styles.css" media="screen" rel="stylesheet">
+  <link href="{{ site_url }}javascripts/styles/rainbow.min.css" media="screen" rel="stylesheet">
   <!-- IE 6-8 support of HTML 5 elements -->
   <!--[if lt IE 9]>
   <script src="http://static.jboss.org/theme/js/libs/html5/pre3.6/html5.min.js"></script>
   <![endif]-->
-  <link href="/assets/favicons/vertx-favicon-5.ico" rel="shortcut icon">
+  <link href="{{ site_url }}assets/favicons/vertx-favicon-5.ico" rel="shortcut icon">
   <link href="http://fonts.googleapis.com/css?family=Ubuntu:400,500,700,400italic" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -34,13 +34,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand"><img alt="Brand" src="/assets/logo-sm.png"></a>
+      <a href="{{ site_url }}" class="navbar-brand"><img alt="Brand" src="{{ site_url }}assets/logo-sm.png"></a>
     </div>
     <nav class="collapse navbar-collapse" id="vertx-navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         <!--<li class=""><a href="vertx-home.html">HOME</a></li>-->
         <li><a href="https://bintray.com/vertx/downloads/distribution/view">Download</a></li>
-        <li><a href="/docs.html">Documentation</a></li>
+        <li><a href="{{ site_url }}docs.html">Documentation</a></li>
         <li><a href="https://github.com/vert-x3/wiki/wiki">Wiki</a></li>
         <li class="dropdown">
           <a id="nav-community-label" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="button">

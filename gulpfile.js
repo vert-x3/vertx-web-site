@@ -16,10 +16,29 @@ var swig = require("swig");
 var Metalsmith = require("metalsmith");
 var autoprefixer = require("metalsmith-autoprefixer");
 var cleanCSS = require("metalsmith-clean-css");
+var define = require("metalsmith-define");
 var ignore = require("metalsmith-ignore");
 var less = require("metalsmith-less");
 var templates = require("metalsmith-templates");
 
+// path to website on the server in production mode (i.e. when running
+// `gulp build`). MUST BE ABSOLUTE AND MUST END WITH A SLASH!
+var contextPath = "/";
+
+// path to website on the server in development mode (i.e. when running
+// `gulp watch`). MUST BE ABSOLUTE AND MUST END WITH A SLASH!
+var contextPathDev = "/";
+
+// port to listen to in development mode (i.e. when running `gulp watch`)
+var devPort = 4000;
+
+// website url in production mode (must be absolute; protocol and host may be omitted)
+var siteUrl = "" + contextPath;
+
+// website url in development mode (must be absolute; protocol and host may be omitted)
+var siteUrlDev = "http://localhost:" + devPort + contextPathDev;
+
+// paths to source files
 var paths = {
   bootstrap_js: "bower_components/bootstrap/dist/js/bootstrap.min.js",
   docs_generated: "target/docs-generated",
@@ -42,6 +61,11 @@ function build(done, dev) {
   var useTemplateCache = dev ? false : undefined;
   if (!useTemplateCache) {
     swig.setDefaults({ cache: false });
+  }
+
+  var site_url = siteUrl;
+  if (dev) {
+    site_url = siteUrlDev;
   }
 
   Metalsmith(__dirname)
@@ -69,12 +93,25 @@ function build(done, dev) {
     // autoprefix css
     .use(autoprefixer())
 
-    // apply templates
+    // define global variables for templates
+    .use(define({
+      "site_url": site_url
+    }))
+
+    // apply template engine in-place
     .use(templates({
       engine: "swig",
       cache: useTemplateCache,
-      directory: paths.templates,
-      pattern: "**/*.html"
+      pattern: "**/*.html",
+      inPlace: true
+    }))
+
+    // apply templates (e.g. header, footer)
+    .use(templates({
+      engine: "swig",
+      cache: useTemplateCache,
+      pattern: "**/*.html",
+      directory: paths.templates
     }))
 
     // build site
@@ -82,13 +119,23 @@ function build(done, dev) {
 }
 
 // build docs
-function buildDocs(done) {
+function buildDocs(done, dev) {
+  var site_url = siteUrl;
+  if (dev) {
+    site_url = siteUrlDev;
+  }
+
   Metalsmith(__dirname)
     .source(paths.docs_generated)
     .destination(paths.target_docs)
 
     // do not remove files already in the target directory
     .clean(false)
+
+    // define global variables for templates
+    .use(define({
+      "site_url": site_url
+    }))
 
     // apply templates
     .use(templates({
@@ -134,12 +181,19 @@ gulp.task("site", ["scripts", "site-docs", "install-asciidoc-bs-themes"], functi
   build(done);
 });
 
+// build site in development mode
+gulp.task("site-dev", ["site"], function(done) {
+  buildDocs(function() {
+    build(done, true);
+  }, true);
+});
+
 // start a web server, watch source directory and rebuild if necessary
-gulp.task("watch", ["site"], function() {
+gulp.task("watch", ["site-dev"], function() {
     // start web server
     var app = connect();
     app.use(compress());
-    app.use(serveStatic(paths.site, {
+    app.use(contextPathDev, serveStatic(paths.site, {
         "index": ["index.html"]
     }));
     app.listen(4000, function() {
