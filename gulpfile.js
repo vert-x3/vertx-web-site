@@ -3,10 +3,14 @@ var compress = require("compression");
 var connect = require("connect");
 var decompress = require("gulp-decompress");
 var del = require("del");
+var flatten = require("gulp-flatten");
 var fs = require("fs");
 var gulp = require("gulp");
 var gutil = require("gulp-util");
+var iconfilter = require("./src/main/filters/iconfilter.js");
+var path = require("path");
 var prettyHrtime = require("pretty-hrtime");
+var replace = require("gulp-replace");
 var request = require("request");
 var serveStatic = require("serve-static");
 var source = require("vinyl-source-stream");
@@ -42,6 +46,7 @@ var siteUrlDev = "http://localhost:" + devPort + contextPathDev;
 var paths = {
   bootstrap_js: "bower_components/bootstrap/dist/js/bootstrap.min.js",
   docs_generated: "target/docs-generated",
+  entypo: "Entypo+",
   less_includes: [
     "src/site/stylesheets",
     "src/main/less",
@@ -51,6 +56,7 @@ var paths = {
   site: "target/site",
   target_asciidoctor_bs_themes: "target/asciidoctor-bs-themes",
   target_docs: "target/site/docs",
+  target_icons: "target/site/assets/icons",
   target_scripts: "target/site/javascripts",
   target_stylesheets: "target/site/stylesheets",
   templates: "src/main/templates"
@@ -62,6 +68,8 @@ function build(done, dev) {
   if (!useTemplateCache) {
     swig.setDefaults({ cache: false });
   }
+
+  swig.setTag("icon", iconfilter.parse, iconfilter.compile, iconfilter.ends, iconfilter.block);
 
   var site_url = siteUrl;
   if (dev) {
@@ -165,6 +173,14 @@ gulp.task("install-asciidoc-bs-themes", function(done) {
     .pipe(gulp.dest(paths.target_asciidoctor_bs_themes));
 });
 
+// copy svg icons
+gulp.task("icons", function() {
+  return gulp.src(path.join(paths.entypo, "**/*.svg"))
+    .pipe(flatten())
+    .pipe(replace(/id="[^"]+"/, 'id="icon"')) // set id of all icons to a fixed value so we can reference it easier
+    .pipe(gulp.dest(path.join(paths.target_icons, "entypo")));
+});
+
 // copy required javascripts
 gulp.task("scripts", ["bower"], function() {
   return gulp.src(paths.bootstrap_js)
@@ -177,7 +193,7 @@ gulp.task("site-docs", function(done) {
 })
 
 // build site
-gulp.task("site", ["scripts", "site-docs", "install-asciidoc-bs-themes"], function(done) {
+gulp.task("site", ["icons", "scripts", "site-docs", "install-asciidoc-bs-themes"], function(done) {
   build(done);
 });
 
