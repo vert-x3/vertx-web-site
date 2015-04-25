@@ -280,6 +280,24 @@
     }
 }
 
+/* Center user logos vertically and horizontally */
+.user-logos {
+    display: table;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 100%;
+    table-layout: fixed;
+    margin-left: auto;
+    margin-right: auto;
+
+    .user-logo {
+        display: table-cell;
+        float: none !important;
+        vertical-align: middle;
+        width: 100%;
+    }
+}
+
 footer {
     background-color: #eee;
     margin-top: @line-height-computed * 2;
