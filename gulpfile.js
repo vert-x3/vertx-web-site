@@ -22,6 +22,7 @@ var Metalsmith = require("metalsmith");
 var autoprefixer = require("metalsmith-autoprefixer");
 var cleanCSS = require("metalsmith-clean-css");
 var define = require("metalsmith-define");
+var htmlMinifier = require("metalsmith-html-minifier");
 var ignore = require("metalsmith-ignore");
 var less = require("metalsmith-less");
 var templates = require("metalsmith-templates");
@@ -122,6 +123,9 @@ function build(done, dev) {
       pattern: "**/*.html",
       directory: paths.templates
     }))
+
+    // minify HTML
+    .use(htmlMinifier())
 
     // build site
     .build(done);
