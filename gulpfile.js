@@ -10,6 +10,7 @@ var gutil = require("gulp-util");
 var iconfilter = require("./src/main/filters/iconfilter.js");
 var path = require("path");
 var prettyHrtime = require("pretty-hrtime");
+var rename = require("gulp-rename");
 var replace = require("gulp-replace");
 var request = require("request");
 var serveStatic = require("serve-static");
@@ -177,6 +178,13 @@ gulp.task("install-asciidoc-bs-themes", function(done) {
 gulp.task("icons", function() {
   return gulp.src(path.join(paths.entypo, "**/*.svg"))
     .pipe(flatten())
+    .pipe(rename(function(path) {
+      // rename 'resize-100%.svg' because the maven-scm-publish-plugin has
+      // problems with the percent sign which it considers an escape character
+      if (path.basename === "resize-100%") {
+        path.basename = "resize-100"
+      }
+    }))
     .pipe(replace(/id="[^"]+"/, 'id="icon"')) // set id of all icons to a fixed value so we can reference it easier
     .pipe(gulp.dest(path.join(paths.target_icons, "entypo")));
 });
