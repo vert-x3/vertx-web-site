@@ -326,6 +326,18 @@ footer {
     .logo {
         margin: @line-height-computed / 2 0;
     }
+
+    .copyright {
+        text-align: right;
+
+        @media (max-width: (@screen-xs-max)) {
+            text-align: center;
+        }
+
+        a {
+            white-space: nowrap;
+        }
+    }
 }
 
 // entypo icons
