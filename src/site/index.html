@@ -43,8 +43,8 @@ stickyheader: true
         <ul class="nav nav-tabs">
           <li class="active"><a href="#ws_java" data-toggle="tab">Java</a></li>
           <li><a href="#ws_js" data-toggle="tab">JavaScript</a></li>
-          <!--<li><a href="#ws_ruby" data-toggle="tab">Ruby</a></li>-->
           <li><a href="#ws_groovy" data-toggle="tab">Groovy</a></li>
+          <li><a href="#ws_ruby" data-toggle="tab">Ruby</a></li>
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="ws_java">
@@ -72,15 +72,6 @@ public class Server extends AbstractVerticle {
 }).listen(8080);</code></pre>
           </div>
 
-<!--          <div class="tab-pane" id="ws_ruby">
-            <pre class="prettyprint"><code class="ruby"><#noparse>require "vertx"
-
-Vertx::HttpServer.new.request_handler do |req|
-    file = req.uri == "/" ? "index.html" : req.uri
-    req.response.send_file "webroot/#{file}"
-end.listen(8080)</code></pre>
-          </div>-->
-
           <div class="tab-pane" id="ws_groovy">
             <pre class="prettyprint"><code class="groovy">vertx.createHttpServer().requestHandler({ req ->
   req.response()
@@ -89,11 +80,21 @@ end.listen(8080)</code></pre>
       "&lt;/h1>&lt;/body>&lt;/html>")
 }).listen(8080)</code></pre>
           </div>
+
+          <div class="tab-pane" id="ws_ruby">
+            <pre class="prettyprint"><code class="ruby">$vertx.create_http_server().request_handler() { |req|
+  req.response()
+    .put_header("content-type", "text/html")
+    .end("&lt;html>&lt;body>&lt;h1>Hello from Vert.x!" +
+      "&lt;/h1>&lt;/body>&lt;/html>")
+}.listen(8080)</code></pre>
+          </div>
+
         </div>
       </div>
       <div class="col-sm-6 text-right">
         <h2>Polyglot</h2>
-        <p>You can use Vert.x with multiple JVM languages including <strong>Java</strong>, <strong>JavaScript</strong> and <strong>Groovy</strong>.
+        <p>You can use Vert.x with multiple JVM languages including <strong>Java</strong>, <strong>JavaScript</strong>, <strong>Groovy</strong>, and <strong>Ruby</strong>.
           Vert.x doesn't care what language is <em>best</em> &mdash; you use what language(s) that <em>you</em> want depending on the
           task at hand and the skill-set of your team.</p>
         <p>We don't just force you to use our Java API in other languages - we provide
