@@ -42,43 +42,63 @@ subheading: Vert.x is an independent project and includes contributions from man
 
   <hr>
 
+  {# macro that iterates over a list of developers and generates columns #}
+  {% macro generate_devs(developers) %}
+    {% for dev in developers %}
+      <div class="col-xs-12 col-sm-4 col-lg-3">
+        <div class="media">
+          <div class="media-left">
+            <img class="contributor-avatar" src="{{ dev.avatar }}" width="80" height="80">
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">{{ dev.name | safe }}</h4>
+            <p>
+              {% if dev.role || dev.contribution %}
+                {{ dev.role || dev.contribution }}<br>
+              {% endif %}
+              {% if dev.homepage %}
+                <a href="{{ dev.homepage }}">{% icon "globe" %}</a>
+              {% endif %}
+              {% if dev.github %}
+                <a href="{{ dev.github }}">{% icon "github" %}</a>
+              {% endif %}
+              {% if dev.twitter %}
+                <a href="{{ dev.twitter }}">{% icon "twitter" %}</a>
+              {% endif %}
+              {% if dev.google_plus %}
+                <a href="{{ dev.google_plus }}">{% icon "google+" %}</a>
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% endmacro %}
+
   <div class="community-container">
     <div class="row">
       <div class="col-xs-12 col-sm-4 col-lg-3">
         <h3>Full time developers</h3>
       </div>
-      <div class="col-xs-12 col-sm-4 col-lg-3">
-        <div class="media">
-          <div class="media-left">
-            <img class="contributor-avatar" src="http://www.gravatar.com/avatar/9cd3a5dcf7413cb13ba60bf8d520ea9b?s=80">
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading">Tim Fox</h4>
-            <p>
-              Project lead<br>
-              <a href="http://tfox.org/">{% icon "globe" %}</a>
-              <a href="https://github.com/purplefox">{% icon "github" %}</a>
-              <a href="https://twitter.com/timfox">{% icon "twitter" %}</a>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-4 col-lg-3">
-        <div class="media">
-          <div class="media-left">
-            <img class="contributor-avatar" src="http://www.gravatar.com/avatar/cb52062fbd7e159b54e3c298d622fe72?s=80">
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading">Julien Viet</h4>
-            <p>
-              Core developer<br>
-              <a href="http://blog.julienviet.com">{% icon "globe" %}</a>
-              <a href="https://github.com/vietj">{% icon "github" %}</a>
-              <a href="https://twitter.com/julienviet">{% icon "twitter" %}</a>
-            </p>
-          </div>
-        </div>
-      </div>
+
+      {% set full_time_developers = [{
+        name: "Tim Fox",
+        role: "Project lead",
+        avatar: "http://www.gravatar.com/avatar/9cd3a5dcf7413cb13ba60bf8d520ea9b?s=80",
+        homepage: "http://tfox.org/",
+        github: "https://github.com/purplefox",
+        twitter: "https://twitter.com/timfox"
+      }, {
+        name: "Julien Viet",
+        role: "Core developer",
+        avatar: "http://www.gravatar.com/avatar/cb52062fbd7e159b54e3c298d622fe72?s=80",
+        homepage: "http://blog.julienviet.com",
+        github: "https://github.com/vietj",
+        twitter: "https://twitter.com/julienviet"
+      }] %}
+
+      {{ generate_devs(full_time_developers) }}
+
     </div>
   </div>
 
@@ -87,37 +107,25 @@ subheading: Vert.x is an independent project and includes contributions from man
       <div class="col-xs-12 col-sm-4 col-lg-3">
         <h3>Contributors</h3>
       </div>
-      <div class="col-xs-12 col-sm-4 col-lg-3">
-        <div class="media">
-          <div class="media-left">
-            <img class="contributor-avatar" src="http://www.gravatar.com/avatar/bdcf8af7892cb0147cb22828d37e872f?s=80">
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading">Michel Kr&auml;mer</h4>
-            <p>
-              Web-site<br>
-              <a href="http://www.michel-kraemer.com">{% icon "globe" %}</a>
-              <a href="https://github.com/michel-kraemer">{% icon "github" %}</a>
-              <a href="https://plus.google.com/115526316201910245712">{% icon "google+" %}</a>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-4 col-lg-3">
-        <div class="media">
-          <div class="media-left">
-            <img class="contributor-avatar" src="http://www.gravatar.com/avatar/4fe2cb46fafbdfd35b32be964b0b1597.png">
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading">Marcel Soute</h4>
-            <p>
-              Maven2 repo auth, aws-deploy-mod<br>
-              <a href="https://github.com/msoute">{% icon "github" %}</a>
-              <a href="https://twitter.com/marcelsoute">{% icon "twitter" %}</a>
-            </p>
-          </div>
-        </div>
-      </div>
+
+      <!-- define contributors -->
+      {% set contributors = [{
+        name: "Michel Kr&auml;mer",
+        contribution: "Web-site",
+        avatar: "http://www.gravatar.com/avatar/bdcf8af7892cb0147cb22828d37e872f?s=80",
+        homepage: "http://www.michel-kraemer.com",
+        github: "https://github.com/michel-kraemer",
+        google_plus: "https://plus.google.com/115526316201910245712"
+      }, {
+        name: "Johannes Sch&uuml;th",
+        avatar: "http://www.gravatar.com/avatar/1e57b87157678193e7a0faf22ae3e958?s=80",
+        homepage: "http://www.jotschi.de",
+        github: "https://github.com/jotschi",
+        twitter: "https://twitter.com/jotschi"
+      }] %}
+
+      {{ generate_devs(contributors) }}
+
     </div>
     <div class="row community-row">
       <div class="col-xs-12 col-sm-offset-4 col-lg-offset-3">
