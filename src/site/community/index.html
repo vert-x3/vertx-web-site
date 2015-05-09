@@ -53,7 +53,9 @@ subheading: Vert.x is an independent project and includes contributions from man
           <div class="media-body">
             <h4 class="media-heading">{{ dev.name | safe }}</h4>
             <p>
-              {{ dev.role || dev.contribution }}<br>
+              {% if dev.role || dev.contribution %}
+                {{ dev.role || dev.contribution }}<br>
+              {% endif %}
               {% if dev.homepage %}
                 <a href="{{ dev.homepage }}">{% icon "globe" %}</a>
               {% endif %}
@@ -114,6 +116,12 @@ subheading: Vert.x is an independent project and includes contributions from man
         homepage: "http://www.michel-kraemer.com",
         github: "https://github.com/michel-kraemer",
         google_plus: "https://plus.google.com/115526316201910245712"
+      }, {
+        name: "Johannes Sch&uuml;th",
+        avatar: "http://www.gravatar.com/avatar/1e57b87157678193e7a0faf22ae3e958?s=80",
+        homepage: "http://www.jotschi.de",
+        github: "https://github.com/jotschi",
+        twitter: "https://twitter.com/jotschi"
       }] %}
 
       {{ generate_devs(contributors) }}
