@@ -372,10 +372,6 @@ footer {
         h4 {
             padding-top: 0;
         }
-
-        @media (max-width: (@screen-xs-max)) {
-            margin-top: @line-height-computed;
-        }
     }
 
     .media-body {
@@ -384,6 +380,10 @@ footer {
         h4 {
             margin-bottom: 0;
         }
+    }
+
+    .media-left {
+        padding-bottom: @line-height-computed;
     }
 
     .icon {
@@ -398,7 +398,7 @@ footer {
 
     &.contributors {
         h4.many-others {
-            padding-top: @line-height-computed;
+            margin-top: @line-height-computed;
             font-style: italic;
         }
     }
@@ -407,6 +407,16 @@ footer {
         @media (max-width: (@screen-xs-max)) {
             margin-top: @line-height-computed;
             display: inline-block;
+        }
+    }
+
+    .community-row {
+        margin-bottom: @line-height-computed;
+
+        .col-sm-12:nth-child(2) {
+            @media (max-width: (@screen-xs-max)) {
+                padding-top: @line-height-computed;
+            }
         }
     }
 }
