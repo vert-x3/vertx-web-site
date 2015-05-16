@@ -9,6 +9,7 @@
     "connect": "^3.3.5",
     "consolidate": "^0.12.1",
     "del": "^1.1.1",
+    "github": "^0.2.4",
     "gulp": "^3.8.11",
     "gulp-bower": "0.0.10",
     "gulp-decompress": "^1.0.2",

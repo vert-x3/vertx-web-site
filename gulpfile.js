@@ -1,6 +1,7 @@
 var bower = require("gulp-bower");
 var compress = require("compression");
 var connect = require("connect");
+var contributors = require("./src/main/tasks/contributors.js");
 var decompress = require("gulp-decompress");
 var del = require("del");
 var flatten = require("gulp-flatten");
