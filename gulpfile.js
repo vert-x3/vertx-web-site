@@ -6,6 +6,7 @@ var decompress = require("gulp-decompress");
 var del = require("del");
 var flatten = require("gulp-flatten");
 var fs = require("fs");
+var githubConfig = require("./github.json");
 var gulp = require("gulp");
 var gutil = require("gulp-util");
 var iconfilter = require("./src/main/filters/iconfilter.js");
@@ -237,6 +238,11 @@ gulp.task("watch", ["site-dev"], function() {
                 "after", gutil.colors.magenta(prettyHrtime(process.hrtime(start))));
         }, true);
     });
+});
+
+// update the list of people who have contributed to vertx repositories
+gulp.task("update-contributors", function(cb) {
+  contributors(githubConfig.client_id, githubConfig.client_secret, cb);
 });
 
 // clean target directory

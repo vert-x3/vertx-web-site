@@ -45,3 +45,19 @@ path on the web server by just changing the global `site_url` variable.
 
 Run `mvn site-deploy` to publish the site to your GitHub account. Configure the
 correct URL to your repository in the `pom.xml` file.
+
+## Update contributors
+
+Run `gulp update-contributors` to retrieve a list of people who contributed to
+Vert.x projects (i.e. projects from the `vert-x3` organisation on GitHub).
+
+The gulp task creates a lot of requests against the GitHub API. GitHub limits
+the number of requests for anonymous clients. In order to increase the limit
+you need a client ID and secret. Go to https://github.com/settings/developers
+and register a new application. Then edit `github.json` and enter your client ID
+and secret.
+
+Do not commit your client ID and secret to the repository! In order to
+avoid that you accidentally publish your credentials, run
+`git update-index --assume-unchanged github.json`. Git will then ignore all
+local changes to the `github.json` file.
