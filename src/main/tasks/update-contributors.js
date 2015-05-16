@@ -1,5 +1,6 @@
 var GitHubApi = require("github");
 var gutil = require("gulp-util");
+var through2 = require("through2");
 
 /**
  * Create a function that collects all elements from a multi-page response
@@ -116,8 +117,8 @@ function getUserDetails(user, github, done) {
 
     // generate details
     var details = {
-      login: data.login,
-      avatar: data.avatar_url,
+      github_id: data.login,
+      avatar: data.avatar_url + "&s=80",
       github: data.html_url,
       name: data.name || data.login
     };
@@ -168,17 +169,10 @@ function getAllUserDetails(users, github, done) {
   loop();
 }
 
-module.exports = function(client_id, client_secret, done) {
-  var github = new GitHubApi({ version: "3.0.0" });
-
-  if (client_id && client_secret) {
-    github.authenticate({
-      type: "oauth",
-      key: client_id,
-      secret: client_secret
-    });
-  }
-
+/**
+ * Get all Vert.x contributors
+ */
+function getAll(current_contributors, github, done) {
   // get all repositories of the vert-x3 organisation
   var org = "vert-x3";
   gutil.log("Get all repositories ...")
@@ -196,19 +190,54 @@ module.exports = function(client_id, client_secret, done) {
         return;
       }
 
+      // filter out all pre-defined contributors
+      contributors = contributors.filter(function(c) {
+        for (var i = 0; i < current_contributors.length; ++i) {
+          if (current_contributors[i].github_id.toUpperCase() === c.toUpperCase()) {
+            return false;
+          }
+        }
+        return true;
+      });
+
       // query user details of all contributors
       gutil.log("Query user details ...");
-      getAllUserDetails(contributors, github, function(err, details) {
-        if (err) {
-          done(err);
-          return;
-        }
-
-        // TODO write details to file
-        console.log(details);
-
-        done();
-      });
+      getAllUserDetails(contributors, github, done);
     });
   })
+}
+
+module.exports = function(client_id, client_secret, current_contributors) {
+  var github = new GitHubApi({ version: "3.0.0" });
+
+  if (client_id && client_secret) {
+    github.authenticate({
+      type: "oauth",
+      key: client_id,
+      secret: client_secret
+    });
+  }
+
+  var result = through2.obj(function(file, enc, callback) {
+    this.push(file);
+    return callback();
+  });
+
+  // collect all contributors
+  getAll(current_contributors, github, function(err, contributors) {
+    if (err) {
+      result.emit("error", err);
+      return;
+    }
+
+    // write contributors to output stream
+    var file = new gutil.File({
+      path: "contributors-gen.js",
+      contents: new Buffer(JSON.stringify(contributors, undefined, 2), "utf-8")
+    });
+    result.write(file);
+    result.end();
+  });
+
+  return result;
 };
