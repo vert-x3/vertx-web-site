@@ -40,7 +40,7 @@ function collector(github, collect, done) {
 function getRepos(org, github, done) {
   var result = [];
   github.repos.getFromOrg({ org: org }, collector(github, function(e) {
-    result.push(e.name);
+    result.push(org + "/" + e.name);
   }, function(err) {
     if (err) {
       done(err);
@@ -48,6 +48,39 @@ function getRepos(org, github, done) {
     }
     done(null, result);
   }));
+}
+
+/**
+ * Get repositories of all given organizations
+ */
+function getAllRepos(orgs, github, done) {
+  var orgsClone = orgs.slice(0);
+  var allRepos = [];
+
+  var loop = function() {
+    if (orgsClone.length === 0) {
+      // no more organizations to query
+      done(null, allRepos);
+      return;
+    }
+
+    // get next organization to query
+    var org = orgsClone.shift();
+    gutil.log(org + " ...");
+    getRepos(org, github, function(err, repos) {
+      if (err) {
+        done(err);
+        return;
+      }
+
+      allRepos = allRepos.concat(repos);
+
+      // query next organisation
+      loop();
+    });
+  };
+
+  loop();
 }
 
 /**
@@ -69,7 +102,7 @@ function getContributors(org, repo, github, done) {
 /**
  * Loop through the given repositories and get the usernames of all contributors
  */
-function getAllContributors(org, repos, github, done) {
+function getAllContributors(repos, github, done) {
   var reposClone = repos.slice(0);
   var allContributors = [];
 
@@ -82,9 +115,12 @@ function getAllContributors(org, repos, github, done) {
 
     // get next repository to query
     var repo = reposClone.shift();
-    gutil.log(org + "/" + repo + " ...");
+    gutil.log(repo + " ...");
 
-    getContributors("vert-x3", repo, github, function(err, contributors) {
+    var sr = repo.split("/");
+    var org = sr[0];
+    repo = sr[1];
+    getContributors(org, repo, github, function(err, contributors) {
       if (err) {
         done(err);
         return;
@@ -173,18 +209,21 @@ function getAllUserDetails(users, github, done) {
  * Get all Vert.x contributors
  */
 function getAll(current_contributors, github, done) {
-  // get all repositories of the vert-x3 organisation
-  var org = "vert-x3";
+  // get all repositories of the vert-x and vert-x3 organisations
+  var orgs = ["vert-x", "vert-x3"];
   gutil.log("Get all repositories ...")
-  getRepos(org, github, function(err, repos) {
+  getAllRepos(orgs, github, function(err, repos) {
     if (err) {
       done(err);
       return;
     }
 
+    // get contributors from the 'eclipse/vert.x' repository as well
+    repos.unshift("eclipse/vert.x");
+
     // get all contributors
     gutil.log("Get all contributors ...")
-    getAllContributors(org, repos, github, function(err, contributors) {
+    getAllContributors(repos, github, function(err, contributors) {
       if (err) {
         done(err);
         return;
