@@ -1,5 +1,5 @@
 // AUTO-GENERATED FILE. DO NOT EDIT! CALL `gulp update-contributors` INSTEAD.
-// CREATED: Sat May 16 2015 16:35:02 GMT+0200 (Mitteleuropäische Sommerzeit)
+// CREATED: Wed May 20 2015 07:04:28 GMT+0200 (Mitteleuropäische Sommerzeit)
 module.exports = { contributors: [
   {
     "github_id": "normanmaurer",
@@ -575,12 +575,6 @@ module.exports = { contributors: [
     "homepage": "http://www.cacoethes.co.uk/"
   },
   {
-    "github_id": "millross",
-    "avatar": "https://avatars.githubusercontent.com/u/1318862?v=3&s=80",
-    "github": "https://github.com/millross",
-    "name": "millross"
-  },
-  {
     "github_id": "jkschneider",
     "avatar": "https://avatars.githubusercontent.com/u/1697736?v=3&s=80",
     "github": "https://github.com/jkschneider",
@@ -793,12 +787,6 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/6546460?v=3&s=80",
     "github": "https://github.com/o3j8",
     "name": "o3j8"
-  },
-  {
-    "github_id": "stream1984",
-    "avatar": "https://avatars.githubusercontent.com/u/273171?v=3&s=80",
-    "github": "https://github.com/stream1984",
-    "name": "Stream"
   },
   {
     "github_id": "yerinle",
