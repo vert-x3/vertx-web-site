@@ -1,13 +1,17 @@
 var bower = require("gulp-bower");
 var compress = require("compression");
 var connect = require("connect");
+var contributors = require("./src/main/community/contributors.js");
+var contributorsGen = require("./src-gen/main/community/contributors-gen.js");
 var decompress = require("gulp-decompress");
 var del = require("del");
 var flatten = require("gulp-flatten");
 var fs = require("fs");
+var githubConfig = require("./github.json");
 var gulp = require("gulp");
 var gutil = require("gulp-util");
 var iconfilter = require("./src/main/filters/iconfilter.js");
+var inject = require("gulp-inject-string");
 var path = require("path");
 var prettyHrtime = require("pretty-hrtime");
 var rename = require("gulp-rename");
@@ -17,6 +21,7 @@ var serveStatic = require("serve-static");
 var source = require("vinyl-source-stream");
 var streamify = require("gulp-streamify");
 var swig = require("swig");
+var updateContributors = require("./src/main/tasks/update-contributors.js");
 
 var Metalsmith = require("metalsmith");
 var autoprefixer = require("metalsmith-autoprefixer");
@@ -55,6 +60,7 @@ var paths = {
     "bower_components/bootstrap/less"
   ],
   src: "src/site",
+  src_gen: "src-gen",
   site: "target/site",
   target_asciidoctor_bs_themes: "target/asciidoctor-bs-themes",
   target_docs: "target/site/docs",
@@ -105,7 +111,9 @@ function build(done, dev) {
 
     // define global variables for templates
     .use(define({
-      "site_url": site_url
+      "site_url": site_url,
+      "full_time_developers": contributors.full_time_developers,
+      "contributors": contributors.contributors.concat(contributorsGen.contributors)
     }))
 
     // apply template engine in-place
@@ -236,6 +244,15 @@ gulp.task("watch", ["site-dev"], function() {
                 "after", gutil.colors.magenta(prettyHrtime(process.hrtime(start))));
         }, true);
     });
+});
+
+// update the list of people who have contributed to vertx repositories
+gulp.task("update-contributors", function() {
+  return updateContributors(githubConfig.client_id, githubConfig.client_secret,
+    contributors.full_time_developers.concat(contributors.contributors))
+    .pipe(inject.wrap("// AUTO-GENERATED FILE. DO NOT EDIT! CALL `gulp update-contributors` INSTEAD.\n" +
+      "// CREATED: " + Date() + "\nmodule.exports = { contributors: ", " };"))
+    .pipe(gulp.dest(path.join(paths.src_gen, "main", "community")));
 });
 
 // clean target directory
