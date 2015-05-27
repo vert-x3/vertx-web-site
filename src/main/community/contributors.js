@@ -26,6 +26,14 @@ var full_time_developers = [{
   homepage: "http://pmlopes.svbtle.com/",
   github: "https://github.com/pmlopes",
   twitter: "https://twitter.com/jetdrone"
+}, {
+  github_id: "cescoffier",
+  name: "Clement Escoffier",
+  role: "Core developer",
+  avatar: "http://gravatar.com/avatar/ab937f7df990a673446f1e30fd9ccfba?s=80",
+  homepage: "http://escoffier.me/",
+  github: "https://github.com/cescoffier",
+  twitter: "https://twitter.com/clementplop"
 }];
 
 // Contributors
