@@ -86,6 +86,13 @@ var contributors = [{
   avatar: "https://s.gravatar.com/avatar/421414eb861cf22a469d90ff8c8de980?s=80",
   homepage: "http://www.streamis.me",
   github: "https://github.com/stream1984"
+}, {
+  github_id: "nmcl",
+  name: "Mark Little",
+  avatar: "https://avatars1.githubusercontent.com/u/580667?v=3&s=400",
+  google_plus: "https://plus.google.com/u/0/+MarkLittleJBossCTO/",
+  homepage: "http://markclittle.blogspot.co.uk",
+  github: "https://github.com/nmcl"
 }];
 
 module.exports = {
