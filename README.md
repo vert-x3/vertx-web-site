@@ -1,5 +1,7 @@
 # Vert.x 3.x web-site
 
+[![Build Status](https://vertx.ci.cloudbees.com/buildStatus/icon?job=vert.x3-website)](https://vertx.ci.cloudbees.com/view/vert.x-3/job/vert.x3-website/)
+
 # The Vert.x 3.0 web-site repository
 
 **Browse the (experimental, work in progress) [Vert.x 3.0 web-site](http://vert-x3.github.io/)**
