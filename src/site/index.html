@@ -158,113 +158,6 @@ public class Server extends AbstractVerticle {
     <div class="row">
       <div class="col-sm-12">
         <h3>Who is using Vert.x?</h3>
-        <!-- logos should be completely white, 180px wide and sorted alphabetically -->
-        {% set logos = [{
-          src: "AirWatch_logo.png",
-          link: "http://www.air-watch.com",
-          height: 84
-        }, {
-          src: "apislabs.png",
-          link: "http://apislabs.us/",
-          height: 40
-        }, {
-          src: "bosch-brand-white.png",
-          link: "http://www.bosch-si.com",
-          height: 53
-        }, {
-          src: "campudus_white.png",
-          link: "http://campudus.com/",
-          height: 37
-        }, {
-          src: "clear_software.png",
-          link: "http://www.clearsoftware.ca/",
-          height: 72
-        }, {
-          src: "cyanogen_logo_white.png",
-          link: "https://cyngn.com/",
-          height: 50
-        }, {
-          src: "exent_logo.png",
-          link: "http://www.exent.com/",
-          height: 50
-        }, {
-          src: "fraunhofer-white.png",
-          link: "http://www.igd.fraunhofer.de",
-          height: 49
-        }, {
-          src: "gentics.png",
-          link: "http://www.gentics.com/",
-          height: 50,
-        }, {
-          src: "groupon-white.png",
-          link: "http://www.groupon.com",
-          height: 65
-        }, {
-          src: "hulu_logo_transparent_small.png",
-          link: "http://www.hulu.com/",
-          height: 55
-        }, {
-          src: "infiverve.png",
-          link: "http://www.infiverve.com/",
-          height: 42
-        }, {
-          src: "jClarity_logo.png",
-          link: "http://www.jclarity.com",
-          height: 42
-        }, {
-          src: "jpoint_logo.png",
-          link: "http://www.jpoint.nl/",
-          height: 70
-        }, {
-          src: "liferay_white.png",
-          link: "http://www.liferay.com/",
-          height: 45
-        }, {
-          src: "malmberg_logo.png",
-          link: "http://www.malmberg.nl/",
-          height: 60
-        }, {
-          src: "mammatus_white.png",
-          link: "http://www.mammatustech.com/",
-          height: 80
-        }, {
-          src: "odobo.png",
-          link: "https://www.odobo.com/",
-          height: 55
-        }, {
-          src: "performit.png",
-          link: "http://www.performit.co.il/",
-          height: 75
-        }, {
-          src: "plasmatherm.png",
-          link: "http://www.plasmatherm.com/",
-          height: 25
-        }, {
-          src: "rbs.png",
-          link: "http://www.rbs.com",
-          height: 55
-        }, {
-          src: "RedHat.svg.png",
-          link: "http://www.redhat.com",
-          height: 65
-        }, {
-          src: "taringa_logo.png",
-          link: "http://www.taringa.net",
-          height: 30
-        }, {
-          src: "vstack-co-logo-white.png",
-          link: "http://vstack.co/",
-          height: 65
-        }, {
-          src: "yaykuy.png",
-          link: "http://www.yaykuy.cl/",
-          height: 45
-        }, {
-          src: "zanox.png",
-          link: "http://www.zanox.com/",
-          height: 48
-        }] %}
-
         <!-- iterate over logos and generate rows and cols for different resolutions -->
         {% set res = {"xs": 1, "sm": 2, "md": 3, "lg": 4} %}
         {% for cols in res %}
@@ -272,7 +165,7 @@ public class Server extends AbstractVerticle {
           {% set colwidth = 12 / cols %}
           <div class="visible-{{ outerloopkey }}-block">
             <div class="row user-logos">
-              {% for logo in logos %}
+              {% for logo in users.logos %}
                 <div class="col-sm-{{ colwidth }} user-logo">
                   <a href="{{ logo.link }}"><img src="{{ site_url }}assets/user_logos/{{ logo.src }}" width="180" height="{{ logo.height }}"></a>
                 </div>

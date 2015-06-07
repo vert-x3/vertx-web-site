@@ -22,6 +22,7 @@ var source = require("vinyl-source-stream");
 var streamify = require("gulp-streamify");
 var swig = require("swig");
 var updateContributors = require("./src/main/tasks/update-contributors.js");
+var users = require("./src/main/whos_using/users.js");
 
 var Metalsmith = require("metalsmith");
 var autoprefixer = require("metalsmith-autoprefixer");
@@ -113,7 +114,8 @@ function build(done, dev) {
     .use(define({
       "site_url": site_url,
       "full_time_developers": contributors.full_time_developers,
-      "contributors": contributors.contributors.concat(contributorsGen.contributors)
+      "contributors": contributors.contributors.concat(contributorsGen.contributors),
+      "users": users
     }))
 
     // apply template engine in-place
