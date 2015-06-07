@@ -569,3 +569,8 @@ footer {
         margin-top: 0;
     }
 }
+
+// do not display language name. it interferes with the code.
+.listingblock:hover code[class*="language-"]:before {
+    display: none;
+}
