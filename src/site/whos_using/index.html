@@ -2,72 +2,37 @@
 template: page.html
 title: Who's Using Vert.x?
 heading: Who's Using Vert.x?
-subheading: Here's a selection of organisations who are already using Vert.x
+subheading: Here's a selection of organisations who are already using Vert.x,
+page_header_no_gap: true
 ---
 
 <div class="highlight highlight-who">
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h3>Who is using Vert.x?</h3>
-        <!-- logos should be completely white, 180px wide and sorted alphabetically -->
-        {% set logos = [{
-        src: "AirWatch_logo.png",
-        link: "http://www.air-watch.com",
-        height: 84
-        }, {
-        src: "bosch-brand-white.png",
-        link: "http://www.bosch-si.com",
-        height: 53
-        }, {
-        src: "cyanogen_logo_white.png",
-        link: "https://cyngn.com/",
-        height: 50
-        }, {
-        src: "fraunhofer-white.png",
-        link: "http://www.igd.fraunhofer.de",
-        height: 49
-        }, {
-        src: "groupon-white.png",
-        link: "http://www.groupon.com",
-        height: 65
-        }, {
-        src: "hulu_logo_transparent_small.png",
-        link: "http://www.hulu.com/",
-        height: 55
-        }, {
-        src: "jClarity_logo.png",
-        link: "http://www.jclarity.com",
-        height: 42
-        }, {
-        src: "RedHat.svg.png",
-        link: "http://www.redhat.com",
-        height: 58
-        }] %}
-
         <!-- iterate over logos and generate rows and cols for different resolutions -->
         {% set res = {"xs": 1, "sm": 2, "md": 3, "lg": 4} %}
         {% for cols in res %}
-        {% set outerloopkey = loop.key %}
-        {% set colwidth = 12 / cols %}
-        <div class="visible-{{ outerloopkey }}-block">
-          <div class="row user-logos">
-            {% for logo in logos %}
-            <div class="col-sm-{{ colwidth }} user-logo">
-              <a href="{{ logo.link }}"><img src="{{ site_url }}assets/user_logos/{{ logo.src }}" width="180" height="{{ logo.height }}"></a>
+          {% set outerloopkey = loop.key %}
+          {% set colwidth = 12 / cols %}
+          <div class="visible-{{ outerloopkey }}-block">
+            <div class="row user-logos">
+              {% for logo in users_all %}
+                <div class="col-sm-{{ colwidth }} user-logo">
+                  <a href="{{ logo.link }}"><img src="{{ site_url }}assets/user_logos/{{ logo.src }}" width="180" height="{{ logo.height }}"></a>
+                </div>
+                {% if loop.index % cols == 0 %}
+                  </div>
+                  <div class="row user-logos">
+                {% endif %}
+              {% endfor %}
             </div>
-            {% if loop.index % cols == 0 %}
           </div>
-          <div class="row user-logos">
-            {% endif %}
-            {% endfor %}
-          </div>
-        </div>
         {% endfor %}
 
         <div class="row">
           <div class="col-sm-12 wanttobelisted">
-            You want to be listed here? Please <a href="https://groups.google.com/forum/?fromgroups#!forum/vertx">contact us</a>!
+            Want to be listed here? Please <a href="mailto:vertx-enquiries@googlegroups.com">contact us</a>! (Private list)
           </div>
         </div>
       </div>

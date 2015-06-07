@@ -1,10 +1,18 @@
-// logos should be completely white, 180px wide and sorted alphabetically
+// Rules:
+// - Logos should be completely white and 180px wide
+// - Only companies with a wikipedia page are listed on the home page. Annual
+//   revenue and number of employees will also be taken into account.
+// - All users are automatically sorted alphabetically (according to the
+//   lower-case filename of their logo), but for the sake of readability it
+//   is advised to sort them in the list below as well.
 
-module.exports = {
+var all_users = {
+  max_home_page_users: 8, // maximum number of users on the home page
   logos: [{
     src: "AirWatch_logo.png",
     link: "http://www.air-watch.com",
-    height: 84
+    height: 84,
+    wikipedia: "http://en.wikipedia.org/wiki/AirWatch"
   }, {
     src: "apislabs.png",
     link: "http://apislabs.us/",
@@ -12,7 +20,10 @@ module.exports = {
   }, {
     src: "bosch-brand-white.png",
     link: "http://www.bosch-si.com",
-    height: 53
+    height: 53,
+    wikipedia: "http://en.wikipedia.org/wiki/Robert_Bosch_GmbH",
+    revenue_billion: 48.9,
+    employees: 290000
   }, {
     src: "campudus_white.png",
     link: "http://campudus.com/",
@@ -32,7 +43,10 @@ module.exports = {
   }, {
     src: "fraunhofer-white.png",
     link: "http://www.igd.fraunhofer.de",
-    height: 49
+    height: 49,
+    wikipedia: "http://en.wikipedia.org/wiki/Fraunhofer_Society",
+    revenue_billion: 1.7,
+    employees: 23000
   }, {
     src: "gentics.png",
     link: "http://www.gentics.com/",
@@ -40,11 +54,16 @@ module.exports = {
   }, {
     src: "groupon-white.png",
     link: "http://www.groupon.com",
-    height: 65
+    height: 65,
+    wikipedia: "http://en.wikipedia.org/wiki/Groupon",
+    revenue_billion: 3.2,
+    employees: 10000
   }, {
     src: "hulu_logo_transparent_small.png",
     link: "http://www.hulu.com/",
-    height: 55
+    height: 55,
+    wikipedia: "http://en.wikipedia.org/wiki/Hulu",
+    revenue_billion: 1
   }, {
     src: "infiverve.png",
     link: "http://www.infiverve.com/",
@@ -60,7 +79,8 @@ module.exports = {
   }, {
     src: "liferay_white.png",
     link: "http://www.liferay.com/",
-    height: 45
+    height: 45,
+    wikipedia: "http://en.wikipedia.org/wiki/Liferay"
   }, {
     src: "malmberg_logo.png",
     link: "http://www.malmberg.nl/",
@@ -84,11 +104,16 @@ module.exports = {
   }, {
     src: "rbs.png",
     link: "http://www.rbs.com",
-    height: 55
+    height: 55,
+    wikipedia: "http://en.wikipedia.org/wiki/The_Royal_Bank_of_Scotland",
+    employees: 141000
   }, {
     src: "RedHat.svg.png",
     link: "http://www.redhat.com",
-    height: 65
+    height: 65,
+    wikipedia: "http://en.wikipedia.org/wiki/Red_Hat",
+    revenue_billion: 1.5,
+    employees: 7300
   }, {
     src: "taringa_logo.png",
     link: "http://www.taringa.net",
@@ -106,4 +131,65 @@ module.exports = {
     link: "http://www.zanox.com/",
     height: 48
   }]
+};
+
+function sort_by_logo_name(a, b) {
+  var la = a.src.toLowerCase();
+  var lb = b.src.toLowerCase();
+  if (la > lb) {
+    return 1;
+  }
+  if (la < lb) {
+    return -1;
+  }
+  return 0;
+}
+
+function sort_by_relevance(a, b) {
+  // very simple but effective algorithm. may be improved eventually if we
+  // feel it doesn't reflect reality.
+  if (a.revenue_billion && !b.revenue_billion) {
+    return -1;
+  }
+  if (b.revenue_billion && !a.revenue_billion) {
+    return 1;
+  }
+  if (a.employees && !b.employees) {
+    return -1;
+  }
+  if (b.employees && !a.employees) {
+    return 1;
+  }
+  if (a.revenue_billion && b.revenue_billion) {
+    if (a.revenue_billion > b.revenue_billion) {
+      return -1;
+    }
+    if (a.revenue_billion < b.revenue_billion) {
+      return 1;
+    }
+  }
+  if (a.employees && b.employees) {
+    if (a.employees > b.employees) {
+      return -1;
+    }
+    if (a.employees < b.employees) {
+      return 1;
+    }
+  }
+  return sort_by_logo_name(a, b);
+}
+
+function make_users_home_page() {
+  var result = all_users.logos.filter(function(u) {
+    return !!u.wikipedia;
+  });
+  result = result.sort(sort_by_relevance);
+  result = result.slice(0, all_users.max_home_page_users);
+  result = result.sort(sort_by_logo_name);
+  return result;
+}
+
+module.exports = {
+  users_home_page: make_users_home_page(),
+  users_all: all_users.logos.sort(sort_by_logo_name)
 };

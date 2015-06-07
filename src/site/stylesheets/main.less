@@ -123,14 +123,7 @@
     }
 
     .btn {
-        color: #fff;
         font-weight: 500;
-        background-color: transparent;
-
-        &:hover {
-            background-color: #fff;
-            color: @brand-primary;
-        }
 
         .icon {
             margin-right: 6px;
@@ -144,22 +137,28 @@
     }
 }
 
-.page-header, .page-header-large {
+.page-header {
     background-color: @brand-primary;
     color: #fff;
     margin: 0;
     margin-bottom: @line-height-computed;
     padding: @line-height-computed / 2 0 @line-height-computed 0;
-}
 
-.page-header-large {
-    text-align: center;
-    padding: @line-height-computed * 3 0 @line-height-computed * 4 0;
-    font-size: @font-size-base * 1.2;
+    &.page-header-large {
+        text-align: center;
+        padding: @line-height-computed * 3 0 @line-height-computed * 4 0;
+        font-size: @font-size-base * 1.2;
 
-    h1 {
-        font-weight: 400;
-        font-size: @font-size-base * 3.5;
+        h1 {
+            font-weight: 400;
+            font-size: @font-size-base * 3.5;
+        }
+    }
+
+    &.page-header-no-gap {
+        margin-bottom: 0;
+        border-bottom: none;
+        padding-bottom: 10px;
     }
 }
 
@@ -284,6 +283,18 @@
             &:hover {
                 color: #999;
             }
+
+            &.btn {
+                text-decoration: none;
+
+                &:hover {
+                    color: @brand-primary;
+                }
+
+                 .icon {
+                    padding-bottom: 4px;
+                }
+            }
         }
     }
 }
@@ -337,6 +348,17 @@ footer {
         a {
             white-space: nowrap;
         }
+    }
+}
+
+// transparent buttons
+.btn-transparent {
+    color: #fff;
+    background-color: transparent;
+
+    &:hover {
+        background-color: #fff;
+        color: @brand-primary;
     }
 }
 

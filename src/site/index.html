@@ -10,7 +10,7 @@ stickyheader: true
       <div class="col-sm-offset-2 col-sm-8 text-center">
         <h2><strong>Vert.x</strong> is a tool-kit for building <strong>reactive</strong> applications on the <strong>JVM</strong>.</h2>
         <div class="buttons">
-          <a class="btn btn-default btn-lg" href="https://bintray.com/vertx/downloads/distribution/view" role="button">{% icon "install" %} Download v3.0-milestone6</a><br>
+          <a class="btn btn-default btn-lg btn-transparent" href="https://bintray.com/vertx/downloads/distribution/view" role="button">{% icon "install" %} Download v3.0-milestone6</a><br>
           <span class="github-btn">
             <iframe src="https://ghbtns.com/github-btn.html?user=eclipse&amp;repo=vert.x&amp;type=star&amp;count=true&amp;size=large"
                   frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
@@ -157,7 +157,7 @@ public class Server extends AbstractVerticle {
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h3>Who is using Vert.x?</h3>
+        <h2>Who is using Vert.x?</h2>
         <!-- iterate over logos and generate rows and cols for different resolutions -->
         {% set res = {"xs": 1, "sm": 2, "md": 3, "lg": 4} %}
         {% for cols in res %}
@@ -165,7 +165,7 @@ public class Server extends AbstractVerticle {
           {% set colwidth = 12 / cols %}
           <div class="visible-{{ outerloopkey }}-block">
             <div class="row user-logos">
-              {% for logo in users.logos %}
+              {% for logo in users_home_page %}
                 <div class="col-sm-{{ colwidth }} user-logo">
                   <a href="{{ logo.link }}"><img src="{{ site_url }}assets/user_logos/{{ logo.src }}" width="180" height="{{ logo.height }}"></a>
                 </div>
@@ -180,7 +180,7 @@ public class Server extends AbstractVerticle {
 
         <div class="row">
           <div class="col-sm-12 wanttobelisted">
-            Want to be listed here? Please <a href="mailto:vertx-enquiries@googlegroups.com">contact us</a>! (Private list)
+            <a class="btn btn-default btn-md btn-transparent" href="{{ site_url }}whos_using" role="button">{% icon "list" %} More &hellip;</a><br>
           </div>
         </div>
       </div>

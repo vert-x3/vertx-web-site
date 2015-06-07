@@ -115,7 +115,8 @@ function build(done, dev) {
       "site_url": site_url,
       "full_time_developers": contributors.full_time_developers,
       "contributors": contributors.contributors.concat(contributorsGen.contributors),
-      "users": users
+      "users_home_page": users.users_home_page,
+      "users_all": users.users_all
     }))
 
     // apply template engine in-place

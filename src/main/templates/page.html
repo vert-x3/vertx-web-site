@@ -1,7 +1,7 @@
 {% include "header.html" %}
 
 {% if heading %}
-  <div class="page-header{% if subheading %}-large{% endif %}" id="content">
+  <div class="page-header{% if subheading %} page-header-large{% endif %}{% if page_header_no_gap %} page-header-no-gap{% endif %}" id="content">
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
