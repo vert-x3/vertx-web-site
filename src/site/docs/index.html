@@ -2,429 +2,542 @@
 template: page.html
 title: Vert.x Documentation
 heading: Documentation
+sidebar: true
 ---
 
-<div class="container">
+{% macro toc() %}
+<ul class="sectlevel1 nav">
+  <li><a href="#get_started">Get Started</a></li>
+  <li><a href="#explore">Explore</a></li>
+  <li><a href="#core">Core</a></li>
+  <li><a href="#web">Web</a></li>
+  <li><a href="#data_access">Data access</a>
+    <ul class="sectlevel2 nav">
+      <li><a href="#mongodb_client">MongoDB client</a></li>
+      <li><a href="#jdbc_client">JDBC client</a></li>
+      <li><a href="#mysql_postgresql_client">MySQL-PostgreSQL client</a></li>
+      <li><a href="#sql_common">SQL common</a></li>
+      <li><a href="#redis_client">Redis client</a></li>
+    </ul>
+  </li>
+  <li><a href="#integration">Integration</a>
+    <ul class="sectlevel2 nav">
+      <li><a href="#mail_client">Mail Client</a></li>
+      <li><a href="#jca_adaptor">JCA Adaptor</a></li>
+      <li><a href="#amqp">AMQP 1.0 (experimental)</a></li>
+      <li><a href="#rabbitmq">Vert.x RabbitMQ (experimental)</a></li>
+    </ul>
+  </li>
+  <li><a href="#authentication_and_authorisation">Authentication and Authorisation</a>
+    <ul class="sectlevel2 nav">
+      <li><a href="#auth_common">Auth common</a></li>
+      <li><a href="#jdbc_auth">JDBC auth</a></li>
+      <li><a href="#jwt_auth">JWT auth</a></li>
+      <li><a href="#shiro_auth">Shiro auth</a></li>
+    </ul>
+  </li>
+  <li><a href="#reactive">Reactive</a>
+    <ul class="sectlevel2 nav">
+      <li><a href="#rx">Vert.x Rx</a></li>
+      <li><a href="#reactive_streams">Reactive streams.</a></li>
+    </ul>
+  </li>
+  <li><a href="#metrics">Metrics</a></li>
+  <li><a href="#testing">Testing</a></li>
+  <li><a href="#clustering">Clustering</a>
+    <ul class="sectlevel2 nav">
+      <li><a href="#hazelcast">Hazelcast</a></li>
+      <li><a href="#jgroups">JGroups (experimental)</a></li>
+    </ul>
+  </li>
+  <li><a href="#services">Services</a>
+    <ul class="sectlevel2 nav">
+      <li><a href="#service_factories">Service Factories</a></li>
+      <li><a href="#service_proxies">Service Proxies</a></li>
+      <li><a href="#maven_service_factory">Maven Service Factory</a></li>
+      <li><a href="#http_service_factory">HTTP Service Factory</a></li>
+    </ul>
+  </li>
+  <li><a href="#cloud_and_docker">Cloud and Docker</a>
+    <ul class="sectlevel2 nav">
+      <li><a href="#openshift_cartridge">Vert.x OpenShift Cartridge</a></li>
+      <li><a href="#openshift_using_diy_cartridge">Vert.x OpenShift Using DIY Cartridge</a></li>
+      <li><a href="#docker_images">Vert.x Docker Images</a></li>
+    </ul>
+  </li>
+  <li><a href="#advanced">Advanced</a>
+    <ul class="sectlevel2 nav">
+      <li><a href="#codegen">Codegen</a></li>
+      <li><a href="#docgen">Docgen</a></li>
+      <li><a href="#codetrans">Codetrans</a></li>
+      <li><a href="#distro">Distro</a></li>
+      <li><a href="#web_site">Web-site</a></li>
+    </ul>
+  </li>
+</ul>
+{% endmacro %}
+
+<div class="container docs-content">
   <div class="row">
-    <div class="col-sm-12">
-      <h2>Get Started</h2>
-
-      <p>Vert.x can be used for many different things so we provide a wide range of
-        <a href="https://github.com/vert-x3/vertx-examples/">examples</a> demonstrating usage of Vert.x in many
-        different situations - from getting started with a hello world example in
-        <a href="https://github.com/vert-x3/vertx-examples/tree/master/maven-simplest">Maven</a> or
-        <a href="https://github.com/vert-x3/vertx-examples/tree/master/gradle-simplest">Gradle</a>
-        to a range of <a href="https://github.com/vert-x3/vertx-examples/tree/master/web-examples">web application examples</a>.
-      </p>
-
-      <p>Start with the main <a href="https://github.com/vert-x3/vertx-examples/blob/master/README.adoc">README</a>
-      and let that guide you through.</p>
+    <div class="col-sm-12 col-md-push-9 col-md-3 hidden-xs hidden-sm">
+      <div id="sidebar" data-spy="affix" class="affix-top sidebar-no-level2">
+        {{ toc() }}
+      </div>
     </div>
-  </div>
+    <div class="col-sm-12 col-md-pull-3 col-md-9">
+      <div class="toc hidden-md hidden-lg">
+        <h2>Table of Contents</h2>
+        {{ toc() }}
+      </div>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <h2>Explore</h2>
-
-      <p>Vert.x contains several different components designed to make it easier for you to write compelling reactive
-      applications in a range of different languages.</p>
-
-      <p>Vert.x is highly modular and you just use the bits that you need and nothing more.</p>
-
-      <p>And don't forget - Vert.x is a library not a restrictive container so you don't have to <em>only</em> use
-        components provided by Vert.x. You can also use use Vert.x with all the usual libraries that you like.</p>
-
-      <p>The sections below describe most of the major components of Vert.x, with links to the source repository,
-      manuals in different languages, and API documentation.</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-12 col-md-6">
-      <h3>Core</h3>
-      <p>Vert.x core contains fairly low level functionality including support for HTTP, TCP, file system access, and
-      various other features. You can use this directly in your own applications, and it's used by many of the other
-      components of Vert.x</p>
-      <ul class="list-unstyled">
-        <li><a href="https://github.com/eclipse/vert.x">Source</a></li>
-        <li>Java: <a href="{{ site_url }}docs/vertx-core/java/">Manual</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/core-examples">Examples</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-        <li>JavaScript: <a href="{{ site_url }}docs/vertx-core/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-core/js/jsdoc/">API</a></li>
-        <li>Groovy: <a href="{{ site_url }}docs/vertx-core/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-core/groovy/groovydoc/">API</a></li>
-        <li>Ruby: <a href="{{ site_url }}docs/vertx-core/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-core/ruby/yardoc/">API</a></li>
-      </ul>
-    </div>
-
-    <div class="col-sm-12  col-md-6">
-      <h3>Web</h3>
-      <p>Vert.x-Web is a toolkit for writing sophisticated modern web applications and HTTP microservices.</p>
-      <ul class="list-unstyled">
-        <li><a href="https://github.com/vert-x3/vertx-web">Source</a></li>
-        <li>Java: <a href="{{ site_url }}docs/vertx-web/java/">Manual</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/web-examples">Examples</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-        <li>JavaScript: <a href="{{ site_url }}docs/vertx-web/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-web/js/jsdoc/">API</a></li>
-        <li>Groovy: <a href="{{ site_url }}docs/vertx-web/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-web/groovy/groovydoc/">API</a></li>
-        <li>Ruby: <a href="{{ site_url }}docs/vertx-web/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-web/ruby/yardoc/">API</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-12">
-      <h3>Data access</h3>
-      <p>Vert.x provides a few different asynchronous clients for accessing various data stores from your application.
-        You don't have to use these clients - you could use clients direct from the vendor if you prefer (e.g. MongoDB provide their
-      own cool async and reactive clients), but these provide a simple async API which is available in various languages.</p>
       <div class="row">
-        <div class="col-md-3">
-          <h4>MongoDB client</h4>
+        <div class="col-sm-12">
+          <h2 id="get_started" class="no-margin-top">Get Started</h2>
+
+          <p>Vert.x can be used for many different things so we provide a wide range of
+            <a href="https://github.com/vert-x3/vertx-examples/">examples</a> demonstrating usage of Vert.x in many
+            different situations - from getting started with a hello world example in
+            <a href="https://github.com/vert-x3/vertx-examples/tree/master/maven-simplest">Maven</a> or
+            <a href="https://github.com/vert-x3/vertx-examples/tree/master/gradle-simplest">Gradle</a>
+            to a range of <a href="https://github.com/vert-x3/vertx-examples/tree/master/web-examples">web application examples</a>.
+          </p>
+
+          <p>Start with the main <a href="https://github.com/vert-x3/vertx-examples/blob/master/README.adoc">README</a>
+          and let that guide you through.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 id="explore">Explore</h2>
+
+          <p>Vert.x contains several different components designed to make it easier for you to write compelling reactive
+          applications in a range of different languages.</p>
+
+          <p>Vert.x is highly modular and you just use the bits that you need and nothing more.</p>
+
+          <p>And don't forget - Vert.x is a library not a restrictive container so you don't have to <em>only</em> use
+            components provided by Vert.x. You can also use use Vert.x with all the usual libraries that you like.</p>
+
+          <p>The sections below describe most of the major components of Vert.x, with links to the source repository,
+          manuals in different languages, and API documentation.</p>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h3 id="core">Core</h3>
+          <p>Vert.x core contains fairly low level functionality including support for HTTP, TCP, file system access, and
+          various other features. You can use this directly in your own applications, and it's used by many of the other
+          components of Vert.x</p>
           <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-mongo-client">Source</a></li>
-            <li>Java: <a href="{{ site_url }}docs/vertx-mongo-client/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-            <li>JavaScript: <a href="{{ site_url }}docs/vertx-mongo-client/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-mongo-client/js/jsdoc/">API</a></li>
-            <li>Groovy: <a href="{{ site_url }}docs/vertx-mongo-client/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-mongo-client/groovy/groovydoc/">API</a></li>
-            <li>Ruby: <a href="{{ site_url }}docs/vertx-mongo-client/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-mongo-client/ruby/yardoc/">API</a></li>
+            <li><a href="https://github.com/eclipse/vert.x">Source</a></li>
+            <li>Java: <a href="{{ site_url }}docs/vertx-core/java/">Manual</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/core-examples">Examples</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+            <li>JavaScript: <a href="{{ site_url }}docs/vertx-core/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-core/js/jsdoc/">API</a></li>
+            <li>Groovy: <a href="{{ site_url }}docs/vertx-core/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-core/groovy/groovydoc/">API</a></li>
+            <li>Ruby: <a href="{{ site_url }}docs/vertx-core/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-core/ruby/yardoc/">API</a></li>
           </ul>
         </div>
-        <div class="col-md-3">
-          <h4>JDBC client</h4>
+
+        <div class="col-sm-12  col-md-6">
+          <h3 id="web">Web</h3>
+          <p>Vert.x-Web is a toolkit for writing sophisticated modern web applications and HTTP microservices.</p>
           <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-jdbc-client">Source</a></li>
-            <li>Java: <a href="{{ site_url }}docs/vertx-jdbc-client/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-            <li>JavaScript: <a href="{{ site_url }}docs/vertx-jdbc-client/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-jdbc-client/js/jsdoc/">API</a></li>
-            <li>Groovy: <a href="{{ site_url }}docs/vertx-jdbc-client/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-jdbc-client/groovy/groovydoc/">API</a></li>
-            <li>Ruby: <a href="{{ site_url }}docs/vertx-jdbc-client/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-jdbc-client/ruby/yardoc/">API</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h4>MySQL-PostgreSQL client</h4>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-mysql-postgresql-client">Source</a></li>
-            <li>Java: <a href="{{ site_url }}docs/vertx-mysql-postgresql-client/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-            <li>JavaScript: <a href="{{ site_url }}docs/vertx-mysql-postgresql-client/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-mysql-postgresql-client/js/jsdoc/">API</a></li>
-            <li>Groovy: <a href="{{ site_url }}docs/vertx-mysql-postgresql-client/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-mysql-postgresql-client/groovy/groovydoc/">API</a></li>
-            <li>Ruby: <a href="{{ site_url }}docs/vertx-mysql-postgresql-client/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-mysql-postgresql-client/ruby/yardoc/">API</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h4>SQL common</h4>
-          <p>The common SQL APIs</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-sql-common">Source</a></li>
-            <li>Java: <a href="{{ site_url }}docs/vertx-sql-common/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-            <li>JavaScript: <a href="{{ site_url }}docs/vertx-sql-common/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-sql-common/js/jsdoc/">API</a></li>
-            <li>Groovy: <a href="{{ site_url }}docs/vertx-sql-common/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-sql-common/groovy/groovydoc/">API</a></li>
-            <li>Ruby: <a href="{{ site_url }}docs/vertx-sql-common/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-sql-common/ruby/yardoc/">API</a></li>
+            <li><a href="https://github.com/vert-x3/vertx-web">Source</a></li>
+            <li>Java: <a href="{{ site_url }}docs/vertx-web/java/">Manual</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/web-examples">Examples</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+            <li>JavaScript: <a href="{{ site_url }}docs/vertx-web/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-web/js/jsdoc/">API</a></li>
+            <li>Groovy: <a href="{{ site_url }}docs/vertx-web/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-web/groovy/groovydoc/">API</a></li>
+            <li>Ruby: <a href="{{ site_url }}docs/vertx-web/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-web/ruby/yardoc/">API</a></li>
           </ul>
         </div>
       </div>
+
+      <hr>
+
       <div class="row">
-        <div class="col-md-3">
-          <h4>Redis client</h4>
+        <div class="col-sm-12">
+          <h3 id="data_access">Data access</h3>
+          <p>Vert.x provides a few different asynchronous clients for accessing various data stores from your application.
+            You don't have to use these clients - you could use clients direct from the vendor if you prefer (e.g. MongoDB provide their
+          own cool async and reactive clients), but these provide a simple async API which is available in various languages.</p>
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="mongodb_client">MongoDB client</h4>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-mongo-client">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-mongo-client/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-mongo-client/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-mongo-client/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-mongo-client/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-mongo-client/groovy/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-mongo-client/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-mongo-client/ruby/yardoc/">API</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="jdbc_client">JDBC client</h4>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-jdbc-client">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-jdbc-client/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-jdbc-client/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-jdbc-client/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-jdbc-client/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-jdbc-client/groovy/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-jdbc-client/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-jdbc-client/ruby/yardoc/">API</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="mysql_postgresql_client">MySQL-PostgreSQL client</h4>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-mysql-postgresql-client">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-mysql-postgresql-client/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-mysql-postgresql-client/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-mysql-postgresql-client/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-mysql-postgresql-client/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-mysql-postgresql-client/groovy/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-mysql-postgresql-client/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-mysql-postgresql-client/ruby/yardoc/">API</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="sql_common">SQL common</h4>
+              <p>The common SQL APIs</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-sql-common">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-sql-common/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-sql-common/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-sql-common/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-sql-common/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-sql-common/groovy/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-sql-common/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-sql-common/ruby/yardoc/">API</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="redis_client">Redis client</h4>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-redis-client">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-redis-client/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-redis-client/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-redis-client/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-redis-client/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-redis-client/groovy/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-redis-client/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-redis-client/ruby/yardoc/">API</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 id="integration">Integration</h3>
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="mail_client">Mail Client</h4>
+              <p>Vert.x provides a simple SMTP mail client so you can send emails from your applications.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-mail-client/tree/master/vertx-mail-client">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-mail-client/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-mail-client/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-mail-client/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-mail-client/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-mail-client/groovy/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-mail-client/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-mail-client/ruby/yardoc/">API</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="jca_adaptor">JCA Adaptor</h4>
+              <p>Vert.x provides a Java Connector Architecture (JCA) adaptor which allows it to interoperate with any JavaEE application server.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-jca">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="amqp">AMQP 1.0 (experimental)</h4>
+              <p>AMQP bridge to connect the Vert.x event bus to AMQP endpoints.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-amqp-service">Source</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="rabbitmq">Vert.x RabbitMQ (experimental)</h4>
+              <p>AMQP client for connecting with RabbitMQ (AMQP 0.9.4)</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-rabbitmq-client">Source</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 id="authentication_and_authorisation">Authentication and Authorisation</h3>
+          <p>Vert.x provides simple APIs for auth in your applications. We also provide a few out of the box implementations.</p>
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 id="auth_common">Auth common</h4>
+              <p>The Common Auth APIs</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-auth/tree/master/vertx-auth-common">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-auth-common/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-auth-common/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-common/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-auth-common/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-common/groovy/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-auth-common/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-common/ruby/yardoc/">API</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="jdbc_auth">JDBC auth</h4>
+              <p>Auth implementation backed by JDBC</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-auth/tree/master/vertx-auth-jdbc">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-auth-jdbc/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-auth-jdbc/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-jdbc/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-auth-jdbc/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-jdbc/groovy/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-auth-jdbc/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-jdbc/ruby/yardoc/">API</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="jwt_auth">JWT auth</h4>
+              <p>Auth implementation using JSON web tokens (JWT)</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-auth/tree/master/vertx-auth-jwt">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-auth-jwt/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-auth-jwt/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-jwt/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-auth-jwt/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-jwt/groovy/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-auth-jwt/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-jwt/ruby/yardoc/">API</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 id="shiro_auth">Shiro auth</h4>
+              <p>Auth implementation using Apache Shiro</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-auth/tree/master/vertx-auth-shiro">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-auth-shiro/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-auth-shiro/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-shiro/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-auth-shiro/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-shiro/groovy/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-auth-shiro/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-shiro/ruby/yardoc/">API</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 id="reactive">Reactive</h3>
+          <p>Vert.x provides a couple of components to make your applications more reactive.</p>
+          <div class="row">
+            <div class="col-md-6">
+              <h4 id="rx">Vert.x Rx</h4>
+              <p>Don't like callback-style APIs? Vert.x provides <em>Rx-ified</em>
+                (using <a href="https://github.com/ReactiveX/RxJava">RxJava</a>) versions for most of its APIs so you
+              can use those if you prefer.</p>
+              <p>RxJava is a great choice when you want to perform complex operations on multiple asynchronous streams
+              of data.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-rx">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-rx/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-rx/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-rx/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-rx/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-rx/groovy/groovydoc/">API</a></li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h4 id="reactive_streams">Reactive streams.</h4>
+              <p>Vert.x supports <a href="http://www.reactive-streams.org/">reactive streams</a> so your applications can
+                interoperate with other reactive systems such as Akka or Project Reactor.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-reactive-streams">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-reactive-streams/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h3 id="metrics">Metrics</h3>
+          <p>This component captures metrics from various Vert.x core components and exposes them using the popular Dropwizard
+            metrics library.</p>
           <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-redis-client">Source</a></li>
-            <li>Java: <a href="{{ site_url }}docs/vertx-redis-client/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-            <li>JavaScript: <a href="{{ site_url }}docs/vertx-redis-client/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-redis-client/js/jsdoc/">API</a></li>
-            <li>Groovy: <a href="{{ site_url }}docs/vertx-redis-client/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-redis-client/groovy/groovydoc/">API</a></li>
-            <li>Ruby: <a href="{{ site_url }}docs/vertx-redis-client/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-redis-client/ruby/yardoc/">API</a></li>
+            <li><a href="https://github.com/vert-x3/vertx-dropwizard-metrics">Source</a></li>
+            <li>Java: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+            <li>JavaScript: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-dropwizard-metrics/js/jsdoc/">API</a></li>
+            <li>Ruby: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-dropwizard-metrics/ruby/yardoc/">API</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+          <h3 id="testing">Testing</h3>
+          <p>Vert.x-Unit is an unit testing tool-kit especially design to work well with asynchronous code.</p>
+          <ul class="list-unstyled">
+            <li><a href="https://github.com/vert-x3/vertx-unit">Source</a></li>
+            <li>Java: <a href="{{ site_url }}docs/vertx-unit/java/">Manual</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/unit-examples">Examples</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+            <li>JavaScript: <a href="{{ site_url }}docs/vertx-unit/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-unit/js/jsdoc/">API</a></li>
+            <li>Groovy: <a href="{{ site_url }}docs/vertx-unit/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-unit/groovy/groovydoc/">API</a></li>
+            <li>Ruby: <a href="{{ site_url }}docs/vertx-unit/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-unit/ruby/yardoc/">API</a></li>
           </ul>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <h3>Integration</h3>
+      <hr>
+
       <div class="row">
-        <div class="col-md-3">
-          <h4>Mail Client</h4>
-          <p>Vert.x provides a simple SMTP mail client so you can send emails from your applications.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-mail-client/tree/master/vertx-mail-client">Source</a></li>
-            <li>Java: <a href="{{ site_url }}docs/vertx-mail-client/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-            <li>JavaScript: <a href="{{ site_url }}docs/vertx-mail-client/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-mail-client/js/jsdoc/">API</a></li>
-            <li>Groovy: <a href="{{ site_url }}docs/vertx-mail-client/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-mail-client/groovy/groovydoc/">API</a></li>
-            <li>Ruby: <a href="{{ site_url }}docs/vertx-mail-client/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-mail-client/ruby/yardoc/">API</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h4>JCA Adaptor</h4>
-          <p>Vert.x provides a Java Connector Architecture (JCA) adaptor which allows it to interoperate with any JavaEE application server.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-jca">Source</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h4>AMQP 1.0 (experimental)</h4>
-          <p>AMQP bridge to connect the Vert.x event bus to AMQP endpoints.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-amqp-service">Source</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h4>Vert.x RabbitMQ (experimental)</h4>
-          <p>AMQP client for connecting with RabbitMQ (AMQP 0.9.4)</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-rabbitmq-client">Source</a></li>
-          </ul>
+        <div class="col-sm-12">
+          <h3 id="clustering">Clustering</h3>
+          <p>Vert.x supports clustering and HA out of the box. Cluster group management is implemented in cluster managers
+          which are pluggable. The default cluster manager uses Hazelcast.</p>
+          <div class="row">
+            <div class="col-md-6">
+              <h4 id="hazelcast">Hazelcast</h4>
+              <p>Cluster manager implementation that uses Hazelcast. This is the default.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-hazelcast">Source</a></li>
+                <li><a href="{{ site_url }}docs/vertx-hazelcast">Manual</a></li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h4 id="jgroups">JGroups (experimental)</h4>
+              <p>Cluster manager implementation that uses JGroups</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-jgroups">Source</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <h3>Authentication and Authorisation</h3>
-      <p>Vert.x provides simple APIs for auth in your applications. We also provide a few out of the box implementations.</p>
+      <hr>
+
       <div class="row">
-        <div class="col-sm-3">
-          <h4>Auth common</h4>
-          <p>The Common Auth APIs</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-auth/tree/master/vertx-auth-common">Source</a></li>
-            <li>Java: <a href="{{ site_url }}docs/vertx-auth-common/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-            <li>JavaScript: <a href="{{ site_url }}docs/vertx-auth-common/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-common/js/jsdoc/">API</a></li>
-            <li>Groovy: <a href="{{ site_url }}docs/vertx-auth-common/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-common/groovy/groovydoc/">API</a></li>
-            <li>Ruby: <a href="{{ site_url }}docs/vertx-auth-common/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-common/ruby/yardoc/">API</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-3">
-          <h4>JDBC auth</h4>
-          <p>Auth implementation backed by JDBC</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-auth/tree/master/vertx-auth-jdbc">Source</a></li>
-            <li>Java: <a href="{{ site_url }}docs/vertx-auth-jdbc/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-            <li>JavaScript: <a href="{{ site_url }}docs/vertx-auth-jdbc/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-jdbc/js/jsdoc/">API</a></li>
-            <li>Groovy: <a href="{{ site_url }}docs/vertx-auth-jdbc/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-jdbc/groovy/groovydoc/">API</a></li>
-            <li>Ruby: <a href="{{ site_url }}docs/vertx-auth-jdbc/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-jdbc/ruby/yardoc/">API</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-3">
-          <h4>JWT auth</h4>
-          <p>Auth implementation using JSON web tokens (JWT)</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-auth/tree/master/vertx-auth-jwt">Source</a></li>
-            <li>Java: <a href="{{ site_url }}docs/vertx-auth-jwt/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-            <li>JavaScript: <a href="{{ site_url }}docs/vertx-auth-jwt/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-jwt/js/jsdoc/">API</a></li>
-            <li>Groovy: <a href="{{ site_url }}docs/vertx-auth-jwt/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-jwt/groovy/groovydoc/">API</a></li>
-            <li>Ruby: <a href="{{ site_url }}docs/vertx-auth-jwt/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-jwt/ruby/yardoc/">API</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-3">
-          <h4>Shiro auth</h4>
-          <p>Auth implementation using Apache Shiro</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-auth/tree/master/vertx-auth-shiro">Source</a></li>
-            <li>Java: <a href="{{ site_url }}docs/vertx-auth-shiro/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-            <li>JavaScript: <a href="{{ site_url }}docs/vertx-auth-shiro/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-shiro/js/jsdoc/">API</a></li>
-            <li>Groovy: <a href="{{ site_url }}docs/vertx-auth-shiro/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-shiro/groovy/groovydoc/">API</a></li>
-            <li>Ruby: <a href="{{ site_url }}docs/vertx-auth-shiro/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-shiro/ruby/yardoc/">API</a></li>
-          </ul>
+        <div class="col-sm-12">
+          <h3 id="services">Services</h3>
+          <p>Vert.x services are a simple and effective way to encapsulate reusable functionality for use elsewhere.
+          Services are deployed using a service identifier which decouples the user from details of the implementation.</p>
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="service_factories">Service Factories</h4>
+              <p>How to package and deploy Vert.x services.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-service-factory">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="service_proxies">Service Proxies</h4>
+              <p>Proxies allow remote event bus services to be called as if they were local.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-service-proxy">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="maven_service_factory">Maven Service Factory</h4>
+              <p>This lets you dynamically install and deploy services from Maven at run-time.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-maven-service-factory">Source</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="http_service_factory">HTTP Service Factory</h4>
+              <p>This lets you dynamically install and deploy services from an HTTP server
+                (for example <a href="https://bintray.com">Bintray</a>) at run-time.</p>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="https://github.com/vert-x3/vertx-http-service-factory">Source</a>
+                </li>
+                <li><a href="{{ site_url }}docs/vertx-http-service-factory/">Manual</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <h3>Reactive</h3>
-      <p>Vert.x provides a couple of components to make your applications more reactive.</p>
+      <hr>
+
       <div class="row">
-        <div class="col-md-6">
-          <h4>Vert.x Rx</h4>
-          <p>Don't like callback-style APIs? Vert.x provides <em>Rx-ified</em>
-            (using <a href="https://github.com/ReactiveX/RxJava">RxJava</a>) versions for most of its APIs so you
-          can use those if you prefer.</p>
-          <p>RxJava is a great choice when you want to perform complex operations on multiple asynchronous streams
-          of data.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-rx">Source</a></li>
-            <li>Java: <a href="{{ site_url }}docs/vertx-rx/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-            <li>JavaScript: <a href="{{ site_url }}docs/vertx-rx/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-rx/js/jsdoc/">API</a></li>
-            <li>Groovy: <a href="{{ site_url }}docs/vertx-rx/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-rx/groovy/groovydoc/">API</a></li>
-          </ul>
-        </div>
-        <div class="col-md-6">
-          <h4>Reactive streams.</h4>
-          <p>Vert.x supports <a href="http://www.reactive-streams.org/">reactive streams</a> so your applications can
-            interoperate with other reactive systems such as Akka or Project Reactor.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-reactive-streams">Source</a></li>
-            <li>Java: <a href="{{ site_url }}docs/vertx-reactive-streams/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-          </ul>
+        <div class="col-sm-12">
+          <h3 id="cloud_and_docker">Cloud and Docker</h3>
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="openshift_cartridge">Vert.x OpenShift Cartridge</h4>
+              <p>This cartridge allows you to easily run clusterable Vert.x applications on the
+                <a href="https://www.openshift.com/">Red Hat OpenShift</a> cloud platform.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-openshift-cartridge">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="openshift_using_diy_cartridge">Vert.x OpenShift Using DIY Cartridge</h4>
+              <p>This cartridge allows you to get started running simple applications quickly on the
+                <a href="https://www.openshift.com/">Red Hat OpenShift</a> cloud platform.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-openshift-diy-quickstart">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="docker_images">Vert.x Docker Images</h4>
+              <p>These docker images let you run Vert.x applications in Docker containers.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-stack/tree/master/stack-docker">Source</a></li>
+                <li><a href="{{ site_url }}docs/vertx-docker">Manual</a> | <a
+                        href="https://github.com/vert-x3/vertx-stack/tree/master/docker/examples">Examples</a></li>
+                <li><a href="https://registry.hub.docker.com/repos/vertx/">Docker registry</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-sm-12 col-md-6">
-      <h3>Metrics</h3>
-      <p>This component captures metrics from various Vert.x core components and exposes them using the popular Dropwizard
-        metrics library.</p>
-      <ul class="list-unstyled">
-        <li><a href="https://github.com/vert-x3/vertx-dropwizard-metrics">Source</a></li>
-        <li>Java: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-        <li>JavaScript: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-dropwizard-metrics/js/jsdoc/">API</a></li>
-        <li>Ruby: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-dropwizard-metrics/ruby/yardoc/">API</a></li>
-      </ul>
-    </div>
+      <hr>
 
-    <div class="col-sm-12 col-md-6">
-      <h3>Testing</h3>
-      <p>Vert.x-Unit is an unit testing tool-kit especially design to work well with asynchronous code.</p>
-      <ul class="list-unstyled">
-        <li><a href="https://github.com/vert-x3/vertx-unit">Source</a></li>
-        <li>Java: <a href="{{ site_url }}docs/vertx-unit/java/">Manual</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/unit-examples">Examples</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-        <li>JavaScript: <a href="{{ site_url }}docs/vertx-unit/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-unit/js/jsdoc/">API</a></li>
-        <li>Groovy: <a href="{{ site_url }}docs/vertx-unit/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-unit/groovy/groovydoc/">API</a></li>
-        <li>Ruby: <a href="{{ site_url }}docs/vertx-unit/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-unit/ruby/yardoc/">API</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-12">
-      <h3>Clustering</h3>
-      <p>Vert.x supports clustering and HA out of the box. Cluster group management is implemented in cluster managers
-      which are pluggable. The default cluster manager uses Hazelcast.</p>
       <div class="row">
-        <div class="col-md-6">
-          <h4>Hazelcast</h4>
-          <p>Cluster manager implementation that uses Hazelcast. This is the default.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-hazelcast">Source</a></li>
-            <li><a href="{{ site_url }}docs/vertx-hazelcast">Manual</a></li>
-          </ul>
-        </div>
-        <div class="col-md-6">
-          <h4>JGroups (experimental)</h4>
-          <p>Cluster manager implementation that uses JGroups</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-jgroups">Source</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-12">
-      <h3>Services</h3>
-      <p>Vert.x services are a simple and effective way to encapsulate reusable functionality for use elsewhere.
-      Services are deployed using a service identifier which decouples the user from details of the implementation.</p>
-      <div class="row">
-        <div class="col-md-3">
-          <h4>Service Factories</h4>
-          <p>How to package and deploy Vert.x services.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-service-factory">Source</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h4>Service Proxies</h4>
-          <p>Proxies allow remote event bus services to be called as if they were local.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-service-proxy">Source</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h4>Maven Service Factory</h4>
-          <p>This lets you dynamically install and deploy services from Maven at run-time.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-maven-service-factory">Source</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h4>HTTP Service Factory</h4>
-          <p>This lets you dynamically install and deploy services from an HTTP server
-            (for example <a href="https://bintray.com">Bintray</a>) at run-time.</p>
-          <ul class="list-unstyled">
-            <li>
-              <a href="https://github.com/vert-x3/vertx-http-service-factory">Source</a>
-            </li>
-            <li><a href="{{ site_url }}docs/vertx-http-service-factory/">Manual</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-12">
-      <h3>Cloud and Docker</h3>
-      <div class="row">
-        <div class="col-md-4">
-          <h4>Vert.x OpenShift Cartridge</h4>
-          <p>This cartridge allows you to easily run clusterable Vert.x applications on the
-            <a href="https://www.openshift.com/">Red Hat OpenShift</a> cloud platform.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-openshift-cartridge">Source</a></li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <h4>Vert.x OpenShift Using DIY Cartridge</h4>
-          <p>This cartridge allows you to get started running simple applications quickly on the
-            <a href="https://www.openshift.com/">Red Hat OpenShift</a> cloud platform.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-openshift-diy-quickstart">Source</a></li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <h4>Vert.x Docker Images</h4>
-          <p>These docker images let you run Vert.x applications in Docker containers.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-stack/tree/master/stack-docker">Source</a></li>
-            <li><a href="{{ site_url }}docs/vertx-docker">Manual</a> | <a
-                    href="https://github.com/vert-x3/vertx-stack/tree/master/docker/examples">Examples</a></li>
-            <li><a href="https://registry.hub.docker.com/repos/vertx/">Docker registry</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-12">
-      <h3>Advanced</h3>
-      <p>Some of the more advanced or internal bits and pieces. You won't normally use these directly in your own projects.
-        They're mainly stuff we use internally.</p>
-      <div class="row">
-        <div class="col-md-3">
-          <h4>Codegen</h4>
-          <p>This is the magic that translates Java APIs into other languages.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-codegen">Source</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h4>Docgen</h4>
-          <p>Creates asciidoc and API documentation from in-source docs.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-docgen">Source</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h4>Codetrans</h4>
-          <p>More magic that translates code into other languages (we mainly use this for translating examples)</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-codetrans">Source</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h4>Distro</h4>
-          <p>This project builds the various Vert.x distributions.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-stack">Source</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">
-          <h4>Web-site</h4>
-          <p>This is the repository that creates this web-site.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-web-site">Source</a></li>
-          </ul>
+        <div class="col-sm-12">
+          <h3 id="advanced">Advanced</h3>
+          <p>Some of the more advanced or internal bits and pieces. You won't normally use these directly in your own projects.
+            They're mainly stuff we use internally.</p>
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="codegen">Codegen</h4>
+              <p>This is the magic that translates Java APIs into other languages.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-codegen">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="docgen">Docgen</h4>
+              <p>Creates asciidoc and API documentation from in-source docs.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-docgen">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="codetrans">Codetrans</h4>
+              <p>More magic that translates code into other languages (we mainly use this for translating examples)</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-codetrans">Source</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="distro">Distro</h4>
+              <p>This project builds the various Vert.x distributions.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-stack">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="web_site">Web-site</h4>
+              <p>This is the repository that creates this web-site.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-web-site">Source</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

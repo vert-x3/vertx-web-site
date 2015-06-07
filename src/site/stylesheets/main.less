@@ -452,3 +452,120 @@ footer {
         }
     }
 }
+
+/** Documentation page */
+
+/* Sidebar should stick to the top */
+#sidebar {
+    overflow-y: auto;
+    max-height: ~"calc(100vh - 40px)";
+    font-size: @font-size-small;
+
+    &.affix, &.affix-bottom {
+        width: ((@screen-md-min - @grid-gutter-width) * 0.25 - @grid-gutter-width);
+    }
+    &.affix {
+        position: fixed;
+        top: 20px;
+    }
+    &.affix-bottom {
+        position: absolute;
+    }
+
+    @media (max-width: @screen-md-min) {
+        display: none;
+    }
+
+    @media (min-width: @screen-lg-min) {
+        &.affix, &.affix-bottom {
+            width: ((@screen-lg-min - @grid-gutter-width) * 0.25 - @grid-gutter-width);
+        }
+    }
+
+    & > .nav {
+        padding-left: 0;
+
+        a {
+            padding: 0 0 (@line-height-computed / 8) 5px;
+
+            &:hover {
+                border-left: 1px solid @brand-primary;
+                padding-left: 4px;
+            }
+        }
+
+        & > .active > a {
+            border-left: 2px solid @brand-primary;
+            padding-left: 3px;
+        }
+
+        .nav {
+            display: none;
+
+            li {
+                a {
+                    padding-left: 20px;
+
+                    &:hover {
+                        padding-left: 19px;
+                    }
+                }
+
+                &:last-child a {
+                    padding: 0 0 (@line-height-computed / 8) 20px;
+
+                    &:hover {
+                        padding-left: 19px;
+                    }
+                }
+
+                &.active a {
+                    border-left: 2px solid @brand-primary;
+                    padding-left: 18px;
+                }
+            }
+        }
+
+        .active .nav {
+            display: block;
+        }
+    }
+
+    &.sidebar-no-level2 {
+        .sectlevel2 {
+            display: none !important;
+        }
+    }
+}
+
+.toc {
+    h2 {
+        margin-top: 0;
+    }
+
+    padding-bottom: @line-height-computed * 2;
+
+    ul {
+        list-style-type: disc;
+        margin-top: 0;
+        margin-bottom: 12.5px;
+        margin-left: 0;
+        padding-left: 1.2em;
+
+        li {
+            display: list-item;
+
+            a {
+                padding: 0;
+            }
+        }
+    }
+}
+
+.docs-content {
+    margin-top: @line-height-computed * 2;
+
+    .no-margin-top {
+        margin-top: 0;
+    }
+}
