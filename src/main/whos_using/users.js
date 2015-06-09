@@ -102,6 +102,10 @@ var all_users = {
     link: "http://www.performit.co.il/",
     height: 75
   }, {
+    src: "phenixid.png",
+    link: "http://www.phenixid.se/",
+    height: 50
+  }, {
     src: "plasmatherm.png",
     link: "http://www.plasmatherm.com/",
     height: 25
