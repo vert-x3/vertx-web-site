@@ -7,7 +7,7 @@
 //   is advised to sort them in the list below as well.
 
 var all_users = {
-  max_home_page_users: 8, // maximum number of users on the home page
+  max_home_page_users: 12, // maximum number of users on the home page
   logos: [{
     src: "AirWatch_logo.png",
     link: "http://www.air-watch.com",
@@ -39,7 +39,8 @@ var all_users = {
   }, {
     src: "cyanogen_logo_white.png",
     link: "https://cyngn.com/",
-    height: 50
+    height: 50,
+    wikipedia: "http://en.wikipedia.org/wiki/CyanogenMod"
   }, {
     src: "exent_logo.png",
     link: "http://www.exent.com/",
