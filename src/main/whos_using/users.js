@@ -132,6 +132,10 @@ var all_users = {
     link: "http://vstack.co/",
     height: 65
   }, {
+    src: "wombat-software-logo-white.png",
+    link: "http://www.wombatsoftware.de",
+    height: 119
+  }, {
     src: "yaykuy.png",
     link: "http://www.yaykuy.cl/",
     height: 45
