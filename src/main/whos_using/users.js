@@ -25,6 +25,10 @@ var all_users = {
     revenue_billion: 48.9,
     employees: 290000
   }, {
+    src: "boundary.png",
+    link: "http://www.boundary.com/",
+    height: 56
+  }, {
     src: "campudus_white.png",
     link: "http://campudus.com/",
     height: 37
