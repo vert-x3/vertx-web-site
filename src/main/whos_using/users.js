@@ -141,7 +141,7 @@ var all_users = {
   }, {
     src: "wombat-software-logo-white.png",
     link: "http://www.wombatsoftware.de",
-    height: 119
+    height: 90
   }, {
     src: "yaykuy.png",
     link: "http://www.yaykuy.cl/",
