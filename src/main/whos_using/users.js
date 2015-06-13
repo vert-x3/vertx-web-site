@@ -128,6 +128,13 @@ var all_users = {
     link: "http://www.taringa.net",
     height: 30
   }, {
+    src: "ticketmaster_logo.png",
+    link: "http://www.ticketmaster.com/",
+    height: 30,
+    wikipedia: "https://en.wikipedia.org/wiki/Ticketmaster",
+    revenue_billion: 8,
+    employees: 6678
+  }, {
     src: "vstack-co-logo-white.png",
     link: "http://vstack.co/",
     height: 65
