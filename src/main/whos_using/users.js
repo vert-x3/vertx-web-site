@@ -135,6 +135,10 @@ var all_users = {
     revenue_billion: 8,
     employees: 6678
   }, {
+    src: "touk.png",
+    height: 90,
+    link: "http://touk.pl/"
+  }, {
     src: "vstack-co-logo-white.png",
     link: "http://vstack.co/",
     height: 65
