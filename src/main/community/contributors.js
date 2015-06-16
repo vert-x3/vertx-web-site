@@ -93,6 +93,11 @@ var contributors = [{
   google_plus: "https://plus.google.com/u/0/+MarkLittleJBossCTO/",
   homepage: "http://markclittle.blogspot.co.uk",
   github: "https://github.com/nmcl"
+}, {
+  github_id: "jmusacchio",
+  name: "Juan Manuel Musacchio",
+  avatar: "https://s.gravatar.com/avatar/c1c12f294a2dec934d610a5fe351686d?s=80",
+  github: "https://github.com/jmusacchio"
 }];
 
 module.exports = {
