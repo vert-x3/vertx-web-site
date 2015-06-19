@@ -41,6 +41,10 @@ var all_users = {
     link: "https://cyngn.com/",
     height: 50,
     wikipedia: "http://en.wikipedia.org/wiki/CyanogenMod"
+  },  {
+    src: "datascience_logo.png",
+    link: "http://datascience.com/",
+    height: 33
   }, {
     src: "exent_logo.png",
     link: "http://www.exent.com/",
@@ -55,7 +59,7 @@ var all_users = {
   }, {
     src: "gentics.png",
     link: "http://www.gentics.com/",
-    height: 50,
+    height: 50
   }, {
     src: "groupon-white.png",
     link: "http://www.groupon.com",
@@ -102,6 +106,10 @@ var all_users = {
     src: "origami.png",
     link: "http://origami3.com/",
     height: 54
+  }, {
+    src: "paradigma.png",
+    link: "www.paradigmatecnologico.com",
+    height: 47
   }, {
     src: "performit.png",
     link: "http://www.performit.co.il/",
