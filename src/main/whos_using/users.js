@@ -136,6 +136,10 @@ var all_users = {
     revenue_billion: 1.5,
     employees: 7300
   }, {
+    src: "sketchtogether_logo.png",
+    link: "https://sketchtogether.com",
+    height: 71
+  }, {
     src: "taringa_logo.png",
     link: "http://www.taringa.net",
     height: 30
