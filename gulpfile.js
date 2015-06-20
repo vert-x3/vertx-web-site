@@ -70,7 +70,7 @@ var paths = {
   target_icons: "target/site/assets/icons",
   target_scripts: "target/site/javascripts",
   target_stylesheets: "target/site/stylesheets",
-  target_vertx2: "target/site/vertx2",
+  target_vertx2: "vertx2",
   templates: "src/main/templates"
 };
 
