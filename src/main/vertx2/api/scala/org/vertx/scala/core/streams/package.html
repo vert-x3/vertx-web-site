@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>streams - lang-scala.git 1.0.0 API - org.vertx.scala.core.streams</title>
+          <meta name="description" content="streams - lang - scala.git 1.0.0 API - org.vertx.scala.core.streams" />
+          <meta name="keywords" content="streams lang scala.git 1.0.0 API org.vertx.scala.core.streams" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'org.vertx.scala.core.streams.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../../package.html" class="extype" name="org">org</a>.<a href="../../../package.html" class="extype" name="org.vertx">vertx</a>.<a href="../../package.html" class="extype" name="org.vertx.scala">scala</a>.<a href="../package.html" class="extype" name="org.vertx.scala.core">core</a></p>
+        <h1>streams</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">streams</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.vertx.scala.core.streams.DrainSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="DrainSupportextendsSelfwithAsJava"></a>
+      <a id="DrainSupport:DrainSupport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="DrainSupport.html"><span class="name">DrainSupport</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Allows to set a <code>Handler</code> which is notified once the write queue is
+drained again.</p>
+    </li><li name="org.vertx.scala.core.streams.ExceptionSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ExceptionSupportextendsSelfwithAsJava"></a>
+      <a id="ExceptionSupport:ExceptionSupport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ExceptionSupport.html"><span class="name">ExceptionSupport</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Exception handler.</p>
+    </li><li name="org.vertx.scala.core.streams.Pump" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PumpextendsSelf"></a>
+      <a id="Pump:Pump"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Pump.html"><span class="name">Pump</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Pumps data from a <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">org.vertx.scala.core.streams.ReadStream</a> to a
+<a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">org.vertx.scala.core.streams.WriteStream</a> and performs flow control where necessary to
+prevent the write stream buffer from getting overfull.</p>
+    </li><li name="org.vertx.scala.core.streams.ReadStream" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ReadStreamextendsSelfwithReadSupport[org.vertx.scala.core.buffer.Buffer]withAsJava"></a>
+      <a id="ReadStream:ReadStream"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ReadStream.html"><span class="name">ReadStream</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>] with <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents a stream of data that can be read from.</p>
+    </li><li name="org.vertx.scala.core.streams.ReadSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ReadSupport[E]extendsSelfwithExceptionSupportwithAsJava"></a>
+      <a id="ReadSupport[E]:ReadSupport[E]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ReadSupport.html"><span class="name">ReadSupport</span></a><span class="tparams">[<span name="E">E</span>]</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a> with <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Allows to set a handler which is notified once data was read.</p>
+    </li><li name="org.vertx.scala.core.streams.WriteStream" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WriteStreamextendsSelfwithExceptionSupportwithAsJava"></a>
+      <a id="WriteStream:WriteStream"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WriteStream.html"><span class="name">WriteStream</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a> with <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents a stream of data that can be written to</p>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="org.vertx.scala.core.streams.Pump" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Pump"></a>
+      <a id="Pump:Pump"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Pump$.html"><span class="name">Pump</span></a>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../../lib/template.js"></script>
+    </body>
+      </html>

@@ -1,0 +1,447 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>http - lang-scala.git 1.0.0 API - org.vertx.scala.core.http</title>
+          <meta name="description" content="http - lang - scala.git 1.0.0 API - org.vertx.scala.core.http" />
+          <meta name="keywords" content="http lang scala.git 1.0.0 API org.vertx.scala.core.http" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'org.vertx.scala.core.http.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../../package.html" class="extype" name="org">org</a>.<a href="../../../package.html" class="extype" name="org.vertx">vertx</a>.<a href="../../package.html" class="extype" name="org.vertx.scala">scala</a>.<a href="../package.html" class="extype" name="org.vertx.scala.core">core</a></p>
+        <h1>http</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">http</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.vertx.scala.core.http"><span>http</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.vertx.scala.core.http.HttpClient" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpClientextendsSelfwithTCPSupportwithClientSSLSupport"></a>
+      <a id="HttpClient:HttpClient"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="HttpClient.html"><span class="name">HttpClient</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a> with <a href="../ClientSSLSupport.html" class="extype" name="org.vertx.scala.core.ClientSSLSupport">ClientSSLSupport</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">An HTTP client that maintains a pool of connections to a specific host, at a specific port.</p>
+    </li><li name="org.vertx.scala.core.http.HttpClientRequest" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpClientRequestextendsSelfwithWriteStream"></a>
+      <a id="HttpClientRequest:HttpClientRequest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="HttpClientRequest.html"><span class="name">HttpClientRequest</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents a client-side HTTP request.</p>
+    </li><li name="org.vertx.scala.core.http.HttpClientResponse" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpClientResponseextendsSelfwithReadStream"></a>
+      <a id="HttpClientResponse:HttpClientResponse"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="HttpClientResponse.html"><span class="name">HttpClientResponse</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents a client-side HTTP response.</p>
+    </li><li name="org.vertx.scala.core.http.HttpServer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpServerextendsSelfwithServerTCPSupportwithServerSSLSupportwithCloseable"></a>
+      <a id="HttpServer:HttpServer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="HttpServer.html"><span class="name">HttpServer</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../ServerTCPSupport.html" class="extype" name="org.vertx.scala.core.ServerTCPSupport">ServerTCPSupport</a> with <a href="../ServerSSLSupport.html" class="extype" name="org.vertx.scala.core.ServerSSLSupport">ServerSSLSupport</a> with <a href="../Closeable.html" class="extype" name="org.vertx.scala.core.Closeable">Closeable</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">An HTTP and WebSockets server</p>
+    </li><li name="org.vertx.scala.core.http.HttpServerFileUpload" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpServerFileUploadextendsSelfwithReadStream"></a>
+      <a id="HttpServerFileUpload:HttpServerFileUpload"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="HttpServerFileUpload.html"><span class="name">HttpServerFileUpload</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt"></p>
+    </li><li name="org.vertx.scala.core.http.HttpServerRequest" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpServerRequestextendsSelfwithReadStream"></a>
+      <a id="HttpServerRequest:HttpServerRequest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="HttpServerRequest.html"><span class="name">HttpServerRequest</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents a server-side HTTP request.</p>
+    </li><li name="org.vertx.scala.core.http.HttpServerResponse" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpServerResponseextendsSelfwithWriteStream"></a>
+      <a id="HttpServerResponse:HttpServerResponse"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="HttpServerResponse.html"><span class="name">HttpServerResponse</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents a server-side HTTP response.</p>
+    </li><li name="org.vertx.scala.core.http.HttpVersion" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpVersion=org.vertx.java.core.http.HttpVersion"></a>
+      <a id="HttpVersion:HttpVersion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">HttpVersion</span><span class="result"> = <span class="extype" name="org.vertx.java.core.http.HttpVersion">java.core.http.HttpVersion</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.http.RouteMatcher" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RouteMatcherextendsHandler[org.vertx.scala.core.http.HttpServerRequest]withorg.vertx.scala.core.http.HttpServerRequest=&gt;UnitwithSelf"></a>
+      <a id="RouteMatcher:RouteMatcher"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="RouteMatcher.html"><span class="name">RouteMatcher</span></a><span class="result"> extends <span class="extype" name="org.vertx.java.core.Handler">java.core.Handler</span>[<a href="HttpServerRequest.html" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a>] with (<a href="HttpServerRequest.html" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span> with <span class="extype" name="org.vertx.scala.Self">Self</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Not sure whether this kind of RouteMatcher should stay in Scala.</p>
+    </li><li name="org.vertx.scala.core.http.ServerWebSocket" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ServerWebSocketextendsSelfwithWebSocketBase"></a>
+      <a id="ServerWebSocket:ServerWebSocket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ServerWebSocket.html"><span class="name">ServerWebSocket</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="WebSocketBase.html" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents a server side WebSocket that is passed into a the websocketHandler of an <a href="HttpServer.html" class="extype" name="org.vertx.scala.core.http.HttpServer">org.vertx.scala.core.http.HttpServer</a></p>
+    </li><li name="org.vertx.scala.core.http.WebSocket" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WebSocketextendsSelfwithWebSocketBase"></a>
+      <a id="WebSocket:WebSocket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="WebSocket.html"><span class="name">WebSocket</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="WebSocketBase.html" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents a client side WebSocket.</p>
+    </li><li name="org.vertx.scala.core.http.WebSocketBase" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WebSocketBaseextendsSelfwithReadStreamwithWriteStream"></a>
+      <a id="WebSocketBase:WebSocketBase"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WebSocketBase.html"><span class="name">WebSocketBase</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> with <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents an HTML 5 Websocket</p>
+    </li><li name="org.vertx.scala.core.http.WebSocketVersion" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WebSocketVersion=org.vertx.java.core.http.WebSocketVersion"></a>
+      <a id="WebSocketVersion:WebSocketVersion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">WebSocketVersion</span><span class="result"> = <span class="extype" name="org.vertx.java.core.http.WebSocketVersion">java.core.http.WebSocketVersion</span></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="org.vertx.scala.core.http.HttpClient" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpClient"></a>
+      <a id="HttpClient:HttpClient"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="HttpClient$.html"><span class="name">HttpClient</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory for <a href="HttpClient.html" class="extype" name="org.vertx.scala.core.http.HttpClient">org.vertx.scala.core.http.HttpClient</a> instances by wrapping a Java instance.</p>
+    </li><li name="org.vertx.scala.core.http.HttpClientRequest" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpClientRequest"></a>
+      <a id="HttpClientRequest:HttpClientRequest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="HttpClientRequest$.html"><span class="name">HttpClientRequest</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory for <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instances, by wrapping a Java instance.</p>
+    </li><li name="org.vertx.scala.core.http.HttpClientResponse" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpClientResponse"></a>
+      <a id="HttpClientResponse:HttpClientResponse"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="HttpClientResponse$.html"><span class="name">HttpClientResponse</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory for <a href="HttpClient.html" class="extype" name="org.vertx.scala.core.http.HttpClient">org.vertx.scala.core.http.HttpClient</a> instances by wrapping a Java instance.</p>
+    </li><li name="org.vertx.scala.core.http.HttpServer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpServer"></a>
+      <a id="HttpServer:HttpServer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="HttpServer$.html"><span class="name">HttpServer</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory for <a href="HttpServer.html" class="extype" name="org.vertx.scala.core.http.HttpServer">org.vertx.scala.core.http.HttpServer</a> instances by wrapping a Java instance.</p>
+    </li><li name="org.vertx.scala.core.http.HttpServerFileUpload" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpServerFileUpload"></a>
+      <a id="HttpServerFileUpload:HttpServerFileUpload"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="HttpServerFileUpload$.html"><span class="name">HttpServerFileUpload</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.http.HttpServerRequest" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpServerRequest"></a>
+      <a id="HttpServerRequest:HttpServerRequest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="HttpServerRequest$.html"><span class="name">HttpServerRequest</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.http.HttpServerResponse" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpServerResponse"></a>
+      <a id="HttpServerResponse:HttpServerResponse"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="HttpServerResponse$.html"><span class="name">HttpServerResponse</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory for <a href="HttpServerResponse.html" class="extype" name="org.vertx.scala.core.http.HttpServerResponse">org.vertx.scala.core.http.HttpServerResponse</a> instances.</p>
+    </li><li name="org.vertx.scala.core.http.RouteMatcher" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RouteMatcher"></a>
+      <a id="RouteMatcher:RouteMatcher"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="RouteMatcher$.html"><span class="name">RouteMatcher</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory for <a href="RouteMatcher.html" class="extype" name="org.vertx.scala.core.http.RouteMatcher">org.vertx.scala.core.http.RouteMatcher</a> instances.</p>
+    </li><li name="org.vertx.scala.core.http.ServerWebSocket" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ServerWebSocket"></a>
+      <a id="ServerWebSocket:ServerWebSocket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ServerWebSocket$.html"><span class="name">ServerWebSocket</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory for <a href="ServerWebSocket.html" class="extype" name="org.vertx.scala.core.http.ServerWebSocket">org.vertx.scala.core.http.ServerWebSocket</a> instances.</p>
+    </li><li name="org.vertx.scala.core.http.WebSocket" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WebSocket"></a>
+      <a id="WebSocket:WebSocket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="WebSocket$.html"><span class="name">WebSocket</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory for <a href="WebSocket.html" class="extype" name="org.vertx.scala.core.http.WebSocket">org.vertx.scala.core.http.WebSocket</a> instances.</p>
+    </li><li name="org.vertx.scala.core.http.package#multiMapToScalaMultiMap" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="multiMapToScalaMultiMap(n:org.vertx.java.core.MultiMap):scala.collection.mutable.MultiMap[String,String]"></a>
+      <a id="multiMapToScalaMultiMap(java.core.MultiMap):scala.collection.mutable.MultiMap[String,String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">multiMapToScalaMultiMap</span><span class="params">(<span name="n">n: <span class="extype" name="org.vertx.java.core.MultiMap">java.core.MultiMap</span></span>)</span><span class="result">: <span class="extype" name="scala.collection.mutable.MultiMap">scala.collection.mutable.MultiMap</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Implicit conversion for <span class="extype" name="org.vertx.java.core.MultiMap">org.vertx.java.core.MultiMap</span> to <span class="extype" name="scala.collection.mutable.MultiMap">scala.collection.mutable.MultiMap</span>.</p>
+    </li><li name="org.vertx.scala.core.http.package#scalaMultiMapToMultiMap" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="scalaMultiMapToMultiMap(n:scala.collection.mutable.MultiMap[String,String]):org.vertx.java.core.MultiMap"></a>
+      <a id="scalaMultiMapToMultiMap(scala.collection.mutable.MultiMap[String,String]):java.core.MultiMap"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">scalaMultiMapToMultiMap</span><span class="params">(<span name="n">n: <span class="extype" name="scala.collection.mutable.MultiMap">scala.collection.mutable.MultiMap</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <span class="extype" name="org.vertx.java.core.MultiMap">java.core.MultiMap</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Implicit conversion for <span class="extype" name="scala.collection.mutable.MultiMap">scala.collection.mutable.MultiMap</span> to <span class="extype" name="org.vertx.java.core.MultiMap">org.vertx.java.core.MultiMap</span>.</p>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../../lib/template.js"></script>
+    </body>
+      </html>

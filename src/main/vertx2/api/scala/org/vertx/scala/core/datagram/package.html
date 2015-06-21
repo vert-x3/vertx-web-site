@@ -1,0 +1,240 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>datagram - lang-scala.git 1.0.0 API - org.vertx.scala.core.datagram</title>
+          <meta name="description" content="datagram - lang - scala.git 1.0.0 API - org.vertx.scala.core.datagram" />
+          <meta name="keywords" content="datagram lang scala.git 1.0.0 API org.vertx.scala.core.datagram" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'org.vertx.scala.core.datagram.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../../package.html" class="extype" name="org">org</a>.<a href="../../../package.html" class="extype" name="org.vertx">vertx</a>.<a href="../../package.html" class="extype" name="org.vertx.scala">scala</a>.<a href="../package.html" class="extype" name="org.vertx.scala.core">core</a></p>
+        <h1>datagram</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">datagram</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.vertx.scala.core.datagram"><span>datagram</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.vertx.scala.core.datagram.DatagramPacket" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DatagramPacketextendsAnyVal"></a>
+      <a id="DatagramPacket:DatagramPacket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="DatagramPacket.html"><span class="name">DatagramPacket</span></a><span class="result"> extends <span class="extype" name="scala.AnyVal">AnyVal</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A received Datagram packet (UDP) which contains the data and information about the sender of the data itself.</p>
+    </li><li name="org.vertx.scala.core.datagram.DatagramSocket" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DatagramSocketextendsSelfwithDrainSupportwithNetworkSupportwithReadSupport[org.vertx.scala.core.datagram.DatagramPacket]withCloseable"></a>
+      <a id="DatagramSocket:DatagramSocket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="DatagramSocket.html"><span class="name">DatagramSocket</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../streams/DrainSupport.html" class="extype" name="org.vertx.scala.core.streams.DrainSupport">DrainSupport</a> with <a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a> with <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a>[<a href="DatagramPacket.html" class="extype" name="org.vertx.scala.core.datagram.DatagramPacket">DatagramPacket</a>] with <a href="../Closeable.html" class="extype" name="org.vertx.scala.core.Closeable">Closeable</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A Datagram socket which can be used to send <a href="DatagramPacket.html" class="extype" name="org.vertx.scala.core.datagram.DatagramPacket">org.vertx.scala.core.datagram.DatagramPacket</a>'s to
+remote Datagram servers and receive <a href="DatagramPacket.html" class="extype" name="org.vertx.scala.core.datagram.DatagramPacket">org.vertx.scala.core.datagram.DatagramPacket</a>s.</p>
+    </li><li name="org.vertx.scala.core.datagram.InternetProtocolFamily" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="InternetProtocolFamilyextendsAnyRef"></a>
+      <a id="InternetProtocolFamily:InternetProtocolFamily"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="InternetProtocolFamily.html"><span class="name">InternetProtocolFamily</span></a><span class="result"> extends <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Internet Protocol (IP) families used by <a href="DatagramSocket.html" class="extype" name="org.vertx.scala.core.datagram.DatagramSocket">org.vertx.scala.core.datagram.DatagramSocket</a>.</p>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="org.vertx.scala.core.datagram.DatagramPacket" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DatagramPacket"></a>
+      <a id="DatagramPacket:DatagramPacket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="DatagramPacket$.html"><span class="name">DatagramPacket</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory for <a href="DatagramPacket.html" class="extype" name="org.vertx.scala.core.datagram.DatagramPacket">org.vertx.scala.core.datagram.DatagramPacket</a> instances.</p>
+    </li><li name="org.vertx.scala.core.datagram.DatagramSocket" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DatagramSocket"></a>
+      <a id="DatagramSocket:DatagramSocket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="DatagramSocket$.html"><span class="name">DatagramSocket</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory for <a href="DatagramSocket.html" class="extype" name="org.vertx.scala.core.datagram.DatagramSocket">org.vertx.scala.core.datagram.DatagramSocket</a> instances by wrapping a Java instance.</p>
+    </li><li name="org.vertx.scala.core.datagram.IPv4" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="IPv4"></a>
+      <a id="IPv4:IPv4"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="IPv4$.html"><span class="name">IPv4</span></a><span class="result"> extends <a href="InternetProtocolFamily.html" class="extype" name="org.vertx.scala.core.datagram.InternetProtocolFamily">InternetProtocolFamily</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.datagram.IPv6" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="IPv6"></a>
+      <a id="IPv6:IPv6"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="IPv6$.html"><span class="name">IPv6</span></a><span class="result"> extends <a href="InternetProtocolFamily.html" class="extype" name="org.vertx.scala.core.datagram.InternetProtocolFamily">InternetProtocolFamily</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.datagram.InternetProtocolFamily" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="InternetProtocolFamily"></a>
+      <a id="InternetProtocolFamily:InternetProtocolFamily"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="InternetProtocolFamily$.html"><span class="name">InternetProtocolFamily</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.datagram.package#dataPacketHandlerToJava" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="dataPacketHandlerToJava(handler:org.vertx.scala.core.datagram.DatagramPacket=&gt;Unit):org.vertx.scala.core.Handler[org.vertx.java.core.datagram.DatagramPacket]"></a>
+      <a id="dataPacketHandlerToJava((DatagramPacket)⇒Unit):Handler[java.core.datagram.DatagramPacket]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">dataPacketHandlerToJava</span><span class="params">(<span name="handler">handler: (<a href="DatagramPacket.html" class="extype" name="org.vertx.scala.core.datagram.DatagramPacket">DatagramPacket</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<span class="extype" name="org.vertx.java.core.datagram.DatagramPacket">java.core.datagram.DatagramPacket</span>]</span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../../lib/template.js"></script>
+    </body>
+      </html>

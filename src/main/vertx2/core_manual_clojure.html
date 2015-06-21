@@ -1,0 +1,3446 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <!-- <link rel="stylesheet/less" href="bootstrap/less/bootstrap.less">
+  <script src="bootstrap/less/less-1.3.3.min.js"></script>
+  -->
+  <link href="bootstrap/bootstrap.css" type="text/css" rel="stylesheet"/>
+  <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet"/>
+  <script type="text/javascript" src="google-code-prettify/prettify.js"></script>
+  <link href="css/vertx.css" type="text/css" rel="stylesheet"/>
+  <link href="css/sunburst.css" type="text/css" rel="stylesheet"/>
+  <title>Vert.x</title>
+  <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-30144458-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+
+<body onload="prettyPrint()" class="hp">
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+
+      <a class="btn btn-navbar" data-toggle="collapse"
+         data-target=".nav-collapse">
+        <span class="i-bar"></span>
+        <span class="i-bar"></span>
+        <span class="i-bar"></span>
+      </a>
+
+      <a class="brand" href="/">Vert.x</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="downloads.html">Download</a></li>
+          <li><a href="install.html">Install</a></li>
+          <li><a href="docs.html">Documentation</a></li>
+          <li><a href="examples.html">Examples</a></li>
+          <li><a href="community.html">Project Info</a></li>
+          <li><a href="https://github.com/vert-x/vert.x">Github</a></li>
+          <li><a href="http://modulereg.vertx.io/">Module Registry</a></li>
+          <li><a href="http://groups.google.com/group/vertx">Google Group</a></li>
+          <li><a href="http://vertxproject.wordpress.com/">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="row">
+    <div class="span12">
+      <div class="well">
+        <h1>Clojure API Manual</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span12">
+      <div class="well">
+<div>
+
+
+<div class="toc">
+<ul>
+<li><a href="#writing-verticles">Writing Verticles</a><ul>
+<li><a href="#accessing-the-vertx-api">Accessing the Vert.x API</a></li>
+<li><a href="#verticle-clean-up">Verticle clean-up</a></li>
+<li><a href="#getting-configuration-in-a-verticle">Getting Configuration in a Verticle</a></li>
+<li><a href="#logging-from-a-verticle">Logging from a Verticle</a></li>
+<li><a href="#accessing-environment-variables-from-a-verticle">Accessing environment variables from a Verticle</a></li>
+<li><a href="#causing-the-container-to-exit">Causing the container to exit</a></li>
+</ul>
+</li>
+<li><a href="#deploying-and-undeploying-verticles-programmatically">Deploying and Undeploying Verticles Programmatically</a><ul>
+<li><a href="#deploying-a-simple-verticle">Deploying a simple verticle</a></li>
+<li><a href="#deploying-worker-verticles">Deploying Worker Verticles</a></li>
+<li><a href="#deploying-a-module-programmatically">Deploying a module programmatically</a></li>
+<li><a href="#passing-configuration-to-a-verticle-programmatically">Passing configuration to a verticle programmatically</a></li>
+<li><a href="#using-a-verticle-to-co-ordinate-loading-of-an-application">Using a Verticle to co-ordinate loading of an application</a></li>
+<li><a href="#specifying-number-of-instances">Specifying number of instances</a></li>
+<li><a href="#getting-notified-when-deployment-is-complete">Getting Notified when Deployment is complete</a></li>
+<li><a href="#undeploying-a-verticle">Undeploying a Verticle</a></li>
+</ul>
+</li>
+<li><a href="#the-event-bus">The Event Bus</a><ul>
+<li><a href="#the-theory">The Theory</a><ul>
+<li><a href="#addressing">Addressing</a></li>
+<li><a href="#handlers">Handlers</a></li>
+<li><a href="#publish-subscribe-messaging">Publish / subscribe messaging</a></li>
+<li><a href="#point-to-point-and-request-response-messaging">Point to point and Request-Response messaging</a></li>
+<li><a href="#transient">Transient</a></li>
+<li><a href="#types-of-messages">Types of messages</a></li>
+</ul>
+</li>
+<li><a href="#event-bus-api">Event Bus API</a><ul>
+<li><a href="#registering-and-unregistering-handlers">Registering and Unregistering Handlers</a></li>
+<li><a href="#publishing-messages">Publishing messages</a></li>
+<li><a href="#sending-messages">Sending messages</a></li>
+<li><a href="#replying-to-messages">Replying to messages</a><ul>
+<li><a href="#specifying-timeouts-for-replies">Specifying timeouts for replies</a></li>
+<li><a href="#getting-notified-of-reply-failures">Getting notified of reply failures</a></li>
+</ul>
+</li>
+<li><a href="#message-types">Message types</a></li>
+</ul>
+</li>
+<li><a href="#distributed-event-bus">Distributed event bus</a></li>
+</ul>
+</li>
+<li><a href="#shared-data">Shared Data</a><ul>
+<li><a href="#shared-maps">Shared Maps</a></li>
+<li><a href="#shared-sets">Shared Sets</a></li>
+</ul>
+</li>
+<li><a href="#buffers">Buffers</a><ul>
+<li><a href="#creating-buffers">Creating Buffers</a></li>
+<li><a href="#writing-to-a-buffer">Writing to a Buffer</a><ul>
+<li><a href="#appending-to-a-buffer">Appending to a Buffer</a></li>
+<li><a href="#random-access-buffer-writes">Random access buffer writes</a></li>
+</ul>
+</li>
+<li><a href="#reading-from-a-buffer">Reading from a Buffer</a></li>
+</ul>
+</li>
+<li><a href="#delayed-and-periodic-tasks">Delayed and Periodic Tasks</a><ul>
+<li><a href="#one-shot-timers">One-shot Timers</a></li>
+<li><a href="#periodic-timers">Periodic Timers</a></li>
+<li><a href="#cancelling-timers">Cancelling timers</a></li>
+</ul>
+</li>
+<li><a href="#writing-tcp-servers-and-clients">Writing TCP Servers and Clients</a><ul>
+<li><a href="#net-server">Net Server</a><ul>
+<li><a href="#creating-a-net-server">Creating a Net Server</a></li>
+<li><a href="#start-the-server-listening">Start the Server Listening</a></li>
+<li><a href="#getting-notified-of-incoming-connections">Getting Notified of Incoming Connections</a></li>
+<li><a href="#closing-a-net-server">Closing a Net Server</a></li>
+<li><a href="#net-server-properties">Net Server Properties</a></li>
+<li><a href="#handling-data">Handling Data</a><ul>
+<li><a href="#reading-data-from-the-socket">Reading Data from the Socket</a></li>
+<li><a href="#writing-data-to-a-socket">Writing Data to a Socket</a></li>
+</ul>
+</li>
+<li><a href="#closing-a-socket">Closing a socket</a></li>
+<li><a href="#closed-handler">Closed Handler</a></li>
+<li><a href="#exception-handler">Exception handler</a></li>
+<li><a href="#event-bus-write-handler">Event Bus Write Handler</a></li>
+<li><a href="#read-and-write-streams">Read and Write Streams</a></li>
+</ul>
+</li>
+<li><a href="#scaling-tcp-servers">Scaling TCP Servers</a></li>
+<li><a href="#netclient">NetClient</a><ul>
+<li><a href="#creating-a-net-client">Creating a Net Client</a></li>
+<li><a href="#making-a-connection">Making a Connection</a></li>
+<li><a href="#configuring-reconnection">Configuring Reconnection</a></li>
+</ul>
+</li>
+<li><a href="#ssl-servers">SSL Servers</a></li>
+<li><a href="#ssl-clients">SSL Clients</a></li>
+</ul>
+</li>
+<li><a href="#user-datagram-protocol-udp">User Datagram Protocol (UDP)</a><ul>
+<li><a href="#creating-a-datagramsocket">Creating a DatagramSocket</a></li>
+<li><a href="#sending-datagram-packets">Sending Datagram packets</a></li>
+<li><a href="#receiving-datagram-packets">Receiving Datagram packets</a></li>
+<li><a href="#multicast">Multicast</a><ul>
+<li><a href="#sending-multicast-packets">Sending Multicast packets</a></li>
+<li><a href="#receiving-multicast-packets">Receiving Multicast packets</a></li>
+<li><a href="#leaving-a-multicast-group">Leaving a Multicast group</a></li>
+<li><a href="#blocking-multicast">Blocking multicast</a></li>
+</ul>
+</li>
+<li><a href="#datagramsocket-properties">DatagramSocket properties</a></li>
+<li><a href="#datagramsocket-local-address">DatagramSocket Local Address</a></li>
+<li><a href="#closing-a-datagramsocket">Closing a DatagramSocket</a></li>
+</ul>
+</li>
+<li><a href="#flow-control-streams-and-pumps">Flow Control - Streams and Pumps</a><ul>
+<li><a href="#readstream">ReadStream</a></li>
+<li><a href="#writestream">WriteStream</a></li>
+<li><a href="#pump">Pump</a></li>
+</ul>
+</li>
+<li><a href="#writing-http-servers-and-clients">Writing HTTP Servers and Clients</a><ul>
+<li><a href="#writing-http-servers">Writing HTTP servers</a><ul>
+<li><a href="#creating-an-http-server">Creating an HTTP Server</a></li>
+<li><a href="#start-the-server-listening_1">Start the Server Listening</a></li>
+<li><a href="#getting-notified-of-incoming-requests">Getting Notified of Incoming Requests</a></li>
+<li><a href="#handling-http-requests">Handling HTTP Requests</a><ul>
+<li><a href="#request-method">Request Method</a></li>
+<li><a href="#request-version">Request Version</a></li>
+<li><a href="#request-uri">Request URI</a></li>
+<li><a href="#request-path">Request Path</a></li>
+<li><a href="#request-query">Request Query</a></li>
+<li><a href="#request-headers">Request Headers</a></li>
+<li><a href="#request-params">Request params</a></li>
+<li><a href="#remote-address">Remote Address</a></li>
+<li><a href="#absolute-uri">Absolute URI</a></li>
+<li><a href="#reading-data-from-the-request-body">Reading Data from the Request Body</a></li>
+<li><a href="#handling-multipart-form-uploads">Handling Multipart Form Uploads</a></li>
+<li><a href="#handling-multipart-form-attributes">Handling Multipart Form Attributes</a></li>
+</ul>
+</li>
+<li><a href="#http-server-responses">HTTP Server Responses</a></li>
+<li><a href="#setting-status-code-and-message">Setting Status Code and Message</a><ul>
+<li><a href="#writing-http-responses">Writing HTTP responses</a></li>
+<li><a href="#ending-http-responses">Ending HTTP responses</a></li>
+<li><a href="#closing-the-underlying-connection">Closing the underlying connection</a></li>
+<li><a href="#response-headers">Response headers</a></li>
+<li><a href="#chunked-http-responses-and-trailers">Chunked HTTP Responses and Trailers</a></li>
+</ul>
+</li>
+<li><a href="#serving-files-directly-from-disk">Serving files directly from disk</a></li>
+<li><a href="#pumping-responses">Pumping Responses</a></li>
+</ul>
+</li>
+<li><a href="#writing-http-clients">Writing HTTP Clients</a><ul>
+<li><a href="#creating-an-http-client">Creating an HTTP Client</a></li>
+<li><a href="#pooling-and-keep-alive">Pooling and Keep Alive</a></li>
+<li><a href="#closing-the-client">Closing the client</a></li>
+<li><a href="#making-requests">Making Requests</a><ul>
+<li><a href="#handling-exceptions">Handling exceptions</a></li>
+<li><a href="#writing-to-the-request-body">Writing to the request body</a></li>
+<li><a href="#ending-http-responses_1">Ending HTTP responses</a></li>
+<li><a href="#writing-request-headers">Writing Request Headers</a></li>
+<li><a href="#request-timeouts">Request timeouts</a></li>
+<li><a href="#http-chunked-requests">HTTP chunked requests</a></li>
+</ul>
+</li>
+<li><a href="#http-client-responses">HTTP Client Responses</a><ul>
+<li><a href="#reading-data-from-the-response-body">Reading Data from the Response Body</a></li>
+<li><a href="#reading-cookies">Reading cookies</a></li>
+</ul>
+</li>
+<li><a href="#100-continue-handling">100-Continue Handling</a></li>
+<li><a href="#http-compression">HTTP Compression</a></li>
+</ul>
+</li>
+<li><a href="#pumping-requests-and-responses">Pumping Requests and Responses</a></li>
+<li><a href="#https-servers">HTTPS Servers</a></li>
+<li><a href="#https-clients">HTTPS Clients</a></li>
+<li><a href="#scaling-http-servers">Scaling HTTP servers</a></li>
+</ul>
+</li>
+<li><a href="#routing-http-requests-with-pattern-matching">Routing HTTP requests with Pattern Matching</a><ul>
+<li><a href="#specifying-matches">Specifying matches.</a></li>
+<li><a href="#extracting-parameters-from-the-path">Extracting parameters from the path</a></li>
+<li><a href="#extracting-params-using-regular-expressions">Extracting params using Regular Expressions</a></li>
+<li><a href="#handling-requests-where-nothing-matches">Handling requests where nothing matches</a></li>
+</ul>
+</li>
+<li><a href="#websockets">WebSockets</a><ul>
+<li><a href="#websockets-on-the-server">WebSockets on the server</a><ul>
+<li><a href="#reading-from-and-writing-to-websockets">Reading from and Writing to WebSockets</a></li>
+<li><a href="#rejecting-websockets">Rejecting WebSockets</a></li>
+<li><a href="#event-bus-write-handler_1">Event Bus Write Handler</a></li>
+<li><a href="#headers-on-the-websocket">Headers on the websocket</a></li>
+</ul>
+</li>
+<li><a href="#websockets-on-the-http-client">WebSockets on the HTTP client</a></li>
+<li><a href="#websockets-in-the-browser">WebSockets in the browser</a><ul>
+<li><a href="#set-a-max-frame-size-for-websockets">Set a max frame size for WebSockets</a></li>
+</ul>
+</li>
+<li><a href="#routing-websockets-with-pattern-matching">Routing WebSockets with Pattern Matching</a></li>
+</ul>
+</li>
+<li><a href="#sockjs">SockJS</a><ul>
+<li><a href="#sockjs-server">SockJS Server</a></li>
+<li><a href="#reading-and-writing-data-from-a-sockjs-server">Reading and writing data from a SockJS server</a></li>
+<li><a href="#sockjs-client">SockJS client</a></li>
+</ul>
+</li>
+<li><a href="#sockjs-eventbus-bridge">SockJS - EventBus Bridge</a><ul>
+<li><a href="#setting-up-the-bridge">Setting up the Bridge</a></li>
+<li><a href="#using-the-event-bus-from-client-side-javascript">Using the Event Bus from client-side JavaScript</a></li>
+<li><a href="#using-the-event-bus-from-client-side-clojurescript">Using the Event Bus from client-side ClojureScript</a></li>
+<li><a href="#securing-the-bridge">Securing the Bridge</a></li>
+<li><a href="#messages-that-require-authorisation">Messages that require authorisation</a></li>
+</ul>
+</li>
+<li><a href="#file-system">File System</a><ul>
+<li><a href="#synchronous-forms">Synchronous forms</a></li>
+<li><a href="#copy">copy</a></li>
+<li><a href="#move">move</a></li>
+<li><a href="#truncate">truncate</a></li>
+<li><a href="#chmod">chmod</a></li>
+<li><a href="#properties">properties</a></li>
+<li><a href="#link">link</a></li>
+<li><a href="#resolve-symlink">resolve-symlink</a></li>
+<li><a href="#delete">delete</a></li>
+<li><a href="#mkdir">mkdir</a></li>
+<li><a href="#read_dir">read_dir</a></li>
+<li><a href="#read-file">read-file</a></li>
+<li><a href="#write-file">write-file</a></li>
+<li><a href="#create_file">create_file</a></li>
+<li><a href="#exists">exists?</a></li>
+<li><a href="#file-system-properties">file-system-properties</a></li>
+<li><a href="#open">open</a></li>
+<li><a href="#asyncfile">AsyncFile</a><ul>
+<li><a href="#random-access-writes">Random access writes</a></li>
+<li><a href="#random-access-reads">Random access reads</a></li>
+<li><a href="#flushing-data-to-underlying-storage">Flushing data to underlying storage.</a></li>
+<li><a href="#using-asyncfile-as-readstream-and-writestream">Using AsyncFile as ReadStream and WriteStream</a></li>
+<li><a href="#closing-an-asyncfile">Closing an AsyncFile</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#dns-client">DNS Client</a><ul>
+<li><a href="#lookup">lookup</a></li>
+<li><a href="#resolve">resolve</a></li>
+<li><a href="#reverselookup">reverseLookup</a></li>
+<li><a href="#error-handling">Error handling</a></li>
+</ul>
+</li>
+<li><a href="#using-nrepl">Using nREPL</a></li>
+</ul>
+</div>
+<h1 id="writing-verticles">Writing Verticles</h1><br/>
+<p>As was described in the <a href="manual.html#verticle">main manual</a>, a
+verticle is the execution unit of Vert.x.</p>
+<p>To recap, Vert.x is a container which executed packages of code called
+Verticles, and it ensures that the code in the verticle is never
+executed concurrently by more than one thread. You can write your
+verticles in any of the languages that Vert.x supports, and Vert.x
+supports running many verticle instances concurrently in the same
+Vert.x instance.</p>
+<p>All the code you write in a Vert.x application runs inside a Verticle
+instance.</p>
+<p>For simple prototyping and trivial tasks you can write raw verticles
+and run them directly on the command line, but in most cases you will
+always wrap your verticles inside Vert.x <a href="mods_manual.html">modules</a>.</p>
+<p>For now, let's try writing a simple raw verticle.</p>
+<p>As an example we'll write a simple TCP echo server. The server just
+accepts connections and any data received by it is echoed back on the
+connection.</p>
+<p>Copy the following into a text editor and save it as <code>server.clj</code></p>
+<pre class="prettyprint">(ns example.server
+  (:require [vertx.core :as core]
+            [vertx.net :as net]
+            [vertx.stream :as stream]))
+
+(let [server (net/server)]
+  (-&gt; server
+      (net/on-connect #(stream/pump % %))
+      (net/listen 1234 "localhost"))
+
+  (core/on-stop
+    (.close server)))
+</pre>
+<p>Now, go to the directory where you saved the file and type</p>
+<pre class="prettyprint">vertx run server.clj
+</pre>
+<p>The server will now be running. Connect to it using telnet:</p>
+<pre class="prettyprint">telnet localhost 1234
+</pre>
+<p>And notice how data you send (and hit enter) is echoed back to you.</p>
+<p>Congratulations! You've written your first verticle.</p>
+<p>In the rest of this manual we'll assume the code snippets are running
+inside a verticle.</p>
+<h2 id="accessing-the-vertx-api">Accessing the Vert.x API</h2><br/>
+<p>The Clojure Vert.x API consists of several namespaces that you will
+need to require directly or as part of the namespace declaration in
+your verticle main file.</p>
+<h2 id="verticle-clean-up">Verticle clean-up</h2><br/>
+<p>Servers, clients and event bus handlers will be automatically closed
+when the verticles is stopped, however if you need to provide any
+custom clean-up code when the verticle is stopped you can register any
+number of bodies or functions with the <code>vertx.core/on-stop</code> macro and
+<code>vertx.core/on-stop*</code> function, respectively. Vert.x will invoke all
+of the registered bodies/functions when the verticle is stopped.</p>
+<h2 id="getting-configuration-in-a-verticle">Getting Configuration in a Verticle</h2><br/>
+<p>You can pass configuration to a module or verticle from the command
+line using the <code>-conf</code> option, for example:</p>
+<pre class="prettyprint">vertx runmod com.mycompany~my-mod~1.0 -conf myconf.json
+</pre>
+<p>or for a raw verticle</p>
+<pre class="prettyprint">vertx run foo.clj -conf myconf.json
+</pre>
+<p>The argument to <code>-conf</code> is the name of a text file containing a valid
+JSON object.</p>
+<p>The configuration is available in the verticle as a Clojure map using
+the <code>vertx.core/config</code> function. For example:</p>
+<pre class="prettyprint">(require '[vertx.core :as core])
+
+;; Do something with config
+
+(println "number of wibbles is #{config.wibble_number}" 
+         (:wibble-number (core/config)))
+</pre>
+<p>The config returned is a Clojure map with keyword keys. You can use
+this object to configure the verticle. Allowing verticles to be
+configured in a consistent way like this allows configuration to be
+easily passed to them irrespective of the language.</p>
+<h2 id="logging-from-a-verticle">Logging from a Verticle</h2><br/>
+<p>Each verticle is given its own logger. You can log to it using the
+functions in <code>vertx.logging</code>:</p>
+<pre class="prettyprint">(require '[vertx.logging :as log])
+
+(log/info "I am logging something")
+</pre>
+<p><code>vertx.logging</code> provides the following macros:</p>
+<ul>
+<li>trace</li>
+<li>debug</li>
+<li>info</li>
+<li>warn</li>
+<li>error</li>
+<li>fatal</li>
+</ul>
+<p>Which have the normal meanings you would expect.</p>
+<p>The log files by default go in a file called <code>vertx.log</code> in the system
+temp directory. On my Linux box this is <code>/tmp</code>.</p>
+<p>For more information on configuring logging, please see the
+<a href="manual.html#logging">main manual</a>.</p>
+<h2 id="accessing-environment-variables-from-a-verticle">Accessing environment variables from a Verticle</h2><br/>
+<p>You can access a map of environment variables from a Verticle with the
+<code>vertx.core/env</code> function.</p>
+<h2 id="causing-the-container-to-exit">Causing the container to exit</h2><br/>
+<p>You can call the <code>vertx.core/exit</code> function to cause the Vert.x
+instance to make a clean shutdown.</p>
+<h1 id="deploying-and-undeploying-verticles-programmatically">Deploying and Undeploying Verticles Programmatically</h1><br/>
+<p>You can deploy and undeploy verticles programmatically from inside
+another verticle. Any verticles deployed this way will be able to see
+resources (classes, scripts, other files) of the main verticle.</p>
+<h2 id="deploying-a-simple-verticle">Deploying a simple verticle</h2><br/>
+<p>To deploy a verticle programmatically call the
+<code>vertx.core/deploy-verticle</code> function.</p>
+<p>To deploy a single instance of a verticle :</p>
+<pre class="prettyprint">(core/deploy-verticle main)
+</pre>
+<p>Where <code>main</code> is the name of the Verticle (i.e. the name of the script
+or FQCN of the class).</p>
+<p>See the chapter on <a href="manual.html#running-vertx">"running Vert.x"</a> in
+the main manual for a description of what a main is.</p>
+<h2 id="deploying-worker-verticles">Deploying Worker Verticles</h2><br/>
+<p>The <code>vertx.core/deploy-verticle</code> function deploys standard (non
+worker) verticles. If you want to deploy worker verticles use the
+<code>vertx.core/deploy-worker-verticle</code> function. This function takes the
+same parameters as <code>vertx.core/deploy-verticle</code> with the same
+meanings.</p>
+<h2 id="deploying-a-module-programmatically">Deploying a module programmatically</h2><br/>
+<p>You should use <code>vertx.core/deploy-module</code> to deploy a module, for example:</p>
+<pre class="prettyprint">(core/deploy-module "io.vertx~mod-mailer~2.0.0-beta1" 
+                    :config config)
+</pre>
+<p>Would deploy an instance of the <code>io.vertx~mod-mailer~2.0.0-beta1</code>
+module with the specified configuration map. Please see the
+<a href="mods_manual.html">modules manual</a> for more information about modules.</p>
+<h2 id="passing-configuration-to-a-verticle-programmatically">Passing configuration to a verticle programmatically</h2><br/>
+<p>Configuration can be passed to a verticle that is deployed
+programmatically. Inside the deployed verticle the configuration is
+accessed with the <code>vertx.core/config</code> function. For example:</p>
+<pre class="prettyprint">(core/deploy-verticle "my_verticle.clj" 
+                      :config {:name "foo" :age 234})
+</pre>
+<p>Then, in <code>my_verticle.clj</code> you can access the config via
+<code>vertx.core/config</code> as previously explained.</p>
+<h2 id="using-a-verticle-to-co-ordinate-loading-of-an-application">Using a Verticle to co-ordinate loading of an application</h2><br/>
+<p>If you have an application that is composed of multiple verticles that
+all need to be started at application start-up, then you can use
+another verticle that maintains the application configuration and
+starts all the other verticles. You can think of this as your
+application starter verticle.</p>
+<p>For example, you could create a verticle <code>app.clj</code> as follows:</p>
+<pre class="prettyprint">(ns my.app
+  (:require [vertx.core :refer
+            [config deploy-verticle deploy-worker-verticle]]))
+
+(let [cfg (config)]
+  ;; start the verticles that make up the app
+
+  (deploy-verticle "verticle1.clj" 
+                   :config (:verticle1Config cfg))
+  (deploy-verticle "verticle2.clj" 
+                   :config (:verticle2Config cfg) 
+                   :instances 5)
+  (deploy-verticle "verticle3.clj" 
+                   :config (:verticle3Config cfg))
+  (deploy-worker-verticle "verticle4.clj" 
+                          :config (:verticle4Config cfg))
+  (deploy-worker-verticle "verticle5.clj" 
+                          :config (:verticle5Config cfg) 
+                          :instances 10))
+</pre>
+<p>Then set the <code>app.clj</code> verticle as the main of your module and then
+you can start your entire application by simply running:</p>
+<pre class="prettyprint">vertx runmod com.mycompany~my-mod~1.0 -conf conf.json
+</pre>
+<p>Where conf.json is a config file like:</p>
+<pre class="prettyprint">// Application config
+{
+    verticle1Config: {
+        // Config for verticle1
+    },
+    verticle2Config: {
+        // Config for verticle2
+    }, 
+    verticle3Config: {
+        // Config for verticle3
+    },
+    verticle4Config: {
+        // Config for verticle4
+    },
+    verticle5Config: {
+        // Config for verticle5
+    }  
+}
+</pre>
+<p>If your application is large and actually composed of multiple modules
+rather than verticles you can use the same technique.</p>
+<h2 id="specifying-number-of-instances">Specifying number of instances</h2><br/>
+<p>By default, when you deploy a verticle only one instance of the
+verticle is deployed. Verticles instances are strictly single threaded
+so this means you will use at most one core on your server.</p>
+<p>Vert.x scales by deploying many verticle instances concurrently.</p>
+<p>If you want more than one instance of a particular verticle or module
+to be deployed, you can specify the number of instances as follows:</p>
+<pre class="prettyprint">(core/deploy-verticle "foo.ChildVerticle" 
+                      :instances 10)
+</pre>
+<p>Or</p>
+<pre class="prettyprint">(core/deploy-module "io.vertx~some-mod~1.0" 
+                    :instances 10)
+</pre>
+<p>The above examples would deploy 10 instances.</p>
+<h2 id="getting-notified-when-deployment-is-complete">Getting Notified when Deployment is complete</h2><br/>
+<p>The actual verticle deployment is asynchronous and might not complete
+until some time after the call to <code>deploy-verticle</code> or <code>deploy-module</code>
+has returned. If you want to be notified when the verticle/module has
+completed being deployed, you can pass a function to <code>deploy-verticle</code>,
+which will be called when it's complete:</p>
+<pre class="prettyprint">(core/deploy-verticle "my_verticle.clj" 
+  :handler (fn [err deploy-id]
+             (when-not err
+               (println "It's been deployed OK!"))))
+</pre>
+<p>The first parameter passed to the fn is an exception-map which will be not
+<code>nil</code> if a failure occurred, otherwise it will be <code>nil</code>.</p>
+<p>The second parameter is the deployment id string. It will be <code>nil</code> if
+a failure occurred. You will need this if you later want to undeploy
+the verticle or module.</p>
+<h2 id="undeploying-a-verticle">Undeploying a Verticle</h2><br/>
+<p>Any verticles that you deploy programmatically from within a verticle
+and all of their children are automatically undeployed when the parent
+verticle is undeployed, so in most cases you will not need to undeploy
+a verticle manually, however if you do want to do this, it can be done
+by calling the <code>vertx.core/undeploy-verticle</code> function, passing in the
+deployment id.</p>
+<pre class="prettyprint">(core/deploy-verticle "my_verticle.rb" 
+  :handler (fn [err deploy-id]
+             ;; Immediately undeploy it
+             (when-not err
+               (core/undeploy-verticle deploy-id))))
+</pre>
+<p>A verticle instance is almost always single threaded (the only
+exception is multi-threaded worker verticles which are an advanced
+feature not intended for normal development), this means a single
+instance can at most utilise one core of your server.</p>
+<p>In order to scale across cores you need to deploy more verticle
+instances. The exact numbers depend on your application - how many
+verticles there are and of what type.</p>
+<p>You can deploy more verticle instances programmatically or on the
+command line when deploying your module using the <code>-instances</code> command
+line option.</p>
+<h1 id="the-event-bus">The Event Bus</h1><br/>
+<p>The event bus is the nervous system of Vert.x.</p>
+<p>It allows verticles to communicate with each other irrespective of
+what language they are written in, and whether they're in the same
+Vert.x instance, or in a different Vert.x instance.</p>
+<p>It even allows client side JavaScript running in a browser to
+communicate on the same event bus. (More on that later).</p>
+<p>The event bus forms a distributed polyglot overlay network spanning
+multiple server nodes and multiple browsers.</p>
+<p>The event bus API is incredibly simple. It basically involves
+registering handlers, unregistering handlers and sending and
+publishing messages.</p>
+<p>First some theory:</p>
+<h2 id="the-theory">The Theory</h2><br/>
+<h3 id="addressing">Addressing</h3><br/>
+<p>Messages are sent on the event bus to an <em>address</em>.</p>
+<p>Vert.x doesn't bother with any fancy addressing schemes. In Vert.x an
+address is simply a string, any string is valid. However it is wise to
+use some kind of scheme, e.g. using periods to demarcate a namespace.</p>
+<p>Some examples of valid addresses are <code>europe.news.feed1</code>,
+<code>acme.games.pacman</code>, <code>sausages</code>, and <code>X</code>.</p>
+<h3 id="handlers">Handlers</h3><br/>
+<p>A handler is a thing that receives messages from the bus. You register
+a handler at an address.</p>
+<p>Many different handlers from the same or different verticles can be
+registered at the same address. A single handler can be registered by
+the verticle at many different addresses.</p>
+<h3 id="publish-subscribe-messaging">Publish / subscribe messaging</h3><br/>
+<p>The event bus supports <em>publishing</em> messages. Messages are published
+to an address. Publishing means delivering the message to all handlers
+that are registered at that address. This is the familiar
+<em>publish/subscribe</em> messaging pattern.</p>
+<h3 id="point-to-point-and-request-response-messaging">Point to point and Request-Response messaging</h3><br/>
+<p>The event bus supports <em>point to point</em> messaging. Messages are sent
+to an address. Vert.x will then route it to just one of the handlers
+registered at that address. If there is more than one handler
+registered at the address, one will be chosen using a non-strict
+round-robin algorithm.</p>
+<p>With point to point messaging, an optional reply handler can be
+specified when sending the message. When a message is received by a
+recipient, and has been handled, the recipient can optionally decide
+to reply to the message. If they do so that reply handler will be
+called.</p>
+<p>When the reply is received back at the sender, it too can be replied
+to. This can be repeated ad-infinitum, and allows a dialog to be
+set-up between two different verticles. This is a common messaging
+pattern called the <em>Request-Response</em> pattern.</p>
+<h3 id="transient">Transient</h3><br/>
+<p><em>All messages in the event bus are transient, and in case of failure
+ of all or parts of the event bus, there is a possibility messages
+ will be lost. If your application cares about lost messages, you
+ should code your handlers to be idempotent, and your senders to retry
+ after recovery.</em></p>
+<p>If you want to persist your messages you can use a persistent work
+queue module for that.</p>
+<h3 id="types-of-messages">Types of messages</h3><br/>
+<p>Messages that you send on the event bus can be as simple as a string,
+a number or a boolean. You can also send vert.x buffers or JSON.</p>
+<p>It's highly recommended you use JSON messages to communicate between
+verticles. JSON is easy to create and parse in all the languages that
+vert.x supports.</p>
+<h2 id="event-bus-api">Event Bus API</h2><br/>
+<p>Let's jump into the API</p>
+<h3 id="registering-and-unregistering-handlers">Registering and Unregistering Handlers</h3><br/>
+<p>To set a message handler on the address <code>test.address</code>, you call the
+<code>vertx.eventbus/on-message</code> function:</p>
+<pre class="prettyprint">(require '[vertx.eventbus :as eb])
+
+(eb/on-message "test.address"
+  (fn [message]
+    (println "Got message body" (eb/body message))))
+</pre>
+<p>It's as simple as that. The handler will then receive any messages
+sent to that address. The object passed into the handler is an
+instance of class <code>Message</code>. The body of the message is available via
+the <code>vertx.eventbus/body</code> function.</p>
+<p>The return value of <code>on-message</code> is a unique handler id which
+can used later to unregister the handler.</p>
+<p>When you register a handler on an address and you're in a cluster it
+can take some time for the knowledge of that new handler to be
+propagated across the entire cluster. If you want to be notified when
+that has completed you can optionally specify a function to the
+<code>on-message</code> function as the third argument. This function will then
+be called once the information has reached all nodes of the
+cluster. E.g. :</p>
+<pre class="prettyprint">(eb/on-message "test.address" my-handler 
+  (fn [err]
+    (println "Yippee! The handler info has been propagated across the cluster")))
+</pre>
+<p>To unregister a handler it's just as straightforward. You simply call
+<code>unregister-handler</code> passing in the id of the handler:</p>
+<pre class="prettyprint">(eb/unregister-handler "test.address" id)
+</pre>
+<p>As with registering, when you unregister a handler and you're in a
+cluster it can also take some time for the knowledge of that
+unregistration to be propagated across the entire to cluster. If you
+want to be notified when that has completed you can optionally specify
+another function to the <code>unregister-handler</code> method:</p>
+<pre class="prettyprint">(eb/unregister-handler "test.address" id
+  (fn [err]
+    (println "Yippee! The handler unregister has been propagated across the cluster")))
+</pre>
+<p>If you want your handler to live for the full lifetime of your
+verticle there is no need to unregister it explicitly - vert.x will
+automatically unregister any handlers when the verticle is stopped.</p>
+<h3 id="publishing-messages">Publishing messages</h3><br/>
+<p>Publishing a message is also trivially easy. Just publish it
+specifying the address, for example:</p>
+<pre class="prettyprint">(eb/publish "test.address" "hello world")
+</pre>
+<p>That message will then be delivered to all handlers registered against
+the address "test.address".</p>
+<h3 id="sending-messages">Sending messages</h3><br/>
+<p>Sending a message will result in only one handler registered at the
+address receiving the message. This is the point to point messaging
+pattern. The handler is chosen in a non strict round-robin fashion.</p>
+<pre class="prettyprint">(eb/send "test.address" "hello world")
+</pre>
+<h3 id="replying-to-messages">Replying to messages</h3><br/>
+<p>Sometimes after you send a message you want to receive a reply from
+the recipient. This is known as the <em>request-response pattern</em>.</p>
+<p>To do this you send a message, and specify a function as a reply
+handler. When the receiver receives the message, it can use the 
+<code>vertx.eventbus/reply</code> function to send a reply.</p>
+<p>When this function is invoked it causes a reply to be sent back to the
+sender where the reply handler is invoked. An example will make this
+clear:</p>
+<p>The receiver:</p>
+<pre class="prettyprint">(eb/on-message "test.address"
+  (fn [message]
+    (println "I received a message" (eb/body message))
+
+    ;; Do some stuff...
+    ;; Now reply to it
+
+    (eb/reply message "This is a reply")))
+</pre>
+<p>The sender:</p>
+<pre class="prettyprint">(eb/send "test.address" "This is a message"
+  (fn [reply-msg]
+    (println "I received a reply" (eb/body reply-msg))))
+</pre>
+<p>It is legal also to send an empty reply or null reply.</p>
+<p>The replies themselves can also be replied to so you can create a
+dialog between two different verticles consisting of multiple rounds.</p>
+<h4 id="specifying-timeouts-for-replies">Specifying timeouts for replies</h4><br/>
+<p>If you send a message specifying a reply handler, and the reply never
+comes, then, by default, you'll be left with a handler that never gets
+unregistered.</p>
+<p>To remedy this you can also specify a timeout in ms and a two-arity
+reply handler function. If a reply is received before timeout your
+handler will be called with the message as the second parameter,
+but if no reply is received before timeout, the handler will be
+automatically unregistered and your handler will be called with an
+exception-map as the first parameter you can deal with it in your code.</p>
+<p>Here's an example:</p>
+<pre class="prettyprint">(eb/send "test.address" "This is a message" 1000 
+  (fn [err m]
+    (if err
+      (println "No reply was received before the 1 second timeout!")
+      (println "I received a reply" m))))
+</pre>
+<p>If the send times out, first parameter to the handler function will be
+an exception map of the form:</p>
+<pre class="prettyprint">{:type :TIMEOUT
+ :message "Timed out waiting for reply"
+ :basis the-ReplyException-object}
+</pre>
+<p>You can also set a default timeout on the event bus itself - this
+timeout will be used if you are using the <code>send</code> function without a
+timeout. The default value of the default timeout is <code>-1</code> which means
+that reply handlers will never timeout (this is for backward
+compatibility reasons with earlier versions of Vert.x). Note that when
+using the <code>send</code> function without a timeout, your handler will never
+be passed an exception-map when a timeout occurs.</p>
+<pre class="prettyprint">(eb/set-default-reply-timeout! 5000)
+</pre>
+<p>When replying to messages you can also provide a timeout and a
+two-arity reply handler function to get replies to the replies within a
+timeout. The API used is similar to before:</p>
+<pre class="prettyprint">(eb/on-message "test.address"
+  (fn [m]
+    (eb/reply "This is a reply" 1000 
+      (fn [err m]
+        (if err
+          (println "No reply was received before the 1 second timeout!")
+          (println "I received a reply" m))))))
+</pre>
+<h4 id="getting-notified-of-reply-failures">Getting notified of reply failures</h4><br/>
+<p>If you send a message with a timeout and result handler function, and
+there are no handlers available to send the message to, the handler
+function will be called with an exception-map containing <code>:type
+:NO_HANDLERS</code>.</p>
+<p>If you send a message with a timeout and result handler, and the
+recipent of the message responds by calling <code>vertx.eventbus/fail</code>, the
+handler function will be called with an exception map of the form:</p>
+<pre class="prettyprint">{:type :RECIPIENT_FAILURE
+ :message "an application specific error message"
+ :code an-application-specific-int-code
+ :basis the-ReplyException-object}
+</pre>
+<p>For example:</p>
+<pre class="prettyprint">(eb/on-message "test.address"
+  (fn [m]
+    (eb/fail 123 "Not enough aardvarks")))
+
+
+(eb/send "test.address" "This is a message" 1000 
+  (fn [err m]
+    (if err
+      (do
+        (println "Failure type:" (:type err))
+        (println "Failure code:" (:code err))
+        (println "Failure message: (:message err)))
+      (println "I received a reply" m))))
+</pre>
+<h3 id="message-types">Message types</h3><br/>
+<p>The message you send can be any of the following types:</p>
+<ul>
+<li>Integer</li>
+<li>Long</li>
+<li>Short</li>
+<li>clojure.lang.BigInt - will be converted to a Long</li>
+<li>Float</li>
+<li>Double</li>
+<li>java.math.BigDecimal - will be converted to a double</li>
+<li>clojure.lang.Ratio - will be converted to a double</li>
+<li>String</li>
+<li>Boolean</li>
+<li>clojure.lang.Seqable (includes clojure lists, vectors, sets) - converted to a JSON array </li>
+<li>map - converted to a JSON map</li>
+<li>byte[]</li>
+<li>Vert.x Buffer</li>
+</ul>
+<p>Vert.x buffers are copied before delivery if they are delivered in the
+same JVM, so different verticles can't access the exact same object
+instance.</p>
+<p>Here are some more examples:</p>
+<p>Send some numbers:
+    (eb/send "test.address" 1234)
+    (eb/send "test.address" 22/7)
+    (eb/send "test.address" 1N)</p>
+<p>Send a boolean:</p>
+<pre class="prettyprint">(eb/send "test.address" true)
+</pre>
+<p>Send a map (will be converted to a JSON object):</p>
+<pre class="prettyprint">(eb/send "test.address" {:name "Tim"
+                         :address "The Moon"
+                         :age 457})
+</pre>
+<p>Send a vector (will be converted to a JSON array):</p>
+<pre class="prettyprint">(eb/send "test.address" ["a" :b 0xC])
+</pre>
+<p><code>nil</code> messages can also be sent:</p>
+<pre class="prettyprint">(eb/send "test.address" nil)
+</pre>
+<p>It's a good convention to have your verticles communicating using
+JSON - this is because JSON is easy to generate and parse for all the
+languages that Vert.x supports.</p>
+<h2 id="distributed-event-bus">Distributed event bus</h2><br/>
+<p>To make each Vert.x instance on your network participate on the same
+event bus, start each Vert.x instance with the <code>-cluster</code> command line
+switch.</p>
+<p>See the chapter in the main manual on
+<a href="manual.html#running-vertx"><em>running Vert.x</em></a> for more information on
+this.</p>
+<p>Once you've done that, any Vert.x instances started in cluster mode
+will merge to form a distributed event bus.</p>
+<h1 id="shared-data">Shared Data</h1><br/>
+<p>Sometimes it makes sense to allow different verticles instances to
+share data in a safe way. Vert.x allows simple <em>Map</em> and <em>Set</em> data
+structures to be shared between verticles. </p>
+<p>There is a caveat: Vert.x ensures that objects are copied where
+appropriate on insertion to prevent other verticles having access to
+the same instance which could lead to race conditions.</p>
+<p>Currently data can only be shared between verticles in the <em>same
+vert.x instance</em>. In later versions of vert.x we aim to extend this to
+allow data to be shared by all vert.x instances in the cluster. </p>
+<p>All Clojure verticles deployed in a single vert.x instance share the
+same Clojure runtime, so you can use the Clojure's existing mechanisms
+for concurrent coordination. If you have a mix of verticles from other
+languages in the same vert.x instance and need to share data, you will
+need to use the vert.x shared data mechanisms.</p>
+<h2 id="shared-maps">Shared Maps</h2><br/>
+<p>To use a shared map to share data between verticles first get a
+reference to the map, and then we just use map operations to put and
+get the data:</p>
+<pre class="prettyprint">(require '[vertx.shareddata :as sd])
+
+(-&gt; (sd/get-map "demo.mymap")
+    (sd/put! "some-key" "some-value"))
+</pre>
+<p>And then, in a different verticle:</p>
+<pre class="prettyprint">(println "value of some-key is"
+  (-&gt; (sd/get-map "demo.mymap")
+      (get "some-key")))
+</pre>
+<h2 id="shared-sets">Shared Sets</h2><br/>
+<p>To use a shared set to share data between verticles first get a
+reference to the set:</p>
+<pre class="prettyprint">(-&gt; (sd/get-set "demo.myset")
+    (sd/add! "some-value"))
+</pre>
+<p>And then, in a different verticle:</p>
+<pre class="prettyprint">(println "does the set contain some-value?"
+  (-&gt; (sd/get-set "demo.myset")
+      (contains? "some-key")))
+</pre>
+<p>The <code>vertx.shareddata</code> namespace provides a few functions for mutating
+its maps and sets (<code>add!</code>, <code>put!</code>, <code>remove!</code>, and <code>clear!</code>). For
+retrieving values from the maps/sets, you can use the built-in clojure
+functions (<code>get</code>, <code>contains?</code>, <code>count</code>, <code>empty?</code>, etc.).</p>
+<p>As a convenience, <code>add!</code>, <code>put!</code>, <code>remove!</code>, and <code>clear!</code> can be given
+a string or keyword name for a set or map instead of the collection
+object and will look it up.</p>
+<p>Currently, no conversion is performed on keys
+or values placed in shared data. The onus is on you to make sure you
+are storing a type that will be readable in any other verticles that
+access it.</p>
+<h1 id="buffers">Buffers</h1><br/>
+<p>Most data in vert.x is shuffled around using instances of
+<code>org.vertx.java.core.buffer.Buffer</code>, which are provided and
+manipulated by functions in the <code>vertx.buffer</code> namespace.</p>
+<p>A Buffer represents a sequence of zero or more bytes that can be
+written to or read from, and which expands automatically as necessary
+to accomodate any bytes written to it.</p>
+<h2 id="creating-buffers">Creating Buffers</h2><br/>
+<p>Create an empty buffer:</p>
+<pre class="prettyprint">(require '[vertx.buffer :as buf])
+
+(buf/buffer)
+</pre>
+<p>Create a buffer from a String. The String will be encoded in the
+buffer using UTF-8:</p>
+<pre class="prettyprint">(buf/buffer "some-string")
+</pre>
+<p>Create a buffer from a String. The String will be encoded using the
+specified encoding, e.g:</p>
+<pre class="prettyprint">(buf/buffer "some-string" "UTF-16")
+</pre>
+<p>Create a buffer with an initial size hint. If you know your buffer
+will have a certain amount of data written to it you can create the
+buffer and specify this size. This makes the buffer initially allocate
+that much memory and is more efficient than the buffer automatically
+resizing multiple times as data is written to it:</p>
+<pre class="prettyprint">(buf/buffer 100000)
+</pre>
+<p>Note that buffers created this way <em>are empty</em>. It does not create a
+buffer filled with zeros up to the specified size.</p>
+<p>Also note that buffers are <em>mutable</em>. To emphasize that, we recommend
+naming any vars that point to buffers with a trailing <code>!</code>. Example:</p>
+<pre class="prettyprint">(let [some-buf! (buf/buffer)
+  ;;mutate away!
+  )
+</pre>
+<h2 id="writing-to-a-buffer">Writing to a Buffer</h2><br/>
+<p>There are two ways to write to a buffer: appending, and random
+access. In either case buffers will always expand automatically to
+encompass the bytes. It's not possible to write outside the bounds of
+the buffer.</p>
+<h3 id="appending-to-a-buffer">Appending to a Buffer</h3><br/>
+<p>To append to a buffer, you use <code>vertx.buffer/append!</code>. <code>append!</code> can
+append other buffers, Bytes, byte[]'s, Doubles, BigDecimals (as
+Doubles), Ratios (as Doubles), Floats, Integers, Longs, BigInts (as
+Longs), Shorts, and Strings.</p>
+<p>The return value of <code>append!</code> is the buffer itself, so calls can be
+chained:</p>
+<pre class="prettyprint">(-&gt; (buf/buffer)
+    (buf/append! 100)
+    (buf/append! "hi") ;; as UTF-8
+    (buf/append! "hello" "UTF-16")
+    (buf/append! some-other-buffer))
+</pre>
+<h3 id="random-access-buffer-writes">Random access buffer writes</h3><br/>
+<p>You can also write into the buffer at a specific index, by using
+<code>vertx.buffer/set!</code>. <code>set!</code> can handle the same types as <code>append!</code>.
+<code>set!</code> takes an index as the first argument - this represents the
+position in the buffer where to start writing the data.</p>
+<p>The buffer will always expand as necessary to accomodate the data.</p>
+<p>The return value of <code>append!</code> is the buffer itself, so calls can be
+chained:</p>
+<pre class="prettyprint">(-&gt; (buf/buffer)
+    (buf/set! 0 100)
+    (buf/set! 23 "hi") ;; as UTF-8
+    (buf/set! 99 "hello" "UTF-16")
+    (buf/set! 2000 some-other-buffer))
+</pre>
+<h2 id="reading-from-a-buffer">Reading from a Buffer</h2><br/>
+<p>Data is read from a buffer using the <code>vertx.buffer/get-XXX</code>
+functions. Get functions exist for Buffer, byte, int, long, double,
+float, short, byte[], and String. The first argument to these methods
+is an index in the buffer from where to get the data.</p>
+<pre class="prettyprint">(buf/get-byte a-buf 100)             ;; Get a byte from pos 100 in buffer
+
+(buf/get-float a-buf 100)            ;; Get a float from pos 100
+
+(buf/get-string a-buf 100)           ;; Get a float from pos 100 as UTF-8
+
+(buf/get-string a-buf 100 "UTF-16")  ;; Get a float from pos 100 as UTF-8
+
+(buf/get-buffer a-buf 100 110)       ;; Get 10 bytes as a new buffer starting at position 100
+</pre>
+<h1 id="delayed-and-periodic-tasks">Delayed and Periodic Tasks</h1><br/>
+<p>It's very common in vert.x to want to perform an action after a delay,
+or periodically.</p>
+<p>In standard verticles you can't just make the thread sleep to
+introduce a delay, as that will block the event loop thread.</p>
+<p>Instead you use vert.x timers. Timers can be <em>one-shot</em> or
+<em>periodic</em>. We'll discuss both.</p>
+<h2 id="one-shot-timers">One-shot Timers</h2><br/>
+<p>A one shot timer calls an event handler after a certain delay,
+expressed in milliseconds.</p>
+<p>To set a timer to fire once you use the <code>vertx.core/timer</code> macro,
+passing in the delay and specifying a handler body which will be
+called after the delay:</p>
+<pre class="prettyprint">(require '[vertx.core :as core])
+
+(core/timer 1000
+  (println "And one second later this is printed"))
+
+(println "First this is printed")
+</pre>
+<p>The return value of the function is a unique timer id. You can use this
+to subsequently cancel the timer. You can also use the The
+<code>vertx.core/timer*</code> function to have access to the timer id at
+execution time:</p>
+<pre class="prettyprint">(core/timer* 1000
+  #(println "The timer id is" %))
+</pre>
+<h2 id="periodic-timers">Periodic Timers</h2><br/>
+<p>You can also set a timer to fire periodically by using the
+<code>vertx.core/periodic</code> macro, passing in the delay and specifying a
+handler body which will be called every delay ms:</p>
+<pre class="prettyprint">(core/periodic 1000
+  (println "And every second this is printed"))
+
+(println "First this is printed")
+</pre>
+<p>The return value of the function is a unique timer id. You can use this
+to subsequently cancel the timer. You can also use the The
+<code>vertx.core/periodic*</code> function to have access to the timer id at
+execution time:</p>
+<pre class="prettyprint">(core/periodic* 1000
+  #(println "The timer id is" %))
+</pre>
+<h2 id="cancelling-timers">Cancelling timers</h2><br/>
+<p>To cancel a timer, call the <code>vertx.core/cancel-timer</code> function
+specifying the timer id. For example:</p>
+<pre class="prettyprint">(let [timer-id (core/periodic 1000
+                 ;; This will never be called
+                 )]
+
+  ;; And immediately cancel it
+
+  (core/cancel-timer timer-id)
+</pre>
+<p>Or you can cancel it from inside the event handler. The following
+example cancels the timer after it has fired 10 times:</p>
+<pre class="prettyprint">(let [count (atom 0)]
+  (core/periodic* 1000
+    (fn [id]
+      (println "In event handler" @count)
+      (if (= 10 (swap! count inc))
+        (core/cancel-timer id)))))
+</pre>
+<h1 id="writing-tcp-servers-and-clients">Writing TCP Servers and Clients</h1><br/>
+<p>Creating TCP servers and clients is very easy with vert.x.</p>
+<h2 id="net-server">Net Server</h2><br/>
+<h3 id="creating-a-net-server">Creating a Net Server</h3><br/>
+<p>To create a TCP server we simply call <code>vertx.net/server</code>:</p>
+<pre class="prettyprint">(require '[vertx.net :as net])
+
+(net/server)
+</pre>
+<h3 id="start-the-server-listening">Start the Server Listening</h3><br/>
+<p>To tell that server to listen for connections we do:</p>
+<pre class="prettyprint">(-&gt; (net/server)
+    (listen 1234 "myhost"))
+</pre>
+<p>The second parameter to <code>listen</code> is the port. A wildcard port of <code>0</code>
+can be specified which means a random available port will be chosen to
+actually listen at. Once the server has completed listening you can
+then call the <code>.port</code> method of the server to find out the real port
+it is using.</p>
+<p>The third parameter is the hostname or ip address. If it is omitted
+it will default to "0.0.0.0" which means it will listen at all
+available interfaces.</p>
+<p>The actual bind is asynchronous so the server might not actually be
+listening until some time <em>after</em> the call to listen has returned. If
+you want to be notified when the server is actually listening you can
+provide a handler function to the <code>listen</code> call. For example:</p>
+<pre class="prettyprint">(net/listen server 1234 "myhost" 
+  (fn [err server]
+    (when-not err 
+      (println "Now listening!"))))
+</pre>
+<h3 id="getting-notified-of-incoming-connections">Getting Notified of Incoming Connections</h3><br/>
+<p>To be notified when a connection occurs we need to call the
+<code>vertx.net/on-connect</code> function, specifying a function which
+represents the handler. The handler will be called when a connection
+is made, getting the NetSocket. <code>on-connect</code> returns the server,
+allowing invocations to be threaded:</p>
+<pre class="prettyprint">(-&gt; (net/socket)
+    (net/on-connect 
+      (fn [socket]
+        (println "A client has connected!")))
+    (net/listen 1234))
+</pre>
+<p>That's a bit more interesting. Now it displays 'A client has
+connected!' every time a client connects.</p>
+<h3 id="closing-a-net-server">Closing a Net Server</h3><br/>
+<p>To close a net server just call the <code>close</code> function:</p>
+<pre class="prettyprint">(net/close server)
+</pre>
+<p>The close is actually asynchronous and might not complete until some
+time after the <code>close</code> function has returned. If you want to be notified
+when the actual close has completed then you can specify a handler function to
+the <code>close</code> function.</p>
+<p>This function will then be called when the close has fully completed.</p>
+<pre class="prettyprint">(net/close server (fn [err]
+                    (when-not err
+                      (println "The server is now fully closed."))))
+</pre>
+<p>In most cases you don't need to close a net server explicitly since
+vert.x will close them for you when the verticle stops.</p>
+<h3 id="net-server-properties">Net Server Properties</h3><br/>
+<p>Net servers have a set of properties you can set which affect its
+behaviour. Firstly there are bunch of properties used to tweak the TCP
+parameters, in most cases you won't need to set these:</p>
+<ul>
+<li>
+<p><code>:tcp-no-delay</code> If this property is true then
+  <a href="http://en.wikipedia.org/wiki/Nagle's_algorithm">Nagle's Algorithm</a>
+  is disabled. If false then it is enabled.</p>
+</li>
+<li>
+<p><code>:send-buffer-size</code> Sets the TCP send buffer size in bytes.</p>
+</li>
+<li>
+<p><code>:receive-buffer-size</code> Sets the TCP receive buffer size in bytes.</p>
+</li>
+<li>
+<p><code>:tcp-keep-alive</code> if this property is true then
+  <a href="http://en.wikipedia.org/wiki/Keepalive#TCP-keepalive">TCP keep alive</a>
+  is enabled, if false it is disabled.</p>
+</li>
+<li>
+<p><code>:reuse-address</code> if this property is true then addresses in
+  TIME-WAIT state can be reused after they have been closed.</p>
+</li>
+<li>
+<p><code>:so-linger</code></p>
+</li>
+<li>
+<p><code>:traffic-class</code></p>
+</li>
+</ul>
+<p>You can set these properties at server creation time by passing them
+as a map to <code>vertx.net/server</code>:</p>
+<pre class="prettyprint">(net/server {:tcp-no-delay false})
+</pre>
+<p>Or set them on an existing server object, either by passing them as a
+map to <code>vertx.utils/set-properties</code>:</p>
+<pre class="prettyprint">(utils/set-properties server {:tcp-no-delay false})
+</pre>
+<p>Or by calling the corresponding java setter methods on the server
+object:</p>
+<pre class="prettyprint">(.setTcpNoDelay server false)
+</pre>
+<p>Net servers have a further set of properties which are used to
+configure SSL. We'll discuss those later on.</p>
+<h3 id="handling-data">Handling Data</h3><br/>
+<p>So far we have seen how to create a <code>NetServer</code>, and accept incoming
+connections, but not how to do anything interesting with the
+connections. Let's remedy that now.</p>
+<p>When a connection is made, the connect handler is called passing in an
+instance of <code>NetSocket</code>. This is a socket-like interface to the actual
+connection, and allows you to read and write data as well as do
+various other things like close the socket.</p>
+<h4 id="reading-data-from-the-socket">Reading Data from the Socket</h4><br/>
+<p>To read data from the socket you need to set the data handler on the
+socket via <code>vertx.stream/on-data</code>. This handler will be called with a
+<code>Buffer</code> every time data is received on the socket. You could try the
+following code and telnet to it to send some data:</p>
+<pre class="prettyprint">(require '[vertx.net :as net]
+         '[vertx.stream :as stream])
+
+(-&gt; (net/server)
+    (net/on-connect
+      (fn [sock]
+        (stream/on-data sock
+          (fn [buffer]
+            (println "I received" (.length buffer) "bytes of data")))))
+    (net/listen 1234 "localhost"))
+</pre>
+<h4 id="writing-data-to-a-socket">Writing Data to a Socket</h4><br/>
+<p>To write data to a socket, you invoke the <code>vertx.stream/write</code> function. </p>
+<p>With a single buffer:</p>
+<pre class="prettyprint">(stream/write sock some-buffer)
+</pre>
+<p>A string. In this case the string will encoded using UTF-8 and the
+result written to the wire:</p>
+<pre class="prettyprint">(stream/write sock "hello")
+</pre>
+<p>A string and an encoding. In this case the string will encoded using
+the specified encoding and the result written to the wire:</p>
+<pre class="prettyprint">(stream/write sock "hello" "UTF-16")
+</pre>
+<p>The write function in asynchronous and always returns immediately
+after the write has been queued. The actual write might occur some
+time later.</p>
+<p>Let's put it all together.</p>
+<p>Here's an example of a simple TCP echo server which simply writes back
+(echoes) everything that it receives on the socket:</p>
+<pre class="prettyprint">(require '[vertx.net :as net]
+         '[vertx.stream :as stream])
+
+(-&gt; (net/server)
+    (net/on-connect
+      (fn [sock]
+        (stream/on-data sock
+          (fn [buffer]
+            (stream/write sock buffer)))))
+    (net/listen 1234 "localhost"))
+</pre>
+<h3 id="closing-a-socket">Closing a socket</h3><br/>
+<p>You can close a socket by invoking its <code>close</code> java method. This will close
+the underlying TCP connection.</p>
+<h3 id="closed-handler">Closed Handler</h3><br/>
+<p>If you want to be notified when a socket is closed, you can set the a
+closed handler on the socket via <code>vertx.net/on-close</code>:</p>
+<pre class="prettyprint">(-&gt; (net/server)
+    (net/on-connect
+      (fn [sock]
+        (net/on-close sock
+          (partial println "The socket is now closed"))))
+    (net/listen 1234 "localhost"))
+</pre>
+<p>The closed handler will be called irrespective of whether the close
+was initiated by the client or server.</p>
+<h3 id="exception-handler">Exception handler</h3><br/>
+<p>You can set an exception handler on the socket that will be called if
+an exception occurs (note that we're using a function from the
+<code>vertx.stream</code> namespace):</p>
+<pre class="prettyprint">(-&gt; (net/server)
+    (net/on-connect
+      (fn [sock]
+        (stream/on-exception sock
+          (fn [ex-map] 
+            (println "Oops. Something went wrong" (:message ex-map))))))
+(net/listen 1234 "localhost"))
+</pre>
+<h3 id="event-bus-write-handler">Event Bus Write Handler</h3><br/>
+<p>Every NetSocket automatically registers a handler on the event bus,
+and when any buffers are received in this handler, it writes them to
+itself. This enables you to write data to a NetSocket which is
+potentially in a completely different verticle or even in a different
+Vert.x instance by sending the buffer to the address of that handler.</p>
+<p><strong>Note that you must explicitly write a buffer to
+  <code>vertx.eventbus/send</code> when sending to a socket.</strong></p>
+<p>The address of the handler is provided by the <code>.writeHandlerID</code> Java
+method.</p>
+<p>For example to write some data to the NetSocket from a completely
+different verticle you could do:</p>
+<pre class="prettyprint">;; retrieve the write handler ID and share it via 
+;; some mechanism (eventbus, shared data, atom, etc)
+(.writeHandlerID sock)
+
+;; in another verticle, get the ID and send a buffer
+(eb/send write-handler-id (buf/buffer "some data"))
+</pre>
+<h3 id="read-and-write-streams">Read and Write Streams</h3><br/>
+<p>NetSocket also can at as a <code>ReadStream</code> and a <code>WriteStream</code>. This
+allows flow control to occur on the connection and the connection data
+to be pumped to and from other object such as HTTP requests and
+responses, WebSockets and asynchronous files.</p>
+<p>This will be discussed in depth in the chapter on
+<a href="#flow-control">streams and pumps</a>.</p>
+<h2 id="scaling-tcp-servers">Scaling TCP Servers</h2><br/>
+<p>A verticle instance is strictly single threaded.</p>
+<p>If you create a simple TCP server and deploy a single instance of it
+then all the handlers for that server are always executed on the same
+event loop (thread).</p>
+<p>This means that if you are running on a server with a lot of cores,
+and you only have this one instance deployed then you will have at
+most one core utilised on your server!</p>
+<p>To remedy this you can simply deploy more instances of the module in
+the server, e.g.</p>
+<pre class="prettyprint">vertx runmod com.mycompany~my-mod~1.0 -instances 20
+</pre>
+<p>Or for a raw verticle</p>
+<pre class="prettyprint">vertx run foo.MyApp -instances 20
+</pre>
+<p>The above would run 20 instances of the module/verticle in the same
+Vert.x instance.</p>
+<p>Once you do this you will find the echo server works functionally
+identically to before, but, <em>as if by magic</em>, all your cores on your
+server can be utilised and more work can be handled.</p>
+<p>At this point you might be asking yourself <em>'Hold on, how can you have
+more than one server listening on the same host and port? Surely you
+will get port conflicts as soon as you try and deploy more than one
+instance?'</em></p>
+<p><em>Vert.x does a little magic here</em>.</p>
+<p>When you deploy another server on the same host and port as an
+existing server it doesn't actually try and create a new server
+listening on the same host/port.</p>
+<p>Instead it internally maintains just a single server, and, as incoming
+connections arrive it distributes them in a round-robin fashion to any
+of the connect handlers set by the verticles.</p>
+<p>Consequently Vert.x TCP servers can scale over available cores while
+each Vert.x verticle instance remains strictly single threaded, and
+you don't have to do any special tricks like writing load-balancers in
+order to scale your server on your multi-core machine.</p>
+<h2 id="netclient">NetClient</h2><br/>
+<p>A NetClient is used to make TCP connections to servers.</p>
+<h3 id="creating-a-net-client">Creating a Net Client</h3><br/>
+<p>To create a TCP client we simply call <code>vertx.net/client</code>:</p>
+<pre class="prettyprint">(net/client)
+</pre>
+<h3 id="making-a-connection">Making a Connection</h3><br/>
+<p>To actually connect to a server you invoke the <code>connect</code> function:</p>
+<pre class="prettyprint">(-&gt; (net/client)
+    (net/connect 1234 "localhost"
+      (fn [err sock]
+        (if-not err
+          (println "We have connected")))))
+</pre>
+<p>The connect function takes the port number as the first parameter,
+followed by the hostname or ip address of the server. It takes a block
+as the connect handler. This handler will be called when the
+connection actually occurs.</p>
+<p>The first argument passed into the connect handler is an exception-map -
+this will be <code>nil</code> if the connect succeeded. The second argument is
+the socket itself - this will be <code>nil</code> if the connect failed.</p>
+<p>The socket object is an instance of <code>NetSocket</code>, exactly the same as
+what is passed into the server side connect handler. Once given the
+<code>NetSocket</code> you can read and write data from the socket in exactly the
+same way as you do on the server side.</p>
+<p>You can also close it, set the closed handler, set the exception
+handler and use it as a <code>ReadStream</code> or <code>WriteStream</code> exactly the same
+as the server side <code>NetSocket</code>.</p>
+<h3 id="configuring-reconnection">Configuring Reconnection</h3><br/>
+<p>A NetClient can be configured to automatically retry connecting or
+reconnecting to the server in the event that it cannot connect or has
+lost its connection. This is done by setting the following properties:</p>
+<ul>
+<li><code>:reconnect-attempts</code> determines how many times the client will try
+  to connect to the server before giving up. A value of <code>-1</code>
+  represents an infinite number of times. The default value is
+  <code>0</code>. I.e. no reconnection is attempted.</li>
+<li><code>:reconnect-interval</code> determines how long, in milliseconds, the
+  client will wait between reconnect attempts. The default value is
+  <code>1000</code>.</li>
+</ul>
+<p>You can set these properties at client creation time by passing them
+as a map to <code>vertx.net/client</code>:</p>
+<pre class="prettyprint">(net/client {:reconnect-attempts -1})
+</pre>
+<p>Or set them on an existing client object, either by passing them as a
+map to <code>vertx.utils/set-properties</code>:</p>
+<pre class="prettyprint">(utils/set-properties client {:reconnect-attempts -1})
+</pre>
+<p>Or by calling the corresponding java setter methods on the client
+object:</p>
+<pre class="prettyprint">(.setReconnectAttempts client -1)
+</pre>
+<p>Just like <code>NetServer</code>, <code>NetClient</code> also has a set of TCP properties
+you can set which affect its behaviour. They have the same meaning as
+those on <code>NetServer</code>.</p>
+<p><code>NetClient</code> also has a further set of properties which are used to
+configure SSL. We'll discuss those later on.</p>
+<h2 id="ssl-servers">SSL Servers</h2><br/>
+<p>Net servers can also be configured to work with
+<a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Transport Layer Security</a>
+(previously known as SSL).</p>
+<p>When a <code>NetServer</code> is working as an SSL Server the API of the
+<code>NetServer</code> and <code>NetSocket</code> is identical compared to when it is
+working with standard sockets. Getting the server to use SSL is just a
+matter of configuring the <code>NetServer</code> before <code>listen</code> is called.</p>
+<p>To enabled SSL set the property <code>:ssl</code> to <code>true</code> on the <code>NetServer</code>.</p>
+<p>The server must also be configured with a <em>key store</em> and an optional
+<em>trust store</em>.</p>
+<p>These are both <em>Java keystores</em> which can be managed using the
+<a href="http://docs.oracle.com/javase/6/docs/technotes/tools/solaris/keytool.html">keytool</a>
+utility which ships with the JDK.</p>
+<p>The keytool command allows you to create keystores, and import and
+export certificates from them.</p>
+<p>The key store should contain the server certificate. This is
+mandatory - the client will not be able to connect to the server over
+SSL if the server does not have a certificate.</p>
+<p>The key store is configured on the server using the properties
+<code>:key-store-path</code> and <code>:key-store-password</code>.</p>
+<p>The trust store is optional and contains the certificates of any
+clients it should trust. This is only used if client authentication is
+required.</p>
+<p>To configure a server to use server certificates only:</p>
+<pre class="prettyprint">(net/server 
+  {:ssl true
+   :key-store-path "/path/to/your/keystore/server-keystore.jks"
+   :key-store-password "password"})
+</pre>
+<p>Making sure that <code>server-keystore.jks</code> contains the server
+certificate.</p>
+<p>To configure a server to also require client certificates:</p>
+<pre class="prettyprint">(net/server 
+  {:ssl true
+   :key-store-path "/path/to/your/keystore/server-keystore.jks"
+   :key-store-password "password"
+   :client-auth-required true
+   :trust-store-path "/path/to/your/truststore/server-truststore.jks"
+   :trust-store-password "password"})
+</pre>
+<p>Making sure that <code>server-truststore.jks</code> contains the certificates of
+any clients who the server trusts.</p>
+<p>If the property <code>:client-auth-required</code> is set to <code>true</code> and the
+client cannot provide a certificate, or it provides a certificate that
+the server does not trust then the connection attempt will not
+succeed.</p>
+<h2 id="ssl-clients">SSL Clients</h2><br/>
+<p>Net Clients can also be easily configured to use SSL. They have the
+exact same API when using SSL as when using standard sockets.</p>
+<p>To enable SSL on a <code>NetClient</code> the property <code>:ssl</code> must be set to <code>true</code>.</p>
+<p>If the property <code>:trust-all</code> has been set to <code>true</code>, then the client
+will trust all server certificates. The connection will still be
+encrypted but this mode is vulnerable to 'man in the middle'
+attacks. I.e. you can't be sure who you are connecting to. Use this
+with caution.</p>
+<p>If <code>:trust-all</code> is set to <code>false</code>, then a client trust store must be
+configured and should contain the certificates of the servers that the
+client trusts.</p>
+<p>The default value of <code>:trust-all</code> is <code>false</code>.</p>
+<p>The client trust store is just a standard Java key store, the same as
+the key stores on the server side. The client trust store location is
+set by setting the property <code>trust_store_path</code> on the <code>NetClient</code>. If
+a server presents a certificate during connection which is not in the
+client trust store, the connection attempt will not succeed.</p>
+<p>If the server requires client authentication then the client must
+present its own certificate to the server when connecting. This
+certificate should reside in the client key store. Again it's just a
+regular Java key store. The client keystore location is set with the
+property <code>:key-store-path</code> on the <code>NetClient</code>.</p>
+<p>To configure a client to trust all server certificates (dangerous):</p>
+<pre class="prettyprint">(net/client
+  {:ssl true
+   :trust-all true})
+</pre>
+<p>To configure a client to only trust those certificates it has in its
+trust store:</p>
+<pre class="prettyprint">(net/client
+  {:ssl true
+   :trust-store-path "/path/to/your/client/truststore/client-truststore.jks"
+   :trust-store-password "password"})
+</pre>
+<p>To configure a client to only trust those certificates it has in its
+trust store, and also to supply a client certificate:</p>
+<pre class="prettyprint">(net/client
+  {:ssl true
+   :trust-store-path "/path/to/your/client/truststore/client-truststore.jks"
+   :trust-store-password "password"
+   :key-store-path "/path/to/keystore/holding/client/cert/client-keystore.jks"
+   :key-store-password "password"})
+</pre>
+<h1 id="user-datagram-protocol-udp">User Datagram Protocol (UDP)</h1><br/>
+<p>Using User Datagram Protocol (UDP) with Vert.x is a piece of cake. </p>
+<p>UDP is a connection-less transport which basically means you have no
+persistent connection to a remote peer.</p>
+<p>Instead you can send and receive packages and the remote address is
+contained in each of them.</p>
+<p>Note that UDP is not as safe as TCP to use, as there are no guarantees
+that a sent datagram packet will be received by its endpoint at all.</p>
+<p>The only guarantee is that it will either be receive completely or not
+at all.</p>
+<p>Also you usually can't send data larger than the MTU size of
+your network interface, because each datagram will be send as
+one packet.</p>
+<p>But be aware that even if the packet size is smaller then the MTU it
+may still fail.</p>
+<p>The size at which it will fail depends on the operating system etc. So
+a good rule of thumb is to try to send small packets.</p>
+<p>Because of the nature of UDP it is best fit for applications where you
+are allowed to drop packets (a monitoring application, for example).</p>
+<p>The benefits are that it has a lot less overhead compared to TCP,
+which can be handled by the NetServer and NetClient (see above).</p>
+<h2 id="creating-a-datagramsocket">Creating a DatagramSocket</h2><br/>
+<p>To use send or receive UDP, you first need to create a datagram socket:</p>
+<pre class="prettyprint">(require '[vertx.datagram :as udp])
+
+(udp/socket)
+
+;; or specify :ipv4/:ipv6 specifically
+(udp/socket :ipv6)
+</pre>
+<p>The <code>socket</code> function takes additional options - See the 'Datagram
+socket properties' section below.</p>
+<p>The returned socket is not bound to a specific port. </p>
+<h2 id="sending-datagram-packets">Sending Datagram packets</h2><br/>
+<p>As mentioned before, User Datagram Protocol (UDP) sends data in
+packets to remote peers but is not connected to them in a persistent
+fashion.</p>
+<p>This means each packet can be sent to a different remote peer.</p>
+<p>Sending packets is as easy as shown here:</p>
+<pre class="prettyprint">(-&gt; (udp/socket)
+    (udp/send "content" 1234 "10.0.0.1"))
+
+;; send with a result handler
+(-&gt; (udp/socket)
+    (udp/send "content" 1234 "10.0.0.1"
+              (fn [err socket)
+                (println err))))
+</pre>
+<p>Be aware that even if <code>err</code> is nil, it only means the data was written
+to the network stack, but gives no guarantee that it ever reached or 
+will reach the remote peer at all.</p>
+<p>If you need such a guarantee then you want to use TCP with some 
+handshaking logic build on top.</p>
+<h2 id="receiving-datagram-packets">Receiving Datagram packets</h2><br/>
+<p>If you want to receive packets you need to bind the datagram socket by 
+calling <code>vertx.datagram/listen</code> on it, and register a function to 
+receive the packets via <code>vertx.datagram/on-data</code>:</p>
+<pre class="prettyprint">(-&gt; (udp/socket)
+    (udp/on-data (fn [packet-map] ...))
+    (udp/listen 1234 "0.0.0.0"))
+</pre>
+<p>The packet passed to the handler function is a map with the following form:</p>
+<pre class="prettyprint">{:data a-Buffer
+ :basis the-DatagramPacket-object
+ :sender {:host "the-host"
+          :port 12345
+          :basis the-InetSocketAddress-object}}
+</pre>
+<h2 id="multicast">Multicast</h2><br/>
+<h3 id="sending-multicast-packets">Sending Multicast packets</h3><br/>
+<p>Multicast allows multiple sockets to receive the same packets. This
+works by have them join a multicast group to which you can send
+packets.</p>
+<p>We will look at how to join a multicast group and receive packets in
+the next section - for now, let's focus on how to send them. Sending
+multicast packets is no different than sending normal datagram
+packets.</p>
+<p>The only difference is that you would pass in a multicast group
+address to the send method:</p>
+<pre class="prettyprint">(-&gt; (udp/socket)
+    (udp/send "content" 1234 "230.0.0.1"))
+</pre>
+<p>All sockets that have joined the multicast group 230.0.0.1 will
+receive the packet.</p>
+<h3 id="receiving-multicast-packets">Receiving Multicast packets</h3><br/>
+<p>If you want to receive packets for a specific multicast group you need
+to bind the socket by calling <code>vertx.datagram/listen</code>, then join the
+multicast group by calling <code>vertx.datagram/join-multicast-group</code>.</p>
+<p>This way you will be able to receive packets that were sent to the
+address and port on which the socket listens and also to those sent to
+the multicast group.</p>
+<p>Beside this you also want to set a handler function which will be called for
+each received packet.</p>
+<p>So to listen on a specific address and port and also receive packets
+for the Multicast group 230.0.0.1 you would do something like shown
+here:</p>
+<pre class="prettyprint">(-&gt; (udp/socket)
+    (udp/listen 1234)
+    (udp/on-data
+      (fn [packet] ...))
+    (udp/join-multicast-group "230.0.0.1"
+      (fn [err socket]
+        (if-not err 
+          (println "join succeeded")))))
+</pre>
+<h3 id="leaving-a-multicast-group">Leaving a Multicast group</h3><br/>
+<p>There are sometimes situations where you want to receive packets for a
+multicast group for a limited time.</p>
+<p>In these situations you can first join a multicast group, then leave
+the group later:</p>
+<pre class="prettyprint">(-&gt; (udp/socket)
+    (udp/listen 1234)
+    (udp/on-data
+      (fn [packet] ...))
+    (udp/join-multicast-group "230.0.0.1"
+      (fn [err socket]
+        ;; only be part of the group for a second
+        (core/timer 1000
+          (udp/leave-multicast-group socket "230.0.0.1")))))
+</pre>
+<h3 id="blocking-multicast">Blocking multicast</h3><br/>
+<p>It's also possible to block multicast for a specific sender address.</p>
+<p>Be aware this only works on some operating systems and kernel
+versions. Please check the Operating System documentation to see if
+it's supported.</p>
+<p>This an expert feature.</p>
+<p>To block multicast from a specic address you can call
+ <code>vertx.datagram/block-multicast-sender</code>:</p>
+<pre class="prettyprint">(-&gt; (udp/socket)
+    (udp/join-multicast-group "230.0.0.1")
+    ;; This would block packets which are sent from 10.0.0.2
+    (udp/block-multicast-sender "230.0.0.1" "10.0.0.2"))
+</pre>
+<h2 id="datagramsocket-properties">DatagramSocket properties</h2><br/>
+<p>There are several properties you can set on a datagram socket:</p>
+<ul>
+<li>
+<p><code>:send-buffer-size</code> - the send buffer size in bytes.</p>
+</li>
+<li>
+<p><code>:receive-buffer-size</code> - the TCP receive buffer size in bytes.</p>
+</li>
+<li>
+<p><code>:reuse-address</code> - if true then addresses in TIME_WAIT state can be reused after
+                     they have been closed.</p>
+</li>
+<li>
+<p><code>:traffic-class</code> - ??</p>
+</li>
+<li>
+<p><code>:broadcast</code> - controls the SO_BROADCAST socket option. When this option is set, 
+                 Datagram (UDP) packets may be sent to a local interface's broadcast address.</p>
+</li>
+<li>
+<p><code>:multicast-loopback-mode</code> - controls the IP_MULTICAST_LOOP socket option.
+                               When this option is set, multicast packets will
+                               also be received on the local interface. </p>
+</li>
+<li>
+<p><code>:multicast-time-to-live</code> - controls the IP_MULTICAST_TTL socket option. TTL stands for "Time to Live,"
+                              but in this context it specifies the number of IP hops that a packet is
+                              allowed to go through, specifically for multicast traffic. Each router
+                              or gateway that forwards a packet decrements the TTL. If the TTL is
+                              decremented to 0 by a router, it will not be forwarded.</p>
+</li>
+</ul>
+<p>You can set these properties at socket creation time by passing them
+as a map to <code>vertx.datagram/socket</code>:</p>
+<pre class="prettyprint">(udp/socket :ipv4 {:broadcast true})
+</pre>
+<p>Or set them on an existing socket object, either by passing them as a
+map to <code>vertx.utils/set-properties</code>:</p>
+<pre class="prettyprint">(utils/set-properties socket {:broadcast true})
+</pre>
+<p>Or by calling the corresponding java setter methods on the socket
+object:</p>
+<pre class="prettyprint">(.setBroadcast socket true)
+</pre>
+<h2 id="datagramsocket-local-address">DatagramSocket Local Address</h2><br/>
+<p>You can find out the local address of the socket (i.e. the address of
+ this side of the UDP Socket) by calling
+ <code>vertx.datagram/local-address</code>. This will only return an address-map
+ if the socket is actually listening.</p>
+<h2 id="closing-a-datagramsocket">Closing a DatagramSocket</h2><br/>
+<p>You can close a socket by passing it to the <code>vertx.datagram/close</code>
+function.  This will close the socket and release all its resources.</p>
+<p><a id="flow-control"> </a> </p>
+<h1 id="flow-control-streams-and-pumps">Flow Control - Streams and Pumps</h1><br/>
+<p>There are several objects in vert.x that allow data to be read from
+and written to in the form of Buffers.</p>
+<p>In Vert.x, calls to write data return immediately and writes are
+internally queued.</p>
+<p>It's not hard to see that if you write to an object faster than it can
+actually write the data to its underlying resource then the write
+queue could grow without bound - eventually resulting in exhausting
+available memory.</p>
+<p>To solve this problem a simple flow control capability is provided by
+some objects in the vert.x API.</p>
+<p>Any flow control aware object that can be written to is said to
+implement <code>ReadStream</code>, and any flow control object that can be read
+from is said to implement <code>WriteStream</code>.</p>
+<p>Let's take an example where we want to read from a <code>ReadStream</code> and
+write the data to a <code>WriteStream</code>.</p>
+<p>A very simple example would be reading from a <code>NetSocket</code> on a server
+and writing back to the same <code>NetSocket</code> - since <code>NetSocket</code>
+implements both <code>ReadStream</code> and <code>WriteStream</code>, but you can do this
+between any <code>ReadStream</code> and any <code>WriteStream</code>, including HTTP
+requests and response, async files, WebSockets, etc.</p>
+<p>A naive way to do this would be to directly take the data that's been
+read and immediately write it to the NetSocket, for example:</p>
+<pre class="prettyprint">(-&gt; (net/server)
+    (net/on-connect
+      (fn [sock]
+        (stream/on-data sock
+          (fn [buffer]
+            ;; Write the data straight back
+            (stream/write sock buffer)))))
+    (net/listen 1234 "localhost"))
+</pre>
+<p>There's a problem with the above example: If data is read from the
+socket faster than it can be written back to the socket, it will build
+up in the write queue of the net socket, eventually running out of
+RAM. This might happen, for example if the client at the other end of
+the socket wasn't reading very fast, effectively putting back-pressure
+on the connection.</p>
+<p>Since <code>NetSocket</code> implements <code>WriteStream</code>, we can check if the
+<code>WriteStream</code> is full before writing to it:</p>
+<pre class="prettyprint">(-&gt; (net/server)
+    (net/on-connect
+      (fn [sock]
+        (stream/on-data sock
+          (fn [buffer]
+            (if-not (.writeQueueFull sock)
+              (stream/write sock buffer))))))
+    (net/listen 1234 "localhost"))
+</pre>
+<p>This example won't run out of RAM but we'll end up losing data if the
+write queue gets full. What we really want to do is pause the
+<code>NetSocket</code> when the write queue is full. Let's do that:</p>
+<pre class="prettyprint">(-&gt; (net/server)
+    (net/on-connect
+      (fn [sock]
+        (stream/on-data sock
+          (fn [buffer]
+            (stream/write sock buffer)
+            (if (.writeQueueFull sock)
+              (.pause sock))))))
+    (net/listen 1234 "localhost"))
+</pre>
+<p>We're almost there, but not quite. The <code>NetSocket</code> now gets paused
+when the file is full, but we also need to <em>unpause</em> it when the file
+write queue has processed its backlog:</p>
+<pre class="prettyprint">(-&gt; (net/server)
+    (net/on-connect
+      (fn [sock]
+        (stream/on-data sock
+          (fn [buffer]
+            (stream/write sock buffer)
+            (if (.writeQueueFull sock)
+              (do 
+                (.pause sock)
+                (stream/on-drain #(.resume sock))))))))
+    (net/listen 1234 "localhost"))
+</pre>
+<p>And there we have it. The <code>drain_handler</code> event handler will get
+called when the write queue is ready to accept more data, this resumes
+the <code>NetSocket</code> which allows it to read more data.</p>
+<p>It's very common to want to do this when writing vert.x applications,
+so we provide a helper function called <code>pump</code> which does all this hard
+work for you. You just feed it the <code>ReadStream</code> and the <code>WriteStream</code>:</p>
+<pre class="prettyprint">(-&gt; (net/server)
+    (net/on-connect
+      (stream/pump sock sock))
+    (net/listen 1234 "localhost"))
+</pre>
+<p>Which does exactly the same thing as the more verbose example.</p>
+<p>Let's look at the methods on <code>ReadStream</code> and <code>WriteStream</code> in more
+detail:</p>
+<h2 id="readstream">ReadStream</h2><br/>
+<p><code>ReadStream</code> is implemented by <code>AsyncFile</code>, <code>HttpClientResponse</code>,
+<code>HttpServerRequest</code>, <code>WebSocket</code>, <code>NetSocket</code> and <code>SockJSSocket</code>.</p>
+<p>Functions/methods:</p>
+<ul>
+<li><code>vertx.stream/on-data</code>: set a handler which will receive data from the
+  <code>ReadStream</code>. As data arrives the handler will be passed a Buffer.</li>
+<li><code>.pause</code>: pause the handler. When paused no data will be received in
+  the <code>data_handler</code>.</li>
+<li><code>.resume</code>: resume the handler. The handler will be called if any
+  data arrives.</li>
+<li><code>vertx.stream/on-exception</code>: Will be called if an exception occurs
+  on the <code>ReadStream</code>.</li>
+<li><code>vertx.stream/on-end</code>: Will be called when end of stream is
+  reached. This might be when EOF is reached if the <code>ReadStream</code>
+  represents a file, or when end of request is reached if it's an HTTP
+  request, or when the connection is closed if it's a TCP socket.</li>
+</ul>
+<h2 id="writestream">WriteStream</h2><br/>
+<p><code>WriteStream</code> is implemented by <code>AsyncFile</code>, <code>HttpClientRequest</code>,
+<code>HttpServerResponse</code>, <code>WebSocket</code>, <code>NetSocket</code> and <code>SockJSSocket</code>.</p>
+<p>Functions/methods:</p>
+<ul>
+<li><code>.write</code>: write a Buffer to the <code>WriteStream</code>. This method will
+  never block. Writes are queued internally and asynchronously written
+  to the underlying resource.</li>
+<li><code>.setWriteQueueMaxSize</code>: set the number of bytes at which the write
+  queue is considered <em>full</em>, and the function <code>write_queue_full?</code>
+  returns <code>true</code>. Note that, even if the write queue is considered
+  full, if <code>write</code> is called the data will still be accepted and
+  queued.</li>
+<li><code>.writeQueueFull</code>: returns <code>true</code> if the write queue is considered
+  full.</li>
+<li><code>vertx.stream/on-exception</code>: Will be called if an exception occurs
+  on the <code>WriteStream</code>.</li>
+<li><code>vertx.stream/on-drain</code>: The handler will be called if the
+  <code>WriteStream</code> is considered no longer full.</li>
+</ul>
+<h2 id="pump">Pump</h2><br/>
+<p>Instances of <code>Pump</code> (returned by <code>vertx.stream/pump</code>) have the
+following methods:</p>
+<ul>
+<li><code>.start</code>. Start the pump.</li>
+<li><code>.stop</code>. Stops the pump. When the pump starts it is in stopped mode.</li>
+<li><code>.setWriteQueueMaxSize</code>. This has the same meaning as
+  <code>.setWriteQueueMaxSize</code> on the <code>WriteStream</code>.</li>
+<li><code>.bytesPumped</code>. Returns total number of bytes pumped.</li>
+</ul>
+<p>A pump can be started and stopped multiple times.</p>
+<p>By default, <code>vertx.stream/pump</code> calls <code>.start</code> on the <code>Pump</code> before
+returning. To prevent that, pass <code>false</code> as a third parameter:</p>
+<pre class="prettyprint">(stream/pump read-stream write-stream false)
+</pre>
+<h1 id="writing-http-servers-and-clients">Writing HTTP Servers and Clients</h1><br/>
+<h2 id="writing-http-servers">Writing HTTP servers</h2><br/>
+<p>Vert.x allows you to easily write full featured, highly performant and
+scalable HTTP servers.</p>
+<h3 id="creating-an-http-server">Creating an HTTP Server</h3><br/>
+<p>To create an HTTP server you simply call <code>vertx.http/server</code>:</p>
+<pre class="prettyprint">(http/server)
+</pre>
+<h3 id="start-the-server-listening_1">Start the Server Listening</h3><br/>
+<p>To tell that server to listen for incoming requests you use the
+<code>listen</code> function:</p>
+<pre class="prettyprint">(-&gt; (http/server)
+    (http/listen 8080 "myhost"))
+</pre>
+<p>The first parameter to <code>listen</code> is the port. The second parameter is
+the hostname or ip address. If the hostname is omitted it will default
+to <code>0.0.0.0</code> which means it will listen at all available interfaces.</p>
+<p>The actual bind is asynchronous so the server might not actually be
+listening until some time <em>after</em> the call to listen has returned. If
+you want to be notified when the server is actually listening you can
+provide a handler to the <code>listen</code> call. For example:</p>
+<pre class="prettyprint">(-&gt; (http/server)
+    (http/listen 8080
+      (fn [err]
+        (if-not err
+          (println "Now listening!")))))
+</pre>
+<h3 id="getting-notified-of-incoming-requests">Getting Notified of Incoming Requests</h3><br/>
+<p>To be notified when a request arrives you need to set a request
+handler. This is done by calling the <code>vertx.http/on-request</code> function,
+passing in the handler:</p>
+<pre class="prettyprint">(-&gt; (http/server)
+    (http/on-request 
+      (fn [request]
+        (println "An HTTP request has been received")))
+    (http/listen 8080))
+</pre>
+<p>This displays 'An HTTP request has been received!' every time an HTTP
+request arrives on the server. You can try it by running the verticle
+and pointing your browser at <code>http://localhost:8080</code>.</p>
+<h3 id="handling-http-requests">Handling HTTP Requests</h3><br/>
+<p>So far we have seen how to create an <code>HttpServer</code> and be notified of
+requests. Lets take a look at how to handle the requests and do
+something useful with them.</p>
+<p>When a request arrives, the request handler is called passing in an
+instance of <code>HttpServerRequest</code>. This object represents the server
+side HTTP request.</p>
+<p>The handler is called when the headers of the request have been fully
+read. If the request contains a body, that body may arrive at the
+server some time after the request handler has been called.</p>
+<p>It contains functions to get the URI, path, request headers and
+request parameters. It also contains a <code>response</code> property which is a
+reference to an object that represents the server side HTTP response
+for the object.</p>
+<h4 id="request-method">Request Method</h4><br/>
+<p>The request object has a method called <code>.method</code> which returns the
+String representing what HTTP method was requested. Possible values
+for <code>method</code> are: <code>GET</code>, <code>PUT</code>, <code>POST</code>, <code>DELETE</code>, <code>HEAD</code>, <code>OPTIONS</code>,
+<code>CONNECT</code>, <code>TRACE</code>, <code>PATCH</code>.</p>
+<h4 id="request-version">Request Version</h4><br/>
+<p>The request object has a method <code>.version</code> which returns a string
+representing the HTTP version.</p>
+<h4 id="request-uri">Request URI</h4><br/>
+<p>The request object has a property <code>.uri</code> which contains the full URI
+(Uniform Resource Locator) of the request. For example, if the request
+URI was:</p>
+<pre class="prettyprint">/a/b/c/page.html?param1=abc&amp;param2=xyz
+</pre>
+<p>Then <code>(.uri request)</code> would return the string
+<code>/a/b/c/page.html?param1=abc&amp;param2=xyz</code>.</p>
+<p>Request URIs can be relative or absolute (with a domain) depending on
+what the client sent. In most cases they will be relative.</p>
+<p>The request uri contains the value as defined in
+<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html">Section 5.1.2 of the HTTP specification - Request-URI</a></p>
+<h4 id="request-path">Request Path</h4><br/>
+<p>The request object has a <code>.path</code> method which contains the path of the
+request. For example, if the request URI was:</p>
+<pre class="prettyprint">/a/b/c/page.html?param1=abc&amp;param2=xyz
+</pre>
+<p>Then <code>(.path request)</code> would return the string <code>/a/b/c/page.html</code></p>
+<h4 id="request-query">Request Query</h4><br/>
+<p>The request object has a <code>.query</code> method which contains the query of
+the request. For example, if the request URI was:</p>
+<pre class="prettyprint">/a/b/c/page.html?param1=abc&amp;param2=xyz
+</pre>
+<p>Then <code>(.query request)</code> would return the string
+<code>param1=abc&amp;param2=xyz</code></p>
+<h4 id="request-headers">Request Headers</h4><br/>
+<p>The request headers are available using the <code>.headers</code> method on the
+request object. The return value of the method is a <code>MultiMap</code>. A
+MultiMap differs from a normal map in that it allows multiple values
+with the same key.</p>
+<p>You can also retrieve the headers as a Clojure map using the
+<code>vertx.http/headers</code> function. Keys are converted to keywords, and
+keys that have multiple values in the <code>MultiMap</code> will have those
+values stored as a Vector in the Clojure map.</p>
+<p>Here's an example that echoes the headers to the output of the
+response. Run it and point your browser at <code>http://localhost:8080</code> to
+see the headers.</p>
+<pre class="prettyprint">(require '[vertx.http :as http])
+
+(-&gt; (http/server)
+    (http/on-request
+      #(-&gt; %
+           (http/server-response)
+           (http/put-header "Content-Type" "text/plain")
+           (http/end (pr-str (http/headers %)))))
+    (http/listen 8080)
+</pre>
+<h4 id="request-params">Request params</h4><br/>
+<p>Similarly to the headers, the request parameters are available using
+the <code>.params</code> method on the request object. The return value of the
+method is a <code>MultiMap</code>. You can also use the <code>vertx.http/params</code>
+function to retrieve the params as a Clojure map, using the same
+conversion rules as <code>vertx.http/headers</code> above.</p>
+<p>Request parameters are sent on the request URI, after the path. For
+example if the URI was:</p>
+<pre class="prettyprint">/page.html?param1=abc&amp;param2=xyz
+</pre>
+<p>Then the params map would look like:</p>
+<pre class="prettyprint">{:param1 "abc" :param2 "xyz"}
+</pre>
+<h4 id="remote-address">Remote Address</h4><br/>
+<p>Use the method <code>.remoteAddress</code> to find out the address of the other
+side of the HTTP connection. This will return an <code>InetSocketAddress</code>
+object. Alternatively, you can use the <code>vertx.http/remote-address</code>
+function to retrieve the remote address as a map of the form:</p>
+<pre class="prettyprint">{:host "127.0.0.1" :port 1234 :basis actual-inet-socket-address-object}
+</pre>
+<h4 id="absolute-uri">Absolute URI</h4><br/>
+<p>Use the method <code>.absoluteURI</code> to return the absolute URI corresponding
+to the request.</p>
+<h4 id="reading-data-from-the-request-body">Reading Data from the Request Body</h4><br/>
+<p>Sometimes an HTTP request contains a request body that we want to
+read. As previously mentioned the request handler is called when only
+the headers of the request have arrived so the <code>HttpServerRequest</code>
+object does not contain the body. This is because the body may be very
+large and we don't want to create problems with exceeding available
+memory.</p>
+<p>To receive the body, you set a handler function on the request object
+via <code>vertx.stream/on-data</code>. This will then get called every time a
+chunk of the request body arrives. Here's an example:</p>
+<pre class="prettyprint">(-&gt; (http/server)
+    (http/on-request
+      #(stream/on-data %
+        (fn [buf]
+          (println "I received" (.length buf) "bytes"))))
+    (http/listen 8080))
+</pre>
+<p>The data handler function may be called more than once depending on
+the size of the body.</p>
+<p>You'll notice this is very similar to how data from <code>NetSocket</code> is
+read.</p>
+<p>The request object implements the <code>ReadStream</code> interface so you can
+pump the request body to a <code>WriteStream</code>.</p>
+<p>In many cases, you know the body is not large and you just want to
+receive it in one go. To do this you could do something like the
+following:</p>
+<pre class="prettyprint">(-&gt; (http/server)
+    (http/on-request
+      (fn [request]
+        (let [body! (buf/buffer)]
+          ;; Append the chunk to the buffer
+          (stream/on-data request (partial buf/append! body!))
+          ;; invoked when the entire body has been read
+          (stream/on-end 
+            #(println "The total body received was" (.length body!) "bytes")))))
+    (http/listen 8080))
+</pre>
+<p>Like any <code>ReadStream</code> the end handler is invoked when the end of
+stream is reached - in this case at the end of the request.</p>
+<p>If the HTTP request is using HTTP chunking, then each HTTP chunk of
+the request body will correspond to a single call of the data handler.</p>
+<p>It's a very common use case to want to read the entire body before
+processing it, so vert.x provides <code>vertx.http/on-body</code> for registering
+a body handler.</p>
+<p>The body handler is called only once when the <em>entire</em> request body
+has been read.</p>
+<p><em>Beware of doing this with very large requests since the entire
+ request body will be stored in memory.</em></p>
+<p>Here's an example using a body handler:</p>
+<pre class="prettyprint">(-&gt; (http/server)
+    (http/on-request
+      #(http/on-body %
+        (fn [buf]
+          (println "The total body received" (.length buf) "bytes"))))
+    (http/listen 8080))
+</pre>
+<h4 id="handling-multipart-form-uploads">Handling Multipart Form Uploads</h4><br/>
+<p>Vert.x understands file uploads submitted from HTML forms in
+browsers. In order to handle file uploads you should set the upload
+handler on the request via <code>vertx.http/on-upload</code>. The handler will be
+called once for each upload in the form. The value passed to the
+handler is a map of properties for the file:</p>
+<ul>
+<li>:filename     - the name of the file</li>
+<li>:name         - the name of the upload attribute</li>
+<li>:content-type - the content-type specified in the upload</li>
+<li>:encoding     - the content transfer encoding</li>
+<li>:size         - the size of the file in bytes</li>
+<li>:charset      - the Charset as a String</li>
+<li>:basis        - the underlying <code>HttpServerFileUpload</code> object, which is also a <code>ReadStream</code></li>
+<li>:save-fn      - a single-arity fn that can be passed a path to save the file to disk</li>
+</ul>
+<p>Example:</p>
+<pre class="prettyprint">(http/on-upload request
+  (fn [upload]
+   (println "Got an upload" (:filename upload))))
+</pre>
+<p>The <code>HttpServerFileUpload</code> object (available as <code>:basis</code>) is a
+<code>ReadStream</code> so you read the data and stream it to any object that
+implements <code>WriteStream</code> using a Pump, as previously discussed.</p>
+<p>You can also stream it directly to disk using the convenience function
+available as <code>:save-fn</code>:</p>
+<pre class="prettyprint">(http/on-upload request
+  (fn [upload]
+   ((:save-fn upload) (format "uploads/%s" (:filename upload)))))
+</pre>
+<h4 id="handling-multipart-form-attributes">Handling Multipart Form Attributes</h4><br/>
+<p>If the request corresponds to an HTML form that was submitted you can
+use the<code>.formAttributes</code> method on the request object to retrieve the
+form attributes. The return value of the method is a <code>MultiMap</code>. You
+can also use the <code>vertx.http/form-attributes</code> function to retrieve the
+attributes as a Clojure map, using the same conversion rules as
+<code>vertx.http/headers</code> above.</p>
+<p>This should only be called after <em>all</em> of the request has been read -
+this is because form attributes are encoded in the request <em>body</em> not
+in the request headers. You must also call
+<code>vertx.http/expect-multi-part</code> on the request <em>before</em> any of the body
+is read in order for the form attributes to be available.</p>
+<pre class="prettyprint">(stream/on-end request
+  (http/expect-multi-part request)
+  ;; The request has been full read, so now we can look at the form attributes
+  #(do-something-with-form-attributes (http/form-attributes request)))
+</pre>
+<h3 id="http-server-responses">HTTP Server Responses</h3><br/>
+<p>As previously mentioned, you can use <code>vertx.http/server-response</code> to
+create an HTTP response object from an HTTP request. You use it to
+write the response back to the client.</p>
+<h3 id="setting-status-code-and-message">Setting Status Code and Message</h3><br/>
+<p>To set the HTTP status code for the response use the <code>:status-code</code>
+property. You can also use the <code>:status-message</code> property to set the
+status message. If you do not set the status message a default message
+will be used. You can pass these properties as a map to
+<code>vertx.http/server-response</code>, set them on an existing response object
+with <code>vertx.utils/set-properties</code>, or call the corresponding java
+setter methods (<code>.setStatusCode</code>, <code>.setStatusMessage</code>).</p>
+<pre class="prettyprint">(-&gt; (http/server)
+    (http/on-request
+      #(-&gt; %
+           (http/server-response 
+             {:status-code 404
+              :status-message "Too many gerbils"})
+           http/end))
+    (http/listen 8080))
+</pre>
+<p>The default value for <code>:status-code</code> is <code>200</code>.</p>
+<h4 id="writing-http-responses">Writing HTTP responses</h4><br/>
+<p>To write data to an HTTP response, you invoke the <code>vertx.stream/write</code>
+function. This function can be invoked multiple times before the
+response is ended. <code>write</code> can either take anything bufferable, or a
+String and encoding:</p>
+<p>Example:</p>
+<pre class="prettyprint">(-&gt; request
+    (stream/write "a string") ;; encodes as UTF-8 by default
+    (stream/write 42)
+    (stream/write some-buffer!)
+    (stream/write "another string" "UTF-16"))
+</pre>
+<p>The write methods are asynchronous and always returns immediately
+after the write has been queued.</p>
+<p>If you are just writing a single string or bufferable to the HTTP
+response you can write it and end the response in a single call to the
+<code>vertx.http/end</code> function.</p>
+<p>The first call to <code>write</code> results in the response header being being
+written to the response.</p>
+<p>Consequently, if you are not using HTTP chunking then you must set the
+<code>Content-Length</code> header before writing to the response, since it will
+be too late otherwise. If you are using HTTP chunking you do not have
+to worry.</p>
+<h4 id="ending-http-responses">Ending HTTP responses</h4><br/>
+<p>Once you have finished with the HTTP response you must call the
+<code>vertx.http/end</code> function on it.</p>
+<p>This function can be invoked in several ways:</p>
+<p>With no arguments, the response is simply ended.</p>
+<pre class="prettyprint">(http/end response)
+</pre>
+<p>The function can also be called with a string or bufferable in the
+same way <code>vertx.stream/write</code> is called. In this case it's just the
+same as calling <code>write</code> with a string or bufferable followed by
+calling <code>end</code> with no arguments. For example:</p>
+<pre class="prettyprint">(http/end response "That's all folks")
+</pre>
+<h4 id="closing-the-underlying-connection">Closing the underlying connection</h4><br/>
+<p>You can close the underlying TCP connection of the request by calling
+the <code>.close</code> method:</p>
+<pre class="prettyprint">(.close response)
+</pre>
+<h4 id="response-headers">Response headers</h4><br/>
+<p>HTTP response headers can be added to the response by passing them to
+<code>vertx/http/add-header</code>:</p>
+<pre class="prettyprint">(-&gt; response
+    (http/add-header "Some-header" "foo")
+    (http/add-header "Another-header" "bar"))
+</pre>
+<p>Response headers must all be added before any parts of the response
+body are written.</p>
+<h4 id="chunked-http-responses-and-trailers">Chunked HTTP Responses and Trailers</h4><br/>
+<p>Vert.x supports
+<a href="http://en.wikipedia.org/wiki/Chunked_transfer_encoding">HTTP Chunked Transfer Encoding</a>. This
+allows the HTTP response body to be written in chunks, and is normally
+used when a large response body is being streamed to a client, whose
+size is not known in advance.</p>
+<p>You put the HTTP response into chunked mode by setting the <code>:chunked</code>
+property.</p>
+<pre class="prettyprint">(http/server-response request {:chunked true})
+
+;; or
+
+(utils/set-property response :chunked true)
+
+;; or
+
+(.setChunked response true)
+</pre>
+<p>Default is non-chunked. When in chunked mode, each call to
+<code>vertx.stream/write</code> on a response will result in a new HTTP chunk
+being written out.</p>
+<p>When in chunked mode you can also write HTTP response trailers to the
+response. These are actually written in the final chunk of the
+response.</p>
+<p>HTTP response trailers can be added to the response by passing them to
+<code>vertx/http/add-trailer</code>:</p>
+<pre class="prettyprint">(-&gt; response
+    (http/add-trailer "Some-trailer" "foo")
+    (http/add-trailer "Another-trailer" "bar"))
+</pre>
+<h3 id="serving-files-directly-from-disk">Serving files directly from disk</h3><br/>
+<p>If you were writing a web server, one way to serve a file from disk
+would be to open it as an <code>AsyncFile</code> and pump it to the HTTP
+response. Or you could load it it one go using the file system API and
+write that to the HTTP response.</p>
+<p>Alternatively, vert.x provides a method which allows you to serve a
+file from disk to an HTTP response in one operation. Where supported
+by the underlying operating system this may result in the OS directly
+transferring bytes from the file to the socket without being copied
+through userspace at all.</p>
+<p>Using <code>vertx.http/send-file</code> is usually more efficient for large
+files, but may be slower than using <code>vertx.filesystem/read-file</code> to
+manually read the file as a buffer and write it directly to the
+response.</p>
+<p>To do this use the <code>send-file</code> function on the HTTP response. Here's a
+simple HTTP web server that serves static files from the local <code>web</code>
+directory:</p>
+<pre class="prettyprint">(-&gt; (http/server)
+    (http/on-request
+      (fn [req]
+        (-&gt; req
+            http/server-response
+            (http/send-file 
+              (str "web/"
+                (let [path (.path req)]
+                  (cond 
+                    (= path "/") "index.html"
+                    (not (re-find #"\.\." path)) path
+                    :default "error.html"))))))
+    (http/listen 8080))
+</pre>
+<p>There's also a variant of <code>send-file</code> which takes the name of a file
+to serve if the specified file cannot be found:</p>
+<pre class="prettyprint">(http/send-file response (str "web/" file) 
+  :not-found "handler_404.html")
+</pre>
+<p><em>Note: If you use <code>send-file</code> while using HTTPS it will copy through
+ userspace, since if the kernel is copying data directly from disk to
+ socket it doesn't give us an opportunity to apply any encryption.</em></p>
+<p><strong>If you're going to write web servers using vert.x be careful that
+  users cannot exploit the path to access files outside the directory
+  from which you want to serve them.</strong></p>
+<h3 id="pumping-responses">Pumping Responses</h3><br/>
+<p>Since the HTTP Response implements <code>WriteStream</code> you can pump to it
+from any <code>ReadStream</code>, e.g. an <code>AsyncFile</code>, <code>NetSocket</code> or
+<code>HttpServerRequest</code>.</p>
+<p>Here's an example which echoes HttpRequest headers and body back in
+the HttpResponse. It uses a pump for the body, so it will work even if
+the HTTP request body is much larger than can fit in memory at any one
+time:</p>
+<pre class="prettyprint">(-&gt; (http/server)
+    (on-request 
+      (fn [req]
+        (let [response (http/server-response req)]
+          (http/add-headers response (http/headers req))
+          (stream/pump req response)
+          (stream/on-end req (partial http/end response)))))
+    (listen 8080))
+</pre>
+<h2 id="writing-http-clients">Writing HTTP Clients</h2><br/>
+<h3 id="creating-an-http-client">Creating an HTTP Client</h3><br/>
+<p>To create an HTTP client, call <code>vertx.http/client</code>:</p>
+<pre class="prettyprint">(http/client)
+</pre>
+<p>You set the port and hostname (or ip address) that the client will
+connect to using the <code>:host</code> and <code>:port</code> properties:</p>
+<pre class="prettyprint">(http/client {:port 8181 :host "foo.com"})
+</pre>
+<p>A single <code>HttpClient</code> always connects to the same host and port. If
+you want to connect to different servers, create more instances.</p>
+<p>The default port is <code>80</code> and the default host is <code>localhost</code>. So if
+you don't explicitly set these values that's what the client will
+attempt to connect to.</p>
+<h3 id="pooling-and-keep-alive">Pooling and Keep Alive</h3><br/>
+<p>By default the <code>HttpClient</code> pools HTTP connections. As you make
+requests a connection is borrowed from the pool and returned when the
+HTTP response has ended.</p>
+<p>If you do not want connections to be pooled you can set <code>:keep-alive</code>
+to <code>false</code>:</p>
+<pre class="prettyprint">(http/client {:keep-alive false})
+</pre>
+<p>In this case a new connection will be created for each HTTP request
+and closed once the response has ended.</p>
+<p>You can set the maximum number of connections that the client will
+pool as follows:</p>
+<pre class="prettyprint">(http/client {:max-pool-size 10})
+</pre>
+<p>The default value is <code>1</code>.</p>
+<h3 id="closing-the-client">Closing the client</h3><br/>
+<p>Vert.x will automatically close any clients when the verticle is
+stopped, but if you want to close it explicitly you can:</p>
+<pre class="prettyprint">(.close client)
+</pre>
+<h3 id="making-requests">Making Requests</h3><br/>
+<p>To make a request using the client you invoke one the functions named
+after the HTTP method that you want to invoke.</p>
+<p>For example, to make a <code>POST</code> request:</p>
+<pre class="prettyprint">(-&gt; (http/client {:host "foo.com"})
+    (http/post "/some-path/"
+      #(println "got response" (.statusCode %)))
+    (http/end))
+</pre>
+<p>To make a PUT request use the <code>put</code> function, to make a GET request use
+the <code>get</code> function, etc.</p>
+<p>Legal request functions are: <code>get</code>, <code>put</code>, <code>post</code>, <code>delete</code>, <code>head</code>,
+<code>options</code>, <code>connect</code>, <code>trace</code> and <code>patch</code>.</p>
+<p>The general modus operandi is you invoke the appropriate method
+passing in the request URI as the first parameter, the second
+parameter is an event handler which will get called when the
+corresponding response arrives. The response handler is passed the
+client response object as an argument.</p>
+<p>The value specified in the request URI corresponds to the Request-URI
+as specified in
+<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html">Section 5.1.2 of the HTTP specification</a>. In
+most cases it will be a relative URI.</p>
+<p><em>Please note that the domain/port that the client connects to is
+ determined by the properties <code>:port</code> and <code>:host</code>, and is not parsed
+ from the uri.</em></p>
+<p>The return value from the appropriate request method is an
+<code>HttpClientRequest</code> object. You can use this to add headers to the
+request, and to write to the request body. The request object
+implements <code>WriteStream</code>.</p>
+<p>Once you have finished with the request you must call the
+<code>vertx.http/end</code> function.</p>
+<p>If you don't know the name of the request method in advance there is a
+general <code>request</code> function which takes the HTTP method as a parameter:</p>
+<pre class="prettyprint">(-&gt; (http/client {:host "foo.com"})
+    (http/request :POST "/some-path/"
+      #(println "got response" (.statusCode %)))
+    (http/end))
+</pre>
+<p>There is also a function called <code>get-now</code> which does the same as
+<code>get</code>, but automatically ends the request. This is useful for simple
+GETs which don't have a request body:</p>
+<pre class="prettyprint">(-&gt; (http/client {:host "foo.com"})
+    (http/get-now "/some-path/"
+      #(println "got response" (.statusCode %)))
+    (http/end))
+</pre>
+<h4 id="handling-exceptions">Handling exceptions</h4><br/>
+<p>You can set an exception handler on the <code>HttpClient</code> class and it will
+receive all exceptions for the client unless a specific exception
+handler has been set on a specific <code>HttpClientRequest</code> object.</p>
+<h4 id="writing-to-the-request-body">Writing to the request body</h4><br/>
+<p>Writing to the client request body has a very similar API to writing
+to the server response body.</p>
+<p>To write data to an HTTP request, you invoke the <code>vertx.stream/write</code>
+function. This function can be invoked multiple times before the
+request is ended. <code>write</code> can either take anything bufferable, or a
+String and encoding:</p>
+<p>Example:</p>
+<pre class="prettyprint">(-&gt; request
+    (stream/write "a string") ;; encodes as UTF-8 by default
+    (stream/write 42)
+    (stream/write some-buffer!)
+    (stream/write "another string" "UTF-16"))
+</pre>
+<p>The write methods are asynchronous and always returns immediately
+after the write has been queued.</p>
+<p>If you are just writing a single string or bufferable to the HTTP
+request you can write it and end the request in a single call to the
+<code>vertx.http/end</code> function.</p>
+<p>The first call to <code>write</code> results in the request header being being
+written to the request.</p>
+<p>Consequently, if you are not using HTTP chunking then you must set the
+<code>Content-Length</code> header before writing to the request, since it will
+be too late otherwise. If you are using HTTP chunking you do not have
+to worry.</p>
+<h4 id="ending-http-responses_1">Ending HTTP responses</h4><br/>
+<p>Once you have finished with the HTTP request you must call the
+<code>vertx.http/end</code> function on it.</p>
+<p>This function can be invoked in several ways:</p>
+<p>With no arguments, the request is simply ended.</p>
+<pre class="prettyprint">(http/end request)
+</pre>
+<p>The function can also be called with a string or bufferable in the
+same way <code>vertx.stream/write</code> is called. In this case it's just the
+same as calling <code>write</code> with a string or bufferable followed by
+calling <code>end</code> with no arguments. For example:</p>
+<pre class="prettyprint">(http/end request "That's all folks")
+</pre>
+<h4 id="writing-request-headers">Writing Request Headers</h4><br/>
+<p>HTTP request headers can be added to the request by passing them to
+<code>vertx/http/add-header</code>:</p>
+<pre class="prettyprint">(-&gt; request
+    (http/add-header "Some-header" "foo")
+    (http/add-header "Another-header" "bar"))
+</pre>
+<p>Request headers must all be added before any parts of the request
+body are written.</p>
+<h4 id="request-timeouts">Request timeouts</h4><br/>
+<p>You can set a timeout for specific Http Request using the
+<code>.setTimeout</code> method. If the request does not return any data within
+the timeout period an exception will be passed to the exception
+handler (if provided) and the request will be closed.</p>
+<h4 id="http-chunked-requests">HTTP chunked requests</h4><br/>
+<p>Vert.x supports
+<a href="http://en.wikipedia.org/wiki/Chunked_transfer_encoding">HTTP Chunked Transfer Encoding</a>
+for requests. This allows the HTTP request body to be written in
+chunks, and is normally used when a large request body is being
+streamed to the server, whose size is not known in advance.</p>
+<p>You put the HTTP request into chunked mode by calling the method <code>.setChunked</code>.</p>
+<pre class="prettyprint">(.setChunked request true)
+</pre>
+<p>Default is non-chunked. When in chunked mode, each write to the
+request will result in a new HTTP chunk being written out.</p>
+<h3 id="http-client-responses">HTTP Client Responses</h3><br/>
+<p>Client responses are received as an argument to the response handler
+block that is specified when making a request.</p>
+<p>The response object implements <code>ReadStream</code>, so it can be pumped to a
+<code>WriteStream</code> like any other <code>ReadStream</code>.</p>
+<p>To query the status code of the response use the <code>.statusCode</code>
+method. The <code>.statusMessage</code> method contains the status message. For
+example:</p>
+<pre class="prettyprint">(-&gt; (http/client {:host "foo.com"})
+    (http/get-now "/some-path"
+      (fn [resp]
+        (println "server returned status code:" (.statusCode resp))
+        (println "server returned status message:" (.statusMessage resp)))))
+</pre>
+<h4 id="reading-data-from-the-response-body">Reading Data from the Response Body</h4><br/>
+<p>The API for reading a http client response body is very similar to the
+API for reading a http server request body.</p>
+<p>Sometimes an HTTP response contains a request body that we want to
+read. Like an HTTP request, the client response handler is called when
+all the response headers have arrived, not when the entire response
+body has arrived.</p>
+<p>To receive the response body, you set a data handler on the response
+object using <code>vertx.stream/on-data</code> which gets called as parts of the
+HTTP response arrive. Here's an example:</p>
+<pre class="prettyprint">(-&gt; (http/client {:host "foo.com"})
+    (http/get-now "/some-path"
+      (fn [resp]
+        (stream/on-data resp
+          (fn [buf] 
+            (println "I received" (.length buf) "bytes"))))))
+</pre>
+<p>The response object implements the <code>ReadStream</code> interface so you can
+pump the response body to a <code>WriteStream</code>. See the chapter on streams
+and pump for a detailed explanation.</p>
+<p>The data handler function can be called multiple times for a single
+HTTP response.</p>
+<p>As with a server request, if you wanted to read the entire response
+body before doing something with it you could do something like the
+following:</p>
+<pre class="prettyprint">(-&gt; (http/client {:host "foo.com"})
+    (http/get-now "/some-path"
+      (fn [resp]
+        (let [body! (buf/buffer)]
+          (stream/on-data resp
+            (partial buf/append! body!))
+          (stream/on-end resp
+            #(println "The total body received was" (.length body!)))))))
+</pre>
+<p>Like any <code>ReadStream</code> the end handler is invoked when the end of
+stream is reached - in this case at the end of the response.</p>
+<p>If the HTTP response is using HTTP chunking, then each chunk of the
+response body will correspond to a single call to the data handler
+function.</p>
+<p>It's a very common use case to want to read the entire body in one go,
+so vert.x allows a body handler function to be set on the response
+object via <code>vertx.http/on-body</code>.</p>
+<p>The body handler is called only once when the <em>entire</em> response body
+has been read.</p>
+<p><em>Beware of doing this with very large responses since the entire
+ response body will be stored in memory.</em></p>
+<p>Here's an example using <code>body_handler</code>:</p>
+<pre class="prettyprint">(-&gt; (http/client {:host "foo.com"})
+    (http/get-now "/some-path"
+      (fn [resp]
+        (stream/on-body resp
+          #(println "The total body received was" (.length %))))))
+</pre>
+<h4 id="reading-cookies">Reading cookies</h4><br/>
+<p>You can read the list of cookies from the response using the method
+<code>.cookies</code>.</p>
+<h3 id="100-continue-handling">100-Continue Handling</h3><br/>
+<p>According to the
+<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec8.html">HTTP 1.1 specification</a>
+a client can set a header <code>Expect: 100-Continue</code> and send the request
+header before sending the rest of the request body.</p>
+<p>The server can then respond with an interim response status <code>Status:
+100 (Continue)</code> to signify the client is ok to send the rest of the
+body.</p>
+<p>The idea here is it allows the server to authorise and accept/reject
+the request before large amounts of data is sent. Sending large
+amounts of data if the request might not be accepted is a waste of
+bandwidth and ties up the server in reading data that it will just
+discard.</p>
+<p>Vert.x allows you to set a continue handler on the client request
+object via <code>vertx.http/on-continue</code>. This will be called if the server
+sends back a <code>Status: 100 (Continue)</code> response to signify it is ok to
+send the rest of the request.</p>
+<p>This is used in conjunction with the <code>.sendHead</code> method to send the
+head of the request.</p>
+<p>An example will illustrate this:</p>
+<pre class="prettyprint">(let [request (-&gt; (http/client {:host "foo.com})
+                  (http/request :GET "/some-path"
+                    #(println "Got a response:" (.statusCode %))))]
+  (http/add-header request "Expect" "100-Continue")
+  (.setChunked request true)
+  (http/on-continue request
+    (-&gt; request
+        (stream/write "Some Data")
+        http/end))
+  (.sendHead request))
+</pre>
+<h3 id="http-compression">HTTP Compression</h3><br/>
+<p>Vert.x comes with support for HTTP Compression out of the box. Which means the
+HTTPClient can let the remote Http server know that it supports compression,
+and so will be able to handle compressed response bodies. A Http server is
+free to either compress with one of the supported compression algorithm or send
+the body back without compress it at all. So this is only a hint for the Http
+server which it may ignore at all.</p>
+<p>To tell the Http server which compression is supported by the <code>HttpClient</code> it
+will include a 'Accept-Encoding' header with the supported compression algorithm
+as value. Multiple compression algorithms are supported. In case of Vert.x this
+will result in have the following header added:</p>
+<pre class="prettyprint">Accept-Encoding: gzip, deflate
+</pre>
+<p>The Http Server will choose then from one of these. You can detect if a HttpServer
+did compress the body by checking for the 'Content-Encoding' header in the
+response sent back from it.
+If the body of the response was compressed via gzip it will include for example
+the following header:</p>
+<pre class="prettyprint">Content-Encoding: gzip
+</pre>
+<p>To enable compression you only need to do:</p>
+<pre class="prettyprint">(vertx.http/client {:port 8080 :host "127.0.0.1" :try-use-compression true})
+</pre>
+<h2 id="pumping-requests-and-responses">Pumping Requests and Responses</h2><br/>
+<p>The HTTP client and server requests and responses all implement either
+<code>ReadStream</code> or <code>WriteStream</code>. This means you can pump between them
+and any other read and write streams.</p>
+<h2 id="https-servers">HTTPS Servers</h2><br/>
+<p>HTTPS servers are very easy to write using vert.x.</p>
+<p>An HTTPS server has an identical API to a standard HTTP
+server. Getting the server to use HTTPS is just a matter of
+configuring the HTTP Server before <code>listen</code> is called.</p>
+<p>Configuration of an HTTPS server is done in exactly the same way as
+configuring a <code>NetServer</code> for SSL. Please see the SSL server chapter
+for detailed instructions.</p>
+<h2 id="https-clients">HTTPS Clients</h2><br/>
+<p>HTTPS clients can also be very easily written with vert.x</p>
+<p>Configuring an HTTP client for HTTPS is done in exactly the same way
+as configuring a <code>NetClient</code> for SSL. Please see the SSL client
+chapter for detailed instructions.</p>
+<h2 id="scaling-http-servers">Scaling HTTP servers</h2><br/>
+<p>Scaling an HTTP or HTTPS server over multiple cores is as simple as
+deploying more instances of the verticle. For example:</p>
+<pre class="prettyprint">vertx runmod com.mycompany~my-mod~1.0 -instance 20
+</pre>
+<p>Or, for a raw verticle:</p>
+<pre class="prettyprint">vertx run foo.MyServer -instances 20
+</pre>
+<p>The scaling works in the same way as scaling a <code>NetServer</code>. Please see
+the chapter on scaling Net Servers for a detailed explanation of how
+this works.</p>
+<h1 id="routing-http-requests-with-pattern-matching">Routing HTTP requests with Pattern Matching</h1><br/>
+<p>Vert.x lets you route HTTP requests to different handlers based on
+pattern matching on the request path. It also enables you to extract
+values from the path and use them as parameters in the request.</p>
+<p>This is particularly useful when developing REST-style web
+applications.</p>
+<p>To do this you simply create a <code>RouteMatcher</code> using the functions in
+the <code>vertx.http.route</code> namespace and use it as handler in an HTTP
+server. See the chapter on HTTP servers for more information on
+setting HTTP handlers.</p>
+<h2 id="specifying-matches">Specifying matches.</h2><br/>
+<p>You can add different matches to a route matcher. For example, to send
+all GET requests with path <code>/animals/dogs</code> to one handler and all GET
+requests with path <code>/animals/cats</code> to another handler you would do:</p>
+<pre class="prettyprint">(-&gt; (http/server)
+    (http/on-request
+       (-&gt; (route/get "/animals/dogs"
+             (fn [req]
+               (-&gt; (http/server-response req)
+                   (http/end "You requested dogs"))))
+           (route/get "/animals/cats"
+             (fn [req]
+               (-&gt; (http/server-response req)
+                   (http/end "You requested cats"))))))
+    (http/listen 8080))
+</pre>
+<p>Corresponding functions exist for each HTTP method - <code>get</code>, <code>post</code>,
+<code>put</code>, <code>delete</code>, <code>head</code>, <code>options</code>, <code>trace</code>, <code>connect</code> and <code>patch</code>.</p>
+<p>There's also an <code>all</code> function which applies the match to any HTTP
+request method.</p>
+<p>All route functions return a route matcher object and optionally take
+a route matcher as the first argument, allowing them to be
+chained. You can create a virgin route matcher with
+<code>vertx.http.route/matcher</code>.</p>
+<p>The handler specified to the method is just a normal HTTP server
+request handler, the same as you would supply to the <code>on-request</code>
+function.</p>
+<p>You can provide as many matches as you like and they are evaluated in
+the order you added them, the first matching one will receive the
+request.</p>
+<p>A request is sent to at most one handler.</p>
+<h2 id="extracting-parameters-from-the-path">Extracting parameters from the path</h2><br/>
+<p>If you want to extract parameters from the path, you can do this too,
+by using the <code>:</code> (colon) character to denote the name of a
+parameter. For example:</p>
+<pre class="prettyprint">(-&gt; (http/server)
+    (http/on-request
+      (route/put "/:blogname/:post"
+        (fn [req]
+          (let [params (http/params req)]
+            (-&gt; (http/server-response req)
+                (http/end (format "blogname is %s and post is %s"
+                             (:blogname params)
+                             (:post params))))))))
+    (http/listen 8080))
+</pre>
+<p>Any params extracted by pattern matching are added to the map of
+request parameters.</p>
+<p>In the above example, a PUT request to "/myblog/post1" would result in
+the param <code>:blogname</code> getting the value <code>"myblog"</code> and the param
+<code>:post</code> getting the value "post1".</p>
+<p>Valid parameter names must start with a letter of the alphabet and be
+followed by any letters of the alphabet or digits or underscore
+character.</p>
+<h2 id="extracting-params-using-regular-expressions">Extracting params using Regular Expressions</h2><br/>
+<p>Regular Expressions can be used to extract more complex matches. In
+this case capture groups are used to capture any parameters.</p>
+<p>Since the capture groups are not named they are added to the request
+with names <code>param0</code>, <code>param1</code>, <code>param2</code>, etc.</p>
+<p>To use regular expressions, simply pass them to the same functions
+above instead of pattern strings.</p>
+<p>For example:</p>
+<pre class="prettyprint">(-&gt; (http/server)
+    (http/on-request
+      (route/all #"\/([^\/]+)\/([^\/]+)"
+        (fn [req]
+          (let [params (http/params req)]
+            (-&gt; (http/server-response req)
+                (http/end (format "first is %s and second is %s"
+                             (:param0 params)
+                             (:param1 params))))))))
+    (http/listen 8080))
+</pre>
+<p>Run the above and point your browser at
+<code>http://localhost:8080/animals/cats</code>.</p>
+<p>It will display 'first is animals and second is cats'.    </p>
+<h2 id="handling-requests-where-nothing-matches">Handling requests where nothing matches</h2><br/>
+<p>You can use the <code>no-match</code> function to specify a handler that will be
+called if nothing matches. If you don't specify a no match handler and
+nothing matches, a 404 will be returned.</p>
+<pre class="prettyprint">(route/no-match 
+  (fn [req]
+    (http/end (server-response req) "Nothing matched")))
+</pre>
+<h1 id="websockets">WebSockets</h1><br/>
+<p><a href="http://en.wikipedia.org/wiki/WebSocket">WebSockets</a> are a web
+technology that allows a full duplex socket-like connection between
+HTTP servers and HTTP clients (typically browsers).</p>
+<h2 id="websockets-on-the-server">WebSockets on the server</h2><br/>
+<p>To use WebSockets on the server you create an HTTP server as normal,
+but instead of setting a request handler you set a websocket handler
+on the server via <code>vertx.http.websocket/on-websocket</code>.</p>
+<pre class="prettyprint">(-&gt; (http/server)
+    (ws/on-websocket 
+      (fn [ws]
+        ;; A WebSocket has connected!
+        ))
+    (http/listen 8080))
+</pre>
+<h3 id="reading-from-and-writing-to-websockets">Reading from and Writing to WebSockets</h3><br/>
+<p>The <code>websocket</code> instance passed into the handler implements both
+<code>ReadStream</code> and <code>WriteStream</code>, so you can read and write data to it
+in the normal ways. I.e by setting a data handler and calling the
+<code>vertx.stream/write</code> function.</p>
+<p>See the chapter on <code>NetSocket</code> and streams and pumps for more
+information.</p>
+<p>For example, to echo all data received on a WebSocket:</p>
+<pre class="prettyprint">(-&gt; (http/server)
+    (ws/on-websocket 
+      #(stream/pump % %))
+    (listen 8080))
+</pre>
+<p>The <code>vertx.http.websocket</code> namespace provides the functions
+<code>write-binary-frame</code> for writing binary data, and <code>write-text-frame</code>
+for writing text data.</p>
+<h3 id="rejecting-websockets">Rejecting WebSockets</h3><br/>
+<p>Sometimes you may only want to accept WebSockets which connect at a
+specific path.</p>
+<p>To check the path, you can query the <code>.path</code> method of the
+websocket. You can then call the <code>.reject</code> method to reject the
+websocket.</p>
+<pre class="prettyprint">(-&gt; (http/server)
+    (ws/on-websocket 
+      (fn [ws]
+        (if (= "/services/echo" (.path ws))
+          (stream/pump ws ws)
+          (.reject ws))))
+    (http/listen 8080))
+</pre>
+<h3 id="event-bus-write-handler_1">Event Bus Write Handler</h3><br/>
+<p>Like NetSockets, every WebSocket automatically registers handlers on
+the event bus, and when any buffers are received in those handlers, it
+writes them to itself. This enables you to write data to a WebSocket
+which is potentially in a completely different verticle or even in a
+different Vert.x instance by sending the buffer to the address of that
+handler.</p>
+<p>There are two handlers registered for each WebSocket: one for text
+data, the other for binary. The address of each handler is provided by
+the <code>.textHandlerID</code> and <code>.binaryHandlerID</code> methods, respectively.</p>
+<h3 id="headers-on-the-websocket">Headers on the websocket</h3><br/>
+<p>You can use the <code>vertx.http/headers</code> function to retrieve the headers
+passed in the Http Request from the client that caused the upgrade to
+websockets.</p>
+<h2 id="websockets-on-the-http-client">WebSockets on the HTTP client</h2><br/>
+<p>To use WebSockets from the HTTP client, you create the HTTP client as
+normal, then call the <code>vertx.http.websocket/connect</code> function, passing
+in the URI that you wish to connect to at the server, and a handler.</p>
+<p>The handler will then get called if the WebSocket successfully
+connects. If the WebSocket does not connect - perhaps the server
+rejects it, then any exception handler on the HTTP client will be
+called.</p>
+<p>Here's an example of WebSockets on the client:</p>
+<pre class="prettyprint">(-&gt; (http/client {:host "foo.com" :port 8080})
+    (ws/connect "/services/echo"
+      (fn [ws]
+        (stream/on-data ws #(partial println "got"))
+        (ws/write-text-frame ws "foo"))))
+</pre>
+<p>Note that the host (and port) is set on the <code>HttpClient</code> instance, and
+the uri passed in the connect is typically a <em>relative</em> URI.</p>
+<p>Again, the client side WebSocket implements <code>ReadStream</code> and
+<code>WriteStream</code>, so you can read and write to it in the same way as any
+other stream object.</p>
+<h2 id="websockets-in-the-browser">WebSockets in the browser</h2><br/>
+<p>To use WebSockets from a compliant browser, you use the standard
+WebSocket API. Here's some example client side JavaScript which uses a
+WebSocket.</p>
+<pre class="prettyprint">&lt;script&gt;
+
+    var socket = new WebSocket("ws://localhost:8080/services/echo");
+
+    socket.onmessage = function(event) {
+        alert("Received data from websocket: " + event.data);
+    }
+
+    socket.onopen = function(event) {
+        alert("Web Socket opened");
+        socket.write("Hello World");
+    };
+
+    socket.onclose = function(event) {
+        alert("Web Socket closed");
+    };
+
+&lt;/script&gt;
+</pre>
+<p>For more information see the
+<a href="http://dev.w3.org/html5/websockets/">WebSocket API documentation</a></p>
+<h3 id="set-a-max-frame-size-for-websockets">Set a max frame size for WebSockets</h3><br/>
+<p>To set the max frame size for WebSocket, you will need to set it as a
+property on the http server:</p>
+<pre class="prettyprint">(http/server
+{:host "foo.com" :port 8080 :max-web-socket-frame-size 1024})
+</pre>
+<p>or client:</p>
+<pre class="prettyprint">(http/client
+{:host "foo.com" :port 8080 :max-web-socket-frame-size 1024})
+</pre>
+<h2 id="routing-websockets-with-pattern-matching">Routing WebSockets with Pattern Matching</h2><br/>
+<p><strong>TODO</strong></p>
+<h1 id="sockjs">SockJS</h1><br/>
+<p>WebSockets are a new technology, and many users are still using
+browsers that do not support them, or which support older, pre-final,
+versions.</p>
+<p>Moreover, WebSockets do not work well with many corporate
+proxies. This means that's it's not possible to guarantee a WebSocket
+connection is going to succeed for every user.</p>
+<p>Enter SockJS.</p>
+<p>SockJS is a client side JavaScript library and protocol which provides
+a simple WebSocket-like interface to the client side JavaScript
+developer irrespective of whether the actual browser or network will
+allow real WebSockets.</p>
+<p>It does this by supporting various different transports between
+browser and server, and choosing one at runtime according to browser
+and network capabilities. All this is transparent to you - you are
+simply presented with the WebSocket-like interface which <em>just works</em>.</p>
+<p>Please see the
+<a href="https://github.com/sockjs/sockjs-client">SockJS website</a> for more
+information.</p>
+<h2 id="sockjs-server">SockJS Server</h2><br/>
+<p>Vert.x provides a complete server side SockJS implementation.</p>
+<p>This enables vert.x to be used for modern, so-called <em>real-time</em> (this
+is the <em>modern</em> meaning of <em>real-time</em>, not to be confused by the more
+formal pre-existing definitions of soft and hard real-time systems)
+web applications that push data to and from rich client-side
+JavaScript applications, without having to worry about the details of
+the transport.</p>
+<p>To create a SockJS server you simply create a HTTP server as normal
+and pass it in to function that creates a SockJS server.</p>
+<pre class="prettyprint">(require `[vertx.http :as http]
+         `[vertx.http.sockjs :as sockjs])
+
+(-&gt; (http/server) (sockjs/sockjs-server))
+</pre>
+<p>Each SockJS server can host multiple <em>applications</em>.</p>
+<p>Each application is defined by some configuration, and provides a
+handler which gets called when incoming SockJS connections arrive at
+the server.</p>
+<p>For example, to create a SockJS echo application:</p>
+<pre class="prettyprint">(let [server (http/server)]
+   (-&gt; (sockjs/sockjs-server server)
+       (sockjs/install-app {:prefix "/echo"}
+         #(stream/on-data % (partial stream/write %))))
+   (http/listen server 8080 "localhost"))
+</pre>
+<p>The configuration can take the following fields:</p>
+<ul>
+<li><code>:prefix</code>: A url prefix for the application. All http requests whose
+  paths begins with selected prefix will be handled by the
+  application. This property is mandatory.</li>
+<li><code>:insert_JSESSIONID</code>: Some hosting providers enable sticky sessions
+  only to requests that have JSESSIONID cookie set. This setting
+  controls if the server should set this cookie to a dummy value. By
+  default setting JSESSIONID cookie is enabled. More sophisticated
+  behaviour can be achieved by supplying a function.</li>
+<li><code>:session_timeout</code>: The server sends a <code>close</code> event when a client
+  receiving connection have not been seen for a while. This delay is
+  configured by this setting. By default the <code>close</code> event will be
+  emitted when a receiving connection wasn't seen for 5 seconds.</li>
+<li><code>:heartbeat_period</code>: In order to keep proxies and load balancers
+  from closing long running http requests we need to pretend that the
+  connecion is active and send a heartbeat packet once in a
+  while. This setting controlls how often this is done. By default a
+  heartbeat packet is sent every 5 seconds.</li>
+<li><code>:max_bytes_streaming</code>: Most streaming transports save responses on
+  the client side and don't free memory used by delivered
+  messages. Such transports need to be garbage-collected once in a
+  while. <code>:max_bytes_streaming</code> sets a minimum number of bytes that can
+  be send over a single http streaming request before it will be
+  closed. After that client needs to open new request. Setting this
+  value to one effectively disables streaming and will make streaming
+  transports to behave like polling transports. The default value is
+  128K.</li>
+<li><code>:library_url</code>: Transports which don't support cross-domain
+  communication natively ('eventsource' to name one) use an iframe
+  trick. A simple page is served from the SockJS server (using its
+  foreign domain) and is placed in an invisible iframe. Code run from
+  this iframe doesn't need to worry about cross-domain issues, as it's
+  being run from domain local to the SockJS server. This iframe also
+  does need to load SockJS javascript client library, and this option
+  lets you specify its url (if you're unsure, point it to the latest
+  minified SockJS client release, this is the default). The default
+  value is <code>http://cdn.sockjs.org/sockjs-0.3.4.min.js</code></li>
+</ul>
+<h2 id="reading-and-writing-data-from-a-sockjs-server">Reading and writing data from a SockJS server</h2><br/>
+<p>The object passed into the SockJS handler implements <code>ReadStream</code> and
+<code>WriteStream</code> much like <code>NetSocket</code> or <code>WebSocket</code>. You can therefore
+use the standard API for reading and writing to the SockJS socket or
+using it in pumps. See the chapter on Streams and Pumps for more
+information.</p>
+<pre class="prettyprint">(let [server (http/server)]
+   (-&gt; (sockjs/sockjs-server server)
+   (sockjs/install-app {:prefix "/echo"}
+     #(stream/on-data % (partial stream/write %))))
+   (http/listen server 8080 "localhost"))
+</pre>
+<h2 id="sockjs-client">SockJS client</h2><br/>
+<p>For full information on using the SockJS client library please see the
+SockJS website. A simple example:</p>
+<pre class="prettyprint">&lt;script&gt;
+   var sock = new SockJS('http://mydomain.com/my_prefix');
+
+   sock.onopen = function() {
+       console.log('open');
+   };
+
+   sock.onmessage = function(e) {
+       console.log('message', e.data);
+   };
+
+   sock.onclose = function() {
+       console.log('close');
+   };
+&lt;/script&gt;
+</pre>
+<p>As you can see the API is very similar to the WebSockets API.    </p>
+<h1 id="sockjs-eventbus-bridge">SockJS - EventBus Bridge</h1><br/>
+<h2 id="setting-up-the-bridge">Setting up the Bridge</h2><br/>
+<p>By connecting up SockJS and the vert.x event bus we create a
+distributed event bus which not only spans multiple vert.x instances
+on the server side, but can also include client side JavaScript
+running in browsers.</p>
+<p>We  can therefore  create  a huge  distributed  bus encompassing  many
+browsers and servers.  The browsers don't have to be  connected to the
+same server as long as the servers are connected.</p>
+<p>On the server side we have already discussed the event bus API.</p>
+<p>We also provide a client side JavaScript library called <code>vertxbus.js</code>
+which provides the same event bus API, but on the client side.</p>
+<p>This library internally uses SockJS to send and receive data to a
+SockJS vert.x server called the SockJS bridge. It's the bridge's
+responsibility to bridge data between SockJS sockets and the event bus
+on the server side.</p>
+<p>Creating a Sock JS bridge is simple. You just call the
+<code>vertx.http.sockjs/bridge</code> function with the SockJS server instance.</p>
+<p>You will also need to secure the bridge (see below).</p>
+<p>The following example creates and starts a SockJS bridge which will
+bridge any events sent to the path <code>eventbus</code> on to the server side
+event bus.</p>
+<pre class="prettyprint">(let [http-server (http/server)]
+  (sockjs/bridge 
+    (sockjs/sockjs-server http-server)
+    {:prefix "/eventbus"} [{}] [{}]) 
+  (http/listen http-server 8080 "localhost"))
+</pre>
+<h2 id="using-the-event-bus-from-client-side-javascript">Using the Event Bus from client-side JavaScript</h2><br/>
+<p>Once you've set up a bridge, you can use the event bus from the client
+side as follows:</p>
+<p>In your web page, you need to load the script <code>vertxbus.js</code>, then you
+can access the vert.x event bus API. Here's a rough idea of how to use
+it. For a full working examples, please consult the bundled examples.</p>
+<pre class="prettyprint">&lt;script src="http://cdn.sockjs.org/sockjs-0.3.4.min.js"&gt;&lt;/script&gt;
+&lt;script src='vertxbus.js'&gt;&lt;/script&gt;
+
+&lt;script&gt;
+
+    var eb = new vertx.EventBus('http://localhost:8080/eventbus');
+
+    eb.onopen = function() {
+
+      eb.register_handler('some-address', function(message) {
+
+        console.log('received a message: ' + JSON.stringify(message);
+
+      });
+
+      eb.send('some-address', {name: 'tim', age: 587});
+
+    }
+
+&lt;/script&gt;
+</pre>
+<p>You can find <code>vertxbus.js</code> in the <code>client</code> directory of the vert.x
+distribution.</p>
+<p>The first thing the example does is to create a instance of the event
+bus:</p>
+<pre class="prettyprint">var eb = new vertx.EventBus('http://localhost:8080/eventbus')
+</pre>
+<p>The parameter to the constructor is the URI where to connect to the
+event bus. Since we create our bridge with the prefix <code>eventbus</code> we
+will connect there.</p>
+<p>You can't actually do anything with the bridge until it is
+opened. When it is open the <code>onopen</code> handler will be called.</p>
+<p>The client side event bus API for registering and unregistering
+handlers and for sending messages is exactly the same as the server
+side one. Please consult the JavaScript core manual chapter on the
+EventBus for a description of that API.</p>
+<p><strong>There is one more thing to do before getting this working, please read the "Securing the Bridge" section</strong></p>
+<h2 id="using-the-event-bus-from-client-side-clojurescript">Using the Event Bus from client-side ClojureScript</h2><br/>
+<p>If you are writing your client-side JavaScript as ClojureScript, you
+can use the ClojureScript EventBus wrapper that ships with the Clojure
+language module. Here is the example from above, but in ClojureScript
+using the wrapper:</p>
+<pre class="prettyprint">(ns demo.client
+  (:require [vertx.client.eventbus :as eb]))
+
+(def eb (atom nil))
+
+(defn register-handler [] 
+  (eb/on-message @eb "some-address"
+    #(.log js/console (str "received a message: " %))))
+
+(reset! eb (eb/eventbus "http://localhost:8080/eventbus"))
+(eb/on-open @eb register-handler)
+(eb/on-open @eb #(eb/send @eb "some-address" {:name "tim" :age 587}))
+</pre>
+<p><code>eventbus.cljs</code> is included in the <code>io.vertx/clojure-api</code> jar, and
+includes a <code>deps.cljs</code> that brings in <code>vertxbus.js</code> and <code>sockjs.js</code> as
+foreign libs, so there's no need to include them in your html.</p>
+<p>The API is similar to the server-side EventBus API, but has some
+differences. Refer to
+<a href="https://github.com/vert-x/mod-lang-clojure/blob/master/api/src/main/clojure/vertx/client/eventbus.cljs">the source</a>
+to see the full client-side API.</p>
+<h2 id="securing-the-bridge">Securing the Bridge</h2><br/>
+<p>If you started a bridge like in the above example without securing it,
+and attempted to send messages through it you'd find that the messages
+mysteriously disappeared. What happened to them?</p>
+<p>For most applications you probably don't want client side JavaScript
+being able to send just any message to any verticle on the server side
+or to all other browsers.</p>
+<p>For example, you may have a persistor verticle on the event bus which
+allows data to be accessed or deleted. We don't want badly behaved or
+malicious clients being able to delete all the data in your database!
+Also, we don't necessarily want any client to be able to listen in on
+any topic.</p>
+<p>To deal with this, a SockJS bridge will, by default refuse to let
+through any messages. It's up to you to tell the bridge what messages
+are ok for it to pass through. (There is an exception for reply
+messages which are always allowed through).</p>
+<p>In other words the bridge acts like a kind of firewall which has a
+default <em>deny-all</em> policy.</p>
+<p>Configuring the bridge to tell it what messages it should pass through
+is easy. You pass in two arrays of JSON objects (represented by maps)
+that represent <em>matches</em>, as the final argument in the call to
+<code>bridge</code>.</p>
+<p>The first array is the <em>inbound</em> list and represents the messages that
+you want to allow through from the client to the server. The second
+array is the <em>outbound</em> list and represents the messages that you want
+to allow through from the server to the client.</p>
+<p>Each match can have up to three fields:</p>
+<ol>
+<li><code>:address</code>: This represents the exact address the message is being
+   sent to. If you want to filter messages based on an exact address
+   you use this field.</li>
+<li><code>:address_re</code>: This is a regular expression that will be matched
+   against the address. If you want to filter messages based on a
+   regular expression you use this field. If the <code>address</code> field is
+   specified this field will be ignored.</li>
+<li><code>:match</code>: This allows you to filter messages based on their
+   structure. Any fields in the match must exist in the message with
+   the same values for them to be passed. This currently only works
+   with JSON messages.</li>
+</ol>
+<p>When a message arrives at the bridge, it will look through the
+available permitted entries.</p>
+<ul>
+<li>
+<p>If an <code>:address</code> field has been specified then the <code>:address</code> must
+  match exactly with the address of the message for it to be
+  considered matched.</p>
+</li>
+<li>
+<p>If an <code>:address</code> field has not been specified and an <code>:address_re</code>
+  field has been specified then the regular expression in <code>:address_re</code>
+  must match with the address of the message for it to be considered
+  matched.</p>
+</li>
+<li>
+<p>If a <code>:match</code> field has been specified, then also the structure of
+  the message must match.</p>
+</li>
+</ul>
+<p>Here is an example:</p>
+<pre class="prettyprint">(let [http-server (http/server)
+      sockjs-server 
+      auth-inbound [
+                 ;;Let through any messages sent to 'demo.orderMgr'
+                 {:address "demo.orderMgr"}
+
+                 ;; Allow calls to the address 'demo.persistor' as long as the messages
+                 ;; have an action field with value 'find' and a collection field with value
+                 ;; 'albums'
+                 {:address "demo.persistor" :match {:action "find" :collection "albums"}}
+
+                 ;; Allow through any message with a field `wibble` with value `foo`.
+                 {:match {:wibble "foo"}}]
+      auth-outbound [
+                 ;; Let through any messages coming from address 'ticker.mystock'
+                 {:address "ticker.mystock"}
+
+                 ;;Let through any messages from addresses starting with "news." (e.g. news.europe, news.usa, etc)
+                 {:address_re "news\\..+"}]
+    (sockjs/bridge 
+      (sockjs/sockjs-server http-server)
+      {:prefix "/eventbus"} auth-inbound auth-outbound) 
+    (http/listen http-server 8080 "localhost"))
+</pre>
+<p>To let all messages through you can specify two arrays with a single
+empty JSON object which will match all messages.</p>
+<pre class="prettyprint"> (sockjs/bridge sockjs-server {:prefix "/eventbus"} [{}] [{}])
+</pre>
+<p><strong>Be very careful!</strong></p>
+<h2 id="messages-that-require-authorisation">Messages that require authorisation</h2><br/>
+<p>The bridge can also refuse to let certain messages through if the user
+is not authorised.</p>
+<p>To enable this you need to make sure an instance of the
+<code>vertx.auth-mgr</code> module is available on the event bus. (Please see the
+modules manual for a full description of modules).</p>
+<p>To tell the bridge that certain messages require authorisation before
+being passed, you add the field <code>:requires_auth</code> with the value of
+<code>true</code> in the match. The default value is <code>false</code>. For example, the
+following match:</p>
+<pre class="prettyprint">{
+  :address "demo.persistor"
+  :match {
+    :action "find"
+    :collection "albums"
+  }
+  :requires_auth true
+}
+</pre>
+<p>This tells the bridge that any messages to find orders in the <code>albums</code>
+collection, will only be passed if the user is successful
+authenticated (i.e. logged in ok) first.</p>
+<h1 id="file-system">File System</h1><br/>
+<p>Vert.x lets you manipulate files on the file system. File system
+operations are asynchronous and take a handler function as the last
+argument.</p>
+<p>This function will be called when the operation is complete, or an error
+has occurred.</p>
+<p>The first argument passed into the function is an exception-map, if an error
+occurred. This will be <code>nil</code> if the operation completed
+successfully. If the operation returns a result that will be passed in
+the second argument to the handler.</p>
+<p>The asynchronous file system functions are provided by the
+<code>vertx.filesystem</code> namespace.</p>
+<h2 id="synchronous-forms">Synchronous forms</h2><br/>
+<p>For convenience, we also provide synchronous forms of most
+operations. It's highly recommended the asynchronous forms are always
+used for real applications.</p>
+<p>The synchronous form does not take a handler as an argument and
+returns its results directly. The name of the synchronous function is
+the same as the name as the asynchronous form, but resides in the
+<code>vertx.filesystem.sync</code> namespace.</p>
+<h2 id="copy">copy</h2><br/>
+<p>Copies a file.</p>
+<p>This function can be called in two different ways:</p>
+<ul>
+<li><code>(copy source destination handler)</code></li>
+</ul>
+<p>Non-recursive file copy. <code>source</code> is the source file
+name. <code>destination</code> is the destination file name.</p>
+<p>Here's an example:
+    (copy "foo.dat" "bar.dat"
+      (fn [err]
+        (if-not err
+          (pritnln "Copy was successful"))))</p>
+<ul>
+<li><code>(copy source destination recursive? handler)</code></li>
+</ul>
+<p>Recursive copy. <code>source</code> is the source file name. <code>destination</code> is the
+destination file name. <code>recursive?</code> is a boolean flag - if <code>true</code> and
+source is a directory, then a recursive copy of the directory and all
+its contents will be attempted.</p>
+<h2 id="move">move</h2><br/>
+<p>Moves a file.</p>
+<p><code>(move source destination handler)</code></p>
+<p><code>source</code> is the source file name. <code>destination</code> is the destination
+file name. <code>handler</code> is called with the error, or <code>nil</code> if successful.</p>
+<h2 id="truncate">truncate</h2><br/>
+<p>Truncates a file.</p>
+<p><code>(truncate file len handler)</code></p>
+<p><code>file</code> is the file name of the file to truncate. <code>len</code> is the length
+in bytes to truncate it to. <code>handler</code> is called with the error, or
+<code>nil</code> if successful.</p>
+<h2 id="chmod">chmod</h2><br/>
+<p>Changes permissions on a file or directory.</p>
+<p>This function can be called in two different ways:</p>
+<ul>
+<li><code>(chmod file perms handler)</code>.</li>
+</ul>
+<p>Change permissions on a file.</p>
+<p><code>file</code> is the file name. <code>perms</code> is a Unix style permissions string
+made up of 9 characters. The first three are the owner's
+permissions. The second three are the group's permissions and the
+third three are others permissions. In each group of three if the
+first character is <code>r</code> then it represents a read permission. If the
+second character is <code>w</code> it represents write permission. If the third
+character is <code>x</code> it represents execute permission. If the entity does
+not have the permission the letter is replaced with <code>-</code>. Some
+examples:</p>
+<pre class="prettyprint">rwxr-xr-x
+r--r--r--
+</pre>
+<ul>
+<li><code>(chmod file perms dir-perms handler)</code>.</li>
+</ul>
+<p>Recursively change permissions on a directory. <code>file</code> is the directory
+name. <code>perms</code> is a Unix style permissions to apply recursively to any
+files in the directory. <code>dir-perms</code> is a Unix style permissions string
+to apply to the directory and any other child directories recursively.</p>
+<p><code>handler</code> is called with the error, or <code>nil</code> if successful.</p>
+<h2 id="properties">properties</h2><br/>
+<p>Retrieve properties of a file or symbolic link.</p>
+<p>This function can be called in two different ways:</p>
+<ul>
+<li><code>(properties file handler)</code></li>
+</ul>
+<p><code>file</code> is the file name. <code>handler</code> is called with the error (<code>nil</code> if
+successful), along with a map of properties:</p>
+<ul>
+<li><code>:creation-time</code>: Time of file creation.</li>
+<li><code>:last-access-time</code>: Time of last file access.</li>
+<li><code>:last-modified-time</code>: Time file was last modified.</li>
+<li><code>:directory?</code>: This will have the value <code>true</code> if the file is a
+  directory.</li>
+<li><code>:regular-file?</code>: This will have the value <code>true</code> if the file is a
+  regular file (not symlink or directory).</li>
+<li><code>:symbolic-link?</code>: This will have the value <code>true</code> if the file is a
+  symbolic link.</li>
+<li><code>:other?</code>: This will have the value <code>true</code> if the file is another
+  type.</li>
+</ul>
+<p>Links are followed by default.</p>
+<ul>
+<li><code>(properties link follow-link? handler)</code></li>
+</ul>
+<p><code>link</code> is the name of a symbolic link. If <code>follow-link?</code> is true,
+properties for the file the link points to will be passed to
+<code>handler</code>. Otherwise, the properties for the link will be passed.</p>
+<p>Here's an example:</p>
+<pre class="prettyprint">(properties "some-file.txt"
+  (fn [err props]
+    (if err
+        (println "Failed to retrieve file props:" err)
+        (println "Last accessed:" (:last-access-time props)))))
+</pre>
+<h2 id="link">link</h2><br/>
+<p>Create a link.</p>
+<p>This function can be called in two different ways:</p>
+<ul>
+<li><code>(link path existing handler)</code></li>
+</ul>
+<p><code>path</code> is the name of the link. <code>existing</code> is the existing file
+(i.e. where to point the link at). <code>handler</code> is called with the error,
+or <code>nil</code> if successful.</p>
+<p>This creates a symbolic link by default.</p>
+<ul>
+<li><code>(link path existing symbolic? handler)</code></li>
+</ul>
+<p>If <code>symbolic?</code> is false, create a hard link.</p>
+<h2 id="resolve-symlink">resolve-symlink</h2><br/>
+<p>Reads a symbolic link. I.e returns the path representing the file that
+the symbolic link specified by <code>link</code> points to.</p>
+<p><code>(resolve-symlink link handler)</code></p>
+<p><code>link</code> is the name of the link to read. <code>handler</code> is called with the
+error (<code>nil</code> if successful), along with the string path to the
+resolved file.  An usage example would be:</p>
+<h2 id="delete">delete</h2><br/>
+<p>Deletes a file or recursively deletes a directory.</p>
+<p>This function can be called in two ways:</p>
+<ul>
+<li><code>(delete file handler)</code></li>
+</ul>
+<p>Deletes a file. <code>file</code> is the file name. <code>handler</code> is called with the
+error, or <code>nil</code> if successful. The deletion is not recursive by
+default.</p>
+<ul>
+<li><code>(delete file recursive? handler)</code></li>
+</ul>
+<p>If <code>recursive?</code> is <code>true</code>, it deletes a directory with name <code>file</code>,
+recursively. Otherwise it just deletes a file.</p>
+<h2 id="mkdir">mkdir</h2><br/>
+<p>Creates a directory.</p>
+<p>This function can be called in three ways:</p>
+<ul>
+<li><code>(mkdir dirname handler)</code></li>
+</ul>
+<p>Makes a new empty directory with name <code>dirname</code>, and default
+permissions. <code>handler</code> is called with the error, or <code>nil</code> if
+successful. This will not create any missing parent dirs by default.</p>
+<ul>
+<li><code>(mkdir dirname create-parents? handler)</code></li>
+</ul>
+<p>If <code>create-parents?</code> is <code>true</code>, this creates a new directory and
+creates any of its parents too. </p>
+<ul>
+<li><code>(mkdir dirname create-parents? perms handler)</code></li>
+</ul>
+<p>Like <code>(mkdir dirname create-parents? handler)</code>, but also allows
+permissions for the newly created director(ies) to be
+specified. <code>perms</code> is a Unix style permissions string as explained
+earlier.</p>
+<h2 id="read_dir">read_dir</h2><br/>
+<p>Reads a directory. I.e. lists the contents of the directory.</p>
+<p>This function can be called in two ways:</p>
+<ul>
+<li><code>(read-dir dir-name handler)</code></li>
+</ul>
+<p>Lists the contents of a directory. <code>handler</code> is called with the error
+(<code>nil</code> if successful), along with a vector of file paths.</p>
+<ul>
+<li><code>(read-dir dir-name filter handler)</code></li>
+</ul>
+<p>List only the contents of a directory which match the filter regex. Here's
+an example which only lists files with an extension <code>txt</code> in a
+directory:</p>
+<pre class="prettyprint">(read-dir "mydirectory" #".*\.txt"
+  (fn [err files]
+    (when !err
+      (println "Directory contains these .txt files:")
+      (mapv println files))))
+</pre>
+<h2 id="read-file">read-file</h2><br/>
+<p>Read the entire contents of a file in one go. <em>Be careful if using
+this with large files since the entire file will be stored in memory
+at once</em>.</p>
+<p><code>(read-file file handler)</code></p>
+<p>Where <code>file</code> is the file name of the file to read. <code>handler</code> is called
+with the error (<code>nil</code> if successful), along with a <code>Buffer</code> containing
+the file contents.</p>
+<h2 id="write-file">write-file</h2><br/>
+<p>Writes data to a new file on disk. </p>
+<p><code>(write-file file data handler)</code> </p>
+<p>Where <code>file</code> is the file name. <code>data</code> is anything bufferable.
+<code>handler</code> is called with the error, or <code>nil</code> if successful.</p>
+<h2 id="create_file">create_file</h2><br/>
+<p>Creates a new empty file.</p>
+<p>This method can be called in two ways:</p>
+<ul>
+<li><code>(create-file file handler)</code></li>
+</ul>
+<p>Where <code>file</code> is the file name. <code>handler</code> is called with the error, or
+<code>nil</code> if successful. </p>
+<p>The file is created with the default permissions.</p>
+<ul>
+<li><code>(create-file file perms handler)</code></li>
+</ul>
+<p><code>perms</code> is a permission string as discussed earlier.</p>
+<h2 id="exists">exists?</h2><br/>
+<p>Checks if a file exists.</p>
+<p><code>(exists? file handler)</code></p>
+<p>Where <code>file</code> is the file name. <code>handler</code> is called with the error
+(<code>nil</code> if successful), along with a boolean.</p>
+<h2 id="file-system-properties">file-system-properties</h2><br/>
+<p>Get properties for the file system.</p>
+<p><code>(file-system-properties file handler)</code>. </p>
+<p>Where <code>file</code> is any file on the file system. <code>handler</code> is called with the error
+(<code>nil</code> if successful), along with a map of properties:</p>
+<ul>
+<li><code>:total-space</code>. Total space on the file system in bytes.</li>
+<li><code>:unallocated-space</code>. Unallocated space on the file system in bytes.</li>
+<li><code>:usable-space</code>. Usable space on the file system in bytes.</li>
+</ul>
+<h2 id="open">open</h2><br/>
+<p>Opens an asynchronous file for reading \ writing.</p>
+<p>(open file handler &amp; kwargs)`</p>
+<p>Where <code>file</code> is the file to be opened. <code>handler</code> is called with the error
+(<code>nil</code> if successful), along with an AsyncFile object.</p>
+<p>The behavior of the open call is further controlled by a set of
+keyword arguments [default]:</p>
+<ul>
+<li>:create? - create the file if it does not already exist [true]</li>
+<li>:read?   - open the file for reading [true]</li>
+<li>:write?  - open the file for writing [true]</li>
+<li>:flush?  - the opened file will auto-flush writes [false]</li>
+<li>:perms   - the permissions used to create the file, if necessary
+             (see create-file) [nil]</li>
+</ul>
+<h2 id="asyncfile">AsyncFile</h2><br/>
+<p>Instances of <code>AsyncFile</code> are returned from calls to <code>open</code> and you use
+them to read from and write to files asynchronously. They allow
+asynchronous random file access.</p>
+<p>AsyncFile implements <code>ReadStream</code> and <code>WriteStream</code> so you can pump
+files to and from other stream objects such as net sockets, http
+requests and responses, and WebSockets.</p>
+<p>They also allow you to read and write directly to them.</p>
+<h3 id="random-access-writes">Random access writes</h3><br/>
+<p>To use an AsyncFile for random access writing you use the
+<code>vertx.filesystem/write</code> method.</p>
+<p><code>(write file-obj data position handler)</code>.</p>
+<p>The parameters to the function are: </p>
+<ul>
+<li><code>file-obj</code>: the <code>AsyncFile</code>.</li>
+<li><code>data</code>: the data to write. Can be anything bufferable.</li>
+<li><code>position</code>: an integer position in the file where to write the
+  buffer. If the position is greater or equal to the size of the file,
+  the file will be enlarged to accomodate the offset.</li>
+<li><code>handler</code>: a function to call when the operation is
+  complete. <code>handler</code> is called with the error, or <code>nil</code> if
+  successful.</li>
+</ul>
+<p>Here is an example of random access writes:</p>
+<pre class="prettyprint">(fs/open "some-file.dat"
+  (fn [err file]
+    (if err
+      (println "Failed to open file" err)
+      (let [data "ham-biscuit"]
+        (dotimes [n 5]
+          (fs/write file data (* (.length data) n)
+            (fn [err]
+              (if err
+                (println "Failed to write" err)
+                (println "Written ok")))))))))
+</pre>
+<h3 id="random-access-reads">Random access reads</h3><br/>
+<p>To use an AsyncFile for random access reads you use the <code>read</code>
+function.</p>
+<ul>
+<li><code>(read file-obj position length handler)</code></li>
+<li><code>(read file-obj buffer offset position length handler)</code></li>
+</ul>
+<p>The parameters to the method are: </p>
+<ul>
+<li><code>file-obj</code>: the <code>AsyncFile</code> to be read.</li>
+<li><code>buffer</code>: the <code>Buffer</code> into which the data will be read. If not
+  provided, a new <code>Buffer</code> will be created.</li>
+<li><code>offset</code>: an integer offset into the given buffer where the read
+  data will be placed.</li>
+<li><code>position</code>: the position in the file where to read data from.</li>
+<li><code>length</code>: the number of bytes of data to read</li>
+<li><code>handler</code>: a function to call when the operation is complete.
+  <code>handler</code> is called with the error, or <code>nil</code> if successful.</li>
+</ul>
+<p>Here's an example of random access reads:</p>
+<pre class="prettyprint">  (fs/open "some-file.dat"
+  (fn [err file]
+    (if err
+      (println "Failed to open file" err)
+      (let [buffer! (buf/buffer 1000)]
+        (dotimes [n 10]
+          (fs/write read buffer! (* n 100) (* n 100) 100
+            (fn [err]
+              (if err
+                (println "Failed to read" err)
+                (println "Read ok")))))))))
+</pre>
+<p>If you attempt to read past the end of file, the read will not fail
+but it will simply read zero bytes.</p>
+<h3 id="flushing-data-to-underlying-storage">Flushing data to underlying storage.</h3><br/>
+<p>If the AsyncFile was not opened with <code>:flush? true</code>, then you can
+manually flush any writes from the OS cache by calling the <code>flush</code>
+function.</p>
+<h3 id="using-asyncfile-as-readstream-and-writestream">Using AsyncFile as <code>ReadStream</code> and <code>WriteStream</code></h3><br/>
+<p>AsyncFile implements <code>ReadStream</code> and <code>WriteStream</code> so you can then
+use them with a pump to pump data to and from other read and write
+streams.</p>
+<p>Here's an example of pumping data from a file on a client to a HTTP
+request:</p>
+<pre class="prettyprint">(let [client (http/client {:host "foo.com"})]
+  (fs/open "some-file.dat"
+    (fn [err file]
+      (if err 
+        (println "Failed to open file" err)
+        (let [request 
+              (http/request client :PUT "/uploads"
+                (fn [resp]
+                  (println "Response status code:" (.statusCode resp))))]
+          ;; end the HTTP request when the file is fully sent
+          (stream/on-end file (partial http/end request))
+          (stream/pump file request))))))
+</pre>
+<h3 id="closing-an-asyncfile">Closing an AsyncFile</h3><br/>
+<p>To close an AsyncFile call the <code>close</code> function. Closing is asynchronous
+and if you want to be notified when the close has been completed you
+can specify a handler function as an argument to <code>close</code>.</p>
+<h1 id="dns-client">DNS Client</h1><br/>
+<p>Often you will find yourself in situations where you need to obtain
+DNS informations in an asynchronous fashion. Unfortunally this is not
+possible with the API that is shipped with Java itself. Because of
+this Vert.x offers it's own API for DNS resolution which is fully
+asynchronous.</p>
+<p>The DNS client functionality is provided by the <code>vertx.dns</code> namespace. </p>
+<p>All of the functions in the namespace return the DnsClient object that
+was used to perform the lookup, and take several different
+specifications of the servers to be used:</p>
+<ul>
+<li>a DnsClient object returned from another call</li>
+<li>a single InetSocketAddress object</li>
+<li>a String in the form "host" or "host:port" (port defaults to 53)</li>
+<li>a collection of InetSocketAddress objects</li>
+<li>a collection of "host"/"host:port" Strings</li>
+</ul>
+<p>When collections are provided, they are tried in order, moving to the
+next when the current server returns an error.</p>
+<h2 id="lookup">lookup</h2><br/>
+<p>Tries to lookup the A (ipv4) or AAAA (ipv6) record for a given
+name. The first which is returned will be used, so it behaves the same
+way as <code>nslookup</code>.</p>
+<p>To lookup the A / AAAA record for "vertx.io" you would typically use it like:</p>
+<pre class="prettyprint">(require '[vertx.dns :as dns])
+
+(dns/lookup "10.0.0.1" "vertx.io"
+            (fn [err r]
+               (if err
+                 (println "ERROR:" (:type err))
+                 (println (:address r)))))
+</pre>
+<p>You can also pass a type argument of <code>:ipv4</code> or <code>:ipv6</code> to constrain
+the lookup to a particular IP version:</p>
+<pre class="prettyprint">    (dns/lookup "10.0.0.1" "vertx.io" :ipv4
+            (fn [err r] ...))
+</pre>
+<p>See the API documentation for more details.</p>
+<h2 id="resolve">resolve</h2><br/>
+<p>Tries to resolve various record types for a given name. This is quite
+similar to using "dig" on unix like operating systems.</p>
+<p>The type of record to be resolved must be one of: A, AAAA, CNAME, MX,
+NS, PTR, SRV, or TXT.</p>
+<p>The data passed to the handler function depends on the type of record
+requested.</p>
+<p>To lookup all the A records for "vertx.io" you would typically do:</p>
+<pre class="prettyprint">(dns/resolve ["10.0.0.1" "10.0.0.2"] :A "vertx.io"
+             (fn [err r]
+               (if err
+                 (println "ERROR:" (:type err))
+                 (doseq [x r] (println x)))))
+</pre>
+<p>See the API documentation for more details.</p>
+<h2 id="reverselookup">reverseLookup</h2><br/>
+<p>Tries to do a reverse lookup for an ip address. This is basically the
+same as <code>resolve</code> for a PTR record, but allows you to just pass in the
+ip address and not a valid PTR query string.</p>
+<p>To do a reverse lookup for the ip address 127.0.0.1: </p>
+<pre class="prettyprint">(dns/reverse-lookup ["10.0.0.1" "10.0.0.2"] "127.0.0.1"
+             (fn [err r]
+               (if err
+                 (println "ERROR:" (:type err))
+                 (println r))))
+</pre>
+<p>See the API documentation for more details.</p>
+<h2 id="error-handling">Error handling</h2><br/>
+<p>As you saw in previous sections, any error results in an exception-map
+being passed as the first argument of the handler function. This
+exception-map provides a <code>type</code> entry that specifies the error type.</p>
+<p>The error types are:</p>
+<ul>
+<li>:NOERROR - No record was found for a given query</li>
+<li>:FORMERROR - Format error </li>
+<li>:SERVFAIL - Server failure</li>
+<li>:NXDOMAIN - Name error</li>
+<li>:NOTIMPL - Not implemented by DNS Server</li>
+<li>:REFUSED - DNS Server refused the query</li>
+<li>:YXDOMAIN - Domain name should not exist</li>
+<li>:YXRRSET - Resource record should not exist</li>
+<li>:NXRRSET - RRSET does not exist</li>
+<li>:NOTZONE - Name not in zone</li>
+<li>:BADVER - Bad extension mechanism for version</li>
+<li>:BADSIG - Bad signature</li>
+<li>:BADKEY - Bad key</li>
+<li>:BADTIME - Bad timestamp</li>
+</ul>
+<h1 id="using-nrepl">Using nREPL</h1><br/>
+<p>You can start nREPL endpoints within a verticle by calling the
+<code>vertx.repl/start</code> function. By default, it binds to a random
+port on localhost, or you can pass a port or port and host:</p>
+<pre class="prettyprint">(repl/start)
+</pre>
+<p><code>start</code> returns the id of the nREPL server, and can be passed to 
+<code>vertx.repl/stop</code> to shut it down. </p>
+<p>Any number of nREPL servers can be active at one time. The nREPL
+servers run inside of a worker verticle, so code evaluated in the repl
+won't block the event loop.</p></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

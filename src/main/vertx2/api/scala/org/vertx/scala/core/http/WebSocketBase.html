@@ -1,0 +1,744 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>WebSocketBase - lang-scala.git 1.0.0 API - org.vertx.scala.core.http.WebSocketBase</title>
+          <meta name="description" content="WebSocketBase - lang - scala.git 1.0.0 API - org.vertx.scala.core.http.WebSocketBase" />
+          <meta name="keywords" content="WebSocketBase lang scala.git 1.0.0 API org.vertx.scala.core.http.WebSocketBase" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'org.vertx.scala.core.http.WebSocketBase';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+      <div id="definition">
+        <img src="../../../../../lib/trait_big.png" />
+        <p id="owner"><a href="../../../../package.html" class="extype" name="org">org</a>.<a href="../../../package.html" class="extype" name="org.vertx">vertx</a>.<a href="../../package.html" class="extype" name="org.vertx.scala">scala</a>.<a href="../package.html" class="extype" name="org.vertx.scala.core">core</a>.<a href="package.html" class="extype" name="org.vertx.scala.core.http">http</a></p>
+        <h1>WebSocketBase</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <span class="name">WebSocketBase</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> with <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents an HTML 5 Websocket</p><p>Instances of this class are created and provided to the handler of an
+<a href="HttpClient.html" class="extype" name="org.vertx.scala.core.http.HttpClient">org.vertx.scala.core.http.HttpClient</a> when a successful websocket connect attempt occurs.</p><p>On the server side, the subclass <a href="ServerWebSocket.html" class="extype" name="org.vertx.scala.core.http.ServerWebSocket">org.vertx.scala.core.http.ServerWebSocket</a> is used instead.</p><p>It implements both <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">org.vertx.scala.core.streams.ReadStream</a> and <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">org.vertx.scala.core.streams.WriteStream</a> so it can be used with
+<a href="../streams/Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">org.vertx.scala.core.streams.Pump</a> to pump data with flow control.</p><p>Instances of this class are not thread-safe</p></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a>, <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>, <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>], <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a>, <span class="extype" name="org.vertx.scala.AsJava">AsJava</span>, <span class="extype" name="org.vertx.scala.Self">Self</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+        </div><div class="toggleContainer block">
+          <span class="toggle">Known Subclasses</span>
+          <div class="subClasses hiddenContent"><a href="ServerWebSocket.html" class="extype" name="org.vertx.scala.core.http.ServerWebSocket">ServerWebSocket</a>, <a href="WebSocket.html" class="extype" name="org.vertx.scala.core.http.WebSocket">WebSocket</a></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.vertx.scala.core.http.WebSocketBase"><span>WebSocketBase</span></li><li class="in" name="org.vertx.scala.core.streams.WriteStream"><span>WriteStream</span></li><li class="in" name="org.vertx.scala.core.streams.ReadStream"><span>ReadStream</span></li><li class="in" name="org.vertx.scala.core.streams.ReadSupport"><span>ReadSupport</span></li><li class="in" name="org.vertx.scala.core.streams.ExceptionSupport"><span>ExceptionSupport</span></li><li class="in" name="org.vertx.scala.AsJava"><span>AsJava</span></li><li class="in" name="org.vertx.scala.Self"><span>Self</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.vertx.scala.core.http.WebSocketBase.J" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="J&lt;:org.vertx.java.core.http.WebSocketBase[WebSocketBase.this.J]"></a>
+      <a id="J:J"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">J</span><span class="result"> &lt;: <span class="extype" name="org.vertx.java.core.http.WebSocketBase">java.core.http.WebSocketBase</span>[<a href="#J&lt;:org.vertx.java.core.http.WebSocketBase[WebSocketBase.this.J]" class="extmbr" name="org.vertx.scala.core.http.WebSocketBase.J">J</a>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">The internal type of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a> → <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> → <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a> → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a> → AsJava</dd></dl></div>
+    </li></ol>
+            </div>
+
+        <div id="values" class="values members">
+              <h3>Abstract Value Members</h3>
+              <ol><li name="org.vertx.scala.AsJava#asJava" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="asJava:AsJava.this.J"></a>
+      <a id="asJava:J"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asJava</span><span class="result">: <a href="#J&lt;:org.vertx.java.core.http.WebSocketBase[WebSocketBase.this.J]" class="extmbr" name="org.vertx.scala.core.http.WebSocketBase.J">J</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">The internal instance of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd>AsJava</dd></dl></div>
+    </li></ol>
+            </div>
+
+        <div id="values" class="values members">
+              <h3>Concrete Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:AnyRef):Boolean"></a>
+      <a id="!=(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Any#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:AnyRef):Boolean"></a>
+      <a id="==(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Any#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.WebSocketBase#binaryHandlerID" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="binaryHandlerID():String"></a>
+      <a id="binaryHandlerID():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">binaryHandlerID</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">When a <code>Websocket</code> is created it automatically registers an event handler with the eventbus, the ID of that
+handler is given by <code>binaryHandlerID</code>.</p><div class="fullcomment"><div class="comment cmt"><p>When a <code>Websocket</code> is created it automatically registers an event handler with the eventbus, the ID of that
+handler is given by <code>binaryHandlerID</code>.</p><p>Given this ID, a different event loop can send a binary frame to that event handler using the event bus and
+that buffer will be received by this instance in its own event loop and written to the underlying connection. This
+allows you to write data to other websockets which are owned by different event loops.
+</p></div></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.WebSocketBase#close" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="close():Unit"></a>
+      <a id="close():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">close</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Close the websocket
+</p>
+    </li><li name="org.vertx.scala.core.http.WebSocketBase#closeHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="closeHandler(handler:=&gt;Unit):WebSocketBase.this.type"></a>
+      <a id="closeHandler(⇒Unit):WebSocketBase.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">closeHandler</span><span class="params">(<span name="handler">handler: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Set a closed handler on the connection
+</p>
+    </li><li name="org.vertx.scala.core.streams.ReadStream#dataHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="dataHandler(handler:org.vertx.scala.core.buffer.Buffer=&gt;Unit):ReadStream.this.type"></a>
+      <a id="dataHandler((Buffer)⇒Unit):WebSocketBase.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">dataHandler</span><span class="params">(<span name="handler">handler: (<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Set a data handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set a data handler. As data is read, the handler will be called with the data.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> → <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.WriteStream#drainHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="drainHandler(handler:=&gt;Unit):WriteStream.this.type"></a>
+      <a id="drainHandler(⇒Unit):WebSocketBase.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">drainHandler</span><span class="params">(<span name="handler">handler: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Set a drain handler on the stream.</p><div class="fullcomment"><div class="comment cmt"><p>Set a drain handler on the stream. If the write queue is full, then the handler will be called when the write
+queue has been reduced to maxSize / 2. See <a href="../streams/Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">org.vertx.scala.core.streams.Pump</a> for an example of this being used.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.ReadStream#endHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="endHandler(handler:=&gt;Unit):ReadStream.this.type"></a>
+      <a id="endHandler(⇒Unit):WebSocketBase.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">endHandler</span><span class="params">(<span name="handler">handler: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Set an end handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an end handler. Once the stream has ended, and there is no more data
+to be read, this handler will be called.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.ExceptionSupport#exceptionHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exceptionHandler(handler:Throwable=&gt;Unit):ExceptionSupport.this.type"></a>
+      <a id="exceptionHandler((Throwable)⇒Unit):WebSocketBase.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">exceptionHandler</span><span class="params">(<span name="handler">handler: (<a href="../../../../../scala/package.html#Throwable=Throwable" class="extmbr" name="scala.Throwable">Throwable</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Set an exception handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an exception handler.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.WebSocketBase#localAddress" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="localAddress():java.net.InetSocketAddress"></a>
+      <a id="localAddress():InetSocketAddress"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">localAddress</span><span class="params">()</span><span class="result">: <span class="extype" name="java.net.InetSocketAddress">InetSocketAddress</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Return the local address for this socket
+</p>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.ReadSupport#pause" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="pause():ReadSupport.this.type"></a>
+      <a id="pause():WebSocketBase.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">pause</span><span class="params">()</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Pause the <code>ReadSupport</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Pause the <code>ReadSupport</code>. While it's paused, no data will be sent to the <code>dataHandler</code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.WebSocketBase#remoteAddress" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="remoteAddress():java.net.InetSocketAddress"></a>
+      <a id="remoteAddress():InetSocketAddress"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">remoteAddress</span><span class="params">()</span><span class="result">: <span class="extype" name="java.net.InetSocketAddress">InetSocketAddress</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Return the remote address for this socket
+</p>
+    </li><li name="org.vertx.scala.core.streams.ReadSupport#resume" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="resume():ReadSupport.this.type"></a>
+      <a id="resume():WebSocketBase.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">resume</span><span class="params">()</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Resume reading.</p><div class="fullcomment"><div class="comment cmt"><p>Resume reading. If the <code>ReadSupport</code> has been paused, reading will recommence on it.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.WriteStream#setWriteQueueMaxSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setWriteQueueMaxSize(maxSize:Int):WriteStream.this.type"></a>
+      <a id="setWriteQueueMaxSize(Int):WebSocketBase.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setWriteQueueMaxSize</span><span class="params">(<span name="maxSize">maxSize: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Set the maximum size of the write queue to <code>maxSize</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the maximum size of the write queue to <code>maxSize</code>. You will still be able to write to the stream even
+if there is more than <code>maxSize</code> bytes in the write queue. This is used as an indicator by classes such as
+<code>Pump</code> to provide flow control.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.WebSocketBase#textHandlerID" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="textHandlerID():String"></a>
+      <a id="textHandlerID():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">textHandlerID</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">When a <code>Websocket} is created it automatically registers an event handler with the eventbus, the ID of that
+handler is given by </code>textHandlerID}.</p><div class="fullcomment"><div class="comment cmt"><p>When a <code>Websocket} is created it automatically registers an event handler with the eventbus, the ID of that
+handler is given by </code>textHandlerID}.</p><p>Given this ID, a different event loop can send a text frame to that event handler using the event bus and
+that buffer will be received by this instance in its own event loop and written to the underlying connection. This
+allows you to write data to other websockets which are owned by different event loops.
+</p></div></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.vertx.scala.Self#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wrap[X](doStuff:=&gt;X):Self.this.type"></a>
+      <a id="wrap[X](⇒X):WebSocketBase.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Self.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p><div class="fullcomment"><div class="comment cmt"><p>Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd>Self</dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.WriteStream#write" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="write(data:org.vertx.scala.core.buffer.Buffer):WriteStream.this.type"></a>
+      <a id="write(Buffer):WebSocketBase.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">write</span><span class="params">(<span name="data">data: <a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Write some data to the stream.</p><div class="fullcomment"><div class="comment cmt"><p>Write some data to the stream. The data is put on an internal write queue, and the write actually happens
+asynchronously. To avoid running out of memory by putting too much on the write queue,
+check the <span class="extype" name="org.vertx.scala.core.streams.WriteStream.writeQueueFull()">org.vertx.scala.core.streams.WriteStream.writeQueueFull()</span>
+method before writing. This is done automatically if using a <a href="../streams/Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">org.vertx.scala.core.streams.Pump</a>.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.WebSocketBase#writeBinaryFrame" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="writeBinaryFrame(data:org.vertx.scala.core.buffer.Buffer):WebSocketBase.this.type"></a>
+      <a id="writeBinaryFrame(Buffer):WebSocketBase.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">writeBinaryFrame</span><span class="params">(<span name="data">data: <a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Write <code>data</code> to the websocket as a binary frame
+</p>
+    </li><li name="org.vertx.scala.core.streams.WriteStream#writeQueueFull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="writeQueueFull():Boolean"></a>
+      <a id="writeQueueFull():Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">writeQueueFull</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This will return <code>true</code> if there are more bytes in the write queue than the value set using
+<span class="extype" name="org.vertx.scala.core.streams.WriteStream.setWriteQueueMaxSize()">org.vertx.scala.core.streams.WriteStream.setWriteQueueMaxSize()</span>
+</p><div class="fullcomment"><div class="comment cmt"><p>This will return <code>true</code> if there are more bytes in the write queue than the value set using
+<span class="extype" name="org.vertx.scala.core.streams.WriteStream.setWriteQueueMaxSize()">org.vertx.scala.core.streams.WriteStream.setWriteQueueMaxSize()</span>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.WebSocketBase#writeTextFrame" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="writeTextFrame(str:String):WebSocketBase.this.type"></a>
+      <a id="writeTextFrame(String):WebSocketBase.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">writeTextFrame</span><span class="params">(<span name="str">str: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Write <code>str</code> to the websocket as a text frame
+</p>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="org.vertx.scala.core.streams.WriteStream">
+              <h3>Inherited from <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></h3>
+            </div><div class="parent" name="org.vertx.scala.core.streams.ReadStream">
+              <h3>Inherited from <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></h3>
+            </div><div class="parent" name="org.vertx.scala.core.streams.ReadSupport">
+              <h3>Inherited from <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>]</h3>
+            </div><div class="parent" name="org.vertx.scala.core.streams.ExceptionSupport">
+              <h3>Inherited from <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></h3>
+            </div><div class="parent" name="org.vertx.scala.AsJava">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></h3>
+            </div><div class="parent" name="org.vertx.scala.Self">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.Self">Self</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../../lib/template.js"></script>
+    </body>
+      </html>

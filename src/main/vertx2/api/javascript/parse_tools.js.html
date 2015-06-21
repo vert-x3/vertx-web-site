@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: vertx/parse_tools.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: vertx/parse_tools.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/*
+ * Copyright 2011-2012 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+if (typeof __vertxload === 'string') {
+  throw "Use require() to load Vert.x API modules"
+}
+
+/** 
+ * &lt;p>
+ * A helper class which allows you to easily parse protocols which are
+ * delimited by a sequence of bytes, or fixed size records.
+ * Instances of this class take as input {@linkcode module:vertx/buffer~Buffer|Buffer}
+ * instances containing raw bytes, and output records. For example, if I had a
+ * simple ASCII text protocol delimited by '\n' and the input was the
+ * following:
+ * &lt;/p>
+ * &lt;pre>
+ * buffer1:HELLO\nHOW ARE Y
+ * buffer2:OU?\nI AM
+ * buffer3: DOING OK
+ * buffer4:\n
+ * &lt;/pre>
+ * &lt;p>Then the output would be:&lt;/p>
+ * &lt;pre>
+ * buffer1:HELLO
+ * buffer2:HOW ARE YOU?
+ * buffer3:I AM DOING OK
+ * &lt;/pre>
+ * &lt;p>
+ * Instances of this class can be changed between delimited mode and fixed size
+ * record mode on the fly as individual records are read, this allows you to
+ * parse protocols where, for example, the first 5 records might all be fixed
+ * size (of potentially different sizes), followed by some delimited records,
+ * followed by more fixed size records.
+ * &lt;/p>
+ * &lt;p>
+ * Instances of this class can't currently be used for protocols where the text
+ * is encoded with something other than a 1-1 byte-char mapping.
+ * &lt;/p>
+ *
+ * @see https://github.com/vert-x/vert.x/blob/master/vertx-core/src/main/java/org/vertx/java/core/parsetools/RecordParser.java
+ *
+ * @exports vertx/parse_tools 
+ * */
+var parseTools = {};
+
+/**
+ * @external org.vertx.java.core.parsetools.RecordParser
+ */
+
+/**
+ * Create a new &lt;code>RecordParser&lt;/code> instance, initially in delimited
+ * mode, and where the delimiter can be represented by &lt;code>delim&lt;/code>.
+ * &lt;code>output&lt;/code> will receive whole records which have been parsed.
+ * @param {string} delim The record delimiter
+ * @param {module:vertx/buffer~Buffer} output The output buffer
+ * @returns {org.vertx.java.core.parsetools.RecordParser} A delimited record parser
+ */
+parseTools.createDelimitedParser = function(delim, output) {
+  return org.vertx.java.core.parsetools.RecordParser.newDelimited(delim, output);
+}
+
+/**
+ * Create a new &lt;code>RecordParser&lt;/code> instance, initially in fixed size
+ * mode, and where the record size is specified by the &lt;code>size&lt;/code>
+ * parameter.  &lt;code>output&lt;/code> will receive whole records which have been
+ * parsed.
+ * @param {number} size The record size
+ * @param {module:vertx/buffer~Buffer} output The output buffer
+ * @returns {org.vertx.java.core.parsetools.RecordParser} A fixed size record parser
+ */
+parseTools.createFixedParser = function(size, output) {
+  return org.vertx.java.core.parsetools.RecordParser.newFixed(size, output);
+}
+
+module.exports = parseTools;
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-vertx.html">vertx</a></li><li><a href="buffer.html">vertx/buffer</a></li><li><a href="console.html">vertx/console</a></li><li><a href="container.html">vertx/container</a></li><li><a href="event_bus.html">vertx/event_bus</a></li><li><a href="file_system.html">vertx/file_system</a></li><li><a href="http.html">vertx/http</a></li><li><a href="multi_map.html">vertx/multi_map</a></li><li><a href="net.html">vertx/net</a></li><li><a href="parse_tools.html">vertx/parse_tools</a></li><li><a href="pump.html">vertx/pump</a></li><li><a href="shared_data.html">vertx/shared_data</a></li><li><a href="sockjs.html">vertx/sockjs</a></li><li><a href="timer.html">vertx/timer</a></li></ul><h3>Externals</h3><ul><li><a href="InetSocketAddress.html">InetSocketAddress</a></li><li><a href="Buffer_.html">Buffer</a></li><li><a href="RecordParser.html">RecordParser</a></li><li><a href="SockJSSocket.html">SockJSSocket</a></li></ul><h3>Classes</h3><ul><li><a href="buffer-Buffer.html">Buffer</a></li><li><a href="file_system.AsyncFile.html">AsyncFile</a></li><li><a href="http.HttpClient.html">HttpClient</a></li><li><a href="http.HttpClientRequest.html">HttpClientRequest</a></li><li><a href="http.HttpClientResponse.html">HttpClientResponse</a></li><li><a href="http.HttpServer.html">HttpServer</a></li><li><a href="http.HttpServerFileUpload.html">HttpServerFileUpload</a></li><li><a href="http.HttpServerRequest.html">HttpServerRequest</a></li><li><a href="http.HttpServerResponse.html">HttpServerResponse</a></li><li><a href="http.RouteMatcher.html">RouteMatcher</a></li><li><a href="http.WebSocket.html">WebSocket</a></li><li><a href="multi_map-MultiMap.html">MultiMap</a></li><li><a href="net.NetClient.html">NetClient</a></li><li><a href="net.NetServer.html">NetServer</a></li><li><a href="net.NetSocket.html">NetSocket</a></li><li><a href="pump-Pump.html">Pump</a></li><li><a href="sockjs.SockJSServer.html">SockJSServer</a></li></ul><h3>Mixins</h3><ul><li><a href="ClientSSLSupport.html">ClientSSLSupport</a></li><li><a href="ReadStream.html">ReadStream</a></li><li><a href="ServerSSLSupport.html">ServerSSLSupport</a></li><li><a href="ServerTCPSupport.html">ServerTCPSupport</a></li><li><a href="SSLSupport.html">SSLSupport</a></li><li><a href="TCPSupport.html">TCPSupport</a></li><li><a href="WriteStream.html">WriteStream</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Wed Jul 17 2013 20:27:22 GMT+0100 (BST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

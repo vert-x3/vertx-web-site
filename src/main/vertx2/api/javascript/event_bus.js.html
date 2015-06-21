@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: vertx/event_bus.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: vertx/event_bus.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/*
+ * Copyright 2011-2012 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+if (typeof __vertxload === 'string') {
+  throw "Use require() to load Vert.x API modules"
+}
+
+
+/**
+ * Message handlers receive event_bus messages as JSON.
+ * @see module:vertx/event_bus
+ * @typedef {JSON} JsonMessage
+ */
+
+/**
+ * While JSON is the preferred messaging on the event bus,
+ * you can send any basic type as a message, for example,
+ * &lt;code>string&lt;/code>, &lt;code>boolean&lt;/code>, etc. can all be passed
+ * directly into {@linkcode module:vertx/event_bus.send}. You may also
+ * send {@linkcode module:vertx/buffer~Buffer}s and plain old 
+ * Javascript objects. Objects will be converted to &lt;code>JSON&lt;/code>
+ * before being placed on the bus.
+ * @see module:vertx/event_bus
+ * @typedef {string|boolean|number|{}|module:vertx/buffer~Buffer} Message
+ */
+
+/**
+ * A &lt;code>MessageHandler&lt;/code> is a {@linkcode Handler} that responds to
+ * messages on the {@linkcode module:vertx/event_bus} module. &lt;code>MessageHandler&lt;/code>s
+ * are called with a {@linkcode JsonMessage} object as the parameter.
+ *
+ * @see module:vertx/event_bus.registerHandler
+ * @typedef {function} MessageHandler
+ * @param {JsonMessage} message The JSON message
+ */
+
+
+/**
+ * &lt;p>Represents a distributed lightweight event bus which can encompass
+ * multiple vert.x instances.  It is very useful for otherwise isolated vert.x
+ * application instances to communicate with each other. Messages sent over the
+ * event bus are JSON objects.&lt;/p>
+ *
+ * &lt;p>The event bus implements a distributed publish / subscribe network.
+ * Messages are sent to an address.  There can be multiple handlers registered
+ * against that address.  Any handlers with a matching name will receive the
+ * message irrespective of what vert.x application instance and what vert.x
+ * instance they are located in.&lt;/p>
+ *
+ * &lt;p>All messages sent over the bus are transient. On event of failure of all
+ * or part of the event bus messages may be lost. Applications should be coded
+ * to cope with lost messages, e.g. by resending them, and making application
+ * services idempotent.&lt;/p>
+ *
+ * &lt;p>The order of messages received by any specific handler from a specific
+ * sender will match the order of messages sent from that sender.&lt;/p>
+ *
+ * &lt;p>When sending a message, a reply handler can be provided. If so, it will
+ * be called when the reply from the receiver has been received.&lt;/p>
+ *
+ * &lt;p>This module can be used individually, or through the top-level
+ * {@linkcode module:vertx|vertx} module.
+ * 
+ * @example &lt;caption>Accessing the event bus&lt;/caption>
+ *
+ * var vertx = require('vertx');
+ *
+ * var eb1 = require('vertx/event_bus');
+ * var eb2 = vertx.eventBus;
+ *
+ * eb1.registerHandler('some-address', function(message) {
+ *   print("Got a message! " + message);
+ * }
+ * eb2.publish('some-address', 'Hello world');
+ *
+ * @exports vertx/event_bus
+ */
+var eventBus = {};
+
+var handlerMap = {};
+
+var jEventBus = __jvertx.eventBus();
+
+/**
+ * Register a handler which won't be propageted acress the cluster.
+ *
+ * @param {string} address the address to register for. Any messages sent to
+ * that address will be received by the handler. A single handler can be
+ * registered against many addresses.
+ * @param {MessageHandler} handler The handler
+ *
+ * @returns {module:vertx/event_bus} The event bus
+ */
+eventBus.registerLocalHandler = function(address, handler) {
+  registerHandler(address, handler, true);
+  return eventBus;
+};
+
+/**
+ * Register a handler.
+ *
+ * @param {string} address the address to register for. Any messages sent to
+ * that address will be received by the handler. A single handler can be
+ * registered against many addresses.
+ * @param {MessageHandler} handler The handler
+ *
+ * @returns {module:vertx/event_bus} the event bus
+ */
+eventBus.registerHandler = function(address, handler) {
+  registerHandler(address, handler, false);
+  return eventBus;
+};
+
+/**
+ * Unregisters a handler.
+ *
+ * @param {string} address The address the handler is registered to
+ * @param {MessageHandler} handler The handler to unregister
+ * @returns {module:vertx/event_bus} the event bus
+ */
+eventBus.unregisterHandler = function(address, handler) {
+  checkHandlerParams(address, handler);
+  var wrapped = handlerMap[handler];
+  if (wrapped) {
+    jEventBus.unregisterHandler(address, wrapped);
+    delete handlerMap[handler];
+  }
+  return eventBus;
+};
+
+/**
+ * Sends a message on the event bus.
+ * Message should be a JSON object It should have a property "address"
+ *
+ * @param {string} address The address to send the message to
+ * @param {Message} message The message to send
+ * @param {MessageHandler} [replyHandler] called when the message receives a reply
+ * @returns {module:vertx/event_bus}
+ */
+eventBus.send = function(address, message, replyHandler) {
+  sendOrPub(true, address, message, replyHandler);
+  return eventBus;
+};
+
+/**
+ * Publish a message on the event bus.
+ * Message should be a JSON object It should have a property "address".
+ *
+ * @param {string} address The address to send the message to
+ * @param {Message} message The message to send
+ * @returns {module:vertx/event_bus}
+ */
+eventBus.publish = function(address, message) {
+  sendOrPub(false, address, message);
+  return eventBus;
+};
+
+function checkHandlerParams(address, handler) {
+  if (!address) {
+    throw "address must be specified";
+  }
+  if (!handler) {
+    throw "handler must be specified";
+  }
+  if (typeof address != "string") {
+    throw "address must be a string";
+  }
+  if (typeof handler != "function") {
+    throw "handler must be a function";
+  }
+}
+
+var jsonObjectClass = new org.vertx.java.core.json.JsonObject().getClass();
+var jsonArrayClass = new org.vertx.java.core.json.JsonArray().getClass();
+
+function wrappedHandler(handler) {
+  return new org.vertx.java.core.Handler({
+    handle: function(jMsg) {
+      var body = jMsg.body();
+
+      if (typeof body === 'object') {
+        var clazz = body.getClass();
+        if (clazz === jsonObjectClass || clazz === jsonArrayClass) {
+          // Convert to JS JSON
+          if (body) {
+            body = JSON.parse(body.encode());
+          } else {
+            body = undefined;
+          }
+        }
+      } else if (body && typeof body === 'org.vertx.java.core.json.JsonObject') {
+        // DynJS returns a fully qualified class name for `typeof` on most
+        // java objects, so we need to check for this too.
+        body = JSON.parse(body.encode());
+      }
+
+      handler(body, function(reply, replyHandler) {
+        if (typeof reply === 'undefined') {
+          throw "Reply message must be specified";
+        }
+        reply = convertMessage(reply);
+        if (replyHandler) {
+          var wrapped = wrappedHandler(replyHandler);
+          jMsg.reply(reply, wrapped);
+        } else {
+          jMsg.reply(reply);
+        }
+      })
+    }
+  });
+}
+
+function registerHandler(address, handler, localOnly) {
+  checkHandlerParams(address, handler);
+
+  var wrapped = wrappedHandler(handler);
+
+  // This is a bit more complex than it should be because we have to wrap the
+  // handler - therefore we have to keep track of it :(
+  handlerMap[handler] = wrapped;
+
+  if (localOnly) {
+    jEventBus.registerLocalHandler(address, wrapped);
+  } else {
+    jEventBus.registerHandler(address, wrapped);
+  }
+  return eventBus;
+}
+
+function convertMessage(message) {
+  var msgType = typeof message;
+  switch (msgType) {
+    case 'string':
+    case 'boolean':
+    case 'undefined':
+    case 'org.vertx.java.core.buffer.Buffer':
+      break;
+    case 'number':
+      message = new java.lang.Double(message);
+      break;
+    case 'object':
+      // If null then we just wrap it as an empty JSON message
+      // We don't do this if it's a Java class (it has the getClass) method
+      // since it may be a Buffer which we want to let through
+      if (message == null || typeof message.getClass === "undefined") {
+        // Not a Java object - assume JSON message
+        message = new org.vertx.java.core.json.JsonObject(JSON.stringify(message));
+      }
+      break;
+    default:
+      throw 'Invalid type for message: ' + msgType;
+  }
+  return message;
+}
+
+function sendOrPub(send, address, message, replyHandler) {
+  if (!address) {
+    throw "address must be specified";
+  }
+  if (typeof address !== "string") {
+    throw "address must be a string";
+  }
+  if (replyHandler && typeof replyHandler !== "function") {
+    throw "replyHandler must be a function";
+  }
+  message = convertMessage(message);
+  if (send) {
+    if (replyHandler) {
+      var wrapped = wrappedHandler(replyHandler);
+      jEventBus.send(address, message, wrapped);
+    } else {
+      jEventBus.send(address, message);
+    }
+  } else {
+    jEventBus.publish(address, message);
+  }
+  return eventBus;
+}
+
+module.exports = eventBus;
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-vertx.html">vertx</a></li><li><a href="buffer.html">vertx/buffer</a></li><li><a href="console.html">vertx/console</a></li><li><a href="container.html">vertx/container</a></li><li><a href="event_bus.html">vertx/event_bus</a></li><li><a href="file_system.html">vertx/file_system</a></li><li><a href="http.html">vertx/http</a></li><li><a href="multi_map.html">vertx/multi_map</a></li><li><a href="net.html">vertx/net</a></li><li><a href="parse_tools.html">vertx/parse_tools</a></li><li><a href="pump.html">vertx/pump</a></li><li><a href="shared_data.html">vertx/shared_data</a></li><li><a href="sockjs.html">vertx/sockjs</a></li><li><a href="timer.html">vertx/timer</a></li></ul><h3>Externals</h3><ul><li><a href="InetSocketAddress.html">InetSocketAddress</a></li><li><a href="Buffer_.html">Buffer</a></li><li><a href="RecordParser.html">RecordParser</a></li><li><a href="SockJSSocket.html">SockJSSocket</a></li></ul><h3>Classes</h3><ul><li><a href="buffer-Buffer.html">Buffer</a></li><li><a href="file_system.AsyncFile.html">AsyncFile</a></li><li><a href="http.HttpClient.html">HttpClient</a></li><li><a href="http.HttpClientRequest.html">HttpClientRequest</a></li><li><a href="http.HttpClientResponse.html">HttpClientResponse</a></li><li><a href="http.HttpServer.html">HttpServer</a></li><li><a href="http.HttpServerFileUpload.html">HttpServerFileUpload</a></li><li><a href="http.HttpServerRequest.html">HttpServerRequest</a></li><li><a href="http.HttpServerResponse.html">HttpServerResponse</a></li><li><a href="http.RouteMatcher.html">RouteMatcher</a></li><li><a href="http.WebSocket.html">WebSocket</a></li><li><a href="multi_map-MultiMap.html">MultiMap</a></li><li><a href="net.NetClient.html">NetClient</a></li><li><a href="net.NetServer.html">NetServer</a></li><li><a href="net.NetSocket.html">NetSocket</a></li><li><a href="pump-Pump.html">Pump</a></li><li><a href="sockjs.SockJSServer.html">SockJSServer</a></li></ul><h3>Mixins</h3><ul><li><a href="ClientSSLSupport.html">ClientSSLSupport</a></li><li><a href="ReadStream.html">ReadStream</a></li><li><a href="ServerSSLSupport.html">ServerSSLSupport</a></li><li><a href="ServerTCPSupport.html">ServerTCPSupport</a></li><li><a href="SSLSupport.html">SSLSupport</a></li><li><a href="TCPSupport.html">TCPSupport</a></li><li><a href="WriteStream.html">WriteStream</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Wed Jul 17 2013 20:27:22 GMT+0100 (BST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

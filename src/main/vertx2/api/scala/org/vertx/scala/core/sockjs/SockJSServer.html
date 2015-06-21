@@ -1,0 +1,547 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>SockJSServer - lang-scala.git 1.0.0 API - org.vertx.scala.core.sockjs.SockJSServer</title>
+          <meta name="description" content="SockJSServer - lang - scala.git 1.0.0 API - org.vertx.scala.core.sockjs.SockJSServer" />
+          <meta name="keywords" content="SockJSServer lang scala.git 1.0.0 API org.vertx.scala.core.sockjs.SockJSServer" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'org.vertx.scala.core.sockjs.SockJSServer';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+      <div id="definition">
+        <a href="SockJSServer$.html" title="Go to companion"><img src="../../../../../lib/class_to_object_big.png" /></a>
+        <p id="owner"><a href="../../../../package.html" class="extype" name="org">org</a>.<a href="../../../package.html" class="extype" name="org.vertx">vertx</a>.<a href="../../package.html" class="extype" name="org.vertx.scala">scala</a>.<a href="../package.html" class="extype" name="org.vertx.scala.core">core</a>.<a href="package.html" class="extype" name="org.vertx.scala.core.sockjs">sockjs</a></p>
+        <h1><a href="SockJSServer$.html" title="Go to companion">SockJSServer</a></h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SockJSServer</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This is an implementation of the server side part of <a href="https://github.com/sockjs">SockJS</a>.</p><p>SockJS enables browsers to communicate with the server using a simple WebSocket-like api for sending
+and receiving messages. Under the bonnet SockJS chooses to use one of several protocols depending on browser
+capabilities and what appears to be working across the network.</p><p>Available protocols include:</p><ul><li>WebSockets</li><li>xhr-polling</li><li>xhr-streaming</li><li>json-polling</li><li>event-source</li><li>html-file</li></ul><p>This means, it should <i>just work</i> irrespective of what browser is being used, and whether there are nasty
+things like proxies and load balancers between the client and the server.</p><p>For more detailed information on SockJS, see their website.</p><p>On the server side, you interact using instances of <a href="SockJSSocket.html" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">org.vertx.scala.core.sockjs.SockJSSocket</a> - this allows you to send data to the
+client or receive data via the <span class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket.dataHandler()">org.vertx.scala.core.sockjs.SockJSSocket.dataHandler()</span>.</p><p>You can register multiple applications with the same SockJSServer, each using different path prefixes, each
+application will have its own handler, and configuration.</p><p>Instances of this class are not thread-safe.</p></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="org.vertx.scala.Self">Self</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.vertx.scala.core.sockjs.SockJSServer"><span>SockJSServer</span></li><li class="in" name="org.vertx.scala.Self"><span>Self</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:AnyRef):Boolean"></a>
+      <a id="!=(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Any#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:AnyRef):Boolean"></a>
+      <a id="==(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Any#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.sockjs.SockJSServer#asJava" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="asJava:org.vertx.java.core.sockjs.SockJSServer"></a>
+      <a id="asJava:java.core.sockjs.SockJSServer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asJava</span><span class="result">: <span class="extype" name="org.vertx.java.core.sockjs.SockJSServer">java.core.sockjs.SockJSServer</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.sockjs.SockJSServer#bridge" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="bridge(sjsConfig:org.vertx.java.core.json.JsonObject,inboundPermitted:org.vertx.java.core.json.JsonArray,outboundPermitted:org.vertx.java.core.json.JsonArray,bridgeConfig:org.vertx.java.core.json.JsonObject):org.vertx.scala.core.sockjs.SockJSServer"></a>
+      <a id="bridge(JsonObject,JsonArray,JsonArray,JsonObject):SockJSServer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bridge</span><span class="params">(<span name="sjsConfig">sjsConfig: <span class="extype" name="org.vertx.java.core.json.JsonObject">JsonObject</span></span>, <span name="inboundPermitted">inboundPermitted: <span class="extype" name="org.vertx.java.core.json.JsonArray">JsonArray</span></span>, <span name="outboundPermitted">outboundPermitted: <span class="extype" name="org.vertx.java.core.json.JsonArray">JsonArray</span></span>, <span name="bridgeConfig">bridgeConfig: <span class="extype" name="org.vertx.java.core.json.JsonObject">JsonObject</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSServer">SockJSServer</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Install an app which bridges the SockJS server to the event bus</p><div class="fullcomment"><div class="comment cmt"><p>Install an app which bridges the SockJS server to the event bus</p></div><dl class="paramcmts block"><dt class="param">sjsConfig</dt><dd class="cmt"><p>The config for the app</p></dd><dt class="param">inboundPermitted</dt><dd class="cmt"><p>A list of JSON objects which define permitted matches for inbound (client-&gt;server) traffic</p></dd><dt class="param">outboundPermitted</dt><dd class="cmt"><p>A list of JSON objects which define permitted matches for outbound (server-&gt;client)
+traffic</p></dd><dt class="param">bridgeConfig</dt><dd class="cmt"><p>JSON object holding config for the EventBusBridge
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.sockjs.SockJSServer#bridge" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="bridge(sjsConfig:org.vertx.java.core.json.JsonObject,inboundPermitted:org.vertx.java.core.json.JsonArray,outboundPermitted:org.vertx.java.core.json.JsonArray,authTimeout:Long,authAddress:String):org.vertx.scala.core.sockjs.SockJSServer"></a>
+      <a id="bridge(JsonObject,JsonArray,JsonArray,Long,String):SockJSServer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bridge</span><span class="params">(<span name="sjsConfig">sjsConfig: <span class="extype" name="org.vertx.java.core.json.JsonObject">JsonObject</span></span>, <span name="inboundPermitted">inboundPermitted: <span class="extype" name="org.vertx.java.core.json.JsonArray">JsonArray</span></span>, <span name="outboundPermitted">outboundPermitted: <span class="extype" name="org.vertx.java.core.json.JsonArray">JsonArray</span></span>, <span name="authTimeout">authTimeout: <span class="extype" name="scala.Long">Long</span></span>, <span name="authAddress">authAddress: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSServer">SockJSServer</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Install an app which bridges the SockJS server to the event bus</p><div class="fullcomment"><div class="comment cmt"><p>Install an app which bridges the SockJS server to the event bus</p></div><dl class="paramcmts block"><dt class="param">sjsConfig</dt><dd class="cmt"><p>The config for the app</p></dd><dt class="param">inboundPermitted</dt><dd class="cmt"><p>A list of JSON objects which define permitted matches for inbound (client-&gt;server) traffic</p></dd><dt class="param">outboundPermitted</dt><dd class="cmt"><p>A list of JSON objects which define permitted matches for outbound (server-&gt;client)
+traffic</p></dd><dt class="param">authTimeout</dt><dd class="cmt"><p>Default time an authorisation will be cached for in the bridge (defaults to 5 minutes)</p></dd><dt class="param">authAddress</dt><dd class="cmt"><p>Address of auth manager. Defaults to 'vertx.basicauthmanager.authorise'
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.sockjs.SockJSServer#bridge" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="bridge(sjsConfig:org.vertx.java.core.json.JsonObject,inboundPermitted:org.vertx.java.core.json.JsonArray,outboundPermitted:org.vertx.java.core.json.JsonArray,authTimeout:Long):org.vertx.scala.core.sockjs.SockJSServer"></a>
+      <a id="bridge(JsonObject,JsonArray,JsonArray,Long):SockJSServer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bridge</span><span class="params">(<span name="sjsConfig">sjsConfig: <span class="extype" name="org.vertx.java.core.json.JsonObject">JsonObject</span></span>, <span name="inboundPermitted">inboundPermitted: <span class="extype" name="org.vertx.java.core.json.JsonArray">JsonArray</span></span>, <span name="outboundPermitted">outboundPermitted: <span class="extype" name="org.vertx.java.core.json.JsonArray">JsonArray</span></span>, <span name="authTimeout">authTimeout: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSServer">SockJSServer</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Install an app which bridges the SockJS server to the event bus</p><div class="fullcomment"><div class="comment cmt"><p>Install an app which bridges the SockJS server to the event bus</p></div><dl class="paramcmts block"><dt class="param">sjsConfig</dt><dd class="cmt"><p>The config for the app</p></dd><dt class="param">inboundPermitted</dt><dd class="cmt"><p>A list of JSON objects which define permitted matches for inbound (client-&gt;server) traffic</p></dd><dt class="param">outboundPermitted</dt><dd class="cmt"><p>A list of JSON objects which define permitted matches for outbound (server-&gt;client)
+traffic</p></dd><dt class="param">authTimeout</dt><dd class="cmt"><p>Default time an authorisation will be cached for in the bridge (defaults to 5 minutes)
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.sockjs.SockJSServer#bridge" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="bridge(sjsConfig:org.vertx.java.core.json.JsonObject,inboundPermitted:org.vertx.java.core.json.JsonArray,outboundPermitted:org.vertx.java.core.json.JsonArray):org.vertx.scala.core.sockjs.SockJSServer"></a>
+      <a id="bridge(JsonObject,JsonArray,JsonArray):SockJSServer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bridge</span><span class="params">(<span name="sjsConfig">sjsConfig: <span class="extype" name="org.vertx.java.core.json.JsonObject">JsonObject</span></span>, <span name="inboundPermitted">inboundPermitted: <span class="extype" name="org.vertx.java.core.json.JsonArray">JsonArray</span></span>, <span name="outboundPermitted">outboundPermitted: <span class="extype" name="org.vertx.java.core.json.JsonArray">JsonArray</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSServer">SockJSServer</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Install an app which bridges the SockJS server to the event bus</p><div class="fullcomment"><div class="comment cmt"><p>Install an app which bridges the SockJS server to the event bus</p></div><dl class="paramcmts block"><dt class="param">sjsConfig</dt><dd class="cmt"><p>The config for the app</p></dd><dt class="param">inboundPermitted</dt><dd class="cmt"><p>A list of JSON objects which define permitted matches for inbound (client-&gt;server) traffic</p></dd><dt class="param">outboundPermitted</dt><dd class="cmt"><p>A list of JSON objects which define permitted matches for outbound (server-&gt;client)
+traffic
+</p></dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.sockjs.SockJSServer#installApp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="installApp(config:org.vertx.java.core.json.JsonObject,sockHandler:org.vertx.scala.core.sockjs.SockJSSocket=&gt;Unit):org.vertx.scala.core.sockjs.SockJSServer"></a>
+      <a id="installApp(JsonObject,(SockJSSocket)⇒Unit):SockJSServer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">installApp</span><span class="params">(<span name="config">config: <span class="extype" name="org.vertx.java.core.json.JsonObject">JsonObject</span></span>, <span name="sockHandler">sockHandler: (<a href="SockJSSocket.html" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSServer">SockJSServer</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Install an application</p><div class="fullcomment"><div class="comment cmt"><p>Install an application</p></div><dl class="paramcmts block"><dt class="param">config</dt><dd class="cmt"><p>The application configuration</p></dd><dt class="param">sockHandler</dt><dd class="cmt"><p>A handler that will be called when new SockJS sockets are created
+</p></dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.vertx.scala.core.sockjs.SockJSServer#setHook" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setHook(hook:org.vertx.scala.core.sockjs.EventBusBridgeHook):org.vertx.scala.core.sockjs.SockJSServer"></a>
+      <a id="setHook(EventBusBridgeHook):SockJSServer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setHook</span><span class="params">(<span name="hook">hook: <a href="EventBusBridgeHook.html" class="extype" name="org.vertx.scala.core.sockjs.EventBusBridgeHook">EventBusBridgeHook</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSServer">SockJSServer</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Set a EventBusBridgeHook on the SockJS server</p><div class="fullcomment"><div class="comment cmt"><p>Set a EventBusBridgeHook on the SockJS server</p></div><dl class="paramcmts block"><dt class="param">hook</dt><dd class="cmt"><p>The hook
+</p></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.vertx.scala.Self#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wrap[X](doStuff:=&gt;X):Self.this.type"></a>
+      <a id="wrap[X](⇒X):SockJSServer.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Self.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSServer">SockJSServer</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p><div class="fullcomment"><div class="comment cmt"><p>Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd>Self</dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="org.vertx.scala.Self">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.Self">Self</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../../lib/template.js"></script>
+    </body>
+      </html>
