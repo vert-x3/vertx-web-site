@@ -1,0 +1,15 @@
+Pre-requisities:
+
+For building: python markdown, xsltproc
+
+For viewing: vert.x (for the web server)
+
+To build user manual:
+
+./gen_site.sh
+
+To run local web server for development: ./runserver.sh
+
+Point browser at http://localhost:8181
+
+Each new release create new version dir and search and replace old dir for new dir in all files

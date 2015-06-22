@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: vertx/write_stream.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: vertx/write_stream.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>writeStream = function(jsObj, jObj) {
+  /**
+   * This provides methods to write to a data stream. It's used by things
+   * like AsyncFile and HttpClientRequest and is not meant to be used
+   * directly.
+   * @mixin
+   */
+  WriteStream = {
+    /**
+     * Write some data to the stream. The data is put on an internal write
+     * queue, and the write actually happens asynchronously. To avoid running
+     * out of memory by putting too much on the write queue, check the 
+     * {@link#writeQueueFull} method before writing. This is done automatically
+     * if using a {@link Pump}.
+     * @param {Buffer} data the data to write
+     */
+    write: function(data) {
+      jObj.write(data);
+      return jsObj;
+    },
+    /**
+     * Set the maximum size of the write queue to &lt;code>maxSize&lt;/code>. You
+     * will still be able to write to the stream even if there is more than
+     * &lt;code>maxSize&lt;/code> bytes in the write queue. This is used as an
+     * indicator by classes such as &lt;code>Pump&lt;/code> to provide flow control.
+     * @param {number} size the size of the write queue
+     */
+    writeQueueMaxSize: function(size) {
+      jObj.setWriteQueueMaxSize(size);
+      return jsObj;
+    },
+    /**
+     * This will return &lt;code>true&lt;/code> if there are more bytes in the write
+     * queue than the value set using &lt;code>writeQueueMaxSize&lt;/code>
+     */
+    writeQueueFull: function() {
+      return jObj.writeQueueFull();
+    },
+    /**
+     * Set a drain handler on the stream. If the write queue is full, then the
+     * handler will be called when the write queue has been reduced to maxSize/2.
+     * See {@linkcode module:vertx/pump~Pump} for an example of this being used.
+     * @param {Handler} handler the handler to call when the stream has been drained
+     */
+    drainHandler: function(handler) {
+      jObj.drainHandler(handler);
+      return jsObj;
+    },
+    /**
+     * Set an exception handler on the stream
+     * @param {Handler} handler the handler to call when an exception occurs
+     */
+    exceptionHandler: function(handler) {
+      jObj.exceptionHandler(handler);
+      return jsObj;
+    }
+  }
+
+  jsObj.write             = WriteStream.write;
+  jsObj.writeQueueMaxSize = WriteStream.writeQueueMaxSize;
+  jsObj.writeQueueFull    = WriteStream.writeQueueFull;
+  jsObj.drainHandler      = WriteStream.drainHandler;
+  jsObj.exceptionHandler  = WriteStream.exceptionHandler;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-vertx.html">vertx</a></li><li><a href="buffer.html">vertx/buffer</a></li><li><a href="console.html">vertx/console</a></li><li><a href="container.html">vertx/container</a></li><li><a href="event_bus.html">vertx/event_bus</a></li><li><a href="file_system.html">vertx/file_system</a></li><li><a href="http.html">vertx/http</a></li><li><a href="multi_map.html">vertx/multi_map</a></li><li><a href="net.html">vertx/net</a></li><li><a href="parse_tools.html">vertx/parse_tools</a></li><li><a href="pump.html">vertx/pump</a></li><li><a href="shared_data.html">vertx/shared_data</a></li><li><a href="sockjs.html">vertx/sockjs</a></li><li><a href="timer.html">vertx/timer</a></li></ul><h3>Externals</h3><ul><li><a href="InetSocketAddress.html">InetSocketAddress</a></li><li><a href="Buffer_.html">Buffer</a></li><li><a href="RecordParser.html">RecordParser</a></li><li><a href="SockJSSocket.html">SockJSSocket</a></li></ul><h3>Classes</h3><ul><li><a href="buffer-Buffer.html">Buffer</a></li><li><a href="file_system.AsyncFile.html">AsyncFile</a></li><li><a href="http.HttpClient.html">HttpClient</a></li><li><a href="http.HttpClientRequest.html">HttpClientRequest</a></li><li><a href="http.HttpClientResponse.html">HttpClientResponse</a></li><li><a href="http.HttpServer.html">HttpServer</a></li><li><a href="http.HttpServerFileUpload.html">HttpServerFileUpload</a></li><li><a href="http.HttpServerRequest.html">HttpServerRequest</a></li><li><a href="http.HttpServerResponse.html">HttpServerResponse</a></li><li><a href="http.RouteMatcher.html">RouteMatcher</a></li><li><a href="http.WebSocket.html">WebSocket</a></li><li><a href="multi_map-MultiMap.html">MultiMap</a></li><li><a href="net.NetClient.html">NetClient</a></li><li><a href="net.NetServer.html">NetServer</a></li><li><a href="net.NetSocket.html">NetSocket</a></li><li><a href="pump-Pump.html">Pump</a></li><li><a href="sockjs.SockJSServer.html">SockJSServer</a></li></ul><h3>Mixins</h3><ul><li><a href="ClientSSLSupport.html">ClientSSLSupport</a></li><li><a href="ReadStream.html">ReadStream</a></li><li><a href="ServerSSLSupport.html">ServerSSLSupport</a></li><li><a href="ServerTCPSupport.html">ServerTCPSupport</a></li><li><a href="SSLSupport.html">SSLSupport</a></li><li><a href="TCPSupport.html">TCPSupport</a></li><li><a href="WriteStream.html">WriteStream</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Wed Jul 17 2013 20:27:22 GMT+0100 (BST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

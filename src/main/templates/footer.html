@@ -8,7 +8,7 @@
           <li><a href="https://bintray.com/vertx/downloads/distribution/view">Download</a></li>
           <li><a href="{{ site_url }}docs/">Documentation</a></li>
           <li><a href="https://github.com/vert-x3/wiki/wiki">Wiki</a></li>
-          <li class=""><a href="http://vertx.io" class="vertx-2-link">Vert.x 2</a></li>
+          <li><a href="{{ site_url }}vertx2/" class="vertx-2-link">Vert.x 2</a></li>
         </ul>
       </div>
       <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
@@ -21,15 +21,15 @@
       </div>
 
       <div class="col-xs-12 col-sm-6 col-lg-offset-2 col-md-6 copyright">
-        <p>Vert.x is 100% open source. Licensed under the <a href="https://www.eclipse.org/org/documents/epl-v10.php">Eclipse Public License 1.0</a> and <a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+        <p>Vert.x is open source and dual licensed under the <a href="https://www.eclipse.org/org/documents/epl-v10.php">Eclipse Public License 1.0</a> and <a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
         <p>This website is licensed under the <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0 License</a>.<br>
         Design by <a href="http://www.michel-kraemer.com">Michel Kr&auml;mer</a>. <a href="http://www.entypo.com">Entypo pictograms</a> by Daniel Bruce.</p>
         <div class="row">
           <div class="col-xs-12 col-lg-offset-2 col-md-5">
-            <img class="logo eclipse-logo" src="{{ site_url }}assets/eclipse_logo_colour_small.png" width="204" height="48">
+            <img class="logo eclipse-logo" src="{{ site_url }}assets/eclipse_logo_grey_small.png" width="204" height="48">
           </div>
           <div class="col-xs-12 col-md-offset-2 col-lg-offset-0 col-md-5">
-            <img class="logo cloudbees-logo" src="{{ site_url }}assets/Button-Built-on-CB-1.png" width="184" height="48">
+            <img class="logo cloudbees-logo" src="{{ site_url }}assets/Button-Built-on-CB-1-grey.png" width="184" height="48">
           </div>
         </div>
       </div>
@@ -45,8 +45,8 @@
 {% if stickyheader %}
 <script src="{{ site_url }}javascripts/sticky_header.js"></script>
 {% endif %}
-{% if type and type == "docs" %}
-<script src="{{ site_url }}javascripts/docs.js"></script>
+{% if sidebar %}
+<script src="{{ site_url }}javascripts/sidebar.js"></script>
 {% endif %}
 
 </body>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: vertx/pump.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: vertx/pump.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/*
+ * Copyright 2011-2012 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+if (typeof __vertxload === 'string') {
+  throw "Use require() to load Vert.x API modules"
+}
+
+/** 
+ * &lt;p>
+ * Pumps data from a {@linkcode ReadStream} to a 
+ * {@linkcode WriteStream} and performs flow control
+ * where necessary to prevent the write stream from getting overloaded.
+ * &lt;/p>
+ * &lt;p>
+ * Instances of this class read bytes from a {@linkcode ReadStream}
+ * and write them to a {@linkcode WriteStream}. If data
+ * can be read faster than it can be written this could result in the write
+ * queue of the WriteStream growing without bound, eventually
+ * causing it to exhaust all available RAM.
+ * &lt;/p>
+ * &lt;p>
+ * To prevent this, after each write, instances of this class check whether the
+ * write queue of the WriteStream is full, and if so, the ReadStream is paused,
+ * and a drainHandler is set on the WriteStream. When the WriteStream has
+ * processed half of its backlog, the drainHandler will be called, which
+ * results in the pump resuming the ReadStream.
+ * &lt;/p>
+ *
+ * &lt;p>
+ * This class can be used to pump from any ReadStream to any WriteStream, e.g.
+ * from an HttpServerRequest to an AsyncFile, or from NetSocket to a WebSocket.
+ * &lt;/p>
+ *
+ * @constructor 
+ * @param {ReadStream} readStream a ReadStream
+ * @param {WriteStream} writeStream a WriteStream
+ * */
+var Pump = function(rs, ws) {
+
+  var that = this;
+  var pumped = 0;
+
+  var drainHandler = function() {
+    rs.resume();
+  }
+
+  var dataHandler = function(buffer) {
+    ws.write(buffer);
+    pumped += buffer.length();
+    if (ws.writeQueueFull()) {
+      rs.pause();
+      ws.drainHandler(drainHandler);
+    }
+  }
+
+  /**
+   * Start the Pump. The Pump can be started and stopped multiple times.
+   * @returns {Pump}
+   */
+  this.start = function() {
+    rs.dataHandler(dataHandler);
+    return that;
+  },
+  /**
+   * Stop the Pump. The Pump can be started and stopped multiple times.
+   * @returns {Pump}
+   */
+  this.stop = function() {
+    ws.drainHandler(null);
+    rs.dataHandler(null);
+    return that;
+  },
+  /**
+   * Return the total number of bytes pumped by this pump.
+   * @returns {number} the number of bytes pumped
+   */
+  this.bytesPumped = function() {
+    return pumped;
+  },
+  /**
+   * Set the write queue max size to maxSize
+   * @param {number} maxSize the maximum size of the write queue
+   * @returns {Pump}
+   */
+  this.setWriteQueueMaxSize = function(maxSize) {
+    ws.setWriteQueueMaxSize(maxSize);
+    return that;
+  }
+}
+
+/** @module vertx/pump */
+module.exports = Pump;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-vertx.html">vertx</a></li><li><a href="buffer.html">vertx/buffer</a></li><li><a href="console.html">vertx/console</a></li><li><a href="container.html">vertx/container</a></li><li><a href="event_bus.html">vertx/event_bus</a></li><li><a href="file_system.html">vertx/file_system</a></li><li><a href="http.html">vertx/http</a></li><li><a href="multi_map.html">vertx/multi_map</a></li><li><a href="net.html">vertx/net</a></li><li><a href="parse_tools.html">vertx/parse_tools</a></li><li><a href="pump.html">vertx/pump</a></li><li><a href="shared_data.html">vertx/shared_data</a></li><li><a href="sockjs.html">vertx/sockjs</a></li><li><a href="timer.html">vertx/timer</a></li></ul><h3>Externals</h3><ul><li><a href="InetSocketAddress.html">InetSocketAddress</a></li><li><a href="Buffer_.html">Buffer</a></li><li><a href="RecordParser.html">RecordParser</a></li><li><a href="SockJSSocket.html">SockJSSocket</a></li></ul><h3>Classes</h3><ul><li><a href="buffer-Buffer.html">Buffer</a></li><li><a href="file_system.AsyncFile.html">AsyncFile</a></li><li><a href="http.HttpClient.html">HttpClient</a></li><li><a href="http.HttpClientRequest.html">HttpClientRequest</a></li><li><a href="http.HttpClientResponse.html">HttpClientResponse</a></li><li><a href="http.HttpServer.html">HttpServer</a></li><li><a href="http.HttpServerFileUpload.html">HttpServerFileUpload</a></li><li><a href="http.HttpServerRequest.html">HttpServerRequest</a></li><li><a href="http.HttpServerResponse.html">HttpServerResponse</a></li><li><a href="http.RouteMatcher.html">RouteMatcher</a></li><li><a href="http.WebSocket.html">WebSocket</a></li><li><a href="multi_map-MultiMap.html">MultiMap</a></li><li><a href="net.NetClient.html">NetClient</a></li><li><a href="net.NetServer.html">NetServer</a></li><li><a href="net.NetSocket.html">NetSocket</a></li><li><a href="pump-Pump.html">Pump</a></li><li><a href="sockjs.SockJSServer.html">SockJSServer</a></li></ul><h3>Mixins</h3><ul><li><a href="ClientSSLSupport.html">ClientSSLSupport</a></li><li><a href="ReadStream.html">ReadStream</a></li><li><a href="ServerSSLSupport.html">ServerSSLSupport</a></li><li><a href="ServerTCPSupport.html">ServerTCPSupport</a></li><li><a href="SSLSupport.html">SSLSupport</a></li><li><a href="TCPSupport.html">TCPSupport</a></li><li><a href="WriteStream.html">WriteStream</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Wed Jul 17 2013 20:27:22 GMT+0100 (BST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

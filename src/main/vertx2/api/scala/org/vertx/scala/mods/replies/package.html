@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>replies - lang-scala.git 1.0.0 API - org.vertx.scala.mods.replies</title>
+          <meta name="description" content="replies - lang - scala.git 1.0.0 API - org.vertx.scala.mods.replies" />
+          <meta name="keywords" content="replies lang scala.git 1.0.0 API org.vertx.scala.mods.replies" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'org.vertx.scala.mods.replies.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../../package.html" class="extype" name="org">org</a>.<a href="../../../package.html" class="extype" name="org.vertx">vertx</a>.<a href="../../package.html" class="extype" name="org.vertx.scala">scala</a>.<a href="../package.html" class="extype" name="org.vertx.scala.mods">mods</a></p>
+        <h1>replies</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">replies</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.vertx.scala.mods.replies.AsyncReply" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AsyncReplyextendsBusModReplywithProductwithSerializable"></a>
+      <a id="AsyncReply:AsyncReply"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="AsyncReply.html"><span class="name">AsyncReply</span></a><span class="params">(<span name="replyWhenDone">replyWhenDone: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="BusModReply.html" class="extype" name="org.vertx.scala.mods.replies.BusModReply">BusModReply</a>]</span>)</span><span class="result"> extends <a href="BusModReply.html" class="extype" name="org.vertx.scala.mods.replies.BusModReply">BusModReply</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.mods.replies.BusModReceiveEnd" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="BusModReceiveEndextendsAnyRef"></a>
+      <a id="BusModReceiveEnd:BusModReceiveEnd"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="BusModReceiveEnd.html"><span class="name">BusModReceiveEnd</span></a><span class="result"> extends <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.mods.replies.BusModReply" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="BusModReplyextendsBusModReceiveEnd"></a>
+      <a id="BusModReply:BusModReply"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="BusModReply.html"><span class="name">BusModReply</span></a><span class="result"> extends <a href="BusModReceiveEnd.html" class="extype" name="org.vertx.scala.mods.replies.BusModReceiveEnd">BusModReceiveEnd</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.mods.replies.Error" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ErrorextendsSyncReplywithProductwithSerializable"></a>
+      <a id="Error:Error"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Error.html"><span class="name">Error</span></a><span class="params">(<span name="message">message: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id">id: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;MODULE_EXCEPTION&quot;</span></span>, <span name="obj">obj: <a href="../../core/json/package.html#JsonObject=org.vertx.java.core.json.JsonObject" class="extmbr" name="org.vertx.scala.core.json.JsonObject">JsonObject</a> = <span class="defval" name="org.vertx.scala.core.json.Json.obj()">...</span></span>)</span><span class="result"> extends <a href="SyncReply.html" class="extype" name="org.vertx.scala.mods.replies.SyncReply">SyncReply</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.mods.replies.Ok" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="OkextendsSyncReplywithProductwithSerializable"></a>
+      <a id="Ok:Ok"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Ok.html"><span class="name">Ok</span></a><span class="params">(<span name="x">x: <a href="../../core/json/package.html#JsonObject=org.vertx.java.core.json.JsonObject" class="extmbr" name="org.vertx.scala.core.json.JsonObject">JsonObject</a> = <span class="defval" name="org.vertx.scala.core.json.Json.obj()">...</span></span>, <span name="replyHandler">replyHandler: <span class="extype" name="scala.Option">Option</span>[<a href="ReplyReceiver.html" class="extype" name="org.vertx.scala.mods.replies.ReplyReceiver">ReplyReceiver</a>] = <span class="symbol">scala.None</span></span>)</span><span class="result"> extends <a href="SyncReply.html" class="extype" name="org.vertx.scala.mods.replies.SyncReply">SyncReply</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.mods.replies.Receiver" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ReceiverextendsReplyReceiverwithProductwithSerializable"></a>
+      <a id="Receiver:Receiver"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Receiver.html"><span class="name">Receiver</span></a><span class="params">(<span name="handler">handler: (<a href="../../core/eventbus/Message.html" class="extype" name="org.vertx.scala.core.eventbus.Message">Message</a>[<a href="../../core/json/package.html#JsonObject=org.vertx.java.core.json.JsonObject" class="extmbr" name="org.vertx.scala.core.json.JsonObject">JsonObject</a>]) ⇒ <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="BusModReceiveEnd.html" class="extype" name="org.vertx.scala.mods.replies.BusModReceiveEnd">BusModReceiveEnd</a>]</span>)</span><span class="result"> extends <a href="ReplyReceiver.html" class="extype" name="org.vertx.scala.mods.replies.ReplyReceiver">ReplyReceiver</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.mods.replies.ReceiverWithTimeout" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ReceiverWithTimeoutextendsReplyReceiverwithProductwithSerializable"></a>
+      <a id="ReceiverWithTimeout:ReceiverWithTimeout"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ReceiverWithTimeout.html"><span class="name">ReceiverWithTimeout</span></a><span class="params">(<span name="handler">handler: (<a href="../../core/eventbus/Message.html" class="extype" name="org.vertx.scala.core.eventbus.Message">Message</a>[<a href="../../core/json/package.html#JsonObject=org.vertx.java.core.json.JsonObject" class="extmbr" name="org.vertx.scala.core.json.JsonObject">JsonObject</a>]) ⇒ <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="BusModReceiveEnd.html" class="extype" name="org.vertx.scala.mods.replies.BusModReceiveEnd">BusModReceiveEnd</a>]</span>, <span name="timeout">timeout: <span class="extype" name="scala.Long">Long</span></span>, <span name="timeoutHandler">timeoutHandler: () ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result"> extends <a href="ReplyReceiver.html" class="extype" name="org.vertx.scala.mods.replies.ReplyReceiver">ReplyReceiver</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.mods.replies.ReplyReceiver" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ReplyReceiverextendsAnyRef"></a>
+      <a id="ReplyReceiver:ReplyReceiver"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ReplyReceiver.html"><span class="name">ReplyReceiver</span></a><span class="result"> extends <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.mods.replies.SyncReply" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SyncReplyextendsBusModReply"></a>
+      <a id="SyncReply:SyncReply"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="SyncReply.html"><span class="name">SyncReply</span></a><span class="result"> extends <a href="BusModReply.html" class="extype" name="org.vertx.scala.mods.replies.BusModReply">BusModReply</a></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="org.vertx.scala.mods.replies.NoReply" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NoReply"></a>
+      <a id="NoReply:NoReply"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="NoReply$.html"><span class="name">NoReply</span></a><span class="result"> extends <a href="BusModReceiveEnd.html" class="extype" name="org.vertx.scala.mods.replies.BusModReceiveEnd">BusModReceiveEnd</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../../lib/template.js"></script>
+    </body>
+      </html>

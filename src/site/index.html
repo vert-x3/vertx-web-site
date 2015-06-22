@@ -8,9 +8,9 @@ stickyheader: true
   <div class="container">
     <div class="row">
       <div class="col-sm-offset-2 col-sm-8 text-center">
-        <h2>Eclipse <strong>Vert.x</strong> is a tool-kit for building <strong>reactive</strong> applications on the <strong>JVM</strong>.</h2>
+        <h2><strong>Vert.x</strong> is a tool-kit for building <strong>reactive</strong> applications on the <strong>JVM</strong>.</h2>
         <div class="buttons">
-          <a class="btn btn-default btn-lg" href="https://bintray.com/vertx/downloads/distribution/view" role="button">{% icon "install" %} Download v3.0-milestone6</a><br>
+          <a class="btn btn-default btn-lg btn-transparent" href="https://bintray.com/vertx/downloads/distribution/view" role="button">{% icon "install" %} Download v3.0-milestone6</a><br>
           <span class="github-btn">
             <iframe src="https://ghbtns.com/github-btn.html?user=eclipse&amp;repo=vert.x&amp;type=star&amp;count=true&amp;size=large"
                   frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
@@ -21,12 +21,12 @@ stickyheader: true
   </div>
 </div>
 
-<div class="container highlight">
+<div class="container highlight highlight-scale">
   <div class="row">
     <div class="col-sm-6">
-      <h2>Reactive</h2>
-      <p>Vert.x is <em>event driven</em> and <em>non blocking</em>. This means you can handle a lot of concurrency in your apps using a small
-        number of threads. Vert.x lets your apps scale with minimal hardware.</p>
+      <h2>Scale</h2>
+      <p>Vert.x is <em>event driven</em> and <em>non blocking</em>. This means your app can handle a lot of concurrency
+        using a small number of kernel threads. Vert.x lets your app scale with minimal hardware.</p>
     </div>
 
     <div class="col-sm-offset-1 col-sm-5 text-right">
@@ -48,45 +48,43 @@ stickyheader: true
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="ws_java">
-            <pre class="prettyprint"><code class="java">import io.vertx.core.AbstractVerticle;
-
+            <pre class="prettyprint"><code class="java">
 public class Server extends AbstractVerticle {
-  @Override
-  public void start() throws Exception {
+  public void start() {
     vertx.createHttpServer().requestHandler(req -> {
       req.response()
-        .putHeader("Content-Type", "text/html")
-        .end("&lt;html>&lt;body>&lt;h1>Hello from Vert.x!" +
-          "&lt;/h1>&lt;/body>&lt;/html>");
+        .putHeader("content-type", "text/plain")
+        .end("Hello from Vert.x!");
     }).listen(8080);
   }
 }</code></pre>
           </div>
 
           <div class="tab-pane" id="ws_js">
-            <pre class="prettyprint"><code class="javascript">vertx.createHttpServer().requestHandler(function (req) {
-  req.response()
-    .putHeader("Content-Type", "text/html")
-    .end("&lt;html>&lt;body>&lt;h1>Hello from Vert.x!" +
-      "&lt;/h1>&lt;/body>&lt;/html>");
+            <pre class="prettyprint"><code class="javascript">
+vertx.createHttpServer()
+  .requestHandler(function (req) {
+    req.response()
+      .putHeader("content-type", "text/plain")
+      .end("Hello from Vert.x!");
 }).listen(8080);</code></pre>
           </div>
 
           <div class="tab-pane" id="ws_groovy">
-            <pre class="prettyprint"><code class="groovy">vertx.createHttpServer().requestHandler({ req ->
+            <pre class="prettyprint"><code class="groovy">
+vertx.createHttpServer().requestHandler({ req ->
   req.response()
     .putHeader("Content-Type", "text/html")
-    .end("&lt;html>&lt;body>&lt;h1>Hello from Vert.x!" +
-      "&lt;/h1>&lt;/body>&lt;/html>")
+    .end("Hello from Vert.x!")
 }).listen(8080)</code></pre>
           </div>
 
           <div class="tab-pane" id="ws_ruby">
-            <pre class="prettyprint"><code class="ruby">$vertx.create_http_server().request_handler() { |req|
+            <pre class="prettyprint"><code class="ruby">
+vertx.create_http_server().request_handler() { |req|
   req.response()
-    .put_header("content-type", "text/html")
-    .end("&lt;html>&lt;body>&lt;h1>Hello from Vert.x!" +
-      "&lt;/h1>&lt;/body>&lt;/html>")
+    .put_header("content-type", "text/plain")
+    .end("Hello from Vert.x!")
 }.listen(8080)</code></pre>
           </div>
 
@@ -94,11 +92,11 @@ public class Server extends AbstractVerticle {
       </div>
       <div class="col-sm-6 text-right">
         <h2>Polyglot</h2>
-        <p>You can use Vert.x with multiple JVM languages including <strong>Java</strong>, <strong>JavaScript</strong>, <strong>Groovy</strong>, and <strong>Ruby</strong>.
-          Vert.x doesn't care what language is <em>best</em> &mdash; you use what language(s) that <em>you</em> want depending on the
-          task at hand and the skill-set of your team.</p>
-        <p>We don't just force you to use our Java API in other languages - we provide
-          <em>idiomatic</em> APIs for every language that Vert.x supports.</p>
+        <p>You can use Vert.x with multiple languages including <strong>Java</strong>, <strong>JavaScript</strong>,
+          <strong>Groovy</strong>, and <strong>Ruby</strong>.</p>
+        <p>Vert.x doesn't preach about what language is <em>best</em> &mdash; you choose the languages <em>you</em> want
+          based on the task at hand and the skill-set of your team.</p>
+        <p>We provide <em>idiomatic</em> APIs for every language that Vert.x supports.</p>
       </div>
     </div>
   </div>
@@ -110,15 +108,20 @@ public class Server extends AbstractVerticle {
       <div class="col-sm-6 text-center">
         <h3>General purpose</h3>
         <img src="{{ site_url }}assets/general_purpose.svg">
-        <p>You can use Vert.x for all kinds of applications, for example: web applications and enterprise back-end
-          applications.</p>
+        <p>Vert.x is incredibly flexible - whether it's simple network utilities,
+          sophisticated modern web applications, HTTP/REST microservices, high volume event processing or a full blown
+          back-end message-bus application, Vert.x is a great fit.</p>
+        <p>Vert.x is used by <a href="{{ site_url }}whos_using">many different companies</a> from real-time gaming to banking and everything in
+        between.</p>
       </div>
 
       <div class="col-sm-6 text-center">
-        <h3>Un-opinionated</h3>
+        <h3>Unopinionated</h3>
         <img src="{{ site_url }}assets/opinion.svg">
-        <p>Vert.x is not a framework or a container and we don't tell you a <em>correct</em> way to write an application.
+        <p>Vert.x is not a restrictive framework or container and we don't tell you a <em>correct</em> way to write an application.
           Instead we give you a lot of useful bricks and let you create your app the way <em>you</em> want to.</p>
+        <p>Need some guidance? We provide a large selection of <a href="https://github.com/vert-x3/vertx-examples">examples</a> to get you
+          started for the particular type of application you want to write.</p>
       </div>
     </div>
   </div>
@@ -129,25 +132,28 @@ public class Server extends AbstractVerticle {
     <div class="row">
       <div class="col-sm-6">
         <h2>Vert.x is <em>fun</em></h2>
-        <p>Enjoy being a developer again. Spare a thought for your less fortunate colleagues using legacy technologies.</p>
+        <p>Enjoy being a developer again.</p>
+        <p>Unlike restrictive traditional application containers, Vert.x gives you
+          incredible power and agility to create compelling, scalable, 21st century applications the way you want to,
+          with a minimum of fuss, in the language you want.</p>
       </div>
       <div class="col-sm-6 highlight-fun-right">
         <ul>
           <li><p>Vert.x is <em>lightweight</em> - Vert.x core is around 650kB in size.</p></li>
-          <li><p>Vert.x is <em>fast</em>.</p></li>
-          <li><p>Vert.x is an ideal choice for creating light-weight, high-performance, <em>micro-services</em>.</p></li>
+          <li><p>Vert.x is <em>fast</em>. Here are some independent
+            <a href="https://www.techempower.com/benchmarks/#section=data-r8&hw=i7&test=plaintext">numbers</a>.</p></li>
           <li><p>Vert.x is <em>not an application server</em>. There's no monolithic Vert.x instance into which you deploy applications.
             You just run your apps wherever you want to.</p></li>
           <li><p>Vert.x is <em>modular</em> - when you need more bits just add the bits you need and nothing more.</p></li>
           <li><p>Vert.x is <em>simple but not simplistic</em>. Vert.x allows you to create powerful apps, simply.</p></li>
+          <li><p>Vert.x is an ideal choice for creating light-weight, high-performance, <em>microservices</em>.</p></li>
         </ul>
       </div>
     </div>
 
     <div class="row highlight highlight-stack">
       <div class="col-sm-12 text-center">
-        <p>Vert.x is a stack for creating compelling, 21st century, reactive applications. As well as low level functionality Vert.x provides
-          higher level building blocks for creating real-world applications.</p>
+        <p>Have a private enquiry about Vert.x? Please <a href="mailto:vertx-enquiries@googlegroups.com">contact us</a>.</p>
       </div>
     </div>
   </div>
@@ -157,46 +163,7 @@ public class Server extends AbstractVerticle {
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h3>Who is using Vert.x?</h3>
-        <!-- logos should be completely white, 180px wide and sorted alphabetically -->
-        {% set logos = [{
-          src: "AirWatch_logo.png",
-          link: "http://www.air-watch.com",
-          height: 84
-        }, {
-          src: "bosch-brand-white.png",
-          link: "http://www.bosch-si.com",
-          height: 53
-        }, {
-          src: "cyanogen_logo_white.png",
-          link: "https://cyngn.com/",
-          height: 50
-        }, {
-          src: "fraunhofer-white.png",
-          link: "http://www.igd.fraunhofer.de",
-          height: 49
-        }, {
-          src: "groupon-white.png",
-          link: "http://www.groupon.com",
-          height: 65
-        }, {
-          src: "hulu_logo_transparent_small.png",
-          link: "http://www.hulu.com/",
-          height: 55
-        }, {
-          src: "jClarity_logo.png",
-          link: "http://www.jclarity.com",
-          height: 42
-        }, {
-          src: "rbs.png",
-          link: "http://www.rbs.com",
-          height: 55
-        }, {
-          src: "RedHat.svg.png",
-          link: "http://www.redhat.com",
-          height: 58
-        }] %}
-
+        <h2>Who's using Vert.x?</h2>
         <!-- iterate over logos and generate rows and cols for different resolutions -->
         {% set res = {"xs": 1, "sm": 2, "md": 3, "lg": 4} %}
         {% for cols in res %}
@@ -204,7 +171,7 @@ public class Server extends AbstractVerticle {
           {% set colwidth = 12 / cols %}
           <div class="visible-{{ outerloopkey }}-block">
             <div class="row user-logos">
-              {% for logo in logos %}
+              {% for logo in users_home_page %}
                 <div class="col-sm-{{ colwidth }} user-logo">
                   <a href="{{ logo.link }}"><img src="{{ site_url }}assets/user_logos/{{ logo.src }}" width="180" height="{{ logo.height }}"></a>
                 </div>
@@ -219,7 +186,7 @@ public class Server extends AbstractVerticle {
 
         <div class="row">
           <div class="col-sm-12 wanttobelisted">
-            You want to be listed here? Please <a href="https://groups.google.com/forum/?fromgroups#!forum/vertx">contact us</a>!
+            <a class="btn btn-default btn-md btn-transparent" href="{{ site_url }}whos_using" role="button">{% icon "list" %} More &hellip;</a><br>
           </div>
         </div>
       </div>

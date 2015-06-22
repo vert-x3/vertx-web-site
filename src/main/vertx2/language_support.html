@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <!-- <link rel="stylesheet/less" href="bootstrap/less/bootstrap.less">
+  <script src="bootstrap/less/less-1.3.3.min.js"></script>
+  -->
+  <link href="bootstrap/bootstrap.css" type="text/css" rel="stylesheet"/>
+  <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet"/>
+  <script type="text/javascript" src="google-code-prettify/prettify.js"></script>
+  <link href="css/vertx.css" type="text/css" rel="stylesheet"/>
+  <link href="css/sunburst.css" type="text/css" rel="stylesheet"/>
+  <title>Vert.x</title>
+  <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-30144458-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+
+<body onload="prettyPrint()" class="hp">
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+
+      <a class="btn btn-navbar" data-toggle="collapse"
+         data-target=".nav-collapse">
+        <span class="i-bar"></span>
+        <span class="i-bar"></span>
+        <span class="i-bar"></span>
+      </a>
+
+      <a class="brand" href="/">Vert.x</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="downloads.html">Download</a></li>
+          <li><a href="install.html">Install</a></li>
+          <li><a href="docs.html">Documentation</a></li>
+          <li><a href="examples.html">Examples</a></li>
+          <li><a href="community.html">Project Info</a></li>
+          <li><a href="https://github.com/vert-x/vert.x">Github</a></li>
+          <li><a href="http://modulereg.vertx.io/">Module Registry</a></li>
+          <li><a href="http://groups.google.com/group/vertx">Google Group</a></li>
+          <li><a href="http://vertxproject.wordpress.com/">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="row">
+    <div class="span12">
+      <div class="well">
+        <h1>Providing Support for a New Language with Vert.x</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span12">
+      <div class="well">
+<div>
+
+
+<div class="toc">
+<ul>
+<li><a href="#implement-verticlefactory">Implement VerticleFactory</a></li>
+<li><a href="#create-an-api-shim-that-wraps-the-vertx-java-api">Create an API shim that wraps the Vert.x Java API</a></li>
+<li><a href="#mark-the-module-as-resident">Mark the module as resident</a></li>
+<li><a href="#mark-the-module-as-system">Mark the module as system</a></li>
+<li><a href="#tell-vertx-about-your-new-language-implementation">Tell Vert.x about your new language implementation</a></li>
+<li><a href="#push-the-language-implementation-to-a-repository">Push the language implementation to a repository</a></li>
+<li><a href="#advertise-the-module-in-the-module-registry">Advertise the module in the module registry</a></li>
+<li><a href="#next-steps">Next steps</a></li>
+</ul>
+</div>
+<p>The core Vert.x distribution doesn't know about any languages other than Java. All language support in Vert.x is provided in the form of modules.</p>
+<p>Before embarking on implementing a language implementation module, please get familiar with <a href="mods_manual.html">Vert.x modules</a>.</p>
+<p>It's also highly recommended you write your module using the <a href="gradle_dev.html">Vert.x Gradle Template Project</a> or the <a href="maven_dev.html">Vert.x Maven Archetype</a>.</p>
+<p>This document provides an outline for how you can provide support for a new language (or an alternative to an existing language with a different language engine) in Vert.x</p>
+<h1 id="implement-verticlefactory">Implement <code>VerticleFactory</code></h1><br/>
+<p>You should implement the interface <code>org.vertx.java.platform.VerticleFactory</code> in your module. The Vert.x platform will call this to create verticles which it deploys.</p>
+<p>It's up to your verticle factory to instantiate the verticle, e.g. by loading script files from the module and executing them.</p>
+<h1 id="create-an-api-shim-that-wraps-the-vertx-java-api">Create an API shim that wraps the Vert.x Java API</h1><br/>
+<p>As a general rule, we don't like to expose the Java API directly to code in the language you are writing the module for.</p>
+<p>Language specific APIs should use the idioms common in the language in question. For example, in Vert.x Java we use an interface to represent an event handler, but in Vert.x Groovy we use a Closure, and in Ruby we use a block.</p>
+<p>For this reason, you should write a thin API shim in the language in question to convert the raw Java API to a form that is more fitting for the language. You should then include that API shim in the language module.</p>
+<p>It's also a general rule of Vert.x language implementations that the API shims should take a similar form across all languages. This means a developer can easily pick up another language API after becoming familiar with one.</p>
+<h1 id="mark-the-module-as-resident">Mark the module as <code>resident</code></h1><br/>
+<p>Language implementation modules should be marked as "resident": true in <code>mod.json</code>. This means they will not get unloaded until the JVM exits.</p>
+<h1 id="mark-the-module-as-system">Mark the module as <code>system</code></h1><br/>
+<p>Language implementation modules should be marked as "system": true in <code>mod.json</code>. This means they will be installed into the <code>sys-mods</code> directory of the Vert.x installation directory and won't be downloaded for every app that needs them</p>
+<h1 id="tell-vertx-about-your-new-language-implementation">Tell Vert.x about your new language implementation</h1><br/>
+<p>Edit <code>langs.properties</code> in the Vert.x installation <code>conf</code> directory and add a line for your module, e.g.</p>
+<pre class="prettyprint">cobol=com.company~lang-cobol~1.0.0:com.mycompany.langmod.CobolVerticleFactory
+</pre>
+<p>The part to the left of the <code>=</code> is the name you give to your language implementation.</p>
+<p>The part to the right of the <code>=</code> consists of two parts:</p>
+<p>The part to the left of the <code>:</code> is the module identifier of the module that you wrote. This can be in any repository that Vert.x understands (or it can just be installed locally).</p>
+<p>The part to the right of the <code>:</code> is the fully qualified class name of your <code>VerticleFactory</code> instance that you wrote and that lives inside your module.</p>
+<p>If you want to map particular file extensions to your language implementation you can also add a line like:</p>
+<pre class="prettyprint">.cbl=cobol
+</pre>
+<p>This tells Vert.x to use use your module when running any files with the <code>.cbl</code> extension.</p>
+<p>You can also prefix your main with <code>cobol:</code> to force it to use your language module for a particular main, or if you prefer not to make a file extension mapping.</p>
+<h1 id="push-the-language-implementation-to-a-repository">Push the language implementation to a repository</h1><br/>
+<p>E.g. Maven Central or Bintray (or oss.sonatype for snapshots)</p>
+<h1 id="advertise-the-module-in-the-module-registry">Advertise the module in the module registry</h1><br/>
+<p>Submit the module to the Vert.x <a href="http://modulereg.vertx.io">module registry</a></p>
+<h1 id="next-steps">Next steps</h1><br/>
+<p>None! That's it.</p></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

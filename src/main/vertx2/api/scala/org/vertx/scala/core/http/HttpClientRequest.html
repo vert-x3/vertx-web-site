@@ -1,0 +1,779 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>HttpClientRequest - lang-scala.git 1.0.0 API - org.vertx.scala.core.http.HttpClientRequest</title>
+          <meta name="description" content="HttpClientRequest - lang - scala.git 1.0.0 API - org.vertx.scala.core.http.HttpClientRequest" />
+          <meta name="keywords" content="HttpClientRequest lang scala.git 1.0.0 API org.vertx.scala.core.http.HttpClientRequest" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'org.vertx.scala.core.http.HttpClientRequest';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+      <div id="definition">
+        <a href="HttpClientRequest$.html" title="Go to companion"><img src="../../../../../lib/class_to_object_big.png" /></a>
+        <p id="owner"><a href="../../../../package.html" class="extype" name="org">org</a>.<a href="../../../package.html" class="extype" name="org.vertx">vertx</a>.<a href="../../package.html" class="extype" name="org.vertx.scala">scala</a>.<a href="../package.html" class="extype" name="org.vertx.scala.core">core</a>.<a href="package.html" class="extype" name="org.vertx.scala.core.http">http</a></p>
+        <h1><a href="HttpClientRequest$.html" title="Go to companion">HttpClientRequest</a></h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">HttpClientRequest</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents a client-side HTTP request.</p><p>Instances are created by an <a href="HttpClient.html" class="extype" name="org.vertx.scala.core.http.HttpClient">org.vertx.scala.core.http.HttpClient</a> instance, via one of the methods corresponding to the
+specific HTTP methods, or the generic <a href="HttpClient.html#request(method:String,uri:String,responseHandler:org.vertx.scala.core.http.HttpClientResponse=&gt;Unit):org.vertx.scala.core.http.HttpClientRequest" class="extmbr" name="org.vertx.scala.core.http.HttpClient#request">org.vertx.scala.core.http.HttpClient.request</a> method.</p><p>Once a request has been obtained, headers can be set on it, and data can be written to its body if required. Once
+you are ready to send the request, the <code>end()</code> method should be called.</p><p>Nothing is actually sent until the request has been internally assigned an HTTP connection. The <a href="HttpClient.html" class="extype" name="org.vertx.scala.core.http.HttpClient">org.vertx.scala.core.http.HttpClient</a>
+instance will return an instance of this class immediately, even if there are no HTTP connections available in the pool. Any requests
+sent before a connection is assigned will be queued internally and actually sent when an HTTP connection becomes
+available from the pool.</p><p>The headers of the request are actually sent either when the <code>end()</code> method is called, or, when the first
+part of the body is written, whichever occurs first.</p><p>This class supports both chunked and non-chunked HTTP.</p><p>It implements <span class="extype" name="org.vertx.java.core.streams.WriteStream">org.vertx.java.core.streams.WriteStream</span> so it can be used with
+<span class="extype" name="org.vertx.java.core.streams.Pump">org.vertx.java.core.streams.Pump</span> to pump data with flow control.</p><p>An example of using this class is as follows:</p><p><pre>
+
+val req = httpClient.post("/some-url", { (response: HttpClientResponse) =>
+  println("Got response: " + response.statusCode)
+})
+
+req.headers().put("some-header", "hello")
+    .put("Content-Length", 5)
+    .write(new Buffer(Array[Byte](1, 2, 3, 4, 5)))
+    .write(new Buffer(Array[Byte](6, 7, 8, 9, 10)))
+    .end()
+
+</pre>
+Instances of HttpClientRequest are not thread-safe.
+</p></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a>, <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a>, <span class="extype" name="org.vertx.scala.AsJava">AsJava</span>, <span class="extype" name="org.vertx.scala.Self">Self</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.vertx.scala.core.http.HttpClientRequest"><span>HttpClientRequest</span></li><li class="in" name="org.vertx.scala.core.streams.WriteStream"><span>WriteStream</span></li><li class="in" name="org.vertx.scala.core.streams.ExceptionSupport"><span>ExceptionSupport</span></li><li class="in" name="org.vertx.scala.AsJava"><span>AsJava</span></li><li class="in" name="org.vertx.scala.Self"><span>Self</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.vertx.scala.core.http.HttpClientRequest.J" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="J=org.vertx.java.core.http.HttpClientRequest"></a>
+      <a id="J:J"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">J</span><span class="result"> = <span class="extype" name="org.vertx.java.core.http.HttpClientRequest">java.core.http.HttpClientRequest</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">The internal type of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a> → <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a> → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a> → AsJava</dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:AnyRef):Boolean"></a>
+      <a id="!=(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Any#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:AnyRef):Boolean"></a>
+      <a id="==(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Any#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpClientRequest#asJava" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asJava:org.vertx.java.core.http.HttpClientRequest"></a>
+      <a id="asJava:java.core.http.HttpClientRequest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asJava</span><span class="result">: <span class="extype" name="org.vertx.java.core.http.HttpClientRequest">java.core.http.HttpClientRequest</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">The internal instance of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a> → AsJava</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpClientRequest#continueHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="continueHandler(handler:=&gt;Unit):org.vertx.scala.core.http.HttpClientRequest"></a>
+      <a id="continueHandler(⇒Unit):HttpClientRequest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">continueHandler</span><span class="params">(<span name="handler">handler: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">If you send an HTTP request with the header <code>Expect</code> set to the value <code>100-continue</code>
+and the server responds with an interim HTTP response with a status code of <code>100</code> and a continue handler
+has been set using this method, then the <code>handler</code> will be called.</p><div class="fullcomment"><div class="comment cmt"><p>If you send an HTTP request with the header <code>Expect</code> set to the value <code>100-continue</code>
+and the server responds with an interim HTTP response with a status code of <code>100</code> and a continue handler
+has been set using this method, then the <code>handler</code> will be called.</p><p>You can then continue to write data to the request body and later end it. This is normally used in conjunction with
+the <span class="extype" name="org.vertx.scala.core.http.HttpClientRequest.sendHead()">org.vertx.scala.core.http.HttpClientRequest.sendHead()</span> method to force the request header to be written before the request has ended.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple method calls can be chained.
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.WriteStream#drainHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="drainHandler(handler:=&gt;Unit):WriteStream.this.type"></a>
+      <a id="drainHandler(⇒Unit):HttpClientRequest.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">drainHandler</span><span class="params">(<span name="handler">handler: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Set a drain handler on the stream.</p><div class="fullcomment"><div class="comment cmt"><p>Set a drain handler on the stream. If the write queue is full, then the handler will be called when the write
+queue has been reduced to maxSize / 2. See <a href="../streams/Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">org.vertx.scala.core.streams.Pump</a> for an example of this being used.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpClientRequest#end" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="end():Unit"></a>
+      <a id="end():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">end</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Ends the request.</p><div class="fullcomment"><div class="comment cmt"><p>Ends the request. If no data has been written to the request body, and <span class="extype" name="org.vertx.scala.core.http.HttpClientRequest.sendHead()">org.vertx.scala.core.http.HttpClientRequest.sendHead()</span> has not been called then
+the actual request won't get written until this method gets called.</p><p>Once the request has ended, it cannot be used any more, and if keep alive is true the underlying connection will
+be returned to the <a href="HttpClient.html" class="extype" name="org.vertx.scala.core.http.HttpClient">org.vertx.scala.core.http.HttpClient</a> pool so it can be assigned to another request.
+</p></div></div>
+    </li><li name="org.vertx.scala.core.http.HttpClientRequest#end" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="end(chunk:org.vertx.scala.core.buffer.Buffer):Unit"></a>
+      <a id="end(Buffer):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">end</span><span class="params">(<span name="chunk">chunk: <a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Same as <span class="extype" name="org.vertx.scala.core.http.HttpClientRequest.end()">org.vertx.scala.core.http.HttpClientRequest.end()</span> but writes some data to the request body before ending.</p><div class="fullcomment"><div class="comment cmt"><p>Same as <span class="extype" name="org.vertx.scala.core.http.HttpClientRequest.end()">org.vertx.scala.core.http.HttpClientRequest.end()</span> but writes some data to the request body before ending. If the request is not chunked and
+no other data has been written then the Content-Length header will be automatically set.
+</p></div></div>
+    </li><li name="org.vertx.scala.core.http.HttpClientRequest#end" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="end(chunk:String,enc:String):Unit"></a>
+      <a id="end(String,String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">end</span><span class="params">(<span name="chunk">chunk: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="enc">enc: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Same as <span class="extype" name="org.vertx.scala.core.http.HttpClientRequest.end(Buffer)">org.vertx.scala.core.http.HttpClientRequest.end(Buffer)</span> but writes a String with the specified encoding.</p>
+    </li><li name="org.vertx.scala.core.http.HttpClientRequest#end" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="end(chunk:String):Unit"></a>
+      <a id="end(String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">end</span><span class="params">(<span name="chunk">chunk: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Same as <span class="extype" name="org.vertx.scala.core.http.HttpClientRequest.end(Buffer)">org.vertx.scala.core.http.HttpClientRequest.end(Buffer)</span> but writes a String with the default encoding.</p>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.ExceptionSupport#exceptionHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exceptionHandler(handler:Throwable=&gt;Unit):ExceptionSupport.this.type"></a>
+      <a id="exceptionHandler((Throwable)⇒Unit):HttpClientRequest.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">exceptionHandler</span><span class="params">(<span name="handler">handler: (<a href="../../../../../scala/package.html#Throwable=Throwable" class="extmbr" name="scala.Throwable">Throwable</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Set an exception handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an exception handler.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpClientRequest#headers" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="headers():org.vertx.scala.core.MultiMap"></a>
+      <a id="headers():MultiMap"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">headers</span><span class="params">()</span><span class="result">: <a href="../package.html#MultiMap=scala.collection.mutable.MultiMap[String,String]" class="extmbr" name="org.vertx.scala.core.MultiMap">MultiMap</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Returns the HTTP headers.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the HTTP headers.</p><p>This method converts a Java collection into a Scala collection every
+time it gets called, so use it sensibly.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The HTTP headers.
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpClientRequest#isChunked" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isChunked:Boolean"></a>
+      <a id="isChunked:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isChunked</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Checks whether the request is chunked.</p><div class="fullcomment"><div class="comment cmt"><p>Checks whether the request is chunked.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>True if the request is chunked.
+</p></dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpClientRequest#putHeader" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="putHeader(name:String,values:String*):org.vertx.scala.core.http.HttpClientRequest"></a>
+      <a id="putHeader(String,String*):HttpClientRequest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">putHeader</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="values">values: <span class="extype" name="scala.Predef.String">String</span>*</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Put an HTTP header - fluent API.</p><div class="fullcomment"><div class="comment cmt"><p>Put an HTTP header - fluent API.
+</p></div><dl class="paramcmts block"><dt class="param">name</dt><dd class="cmt"><p>The header name</p></dd><dt class="param">values</dt><dd class="cmt"><p>The header values</p></dd><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple method calls can be chained.
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpClientRequest#sendHead" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sendHead():org.vertx.scala.core.http.HttpClientRequest"></a>
+      <a id="sendHead():HttpClientRequest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sendHead</span><span class="params">()</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Forces the head of the request to be written before <span class="extype" name="org.vertx.scala.core.http.HttpClientRequest.end()">org.vertx.scala.core.http.HttpClientRequest.end()</span> is called on the request or
+any data is written to it.</p><div class="fullcomment"><div class="comment cmt"><p>Forces the head of the request to be written before <span class="extype" name="org.vertx.scala.core.http.HttpClientRequest.end()">org.vertx.scala.core.http.HttpClientRequest.end()</span> is called on the request or
+any data is written to it. This is normally used to implement HTTP 100-continue handling, see
+<span class="extype" name="org.vertx.scala.core.http.HttpClientRequest.continueHandler(org.vertx.java.core.Handler)">org.vertx.scala.core.http.HttpClientRequest.continueHandler(org.vertx.java.core.Handler)</span> for more information.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple method calls can be chained.
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpClientRequest#setChunked" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setChunked(chunked:Boolean):org.vertx.scala.core.http.HttpClientRequest"></a>
+      <a id="setChunked(Boolean):HttpClientRequest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setChunked</span><span class="params">(<span name="chunked">chunked: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">If chunked is true then the request will be set into HTTP chunked mode.</p><div class="fullcomment"><div class="comment cmt"><p>If chunked is true then the request will be set into HTTP chunked mode.
+</p></div><dl class="paramcmts block"><dt class="param">chunked</dt><dd class="cmt"><p>True if you want the request to be in chunked mode.</p></dd><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple method calls can be chained.
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpClientRequest#setTimeout" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setTimeout(timeoutMs:Long):org.vertx.scala.core.http.HttpClientRequest"></a>
+      <a id="setTimeout(Long):HttpClientRequest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setTimeout</span><span class="params">(<span name="timeoutMs">timeoutMs: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Sets the amount of time after which if a response is not received TimeoutException()
+will be sent to the exception handler of this request.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the amount of time after which if a response is not received TimeoutException()
+will be sent to the exception handler of this request. Calling this method more than once
+has the effect of canceling any existing timeout and starting the timeout from scratch.
+</p></div><dl class="paramcmts block"><dt class="param">timeoutMs</dt><dd class="cmt"><p>The quantity of time in milliseconds.</p></dd><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple method calls can be chained.
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.WriteStream#setWriteQueueMaxSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setWriteQueueMaxSize(maxSize:Int):WriteStream.this.type"></a>
+      <a id="setWriteQueueMaxSize(Int):HttpClientRequest.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setWriteQueueMaxSize</span><span class="params">(<span name="maxSize">maxSize: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Set the maximum size of the write queue to <code>maxSize</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the maximum size of the write queue to <code>maxSize</code>. You will still be able to write to the stream even
+if there is more than <code>maxSize</code> bytes in the write queue. This is used as an indicator by classes such as
+<code>Pump</code> to provide flow control.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.vertx.scala.Self#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wrap[X](doStuff:=&gt;X):Self.this.type"></a>
+      <a id="wrap[X](⇒X):HttpClientRequest.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Self.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p><div class="fullcomment"><div class="comment cmt"><p>Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd>Self</dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpClientRequest#write" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="write(chunk:String,enc:String):org.vertx.scala.core.http.HttpClientRequest"></a>
+      <a id="write(String,String):HttpClientRequest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">write</span><span class="params">(<span name="chunk">chunk: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="enc">enc: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Write a <span class="extype" name="java.lang.String">java.lang.String</span> to the request body, encoded using the encoding <code>enc</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Write a <span class="extype" name="java.lang.String">java.lang.String</span> to the request body, encoded using the encoding <code>enc</code>.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple method calls can be chained.
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpClientRequest#write" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="write(chunk:String):org.vertx.scala.core.http.HttpClientRequest"></a>
+      <a id="write(String):HttpClientRequest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">write</span><span class="params">(<span name="chunk">chunk: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Write a <span class="extype" name="java.lang.String">java.lang.String</span> to the request body, encoded in UTF-8.</p><div class="fullcomment"><div class="comment cmt"><p>Write a <span class="extype" name="java.lang.String">java.lang.String</span> to the request body, encoded in UTF-8.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple method calls can be chained.
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.WriteStream#write" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="write(data:org.vertx.scala.core.buffer.Buffer):WriteStream.this.type"></a>
+      <a id="write(Buffer):HttpClientRequest.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">write</span><span class="params">(<span name="data">data: <a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Write some data to the stream.</p><div class="fullcomment"><div class="comment cmt"><p>Write some data to the stream. The data is put on an internal write queue, and the write actually happens
+asynchronously. To avoid running out of memory by putting too much on the write queue,
+check the <span class="extype" name="org.vertx.scala.core.streams.WriteStream.writeQueueFull()">org.vertx.scala.core.streams.WriteStream.writeQueueFull()</span>
+method before writing. This is done automatically if using a <a href="../streams/Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">org.vertx.scala.core.streams.Pump</a>.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.WriteStream#writeQueueFull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="writeQueueFull():Boolean"></a>
+      <a id="writeQueueFull():Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">writeQueueFull</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This will return <code>true</code> if there are more bytes in the write queue than the value set using
+<span class="extype" name="org.vertx.scala.core.streams.WriteStream.setWriteQueueMaxSize()">org.vertx.scala.core.streams.WriteStream.setWriteQueueMaxSize()</span>
+</p><div class="fullcomment"><div class="comment cmt"><p>This will return <code>true</code> if there are more bytes in the write queue than the value set using
+<span class="extype" name="org.vertx.scala.core.streams.WriteStream.setWriteQueueMaxSize()">org.vertx.scala.core.streams.WriteStream.setWriteQueueMaxSize()</span>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="org.vertx.scala.core.streams.WriteStream">
+              <h3>Inherited from <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></h3>
+            </div><div class="parent" name="org.vertx.scala.core.streams.ExceptionSupport">
+              <h3>Inherited from <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></h3>
+            </div><div class="parent" name="org.vertx.scala.AsJava">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></h3>
+            </div><div class="parent" name="org.vertx.scala.Self">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.Self">Self</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../../lib/template.js"></script>
+    </body>
+      </html>

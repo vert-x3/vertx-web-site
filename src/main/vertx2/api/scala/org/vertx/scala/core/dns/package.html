@@ -1,0 +1,422 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>dns - lang-scala.git 1.0.0 API - org.vertx.scala.core.dns</title>
+          <meta name="description" content="dns - lang - scala.git 1.0.0 API - org.vertx.scala.core.dns" />
+          <meta name="keywords" content="dns lang scala.git 1.0.0 API org.vertx.scala.core.dns" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'org.vertx.scala.core.dns.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../../package.html" class="extype" name="org">org</a>.<a href="../../../package.html" class="extype" name="org.vertx">vertx</a>.<a href="../../package.html" class="extype" name="org.vertx.scala">scala</a>.<a href="../package.html" class="extype" name="org.vertx.scala.core">core</a></p>
+        <h1>dns</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">dns</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.vertx.scala.core.dns.DnsClient" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DnsClientextendsSelf"></a>
+      <a id="DnsClient:DnsClient"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="DnsClient.html"><span class="name">DnsClient</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Provides a way to asynchronous lookup informations from DNS-Servers.</p>
+    </li><li name="org.vertx.scala.core.dns.DnsException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DnsExceptionextendsExceptionwithProductwithSerializable"></a>
+      <a id="DnsException:DnsException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="DnsException.html"><span class="name">DnsException</span></a><span class="params">(<span name="code">code: <a href="DnsResponseCode.html" class="extype" name="org.vertx.scala.core.dns.DnsResponseCode">DnsResponseCode</a></span>)</span><span class="result"> extends <a href="../../../../../scala/package.html#Exception=Exception" class="extmbr" name="scala.Exception">Exception</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.dns.DnsResponseCode" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="DnsResponseCodeextendsAnyRef"></a>
+      <a id="DnsResponseCode:DnsResponseCode"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="DnsResponseCode.html"><span class="name">DnsResponseCode</span></a><span class="result"> extends <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.dns.MxRecord" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MxRecordextendsAnyVal"></a>
+      <a id="MxRecord:MxRecord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MxRecord.html"><span class="name">MxRecord</span></a><span class="result"> extends <span class="extype" name="scala.AnyVal">AnyVal</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represent a Mail-Exchange-Record (MX) which was resolved for a domain.</p>
+    </li><li name="org.vertx.scala.core.dns.SrvRecord" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SrvRecordextendsAnyVal"></a>
+      <a id="SrvRecord:SrvRecord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SrvRecord.html"><span class="name">SrvRecord</span></a><span class="result"> extends <span class="extype" name="scala.AnyVal">AnyVal</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represent a Service-Record (SRV) which was resolved for a domain.</p>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="org.vertx.scala.core.dns.BADKEY" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="BADKEY"></a>
+      <a id="BADKEY:BADKEY"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="BADKEY$.html"><span class="name">BADKEY</span></a><span class="result"> extends <a href="DnsResponseCode.html" class="extype" name="org.vertx.scala.core.dns.DnsResponseCode">DnsResponseCode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ID 13, bad key
+</p>
+    </li><li name="org.vertx.scala.core.dns.BADSIG" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="BADSIG"></a>
+      <a id="BADSIG:BADSIG"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="BADSIG$.html"><span class="name">BADSIG</span></a><span class="result"> extends <a href="DnsResponseCode.html" class="extype" name="org.vertx.scala.core.dns.DnsResponseCode">DnsResponseCode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ID 12, bad signature
+</p>
+    </li><li name="org.vertx.scala.core.dns.BADTIME" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="BADTIME"></a>
+      <a id="BADTIME:BADTIME"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="BADTIME$.html"><span class="name">BADTIME</span></a><span class="result"> extends <a href="DnsResponseCode.html" class="extype" name="org.vertx.scala.core.dns.DnsResponseCode">DnsResponseCode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ID 14, bad timestamp
+</p>
+    </li><li name="org.vertx.scala.core.dns.BADVERS" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="BADVERS"></a>
+      <a id="BADVERS:BADVERS"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="BADVERS$.html"><span class="name">BADVERS</span></a><span class="result"> extends <a href="DnsResponseCode.html" class="extype" name="org.vertx.scala.core.dns.DnsResponseCode">DnsResponseCode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ID 11, bad extension mechanism for version
+</p>
+    </li><li name="org.vertx.scala.core.dns.DnsClient" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DnsClient"></a>
+      <a id="DnsClient:DnsClient"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="DnsClient$.html"><span class="name">DnsClient</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.dns.DnsResponseCode" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DnsResponseCode"></a>
+      <a id="DnsResponseCode:DnsResponseCode"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="DnsResponseCode$.html"><span class="name">DnsResponseCode</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.dns.FORMERROR" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="FORMERROR"></a>
+      <a id="FORMERROR:FORMERROR"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="FORMERROR$.html"><span class="name">FORMERROR</span></a><span class="result"> extends <a href="DnsResponseCode.html" class="extype" name="org.vertx.scala.core.dns.DnsResponseCode">DnsResponseCode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ID 1, format error
+</p>
+    </li><li name="org.vertx.scala.core.dns.MxRecord" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MxRecord"></a>
+      <a id="MxRecord:MxRecord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MxRecord$.html"><span class="name">MxRecord</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory for <a href="MxRecord.html" class="extype" name="org.vertx.scala.core.dns.MxRecord">org.vertx.scala.core.dns.MxRecord</a> instances.</p>
+    </li><li name="org.vertx.scala.core.dns.NOERROR" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NOERROR"></a>
+      <a id="NOERROR:NOERROR"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="NOERROR$.html"><span class="name">NOERROR</span></a><span class="result"> extends <a href="DnsResponseCode.html" class="extype" name="org.vertx.scala.core.dns.DnsResponseCode">DnsResponseCode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ID 0, no error
+</p>
+    </li><li name="org.vertx.scala.core.dns.NOTAUTH" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NOTAUTH"></a>
+      <a id="NOTAUTH:NOTAUTH"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="NOTAUTH$.html"><span class="name">NOTAUTH</span></a><span class="result"> extends <a href="DnsResponseCode.html" class="extype" name="org.vertx.scala.core.dns.DnsResponseCode">DnsResponseCode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ID 9, not authoritative for zone
+</p>
+    </li><li name="org.vertx.scala.core.dns.NOTIMPL" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NOTIMPL"></a>
+      <a id="NOTIMPL:NOTIMPL"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="NOTIMPL$.html"><span class="name">NOTIMPL</span></a><span class="result"> extends <a href="DnsResponseCode.html" class="extype" name="org.vertx.scala.core.dns.DnsResponseCode">DnsResponseCode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ID 4, not implemented
+</p>
+    </li><li name="org.vertx.scala.core.dns.NOTZONE" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NOTZONE"></a>
+      <a id="NOTZONE:NOTZONE"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="NOTZONE$.html"><span class="name">NOTZONE</span></a><span class="result"> extends <a href="DnsResponseCode.html" class="extype" name="org.vertx.scala.core.dns.DnsResponseCode">DnsResponseCode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ID 10, name not in zone
+</p>
+    </li><li name="org.vertx.scala.core.dns.NXDOMAIN" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NXDOMAIN"></a>
+      <a id="NXDOMAIN:NXDOMAIN"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="NXDOMAIN$.html"><span class="name">NXDOMAIN</span></a><span class="result"> extends <a href="DnsResponseCode.html" class="extype" name="org.vertx.scala.core.dns.DnsResponseCode">DnsResponseCode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ID 3, name error
+</p>
+    </li><li name="org.vertx.scala.core.dns.NXRRSET" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NXRRSET"></a>
+      <a id="NXRRSET:NXRRSET"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="NXRRSET$.html"><span class="name">NXRRSET</span></a><span class="result"> extends <a href="DnsResponseCode.html" class="extype" name="org.vertx.scala.core.dns.DnsResponseCode">DnsResponseCode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ID 8, rrset does not exist
+</p>
+    </li><li name="org.vertx.scala.core.dns.REFUSED" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="REFUSED"></a>
+      <a id="REFUSED:REFUSED"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="REFUSED$.html"><span class="name">REFUSED</span></a><span class="result"> extends <a href="DnsResponseCode.html" class="extype" name="org.vertx.scala.core.dns.DnsResponseCode">DnsResponseCode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ID 5, operation refused
+</p>
+    </li><li name="org.vertx.scala.core.dns.SERVFAIL" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SERVFAIL"></a>
+      <a id="SERVFAIL:SERVFAIL"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SERVFAIL$.html"><span class="name">SERVFAIL</span></a><span class="result"> extends <a href="DnsResponseCode.html" class="extype" name="org.vertx.scala.core.dns.DnsResponseCode">DnsResponseCode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ID 2, server failure
+</p>
+    </li><li name="org.vertx.scala.core.dns.SrvRecord" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SrvRecord"></a>
+      <a id="SrvRecord:SrvRecord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SrvRecord$.html"><span class="name">SrvRecord</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory for <a href="SrvRecord.html" class="extype" name="org.vertx.scala.core.dns.SrvRecord">org.vertx.scala.core.dns.SrvRecord</a> instances.</p>
+    </li><li name="org.vertx.scala.core.dns.YXDOMAIN" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="YXDOMAIN"></a>
+      <a id="YXDOMAIN:YXDOMAIN"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="YXDOMAIN$.html"><span class="name">YXDOMAIN</span></a><span class="result"> extends <a href="DnsResponseCode.html" class="extype" name="org.vertx.scala.core.dns.DnsResponseCode">DnsResponseCode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ID 6, domain name should not exist
+</p>
+    </li><li name="org.vertx.scala.core.dns.YXRRSET" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="YXRRSET"></a>
+      <a id="YXRRSET:YXRRSET"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="YXRRSET$.html"><span class="name">YXRRSET</span></a><span class="result"> extends <a href="DnsResponseCode.html" class="extype" name="org.vertx.scala.core.dns.DnsResponseCode">DnsResponseCode</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ID 7, resource record set should not exist
+</p>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../../lib/template.js"></script>
+    </body>
+      </html>

@@ -1,0 +1,394 @@
+<!-- PAGE HEADER -->
+
+<div class="container">
+
+<div class="row">
+  <div class="span12">
+    <div class="hero-unit" style="padding: 30px;">
+      <!-- <h1>Vert.x</h1> -->
+
+      <img src="logo-white-big.png"/>
+
+      <p class="highlight_title" style="font-size: 20px;">Vert.x is a lightweight, high performance application platform for the JVM that's designed
+        for modern mobile, web, and enterprise applications.</p>
+    </div>
+  </div>
+
+</div>
+
+
+<br />
+
+<div class="row">
+  <div class="span3">
+    <a href="http://jaxenter.com/jax-innovation-awards-2014-champions-declared-50132.html"><img src="JAX_winner.gif"></a>
+  </div>
+
+</div>
+
+
+
+  <div class="row">
+
+  <div class="span12">
+    <div class="highlight">
+      <h3 class="highlight_title">What's new in Vert.x 3?</h3>
+
+      <br/>
+  
+      <p><a href="http://vert-x3.github.io/">Take a sneaky-peak</a> at the exciting new stuff in the soon-to-be released Vert.x 3.0!</p>
+      <p>Please note! Vert.x 3 is still a work-in-progress</p>
+
+    </div>
+  </div>
+</div>
+
+<br/>
+
+
+<div class="row">
+
+  <div class="span3">
+    <div class="highlight">
+      <!--<div class="well"> -->
+      <h3 class="highlight_title">Polyglot</h3>
+      <br/>
+
+      <p>Write your application components in Java, JavaScript, CoffeeScript, Ruby,
+        Python or Groovy...</p>
+
+      <p>... or mix and match several programming languages in a single app.</p>
+    </div>
+  </div>
+  <div class="span3">
+    <div class="highlight">
+      <!--<div class="well"> -->
+      <h3 class="highlight_title">Simplicity</h3>
+      <br/>
+
+      <p>...without being simplistic. </p>
+
+      <p>Simple, powerful, APIs enable you to write non-blocking network enabled applications with
+        ease. No complex configuration or boilerplate required.</p>
+    </div>
+  </div>
+  <div class="span3">
+    <div class="highlight">
+      <!--<div class="well"> -->
+      <h3 class="highlight_title">Scalability</h3>
+      <br/>
+
+      <p>Scales using messaging passing to efficiently utilise your server cores.</p>
+
+      <p>Uses non blocking I/O to serve many connections with minimal threads.</p>
+    </div>
+  </div>
+  <div class="span3">
+    <div class="highlight">
+      <!--<div class="well"> -->
+      <h3 class="highlight_title">Concurrency</h3>
+      <br/>
+
+      <p>Simple <em>actor-like</em> concurrency model frees you from the pitfalls of traditional multi-threaded
+        programming.</p>
+
+      <p></p>
+    </div>
+  </div>
+</div>
+
+<br /><br />
+
+<h3 class="highlight_title">Key Features</h3>
+<br />
+
+<div class="row">
+
+  <div class="span12">
+    <div class="well">
+      <br/>
+      <ul class="features">
+        
+        <li>
+           <div class="keeptogether">
+             <p>
+            The <a href="core_manual_java.html#event-bus">Distributed Event Bus</a> is the nervous system of Vert.x and connects your
+            server-side components.
+             </p>
+          </div>
+          <div class="keeptogether">
+            <p>
+            Write your components in whatever language you want, and put them
+            where you want on your network. It even penetrates into JavaScript running in the browser!            
+            </p>
+          </div>
+        </li>
+        
+          <li>
+	   <div class="keeptogether">
+            <p>
+            <a href="core_manual_java.html#web-sockets">WebSockets</a> and <a href="core_manual_java.html#sockjs">SockJS</a> support for real-time <i>server-push</i>
+            applications.
+            </p>
+           </div
+          </li>
+        
+          <li>
+           <div class="keeptogether">
+              <p>If you don't want the whole platform, Vert.x can be <a href="embedding_manual.html">embedded</a> as a library in your
+            existing Java applications.
+              </p>
+           </div>
+          </li>
+        <li>
+            <div class="keeptogether">
+              <p>
+              Vert.x has a powerful <a href="mods_manual.html">module system</a>. Package your Vert.x components into modules for encapsulation and
+              reuse.
+              </p>
+           </div>
+           <div class="keeptogether">
+             <p>Share them with the community by putting them in Maven Central, any other Maven repository,
+              or in <a href="http://bintray.com">Bintray</a>.
+             </p>
+           </div>
+           <div class="keeptogether">
+             <p>Advertise your module in the <a href="http://modulereg.vertx.io">module registry</a>.
+             </p>
+           </div>
+        </li>
+        <li>        
+          <div class="keeptogether">
+            <p>Seamlessly code, run, debug and test your Vert.x applications in your
+              favourite IDE.
+            </p>
+          </div>
+          <div class="keeptogether">
+            <p>Get started using Maven using the Maven <a href="maven_dev.html">archetype</a>
+               or using Gradle with the example Gradle <a href="gradle_dev.html">template project.</a>
+            </p>
+          </div>
+          <div class="keeptogether">
+            <p>Use <a href="dev_guide.html#auto-redeploy">auto-redeploy</a> to see your changes instantly in a running module.
+            </p>
+          </div>
+        </li>
+
+        <li>
+          <div class="keeptogether">
+            <p>100% open source. Licensed under the Apache Software License 2.0</p>
+          </div>
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+
+</div>
+
+<br />
+
+<h3 class="highlight_title">Here's an example web-server*</h3>
+
+<br/>
+
+<div class="row">
+
+  <div class="span12">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#ws_js" data-toggle="tab">JavaScript</a></li>
+      <li><a href="#ws_java" data-toggle="tab">Java</a></li>
+      <li><a href="#ws_ruby" data-toggle="tab">Ruby</a></li>
+      <li><a href="#ws_groovy" data-toggle="tab">Groovy</a></li>
+      <li><a href="#ws_python" data-toggle="tab">Python</a></li>
+      <li><a href="#ws_clojure" data-toggle="tab">Clojure</a></li>
+      <li><a href="#ws_ceylon" data-toggle="tab">Ceylon</a></li>
+      
+    </ul>
+
+    <div class="well">
+      <div class="tab-content">
+        <div class="tab-pane active" id="ws_js">
+
+          <p>Save the following in <code>server.js</code></p>
+                  <pre class="prettyprint">
+  var vertx = require('vertx');
+
+  vertx.createHttpServer().requestHandler(function(req) {
+      var file = req.path() === '/' ? 'index.html' : req.path();
+      req.response.sendFile('webroot/' + file);
+  }).listen(8080)
+                  </pre>
+          <p>Run it:</p>
+
+          <p><code>vertx run server.js</code></p>
+        </div>
+        
+
+        <div class="tab-pane" id="ws_java">
+          <p>Save the following in <code>Server.java</code></p>
+                  <pre class="prettyprint">
+  import org.vertx.java.core.Handler;
+  import org.vertx.java.core.http.HttpServerRequest;
+  import org.vertx.java.platform.Verticle;
+
+  public class Server extends Verticle {
+      public void start() {
+          vertx.createHttpServer().requestHandler(new Handler&lt;HttpServerRequest&gt;() {
+              public void handle(HttpServerRequest req) {
+                  String file = req.path().equals("/") ? "index.html" : req.path();
+                  req.response().sendFile("webroot/" + file);
+              }
+          }).listen(8080);
+      }
+  }
+                  </pre>
+
+          <p>Run it: (note no compile is needed!)</p>
+
+          <p><code>vertx run Server.java</code></p>
+
+
+        </div>
+
+<div class="tab-pane" id="ws_ruby">
+
+          <p>Save the following in <code>server.rb</code></p>
+                  <pre class="prettyprint">
+  require "vertx"
+
+  Vertx::HttpServer.new.request_handler do |req|
+      file = req.uri == "/" ? "index.html" : req.uri
+      req.response.send_file "webroot/#{file}"
+  end.listen(8080)
+                  </pre>
+
+          <p>Run it:</p>
+
+          <p><code>vertx run server.rb</code></p>
+
+        </div>
+
+<div class="tab-pane" id="ws_groovy">
+
+          <p>Save the following in <code>Server.groovy</code></p>
+                  <pre class="prettyprint">
+  vertx.createHttpServer().requestHandler { req ->
+      def file = req.uri == "/" ? "index.html" : req.uri
+      req.response.sendFile "webroot/$file"
+  }.listen(8080)
+                  </pre>
+
+          <p>Run it:</p>
+
+          <p><code>vertx run Server.groovy</code></p>
+
+        </div>
+
+        <div class="tab-pane" id="ws_python">
+
+          <p>Save the following in <code>server.py</code></p>
+                  <pre class="prettyprint">
+  import vertx
+
+  server = vertx.create_http_server()
+
+  @server.request_handler
+  def request_handler(req):
+      file = "index.html" if req.uri == "/" else req.uri
+      req.response.send_file("webroot/%s"%file)
+  server.listen(8080)
+                  </pre>
+
+          <p>Run it:</p>
+
+          <p><code>vertx run server.py</code></p>
+
+        </div>
+
+        <div class="tab-pane" id="ws_clojure">
+
+          <p>Save the following in <code>server.clj</code></p>
+                  <pre class="prettyprint">
+  (ns example.server
+  (:require [vertx.http :as http]))
+
+  (-> (http/server)
+    (http/on-request
+      (fn [req]
+        (let [uri (.uri req)]
+          (-> req
+            (http/server-response)
+            (http/send-file (str "webroot/" (if (= "/" uri) "index.html" uri)))))))
+    (http/listen 8080))                
+                  </pre>
+
+          <p>Run it:</p>
+
+          <p><code>vertx run server.clj</code></p>
+
+        </div>
+        
+        <div class="tab-pane" id="ws_ceylon">
+
+          <p>Save the following in <code>Server.ceylon</code></p>
+                  <pre class="prettyprint">
+  import io.vertx.ceylon.platform { ... }
+  import io.vertx.ceylon.core { ... }
+  import io.vertx.ceylon.core.http { ... }
+  shared class Server() extends Verticle() {
+      start(Vertx vertx, Container container) => vertx.createHttpServer().requestHandler(
+          void (req) {
+              value file = req.path == "/" then "index.html" else req.path;
+              req.response.sendFile("webroot/" + file);
+          }
+      ).listen(8080);
+  }
+                  </pre>
+
+          <p>Run it:</p>
+
+          <p><code>vertx run Server.ceylon</code></p>
+          
+        </div>
+        
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+<h5 class="highlight_note">* In a real production web-server you would want to do some checking of the path to ensure files aren't served from outside the webroot!</h5>
+
+<br />
+
+<div class="row">
+  <div class="span12">
+    <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License"
+                                                                                   align="center"
+                                                                                   src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png"/></a>
+      This website is licensed under the <a rel="license"
+                                            href="http://creativecommons.org/licenses/by-sa/3.0/">Creative
+        Commons Attribution-ShareAlike 3.0 Unported License</a>.
+      <img src="Button-Built-on-CB-1.png" align="center"/>
+    </p>
+
+  </div>
+</div>
+
+</div>
+
+<script src="js/jquery-1.7.1.min.js"></script>
+<script src="bootstrap/js/bootstrap-tab.js"></script>
+<script>
+  $(function () {
+    $('.tabs a:last').tab('show')
+  })
+</script>
+
+</body>
+</html>

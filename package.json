@@ -20,6 +20,7 @@
     "gulp-streamify": "0.0.5",
     "gulp-util": "^3.0.4",
     "metalsmith": "^1.5.0",
+    "metalsmith-assets": "^0.1.0",
     "metalsmith-autoprefixer": "^1.0.2",
     "metalsmith-clean-css": "^2.0.0",
     "metalsmith-define": "^1.0.0",
