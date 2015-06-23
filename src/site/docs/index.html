@@ -110,13 +110,21 @@ sidebar: true
           <p>Vert.x contains several different components designed to make it easier for you to write compelling reactive
           applications in a range of different languages.</p>
 
-          <p>Vert.x is highly modular and you just use the bits that you need and nothing more.</p>
+          <p>Vert.x is highly modular and you just use the bits that you need and nothing more. When you <a href="https://bintray.com/vertx/downloads/distribution/view">download</a> Vert.x you pick a <em>distribution</em>. The set of components depends on the distribution you choose. That does not mean you cannot use other components, you just need to add them manually.
+          <ul>
+              <li><strong>Min</strong>: The <em>min</em> distribution contains only <a href="#core">Vert.x Core</a>, the support of the different languages, and the <a href="#clustering">Hazelcast clustering</a>.</li>
+              <li><strong>Base</strong>: The <em>base</em> distribution extends the <em>min</em> distribution with the <a href="#services">service</a> layer, the <a href="#reactive">reactive</a> technologies integration, and the <a href="#metrics">metrics.</a></li>
+              <li><strong>Full</strong>: The <em>full</em> distribution contains all the components listed on this page. It includes <a href="#web">Vert.x web</a> and the different <a href="#data_access">data access</a> technologies.</li>
+          </ul>
+          </p>
 
           <p>And don't forget - Vert.x is a library not a restrictive container so you don't have to <em>only</em> use
             components provided by Vert.x. You can also use use Vert.x with all the usual libraries that you like.</p>
 
           <p>The sections below describe most of the major components of Vert.x, with links to the source repository,
           manuals in different languages, and API documentation.</p>
+
+          <p>On this page are only listed components that are part of the vert.x stack. You can find a lot more components, and see the high diversity of the Vert.x ecosystem, on the <a href="https://github.com/vert-x3/vertx-awesome">Vert.x awesome page</a>.</p>
         </div>
       </div>
 
