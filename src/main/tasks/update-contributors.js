@@ -250,7 +250,7 @@ module.exports = function(client_id, client_secret, current_contributors) {
 
 
   var github = new GitHubApi({ version: "3.0.0" });
-  
+
   if (client_id && client_secret) {
     github.authenticate({
       type: "oauth",
