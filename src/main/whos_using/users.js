@@ -108,7 +108,7 @@ var all_users = {
     height: 54
   }, {
     src: "paradigma.png",
-    link: "www.paradigmatecnologico.com",
+    link: "http://www.paradigmatecnologico.com",
     height: 47
   }, {
     src: "performit.png",
