@@ -103,8 +103,20 @@
             <artifactId>maven-dependency-plugin</artifactId>
             <executions>
 
+              <!--
+              The 3.0.0 web site has a bug with the groovy docs. All groovy docs
+              were empty.
+              In order to fix this without cutting a new release, we have
+              packaged the documentation inside a zip file. So instead of
+              getting the documentation from the Maven dependency, we unzip this
+              zip file. This **HACK** must be removed in the 3.1.0
+
+              So this execution is commented outand replace by an execution of
+              the ant maven plugin
+              -->
+
               <!-- Unpack docs -->
-              <execution>
+              <!--<execution>
                 <id>unpack-docs</id>
                 <goals>
                   <goal>unpack-dependencies</goal>
@@ -115,13 +127,9 @@
                   <includeArtifactIds>vertx-stack-docs</includeArtifactIds>
                   <includeTypes>zip</includeTypes>
                   <includeClassifiers>docs</includeClassifiers>
-<!--
-                  <stripClassifier>true</stripClassifier>
-                  <stripVersion>true</stripVersion>
--->
                   <outputDirectory>${project.build.directory}/docs</outputDirectory>
                 </configuration>
-              </execution>
+              </execution>-->
 
               <!-- unpack webjars -->
               <execution>
@@ -203,6 +211,26 @@
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
             <executions>
+              <!--
+              GroovyDoc Fix Hack - see comment above
+              This execution must be removed in the 3.1.0
+              -->
+              <execution>
+                  <id>copy-docs-hack</id>
+                  <goals>
+                    <goal>run</goal>
+                  </goals>
+                  <phase>pre-site</phase>
+                  <configuration>
+                    <tasks>
+                      <unzip
+                        src="${project.basedir}/libs/vertx-stack-docs-3.0.0-docs.zip"
+                        dest="${project.build.directory}/docs"
+                        overwrite="true"/>
+                    </tasks>
+                 </configuration>
+              </execution>
+
               <execution>
                 <configuration>
                   <target>
