@@ -1,0 +1,15 @@
+{% include "header.html" %}
+
+<div class="container">
+  <div class="row blog">
+    <article class="blog-post">
+      <h2 class="blog-post-title">{{title}}</h2>
+      {% if date %}
+        <p class="blog-post-meta">{{date|date}}</p>
+      {% endif %}
+      <article>{{contents | safe}}</article>
+    </article>
+  </div>
+</div>
+
+{% include "footer.html" %}

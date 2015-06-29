@@ -1,0 +1,35 @@
+{% include "header.html" %}
+
+<div class="container">
+  <div class="row blog">
+    <div class="col-sm-12 blog-main">
+      {% set c = collections.blog|limit(pagination.end, pagination.start) %}
+
+      {% for post in c %}
+      <article class="blog-post">
+          <h2 class="blog-post-title"><a href="/{{post.path}}/index.html">{{post.title}}</a></h2>
+          {% if post.date %}
+            <p class="blog-post-meta">{{post.date | date}}</p>
+          {% endif %}
+          <article>{{post.contents | safe}}</article>
+          <hr/>
+      </article>
+      {% endfor %}
+    </div>
+
+    {% if pagination %}
+       <nav class="pagination">
+           {% if pagination.next %}
+               <a href="{{pagination.next.num | page}}" class="pagination__link--older">&lt; Older</a>
+           {% endif %}
+
+           {% if pagination.prev %}
+               <a href="{{pagination.prev.num | page}}" class="pagination__link--newer">Newer &gt;</a>
+           {% endif %}
+
+       </nav>
+   {% endif %}
+  </div>
+</div>
+
+{% include "footer.html" %}

@@ -33,6 +33,17 @@ var htmlMinifier = require("metalsmith-html-minifier");
 var ignore = require("metalsmith-ignore");
 var less = require("metalsmith-less");
 var templates = require("metalsmith-templates");
+var branch = require('metalsmith-branch')
+var markdown = require('metalsmith-markdown')
+var metallic = require('metalsmith-metallic');
+var collections = require('metalsmith-collections');
+var drafts = require('metalsmith-drafts');
+var permalinks = require('metalsmith-permalinks');
+var paginate = require('metalsmith-paginate');
+var moment = require('moment');
+var excerpts = require('metalsmith-excerpts');
+var swigHelpers = require('metalsmith-swig-helpers');
+
 
 // path to website on the server in production mode (i.e. when running
 // `gulp build`). MUST BE ABSOLUTE AND MUST END WITH A SLASH!
@@ -113,6 +124,83 @@ function build(done, dev) {
     // autoprefix css
     .use(autoprefixer())
 
+    // hide drafts - require to hide the _not yet ready_ posts
+    .use(drafts())
+
+    // Blog
+
+    .use(swigHelpers({
+      filters: {
+        "xmldate": function(date) {
+          return moment(date).format('ddd, DD MMM YYYY HH:mm:ss ZZ');
+        },
+
+        "date": function(date) {
+          return moment(date).format('Do MMMM YYYY');
+        },
+
+        "link": function(url) {
+          return site_url + url;
+        },
+
+        // Only for the blog page navigation.
+        "page": function(num) {
+          if (! num) {
+            return site_url + "blog/blog.html";
+          }
+          return site_url + "blog/page-" + num + ".html";
+        },
+
+        "limit": function(collection, limit, start) {
+          var out   = [], i, c;
+          start = start || 0;
+          for (i = c = 0; i < collection.length; i++) {
+            if (i >= start && c < limit+1) {
+              out.push(collection[i]);
+              c++;
+            }
+          }
+          return out;
+        }
+      }
+    }))
+
+    // Posts are in site/blog/post as markdown files
+    // We generate a collections
+    .use(collections({
+      blog: {
+        pattern: '**/blog/posts/*.md',
+        sortBy: 'date',
+        reverse: true
+      }
+    }))
+    .use(paginate({
+      perPage: 5,
+      path: ':collection/page'
+    }))
+
+    // Declare a branch to compute the permalinks (for the posts)
+    .use( branch()
+      .pattern('**/blog/**/*.md')
+      .use(metallic())
+      .use(markdown(
+        {
+          gfm: true,
+          tables: true,
+          breaks: true,
+          smartLists: true,
+          smartypants: true
+        }
+      ))
+      .use(permalinks({
+        pattern: ':collection/:title'
+      }))
+      .use(excerpts()) // Must be after markdown (HTML content)
+    )
+
+    // End of blog
+
+
     // define global variables for templates
     .use(define({
       "site_url": site_url,
@@ -134,7 +222,14 @@ function build(done, dev) {
     .use(templates({
       engine: "swig",
       cache: useTemplateCache,
-      pattern: "**/*.html",
+      pattern: "**/*.html", // Include html
+      directory: paths.templates
+    }))
+    // apply templates (e.g. header, footer)
+    .use(templates({
+      engine: "swig",
+      cache: useTemplateCache,
+      pattern: "**/*.xml", // for the feed.xml
       directory: paths.templates
     }))
 

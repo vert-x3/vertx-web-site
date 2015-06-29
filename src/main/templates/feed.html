@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>vert.x</title>
+      <description>Vert.x is a tool-kit for building reactive applications on the JVM.</description>
+      <link>{{ site_url }}</link>
+
+      <atom:link href="{{ 'feed.xml' | link}}" rel="self" type="application/rss+xml" />
+      {% for post in collections.blog %}
+        <item>
+          <title>{{ post.title }}</title>
+          <description>{{ post.excerpt }}</description>
+          <pubDate>{{post.date | xmldate }}</pubDate>
+          <link>{{ post.path | link}}</link>
+          <guid isPermaLink="true">{{post.path | link}}</guid>
+        </item>
+      {% endfor %}
+    </channel>
+</rss>
