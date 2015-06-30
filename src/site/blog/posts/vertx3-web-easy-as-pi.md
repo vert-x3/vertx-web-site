@@ -132,4 +132,4 @@ At this moment you can build and package your app like `mvn clean package`, then
 
 Open a browser to [see](http://raspberrypi:8080) the realtime graph!
 
-![screeshot](../assets/vertx3-web-easy-as-pi/rpi.png)
+![screeshot](../assets/blog/vertx3-web-easy-as-pi/rpi.png)
