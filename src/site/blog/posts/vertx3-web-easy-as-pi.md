@@ -12,7 +12,8 @@ nevertheless very powerful.
 One can create simple applications targeting _small_ devices such as Raspberry Pi without having to write much code but
 still very fast as it is expected from any Vert.x application.
 
-Lets for example think of making a realtime cpu load visualization web app. For this example we need a few things:
+Lets for example think of making a [realtime cpu load visualization web app](https://github.com/pmlopes/vert-x3-experiments/archive/experiments/rpi-cpuload.zip).
+For this example we need a few things:
 
 * a [MXBean](http://docs.oracle.com/javase/7/docs/api/java/lang/management/OperatingSystemMXBean.html) to collect CPU load
 * a [HTTP server](http://vertx.io/docs/vertx-core/java/#_writing_http_servers_and_clients) (to serve the static resources and host our app)
