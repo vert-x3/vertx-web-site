@@ -5,7 +5,8 @@
     <article class="blog-post">
       <h2 class="blog-post-title">{{title}}</h2>
       {% if date %}
-        <p class="blog-post-meta">{{date|date}}</p>
+      <p class="blog-post-meta">{{date | date}} by
+        <a href="http://github.com/{{author}}">{{author}}</a></p>
       {% endif %}
       <article>{{contents | safe}}</article>
     </article>

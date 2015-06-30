@@ -2,6 +2,7 @@
 title: Vert.x 2.1.6 released !
 date: 2015-06-30
 template: post.html
+author: cescoffier
 ---
 
 The Vert.x team is pleased to announce the release of Vert.x **2.1.6**.
@@ -19,4 +20,4 @@ Fixes in this release include:
 * Clustering fixes related to clearing up state in case of event bus connections closing and on close of event bus.
 * Fix message replies to nodes other than the node the SockJS bridge is deployed on.
 
-The artifacts has been deployed to [Maven Central](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22io.vertx%22%20AND%20v%3A%222.1.6%22), and you can get the distribution on [Bintray](https://bintray.com/vertx/downloads/distribution/2.1.6/view)
+The artifacts has been deployed to [Maven Central](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22io.vertx%22%20AND%20v%3A%222.1.6%22), and you can get the distribution on [Bintray](https://bintray.com/vertx/downloads/distribution/2.1.6/view).

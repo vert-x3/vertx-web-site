@@ -13,6 +13,10 @@
           <pubDate>{{post.date | xmldate }}</pubDate>
           <link>{{ post.path | link}}</link>
           <guid isPermaLink="true">{{post.path | link}}</guid>
+          <author>
+            <name>{{post.author}}</name>
+            <uri>http://github.com/{{post.author}}</uri>
+          </author>
         </item>
       {% endfor %}
     </channel>
