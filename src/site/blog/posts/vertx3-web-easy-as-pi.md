@@ -5,11 +5,11 @@ template: post.html
 author: pmlopes
 draft: true
 ---
-[Vert.x Web](http://vertx.io/docs/#web) distinguishes itself from traditional application servers like J2EE by just
+[Vert.x Web](http://vertx.io/docs/#web) distinguishes itself from traditional application servers like JavaEE by just
 being a simple extension toolkit to [Vert.x](http://vertx.io/docs/#core), which makes it quite lightweight and small but
 nevertheless very powerful.
 
-One can create simple applications targeting IoT devices such as Raspberry Pi without having to write much code but
+One can create simple applications targeting _small_ devices such as Raspberry Pi without having to write much code but
 still very fast as it is expected from any Vert.x application.
 
 Lets for example think of making a realtime cpu load visualization web app. For this example we need a few things:
