@@ -131,3 +131,5 @@ At this moment you can build and package your app like `mvn clean package`, then
 `scp target/rpi-1.0-fat.jar pi@raspberrypi:~/` and finally run it: `java -jar rpi-1.0-fat.jar`.
 
 Open a browser to [see](http://raspberrypi:8080) the realtime graph!
+
+![screeshot](../assets/vertx3-web-easy-as-pi/rpi.png)
