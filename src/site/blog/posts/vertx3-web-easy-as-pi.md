@@ -2,6 +2,7 @@
 title: Vert.x3 Web easy as Pi
 date: 2015-06-30
 template: post.html
+author: pmlopes
 draft: true
 ---
 [Vert.x Web](http://vertx.io/docs/#web) distinguishes itself from traditional application servers like J2EE by just
