@@ -1,9 +1,8 @@
 ---
 title: Vert.x3 Web easy as Pi
-date: 2015-06-30
+date: 2015-07-01
 template: post.html
 author: pmlopes
-draft: true
 ---
 [Vert.x Web](http://vertx.io/docs/#web) distinguishes itself from traditional application servers like JavaEE by just
 being a simple extension toolkit to [Vert.x](http://vertx.io/docs/#core), which makes it quite lightweight and small but
