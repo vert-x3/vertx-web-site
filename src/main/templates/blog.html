@@ -2,33 +2,49 @@
 
 <div class="container">
   <div class="row blog">
-    <div class="col-sm-12 blog-main">
+    <div class="col-sm-8 blog-main">
       {% set c = collections.blog|limit(pagination.end, pagination.start) %}
 
       {% for post in c %}
       <article class="blog-post">
           <h2 class="blog-post-title"><a href="/{{post.path}}/index.html">{{post.title}}</a></h2>
           {% if post.date %}
-            <p class="blog-post-meta">{{post.date | date}}</p>
+            <p class="blog-post-meta">{{post.date | date}} by
+              <a href="http://github.com/{{post.author}}">{{post.author}}</a></p>
           {% endif %}
-          <article>{{post.contents | safe}}</article>
+          <article>{{post.contents | safe | extractContent}}</article>
           <hr/>
       </article>
       {% endfor %}
+
+      {% if pagination %}
+         <nav class="pagination">
+             {% if pagination.next %}
+                 <a href="{{pagination.next.num | page}}" class="pagination__link--older">&lt; Older</a>
+             {% endif %}
+
+             {% if pagination.prev %}
+                 <a href="{{pagination.prev.num | page}}" class="pagination__link--newer">Newer &gt;</a>
+             {% endif %}
+
+         </nav>
+      {% endif %}
     </div>
-
-    {% if pagination %}
-       <nav class="pagination">
-           {% if pagination.next %}
-               <a href="{{pagination.next.num | page}}" class="pagination__link--older">&lt; Older</a>
-           {% endif %}
-
-           {% if pagination.prev %}
-               <a href="{{pagination.prev.num | page}}" class="pagination__link--newer">Newer &gt;</a>
-           {% endif %}
-
-       </nav>
-   {% endif %}
+    <div class="col-sm-4 blog-sidebar">
+      <div class="blog-contribute">
+        {% set recent = collections.blog|limit(5, 0) %}
+        <h4>Recent Posts</h4>
+        <ul>
+          {% for post in recent %}
+          <li><a href="/{{post.path}}/index.html">{{post.title}}</a></li>
+          {% endfor %}
+        </ul>
+        <hr/>
+        <p>Have something interesting to say about Vert.x? Want to contribute to this blog? Just check the
+          <a href="https://github.com/vert-x3/vertx-web-site/blob/web-site-3.0.0/BLOG.md">instructions</a>.
+        <p>
+      </div>
+    </div>
   </div>
 </div>
 

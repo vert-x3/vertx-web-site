@@ -45,40 +45,7 @@ path on the web server by just changing the global `site_url` variable.
 
 ## The blog
 
-The site also hosts a _blog_. To write a blog post create a markdown file in
-`src/site/blog/posts`. The file must use the `.md` extension.
-
-The post must starts with some metadata contained in a _header_ part:
-
-```
----
-title: A Catchy Title
-template: post.html
-date: 2015-06-26
----
-## Hello
-...
-```
-
-Ech line contained between the `---` lines are metadata. Are **required**:
-
-* **title**: the post title
-* **template**: must be `post.html`
-* **date**: the publication date. The date must be provided using the `YYYY-MM-DD` format
-
-After the second `---`, you can start the post. To avoid messing up the style,
-the first header (your title) should use `##`. Sub-section would use `###`.
-The post are written in markdown, so code snippets are delimited using ` ``` `.
-
-You can add a special metadata to hide the post from the web site:
-
-```
-draft: true
-```
-
-Drafts are not processed, so won't be generated at all.
-
-The blog generates an Atom feed available on `http://vertx.io/feed.xml`.
+Read [BLOG.md](BLOG.md)
 
 ## Publishing
 
