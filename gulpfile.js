@@ -163,6 +163,20 @@ function build(done, dev) {
             }
           }
           return out;
+        },
+
+        "extractContent" : function(content) {
+          if (content.indexOf("<!--%%content%%-->") != -1) {
+            console.log("Extracting head");
+            content = content.substring(0, content.indexOf("<!--%%content%%-->"));
+          }
+
+          if (content.indexOf("<!--%%end-of-content%%-->") != -1) {
+            console.log("Extracting feet");
+            content = content.substring(content.indexOf("<!--%%end-of-content%%-->"));
+          }
+
+          return content;
         }
       }
     }))

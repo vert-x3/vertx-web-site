@@ -1,5 +1,4 @@
 {% include "header.html" %}
-
 <div class="container">
   <div class="row blog">
     <article class="blog-post">
@@ -8,7 +7,9 @@
       <p class="blog-post-meta">{{date | date}} by
         <a href="http://github.com/{{author}}">{{author}}</a></p>
       {% endif %}
+      <!--%%content%%-->
       <article>{{contents | safe}}</article>
+      <!--%%end-of-content%%-->
     </article>
 
     <div id="disqus_thread"></div>
@@ -26,5 +27,4 @@
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
   </div>
 </div>
-
 {% include "footer.html" %}

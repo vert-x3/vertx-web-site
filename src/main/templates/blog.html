@@ -12,7 +12,7 @@
             <p class="blog-post-meta">{{post.date | date}} by
               <a href="http://github.com/{{post.author}}">{{post.author}}</a></p>
           {% endif %}
-          <article>{{post.contents | safe}}</article>
+          <article>{{post.contents | safe | extractContent}}</article>
           <hr/>
       </article>
       {% endfor %}
@@ -43,9 +43,8 @@
         <p>Have something interesting to say about Vert.x? Want to contribute to this blog? Just check the
           <a href="https://github.com/vert-x3/vertx-web-site/blob/web-site-3.0.0/BLOG.md">instructions</a>.
         <p>
+      </div>
     </div>
-
-
   </div>
 </div>
 
