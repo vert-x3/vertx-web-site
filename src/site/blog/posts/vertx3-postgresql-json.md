@@ -1,9 +1,8 @@
 ---
 title: Vert.x3 and PostgreSQL JSON type
-date: 2015-07-02
+date: 2015-07-03
 template: post.html
 author: pmlopes
-draft: true
 ---
 One of the interesting features of NoSQL databases is their schema-less mode of operation. This feature is very useful
 during project prototyping and early development since at early the stages of development of projects all data
