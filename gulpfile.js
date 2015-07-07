@@ -270,6 +270,8 @@ function buildDocs(done, dev) {
   var site_url = siteUrl;
   if (dev) {
     site_url = siteUrlDev;
+  } else {
+    site_url = "http://vertx.io/"
   }
 
   Metalsmith(__dirname)
