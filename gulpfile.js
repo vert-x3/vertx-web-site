@@ -166,6 +166,9 @@ function build(done, dev) {
         },
 
         "extractContent" : function(content) {
+          if (!content) {
+            return content
+          }
           if (content.indexOf("<!--%%content%%-->") != -1) {
             console.log("Extracting head");
             content = content.substring(0, content.indexOf("<!--%%content%%-->"));
