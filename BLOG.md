@@ -24,6 +24,9 @@ template: post.html
 date: 2015-06-26
 author: cescoffier
 ---
+
+An introduction paragraph that will be use as _except_ in the RSS feed.
+
 ## Hello
 ...
 ```
@@ -39,7 +42,35 @@ After the second `---`, you can start the post. To avoid messing up the style,
 the first header (your title) should use `##`. Sub-section would use `###`.
 The post are written in markdown, so code snippets are delimited using ` ``` `.
 
-Once your post is written create a pull request and we will publish your post.
+### Assets
+
+If your post have asset, please add them into `src/site/assets/blog/a_directory_identifying_your_post`. Please keep assets size small. Assets are references using an absolute URL such as: `/assets/blog/...`.
+
+### Style
+
+1. Make sure your post does not contain hard wraps.
+2. Ensure the code is using the right markdown syntax
+3. Avoid tables
+
+### Gist
+
+If you have long code snippet, please use a _gist_ (http://gist.github.com). It will let reader to copy directly the code from gist, and also provide improvements.
+
+Once your gist is created and ready, copy the _embed url_ in the post (at the right location). The embed url is a `script` inserting the Gist content.
+
+### Making a PR
+
+Once your post is written create a pull request and we will publish your post. The pull request should only contain the file related to your post. Before sending the pull request, add the following header:
+
+```
+draft: true
+```
+
+It lets us review the post and decide when it goes public.
+
+### Publication
+
+Once submitted your post is going to be published pretty soon. However, we won't publish more than two posts in a week, so it may be postponed a bit.
 
 ## Drafts
 
@@ -53,4 +84,4 @@ Drafts are not processed, so won't be generated at all.
 
 ## RSS Feed
 
-The blog generates an Atom feed available on `http://vertx.io/feed.xml`.
+The blog generates an Atom feed available on `http://vertx.io/feed.xml`. Don't forget to subscribe.
