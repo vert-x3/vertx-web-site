@@ -1,7 +1,7 @@
 ---
 title: My first Vert.x 3 Application
 template: post.html
-date: 2015-06-26
+date: 2015-07-11
 author: cescoffier
 draft: true
 ---
@@ -90,7 +90,8 @@ public class MyFirstVerticle extends AbstractVerticle {
     vertx
         .createHttpServer()
         .requestHandler(r -> {
-          r.response().end("<h1>Hello from my first Vert.x 3 application</h1>");
+          r.response().end("<h1>Hello from my first " +
+              "Vert.x 3 application</h1>");
         })
         .listen(8080, result -> {
           if (result.succeeded()) {
@@ -105,7 +106,7 @@ public class MyFirstVerticle extends AbstractVerticle {
 
 This is actually our not fancy application. The class extends `AbstractVerticle`. In the Vert.x world, a _verticle_ is a component. By extending `AbstractVerticle`, our class gets access to the `vertx` field.
 
-The `start` method is called when the verticle is deployed. We could also implement a `stop` method, but in this case Vert.x takes care of the garbage for us. The `start` method receives a `Future` object that will let us inform Vert.x when our start sequence is completed or report an error.
+The `start` method is called when the verticle is deployed. We could also implement a `stop` method, but in this case Vert.x takes care of the garbage for us. The `start` method receives a `Future` object that will let us inform Vert.x when our start sequence is completed or report an error. One of the particularity of Vert.x is its asynchronous / non-blocking aspect. When our verticle is going to be deployed it won't wait until the start method has been completed. So, the `Future` parameter is important to notify of the completion.
 
 The `start` method creates a HTTP server and attaches a request handler to it. The request handler is a lambda, passed in the `requestHandler` method, called every time the server receives a request. Here, we just reply `Hello ...` (nothing fancy I told you). Finally, the server is bound to the 8080 port. As this may fails (because the port may already be used), we pass another lambda expression checking whether or not the connection has succeeded. As mentioned above it calls either `fut.complete` in case of success or `fut.fail` to report an error.
 
@@ -145,7 +146,8 @@ public class MyFirstVerticleTest {
   @Before
   public void setUp(TestContext context) {
     vertx = Vertx.vertx();
-    vertx.deployVerticle(MyFirstVerticle.class.getName(), context.asyncAssertSuccess());
+    vertx.deployVerticle(MyFirstVerticle.class.getName(),
+        context.asyncAssertSuccess());
   }
 
   @After
@@ -157,7 +159,8 @@ public class MyFirstVerticleTest {
   public void testMyApplication(TestContext context) {
     final Async async = context.async();
 
-    vertx.createHttpClient().getNow(8080, "localhost", "/", response -> {
+    vertx.createHttpClient().getNow(8080, "localhost", "/",
+     response -> {
       response.handler(body -> {
         context.assertTrue(body.toString().contains("Hello"));
         async.complete();
@@ -204,7 +207,8 @@ To create a _fat jar_, edit the `pom.xml` file and add the following snippet jus
       </goals>
       <configuration>
         <transformers>
-          <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+          <transformer
+            implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
             <manifestEntries>
               <Main-Class>io.vertx.core.Starter</Main-Class>
               <Main-Verticle>io.vertx.blog.first.MyFirstVerticle</Main-Verticle>
