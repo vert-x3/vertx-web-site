@@ -9,7 +9,7 @@
       {% for post in collections.blog %}
         <item>
           <title>{{ post.title }}</title>
-          <description>{{ post.excerpt }}</description>
+          <description>{{ post.contents | extractContent }}</description>
           <pubDate>{{post.date | xmldate }}</pubDate>
           <link>{{ post.path | link}}</link>
           <guid isPermaLink="true">{{post.path | link}}</guid>

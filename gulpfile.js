@@ -166,17 +166,21 @@ function build(done, dev) {
         },
 
         "extractContent" : function(content) {
-          if (!content  || typeof content.indexOf !== 'function') {
+          if (! content) {
             return content;
           }
-          if (content.indexOf("<!--%%content%%-->") != -1) {
-            console.log("Extracting head");
-            content = content.substring(0, content.indexOf("<!--%%content%%-->"));
+          if (typeof content.indexOf !== 'function') {
+            // Sometimes it's an object representing a char array.
+            content = content.toString();
+          }
+
+          var begin = "<!--%%content%%-->";
+          if (content.indexOf(begin) != -1) {
+            content = content.substring(content.indexOf(begin) + begin.length);
           }
 
           if (content.indexOf("<!--%%end-of-content%%-->") != -1) {
-            console.log("Extracting feet");
-            content = content.substring(content.indexOf("<!--%%end-of-content%%-->"));
+            content = content.substring(0, content.indexOf("<!--%%end-of-content%%-->"));
           }
 
           return content;
