@@ -166,6 +166,9 @@ function build(done, dev) {
         },
 
         "extractContent" : function(content) {
+          if (!content  || typeof content.indexOf !== 'function') {
+            return content;
+          }
           if (content.indexOf("<!--%%content%%-->") != -1) {
             console.log("Extracting head");
             content = content.substring(0, content.indexOf("<!--%%content%%-->"));
@@ -267,6 +270,8 @@ function buildDocs(done, dev) {
   var site_url = siteUrl;
   if (dev) {
     site_url = siteUrlDev;
+  } else {
+    site_url = "http://vertx.io/"
   }
 
   Metalsmith(__dirname)

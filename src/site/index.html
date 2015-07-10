@@ -49,6 +49,7 @@ stickyheader: true
         <div class="tab-content">
           <div class="tab-pane active" id="ws_java">
             <pre class="prettyprint"><code class="java">
+import io.vertx.core.AbstractVerticle;
 public class Server extends AbstractVerticle {
   public void start() {
     vertx.createHttpServer().requestHandler(req -> {
@@ -81,7 +82,7 @@ vertx.createHttpServer().requestHandler({ req ->
 
           <div class="tab-pane" id="ws_ruby">
             <pre class="prettyprint"><code class="ruby">
-vertx.create_http_server().request_handler() { |req|
+$vertx.create_http_server().request_handler() { |req|
   req.response()
     .put_header("content-type", "text/plain")
     .end("Hello from Vert.x!")
