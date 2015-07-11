@@ -192,7 +192,7 @@ function build(done, dev) {
     // We generate a collections
     .use(collections({
       blog: {
-        pattern: '**/blog/posts/*.md',
+        pattern: '**/blog/posts/**/*.md',
         sortBy: 'date',
         reverse: true
       }
