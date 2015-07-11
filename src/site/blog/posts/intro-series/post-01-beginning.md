@@ -8,7 +8,7 @@ draft: true
 
 Let's say, you heard someone saying that Vert.x is _awesome_. Ok great, but you may want to try it by yourself. Well, the next natural question is "where do I start ?". This post is a good starting point. It shows how is built a very simple vert.x application (nothing fancy), how it is tested and how it is packaged and executed. So, everything you need to know before building your own groundbreaking application.
 
-The code developed in this post is available on [github](https://github.com/cescoffier/my-vertx-first-app).
+The code developed in this post is available on [github](https://github.com/cescoffier/my-vertx-first-app). This post is part of a _series_. The code of this post in in the [post-1 branch](https://github.com/cescoffier/my-vertx-first-app/tree/post-1).
 
 ## Let's start !
 
@@ -243,8 +243,10 @@ java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
 
 Then, open a browser to http://localhost:8080.
 
+To stop the application, hit `CTRL+C`.
+
 ## Conclusion
 
-This Vert.x 3 crash class has presented how you can develop a simple application using Vert.x 3, how to test it, package it and run it. So, you now know everything you need to build amazing system on top of Vert.x 3.
+This Vert.x 3 crash class has presented how you can develop a simple application using Vert.x 3, how to test it, package it and run it. So, you now know everything you need to build amazing system on top of Vert.x 3. Next time we will see how to configure our application.
 
-Happy coding !
+Happy coding &amp; Stay tuned !
