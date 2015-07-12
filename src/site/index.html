@@ -74,7 +74,7 @@ vertx.createHttpServer()
             <pre class="prettyprint"><code class="groovy">
 vertx.createHttpServer().requestHandler({ req ->
   req.response()
-    .putHeader("Content-Type", "text/html")
+    .putHeader("content-type", "text/plain")
     .end("Hello from Vert.x!")
 }).listen(8080)</code></pre>
           </div>
