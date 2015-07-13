@@ -3,17 +3,19 @@ title: Vert.x3 says "hello" to NPM users
 date: 2015-07-13
 template: post.html
 author: pmlopes
-draft: true
 ---
 
 In programming literature it has become the standard to create a hello world program as the first example. In this
 article I'll be demonstrating how `NPM` users can quickly get started with `vert.x`. You will see that it is not
-that different and in fact it can be done using the tools you're used to.
+that different and in fact it can be done using the tools you're used to. Note that although we are using `NPM` we are
+not relying on `node.js`, all `javascript` code runs on the `JVM`.
+
 
 ## Hello World Examples
 
 Here are four simple hello world examples. The comments in the code explain how the code works and the text around it
 explain what it does and how to test it.
+
 
 ## Hello Console
 
@@ -87,12 +89,15 @@ server.connectHandler(function (socket) {
 server.listen(7000, "localhost");
 ```
 
+Again reuse the previous `package.json` and test it by doing `telnet localhost 7000`.
+
+
 ## Hello Web
 
 Often you won't be using `vert.x` built-in libraries because they are designed to be very low level. This makes `vert.x`
 quick, nimble, and easy to maintain, but if you are planning to build a complex application you want some productivity
 and rely on a simple web framework. For this specific case there is `vert.x web`,
-[a simple but productive framework](http://vertx.io/docs/#web) to build fast web application with routing, template
+[a simple, yet productive framework](http://vertx.io/docs/#web), to build fast web application with routing, template
 rendering, lots of middleware etc...usually not enough to get started on a real world application. This example shows an
 HTTP server that responds with "Hello World" to all requests to "/" and responds with a 404 error to everything else
 `server.js`:
@@ -115,8 +120,9 @@ router.get("/").handler(function (ctx) {
 server.requestHandler(router.accept).listen(8080);
 ```
 
-In order to test this, you will need to install the `vertx-full` stack. There are two ways to do this. You can either
-install it globally or add it as a dependency to our `package.json` as we have done before, for example `package.json`:
+In order to test this, you will need to install the `vertx3-full` stack. There are two ways to do this. You can either
+install it globally `npm install -g vertx3-full` or add it as a dependency to our `package.json` as we have done before,
+for example `package.json`:
 
 ```javascript
 {
