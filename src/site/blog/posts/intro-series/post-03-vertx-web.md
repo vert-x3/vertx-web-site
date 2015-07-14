@@ -8,7 +8,7 @@ draft: true
 
 ## Previously in this blog series
 
-This post is part of the "Introduction to Vert.x" blog series. So, let's have a quick look about the content of the previous posts. In [the first post](/blog/my-first-vert-x-3-application/index.html), we developed a very simple Vert.x 3 application, and saw how this application can be tested, packaged and executed. In [the last post](/blog/vert-x-application-configuration/index.html), we saw how this application became configurable and how we can use a random port in test.
+This post is part of the _Introduction to Vert.x_ series. So, let's have a quick look about the content of the previous posts. In [the first post](/blog/my-first-vert-x-3-application/index.html), we developed a very simple Vert.x 3 application, and saw how this application can be tested, packaged and executed. In [the last post](/blog/vert-x-application-configuration/index.html), we saw how this application became configurable and how we can use a random port in test.
 
 Well, nothing fancy... Let's go a bit further this time and develop a _CRUD-ish_ application. So an application exposing an HTML page interacting with the backend using a REST API. The level of _RESTfullness_ of the API is not the topic of this post, I let you decide as it's a very slippery topic.
 

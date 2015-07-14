@@ -6,7 +6,7 @@ author: cescoffier
 draft: true
 ---
 
-## Previously in this blog series
+## Previously in 'Introduction to Vert.x'
 
 In [this post](/blog/my-first-vert-x-3-application/index.html), we developed a very simple Vert.x 3 application, and saw how this application can be tested, packaged and executed. That was nice, isn't it ? Well, ok, that was only the beginning. In this post, we are going to enhance our application to support _external_ configuration.
 

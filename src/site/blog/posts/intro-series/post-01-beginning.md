@@ -1,14 +1,13 @@
 ---
 title: My first Vert.x 3 Application
 template: post.html
-date: 2015-07-11
+date: 2015-07-14
 author: cescoffier
-draft: true
 ---
 
 Let's say, you heard someone saying that Vert.x is _awesome_. Ok great, but you may want to try it by yourself. Well, the next natural question is "where do I start ?". This post is a good starting point. It shows how is built a very simple vert.x application (nothing fancy), how it is tested and how it is packaged and executed. So, everything you need to know before building your own groundbreaking application.
 
-The code developed in this post is available on [github](https://github.com/cescoffier/my-vertx-first-app). This post is part of a _series_. The code of this post in in the [post-1 branch](https://github.com/cescoffier/my-vertx-first-app/tree/post-1).
+The code developed in this post is available on [github](https://github.com/cescoffier/my-vertx-first-app). This post is part of the _Introduction to Vert.x series_. The code of this post in in the [post-1 branch](https://github.com/cescoffier/my-vertx-first-app/tree/post-1).
 
 ## Let's start !
 
