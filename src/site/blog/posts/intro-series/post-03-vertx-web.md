@@ -73,7 +73,7 @@ public void start(Future<Void> fut) {
 }
 ```
 
-You may be surprise my the length of this snippet (in comparison to the previous code). But as we are going to see, it will make our app on steroids, just be patient.
+You may be surprise by the length of this snippet (in comparison to the previous code). But as we are going to see, it will make our app on steroids, just be patient.
 
 As you can see, we start by creating a `Router` object. The router is the cornerstone of Vert.x Web. This object is responsible for dispatching the HTTP requests to the right _handler_. Two other concepts are very important in Vert.x Web:
 
