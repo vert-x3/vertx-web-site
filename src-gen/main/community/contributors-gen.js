@@ -1077,5 +1077,11 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/2316008?v=3&s=80",
     "github": "https://github.com/julien3",
     "name": "Julien Lehuraux"
+  },
+  {
+    "github_id": "jtruelove",
+    "avatar": "https://avatars.githubusercontent.com/u/633168?v=3s=80",
+    "github": "https://github.com/jtruelove",
+    "name": "Jeremy Truelove"
   }
 ] };
