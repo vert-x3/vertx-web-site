@@ -46,6 +46,10 @@ var all_users = {
     link: "http://datascience.com/",
     height: 33
   }, {
+    src: "education_first.png",
+    link: "http://www.ef.edu",
+    height: 55
+  }, {
     src: "exent_logo.png",
     link: "http://www.exent.com/",
     height: 50
