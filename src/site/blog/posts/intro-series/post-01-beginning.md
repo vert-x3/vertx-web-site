@@ -121,7 +121,7 @@ That's all for the application.
 
 ## Let's test
 
-Well, that's good to have developed an application, but we can never be too careful, so let's test it. The test uses Junit and [vertx-unit](http://vertx.io/docs/vertx-unit/java/) - a framework delivered with vert.x to make the testing of vert.x application more natural.
+Well, that's good to have developed an application, but we can never be too careful, so let's test it. The test uses JUnit and [vertx-unit](http://vertx.io/docs/vertx-unit/java/) - a framework delivered with vert.x to make the testing of vert.x application more natural.
 
 Now create the `src/test/java/io/vertx/blog/first/MyFirstVerticleTest.java` with the following content:
 
@@ -171,15 +171,15 @@ public class MyFirstVerticleTest {
 
 This is a JUnit test for our verticle. The test uses vertx-unit, so we use a custom runner. vert.x-unit makes easy to test asynchronous interactions, which are the basis of vert.x applications.
 
-In the `setUp` method, we creates an instance of `Vertx` and deploy our verticle. You may have noticed that unlike the traditional Junit `@Before` method, it receives a `TestContext`. This object lets us control the asynchronous aspect of our test. For instance, when we deploy our verticle, it starts asynchronously, as most Vert.x interactions. We cannot check anything until it gets started correctly. So, as second argument of the `deployVerticle` method, we pass a result handler: `context.asyncAssertSuccess()`. It fails the test if the verticle does not start correctly. In addition it waits until the verticle has completed its start sequence. Remember, in our verticle, we call `fut.complete()`. So it waits until this method is called, and in the case of a failures, fails the test.
+In the `setUp` method, we creates an instance of `Vertx` and deploy our verticle. You may have noticed that unlike the traditional JUnit `@Before` method, it receives a `TestContext`. This object lets us control the asynchronous aspect of our test. For instance, when we deploy our verticle, it starts asynchronously, as most Vert.x interactions. We cannot check anything until it gets started correctly. So, as second argument of the `deployVerticle` method, we pass a result handler: `context.asyncAssertSuccess()`. It fails the test if the verticle does not start correctly. In addition it waits until the verticle has completed its start sequence. Remember, in our verticle, we call `fut.complete()`. So it waits until this method is called, and in the case of a failures, fails the test.
 
 Well, the `tearDown` method is straightforward, and just terminates the `vertx` instance we created.
 
 Let's now have a look to the test of our application: the `testMyApplication` method. The test emits a request to our application and checks the result.  Emitting the request and receiving the response is asynchronous. So we need a way to control this. As the `setUp` and `tearDown` methods, the test method receives a `TestContext`. From this object we creates an _async handle_ (`async`) that lets us notify the test framework when the test has completed (using `async.complete()`).
 
-So, once the _async handle_ is created, we create a HTTP client and emits a HTTP request handled by our application. The response is handled by a lambda. In this lambda we retrieves the response body by passing another lambda to the `handler` method. The `body` argument is the response body (as a `buffer` object). We check that the body contains the `"Hello"` String and declare the test complete.
+So, once the _async handle_ is created, we create a HTTP client and emits a HTTP request handled by our application with the `getNow()` method (`getNow` is just a shortcut for `get(...).end()`). The response is handled by a lambda. In this lambda we retrieves the response body by passing another lambda to the `handler` method. The `body` argument is the response body (as a `buffer` object). We check that the body contains the `"Hello"` String and declare the test complete.
 
-Let's take a minute to mention the _assertions_. Unlike in traditional Junit tests, it uses `context.assert...`. Indeed, if the assertion fails, it will interrupt the test immediately. So it's pretty important to always uses these assertion methods because of the asynchronous aspect of the Vert.x application and so tests.
+Let's take a minute to mention the _assertions_. Unlike in traditional JUnit tests, it uses `context.assert...`. Indeed, if the assertion fails, it will interrupt the test immediately. So it's pretty important to always uses these assertion methods because of the asynchronous aspect of the Vert.x application and so tests.
 
 Our test can be run from an IDE, or using Maven:
 
