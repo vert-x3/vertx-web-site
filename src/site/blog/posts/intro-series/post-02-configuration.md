@@ -1,9 +1,8 @@
 ---
 title: Vert.x Application Configuration
 template: post.html
-date: 2015-07-12
+date: 2015-07-20
 author: cescoffier
-draft: true
 ---
 
 ## Previously in 'Introduction to Vert.x'
