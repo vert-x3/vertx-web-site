@@ -123,6 +123,23 @@ That's all for the application.
 
 Well, that's good to have developed an application, but we can never be too careful, so let's test it. The test uses JUnit and [vertx-unit](http://vertx.io/docs/vertx-unit/java/) - a framework delivered with vert.x to make the testing of vert.x application more natural.
 
+Open the `pom.xml` file to add the two following dependencies:
+
+```xml
+<dependency>
+  <groupId>junit</groupId>
+  <artifactId>junit</artifactId>
+  <version>4.12</version>
+  <scope>test</scope>
+</dependency>
+<dependency>
+  <groupId>io.vertx</groupId>
+  <artifactId>vertx-unit</artifactId>
+  <version>3.0.0</version>
+  <scope>test</scope>
+</dependency>
+```
+
 Now create the `src/test/java/io/vertx/blog/first/MyFirstVerticleTest.java` with the following content:
 
 ```java
