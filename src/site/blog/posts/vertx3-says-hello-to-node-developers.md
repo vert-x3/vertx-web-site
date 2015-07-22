@@ -52,8 +52,14 @@ Now we need to do a simple hello app, we will call this file "`server.js`":
 console.log("Hello World");
 ```
 
-You can run this by running `npm start`.
+You can run this by executing:
 
+```
+npm install
+npm start
+```
+
+The first command retrieve the vert.x stack while the seconds starts your program.
 
 ## Hello HTTP
 
