@@ -2,6 +2,7 @@
 title: A Catchy Title
 template: post.html
 date: 2015-06-26
+draft: true
 ---
 ## Hello you
 
