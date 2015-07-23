@@ -44,6 +44,8 @@ var moment = require('moment');
 var excerpts = require('metalsmith-excerpts');
 var swigHelpers = require('metalsmith-swig-helpers');
 
+var admonitions = require("./src/main/admonition/admonition.js");
+
 
 // path to website on the server in production mode (i.e. when running
 // `gulp build`). MUST BE ABSOLUTE AND MUST END WITH A SLASH!
@@ -184,7 +186,21 @@ function build(done, dev) {
           }
 
           return content;
+        },
+
+        "admonition" : function(content) {
+
+          if (! content) {
+            return content;
+          }
+          if (typeof content.indexOf !== 'function') {
+            // Sometimes it's an object representing a char array.
+            content = content.toString();
+          }
+          return admonitions.all(content);
         }
+
+
       }
     }))
 

@@ -58,6 +58,34 @@ If you have long code snippet, please use a _gist_ (http://gist.github.com). It 
 
 Once your gist is created and ready, copy the _embed url_ in the post (at the right location). The embed url is a `script` inserting the Gist content.
 
+### Admonitions
+
+There is a built-in (home made) admonitions support for the blog posts. Are supported:
+
+* NOTE
+* INFO
+* WARNING
+* IMPORTANT
+
+To create an admonition use the following syntax: `[NOTE title | content]` such as:
+
+```
+[NOTE this is my title | this is the content of the note, it can be pretty long, and contain **important** messages. In can be very very long.... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]
+
+[WARNING Warning Warning | You need to 
+be careful about **this** (yes it can be multi-line)]
+
+[INFO Info | Did you check the [news](http://lemonde.fr)?]
+
+[IMPORTANT Something very important | don't forget to subscription to the google group.]
+```
+
+Title can be skipped using `[NOTE_content]`:
+
+```
+[IMPORTANT Wow, this is an untitled important message.]
+```
+
 ### Making a PR
 
 Once your post is written create a pull request and we will publish your post. The pull request should only contain the file related to your post. Before sending the pull request, add the following header:
