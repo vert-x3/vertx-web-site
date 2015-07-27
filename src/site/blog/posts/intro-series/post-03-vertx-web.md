@@ -1,9 +1,8 @@
 ---
 title: Some Rest with Vert.x
 template: post.html
-date: 2015-07-13
+date: 2015-07-27
 author: cescoffier
-draft: true
 ---
 
 ## Previously in this blog series
@@ -348,6 +347,7 @@ private void addOne(RoutingContext routingContext) {
       Whisky.class);
   products.put(whisky.getId(), whisky);
   routingContext.response()
+      .setStatusCode(201)
       .putHeader("content-type", "application/json; charset=utf-8")
       .end(Json.encodePrettily(whisky));
 }
@@ -363,6 +363,8 @@ java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
 ```
 
 Then, refresh the HTML page and click on the `Add a new bottle` button. Enter the data such as: "Jameson" as name and "Ireland" as origin (purists would have noticed that this is actually a Whiskey and not a Whisky). The bottle should be added to the table.
+
+[NOTE Status 201 ? | As you can see, we have set the response status to `201`. It means `CREATED`, and is the generally used in REST API that create an entity. By default vert.x web is setting the status to `200` meaning `OK`.]
 
 ### Finishing a bottle
 
@@ -385,11 +387,13 @@ private void deleteOne(RoutingContext routingContext) {
     Integer idAsInteger = Integer.valueOf(id);
     products.remove(idAsInteger);
   }
-  routingContext.response().end();
+  routingContext.response().setStatusCode(204).end();
 }
 ```
 
 The _path parameter_ is retrieved using `routingContext.request().getParam("id")`.  It checks whether it's `null` (not set), and in this case returns a `Bad Request` response (status code 400). Otherwise, it removes it from the _backend_ map.
+
+[NOTE Status 204 ? | As you can see, we have set the response status to `204 - NO CONTENT`. Response to the HTTP Verb `delete` have generally no content.]
 
 ### The other methods
 
@@ -399,6 +403,6 @@ We won't detail `getOne` and `updateOne` as the implementations are straightforw
 
 It's time to conclude this post. We have seen how Vert.x Web lets you implement a REST API easily and how it can serve static resources. A bit more fancy than before, but still pretty easy.
 
-Next time, we are going to improve our test to cover the REST API.
+Next time, we are going to improve our tests to cover the REST API.
 
 Say Tuned &amp; Happy Coding !
