@@ -382,7 +382,7 @@ Let's see how the parameter can be used in the handler method. Create the `delet
 private void deleteOne(RoutingContext routingContext) {
   String id = routingContext.request().getParam("id");
   if (id == null) {
-    routingContext.response().setStatusCode(400);
+    routingContext.response().setStatusCode(400).end();
   } else {
     Integer idAsInteger = Integer.valueOf(id);
     products.remove(idAsInteger);
