@@ -1,9 +1,8 @@
 ---
 title: Unit and Integration Tests
 template: post.html
-date: 2015-07-31
+date: 2015-08-03
 author: cescoffier
-draft: true
 ---
 
 ## Previously in "introduction to vert.x"
@@ -14,7 +13,7 @@ The code of this post is available in the [post-4 branch](https://github.com/ces
 
 ## Tests, Tests, Tests...
 
-This post is mainly about tests. We distinguish two types of tests: unit tests and integration tests. Both are equally important, but have different focus. Unit tests ensure that one _component_ of your application, generally a class in the Java world, behaves as expected. The application is not tested as a whole, but pieces by pieces. Integration tests are more _black box_ in the sense that the application is started and tested generally externally. 
+This post is mainly about tests. We distinguish two types of tests: unit tests and integration tests. Both are equally important, but have different focus. Unit tests ensure that one _component_ of your application, generally a class in the Java world, behaves as expected. The application is not tested as a whole, but pieces by pieces. Integration tests are more _black box_ in the sense that the application is started and tested generally externally.
 
 In this post we are going to start with some more unit tests as a warm up session and then focus on integration tests. If you already implemented integration tests, you may be a bit scared, and it makes sense. But don't worry, with Vert.x there are no hidden surprises.
 
@@ -66,7 +65,7 @@ Finally, our single test is:
     });
    }
 ```
-It is only checking that the application replies "Hello" when we emit a HTTP request on `/`. 
+It is only checking that the application replies "Hello" when we emit a HTTP request on `/`.
 
 Let's now try to implement some unit tests checkin that our web application and the REST API behave as expected. Let's start by checking that the `index.html` page is correctly served. This test is very similar to the previous one:
 
@@ -102,7 +101,7 @@ Ok, great, but this actually does not test our REST API. Let's ensure that we ca
     final String length = Integer.toString(json.length());
     vertx.createHttpClient().post(port, "localhost", "/api/whiskies")
         .putHeader("content-type", "application/json")
-        .putHeader("content-length", length)        
+        .putHeader("content-length", length)
         .handler(response -> {
           context.assertEquals(response.statusCode(), 201);
           context.assertTrue(response.headers().get("content-type").contains("application/json"));
@@ -119,7 +118,7 @@ Ok, great, but this actually does not test our REST API. Let's ensure that we ca
   }
 ```
 
-First we create the content we want to add. The server consumes JSON data, so we need a JSON string. You can either write your JSON document manually, or use the Vert.x method (`Json.encodePrettily`) as done here. Once we have the content, we create a `post` request. We need to configure some headers to be correctly read by the server. First, we say that we are sending JSON data and we also set the content length. We also attach a response handler very close to the checks made in the previous test. Notice that we can rebuild our object from the JSON document send by the server using the `JSON.decodeValue` method. It's very convenient as it avoids lots of boilerplate code.  At this point the request is not emitted, we need to write the data and call the `end()` method. This is made using `.write(json).end();`. 
+First we create the content we want to add. The server consumes JSON data, so we need a JSON string. You can either write your JSON document manually, or use the Vert.x method (`Json.encodePrettily`) as done here. Once we have the content, we create a `post` request. We need to configure some headers to be correctly read by the server. First, we say that we are sending JSON data and we also set the content length. We also attach a response handler very close to the checks made in the previous test. Notice that we can rebuild our object from the JSON document send by the server using the `JSON.decodeValue` method. It's very convenient as it avoids lots of boilerplate code.  At this point the request is not emitted, we need to write the data and call the `end()` method. This is made using `.write(json).end();`.
 
 The order of the methods is important. You cannot _write_ data if you don't have a response handler configured. Finally don't forget to call `end`.
 
@@ -212,7 +211,7 @@ This instructs Maven to _filter_ resources from the `src/test/resources` directo
 ```
 
 This configuration file is similar to the one we did in previous posts. The only difference is the `${http.port}` which is the (default) Maven syntax for filtering. So, when Maven is going to process or file it will replace `${http.port}` by the selected port. That's all for the second step.
-	
+
 The step 3 and 5 are a bit more tricky. We should start and stop the application. We are going to use the `maven-antrun-plugin` to achieve this. In the `pom.xml` file, below the `build-helper-maven-plugin`, add:
 
 ```xml
@@ -493,5 +492,3 @@ Wow, what a trip ! We are done... In this post we have seen how we can gain conf
 Next time, we are going to replace the _in memory_ backend with a database, and use asynchronous integration with this database.
 
 Stay Tuned & Happy Coding !
-
-
