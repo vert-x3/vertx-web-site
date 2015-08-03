@@ -134,6 +134,6 @@ How does that work ? Remember, our _fat jar_ is using the `Starter` class (provi
 
 ## Conclusion
 
-After having developed your first Vert.x application, we have seen how this application is configurable, and this without adding any complexity to our application. Next time we are going to see how we can use vertx-web to develop a small application serving static pages and a REST API. A bit more fancy, but still very simple.
+After having developed your first Vert.x application, we have seen how this application is configurable, and this without adding any complexity to our application. [In the next post](/blog/some-rest-with-vert-x/index.html), we are going to see how we can use vertx-web to develop a small application serving static pages and a REST API. A bit more fancy, but still very simple.
 
-Happy Coding and & Stay Tuned!
+Happy Coding and &amp; Stay Tuned!

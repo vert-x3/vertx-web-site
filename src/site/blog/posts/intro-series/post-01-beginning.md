@@ -263,6 +263,6 @@ To stop the application, hit `CTRL+C`.
 
 ## Conclusion
 
-This Vert.x 3 crash class has presented how you can develop a simple application using Vert.x 3, how to test it, package it and run it. So, you now know everything you need to build amazing system on top of Vert.x 3. Next time we will see how to configure our application.
+This Vert.x 3 crash class has presented how you can develop a simple application using Vert.x 3, how to test it, package it and run it. So, you now know everything you need to build amazing system on top of Vert.x 3. Next time we will see how to [configure our application](/blog/vert-x-application-configuration/index.html).
 
 Happy coding &amp; Stay tuned !

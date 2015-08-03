@@ -403,6 +403,6 @@ We won't detail `getOne` and `updateOne` as the implementations are straightforw
 
 It's time to conclude this post. We have seen how Vert.x Web lets you implement a REST API easily and how it can serve static resources. A bit more fancy than before, but still pretty easy.
 
-Next time, we are going to improve our tests to cover the REST API.
+[In the next post](/blog/unit-and-integration-tests/index.html), we are going to improve our tests to cover the REST API.
 
 Say Tuned &amp; Happy Coding !
