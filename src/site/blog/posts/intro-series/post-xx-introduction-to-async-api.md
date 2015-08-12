@@ -10,8 +10,7 @@ Asynchronous / non-blocking is one of the core characteristics of Vert.x. Howeve
 
 This post is not about how Vert.x works, and just mentions briefly the thread model proposed by Vert.x. This post is about the asynchronous APIs, what’s the different with the traditional APIs, how can you use Vert.x `Handlers` and `AsyncResults`, the different code patterns you are going to see when using Vert.x, how to chain operations...
 
-The code developed in this post is available on this Github project (TODO).
-
+The code developed in this post is available on this [Github project](https://github.com/cescoffier/vertx-intro-to-async-api).
 
 ## Step 0 - We need an example
 
