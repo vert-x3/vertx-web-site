@@ -45,6 +45,10 @@ var all_users = {
     src: "datascience_logo.png",
     link: "http://datascience.com/",
     height: 33
+  },   {
+    src: "eprocurement.png",
+    link: "http://eprocurement-indonesia.com/",
+    height: 44
   }, {
     src: "exent_logo.png",
     link: "http://www.exent.com/",
