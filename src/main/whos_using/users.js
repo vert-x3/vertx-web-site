@@ -174,6 +174,10 @@ var all_users = {
     src: "zanox.png",
     link: "http://www.zanox.com/",
     height: 48
+  }, {
+    src: "memgrid.png",
+    link: "https://www.memgrid.com",
+    height: 39
   }]
 };
 
