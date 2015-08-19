@@ -45,6 +45,10 @@ var all_users = {
     src: "datascience_logo.png",
     link: "http://datascience.com/",
     height: 33
+  },   {
+    src: "eprocurement.png",
+    link: "http://eprocurement-indonesia.com/",
+    height: 44
   }, {
     src: "education_first.png",
     link: "http://www.ef.edu",
@@ -178,6 +182,10 @@ var all_users = {
     src: "zanox.png",
     link: "http://www.zanox.com/",
     height: 48
+  }, {
+    src: "memgrid.png",
+    link: "https://www.memgrid.com",
+    height: 39
   }]
 };
 
