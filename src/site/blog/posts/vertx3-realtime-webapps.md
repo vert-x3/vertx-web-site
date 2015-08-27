@@ -7,20 +7,20 @@ draft: true
 ---
 
 One of the interesting features of Vert.x is the [SockJS](http://sockjs.org) event bus bridge. This piece of software
-allows external applications to communicate with Vert.x event bus using Websockets and if your browser does not support
-it then it gracefully degrades to pooling AJAX calls.
+allows external applications to communicate with Vert.x event bus using Websockets and if your browser does not
+support it then it gracefully degrades to pooling AJAX calls.
 
-WebSockets bring a new level of interaction to the web, they really bring real time to web applications due to the fact
-that its communication model is bi-directional in contrast to the HTTP model where a client can initiate a data request
-to a server but not the other way around.
+WebSockets bring a new level of interaction to the web, they really bring real time to web applications due to the
+fact that its communication model is bi-directional in contrast to the traditional HTTP model where a client can
+initiate a data request to a server but not the other way around.
 
 In this small post I will demonstrate how you can create a simple collaborative drawing app. The idea is simple, all
 users that open the app will be be presented with a empty canvas and what they draw or is drawn on other canvas is
 shared in real time on their screen.
 
 For the sake of simplicity and making this post light there is no security involved so, everyone is free to listen to
-what is being drawn, however the external application has limited read write access to a single address on Vert.x event
-bus, ensuring that other services running on the cluster will not be exposed.
+what is being drawn, however the external application has limited read write access to a single address on Vert.x
+event bus, ensuring that other services running on the cluster will not be exposed.
 
 This is what you should expect to see:
 
@@ -30,8 +30,8 @@ This is what you should expect to see:
 ## Bootstrap a project
 
 If you followed the previous [series]((/blog/my-first-vert-x-3-application/index.html) on Vert.x development, you saw
-that Java and Maven were the main topic, since Vert.x is polyglot I will focus on JavaScript and [NPM](https://www.npmjs.com/)
-as my programming language and package management tool.
+that Java and Maven were the main topic, since Vert.x is polyglot I will focus on JavaScript and
+[NPM](https://www.npmjs.com/) as my programming language and package management tool.
 
 With NPM start by creating a `package.json`, in order to do this we should run:
 
@@ -120,8 +120,8 @@ Our application main entry point is as one can expect `index.html`. In the index
 ```
 
 As I previously wrote, the idea is to keep it as simple as possible so it is all about having a canvas element and a
-application main script `script.js`. All the rest are files served by CDNs that provide common web application libraries
-such as `jQuery`, `HTML5` shim for older browsers, `SockJS` client and `vertxbus` bridge.
+application main script `script.js`. All the rest are files served by CDNs that provide common web application
+libraries such as `jQuery`, `HTML5` shim for older browsers, `SockJS` client and `vertxbus` bridge.
 
 The main code is on `script.js` file:
 
@@ -229,8 +229,8 @@ $(function () {
 });
 ```
 
-The most important part in this code is all the code related to `eb`. The variable `eb` is our bridge to the event bus,
-Start by creating a bridge using the `vertx.EventBus` object and define where to connect, using the details
+The most important part in this code is all the code related to `eb`. The variable `eb` is our bridge to the event
+bus, Start by creating a bridge using the `vertx.EventBus` object and define where to connect, using the details
 of the current window location.
 
 Then add a `onopen` listener that will subscribe to the address `draw` on the event bus so it can listen to all
@@ -276,7 +276,7 @@ function. Finally we listen on port `8080` and we are ready.
 
 Note that there is a options object where a couple of properties are defined `outbound/inbound` permitted addresses.
 Without this configuration the external application will not be allowed to connect to the vert.x bus, in fact the
-default configuration of the SockJSHandler is denny all. So you must specify explicitly which address are allowed to
+default configuration of the SockJSHandler is deny all. So you must specify explicitly which address are allowed to
 receive messages from `SockJS` and which ones are allowed to send/publish to `SockJS`.
 
 
@@ -292,7 +292,7 @@ And then run the application:
 npm start
 ```
 
-If you now open 2 browser windows you will be able to draw nice pictures and see the drawing showing in real time on the
-other window, if you then draw on the second you should get the mirror effect on the first window.
+If you now open 2 browser windows you will be able to draw nice pictures and see the drawing showing in "real time"
+on the other window, if you then draw on the second you should get the mirror effect on the first window.
 
 Have fun!
