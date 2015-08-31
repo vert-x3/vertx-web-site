@@ -15,8 +15,8 @@ The post will cover the items that always seem to come up on forums.
 ## Don't run as root
 
 It is a common practise that your devops team member will constantly say, one shall run a service with the least amount
-of privileges necessary and no more. Although this might sound like folklore to less experienced developers that hit
-issue when trying to run on privileged ports 80, 443, running as root solves this quickly but open a door to bigger
+of privileges necessary and no more. Although this might sound like folklore to less experienced developers that hit an
+issue when trying to run on privileged ports 80, 443, running as root solves it quickly but open a door to bigger
 problems. Lets look at this code:
 
 ```java
