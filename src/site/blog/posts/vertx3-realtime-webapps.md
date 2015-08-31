@@ -1,9 +1,8 @@
 ---
 title: Vert.x3 real time web apps
-date: 2015-08-25
+date: 2015-08-31
 template: post.html
 author: pmlopes
-draft: true
 ---
 
 One of the interesting features of Vert.x is the [SockJS](http://sockjs.org) event bus bridge. This piece of software
