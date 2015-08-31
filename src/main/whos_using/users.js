@@ -186,6 +186,10 @@ var all_users = {
     src: "memgrid.png",
     link: "https://www.memgrid.com",
     height: 39
+  }, {
+    src: "movingimage_logo.png",
+    link: "https://www.movingimage24.com",
+    height: 84
   }]
 };
 
