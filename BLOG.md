@@ -11,9 +11,7 @@ writing posts.
 
 First, fork the https://github.com/vert-x3/vertx-web-site project in order to create a pull request with your content.
 
-**IMPORTANT**: The blog is only available in the `web-site-3.0.0` branch.
-
-Once forked, create a new branch from the `web-site-3.0.0` branch. Create a markdown document in `src/site/blog/posts`. The file must use the `.md` extension.
+Once forked, create a new branch from the `master` branch. Create a markdown document in `src/site/blog/posts`. The file must use the `.md` extension.
 
 The post must starts with some metadata contained in a _header_ part:
 
@@ -72,7 +70,7 @@ To create an admonition use the following syntax: `[NOTE title | content]` such 
 ```
 [NOTE this is my title | this is the content of the note, it can be pretty long, and contain **important** messages. In can be very very long.... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]
 
-[WARNING Warning Warning | You need to 
+[WARNING Warning Warning | You need to
 be careful about **this** (yes it can be multi-line)]
 
 [INFO Info | Did you check the [news](http://lemonde.fr)?]
