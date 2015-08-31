@@ -196,7 +196,7 @@ public class App extends AbstractVerticle {
   public void start() {
 
     Router router = Router.router(vertx);
-    router.route().handler(BodyHandler.create().setBodyLimit(500 * MB));
+    router.route().handler(BodyHandler.create().setBodyLimit(50 * MB));
 ```
 
 ## Final Words
