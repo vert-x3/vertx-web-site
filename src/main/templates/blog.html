@@ -19,7 +19,7 @@
 
       {% if pagination %}
          <nav class="pagination">
-             {% if pagination.next %}
+             {% if pagination.end + 1 < collections.blog.length %}
                  <a href="{{pagination.next.num | page}}" class="pagination__link--older">&lt; Older</a>
              {% endif %}
 
