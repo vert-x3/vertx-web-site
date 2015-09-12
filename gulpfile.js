@@ -59,7 +59,7 @@ var contextPathDev = "/";
 var devPort = 4000;
 
 // website url in production mode (must be absolute; protocol and host may be omitted)
-var siteUrl = "" + contextPath;
+var siteUrl = "http://vertx.io" + contextPath;
 
 // website url in development mode (must be absolute; protocol and host may be omitted)
 var siteUrlDev = "http://localhost:" + devPort + contextPathDev;
@@ -290,8 +290,6 @@ function buildDocs(done, dev) {
   var site_url = siteUrl;
   if (dev) {
     site_url = siteUrlDev;
-  } else {
-    site_url = "http://vertx.io/"
   }
 
   Metalsmith(__dirname)
