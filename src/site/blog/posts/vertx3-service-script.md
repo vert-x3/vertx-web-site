@@ -5,7 +5,7 @@ template: post.html
 author: cescoffier
 ---
 
-Let's say you have a Vert.x 3 application you want to install on a Linux server. But you want the _old school_ way (I meant not the docker way &#9786;). So, in other words, you need an _init.d_ script. This post proposes an _init.d_ script that you can use to start / stop / restart a Vert.x 3 application.
+Let's say you have a Vert.x 3 application you want to install on a Linux server. But you want the _old school_ way (I mean not the Docker way &#9786;). So, in other words, you need an _init.d_ script. This post proposes an _init.d_ script that you can use to start/stop/restart a Vert.x 3 application.
 
 ## Prerequisites
 
@@ -22,11 +22,11 @@ The _init.d_ scripts have to reply to a set of _commands_:
 
 These _commands_ are invoked using:
 
-```shell
-service my-service-script start
-service my-service-script stop
-service my-service-script status
-service my-service-script restart
+```bash
+$ service my-service-script start
+$ service my-service-script stop
+$ service my-service-script status
+$ service my-service-script restart
 ```
 
 In general, service scripts are hooked in the boot and shutdown sequences to start and stop automatically during the system starts and stops.
@@ -56,15 +56,15 @@ JAVA=/opt/java/java/bin/java
 
 The rest of the script can stay as it is, but feel free to adapt it to your needs. Once you have set these variables based on your environment, move the file to `/etc/init.d` and set it as executable:
 
-```shell
-sudo mv my-vertx-application /etc/init.d
-sudo chmod +x my-vertx-application
+```bash
+$ sudo mv my-vertx-application /etc/init.d
+$ sudo chmod +x my-vertx-application
 ```
 
 Then, you should be able to start your application using:
 
-```
-sudo service my-vertx-application start
+```bash
+$ sudo service my-vertx-application start
 ```
 
 Depending to your operating system, adding the hooks to the boot and shutdown sequence differs. For instance on Ubuntu you need to use the `update-rc.d` command while on CentOS `chkconfig` is used

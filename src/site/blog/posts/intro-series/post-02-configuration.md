@@ -7,7 +7,7 @@ author: cescoffier
 
 ## Previously in 'Introduction to Vert.x'
 
-In [this post](/blog/my-first-vert-x-3-application/index.html), we developed a very simple Vert.x 3 application, and saw how this application can be tested, packaged and executed. That was nice, isn't it ? Well, ok, that was only the beginning. In this post, we are going to enhance our application to support _external_ configuration.
+In [this post]({{ site_url }}blog/my-first-vert-x-3-application/), we developed a very simple Vert.x 3 application, and saw how this application can be tested, packaged and executed. That was nice, isn't it ? Well, ok, that was only the beginning. In this post, we are going to enhance our application to support _external_ configuration.
 
 So just to remind you, we have an application starting a HTTP server on the port 8080 and replying a polite "Hello" message to all HTTP requests. The previous code is available [here](https://github.com/cescoffier/my-vertx-first-app/tree/post-1). The code developed in this post is in the [post-2 branch](https://github.com/cescoffier/my-vertx-first-app/tree/post-2).
 
@@ -48,9 +48,9 @@ So, the only difference with the previous version is `config().getInteger("http.
 
 As we are using the port 8080 by default, you can still package our application and run it as before:
 
-```
-mvn clean package
-java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
+```bash
+$ mvn clean package
+$ java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
 ```
 
 Simple right ?
@@ -104,8 +104,8 @@ So, the idea is very simple. We open a _server socket_ that would pick a random 
 
 With this in place, our test is now using a random port. Execute them with:
 
-```
-mvn clean test
+```bash
+$ mvn clean test
 ```
 
 ## External configuration - Let's run on another port
@@ -124,8 +124,8 @@ Create the `src/main/conf/my-application-conf.json` with the following content:
 
 And now, to use this configuration just launch your application with:
 
-```
-java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar -conf src/main/conf/my-application-conf.json
+```bash
+$ java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar -conf src/main/conf/my-application-conf.json
 ```
 
 Open a browser on http://localhost:8082, here it is !
@@ -134,6 +134,6 @@ How does that work ? Remember, our _fat jar_ is using the `Starter` class (provi
 
 ## Conclusion
 
-After having developed your first Vert.x application, we have seen how this application is configurable, and this without adding any complexity to our application. [In the next post](/blog/some-rest-with-vert-x/index.html), we are going to see how we can use vertx-web to develop a small application serving static pages and a REST API. A bit more fancy, but still very simple.
+After having developed your first Vert.x application, we have seen how this application is configurable, and this without adding any complexity to our application. [In the next post](/blog/some-rest-with-vert-x/), we are going to see how we can use vertx-web to develop a small application serving static pages and a REST API. A bit more fancy, but still very simple.
 
 Happy Coding and &amp; Stay Tuned!

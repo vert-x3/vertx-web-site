@@ -11,7 +11,7 @@ nevertheless very powerful.
 One can create simple applications targeting _small_ devices such as Raspberry Pi without having to write much code but
 still very fast as it is expected from any Vert.x application.
 
-Lets for example think of making a [realtime cpu load visualization web app](https://github.com/pmlopes/vert-x3-experiments/archive/experiments/rpi-cpuload.zip).
+Let's for example think of making a [realtime cpu load visualization web app](https://github.com/pmlopes/vert-x3-experiments/archive/experiments/rpi-cpuload.zip).
 For this example we need a few things:
 
 * a [MXBean](http://docs.oracle.com/javase/7/docs/api/java/lang/management/OperatingSystemMXBean.html) to collect CPU load
@@ -85,7 +85,7 @@ public class RPiVerticle extends AbstractVerticle {
 }
 ```
 
-So lets go through the code, first in the static constructor we initialize the `MXBean` that will allow us to collect
+So let's go through the code, first in the static constructor we initialize the `MXBean` that will allow us to collect
 the current `System Load Average`, then on the `start` method we create a `Vert.x Web Router` and define that for all
 requests starting with `/eventbus` should be handled by the SockJS server, which we then bridge to the Vert.x
 `EventBus` and allow outbound messages addressed to the `load` address.
@@ -96,7 +96,7 @@ finally start a `HTTP server` listening on port `8080`.
 So now all we are missing is a way to push real time data to the client so we end up creating a `Periodic` task that
 repeats every 1000 milliseconds and sends some `JSON` payload to the address `"load"`.
 
-If you run this application right now you won't see much since there is no frontend yet, so lets build a very basic
+If you run this application right now you won't see much since there is no frontend yet, so let's build a very basic
 [index.html](https://github.com/pmlopes/vert-x3-experiments/blob/experiments/rpi-cpuload/src/main/resources/webroot/index.html):
 
 ```javascript
@@ -119,7 +119,7 @@ eb.onopen = function () {
 ...
 ```
 
-Lets walk again the code, we start by opening a `EventBus` bridge over `SockJS` and register a handler `data` to consume
+Let's walk again the code, we start by opening a `EventBus` bridge over `SockJS` and register a handler `data` to consume
 messages sent to that address. Once such a message arrives we do some house keeping to avoid filling our browser memory
 and then add the incoming message to the data queue and triger a rendering of the data. There is however one interesting
 issue here, since the message payload is `JSON` there is no native support for `Date` objects so we need to do some
@@ -131,4 +131,4 @@ At this moment you can build and package your app like `mvn clean package`, then
 
 Open a browser to [see](http://raspberrypi:8080) the realtime graph!
 
-![screeshot](/assets/blog/vertx3-web-easy-as-pi/rpi.png)
+<img src="{{ site_url }}assets/blog/vertx3-web-easy-as-pi/rpi.png" alt="Screenshot" class="img-responsive">

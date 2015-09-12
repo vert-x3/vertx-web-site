@@ -54,9 +54,9 @@ console.log("Hello World");
 
 You can run this by executing:
 
-```
-npm install
-npm start
+```bash
+$ npm install
+$ npm start
 ```
 
 The first command retrieve the vert.x stack while the seconds starts your program.
@@ -67,7 +67,7 @@ I'd guess that while it's not the only use case for `vert.x`, most people are us
 the next example will be a simple HTTP server that responds to every request with the plain text message "`Hello World`"
 `server.js`:
 
-```
+```javascript
 vertx.createHttpServer()
   .requestHandler(function (req) {
     req.response()
@@ -85,7 +85,7 @@ Now you can reuse the same `package.json` we've just defined in the previous sec
 `Vert.x` also makes an excellent TCP server, and here is an example that responds to all TCP connections with the
 message "Hello World" and then closes the connection `server.js`:
 
-```
+```javascript
 var server = vertx.createNetServer();
 server.connectHandler(function (socket) {
   socket.write("Hello World!\n");
@@ -108,7 +108,7 @@ rendering, lots of middleware etc...usually not enough to get started on a real 
 HTTP server that responds with "Hello World" to all requests to "/" and responds with a 404 error to everything else
 `server.js`:
 
-```
+```javascript
 var Router = require("vertx-web-js/router");
 var server = vertx.createHttpServer();
 
@@ -143,4 +143,4 @@ for example `package.json`:
 }
 ```
 
-That's it for now, Hopefully this will help you get started working with `vert.x`!
+That's it for now. Hopefully this will help you get started working with `vert.x`!
