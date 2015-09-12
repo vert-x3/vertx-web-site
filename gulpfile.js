@@ -226,7 +226,6 @@ function build(done, dev) {
         {
           gfm: true,
           tables: true,
-          breaks: true,
           smartLists: true,
           smartypants: true
         }
