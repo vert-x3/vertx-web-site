@@ -150,7 +150,7 @@ function build(done, dev) {
         // Only for the blog page navigation.
         "page": function(num) {
           if (! num) {
-            return site_url + "blog/blog.html";
+            return site_url + "blog/";
           }
           return site_url + "blog/page-" + num + ".html";
         },

@@ -1,5 +1,40 @@
----
-title: Blog
-template: blog.html
-paginate: blog
----
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="refresh" content="0; url={{ site_url }}blog/">
+<style>
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadein {
+  opacity: 1;
+  -webkit-animation: fadeIn 2s;
+  animation: fadeIn 2s;
+}
+</style>
+</head>
+<body>
+<p class="fadein">The page has moved to: <a href="{{ site_url }}blog">this page</a></p>
+</body>
+</html>
