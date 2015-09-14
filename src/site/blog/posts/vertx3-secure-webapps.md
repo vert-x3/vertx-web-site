@@ -3,7 +3,6 @@ title: Writing secure Vert.x Web apps
 date: 2015-09-14
 template: post.html
 author: pmlopes
-draft: false
 ---
 
 This is a starting guide for securing vert.x web applications. It is by no means a comprehensive guide on web application security such as [OWASP](https://www.owasp.org). Standard rules and practices apply to vert.x apps as if they would to any other web framework.
