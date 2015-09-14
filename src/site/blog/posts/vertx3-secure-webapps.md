@@ -6,7 +6,7 @@ author: pmlopes
 draft: false
 ---
 
-This is a starting guide for securing vert.x web applications. It is by no means a comprehensive guide on web application security such as OWASP. Standard rules and practices apply to vert.x apps as if they would to any other web framework.
+This is a starting guide for securing vert.x web applications. It is by no means a comprehensive guide on web application security such as [OWASP](https://www.owasp.org). Standard rules and practices apply to vert.x apps as if they would to any other web framework.
 
 The post will cover the items that always seem to come up on forums.
 
@@ -134,6 +134,7 @@ public class App extends AbstractVerticle {
 
     router.route().handler(ctx -> {
       ...
+    });
 ```
 
 The handler adds a CSRF token to requests which mutate state. In order change the state a (`XSRF-TOKEN`) cookie is set with a unique token, that is expected to be sent back in a (`X-XSRF-TOKEN`) header.
