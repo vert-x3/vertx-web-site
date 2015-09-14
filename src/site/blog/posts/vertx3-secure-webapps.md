@@ -1,6 +1,6 @@
 ---
 title: Writing secure Vert.x Web apps
-date: 2015-09-07
+date: 2015-09-14
 template: post.html
 author: pmlopes
 draft: false
