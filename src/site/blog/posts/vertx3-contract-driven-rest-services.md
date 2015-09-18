@@ -34,11 +34,20 @@ version: v1
       200:
         body:
           application/json:
+            schema: |
+              { "$schema": "http://json-schema.org/schema",
+                "type": "object",
+                "description": "Hello World Greeting",
+                "properties": {
+                  "greeting":  { "type": "string" }
+                },
+                "required": [ "greeting" ]
+              }
 ```
 
 So if you didn't understood why I named RAML as a top down documentation tool, I think it becomes clear now. So there are some basic definition on the top of the file like, `title`, `baseUri` and `version` which should be self explanatory.
 
-And then we start with the API documentation, so we specify that at the `URL` `/hello` using the HTTP verb `GET` you are expected to get a response with status code `200` and the body of the response should have content type `application/json`. This is a very minimal document, one could go over and specify the `json schema` for the response, input values, etc..., however lets just keep it simple for this example.
+And then we start with the API documentation, so we specify that at the `URL` `/hello` using the HTTP verb `GET` you are expected to get a response with status code `200` and the body of the response should have content type `application/json`. This is a very minimal document, one could go over and specify the [`json schema`](http://json-schema.org/) for the response, input values, etc..., however lets just keep it simple for this example.
 
 [NOTE IDE ? | if you do not like to write yaml in your editor you can always use the [API Designer](http://raml.org/projects.html) which gives you instant feedback on your API document and provides a testing platform].
 
@@ -55,7 +64,7 @@ public class App extends AbstractVerticle {
     router.get("/hello").handler(rc -> {
       rc.response()
           .putHeader("content-type", "application/json")
-          .end(new JsonObject().encode());
+          .end(new JsonObject().put("greeting", "Hello World!").encode());
     });
 
     vertx.createHttpServer().requestHandler(router::accept).listen(8080);
