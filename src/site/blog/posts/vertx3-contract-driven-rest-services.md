@@ -107,8 +107,8 @@ So at this moment you have a simple test, I'll share the code of the runner clas
 ```java
 public class APITest {
 
-  private static final RamlDefinition api = RamlLoaders.fromClasspath(APITest.class)
-        .load("hello.raml")
+  private static final RamlDefinition api = RamlLoaders.fromClasspath()
+        .load("/api/hello.raml")
         .assumingBaseUri("http://localhost:8080/");
 
   private CheckingWebTarget checking;
@@ -126,8 +126,8 @@ There are many options for this, you could use `JAX-RS`, `RestAssured`, `RestEas
 ```java
 public class APITest {
 
-  private static final RamlDefinition api = RamlLoaders.fromClasspath(APITest.class)
-      .load("hello.raml")
+  private static final RamlDefinition api = RamlLoaders.fromClasspath()
+      .load("/api/hello.raml")
       .assumingBaseUri("http://localhost:8080/");
 
   private ResteasyClient client = new ResteasyClientBuilder().build();
@@ -195,6 +195,37 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 ```
 
 And we are done, we now have a API that follow the contract, you can now keep developing your API and implementation and have a test driven approach to be sure that the contract is not broken.
+
+## Next steps
+
+Until now you have learn how to integrate RAML into Vert.x and CI, however the users of your API will not be able to know much about the API yet since its documentation is not publicly available. So lets publish online the documentation of your API, of course if your API is private you do not need to follow these steps.
+
+In order to do this all we need it to include in our application the [RAML console](https://github.com/mulesoft/api-console), the fastest way to do this is just download a [release](https://github.com/mulesoft/api-console/releases) to `src/main/resouces/webroot` and in the original application [Vert.x Router] we add a Static Content Handler to serve the console files. Your application source code should look like this:
+
+```java
+public class App extends AbstractVerticle {
+  @Override
+  public void start() {
+    Router router = Router.router(vertx);
+
+    router.get("/hello").handler(rc -> {
+      rc.response()
+          .putHeader("content-type", "application/json")
+          .end(new JsonObject().put("greeting", "Hello World!").encode());
+    });
+
+    // optionally enable the web console so users can play with your API
+    // online from their web browsers
+    router.route().handler(StaticHandler.create());
+
+    vertx.createHttpServer().requestHandler(router::accept).listen(8080);
+  }
+}
+```
+
+Once you start you application open a browser pointing at the [console](http://localhost:8080?raml=/api/hello.raml). Once you do that you should be presented with something similar to this:
+
+![apiconsole](/assets/blog/vertx3-contract-driven-rest-services/raml-console.png)
 
 ## Article source code
 
