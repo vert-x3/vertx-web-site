@@ -3,7 +3,6 @@ title: Contract Driven REST Services with Vert.x3
 template: post.html
 date: 2015-09-17
 author: pmlopes
-draft: true
 ---
 
 We see a new trend in development where we are shifting from developing applications to develop APIs. More and more we see services being offered as REST APIs that we are allowed to consume and we already see this trend from the big names in the industry, e.g.: [Facebook](https://developers.facebook.com/), [Wikipedia](https://www.mediawiki.org/wiki/API:Main_page), [Amazon](https://developer.amazon.com/public/apis), [Twitter](https://dev.twitter.com/overview/documentation), [Google](https://developers.google.com/apis-explorer/#p/) and [Reddit](https://www.reddit.com/dev/api) they all offer APIs.
