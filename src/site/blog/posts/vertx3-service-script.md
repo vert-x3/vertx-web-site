@@ -23,10 +23,10 @@ The _init.d_ scripts have to reply to a set of _commands_:
 These _commands_ are invoked using:
 
 ```bash
-$ service my-service-script start
-$ service my-service-script stop
-$ service my-service-script status
-$ service my-service-script restart
+service my-service-script start
+service my-service-script stop
+service my-service-script status
+service my-service-script restart
 ```
 
 In general, service scripts are hooked in the boot and shutdown sequences to start and stop automatically during the system starts and stops.
@@ -57,14 +57,14 @@ JAVA=/opt/java/java/bin/java
 The rest of the script can stay as it is, but feel free to adapt it to your needs. Once you have set these variables based on your environment, move the file to `/etc/init.d` and set it as executable:
 
 ```bash
-$ sudo mv my-vertx-application /etc/init.d
-$ sudo chmod +x my-vertx-application
+sudo mv my-vertx-application /etc/init.d
+sudo chmod +x my-vertx-application
 ```
 
 Then, you should be able to start your application using:
 
 ```bash
-$ sudo service my-vertx-application start
+sudo service my-vertx-application start
 ```
 
 Depending to your operating system, adding the hooks to the boot and shutdown sequence differs. For instance on Ubuntu you need to use the `update-rc.d` command while on CentOS `chkconfig` is used

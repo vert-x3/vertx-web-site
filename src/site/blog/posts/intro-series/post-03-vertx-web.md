@@ -120,8 +120,8 @@ It's basically the same code as before, except that we change the request handle
 Let's try to see if this work:
 
 ```bash
-$ mvn clean package
-$ java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
+mvn clean package
+java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
 ```
 
 By opening `http://localhost:8080` in your browser you should see the _Hello_ message. As we didn't change the behavior of the application, our tests are still valid.
@@ -175,8 +175,8 @@ Before testing this, let's take a few seconds on the handler creation. All proce
 So, I'm sure you are impatient to see our beautiful HTML page. Let's build and run the application:
 
 ```bash
-$ mvn clean package
-$ java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
+mvn clean package
+java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
 ```
 
 Now, open your browser to `http://localhost:8080/assets/index.html`. Here it is... Ugly right? I told you.
@@ -304,8 +304,8 @@ We could have used `Json.encodePrettily(products)`, but to make the JavaScript c
 With this in place, we should be able to retrieve the set of bottle from our HTML page. Let's try it:
 
 ```bash
-$ mvn clean package
-$ java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
+mvn clean package
+java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
 ```
 
 Then open the HTML page in your browser (`http://localhost:8080/assets/index.html`), and should should see:

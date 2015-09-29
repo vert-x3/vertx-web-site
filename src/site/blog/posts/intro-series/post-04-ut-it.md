@@ -126,7 +126,7 @@ The order of the methods is important. You cannot _write_ data if you don't have
 So, let's try this. You can run the test using:
 
 ```bash
-$ mvn clean test
+mvn clean test
 ```
 
 We could continue writing more unit test like that, but it could become quite complex. Let's see how we could continue our tests using integration tests.
@@ -273,7 +273,7 @@ and stop them afterward -->
 That's a huge piece of XML, isn't it ? We configure two executions of the plugin. The first one, happening in the `pre-integration-test` phase, executes a set of bash command to start the application. It basically executes:
 
 ```bash
-$ java -jar my-first-app-1.0-SNAPSHOT-fat.jar -conf .../my-it-config.json
+java -jar my-first-app-1.0-SNAPSHOT-fat.jar -conf .../my-it-config.json
 ```
 
 [NOTE Is the fatjar created ? | The fat jar embedding our application is created in the `package` phase, preceding the `pre-integration-test`, so yes, the fat jar is created.]
@@ -283,9 +283,9 @@ As mentioned above, we launch the application as we would in a production enviro
 Once, the integration tests are executed (step 4 we didn't look at it yet), we need to stop the application (so in the the `post-integration-test` phase).  To close the application, we are going to invoke some shell magic command to find our process in with the `ps` command and send the `SIGTERM` signal. It is equivalent to:
 
 ```bash
-$ ps
+ps
 .... -> find your process id
-$ kill your_process_id -SIGTERM
+kill your_process_id -SIGTERM
 ```
 
 [NOTE And Windows ? | I mentioned it above, we want Windows to be supported and these commands are not going to work on Windows. Don't worry, Windows configuration is below....]
@@ -318,7 +318,7 @@ As you can see, we pass the `http.port` property as a system variable, so our te
 That's all! Wow... Let's try this (for windows users, you will need to be patient or to jump to the last section).
 
 ```bash
-$ mvn clean verify
+mvn clean verify
 ```
 
 We should not use `mvn integration-test` because the application would still be running. The `verify` phase is after the `post-integration-test` phase and will analyse the integration-tests results. Build failures because of integration tests failed assertions are reported in this phase.
@@ -426,7 +426,7 @@ public void checkWeCanAddAndDeleteAProduct() {
 So, now we have integration tests let's try:
 
 ```bash
-$ mvn clean verify
+mvn clean verify
 ```
 
 Simple no? Well, simple once the setup is done right... You can continue implementing other integration tests to be sure that everything behave as you expect.
@@ -483,7 +483,7 @@ In your `pom.xml`, just after `</build>`, add:
 This profile replaces the actions described above to stop the application with a version working on windows. The profile is automatically enabled on Windows. As on others operating systems, execute with:
 
 ```bash
-$ mvn clean verify
+mvn clean verify
 ```
 
 ## Conclusion

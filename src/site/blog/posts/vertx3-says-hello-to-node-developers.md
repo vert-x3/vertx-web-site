@@ -55,8 +55,8 @@ console.log("Hello World");
 You can run this by executing:
 
 ```bash
-$ npm install
-$ npm start
+npm install
+npm start
 ```
 
 The first command retrieve the vert.x stack while the seconds starts your program.

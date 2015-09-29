@@ -49,8 +49,8 @@ So, the only difference with the previous version is `config().getInteger("http.
 As we are using the port 8080 by default, you can still package our application and run it as before:
 
 ```bash
-$ mvn clean package
-$ java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
+mvn clean package
+java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
 ```
 
 Simple right ?
@@ -105,7 +105,7 @@ So, the idea is very simple. We open a _server socket_ that would pick a random 
 With this in place, our test is now using a random port. Execute them with:
 
 ```bash
-$ mvn clean test
+mvn clean test
 ```
 
 ## External configuration - Let's run on another port
@@ -125,7 +125,7 @@ Create the `src/main/conf/my-application-conf.json` with the following content:
 And now, to use this configuration just launch your application with:
 
 ```bash
-$ java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar -conf src/main/conf/my-application-conf.json
+java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar -conf src/main/conf/my-application-conf.json
 ```
 
 Open a browser on http://localhost:8082, here it is !

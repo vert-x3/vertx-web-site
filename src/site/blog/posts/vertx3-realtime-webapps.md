@@ -35,7 +35,7 @@ that Java and Maven were the main topic, since Vert.x is polyglot I will focus o
 With NPM start by creating a `package.json`, in order to do this we should run:
 
 ```bash
-$ npm init
+npm init
 ```
 
 This will present a selection of questions and in the end you should have a basic `package.json` file. This
@@ -282,13 +282,13 @@ receive messages from `SockJS` and which ones are allowed to send/publish to `So
 Now you can start your application, don't forget to install the dependencies for the first time:
 
 ```bash
-$ npm install
+npm install
 ```
 
 And then run the application:
 
 ```bash
-$ npm start
+npm start
 ```
 
 If you now open 2 browser windows you will be able to draw nice pictures and see the drawing showing in "real time"

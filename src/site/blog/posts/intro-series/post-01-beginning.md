@@ -112,7 +112,7 @@ The `start` method creates a HTTP server and attaches a request handler to it. T
 Let's try to compile the application using:
 
 ```bash
-$ mvn clean compile
+mvn clean compile
 ```
 
 Fortunately, it should succeed.
@@ -201,7 +201,7 @@ Let's take a minute to mention the _assertions_. Unlike in traditional JUnit tes
 Our test can be run from an IDE, or using Maven:
 
 ```bash
-$ mvn clean test
+mvn clean test
 ```
 
 ## Packaging
@@ -244,7 +244,7 @@ It uses the [maven-shade-plugin](https://maven.apache.org/plugins/maven-shade-pl
 So, with this plugin configured, let's launch:
 
 ```bash
-$ mvn clean package
+mvn clean package
 ```
 
 This is going to create `target/my-first-app-1.0-SNAPSHOT-fat.jar` embedding our application along with all the dependencies (including vert.x itself).
@@ -254,7 +254,7 @@ This is going to create `target/my-first-app-1.0-SNAPSHOT-fat.jar` embedding our
 Well, it's nice to have a _fat jar_, but we want to see our application running! As said above, thanks to the _fat jar_ packaging, running Vert.x application is easy as:
 
 ```bash
-$ java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
+java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
 ```
 
 Then, open a browser to http://localhost:8080.
