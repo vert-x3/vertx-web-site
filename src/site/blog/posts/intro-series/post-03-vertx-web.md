@@ -7,7 +7,7 @@ author: cescoffier
 
 ## Previously in this blog series
 
-This post is part of the _Introduction to Vert.x_ series. So, let's have a quick look about the content of the previous posts. In [the first post](/blog/my-first-vert-x-3-application/index.html), we developed a very simple Vert.x 3 application, and saw how this application can be tested, packaged and executed. In [the last post](/blog/vert-x-application-configuration/index.html), we saw how this application became configurable and how we can use a random port in test.
+This post is part of the _Introduction to Vert.x_ series. So, let's have a quick look about the content of the previous posts. In [the first post]({{ site_url }}blog/my-first-vert-x-3-application/), we developed a very simple Vert.x 3 application, and saw how this application can be tested, packaged and executed. In [the last post]({{ site_url }}blog/vert-x-application-configuration/), we saw how this application became configurable and how we can use a random port in test.
 
 Well, nothing fancy... Let's go a bit further this time and develop a _CRUD-ish_ application. So an application exposing an HTML page interacting with the backend using a REST API. The level of _RESTfullness_ of the API is not the topic of this post, I let you decide as it's a very slippery topic.
 
@@ -119,7 +119,7 @@ It's basically the same code as before, except that we change the request handle
 
 Let's try to see if this work:
 
-```
+```bash
 mvn clean package
 java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
 ```
@@ -174,7 +174,7 @@ Before testing this, let's take a few seconds on the handler creation. All proce
 
 So, I'm sure you are impatient to see our beautiful HTML page. Let's build and run the application:
 
-```
+```bash
 mvn clean package
 java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
 ```
@@ -303,14 +303,14 @@ We could have used `Json.encodePrettily(products)`, but to make the JavaScript c
 
 With this in place, we should be able to retrieve the set of bottle from our HTML page. Let's try it:
 
-```
+```bash
 mvn clean package
 java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
 ```
 
 Then open the HTML page in your browser (`http://localhost:8080/assets/index.html`), and should should see:
 
-![Alt text](/assets/blog/intro-series/post-3-My_Whisky_Collection.png)
+<img src="{{ site_url }}assets/blog/intro-series/post-3-My_Whisky_Collection.png" class="img-responsive">
 
 I'm sure you are curious, and want to actually see what is returned by our REST API. Let's open a browser to `http://localhost:8080/api/whiskies`. You should get:
 
@@ -397,12 +397,12 @@ The _path parameter_ is retrieved using `routingContext.request().getParam("id")
 
 ### The other methods
 
-We won't detail `getOne` and `updateOne` as the implementations are straightforward and very similar. Their implementations are available on [Github](https://github.com/cescoffier/my-vertx-first-app/blob/post-3/src/main/java/io/vertx/blog/first/MyFirstVerticle.java).
+We won't detail `getOne` and `updateOne` as the implementations are straightforward and very similar. Their implementations are available on [GitHub](https://github.com/cescoffier/my-vertx-first-app/blob/post-3/src/main/java/io/vertx/blog/first/MyFirstVerticle.java).
 
 ### Cheers !
 
 It's time to conclude this post. We have seen how Vert.x Web lets you implement a REST API easily and how it can serve static resources. A bit more fancy than before, but still pretty easy.
 
-[In the next post](/blog/unit-and-integration-tests/index.html), we are going to improve our tests to cover the REST API.
+[In the next post](/blog/unit-and-integration-tests/) we are going to improve our tests to cover the REST API.
 
 Say Tuned &amp; Happy Coding !

@@ -23,7 +23,7 @@ event bus, ensuring that other services running on the cluster will not be expos
 
 This is what you should expect to see:
 
-![screecast](/assets/blog/vertx3-realtime-webapps/screencast.gif)
+![Screencast](/assets/blog/vertx3-realtime-webapps/screencast.gif)
 
 
 ## Bootstrap a project
@@ -34,7 +34,7 @@ that Java and Maven were the main topic, since Vert.x is polyglot I will focus o
 
 With NPM start by creating a `package.json`, in order to do this we should run:
 
-```
+```bash
 npm init
 ```
 
@@ -47,10 +47,10 @@ you can run the application. You can add it to the `dependencies` property and i
   "name": "draw",
   "private": true,
   "dependencies": {
-  "vertx3-full": "3.0.0-1"
+    "vertx3-full": "3.0.0-1"
   },
   "scripts": {
-  "start": "vertx run server.js"
+    "start": "vertx run server.js"
   },
   "version": "1.0.0",
   "main": "server.js",
@@ -281,13 +281,13 @@ receive messages from `SockJS` and which ones are allowed to send/publish to `So
 
 Now you can start your application, don't forget to install the dependencies for the first time:
 
-```
+```bash
 npm install
 ```
 
 And then run the application:
 
-```
+```bash
 npm start
 ```
 

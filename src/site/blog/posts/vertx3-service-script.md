@@ -5,7 +5,7 @@ template: post.html
 author: cescoffier
 ---
 
-Let's say you have a Vert.x 3 application you want to install on a Linux server. But you want the _old school_ way (I meant not the docker way &#9786;). So, in other words, you need an _init.d_ script. This post proposes an _init.d_ script that you can use to start / stop / restart a Vert.x 3 application.
+Let's say you have a Vert.x 3 application you want to install on a Linux server. But you want the _old school_ way (I mean not the Docker way &#9786;). So, in other words, you need an _init.d_ script. This post proposes an _init.d_ script that you can use to start/stop/restart a Vert.x 3 application.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ The _init.d_ scripts have to reply to a set of _commands_:
 
 These _commands_ are invoked using:
 
-```shell
+```bash
 service my-service-script start
 service my-service-script stop
 service my-service-script status
@@ -56,14 +56,14 @@ JAVA=/opt/java/java/bin/java
 
 The rest of the script can stay as it is, but feel free to adapt it to your needs. Once you have set these variables based on your environment, move the file to `/etc/init.d` and set it as executable:
 
-```shell
+```bash
 sudo mv my-vertx-application /etc/init.d
 sudo chmod +x my-vertx-application
 ```
 
 Then, you should be able to start your application using:
 
-```
+```bash
 sudo service my-vertx-application start
 ```
 

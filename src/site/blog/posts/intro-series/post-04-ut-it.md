@@ -7,7 +7,7 @@ author: cescoffier
 
 ## Previously in "introduction to vert.x"
 
-Let's refresh our mind about what we developed so far in the _introduction to vert.x_ series. In [the first post](/blog/my-first-vert-x-3-application/index.html), we developed a very simple Vert.x 3 application, and saw how this application can be tested, packaged and executed. In [the second post](/blog/vert-x-application-configuration/index.html), we saw how this application became configurable and how we can use a random port in test, and use another configurable port in production. Finally, the [previous post](http://vertx.io/blog/some-rest-with-vert-x/index.html) has shown how to use vertx-web and how to implement a small REST API. However, we forgot an important task. We didn't test the API. In this post we will increase the confidence we have on this application by implementing unit and integration tests.
+Let's refresh our mind about what we developed so far in the _introduction to vert.x_ series. In [the first post]({{ site_url }}blog/my-first-vert-x-3-application/), we developed a very simple Vert.x 3 application, and saw how this application can be tested, packaged and executed. In [the second post]({{ site_url }}blog/vert-x-application-configuration/), we saw how this application became configurable and how we can use a random port in test, and use another configurable port in production. Finally, the [previous post]({{ site_url }}blog/some-rest-with-vert-x/) has shown how to use vertx-web and how to implement a small REST API. However, we forgot an important task. We didn't test the API. In this post we will increase the confidence we have on this application by implementing unit and integration tests.
 
 The code of this post is available in the [post-4 branch](https://github.com/cescoffier/my-vertx-first-app/tree/post-4) of the [project](https://github.com/cescoffier/my-vertx-first-app). The starting post, however is the code available in the [post-3 branch](https://github.com/cescoffier/my-vertx-first-app/tree/post-3).
 
@@ -17,27 +17,27 @@ This post is mainly about tests. We distinguish two types of tests: unit tests a
 
 In this post we are going to start with some more unit tests as a warm up session and then focus on integration tests. If you already implemented integration tests, you may be a bit scared, and it makes sense. But don't worry, with Vert.x there are no hidden surprises.
 
-## Warmup : Some more unit tests
+## Warmup: Some more unit tests
 
 Let's start slowly. Remember in the first post we have implemented a unit test with [vertx-unit](http://vertx.io/docs/vertx-unit/java/).  The test we did is dead simple:
 
 1. we started the application before the test
 2. we checks that it replies "Hello"
 
-Just to refresh your mind, let's have a look to the [code](https://github.com/cescoffier/my-vertx-first-app/blob/post-4/src/test/java/io/vertx/blog/first/MyFirstVerticleTest.java)
+Just to refresh your mind, let's have a look at the [code](https://github.com/cescoffier/my-vertx-first-app/blob/post-4/src/test/java/io/vertx/blog/first/MyFirstVerticleTest.java)
 
 ```java
-  @Before
-  public void setUp(TestContext context) throws IOException {
-    vertx = Vertx.vertx();
-    ServerSocket socket = new ServerSocket(0);
-    port = socket.getLocalPort();
-    socket.close();
-    DeploymentOptions options = new DeploymentOptions()
-        .setConfig(new JsonObject().put("http.port", port)
-        );
-    vertx.deployVerticle(MyFirstVerticle.class.getName(), options, context.asyncAssertSuccess());
-  }
+@Before
+public void setUp(TestContext context) throws IOException {
+  vertx = Vertx.vertx();
+  ServerSocket socket = new ServerSocket(0);
+  port = socket.getLocalPort();
+  socket.close();
+  DeploymentOptions options = new DeploymentOptions()
+      .setConfig(new JsonObject().put("http.port", port)
+      );
+  vertx.deployVerticle(MyFirstVerticle.class.getName(), options, context.asyncAssertSuccess());
+}
 ```
 
 The `setUp` method is invoked before each test (as instructed by the `@Before` annotation). It, first, creates a new instance of Vert.x. Then, it gets a free port and then deploys our verticle with the right configuration. Thanks to the `context.asyncAssertSuccess()` it waits until the successful deployment of the verticle.
@@ -45,44 +45,45 @@ The `setUp` method is invoked before each test (as instructed by the `@Before` a
 The `tearDown` is straightforward and just closes the Vert.x instance. It automatically un-deploys the verticles:
 
 ```java
-  @After
-  public void tearDown(TestContext context) {
-    vertx.close(context.asyncAssertSuccess());
-  }
+@After
+public void tearDown(TestContext context) {
+  vertx.close(context.asyncAssertSuccess());
+}
 ```
 
 Finally, our single test is:
 
 ```java
-  @Test
-  public void testMyApplication(TestContext context) {
-    final Async async = context.async();
-    vertx.createHttpClient().getNow(port, "localhost", "/", response -> {
-      response.handler(body -> {
-        context.assertTrue(body.toString().contains("Hello"));
-        async.complete();
-      });
+@Test
+public void testMyApplication(TestContext context) {
+  final Async async = context.async();
+  vertx.createHttpClient().getNow(port, "localhost", "/", response -> {
+    response.handler(body -> {
+      context.assertTrue(body.toString().contains("Hello"));
+      async.complete();
     });
-   }
+  });
+ }
 ```
 It is only checking that the application replies "Hello" when we emit a HTTP request on `/`.
 
 Let's now try to implement some unit tests checkin that our web application and the REST API behave as expected. Let's start by checking that the `index.html` page is correctly served. This test is very similar to the previous one:
 
 ```java
-  @Test
-  public void checkThatTheIndexPageIsServed(TestContext context) {
-    Async async = context.async();
-    vertx.createHttpClient().getNow(port, "localhost", "/assets/index.html", response -> {
-      context.assertEquals(response.statusCode(), 200);
-      context.assertEquals(response.headers().get("content-type"), "text/html");
-      response.bodyHandler(body -> {
-        context.assertTrue(body.toString().contains("<title>My Whisky Collection</title>"));
-        async.complete();
-      });
+@Test
+public void checkThatTheIndexPageIsServed(TestContext context) {
+  Async async = context.async();
+  vertx.createHttpClient().getNow(port, "localhost", "/assets/index.html", response -> {
+    context.assertEquals(response.statusCode(), 200);
+    context.assertEquals(response.headers().get("content-type"), "text/html");
+    response.bodyHandler(body -> {
+      context.assertTrue(body.toString().contains("<title>My Whisky Collection</title>"));
+      async.complete();
     });
-  }
+  });
+}
 ```
+
 We retrieve the `index.html` page and check:
 
 1. it's there (status code 200)
@@ -94,28 +95,28 @@ We retrieve the `index.html` page and check:
 Ok, great, but this actually does not test our REST API. Let's ensure that we can add a bottle to the collection. Unlike the previous tests, this one is using `post` to _post_ data to the server:
 
 ```java
-  @Test
-  public void checkThatWeCanAdd(TestContext context) {
-    Async async = context.async();
-    final String json = Json.encodePrettily(new Whisky("Jameson", "Ireland"));
-    final String length = Integer.toString(json.length());
-    vertx.createHttpClient().post(port, "localhost", "/api/whiskies")
-        .putHeader("content-type", "application/json")
-        .putHeader("content-length", length)
-        .handler(response -> {
-          context.assertEquals(response.statusCode(), 201);
-          context.assertTrue(response.headers().get("content-type").contains("application/json"));
-          response.bodyHandler(body -> {
-            final Whisky whisky = Json.decodeValue(body.toString(), Whisky.class);
-            context.assertEquals(whisky.getName(), "Jameson");
-            context.assertEquals(whisky.getOrigin(), "Ireland");
-            context.assertNotNull(whisky.getId());
-            async.complete();
-          });
-        })
-        .write(json)
-        .end();
-  }
+@Test
+public void checkThatWeCanAdd(TestContext context) {
+  Async async = context.async();
+  final String json = Json.encodePrettily(new Whisky("Jameson", "Ireland"));
+  final String length = Integer.toString(json.length());
+  vertx.createHttpClient().post(port, "localhost", "/api/whiskies")
+      .putHeader("content-type", "application/json")
+      .putHeader("content-length", length)
+      .handler(response -> {
+        context.assertEquals(response.statusCode(), 201);
+        context.assertTrue(response.headers().get("content-type").contains("application/json"));
+        response.bodyHandler(body -> {
+          final Whisky whisky = Json.decodeValue(body.toString(), Whisky.class);
+          context.assertEquals(whisky.getName(), "Jameson");
+          context.assertEquals(whisky.getOrigin(), "Ireland");
+          context.assertNotNull(whisky.getId());
+          async.complete();
+        });
+      })
+      .write(json)
+      .end();
+}
 ```
 
 First we create the content we want to add. The server consumes JSON data, so we need a JSON string. You can either write your JSON document manually, or use the Vert.x method (`Json.encodePrettily`) as done here. Once we have the content, we create a `post` request. We need to configure some headers to be correctly read by the server. First, we say that we are sending JSON data and we also set the content length. We also attach a response handler very close to the checks made in the previous test. Notice that we can rebuild our object from the JSON document send by the server using the `JSON.decodeValue` method. It's very convenient as it avoids lots of boilerplate code.  At this point the request is not emitted, we need to write the data and call the `end()` method. This is made using `.write(json).end();`.
@@ -124,7 +125,7 @@ The order of the methods is important. You cannot _write_ data if you don't have
 
 So, let's try this. You can run the test using:
 
-```
+```bash
 mvn clean test
 ```
 
@@ -204,7 +205,7 @@ Two actions are required for the second step. First, in the `pom.xml` file, just
 
 This instructs Maven to _filter_ resources from the `src/test/resources` directory. _Filter_ means replacing placeholders by actual values. That's exactly what we need as we now have the `http.port` variable. So create the `src/test/resources/my-it-config.json` file with the following content:
 
-```
+```javascript
 {
   "http.port": ${http.port}
 }
@@ -271,7 +272,7 @@ and stop them afterward -->
 
 That's a huge piece of XML, isn't it ? We configure two executions of the plugin. The first one, happening in the `pre-integration-test` phase, executes a set of bash command to start the application. It basically executes:
 
-```
+```bash
 java -jar my-first-app-1.0-SNAPSHOT-fat.jar -conf .../my-it-config.json
 ```
 
@@ -281,7 +282,7 @@ As mentioned above, we launch the application as we would in a production enviro
 
 Once, the integration tests are executed (step 4 we didn't look at it yet), we need to stop the application (so in the the `post-integration-test` phase).  To close the application, we are going to invoke some shell magic command to find our process in with the `ps` command and send the `SIGTERM` signal. It is equivalent to:
 
-```
+```bash
 ps
 .... -> find your process id
 kill your_process_id -SIGTERM
@@ -314,9 +315,9 @@ We should now do the fourth step we (silently) skipped. To execute our integrati
 
 As you can see, we pass the `http.port` property as a system variable, so our tests are able to connect on the right port.
 
-That's all ! Wow.... Let's try this (for windows users, you will need to be patient or to jump to the last section).
+That's all! Wow... Let's try this (for windows users, you will need to be patient or to jump to the last section).
 
-```
+```bash
 mvn clean verify
 ```
 
@@ -331,18 +332,18 @@ AssertJ proposes a set of assertions that you can chain and use fluently. Rest A
 In the `pom.xml` file, add the two following dependencies just before `</dependencies>`:
 
 ```xml
-    <dependency>
-      <groupId>com.jayway.restassured</groupId>
-      <artifactId>rest-assured</artifactId>
-      <version>2.4.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <version>2.0.0</version>
-      <scope>test</scope>
-    </dependency>
+<dependency>
+  <groupId>com.jayway.restassured</groupId>
+  <artifactId>rest-assured</artifactId>
+  <version>2.4.0</version>
+  <scope>test</scope>
+</dependency>
+<dependency>
+  <groupId>org.assertj</groupId>
+  <artifactId>assertj-core</artifactId>
+  <version>2.0.0</version>
+  <scope>test</scope>
+</dependency>
 ```
 
 Then, create the `src/test/java/io/vertx/blog/first/MyRestIT.java` file. Unlike unit test, integration test ends with `IT`. It's a convention from the Failsafe plugin to distinguish unit (starting or ending with _Test_) from integration tests (starting or ending with _IT_). In the created file add:
@@ -376,19 +377,19 @@ It's now time to implement a real test. Let's check we can retrieve an individua
 ```java
 @Test
 public void checkThatWeCanRetrieveIndividualProduct() {
-// Get the list of bottles, ensure it's a success and extract the first id.
-final int id = get("/api/whiskies").then()
-    .assertThat()
-    .statusCode(200)
-    .extract()
-    .jsonPath().getInt("find { it.name=='Bowmore 15 Years Laimrig' }.id");
-// Now get the individual resource and check the content
-get("/api/whiskies/" + id).then()
-    .assertThat()
-    .statusCode(200)
-    .body("name", equalTo("Bowmore 15 Years Laimrig"))
-    .body("origin", equalTo("Scotland, Islay"))
-    .body("id", equalTo(id));
+  // Get the list of bottles, ensure it's a success and extract the first id.
+  final int id = get("/api/whiskies").then()
+      .assertThat()
+      .statusCode(200)
+      .extract()
+      .jsonPath().getInt("find { it.name=='Bowmore 15 Years Laimrig' }.id");
+  // Now get the individual resource and check the content
+  get("/api/whiskies/" + id).then()
+      .assertThat()
+      .statusCode(200)
+      .body("name", equalTo("Bowmore 15 Years Laimrig"))
+      .body("origin", equalTo("Scotland, Islay"))
+      .body("id", equalTo(id));
 }
 ```
 
@@ -424,11 +425,11 @@ public void checkWeCanAddAndDeleteAProduct() {
 ```
 So, now we have integration tests let's try:
 
-```
+```bash
 mvn clean verify
 ```
 
-Simple no ? Well, simple once the setup is done right.... You can continue implementing other integration tests to be sure that everything behave as you expect.
+Simple no? Well, simple once the setup is done right... You can continue implementing other integration tests to be sure that everything behave as you expect.
 
 ## Dear Windows users...
 
@@ -438,50 +439,50 @@ In your `pom.xml`, just after `</build>`, add:
 
 ```xml
 <profiles>
-<!-- A profile for windows as the stop command is different -->
-<profile>
-  <id>windows</id>
-  <activation>
-    <os>
-      <family>windows</family>
-    </os>
-  </activation>
-  <build>
-       <plugins>
-         <plugin>
-           <artifactId>maven-antrun-plugin</artifactId>
-           <version>1.8</version>
-           <executions>
-             <execution>
-               <id>stop-vertx-app</id>
-               <phase>post-integration-test</phase>
-               <goals>
-                 <goal>run</goal>
-               </goals>
-               <configuration>
-                 <target>
-                   <exec executable="wmic"
-                         dir="${project.build.directory}"
-                         spawn="false">
-                     <arg value="process"/>
-                     <arg value="where"/>
-                     <arg value="CommandLine like '%${project.artifactId}%' and not name='wmic.exe'"/>
-                     <arg value="delete"/>
-                   </exec>
-                 </target>
-               </configuration>
-             </execution>
-           </executions>
-         </plugin>
-       </plugins>
-  </build>
-</profile>
+  <!-- A profile for windows as the stop command is different -->
+  <profile>
+    <id>windows</id>
+    <activation>
+      <os>
+        <family>windows</family>
+      </os>
+    </activation>
+    <build>
+      <plugins>
+        <plugin>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>1.8</version>
+          <executions>
+            <execution>
+              <id>stop-vertx-app</id>
+              <phase>post-integration-test</phase>
+              <goals>
+                <goal>run</goal>
+              </goals>
+              <configuration>
+                <target>
+                  <exec executable="wmic"
+                      dir="${project.build.directory}"
+                      spawn="false">
+                    <arg value="process"/>
+                    <arg value="where"/>
+                    <arg value="CommandLine like '%${project.artifactId}%' and not name='wmic.exe'"/>
+                    <arg value="delete"/>
+                  </exec>
+                </target>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </build>
+  </profile>
 </profiles>
 ```
 
 This profile replaces the actions described above to stop the application with a version working on windows. The profile is automatically enabled on Windows. As on others operating systems, execute with:
 
-```
+```bash
 mvn clean verify
 ```
 

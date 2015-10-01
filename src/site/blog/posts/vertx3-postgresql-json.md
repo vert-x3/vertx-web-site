@@ -17,7 +17,7 @@ JSONB. I will now show how to use the basic JSON type in a simple REST applicati
 
 Now all you need to do is play with this REST service, for this you can use curl to create a sale:
 
-```shell
+```bash
 $ curl \
     -i \
     -H "Content-Type: application/json" \
@@ -27,17 +27,15 @@ $ curl \
 
 HTTP/1.1 201 Created
 Content-Length: 0
-$
 ```
 
 And if you want to read that new document:
 
-```shell
+```bash
 $ curl -i -H "Accept: application/json" -X GET http://localhost:8080/sales/1
 HTTP/1.1 200 OK
 content-type: application/json
 Content-Length: 75
 
 {"id":1,"customer_name":"John","items":{"description":"milk","quantity":4}}
-$
 ```

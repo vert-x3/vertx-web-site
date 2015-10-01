@@ -581,64 +581,84 @@ footer {
  */
 
 .blog {
-  .blog-post {
-    margin-bottom: 60px;
-  }
-
-  .blog-post-title {
-    margin-bottom: 5px;
-    font-size: 38px;
-  }
-
-  .blog-post-meta {
-    margin-bottom: 20px;
-    color: #999;
-  }
-
-  .pagination {
-    .pagination__link--older {
-
+    .blog-post {
+        margin-bottom: 60px;
     }
-    .pagination__link--newer {
-      float: right;
-    }
-  }
 
-  pre {
-    background-color: white;
-    border: none;
-
-    code {
-      border-radius: 4px;
+    .blog-post-title {
+        margin-bottom: 5px;
+        font-size: @font-size-h1;
+        border-left: 8px solid #782b90;
+        padding: 10px 15px;
+        margin-top: @line-height-computed;
     }
-  }
+
+    .blog-post-meta {
+        margin-bottom: 20px;
+        color: #999;
+    }
+
+    .blog-sidebar {
+        h4 {
+            margin-top: @line-height-computed;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+
+            li {
+                padding-bottom: @line-height-computed / 4;
+            }
+        }
+    }
+
+    .pagination {
+        .pagination__link--older {
+        }
+        .pagination__link--newer {
+            float: right;
+        }
+    }
+
+    pre {
+        background-color: white;
+        border: none;
+        padding: 0;
+        margin-bottom: @line-height-computed;
+
+        code {
+            border-radius: 4px;
+        }
+    }
 }
 
 .admonition-block {
-  .admonition-icon {
-    color: @brand-primary;
-    font-size: @font-size-h1;
-    vertical-align: middle;
-  }
+    .admonition-icon {
+        color: @brand-primary;
+        font-size: @font-size-h1;
+        vertical-align: middle;
+    }
 
-  table {
-    border-collapse: separate;
-    border-spacing: 0;
-    background-color: @gray-lighter;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    display: block;
-  }
+    table {
+        border-collapse: separate;
+        border-spacing: 0;
+        background-color: @gray-lighter;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        display: block;
+    }
 
-  td.admonition-icon {
-    vertical-align: top;
-  }
+    td.admonition-icon {
+        vertical-align: top;
+    }
 
-  .title {
-    font-weight: bold;
-  }
+    .title {
+        font-weight: bold;
+    }
 
-  td {
-    padding: 7px;
-  }
+    td {
+        padding: 7px;
+    }
 }

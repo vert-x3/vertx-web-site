@@ -111,7 +111,7 @@ The `start` method creates a HTTP server and attaches a request handler to it. T
 
 Let's try to compile the application using:
 
-```
+```bash
 mvn clean compile
 ```
 
@@ -200,7 +200,7 @@ Let's take a minute to mention the _assertions_. Unlike in traditional JUnit tes
 
 Our test can be run from an IDE, or using Maven:
 
-```
+```bash
 mvn clean test
 ```
 
@@ -243,7 +243,7 @@ It uses the [maven-shade-plugin](https://maven.apache.org/plugins/maven-shade-pl
 
 So, with this plugin configured, let's launch:
 
-```
+```bash
 mvn clean package
 ```
 
@@ -253,7 +253,7 @@ This is going to create `target/my-first-app-1.0-SNAPSHOT-fat.jar` embedding our
 
 Well, it's nice to have a _fat jar_, but we want to see our application running! As said above, thanks to the _fat jar_ packaging, running Vert.x application is easy as:
 
-```
+```bash
 java -jar target/my-first-app-1.0-SNAPSHOT-fat.jar
 ```
 
@@ -263,6 +263,6 @@ To stop the application, hit `CTRL+C`.
 
 ## Conclusion
 
-This Vert.x 3 crash class has presented how you can develop a simple application using Vert.x 3, how to test it, package it and run it. So, you now know everything you need to build amazing system on top of Vert.x 3. Next time we will see how to [configure our application](/blog/vert-x-application-configuration/index.html).
+This Vert.x 3 crash class has presented how you can develop a simple application using Vert.x 3, how to test it, package it and run it. So, you now know everything you need to build amazing system on top of Vert.x 3. Next time we will see how to [configure our application](/blog/vert-x-application-configuration/).
 
 Happy coding &amp; Stay tuned !

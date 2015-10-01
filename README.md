@@ -43,6 +43,11 @@ contains a trailing slash. You can configure it in the `gulpfile.js` file.
 Heads up: keeping all URLs absolute allows us to quickly move the web-site to another
 path on the web server by just changing the global `site_url` variable.
 
+In order to obtain nice URLs, all pages should be put in their own directory and
+called index.html. For example, the entry page of the blog is under
+`blog/index.html`. Therefore it can be reached under `http://vertx.io/blog`. If
+you link to such a page always use the nice URL (without `index.html`).
+
 ## The blog
 
 Read [BLOG.md](BLOG.md)
