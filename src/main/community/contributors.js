@@ -89,10 +89,17 @@ var contributors = [{
 }, {
   github_id: "nmcl",
   name: "Mark Little",
-  avatar: "https://avatars1.githubusercontent.com/u/580667?v=3&s=400",
+  avatar: "https://avatars1.githubusercontent.com/u/580667?v=3&s=80",
   google_plus: "https://plus.google.com/u/0/+MarkLittleJBossCTO/",
   homepage: "http://markclittle.blogspot.co.uk",
   github: "https://github.com/nmcl"
+}, {
+  github_id: "alexlehm",
+  avatar: "https://avatars.githubusercontent.com/u/156144?v=3&s=80",
+  github: "https://github.com/alexlehm",
+  name: "Alexander Lehmann",
+  twitter: "https://twitter.com/alexlehm",
+  homepage: "https://about.me/alexlehm"
 }];
 
 module.exports = {
