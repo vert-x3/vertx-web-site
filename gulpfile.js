@@ -193,17 +193,15 @@ function build(done, dev) {
         },
 
         "admonition" : function(content) {
-
           if (! content) {
             return content;
           }
-          if (typeof content.indexOf !== 'function' || typeof content.replace !== 'function') {
+          if (typeof content.indexOf !== 'function'  || typeof content.replace !== 'function') {
             // Sometimes it's an object representing a char array.
             content = content.toString();
           }
           return admonitions.all(content);
         }
-
 
       }
     }))
