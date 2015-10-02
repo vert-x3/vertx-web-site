@@ -14,6 +14,7 @@ var iconfilter = require("./src/main/filters/iconfilter.js");
 var inject = require("gulp-inject-string");
 var path = require("path");
 var prettyHrtime = require("pretty-hrtime");
+var projectData = require("./target/data/data.json");
 var rename = require("gulp-rename");
 var replace = require("gulp-replace");
 var request = require("request");
@@ -103,6 +104,9 @@ function build(done, dev) {
     site_url = "http://vertx.io/"
   }
 
+  // Extract the project version from the generated project data.
+  var project_version = projectData.version;
+
   Metalsmith(__dirname)
     .source(paths.src)
     .destination(paths.site)
@@ -171,7 +175,7 @@ function build(done, dev) {
           if (! content) {
             return content;
           }
-          if (typeof content.indexOf !== 'function') {
+          if (typeof content.indexOf !== 'function'  || typeof content.substring !== 'function') {
             // Sometimes it's an object representing a char array.
             content = content.toString();
           }
@@ -193,7 +197,7 @@ function build(done, dev) {
           if (! content) {
             return content;
           }
-          if (typeof content.indexOf !== 'function') {
+          if (typeof content.indexOf !== 'function' || typeof content.replace !== 'function') {
             // Sometimes it's an object representing a char array.
             content = content.toString();
           }
@@ -242,6 +246,7 @@ function build(done, dev) {
     // define global variables for templates
     .use(define({
       "site_url": site_url,
+      "project_version" : project_version,
       "full_time_developers": contributors.full_time_developers,
       "contributors": contributors.contributors.concat(contributorsGen.contributors),
       "users_home_page": users.users_home_page,
