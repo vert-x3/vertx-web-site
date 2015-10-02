@@ -23,6 +23,7 @@ sidebar: true
     <ul class="sectlevel2 nav">
       <li><a href="#mail_client">Mail Client</a></li>
       <li><a href="#jca_adaptor">JCA Adaptor</a></li>
+      <li><a href="#stomp">STOMP</a></li>
     </ul>
   </li>
   <li><a href="#authentication_and_authorisation">Authentication and Authorisation</a>
@@ -39,11 +40,20 @@ sidebar: true
       <li><a href="#reactive_streams">Reactive streams.</a></li>
     </ul>
   </li>
-  <li><a href="#metrics">Metrics</a></li>
+  <li><a href="#metrics">Devops</a>
+    <ul class="sectlevel2 nav">
+      <li><a href="#metrics">Vert.x Metrics</a></li>
+      <li><a href="#docker_images">Vert.x Docker Images</a></li>
+      <li><a href="#shell">Vert.x Shell</a></li>
+    </ul>
+  </li>
   <li><a href="#testing">Testing</a></li>
   <li><a href="#clustering">Clustering</a>
     <ul class="sectlevel2 nav">
       <li><a href="#hazelcast">Hazelcast</a></li>
+    </ul>
+    <ul class="sectlevel2 nav">
+      <li><a href="#jgroups">JGroups</a></li>
     </ul>
   </li>
   <li><a href="#services">Services</a>
@@ -54,11 +64,10 @@ sidebar: true
       <li><a href="#http_service_factory">HTTP Service Factory</a></li>
     </ul>
   </li>
-  <li><a href="#cloud_and_docker">Cloud and Docker</a>
+  <li><a href="#cloud">Cloud</a>
     <ul class="sectlevel2 nav">
       <li><a href="#openshift_cartridge">Vert.x OpenShift Cartridge</a></li>
       <li><a href="#openshift_using_diy_cartridge">Vert.x OpenShift Using DIY Cartridge</a></li>
-      <li><a href="#docker_images">Vert.x Docker Images</a></li>
     </ul>
   </li>
   <li><a href="#advanced">Advanced</a>
@@ -229,6 +238,17 @@ sidebar: true
               </ul>
             </div>
             <div class="col-md-4">
+              <h4 id="stomp">STOMP Client &amp; Server</h4>
+              <p>Vert.x provides an implementation of the STOMP protocol.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-stomp">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-stomp/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-stomp/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-stomp/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-stomp/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-stomp/groovy/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-stomp/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-stomp/ruby/yardoc/">API</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
               <h4 id="jca_adaptor">JCA Adaptor</h4>
               <p>Vert.x provides a Java Connector Architecture (JCA) adaptor which allows it to interoperate with any JavaEE application server.</p>
               <ul class="list-unstyled">
@@ -292,6 +312,18 @@ sidebar: true
                 <li>Ruby: <a href="{{ site_url }}docs/vertx-auth-shiro/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-shiro/ruby/yardoc/">API</a></li>
               </ul>
             </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <h4 id="mongo_auth">MongoDB auth</h4>
+                <p>Auth implementation using MongoDB</p>
+                <ul class="list-unstyled">
+                  <li><a href="https://github.com/vert-x3/vertx-auth/tree/master/vertx-auth-mongo">Source</a></li>
+                  <li>Java: <a href="{{ site_url }}docs/vertx-auth-mongo/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                  <li>JavaScript: <a href="{{ site_url }}docs/vertx-auth-mongo/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-mongo/js/jsdoc/">API</a></li>
+                  <li>Groovy: <a href="{{ site_url }}docs/vertx-auth-mongo/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-mongo/groovy/groovydoc/">API</a></li>
+                  <li>Ruby: <a href="{{ site_url }}docs/vertx-auth-mongo/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-mongo/ruby/yardoc/">API</a></li>
+                </ul>
+              </div>
           </div>
         </div>
       </div>
@@ -333,18 +365,51 @@ sidebar: true
       <hr>
 
       <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <h3 id="metrics">Metrics</h3>
-          <p>This component captures metrics from various Vert.x core components and exposes them using the popular Dropwizard
-            metrics library.</p>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-dropwizard-metrics">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/metrics-examples">Examples</a></li>
-            <li>Java: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
-            <li>JavaScript: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-dropwizard-metrics/js/jsdoc/">API</a></li>
-            <li>Ruby: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-dropwizard-metrics/ruby/yardoc/">API</a></li>
-          </ul>
+        <div class="col-sm-12">
+          <h3 id="devops">Devops</h3>
+          <p>Vert.x offers various component to keep your vert.x application on track when running in production</p>
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="metrics">Metrics</h4>
+              <p>This component captures metrics from Vert.x core components and exposes them using Dropwizard.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-dropwizard-metrics">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/metrics-examples">Examples</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-dropwizard-metrics/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-dropwizard-metrics/groovy/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-dropwizard-metrics/ruby/yardoc/">API</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="shell">Shell</h4>
+              <p>This component lets you interact with your vert.x application using a CLI interface.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-shell">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-shell/java/">Manual</a> | <a
+                        href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-shell/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-shell/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-shell/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-shell/groovy/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-shell/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-shell/ruby/yardoc/">API</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="docker_images">Docker</h4>
+              <p>These docker images, available from the DockerHub, let you run Vert.x applications in Docker
+                containers.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-stack/tree/master/stack-docker">Source</a></li>
+                <li><a href="{{ site_url }}docs/vertx-docker">Manual</a></li>
+                <li><a href="https://registry.hub.docker.com/repos/vertx/">Docker registry</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/docker-examples">Examples</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
 
+      <hr>
+
+      <div class="row">
         <div class="col-sm-12 col-md-6">
           <h3 id="testing">Testing</h3>
           <p>Vert.x-Unit is an unit testing tool-kit especially design to work well with asynchronous code.</p>
@@ -372,6 +437,17 @@ sidebar: true
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-hazelcast">Source</a></li>
                 <li><a href="{{ site_url }}docs/vertx-hazelcast">Manual</a></li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h4 id="jgroups">JGroups</h4>
+              <p>Cluster manager implementation that uses JGroups.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-jgroups">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-jgroups/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-jgroups/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-jgroups/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-jgroups/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-jgroups/groovy/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-jgroups/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-jgroups/ruby/yardoc/">API</a></li>
               </ul>
             </div>
           </div>
@@ -431,7 +507,7 @@ sidebar: true
 
       <div class="row">
         <div class="col-sm-12">
-          <h3 id="cloud_and_docker">Cloud and Docker</h3>
+          <h3 id="cloud">Cloud</h3>
           <div class="row">
             <div class="col-md-4">
               <h4 id="openshift_cartridge">Vert.x OpenShift Cartridge</h4>
@@ -439,7 +515,7 @@ sidebar: true
                 <a href="https://www.openshift.com/">Red Hat OpenShift</a> cloud platform.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-openshift-cartridge">Source</a></li>
-                <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/openshift-example">Examples<a/></li>
+                <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/openshift-example">Examples</a></li>
               </ul>
             </div>
             <div class="col-md-4">
@@ -448,17 +524,7 @@ sidebar: true
                 <a href="https://www.openshift.com/">Red Hat OpenShift</a> cloud platform.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-openshift-diy-quickstart">Source</a></li>
-                <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/openshift-example">Examples<a/></li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <h4 id="docker_images">Vert.x Docker Images</h4>
-              <p>These docker images let you run Vert.x applications in Docker containers.</p>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-stack/tree/master/stack-docker">Source</a></li>
-                <li><a href="{{ site_url }}docs/vertx-docker">Manual</a></li>
-                <li><a href="https://registry.hub.docker.com/repos/vertx/">Docker registry</a></li>
-                <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/docker-examples">Examples</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/openshift-example">Examples</a></li>
               </ul>
             </div>
           </div>
