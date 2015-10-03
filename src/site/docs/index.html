@@ -38,6 +38,7 @@ sidebar: true
     <ul class="sectlevel2 nav">
       <li><a href="#rx">Vert.x Rx</a></li>
       <li><a href="#reactive_streams">Reactive streams.</a></li>
+      <li><a href="#sync">Vert.x Sync.</a></li>
     </ul>
   </li>
   <li><a href="#metrics">Devops</a>
@@ -335,7 +336,7 @@ sidebar: true
           <h3 id="reactive">Reactive</h3>
           <p>Vert.x provides a couple of components to make your applications more reactive.</p>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <h4 id="rx">Vert.x Rx</h4>
               <p>Don't like callback-style APIs? Vert.x provides <em>Rx-ified</em>
                 (using <a href="https://github.com/ReactiveX/RxJava">RxJava</a>) versions for most of its APIs so you
@@ -349,13 +350,23 @@ sidebar: true
                 <li>Groovy: <a href="{{ site_url }}docs/vertx-rx/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-rx/groovy/groovydoc/">API</a></li>
               </ul>
             </div>
-            <div class="col-md-6">
-              <h4 id="reactive_streams">Reactive streams.</h4>
+            <div class="col-md-4">
+              <h4 id="reactive_streams">Reactive streams</h4>
               <p>Vert.x supports <a href="http://www.reactive-streams.org/">reactive streams</a> so your applications can
                 interoperate with other reactive systems such as Akka or Project Reactor.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-reactive-streams">Source</a></li>
                 <li>Java: <a href="{{ site_url }}docs/vertx-reactive-streams/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="sync">Vert.x Sync</h4>
+              <p>Vertx-sync allows you to deploy verticles that run using fibers. Fibers are very lightweight threads
+                that can be blocked without blocking a kernel thread. This enables you to write your verticle code in
+                a familiar synchronous style.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-sync">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/sync-examples">Examples</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-sync/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
               </ul>
             </div>
           </div>
