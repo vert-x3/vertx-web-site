@@ -271,6 +271,8 @@ module.exports = function(client_id, client_secret, current_contributors) {
       return;
     }
 
+    contributors.sort(function(a, b){return a['github_id'].localeCompare(b['github_id'])});
+
     // write contributors to output stream
     var file = new gutil.File({
       path: "contributors-gen.js",
