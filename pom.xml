@@ -107,6 +107,7 @@
         </pluginManagement>
 
         <plugins>
+
           <plugin>
             <!--
             Create a data.json file containing various data about the project, such as the version.
@@ -246,6 +247,30 @@
                 </goals>
                 <phase>site</phase>
               </execution>
+
+              <!-- HACK TO REMOVE BEFORE THE NEXT RELEASE -->
+              <!--
+              There is an issue with the groovy doc for core. The page is empty. As a fix, we unzip the groovy doc
+              manually
+              -->
+              <execution>
+                <id>groovy-hack</id>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <phase>pre-site</phase>
+                <configuration>
+                  <target>
+                    <unzip
+                      src="${project.basedir}/hack/vertx-lang-groovy-3.1.0-docs.zip"
+                      dest="${project.basedir}/target/hack-groovy-doc"/>
+                    <move
+                      file="${project.basedir}/target/hack-groovy-doc/groovy/groovydoc"
+                      todir="${project.basedir}/target/docs/vertx-core/groovy"/>
+                  </target>
+                </configuration>
+              </execution>
+
             </executions>
           </plugin>
 
