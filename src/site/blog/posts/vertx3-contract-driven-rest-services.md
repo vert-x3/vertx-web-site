@@ -22,11 +22,9 @@ We need a contract and as with any other development we need some specification,
 
 ```yaml
 #%RAML 0.8
----
 title: Hello world REST API
 baseUri: http://localhost:8080/
 version: v1
-
 /hello:
   get:
     responses:
