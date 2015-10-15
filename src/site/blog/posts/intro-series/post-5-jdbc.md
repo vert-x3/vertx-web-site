@@ -264,7 +264,7 @@ The `src/main/conf/my-application-conf.json` file also needs to be updated, not 
 ```
 {
   "http.port" : 8082,
-  "url": "jdbc:hsqldb:file:db/whiskies?shutdown=true",
+  "url": "jdbc:hsqldb:file:db/whiskies",
   "driver_class": "org.hsqldb.jdbcDriver"
 }
 ```
