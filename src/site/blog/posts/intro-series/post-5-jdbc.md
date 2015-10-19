@@ -13,7 +13,7 @@ As it was quite some time since the last post, let's start by refreshing our min
 
 1. The [first post]({{ site_url }}blog/my-first-vert-x-3-application/) has described how to build a vert.x application with Maven and execute unit tests.
 2. The [second post]({{ site_url }}blog/vert-x-application-configuration/) has described how this application can become configurable.
-3. The [third post](({{ site_url }}blog/some-rest-with-vert-x/) has introduced [vertx-web](http://vertx.io/docs/vertx-web/java/), and a small collection management application has been developed. This application offers a REST API used by a HTML/JavaScript frontend.
+3. The [third post]({{ site_url }}blog/some-rest-with-vert-x/) has introduced [vertx-web](http://vertx.io/docs/vertx-web/java/), and a small collection management application has been developed. This application offers a REST API used by a HTML/JavaScript frontend.
 4. The [previous post]({{ site_url }}blog/unit-and-integration-tests/) has presented how you can run integration tests to ensure the behavior of your application.
 
 In this post, back to code. The current application uses an in-memory map to store the products. It's time to use a database. In this post we are going to use [HSQL](http://hsqldb.org/), but you can use any database providing a JDBC driver. Interactions with the database will be asynchronous and made using the [vertx-jdbc-client](http://vertx.io/docs/vertx-jdbc-client/java/).
