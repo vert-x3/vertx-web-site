@@ -1,7 +1,7 @@
 ---
 title: Using the asynchronous SQL client
 template: post.html
-date: 2015-10-15
+date: 2015-10-19
 author: cescoffier
 ---
 
