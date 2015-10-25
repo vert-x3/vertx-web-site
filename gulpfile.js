@@ -26,6 +26,7 @@ var updateContributors = require("./src/main/tasks/update-contributors.js");
 var users = require("./src/main/whos_using/users.js");
 
 var Metalsmith = require("metalsmith");
+var archive = require("metalsmith-archive");
 var assets = require("metalsmith-assets");
 var autoprefixer = require("metalsmith-autoprefixer");
 var cleanCSS = require("metalsmith-clean-css");
@@ -147,6 +148,10 @@ function build(done, dev) {
           return moment(date).format('Do MMMM YYYY');
         },
 
+        "day": function(date) {
+          return moment(date).format('DD');
+        },
+
         "link": function(url) {
           return site_url + url;
         },
@@ -214,6 +219,10 @@ function build(done, dev) {
         sortBy: 'date',
         reverse: true
       }
+    }))
+    .use(archive({
+      collections: 'blog',
+      locale: 'en'
     }))
     .use(paginate({
       perPage: 6,

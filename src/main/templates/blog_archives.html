@@ -1,0 +1,23 @@
+{% include "header.html" %}
+
+<div class="container">
+  <div class="row blog">
+    <div class="col-sm-8">
+      <h2 class="blog-post-title">Blog archives</h2>
+      {% for year in archive %}
+        {% for month in year.months %}
+          <h3>{{ month.name }} {{ year.year }}</h3>
+          {% for post in month.data %}
+            <ul class="list-unstyled">
+              <li><span class="blog-archives-day">{{ post.date | day }}:</span> <a href="{{ site_url }}{{ post.path }}/">{{ post.title }}</a></li>
+            </ul>
+          {% endfor %}
+        {% endfor %}
+      {% endfor %}
+      </ul>
+    </div>
+    {% include "blog_sidebar.html" %}
+  </div>
+</div>
+
+{% include "footer.html" %}
