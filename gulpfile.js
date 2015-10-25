@@ -216,7 +216,7 @@ function build(done, dev) {
       }
     }))
     .use(paginate({
-      perPage: 5,
+      perPage: 6,
       path: ':collection/page'
     }))
 
