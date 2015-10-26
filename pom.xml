@@ -121,7 +121,7 @@
                 <goals>
                   <goal>copy-resources</goal>
                 </goals>
-                <phase>process-resources</phase>
+                <phase>pre-site</phase>
                 <configuration>
                   <outputDirectory>${project.build.directory}/data</outputDirectory>
                   <resources>
