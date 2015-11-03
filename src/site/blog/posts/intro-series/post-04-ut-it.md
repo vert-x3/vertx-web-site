@@ -261,7 +261,7 @@ and stop them afterward -->
                 dir="${project.build.directory}"
                 spawn="false">
             <arg value="-c"/>
-            <arg value="ps ax | grep -i '${project.artifactId}' | awk 'NR==1{print $1}' | xargs kill -SIGTERM"/>
+            <arg value="ps ax | grep -Ei '[\-]DtestPort=${http.port}\s+\-jar\s+${project.artifactId}' | awk 'NR==1{print $1}' | xargs kill -SIGTERM"/>
           </exec>
         </target>
       </configuration>
@@ -372,6 +372,8 @@ public class MyRestIT {
 
 The methods annotated with `@BeforeClass` and `@AfterClass` are invoked once before / after all tests of the class. Here, we just retrieve the http port (passed as a system property) and we configure REST Assured.
 
+[NOTE Am I ready to serve ? | You may need to wait in the `configureRestAssured` method that the HTTP server has been started. We recommend the [awaitility](https://github.com/jayway/awaitility) test framework to check that the request can be served. It would fail the test if the server does not start.]
+
 It's now time to implement a real test. Let's check we can retrieve an individual product:
 
 ```java
@@ -417,7 +419,7 @@ public void checkWeCanAddAndDeleteAProduct() {
       .body("id", equalTo(whisky.getId()));
   // Delete the bottle
   delete("/api/whiskies/" + whisky.getId()).then().assertThat().statusCode(204);
-  // Check that the resrouce is not available anymore
+  // Check that the resource is not available anymore
   get("/api/whiskies/" + whisky.getId()).then()
       .assertThat()
       .statusCode(404);
