@@ -14,7 +14,7 @@ The code developed in this post is available on [github](https://github.com/cesc
 First, let's create a project. In this post, we use Apache Maven, but you can use Gradle or the build process tool you prefer. You could use the Maven jar archetype to create the structure, but basically, you just need a directory with:
 
 1. a `src/main/java` directory
-2. a `src/main/test` directory
+2. a `src/test/java` directory
 3. a `pom.xml` file
 
 So, you would get something like:
