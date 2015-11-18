@@ -8,9 +8,14 @@
         {% for month in year.months %}
           <h3>{{ month.name }} {{ year.year }}</h3>
           {% for post in month.data %}
-            <ul class="list-unstyled">
-              <li><span class="blog-archives-day">{{ post.date | day }}:</span> <a href="{{ site_url }}{{ post.path }}/">{{ post.title }}</a></li>
-            </ul>
+            <div class="row blog-archives-entry">
+              <div class="col-md-4">
+                <span class="blog-archives-day">{{ post.date | date }}</span>
+              </div>
+              <div class="col-md-8">
+                <a href="{{ site_url }}{{ post.path }}/">{{ post.title }}</a>
+              </div>
+            </div>
           {% endfor %}
         {% endfor %}
       {% endfor %}
