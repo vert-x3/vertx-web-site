@@ -159,11 +159,13 @@ private void createSomeData(AsyncResult<SQLConnection> result,
           ar -> {
             if (ar.failed()) {
               fut.fail(ar.cause());
+              connection.close();
               return;
             }
             connection.query("SELECT * FROM Whisky", select -> {
               if (select.failed()) {
                 fut.fail(ar.cause());
+                connection.close();
                 return;
               }
               if (select.result().getNumRows() == 0) {
@@ -172,9 +174,13 @@ private void createSomeData(AsyncResult<SQLConnection> result,
                     connection,
                     (v) -> insert(new Whisky("Talisker 57° North", "Scotland, Island"),
                         connection,
-                        (r) -> next.handle(Future.<Void>succeededFuture())));
+                        (r) -> {
+                          next.handle(Future.<Void>succeededFuture());
+                          connection.close();
+                        }));													
               } else {
                 next.handle(Future.<Void>succeededFuture());
+                connection.close();
               }
             });
           });
@@ -191,6 +197,8 @@ connection.execute(
 ```
 
 The handler receives an `AsyncResult<Void>`, _i.e._ a notification of the completion without an actual result.
+
+[NOTE Closing connection| Don't forget to close the SQL connection when you are done. The connection will be given back to the connection pool and be reused.]
 
 In the code of this handler, we check whether or not the statement has been executed correctly, and if so we check to see if the table already contains some data, if not, it inserts data using the `insert` method:
 
@@ -216,7 +224,7 @@ This method uses the `updateWithParams` method with an _INSERT_ statement, and p
 
 ## Some REST with a pinch of SQL
 
-The method described  above is part of our start sequence. But what about the method invoked by our REST API. Let's have a look to the `getAll` method. This method is called by the web frontend to retrieve all stored products:
+The method described  above is part of our start sequence. But what about the method invoked by our REST API. Let's have a look to the `getAll` method. This method is called by the web front-end to retrieve all stored products:
 
 ```
  private void getAll(RoutingContext routingContext) {
@@ -227,12 +235,13 @@ The method described  above is part of our start sequence. But what about the me
         routingContext.response()
             .putHeader("content-type", "application/json; charset=utf-8")
             .end(Json.encodePrettily(whiskies));
+        connection.close(); // Close the connection		
       });
     });
   }
 ```
 
-This method gets a `SQLConnection`, and then issue a query. Once the result has been retrieved it writes the HTTP response as before. The `getOne`, `deleteOne`, `updateOne` and `addOne` methods follow the same pattern.
+This method gets a `SQLConnection`, and then issue a query. Once the result has been retrieved it writes the HTTP response as before. The `getOne`, `deleteOne`, `updateOne` and `addOne` methods follow the same pattern. Notice that the connection can be closed after the response has been written.
 
 Let's have a look to the result provided to the handler passed to the `query` method. It gets a `ResultSet`, which contains the query result. Each row is a `JsonObject`, so if your data object has a constructor taking a `JsonObject` as unique argument, creating there objects is straightforward.
 
