@@ -9,13 +9,13 @@ draft: true
 On [October 21th, 2015](http://backtothefuture.wikia.com/wiki/2015) we all rejoiced with the return from the past of
 Marty McFly with his flying car and so on, however in the Vert.x world we were quite sad that the JavaScript support we
 have was still using a technology released in [December 2009](https://en.wikipedia.org/wiki/ECMAScript#Versions). The
-support for ES5 is not something that we Vert.x team control but something that is inherited from running on top of
+support for ES5 is not something that we Vert.x team controls but something that is inherited from running on top of
 [Nashorn](http://openjdk.java.net/projects/nashorn/).
 
 With all these nostalgic thoughts on my mind I've decided to bring us back to the future and by future I mean, lets
-start start using [EcmaScript6](http://es6-features.org/).
+ start using a modern JavaScript, or more correctly, lets start using [ECMAScript 6](http://es6-features.org/).
 
-It turned out to be quite simple to achive this so I'll pick the hello world example and write it in ES6 just to show
+It turned out to be quite simple to achieve this so I'll pick the hello world example and write it in ES6 just to show
 how you can port your code to ES6 and still use the current Vert.x APIs. Note that Vert.x internals still are ES5 and
 have not been touched or modified to support any of ES6 features.
 
@@ -47,6 +47,10 @@ file in the `/lib` directory.
   }
 }
 ```
+
+As you can see, the main idea is to invoke the transpiler (Babel) when we are building our project, and run it using the
+generated files. This is slightly equivalent to a compilation process you would have using compiled language.
+
 
 ## .npmignore
 
