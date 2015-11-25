@@ -144,11 +144,11 @@ private void createSomeData(Handler<AsyncResult<Void>> next, Future<Void> fut) {
 }
 ```
 
-To detect whether or not the database already contains some data, we retrieve the number of _document_ from the `whiskies` collection. This is done with : `mongo.count(COLLECTION, new JsonObject(), count -> {})`. The second parameter describes the query. In our case, we want to count all documents. This is done using `new JsonObject()` that would create a query accepting all documents from the collection (it's equivalent to a `SELECT * FROM ...`).
+To detect whether or not the database already contains some data, we retrieve the number of _documents_ from the `whiskies` collection. This is done with : `mongo.count(COLLECTION, new JsonObject(), count -> {})`. The second parameter is the query. In our case, we want to count all documents. This is done using `new JsonObject()` that would create a query accepting all documents from the collection (it's equivalent to a `SELECT * FROM ...`).
 
 Also notice the `insert` calls. Documents are passed as JSON object, so to insert an object, just serialize it to JSON and use `mongo.insert(COLLECTION, json, completion handler)`.
 
-## Mongo-ize the REST handler
+## Mongo-ize the REST handlers
 
 Now that the application boot sequence has been migrated to mongo, it's time to update the code handling the REST requests.
 
@@ -217,6 +217,8 @@ As we can see, the `update` method takes two JSON objects as parameter:
 
 1. The first one denotes the query (here we select a single document using its id).
 2. The second object expresses the change to apply to the selected document. It uses a mongo syntax. In our case, we update the document using the `$set` operator.
+
+[NOTE Replace document | In this code we update the document and replace only a set of fields. You can also replace the whole document using `mongo.replace(...)`.]
 
 I definitely recommend to have a look to the MongoDB documentation, especially:
 
