@@ -1,9 +1,8 @@
 ---
 title: Vert.x ES6 back to the future
 template: post.html
-date: 2015-11-23
+date: 2015-11-25
 author: pmlopes
-draft: true
 ---
 
 On [October 21th, 2015](http://backtothefuture.wikia.com/wiki/2015) we all rejoiced with the return from the past of
