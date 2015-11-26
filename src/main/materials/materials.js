@@ -36,14 +36,14 @@ var conferences = [
     {
         title: "A (very) quick intro to vert.x",
         date: "26/10/2012",
-        speaker: "Json Marah",
+        speaker: "Jason Marah",
         link: "http://prezi.com/jenln0j_yaix/intro-to-vertx/"
     },
 
     {
         title: "Introducing Vert.x",
         date: "01/11/2012",
-        conference: "devoxx 2012",
+        conference: "Devoxx 2012",
         speaker: "Tim Fox",
         link: "http://parleys.com/play/5148922b0364bc17fc56c8c7"
     },
@@ -59,7 +59,6 @@ var conferences = [
     {
         title: "Vert.x - This ain't your Dad's node!",
         date: "21/11/2012",
-        conference: "devoxx 2012",
         speaker: "Matt Stine",
         link: "http://www.youtube.com/watch?v=8ClYUo_A3h0"
     },
@@ -157,7 +156,7 @@ var conferences = [
         date: "13/11/2013",
         speaker: "Tim Fox",
         title: "Introducing Vert.x 2.0 - Taking Polyglot Application Development to the Next Level",
-        conference: "Devoxx Be",
+        conference: "Devoxx Be 2013",
         link: "https://www.voxxed.com/blog/presentation/introducing-vert-x-2-0-taking-polyglot-application-development-to-the-next-level/"
     },
     {
@@ -203,7 +202,7 @@ var conferences = [
         title: "Applications concurrentes polyglottes avec vert.x (french)",
         date: "09/04/2015",
         speaker: "Julien Viet",
-        conference: "Devoxx France ",
+        conference: "Devoxx France 2015",
         link: "https://www.parleys.com/tutorial/applications-concurrentes-polyglottes-avec-vert-x"
     },
     {
@@ -224,14 +223,14 @@ var conferences = [
         title: "Hit the plumber - develop a realtime web application with vert.x 3",
         date: "10/11/2015",
         speaker: "Clement Escoffier &amp; Paulo Lopes",
-        conference: "Devoxx BE ",
+        conference: "Devoxx BE 2015",
         link: "https://www.youtube.com/watch?v=vC1EdeBZl7M"
     },
     {
         title: "Be reactive on the JVM but not only in Java",
         date: "12/11/2015",
         speaker: "Clement Escoffier &amp; Paulo Lopes",
-        conference: "Devoxx BE ",
+        conference: "Devoxx BE 2015",
         link: "https://www.youtube.com/watch?v=qL5BGHPXrac"
     }
 ];
