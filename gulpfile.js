@@ -12,6 +12,7 @@ var gulp = require("gulp");
 var gutil = require("gulp-util");
 var iconfilter = require("./src/main/filters/iconfilter.js");
 var inject = require("gulp-inject-string");
+var materials = require("./src/main/materials/materials.js");
 var path = require("path");
 var prettyHrtime = require("pretty-hrtime");
 var projectData = require("./target/data/data.json");
@@ -256,6 +257,8 @@ function build(done, dev) {
       "project_version" : project_version,
       "full_time_developers": contributors.full_time_developers,
       "contributors": contributors.contributors.concat(contributorsGen.contributors),
+      "conferences": materials.conferences,
+      "articles": materials.articles,
       "users_home_page": users.users_home_page,
       "users_all": users.users_all
     }))
