@@ -1,7 +1,7 @@
 ---
 title: Combine vert.x and mongo to build a giant
 template: post.html
-date: 2015-11-23
+date: 2015-11-30
 author: cescoffier
 ---
 
