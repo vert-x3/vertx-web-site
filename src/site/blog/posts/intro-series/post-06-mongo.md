@@ -290,7 +290,7 @@ Last but not least, we still have a configuration file to edit: the configuratio
 
 Here you would need to edit the `localhost:27017` with the right url for your mongo server.
 
-[￼NOTE Some change in the integration tests|Because mongo document id are String and not integer, we have to slightly change document selection in the integration test.￼]
+[NOTE Some changes in the integration tests | Because mongo document id are String and not integer, we have to slightly change document selection in the integration test.]
 
 ## Time for a run
 
