@@ -24,6 +24,7 @@ sidebar: true
       <li><a href="#mail_client">Mail Client</a></li>
       <li><a href="#jca_adaptor">JCA Adaptor</a></li>
       <li><a href="#stomp">STOMP</a></li>
+      <li><a href="#tcp">TCP Event Bus Bridge</a></li>
     </ul>
   </li>
   <li><a href="#authentication_and_authorisation">Authentication and Authorisation</a>
@@ -32,6 +33,7 @@ sidebar: true
       <li><a href="#jdbc_auth">JDBC auth</a></li>
       <li><a href="#jwt_auth">JWT auth</a></li>
       <li><a href="#shiro_auth">Shiro auth</a></li>
+      <li><a href="#oauth2_auth">OAuth 2</a></li>
     </ul>
   </li>
   <li><a href="#reactive">Reactive</a>
@@ -46,6 +48,7 @@ sidebar: true
       <li><a href="#metrics">Vert.x Metrics</a></li>
       <li><a href="#docker_images">Vert.x Docker Images</a></li>
       <li><a href="#shell">Vert.x Shell</a></li>
+      <li><a href="#stack_manager">Vert.x Stack Manager</a></li>
     </ul>
   </li>
   <li><a href="#testing">Testing</a></li>
@@ -259,6 +262,19 @@ sidebar: true
               </ul>
             </div>
           </div>
+          <div class=row>
+            <div class="col-md-4">
+              <h4 id="tcp">TCP Eventbus Bridge</h4>
+              <p>An eventbus bridge that let you interact with vert.x from any application thanks to a TCP socket.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-tcp-eventbus-bridge">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/groovy/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/ruby/yardoc/">API</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -326,6 +342,17 @@ sidebar: true
                 <li>Ruby: <a href="{{ site_url }}docs/vertx-auth-mongo/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-mongo/ruby/yardoc/">API</a></li>
               </ul>
             </div>
+            <div class="col-sm-4">
+              <h4 id="shiro_auth">OAuth 2</h4>
+              <p>Auth implementation for OAuth2</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-auth/tree/master/vertx-auth-oauth2">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-auth-oauth2/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-auth-oauth2/js/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-oauth2/js/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-auth-oauth2/groovy/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-oauth2/groovy/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-auth-oauth2/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-auth-oauth2/ruby/yardoc/">API</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -381,7 +408,7 @@ sidebar: true
           <h3 id="devops">Devops</h3>
           <p>Vert.x offers various component to keep your vert.x application on track when running in production</p>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <h4 id="metrics">Metrics</h4>
               <p>This component captures metrics from Vert.x core components and exposes them using Dropwizard.</p>
               <ul class="list-unstyled">
@@ -392,7 +419,7 @@ sidebar: true
                 <li>Ruby: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-dropwizard-metrics/ruby/yardoc/">API</a></li>
               </ul>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <h4 id="shell">Shell</h4>
               <p>This component lets you interact with your vert.x application using a CLI interface.</p>
               <ul class="list-unstyled">
@@ -404,7 +431,7 @@ sidebar: true
                 <li>Ruby: <a href="{{ site_url }}docs/vertx-shell/ruby/">Manual</a> | <a href="{{ site_url }}docs/vertx-shell/ruby/yardoc/">API</a></li>
               </ul>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <h4 id="docker_images">Docker</h4>
               <p>These docker images, available from the DockerHub, let you run Vert.x applications in Docker
                 containers.</p>
@@ -413,6 +440,16 @@ sidebar: true
                 <li><a href="{{ site_url }}docs/vertx-docker">Manual</a></li>
                 <li><a href="https://registry.hub.docker.com/repos/vertx/">Docker registry</a></li>
                 <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/docker-examples">Examples</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 id="docker_images">Stack Manager</h4>
+              <p>The stack manager (provided in the vert.x distros) lets you add and remove artifacts from your stack.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-stack/tree/master/stack-manager">Source</a></li>
+                <li><a href="{{ site_url }}docs/vertx-stack-manager/stack-manager">Manual</a></li>
               </ul>
             </div>
           </div>
@@ -563,6 +600,13 @@ sidebar: true
             </div>
           </div>
           <div class="row">
+            <div class="col-md-4">
+              <h4 id="distro">Bridge Common</h4>
+              <p>This project contains the data object used by all eventbus bridges.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-bridge-common">Source</a></li>
+              </ul>
+            </div>
             <div class="col-md-4">
               <h4 id="distro">Distro</h4>
               <p>This project builds the various Vert.x distributions.</p>
