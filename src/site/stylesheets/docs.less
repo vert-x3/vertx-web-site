@@ -12,7 +12,7 @@
 #content,
 #footnotes,
 #footer {
-    width: 100%; 
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 0;
@@ -70,4 +70,9 @@ pre {
     .content {
         color: @gray-light;
     }
+}
+
+// Override the default style
+.conum+b, .conum:not([data-value]):empty {
+  display: inline-block !important;
 }
