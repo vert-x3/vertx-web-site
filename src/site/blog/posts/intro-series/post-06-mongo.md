@@ -13,11 +13,11 @@ But before going further, let's recap.
 
 ## Previously in  'introduction to vert.x'
 
-1. The [first post]({ site\_url }blog/my-first-vert-x-3-application/) has described how to build a vert.x application with Maven and execute unit tests.
-2. The [second post]({ site\_url }blog/vert-x-application-configuration/) has described how this application can become configurable.
-3. The [third post]({ site\_url }blog/some-rest-with-vert-x/) has introduced [vertx-web](http://vertx.io/docs/vertx-web/java/), and a small collection management application has been developed. This application offers a REST API used by a HTML/JavaScript frontend.
-4. The [fourth post]({ site\_url }blog/unit-and-integration-tests/) has presented how you can run integration tests to ensure the behavior of your application.
-5. The [last post]({ site\_url }blog/using-the-asynchronous-sql-client/) has presented how you can interact with a JDBC database using the vertx-jdbc-client.
+1. The [first post]({{ site_url }}blog/my-first-vert-x-3-application/) has described how to build a vert.x application with Maven and execute unit tests.
+2. The [second post]({{ site_url }}blog/vert-x-application-configuration/) has described how this application can become configurable.
+3. The [third post]({{ site_url }}blog/some-rest-with-vert-x/) has introduced [vertx-web](http://vertx.io/docs/vertx-web/java/), and a small collection management application has been developed. This application offers a REST API used by a HTML/JavaScript frontend.
+4. The [fourth post]({{ site_url }}blog/unit-and-integration-tests/) has presented how you can run integration tests to ensure the behavior of your application.
+5. The [last post]({{ site_url }}blog/using-the-asynchronous-sql-client/) has presented how you can interact with a JDBC database using the vertx-jdbc-client.
 
 This post shows another client that lets you use MongoDB in a vert.x application. This client provides an vert.x API to access asynchronously to the Mongo database. We won't compare whether or not JDBC is superior to Mongo, they have both pros and cons, and you should use the one that meet your requirements. Vert.x lets you choose, that’s the point.
 
