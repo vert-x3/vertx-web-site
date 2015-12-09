@@ -1,5 +1,4 @@
 var moment = require('moment');
-
 var conferences = [
     {
         title: "Next-Generation-Applications",
