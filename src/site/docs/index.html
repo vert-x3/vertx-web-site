@@ -45,7 +45,8 @@ sidebar: true
   </li>
   <li><a href="#devops">Devops</a>
     <ul class="sectlevel2 nav">
-      <li><a href="#metrics">Vert.x Metrics</a></li>
+      <li><a href="#metrics-dropwizard">Vert.x Metrics - Dropwizard</a></li>
+      <li><a href="#metrics-hawkular">Vert.x Metrics - Hawkular</a></li>
       <li><a href="#docker_images">Vert.x Docker Images</a></li>
       <li><a href="#shell">Vert.x Shell</a></li>
       <li><a href="#stack_manager">Vert.x Stack Manager</a></li>
@@ -419,14 +420,25 @@ sidebar: true
           <p>Vert.x offers various component to keep your vert.x application on track when running in production</p>
           <div class="row">
             <div class="col-sm-4">
-              <h4 id="metrics">Metrics</h4>
-              <p>This component captures metrics from Vert.x core components and exposes them using Dropwizard.</p>
+              <h4 id="metrics">Metrics using Dropwizard</h4>
+              <p>This component captures metrics from Vert.x core components and exposes them using <a href="http://metrics.dropwizard.io/">Dropwizard</a>.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-dropwizard-metrics">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/metrics-examples">Examples</a></li>
                 <li>Java: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
                 <li>JavaScript: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/js/">Manual</a> | <a href="{{ site_url }}docs/jsdoc/">API</a></li>
                 <li>Groovy: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/groovy/">Manual</a> | <a href="{{ site_url }}docs/groovydoc/">API</a></li>
                 <li>Ruby: <a href="{{ site_url }}docs/vertx-dropwizard-metrics/ruby/">Manual</a> | <a href="{{ site_url }}docs/yardoc/">API</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="metrics">Metrics using Hawkular</h4>
+              <p>This component captures metrics from Vert.x core components and send them to <a href="http://www.hawkular.org/">Hawkular</a>.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-hawkular-metrics">Source</a></li>
+                <li>Java: <a href="{{ site_url }}docs/vertx-hawkular-metrics/java/">Manual</a> | <a href="{{ site_url }}docs/apidocs/">API</a></li>
+                <li>JavaScript: <a href="{{ site_url }}docs/vertx-hawkular-metrics/js/">Manual</a> | <a href="{{ site_url }}docs/jsdoc/">API</a></li>
+                <li>Groovy: <a href="{{ site_url }}docs/vertx-hawkular-metrics/groovy/">Manual</a> | <a href="{{ site_url }}docs/groovydoc/">API</a></li>
+                <li>Ruby: <a href="{{ site_url }}docs/vertx-hawkular-metrics/ruby/">Manual</a> | <a href="{{ site_url }}docs/yardoc/">API</a></li>
               </ul>
             </div>
             <div class="col-sm-4">
@@ -441,6 +453,8 @@ sidebar: true
                 <li>Ruby: <a href="{{ site_url }}docs/vertx-shell/ruby/">Manual</a> | <a href="{{ site_url }}docs/yardoc/">API</a></li>
               </ul>
             </div>
+          </div>
+          <div class="row">
             <div class="col-sm-4">
               <h4 id="docker_images">Docker</h4>
               <p>These docker images, available from the DockerHub, let you run Vert.x applications in Docker
@@ -452,8 +466,6 @@ sidebar: true
                 <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/docker-examples">Examples</a></li>
               </ul>
             </div>
-          </div>
-          <div class="row">
             <div class="col-sm-4">
               <h4 id="docker_images">Stack Manager</h4>
               <p>The stack manager (provided in the vert.x distros) lets you add and remove artifacts from your stack.</p>
