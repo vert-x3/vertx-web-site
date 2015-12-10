@@ -47,6 +47,7 @@ stickyheader: true
           <li><a href="#ws_js" data-toggle="tab">JavaScript</a></li>
           <li><a href="#ws_groovy" data-toggle="tab">Groovy</a></li>
           <li><a href="#ws_ruby" data-toggle="tab">Ruby</a></li>
+          <li><a href="#ws_ceylon" data-toggle="tab">Ceylon</a></li>
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="ws_java">
@@ -91,12 +92,26 @@ $vertx.create_http_server().request_handler() { |req|
 }.listen(8080)</code></pre>
           </div>
 
+          <div class="tab-pane" id="ws_ceylon">
+            <pre class="prettyprint"><code class="ceylon">
+import io.vertx.ceylon.core { ... }
+import io.vertx.ceylon.core.http { ... }
+shared class Server() extends Verticle() {
+  start() => vertx.createHttpServer()
+    .requestHandler((HttpServerRequest req) =>
+      req.response()
+        .putHeader("content-type", "text/plain")
+        .end("Hello from Vert.x!")
+    ).listen(8080);
+}</code></pre>
+          </div>
+
         </div>
       </div>
       <div class="col-sm-6 text-right">
         <h2>Polyglot</h2>
         <p>You can use Vert.x with multiple languages including <strong>Java</strong>, <strong>JavaScript</strong>,
-          <strong>Groovy</strong>, and <strong>Ruby</strong>.</p>
+          <strong>Groovy</strong>, <strong>Ruby</strong>, and <strong>Ceylon</strong>.</p>
         <p>Vert.x doesn't preach about what language is <em>best</em> &mdash; you choose the languages <em>you</em> want
           based on the task at hand and the skill-set of your team.</p>
         <p>We provide <em>idiomatic</em> APIs for every language that Vert.x supports.</p>
