@@ -231,6 +231,13 @@ var conferences = [
         speaker: "Clement Escoffier &amp; Paulo Lopes",
         conference: "Devoxx BE 2015",
         link: "https://www.youtube.com/watch?v=qL5BGHPXrac"
+    },
+    {
+        title: "Vert.x: руководство по эксплуатации (russian)",
+        date: "17/10/2015",
+        speaker: "Vladimir Krasilschik",
+        conference: "Joker 2015",
+        link: "https://www.youtube.com/watch?v=JRFwicUlwyI&list=PLVe-2wcL84b8x3krxqsYHwlmfb4kb8A4n&index=14"
     }
 ];
 
