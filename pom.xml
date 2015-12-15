@@ -240,6 +240,8 @@
                     <!-- Copy assets from webjars to site dir -->
                     <copy todir="${project.build.directory}/site/javascripts/styles"
                           file="${project.build.directory}/webjars/META-INF/resources/webjars/highlightjs/8.4-4/styles/rainbow.min.css"/>
+                    <!-- create a nojekyll file -->
+                    <touch file="${project.build.directory}/site/.nojekyll"/>
                   </target>
                 </configuration>
                 <goals>
