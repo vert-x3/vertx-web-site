@@ -15,9 +15,12 @@ Some of the highlights of this release include:
 
 *	[vertx-hawkular-metric](http://vertx.io/docs/vertx-hawkular-metrics/java/): an implementation of the vert.x metrics for [Hawkular](http://www.hawkular.org/). In addition, it lets you report your own metrics to hawkular.
 
-* [vertx-jgroups](http://vertx.io/docs/vertx-jgroups/java/): an alternative implementation of the vert.x cluster manager using [JGroups](http://jgroups.org/).
+* A new [stack manager](http://vertx.io/docs/vertx-stack-manager/stack-manager/) to configure the vert.x distribution with the content you want.
 
-*	A new [stack manager](http://vertx.io/docs/vertx-stack-manager/stack-manager/) to configure the vert.x distribution with the content you want.
+* [vertx-shell](http://vertx.io/docs/vertx-shell/java/) is now an official component.
+
+* [vertx-jgroups](http://vertx.io/docs/vertx-jgroups/java/): an alternative implementation of the vert.x cluster manager using [JGroups](http://jgroups.org/). This component is a technical preview.
+
 
 The release also contains many bug fixes and a ton of improvements. Full release notes can be found here:
 
