@@ -238,6 +238,13 @@ var conferences = [
         speaker: "Vladimir Krasilschik",
         conference: "Joker 2015",
         link: "https://www.youtube.com/watch?v=JRFwicUlwyI&list=PLVe-2wcL84b8x3krxqsYHwlmfb4kb8A4n&index=14"
+    },
+    {
+        title: "How do we use Vert.x at Melusyn?",
+        date: "02/12/2015",
+        speaker: "Hugo Cordier &amp; Michel Guillet",
+        conference: "Paris Vert.x User Group",
+        link: "https://speakerdeck.com/melusyn/how-do-we-use-vert-dot-x-at-melusyn"
     }
 ];
 
