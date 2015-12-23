@@ -66,6 +66,7 @@
 
     <github.global.server>github</github.global.server>
 
+    <highlightjs.version>8.7</highlightjs.version>
   </properties>
 
   <dependencies>
@@ -81,7 +82,7 @@
     <dependency>
       <groupId>org.webjars</groupId>
       <artifactId>highlightjs</artifactId>
-      <version>8.4-4</version>
+      <version>${highlightjs.version}</version>
     </dependency>
 
   </dependencies>
@@ -239,7 +240,7 @@
                   <target>
                     <!-- Copy assets from webjars to site dir -->
                     <copy todir="${project.build.directory}/site/javascripts/styles"
-                          file="${project.build.directory}/webjars/META-INF/resources/webjars/highlightjs/8.4-4/styles/rainbow.min.css"/>
+                          file="${project.build.directory}/webjars/META-INF/resources/webjars/highlightjs/${highlightjs.version}/styles/rainbow.min.css"/>
                     <!-- create a nojekyll file -->
                     <touch file="${project.build.directory}/site/.nojekyll"/>
                   </target>
