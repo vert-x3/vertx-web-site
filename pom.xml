@@ -235,6 +235,27 @@
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
             <executions>
+
+              <!-- HACK -->
+              <!-- Fix typos in .ad files, the new .ad are located in etc/hacks-asciidoc, they must use the final
+               structure -->
+              <execution>
+                <id>Asciidoc-Hack</id>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <phase>pre-site</phase>
+                <configuration>
+                  <target>
+                    <copy todir="${project.build.directory}/docs"
+                          verbose="true">
+                      <fileset dir="${project.basedir}/etc/hacks-asciidoc"/>
+                    </copy>
+                  </target>
+                </configuration>
+              </execution>
+              <!-- END OF HACK -->
+
               <execution>
                 <configuration>
                   <target>
