@@ -1,0 +1,105 @@
+---
+template: page.html
+title: Vert.x Downloads
+heading: Download
+---
+
+{% set version = "3.2.0" %}
+{% set date = "Dec 14, 2015" %}
+
+{% set downloads = {
+  "min": [{
+    "name": "vert.x-3.2.0.tar.gz",
+    "version": version,
+    "size": "46.5 MB",
+    "date": date,
+    "ext": ".tar.gz"
+  }, {
+    "name": "vert.x-3.2.0.zip",
+    "version": version,
+    "size": "46.5 MB",
+    "date": date,
+    "ext": ".zip"
+  }],
+  "full": [{
+    "name": "vert.x-3.2.0-full.tar.gz",
+    "version": version,
+    "size": "68.1 MB",
+    "date": date,
+    "ext": ".tar.gz"
+  }, {
+    "name": "vert.x-3.2.0-full.zip",
+    "version": version,
+    "size": "68.1 MB",
+    "date": date,
+    "ext": ".zip"
+  }],
+  "html": [{
+    "name": "vertx-3.2.0-html.zip",
+    "version": version,
+    "size": "12.9 MB",
+    "date": date,
+    "ext": ".zip"
+  }]
+} %}
+
+<div class="container downloads-container">
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <h2>Minimal distribution</h2>
+      <p>Low-level distribution containing only Vert.x core components and
+      language interfaces for Java, JavaScript, Groovy, Ruby and Ceylon.</p>
+      <p>{% for d in downloads.min %}
+      <a class="btn btn-default btn-lg" href="https://bintray.com/artifact/download/vertx/downloads/{{ d.name }}" role="button">{% icon "install" %} Vert.x {{ d.version }} min ({{ d.ext }})<br>
+      <small>{{ d.date }} | {{ d.size }}</small></a>
+      {% endfor %}</p>
+    </div>
+
+    <div class="col-md-6">
+      <h2>Full distribution</h2>
+      <p>This package encompasses the minimum distribution plus all
+      components from the official Vert.x stack.</p>
+      <p>{% for d in downloads.full %}
+      <a class="btn btn-default btn-lg" href="https://bintray.com/artifact/download/vertx/downloads/{{ d.name }}" role="button">{% icon "install" %} Vert.x {{ d.version }} full ({{ d.ext }})<br>
+      <small>{{ d.date }} | {{ d.size }}</small></a>
+      {% endfor %}</p>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <h2>Manual and API documentation</h2>
+      <p>This package contains the manuals and API documentation of all
+      Vert.x stack components for various programming languages.</p>
+      <p>{% for d in downloads.html %}
+      <a class="btn btn-default btn-lg" href="https://bintray.com/artifact/download/vertx/downloads/{{ d.name }}" role="button">{% icon "install" %} Manual and API {{ d.version }} ({{ d.ext }})<br>
+      <small>{{ d.date }} | {{ d.size }}</small></a>
+      {% endfor %}</p>
+      <p>Read the <a href="{{ site_url }}docs">online version</a> of this package.</p>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <h2>Snapshots</h2>
+      <p>We have continuous integration builds for all the Vert.x components on
+      <a href="https://vertx.ci.cloudbees.com/view/vert.x-3/">CloudBees</a>. We
+      also publish shapshots to the
+      <a href="https://oss.sonatype.org/content/repositories/snapshots/io/vertx/">Sonatype OSS Snapshot repository</a>.</p>
+    </div>
+
+    <div class="col-md-6">
+      <h2>Older releases</h2>
+      <p>Older Vert.x releases (including 2.x) can still be downloaded from our
+      <a href="https://bintray.com/vertx/downloads/distribution/view">Bintray repository</a>.</p>
+    </div>
+
+  </div>
+
+</div>
