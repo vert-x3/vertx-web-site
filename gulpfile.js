@@ -7,6 +7,7 @@ var decompress = require("gulp-decompress");
 var del = require("del");
 var flatten = require("gulp-flatten");
 var fs = require("fs");
+var generateDistributionInfo = require("./src/main/tasks/generate-distribution-info.js");
 var githubConfig = require("./github.json");
 var gulp = require("gulp");
 var gutil = require("gulp-util");
@@ -82,6 +83,7 @@ var paths = {
   site: "target/site",
   vertx2: "src/main/vertx2",
   target_asciidoctor_bs_themes: "target/asciidoctor-bs-themes",
+  target_distributioninfo: "target/distribution-info/distribution-info.json",
   target_docs: "target/site/docs",
   target_icons: "target/site/assets/icons",
   target_scripts: "target/site/javascripts",
@@ -169,6 +171,10 @@ function build(done, dev) {
   var sorted_contributors = prepareContributors(contributors.contributors, true);
   var sorted_maintainers = prepareContributors(contributors.maintainers, false);
   sorted_contributors = removeFullTimeDevsAndMaintainers(sorted_contributors);
+
+  // get distribution info
+  var distribution_info = require("./" + paths.target_distributioninfo);
+  distribution_info = distribution_info[project_version];
 
   Metalsmith(__dirname)
     .source(paths.src)
@@ -316,6 +322,7 @@ function build(done, dev) {
     .use(define({
       "site_url": site_url,
       "project_version" : project_version,
+      "distribution_info": distribution_info,
       "full_time_developers": contributors.full_time_developers,
       "maintainers": sorted_maintainers,
       "contributors": sorted_contributors,
@@ -435,7 +442,8 @@ gulp.task("site-docs", function(done) {
 })
 
 // build site
-gulp.task("site", ["icons", "scripts", "site-docs", "install-asciidoc-bs-themes"], function(done) {
+gulp.task("site", ["icons", "scripts", "site-docs", "install-asciidoc-bs-themes",
+    "generate-distribution-info"], function(done) {
   build(done);
 });
 
@@ -466,6 +474,17 @@ gulp.task("watch", ["site-dev"], function() {
                 "after", gutil.colors.magenta(prettyHrtime(process.hrtime(start))));
         }, true);
     });
+});
+
+// generate info for the current distribution
+gulp.task("generate-distribution-info", function(done) {
+  generateDistributionInfo(projectData.version, paths.target_distributioninfo, function(err, di) {
+    if (err) {
+      done(err);
+    } else {
+      done();
+    }
+  });
 });
 
 // update the list of people who have contributed to vertx repositories
