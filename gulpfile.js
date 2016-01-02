@@ -256,6 +256,7 @@ function build(done, dev) {
       "site_url": site_url,
       "project_version" : project_version,
       "full_time_developers": contributors.full_time_developers,
+      "maintainers": contributors.maintainers,
       "contributors": contributors.contributors.concat(contributorsGen.contributors),
       "conferences": materials.conferences,
       "articles": materials.articles,
@@ -409,7 +410,7 @@ gulp.task("watch", ["site-dev"], function() {
 // update the list of people who have contributed to vertx repositories
 gulp.task("update-contributors", function() {
   return updateContributors(githubConfig.client_id, githubConfig.client_secret,
-    contributors.full_time_developers.concat(contributors.contributors))
+    contributors.full_time_developers.concat(contributors.contributors).concat(contributors.maintainers))
     .pipe(inject.wrap("// AUTO-GENERATED FILE. DO NOT EDIT! CALL `gulp update-contributors` INSTEAD.\n" +
       "// CREATED: " + Date() + "\nmodule.exports = { contributors: ", " };"))
     .pipe(gulp.dest(path.join(paths.src_gen, "main", "community")));

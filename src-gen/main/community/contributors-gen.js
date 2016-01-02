@@ -1,5 +1,5 @@
 // AUTO-GENERATED FILE. DO NOT EDIT! CALL `gulp update-contributors` INSTEAD.
-// CREATED: Sat Jan 02 2016 16:01:47 GMT+0100 (Mitteleuropäische Zeit)
+// CREATED: Sat Jan 02 2016 16:28:34 GMT+0100 (Mitteleuropäische Zeit)
 module.exports = { contributors: [
   {
     "github_id": "4z3",
@@ -368,12 +368,6 @@ module.exports = { contributors: [
     "name": "figroc"
   },
   {
-    "github_id": "fmarinelli",
-    "avatar": "https://avatars.githubusercontent.com/u/790571?v=3&s=80",
-    "github": "https://github.com/fmarinelli",
-    "name": "fmarinelli"
-  },
-  {
     "github_id": "fmatar",
     "avatar": "https://avatars.githubusercontent.com/u/111766?v=3&s=80",
     "github": "https://github.com/fmatar",
@@ -582,12 +576,6 @@ module.exports = { contributors: [
     "homepage": "http://www.tradestation.com"
   },
   {
-    "github_id": "johnoliver",
-    "avatar": "https://avatars.githubusercontent.com/u/1615532?v=3&s=80",
-    "github": "https://github.com/johnoliver",
-    "name": "John Oliver"
-  },
-  {
     "github_id": "JohnWarnerEF",
     "avatar": "https://avatars.githubusercontent.com/u/4999710?v=3&s=80",
     "github": "https://github.com/JohnWarnerEF",
@@ -618,13 +606,6 @@ module.exports = { contributors: [
     "github": "https://github.com/jponge",
     "name": "Julien Ponge",
     "homepage": "https://julien.ponge.org/"
-  },
-  {
-    "github_id": "jstrachan",
-    "avatar": "https://avatars.githubusercontent.com/u/30140?v=3&s=80",
-    "github": "https://github.com/jstrachan",
-    "name": "James Strachan",
-    "homepage": "http://macstrac.blogspot.com/"
   },
   {
     "github_id": "jtruelove",
@@ -677,13 +658,6 @@ module.exports = { contributors: [
     "name": "Alexander (Sascha) Klein"
   },
   {
-    "github_id": "karianna",
-    "avatar": "https://avatars.githubusercontent.com/u/180840?v=3&s=80",
-    "github": "https://github.com/karianna",
-    "name": "Martijn Verburg",
-    "homepage": "http://martijnverburg.blogspot.com"
-  },
-  {
     "github_id": "keesun",
     "avatar": "https://avatars.githubusercontent.com/u/463657?v=3&s=80",
     "github": "https://github.com/keesun",
@@ -697,13 +671,6 @@ module.exports = { contributors: [
     "name": "kromit"
   },
   {
-    "github_id": "kuujo",
-    "avatar": "https://avatars.githubusercontent.com/u/823318?v=3&s=80",
-    "github": "https://github.com/kuujo",
-    "name": "Jordan Halterman",
-    "homepage": "http://atomix.io"
-  },
-  {
     "github_id": "lance",
     "avatar": "https://avatars.githubusercontent.com/u/15952?v=3&s=80",
     "github": "https://github.com/lance",
@@ -715,12 +682,6 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/4640250?v=3&s=80",
     "github": "https://github.com/larrytin",
     "name": "田传武"
-  },
-  {
-    "github_id": "LarsTimm",
-    "avatar": "https://avatars.githubusercontent.com/u/12085953?v=3&s=80",
-    "github": "https://github.com/LarsTimm",
-    "name": "Lars Timm"
   },
   {
     "github_id": "lbovet",
@@ -868,13 +829,6 @@ module.exports = { contributors: [
     "homepage": "http://qiita.com/muraken720"
   },
   {
-    "github_id": "Narigo",
-    "avatar": "https://avatars.githubusercontent.com/u/1767865?v=3&s=80",
-    "github": "https://github.com/Narigo",
-    "name": "Joern Bernhardt",
-    "homepage": "http://www.campudus.com/"
-  },
-  {
     "github_id": "nfmelendez",
     "avatar": "https://avatars.githubusercontent.com/u/726950?v=3&s=80",
     "github": "https://github.com/nfmelendez",
@@ -1011,12 +965,6 @@ module.exports = { contributors: [
     "github": "https://github.com/qmx",
     "name": "Douglas Campos",
     "homepage": "http://blog.qmx.me"
-  },
-  {
-    "github_id": "rajith77",
-    "avatar": "https://avatars.githubusercontent.com/u/1030331?v=3&s=80",
-    "github": "https://github.com/rajith77",
-    "name": "Rajith Muditha Attapattu"
   },
   {
     "github_id": "raniejade",
@@ -1243,13 +1191,6 @@ module.exports = { contributors: [
     "github": "https://github.com/tobias",
     "name": "Toby Crawley",
     "homepage": "http://tcrawley.org/"
-  },
-  {
-    "github_id": "tsegismont",
-    "avatar": "https://avatars.githubusercontent.com/u/1500598?v=3&s=80",
-    "github": "https://github.com/tsegismont",
-    "name": "Thomas Segismont",
-    "homepage": "http://tsegismont.blogspot.fr/"
   },
   {
     "github_id": "ufoscout",
