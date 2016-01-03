@@ -90,6 +90,62 @@ var paths = {
   templates: "src/main/templates"
 };
 
+/**
+ * Prepare the given array of contributors. Sort it according to the number
+ * of contributions and the github_id
+ * @param contributors the array to prepare
+ * @param addGenerated true if all auto-generated contributors should be added
+ * to the result
+ * @return the prepared array of contributors
+ */
+function prepareContributors(contributors, addGenerated) {
+  var contributors = contributors.slice(0);
+  contributorsGen.contributors.forEach(function(gc) {
+    var found = false;
+    for (var i = 0; i < contributors.length; ++i) {
+      var c = contributors[i];
+      if (c.github_id === gc.github_id) {
+        c.contributions = gc.contributions;
+        found = true;
+        break;
+      }
+    }
+    if (!found && addGenerated) {
+      contributors.push(gc);
+    }
+  });
+  contributors.sort(function(a, b) {
+    var r = (b.contributions || 0) - (a.contributions || 0);
+    if (r == 0) {
+      r = a.github_id.localeCompare(b.github_id);
+    }
+    return r;
+  });
+  return contributors;
+}
+
+/**
+ * Remove full-time devs and component maintainers from the given array of
+ * contributors
+ */
+function removeFullTimeDevsAndMaintainers(cs) {
+  var toremove = contributors.full_time_developers.concat(contributors.maintainers);
+  var result = [];
+  cs.forEach(function(c) {
+    var found = false;
+    for (var i = 0; i < toremove.length; ++i) {
+      if (toremove[i].github_id === c.github_id) {
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      result.push(c);
+    }
+  });
+  return result;
+}
+
 // build site
 function build(done, dev) {
   var useTemplateCache = dev ? false : undefined;
@@ -108,6 +164,11 @@ function build(done, dev) {
 
   // Extract the project version from the generated project data.
   var project_version = projectData.version;
+
+  // prepare contributors
+  var sorted_contributors = prepareContributors(contributors.contributors, true);
+  var sorted_maintainers = prepareContributors(contributors.maintainers, false);
+  sorted_contributors = removeFullTimeDevsAndMaintainers(sorted_contributors);
 
   Metalsmith(__dirname)
     .source(paths.src)
@@ -256,8 +317,8 @@ function build(done, dev) {
       "site_url": site_url,
       "project_version" : project_version,
       "full_time_developers": contributors.full_time_developers,
-      "maintainers": contributors.maintainers,
-      "contributors": contributors.contributors.concat(contributorsGen.contributors),
+      "maintainers": sorted_maintainers,
+      "contributors": sorted_contributors,
       "conferences": materials.conferences,
       "articles": materials.articles,
       "users_home_page": users.users_home_page,
@@ -409,8 +470,7 @@ gulp.task("watch", ["site-dev"], function() {
 
 // update the list of people who have contributed to vertx repositories
 gulp.task("update-contributors", function() {
-  return updateContributors(githubConfig.client_id, githubConfig.client_secret,
-    contributors.full_time_developers.concat(contributors.contributors).concat(contributors.maintainers))
+  return updateContributors(githubConfig.client_id, githubConfig.client_secret)
     .pipe(inject.wrap("// AUTO-GENERATED FILE. DO NOT EDIT! CALL `gulp update-contributors` INSTEAD.\n" +
       "// CREATED: " + Date() + "\nmodule.exports = { contributors: ", " };"))
     .pipe(gulp.dest(path.join(paths.src_gen, "main", "community")));
