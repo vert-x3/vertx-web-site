@@ -7,7 +7,7 @@ author: cescoffier
 
 Vert.x 3.1 has (re-) introduced the _redeploy_ feature. This blog post explains how to use this feature in the Eclipse IDE. However, you can easily adapt the content to your IDE.
 
-# How does redeploy work
+## How does redeploy work
 
 How is implemented the `redeploy` is not as you may expect. First, the redeploy does not rely on a build tool, but is integrated in vert.x. However you can plug your build tools with the redeploy feature. This feature is offered by the `io.vertx.core.Launcher` class. The redeployment process is actually very simple:
 
@@ -22,7 +22,7 @@ Initially the application is launched in _redeploy mode_. The application is act
 
 To integrate this process in Eclipse (or in your IDE), you just need to configure the set of listened files, and let the `Launcher` class starts and stops your application.
 
-# Redeploy in Eclipse
+## Redeploy in Eclipse
 
 The following screencast explains how you configure a vert.x application to be run in Eclipse and how to configure the redeploy:
 
@@ -34,7 +34,7 @@ To summarize the last configuration:
 * it's uses `io.vertx.core.Launcher` as main class
 * In the _Program arguments_ (_Arguments_ tab), write: `run --redeploy="src/**/*.java" --launcher-class=org.acme.vertx.Main`
 
-# Redeploy with your own Main class
+## Redeploy with your own Main class
 
 Let's now imagine that you have your own `Main` class, starting your application. For instance, it can be something like:
 
