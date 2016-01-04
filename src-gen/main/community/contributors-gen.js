@@ -1,5 +1,5 @@
 // AUTO-GENERATED FILE. DO NOT EDIT! CALL `gulp update-contributors` INSTEAD.
-// CREATED: Sun Jan 03 2016 10:18:12 GMT+0100 (Mitteleuropäische Zeit)
+// CREATED: Mon Jan 04 2016 12:11:25 GMT+0100 (CET)
 module.exports = { contributors: [
   {
     "github_id": "4z3",
@@ -43,7 +43,7 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/1456317?v=3&s=80",
     "github": "https://github.com/aesteve",
     "name": "Arnaud Esteve",
-    "contributions": 10
+    "contributions": 11
   },
   {
     "github_id": "agura",
@@ -137,7 +137,7 @@ module.exports = { contributors: [
     "github": "https://github.com/apatrida",
     "name": "Jayson Minard",
     "homepage": "https://www.linkedin.com/profile/view?id=68861",
-    "contributions": 2
+    "contributions": 4
   },
   {
     "github_id": "ArsenyYankovsky",
@@ -283,7 +283,7 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/402301?v=3&s=80",
     "github": "https://github.com/cescoffier",
     "name": "Clement Escoffier",
-    "contributions": 1044
+    "contributions": 1046
   },
   {
     "github_id": "circlespainter",
@@ -1000,7 +1000,7 @@ module.exports = { contributors: [
     "github": "https://github.com/michel-kraemer",
     "name": "Michel Krämer",
     "homepage": "http://www.michel-kraemer.com",
-    "contributions": 121
+    "contributions": 123
   },
   {
     "github_id": "mikaelkaron",
@@ -1540,7 +1540,7 @@ module.exports = { contributors: [
     "github": "https://github.com/vietj",
     "name": "Julien Viet",
     "homepage": "http://blog.julienviet.com",
-    "contributions": 3689
+    "contributions": 3690
   },
   {
     "github_id": "VitorFreitas",
