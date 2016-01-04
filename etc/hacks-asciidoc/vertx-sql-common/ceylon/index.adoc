@@ -1,0 +1,332 @@
+== Vert.x Common SQL interface
+
+The common SQL interface is used to interact with Vert.x SQL services.
+
+You obtain a connection to the database via the service interface for the specific SQL service that
+you are using (e.g. JDBC/MySQL/PostgreSQL).
+
+To use this project, add the following dependency to the _dependencies_ section of your `module.ceylon`:
+
+[source,xml,subs="+attributes"]
+----
+shared import io.vertx.ceylon.sql "3.2.0";
+----
+
+== The SQL Connection
+
+A connection to the database is represented by `link:../../ceylondoc/vertx-sql//SQLConnection.type.html[SQLConnection]`.
+
+=== Auto-commit
+
+When you obtain a connection auto commit is set to `true`. This means that each operation you perform will effectively
+execute in its own transaction.
+
+If you wish to perform multiple operations in a single transaction you should set auto commit to false with
+`link:../../ceylondoc/vertx-sql//SQLConnection.type.html#setAutoCommit(boolean,%20io.vertx.core.Handler)[setAutoCommit]`.
+
+When the operation is complete, the handler will be called:
+
+[source,java]
+----
+connection.setAutoCommit(false, (Throwable? res) {
+  if (!exists res) {
+    // OK!
+  } else {
+    // Failed!
+  };
+});
+
+----
+
+=== Executing queries
+
+To execute a query use `link:../../ceylondoc/vertx-sql//SQLConnection.type.html#query(java.lang.String,%20io.vertx.core.Handler)[query]`
+
+The query string is raw SQL that is passed through without changes to the actual database.
+
+The handler will be called with the results, represented by `link:../../ceylondoc/vertx-sql//ResultSet.type.html[ResultSet]` when the query has
+been run.
+
+[source,java]
+----
+connection.query("SELECT ID, FNAME, LNAME, SHOE_SIZE from PEOPLE", (ResultSet|Throwable res) {
+  if (is ResultSet res) {
+    // Get the result set
+    value resultSet = res;
+  } else {
+    // Failed!
+  };
+});
+
+----
+
+The `link:../../ceylondoc/vertx-sql//ResultSet.type.html[ResultSet]` instance represents the results of a query.
+
+The list of column names are available with `link:../../ceylondoc/vertx-sql//ResultSet.type.html#getColumnNames()[getColumnNames]`, and the actual results
+available with `link:../../ceylondoc/vertx-sql//ResultSet.type.html#getResults()[getResults]`
+
+The results are a list of `JsonArray` instances, one for each row of the results.
+
+[source,java]
+----
+
+value columnNames = resultSet.columnNames;
+
+value results = resultSet.results;
+
+for (row in results) {
+
+  value id = row[0];
+  value fName = row[1];
+  value lName = row[2];
+  value shoeSize = row[3];
+
+};
+
+
+----
+
+You can also retrieve the rows as a list of Json object instances with `link:../../ceylondoc/vertx-sql//ResultSet.type.html#getRows()[getRows]` -
+this can give you a somewhat simpler API to work with, but please be aware that SQL results can contain duplicate
+column names - if that's the case you should use `link:../../ceylondoc/vertx-sql//ResultSet.type.html#getResults()[getResults]` instead.
+
+Here's an example of iterating through the results as Json object instances:
+
+[source,java]
+----
+
+value rows = resultSet.rows;
+
+for (row in rows) {
+
+  value id = rowget("ID";
+  value fName = rowget("FNAME";
+  value lName = rowget("LNAME";
+  value shoeSize = rowget("SHOE_SIZE";
+
+};
+
+
+----
+
+=== Prepared statement queries
+
+To execute a prepared statement query you can use
+`link:../../ceylondoc/vertx-sql//SQLConnection.type.html#queryWithParams(java.lang.String,%20io.vertx.core.json.JsonArray,%20io.vertx.core.Handler)[queryWithParams]`.
+
+This takes the query, containing the parameter place holders, and a `JsonArray` or parameter
+values.
+
+[source,java]
+----
+
+value query = "SELECT ID, FNAME, LNAME, SHOE_SIZE from PEOPLE WHERE LNAME=? AND SHOE_SIZE > ?";
+value params = JsonArray {"Fox" , 9 };
+
+connection.queryWithParams(query, params, (ResultSet|Throwable res) {
+
+  if (is ResultSet res) {
+    // Get the result set
+    value resultSet = res;
+  } else {
+    // Failed!
+  };
+});
+
+
+----
+
+=== Executing INSERT, UPDATE or DELETE
+
+To execute an operation which updates the database use `link:../../ceylondoc/vertx-sql//SQLConnection.type.html#update(java.lang.String,%20io.vertx.core.Handler)[update]`.
+
+The update string is raw SQL that is passed through without changes to the actual database.
+
+The handler will be called with the results, represented by `link:../../ceylondoc/vertx-sql//UpdateResult.type.html[UpdateResult]` when the update has
+been run.
+
+The update result holds the number of rows updated with `link:../../ceylondoc/vertx-sql//UpdateResult.type.html#getUpdated()[getUpdated]`, and
+if the update generated keys, they are available with `link:../../ceylondoc/vertx-sql//UpdateResult.type.html#getKeys()[getKeys]`.
+
+[source,java]
+----
+
+value columnNames = resultSet.columnNames;
+
+value results = resultSet.results;
+
+for (row in results) {
+
+  value id = row[0];
+  value fName = row[1];
+  value lName = row[2];
+  value shoeSize = row[3];
+
+};
+
+
+----
+
+=== Prepared statement updates
+
+To execute a prepared statement update you can use
+`link:../../ceylondoc/vertx-sql//SQLConnection.type.html#updateWithParams(java.lang.String,%20io.vertx.core.json.JsonArray,%20io.vertx.core.Handler)[updateWithParams]`.
+
+This takes the update, containing the parameter place holders, and a `JsonArray` or parameter
+values.
+
+[source,java]
+----
+
+value update = "UPDATE PEOPLE SET SHOE_SIZE = 10 WHERE LNAME=?";
+value params = JsonArray {"Fox" };
+
+connection.updateWithParams(update, params, (UpdateResult|Throwable res) {
+
+  if (is UpdateResult res) {
+
+    value updateResult = res;
+
+    print("No. of rows updated: ``updateResult.updated``");
+
+  } else {
+
+    // Failed!
+
+  };
+});
+
+
+----
+
+=== Callable statements
+
+To execute a callable statement (either SQL functions or SQL procedures) you can use
+`link:../../ceylondoc/vertx-sql//SQLConnection.type.html#callWithParams(java.lang.String,%20io.vertx.core.json.JsonArray,%20io.vertx.core.json.JsonArray,%20io.vertx.core.Handler)[callWithParams]`.
+
+This takes the callable statement using the standard JDBC format `{ call func_proc_name() }`, optionally including
+parameter place holders e.g.: `{ call func_proc_name(?, ?) }`, a `JsonArray` containing the
+parameter values and finally a `JsonArray` containing the
+output types e.g.: `[null, 'VARCHAR']`.
+
+A SQL function returns some output using the `return` keyword, and in this case one can call it like this:
+
+[source,java]
+----
+// Assume that there is a SQL function like this:
+//
+// create function one_hour_ago() returns timestamp
+//    return now() - 1 hour;
+
+// note that you do not need to declare the output for functions
+value func = "{ call one_hour_ago() }";
+
+connection.call(func, (ResultSet|Throwable res) {
+
+  if (is ResultSet res) {
+    value result = res;
+  } else {
+    // Failed!
+  };
+});
+
+----
+
+When working with Procedures you and still return values from your procedures via its arguments, in the case you do
+not return anything the usage is as follows:
+
+[source,java]
+----
+// Assume that there is a SQL procedure like this:
+//
+// create procedure new_customer(firstname varchar(50), lastname varchar(50))
+//   modifies sql data
+//   insert into customers values (default, firstname, lastname, current_timestamp);
+
+value func = "{ call new_customer(?, ?) }";
+
+connection.callWithParams(func, JsonArray {"John" , "Doe" }, null, (ResultSet|Throwable res) {
+
+  if (is ResultSet res) {
+    // Success!
+  } else {
+    // Failed!
+  };
+});
+
+----
+
+However you can also return values like this:
+
+[source,java]
+----
+Code not translatable : Method MethodSignature[name=addNull,parameters=[],varargs=false] not yet implemented
+----
+
+Note that the index of the arguments matches the index of the `?` and that the output parameters expect to be a
+String describing the type you want to receive.
+
+To avoid ambiguation the implementations are expected to follow the following rules:
+
+* When a place holder in the `IN` array is `NOT NULL` it will be taken
+* When the `IN` value is NULL a check is performed on the OUT
+  * When the `OUT` value is not null it will be registered as a output parameter
+  * When the `OUT` is also null it is expected that the IN value is the `NULL` value.
+
+The registered `OUT` parameters will be available as an array in the result set under the output property.
+
+=== Executing other operations
+
+To execute any other database operation, e.g. a `CREATE TABLE` you can use
+`link:../../ceylondoc/vertx-sql//SQLConnection.type.html#execute(java.lang.String,%20io.vertx.core.Handler)[execute]`.
+
+The string is passed through without changes to the actual database. The handler is called when the operation
+is complete
+
+[source,java]
+----
+
+value sql = "CREATE TABLE PEOPLE (ID int generated by default as identity (start with 1 increment by 1) not null,FNAME varchar(255), LNAME varchar(255), SHOE_SIZE int);";
+
+connection.execute(sql, (Throwable? execute) {
+  if (!exists execute) {
+    print("Table created !");
+  } else {
+    // Failed!
+  };
+});
+
+
+----
+
+=== Using transactions
+
+To use transactions first set auto-commit to false with `link:../../ceylondoc/vertx-sql//SQLConnection.type.html#setAutoCommit(boolean,%20io.vertx.core.Handler)[setAutoCommit]`.
+
+You then do your transactional operations and when you want to commit or rollback use
+`link:../../ceylondoc/vertx-sql//SQLConnection.type.html#commit(io.vertx.core.Handler)[commit]` or
+`link:../../ceylondoc/vertx-sql//SQLConnection.type.html#rollback(io.vertx.core.Handler)[rollback]`.
+
+Once the commit/rollback is complete the handler will be called and the next transaction will be automatically started.
+
+[source,java]
+----
+
+// Do stuff with connection - updates etc
+
+// Now commit
+
+connection.commit((Throwable? res) {
+  if (!exists res) {
+    // Committed OK!
+  } else {
+    // Failed!
+  };
+});
+
+
+----
+
+=== Closing connections
+
+When you've done with the connection you should return it to the pool with `link:../../ceylondoc/vertx-sql//SQLConnection.type.html#close(io.vertx.core.Handler)[close]`.
