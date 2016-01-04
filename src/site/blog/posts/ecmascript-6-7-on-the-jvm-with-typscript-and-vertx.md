@@ -3,7 +3,6 @@ title: ECMAScript 6/7 on the JVM with TypeScript and Vert.x
 date: 2016-01-03
 template: post.html
 author: michel-kraemer
-draft: true
 ---
 
 Following the latest releases of [Vert.x 3.2](http://vertx.io) and
