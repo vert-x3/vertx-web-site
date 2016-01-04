@@ -36,8 +36,8 @@ var full_time_developers = [{
   twitter: "https://twitter.com/clementplop"
 }];
 
-// Contributors
-var contributors = [{
+// Component maintainers
+var maintainers = [{
   github_id: "michel-kraemer",
   name: "Michel Kr&auml;mer",
   contribution: "Web-site",
@@ -46,6 +46,96 @@ var contributors = [{
   github: "https://github.com/michel-kraemer",
   google_plus: "https://plus.google.com/115526316201910245712"
 }, {
+  github_id: "alexlehm",
+  avatar: "https://avatars.githubusercontent.com/u/156144?v=3&s=80",
+  github: "https://github.com/alexlehm",
+  name: "Alexander Lehmann",
+  contribution: "SMTP client",
+  twitter: "https://twitter.com/alexlehm",
+  homepage: "https://about.me/alexlehm"
+}, {
+  github_id: "fmarinelli",
+  avatar: "https://avatars.githubusercontent.com/u/790571?v=3&s=80",
+  github: "https://github.com/fmarinelli",
+  name: "Fabio Marinelli",
+  contribution: "JGroups Cluster Manager"
+}, {
+  github_id: "chirino",
+  avatar: "https://avatars.githubusercontent.com/u/103255?v=3&s=80",
+  github: "https://github.com/chirino",
+  name: "Hiram Chirino",
+  contribution: "Vert.x Proton"
+}, {
+  github_id: "jstrachan",
+  avatar: "https://avatars.githubusercontent.com/u/30140?v=3&s=80",
+  github: "https://github.com/jstrachan",
+  name: "James Strachan",
+  homepage: "http://macstrac.blogspot.com/",
+  contribution: "Kubernetes/Fabric8"
+}, {
+  github_id: "Narigo",
+  avatar: "https://avatars.githubusercontent.com/u/1767865?v=3&s=80",
+  github: "https://github.com/Narigo",
+  name: "Joern Bernhardt",
+  homepage: "http://www.campudus.com/",
+  contribution: "MySQL/PostgreSQL"
+}, {
+  github_id: "johnoliver",
+  avatar: "https://avatars.githubusercontent.com/u/1615532?v=3&s=80",
+  github: "https://github.com/johnoliver",
+  name: "John Oliver",
+  contribution: "MongoDB client"
+}, {
+  github_id: "kuujo",
+  avatar: "https://avatars.githubusercontent.com/u/823318?v=3&s=80",
+  github: "https://github.com/kuujo",
+  name: "Jordan Halterman",
+  homepage: "http://atomix.io",
+  contribution: "Zookeeper/Python"
+}, {
+  github_id: "LarsTimm",
+  avatar: "https://avatars.githubusercontent.com/u/12085953?v=3&s=80",
+  github: "https://github.com/LarsTimm",
+  name: "Lars Timm",
+  contribution: "Scala"
+}, {
+  github_id: "karianna",
+  avatar: "https://avatars.githubusercontent.com/u/180840?v=3&s=80",
+  github: "https://github.com/karianna",
+  name: "Martijn Verburg",
+  homepage: "http://martijnverburg.blogspot.com",
+  contribution: "MongoDB client"
+}, {
+  github_id: "rajith77",
+  avatar: "https://avatars.githubusercontent.com/u/1030331?v=3&s=80",
+  github: "https://github.com/rajith77",
+  name: "Rajith Muditha Attapattu",
+  contribution: "AMQP bridge"
+}, {
+  github_id: "tsegismont",
+  avatar: "https://avatars.githubusercontent.com/u/1500598?v=3&s=80",
+  github: "https://github.com/tsegismont",
+  name: "Thomas Segismont",
+  homepage: "http://tsegismont.blogspot.fr/",
+  contribution: "Hawkular Metrics"
+}, {
+  github_id: "maeste",
+  name: "Stefano Maestri",
+  avatar: "https://avatars.githubusercontent.com/u/74194?v=3&s=80",
+  github: "https://github.com/maeste",
+  homepage: "http://www.javalinux.it/",
+  contribution: "JCA Adapter"
+}, {
+  github_id: "davsclaus",
+  name: "Claus Ibsen",
+  avatar: "https://avatars.githubusercontent.com/u/477100?v=3&s=80",
+  github: "https://github.com/davsclaus",
+  homepage: "http://davsclaus.com/",
+  contribution: "Camel bridge"
+}];
+
+// Contributors
+var contributors = [{
   github_id: "jotschi",
   name: "Johannes Sch&uuml;th",
   avatar: "http://www.gravatar.com/avatar/1e57b87157678193e7a0faf22ae3e958?s=80",
@@ -93,16 +183,10 @@ var contributors = [{
   google_plus: "https://plus.google.com/u/0/+MarkLittleJBossCTO/",
   homepage: "http://markclittle.blogspot.co.uk",
   github: "https://github.com/nmcl"
-}, {
-  github_id: "alexlehm",
-  avatar: "https://avatars.githubusercontent.com/u/156144?v=3&s=80",
-  github: "https://github.com/alexlehm",
-  name: "Alexander Lehmann",
-  twitter: "https://twitter.com/alexlehm",
-  homepage: "https://about.me/alexlehm"
 }];
 
 module.exports = {
   full_time_developers: full_time_developers,
+  maintainers: maintainers,
   contributors: contributors
 };
