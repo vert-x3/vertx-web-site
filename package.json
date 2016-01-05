@@ -40,6 +40,7 @@
     "metalsmith-permalinks": "^0.4.0",
     "metalsmith-swig-helpers": "^1.2.1",
     "metalsmith-templates": "^0.7.0",
+    "mkdirp": "^0.5.1",
     "moment": "^2.5.1",
     "pretty-hrtime": "^1.0.0",
     "request": "2.55.0",

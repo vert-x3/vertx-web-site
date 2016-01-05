@@ -14,6 +14,7 @@ var gutil = require("gulp-util");
 var iconfilter = require("./src/main/filters/iconfilter.js");
 var inject = require("gulp-inject-string");
 var materials = require("./src/main/materials/materials.js");
+var mkdirp = require("mkdirp");
 var path = require("path");
 var prettyHrtime = require("pretty-hrtime");
 var projectData = require("./target/data/data.json");
@@ -478,13 +479,19 @@ gulp.task("watch", ["site-dev"], function() {
 
 // generate info for the current distribution
 gulp.task("generate-distribution-info", function(done) {
-  generateDistributionInfo(projectData.version, paths.target_distributioninfo, function(err, di) {
+  mkdirp(path.dirname(paths.target_distributioninfo), function(err) {
     if (err) {
       done(err);
-    } else {
-      done();
+      return;
     }
-  });
+    generateDistributionInfo(projectData.version, paths.target_distributioninfo, function(err, di) {
+      if (err) {
+        done(err);
+      } else {
+        done();
+      }
+    });
+  })
 });
 
 // update the list of people who have contributed to vertx repositories
