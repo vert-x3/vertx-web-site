@@ -3,6 +3,7 @@ var compress = require("compression");
 var connect = require("connect");
 var contributors = require("./src/main/community/contributors.js");
 var contributorsGen = require("./src/generated/community/contributors-gen.js");
+var Crawler = require("simplecrawler");
 var decompress = require("gulp-decompress");
 var del = require("del");
 var flatten = require("gulp-flatten");
@@ -453,26 +454,63 @@ gulp.task("site-dev", ["site"], function(done) {
   }, true);
 });
 
+function startDevServer(done) {
+  // start web server
+  var app = connect();
+  app.use(compress());
+  app.use(contextPathDev, serveStatic(paths.site, {
+    "index": ["index.html"]
+  }));
+  return app.listen(devPort, function() {
+    gutil.log("Listening on port", gutil.colors.cyan("4000"), "...");
+    if (done) {
+      done();
+    }
+  });
+}
+
 // start a web server, watch source directory and rebuild if necessary
 gulp.task("watch", ["site-dev"], function() {
-    // start web server
-    var app = connect();
-    app.use(compress());
-    app.use(contextPathDev, serveStatic(paths.site, {
-        "index": ["index.html"]
-    }));
-    app.listen(devPort, function() {
-        gutil.log("Listening on port", gutil.colors.cyan("4000"), "...");
-    });
+  startDevServer();
+  return gulp.watch([paths.src + "/**/*", paths.templates + "/**/*"], {}, function() {
+    gutil.log("Rebuilding ...");
+    var start = process.hrtime();
+    build(function() {
+      gutil.log("Finished", "'" + gutil.colors.cyan("rebuilding") + "'",
+        "after", gutil.colors.magenta(prettyHrtime(process.hrtime(start))));
+    }, true);
+  });
+});
 
-    return gulp.watch([paths.src + "/**/*", paths.templates + "/**/*"], {}, function() {
-        gutil.log("Rebuilding ...");
-        var start = process.hrtime();
-        build(function() {
-            gutil.log("Finished", "'" + gutil.colors.cyan("rebuilding") + "'",
-                "after", gutil.colors.magenta(prettyHrtime(process.hrtime(start))));
-        }, true);
+gulp.task("check-links", ["site-dev"], function(done) {
+  var app = startDevServer(function() {
+    gutil.log("Crawling site for broken links ...");
+    var broken = 0;
+    var crawler = Crawler.crawl(siteUrlDev)
+    crawler.parseScriptTags = false;
+    crawler.addFetchCondition(function(parsedURL) {
+      return ["/vertx2/", "/feed.xml"].every(function(prefix) {
+        return parsedURL.path.indexOf(prefix) != 0;
+      });
     });
+    crawler
+      .on("fetch404", function(queueItem, response) {
+        gutil.log("----");
+        gutil.log("Resource not found:", queueItem.url);
+        gutil.log("Location:", queueItem.referrer);
+        broken++;
+      })
+      .on("complete", function(queueItem) {
+        app.close();
+        if (broken > 0) {
+          gutil.log("----");
+          gutil.log("Found " + broken + " broken links.");
+        } else {
+          gutil.log("No broken links found.");
+        }
+        done();
+      });
+  });
 });
 
 // generate info for the current distribution
