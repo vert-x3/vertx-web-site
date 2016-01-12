@@ -93,7 +93,7 @@ function generateInfo(version) {
     infoFullTarGz.date = dateformat(infoFullTarGz.date, DATE_FORMAT);
     infoFullZip.date = dateformat(infoFullZip.date, DATE_FORMAT);
     infoHtmlZip.date = dateformat(infoHtmlZip.date, DATE_FORMAT);
-    
+
     return {
       "min": [{
         "name": templateToFilename(TEMPLATE_MIN_TAR_GZ, version),

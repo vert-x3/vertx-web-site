@@ -167,6 +167,7 @@ function build(done, dev) {
 
   // Extract the project version from the generated project data.
   var project_version = projectData.version;
+  var download_version = projectData.download;
 
   // prepare contributors
   var sorted_contributors = prepareContributors(contributors.contributors, true);
@@ -175,7 +176,7 @@ function build(done, dev) {
 
   // get distribution info
   var distribution_info = require("./" + paths.target_distributioninfo);
-  distribution_info = distribution_info[project_version];
+  distribution_info = distribution_info[download_version];
 
   Metalsmith(__dirname)
     .source(paths.src)
@@ -484,7 +485,7 @@ gulp.task("generate-distribution-info", function(done) {
       done(err);
       return;
     }
-    generateDistributionInfo(projectData.version, paths.target_distributioninfo, function(err, di) {
+    generateDistributionInfo(projectData.download, paths.target_distributioninfo, function(err, di) {
       if (err) {
         done(err);
       } else {
