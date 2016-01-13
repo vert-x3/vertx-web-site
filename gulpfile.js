@@ -64,7 +64,7 @@ var contextPathDev = "/";
 var devPort = 4000;
 
 // website url in production mode (must be absolute; protocol and host may be omitted)
-var siteUrl = "http://vertx.io" + contextPath;
+var siteUrl = "http://" + projectData.host + contextPath;
 
 // website url in development mode (must be absolute; protocol and host may be omitted)
 var siteUrlDev = "http://localhost:" + devPort + contextPathDev;
@@ -161,8 +161,6 @@ function build(done, dev) {
   var site_url = siteUrl;
   if (dev) {
     site_url = siteUrlDev;
-  } else {
-    site_url = "http://vertx.io/"
   }
 
   // Extract the project version from the generated project data.
