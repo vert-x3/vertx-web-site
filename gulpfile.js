@@ -2,7 +2,7 @@ var bower = require("gulp-bower");
 var compress = require("compression");
 var connect = require("connect");
 var contributors = require("./src/main/community/contributors.js");
-var contributorsGen = require("./src-gen/main/community/contributors-gen.js");
+var contributorsGen = require("./src/generated/community/contributors-gen.js");
 var decompress = require("gulp-decompress");
 var del = require("del");
 var flatten = require("gulp-flatten");
@@ -80,7 +80,7 @@ var paths = {
     "bower_components/bootstrap/less"
   ],
   src: "src/site",
-  src_gen: "src-gen",
+  src_gen: "src/generated",
   site: "target/site",
   vertx2: "src/main/vertx2",
   target_asciidoctor_bs_themes: "target/asciidoctor-bs-themes",

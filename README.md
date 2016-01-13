@@ -66,7 +66,7 @@ to add new people.
 To automatically generate a list of contributors who are not already defined
 in `contributors.js` run `gulp update-contributors`. The script retrieves a list
 of people who contributed to Vert.x projects (i.e. projects from the `vert-x3`
-organisation on GitHub) and saves it to `src-gen/main/community/contributors-gen.js`.
+organisation on GitHub) and saves it to `src/generated/community/contributors-gen.js`.
 Never edit this file directly. It will always be overwritten by the
 `update-contributors` gulp task.
 
