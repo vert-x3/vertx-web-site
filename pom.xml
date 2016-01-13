@@ -39,6 +39,7 @@
   * Update the vertx.version variable
   * Update the vertx.docs.verson variable
   * Remove hacks
+  * Remove the content of src/main/asciidoc-override
   -->
 
   <scm>
@@ -238,10 +239,11 @@
             <artifactId>maven-antrun-plugin</artifactId>
             <executions>
 
-              <!-- Fix typos in .ad files, the new .ad are located in etc/hacks-asciidoc, they must use the final
-               structure -->
+              <!-- Fix typos in .ad files, the new .ad are located in src/main/asciidoc-override,
+              they must use the final structure -->
+
               <execution>
-                <id>Asciidoc-Override</id>
+                <id>asciidoc-override</id>
                 <goals>
                   <goal>run</goal>
                 </goals>
@@ -250,7 +252,7 @@
                   <target>
                     <copy todir="${project.build.directory}/docs"
                           verbose="true">
-                      <fileset dir="${project.basedir}/etc/hacks-asciidoc"/>
+                      <fileset dir="${project.basedir}/src/main/asciidoc-override"/>
                     </copy>
                   </target>
                 </configuration>
