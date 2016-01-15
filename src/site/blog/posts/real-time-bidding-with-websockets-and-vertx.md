@@ -1,19 +1,18 @@
 ---
 title: Real-time bidding with Websockets and Vert.x
 template: post.html
-date: 2016-01-21
+date: 2016-01-15
 author: mwarc
-draft: true
 ---
-
 The expectations of users for interactivity with web applications have changed over the past few years.
 Users during bidding in auction no longer want to press the refresh button to check if the price
-has changed or the auction is over. This made bidding difficult and less fun. 
+has changed or the auction is over. This made bidding difficult and less fun.
 Instead, they expect to see the updates in application in real-time.
 
 In this article I want to show how to create a simple application that provides real-time bidding.
 We will use WebSockets, [SockJS](https://github.com/sockjs/sockjs-client) and Vert.x.
-We will create a frontend for fast bidding that communicates with a microservice written in Java and based on Vert.x.
+
+We will create a front-end for fast bidding that communicates with a micro-service written in Java and based on Vert.x.
 
 ## What are Websockets?
 
@@ -102,7 +101,7 @@ function bid() {
 
 ## Auction Service
 
-SockJS client requires the server-side part. Now we are going to create a light-weight RESTful auction service. 
+SockJS client requires the server-side part. Now we are going to create a light-weight RESTful auction service.
 We will send and retrieve data in JSON format. Let’s start by creating a verticle.
 First we need to inherit from [`AbstractVerticle`](http://vertx.io/docs/apidocs/io/vertx/core/AbstractVerticle.html)
 and override the `start` method.
@@ -113,8 +112,11 @@ To tell the server to listen on port 8080 for incoming requests you use the `lis
 We need a router with routes. A router takes an HTTP request and finds the first matching route.
 The route can have a handler associated with it, which receives the request
 (e.g. route that matches path `/eventbus/*` is  associated with `eventBusHandler`).
+
 We can do something with the request, and then, end it or pass it to the next matching handler.
+
 If you have a lot of handlers it makes sense to split them up into multiple routers.
+
 You can do this by mounting a router at a mount point in another router
 (see `auctionApiRouter` that corresponds to `/api` mount point in code snippet below).
 
@@ -208,7 +210,7 @@ Shared data includes local shared maps, distributed, cluster-wide maps, asynchro
 and asynchronous cluster-wide counters.
 
 To simplify the application we use the local shared map to save information about auctions.
-The local shared map allows you to share data between different verticles in the same Vert.x instance. 
+The local shared map allows you to share data between different verticles in the same Vert.x instance.
 Here’s an example of using a shared local map in an auction service:
 
 ```java
@@ -298,7 +300,7 @@ public void handleChangeAuctionPrice(RoutingContext context) {
 }
 ```
 
-PATCH request to `/auctions/1` would result in variable `auctionId` getting the value 1.
+`PATCH` request to `/auctions/1` would result in variable `auctionId` getting the value 1.
 We save a new offer in the auction and then publish this information on the event bus to all clients
 registered on the address on the client side JavaScript.
 After you have finished with the HTTP response you must call the `end` function on it.
@@ -332,5 +334,5 @@ Open one or more browsers and point them to `http://localhost:8080`. Now you can
 ## Summary
 
 This article presents the outline of a simple application that allows real-time bidding.
-We created a lightweight, high-performance and scalable microservice written in Java and based on Vert.x.
+We created a lightweight, high-performance and scalable micro-service written in Java and based on Vert.x.
 We discussed what Vert.x offers, among others, a distributed event bus and an elegant API that allows you to create applications in no time.
