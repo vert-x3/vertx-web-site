@@ -1,17 +1,17 @@
 ---
-title: Using Hamcrest Matchers with vert.x unit
+title: Using Hamcrest Matchers with Vert.x Unit
 template: post.html
-date: 2016-01-20
+date: 2016-01-18
 author: cescoffier
 ---
 
-vert.x unit is a very elegant library to test asynchronous applications developed with vert.x. However because of this asynchronous aspect, reporting test failures is not natural for JUnit users.  This is because, the failed assertions need to be reported to the _test context_, controlling the execution (and so the outcome) of the test. In other words, in a vert.x unit test you cannot use the regular Junit assertions and assertion libraries. In this blog post, we propose a way to let you using Hamcrest matchers in vert.x unit tests.
+Vert.x Unit is a very elegant library to test asynchronous applications developed with vert.x. However because of this asynchronous aspect, reporting test failures is not natural for JUnit users.  This is because, the failed assertions need to be reported to the _test context_, controlling the execution (and so the outcome) of the test. In other words, in a Vert.x Unit test you cannot use the regular Junit assertions and assertion libraries. In this blog post, we propose a way to let you using Hamcrest matchers in Vert.x Unit tests.
 
-## Using vert.x unit
+## Using Vert.x Unit
 
-Vert.x unit is a test library made to ensure the behavior of vert.x applications. It lets you implement tests checking asynchronous behavior.
+Vert.x Unit is a test library made to ensure the behavior of vert.x applications. It lets you implement tests checking asynchronous behavior.
 
-vert.x unit can be used with Junit. For this, you just need to add the following dependency to your project:
+Vert.x Unit can be used with Junit. For this, you just need to add the following dependency to your project:
 
 ```xml
 <dependency>
@@ -31,10 +31,10 @@ If you are using an IDE, just add the vertx-unit jar to your project classpath.
 
 Obviously, you would need to add JUnit too.
 
-Notice that vertx-unit does not need JUnit, and can be used without it. Check the vert.x unit [documentation](http://vertx.io/docs/vertx-unit/java/) for more details.
+Notice that vertx-unit does not need JUnit, and can be used without it. Check the Vert.x Unit [documentation](http://vertx.io/docs/vertx-unit/java/) for more details.
 
 
-## vert.x unit example
+## Vert.x Unit example
 
 Let’s consider this very simple `Verticle`:
 
@@ -58,7 +58,7 @@ public class MyFirstVerticle extends AbstractVerticle {
 
 It just creates a new HTTP server and when launched it notifies the `future` of the completion.
 
-To test this verticle with vert.x unit you would write something like:
+To test this verticle with Vert.x Unit you would write something like:
 
 ```java
 @RunWith(VertxUnitRunner.class)
@@ -78,9 +78,9 @@ public class MyFirstVerticleTest {
     Async async = context.async();
     vertx.createHttpClient().get(8080, "localhost", "/")
       .handler(response -> {
-        context.assertTrue(response.statusCode() == 200);
+        context.assertEquals(200, response.statusCode());
         response.bodyHandler(buffer -> {
-          context.assertEquals(buffer.toString("utf-8"), "hello vert.x");
+          context.assertEquals("hello vert.x", buffer.toString("utf-8"));
           async.complete();
         });
       })
@@ -165,6 +165,6 @@ You can use any Hamcrest matcher, or even implement your own as soon as you use 
 
 ## Conclusion
 
-In this post we have seen how you can combine Hamcrest and Vert.x unit. So, you are not limited anymore by the set of assert methods provided by Vert.x Unit, and can use the whole expressiveness of Hamcrest Matchers.
+In this post we have seen how you can combine Hamcrest and Vert.x Unit. So, you are not limited anymore by the set of assert methods provided by Vert.x Unit, and can use the whole expressiveness of Hamcrest Matchers.
 
 Don’t forget that you still can’t use the `assert` methods from Junit, as they don’t report on the `TestContext`.
