@@ -16,6 +16,7 @@ var iconfilter = require("./src/main/filters/iconfilter.js");
 var inject = require("gulp-inject-string");
 var materials = require("./src/main/materials/materials.js");
 var mkdirp = require("mkdirp");
+var pad = require("pad");
 var path = require("path");
 var prettyHrtime = require("pretty-hrtime");
 var projectData = require("./target/data/data.json");
@@ -486,25 +487,43 @@ gulp.task("watch", ["site-dev"], function() {
 });
 
 gulp.task("check-links", ["site-dev"], function(done) {
+  function devUrlToPath(url) {
+    if (url.indexOf(siteUrlDev) == 0) {
+      return "/" + url.substring(siteUrlDev.length);
+    }
+    return url;
+  }
+
   var app = startDevServer(function() {
     gutil.log("Crawling site for broken links ...");
     var broken = 0;
     var crawler = Crawler.crawl(siteUrlDev)
     crawler.parseScriptTags = false;
+    crawler.interval = 10;
     crawler.addFetchCondition(function(parsedURL) {
       return ["/vertx2/", "/feed.xml"].every(function(prefix) {
         return parsedURL.path.indexOf(prefix) != 0;
       });
     });
     crawler
+      .on("fetchstart", function(queueItem, request) {
+        var msg = "Fetching resource " + devUrlToPath(queueItem.url);
+        msg = pad(msg, 79);
+        if (msg.length > 79) {
+          msg = msg.substring(0, 76) + "...";
+        }
+        process.stderr.write(msg + "\r");
+      })
       .on("fetch404", function(queueItem, response) {
+        process.stderr.write(pad("", 79) + "\r");
         gutil.log("----");
-        gutil.log("Resource not found:", queueItem.url);
-        gutil.log("Location:", queueItem.referrer);
+        gutil.log("Resource not found:", devUrlToPath(queueItem.url));
+        gutil.log("Location:", devUrlToPath(queueItem.referrer));
         broken++;
       })
       .on("complete", function(queueItem) {
         app.close();
+        process.stderr.write(pad("", 79) + "\r");
         if (broken > 0) {
           gutil.log("----");
           gutil.log("Found " + broken + " broken links.");

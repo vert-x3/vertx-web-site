@@ -42,6 +42,7 @@
     "metalsmith-templates": "^0.7.0",
     "mkdirp": "^0.5.1",
     "moment": "^2.5.1",
+    "pad": "^1.0.0",
     "pretty-hrtime": "^1.0.0",
     "request": "2.55.0",
     "serve-static": "^1.9.2",
