@@ -275,6 +275,10 @@ function build(done, dev) {
             content = content.toString();
           }
           return admonitions.all(content);
+        },
+
+        "render": function(content, l) {
+          return swig.render(content, { locals: l });
         }
 
       }
