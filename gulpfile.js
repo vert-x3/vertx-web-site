@@ -394,6 +394,9 @@ function buildDocs(done, dev) {
       pattern: "**/*.html"
     }))
 
+    // limit concurrency to avoid "EMFILE: too many open files" error
+    .concurrency(1000)
+
     // build site
     .build(done);
 }
