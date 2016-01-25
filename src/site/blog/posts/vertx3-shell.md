@@ -1,9 +1,8 @@
 ---
 title: Intro to Vert.x Shell
 template: post.html
-date: 2016-01-26
+date: 2016-01-25
 author: vietj
-draft: true
 ---
 
 Vert.x Shell provides an extensible command line for Vert.x, accessible via SSH, Telnet or a nice Web interface. Vert.x Shell comes out of the box with plenty of commands for Vert.x which makes it very handy for doing simple management operations like deploying a Verticle or getting the list of deployed Verticles. One power feature of Vert.x Shell is its extensibility: one can easily augment Vert.x Shell with its own commands. Let's build an _http-client_ in JavaScript!
@@ -27,7 +26,7 @@ We can run it:
 
 ```
 Juliens-MacBook-Pro:java julien$ vertx run vertx-http-client.js
-Succeeded in deploying verticle 
+Succeeded in deploying verticle
 ```
 
 And connect to the shell:
@@ -47,7 +46,7 @@ __      __ ______  _____  _______  __   __
     \/    |______||_| \_\   |_| o  /_/ \_\
 
 
-% 
+%
 ```
 
 You can now already use the shell, the _help_ command lists the available commands.
@@ -105,24 +104,24 @@ The final step of this tutorial is the actual implementation of the client logic
 ```
 // Create the client request
 var request = client.getAbs(url, function(response) {
-	  
+
   // Print the response in the shell console
   response.handler(function(buffer) {
     process.write(buffer.toString("UTF-8"));
   });
-	
+
   // End the command when the response ends
   response.endHandler(function() {
     process.end();
   });
 });
-  
+
 // Set a request handler to end the command with error
 request.exceptionHandler(function(err) {
   process.write("Error: " + err.getMessage());
   process.end();
 });
-  
+
 // End the http request
 request.end();
 ```
