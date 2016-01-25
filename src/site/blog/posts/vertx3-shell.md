@@ -6,7 +6,7 @@ author: vietj
 draft: true
 ---
 
-Vert.x Shell provides an extensible command line for Vert.x, accessible via SSH, Telnet or a nice Web interface. Vert.x Shell comes out of the box with plenty of commands for Vert.x which makes it very handy for doing simple management operations like deploying a Verticle or getting the list of deployed Verticles. One power feature of Vert.x Shell is its extensibility: one can easily augment Vert.x Shell with its own commands, let's build an _http-client_ in JavaScript.
+Vert.x Shell provides an extensible command line for Vert.x, accessible via SSH, Telnet or a nice Web interface. Vert.x Shell comes out of the box with plenty of commands for Vert.x which makes it very handy for doing simple management operations like deploying a Verticle or getting the list of deployed Verticles. One power feature of Vert.x Shell is its extensibility: one can easily augment Vert.x Shell with its own commands. Let's build an _http-client_ in JavaScript!
 
 ## Booting the Shell
 
@@ -50,11 +50,11 @@ __      __ ______  _____  _______  __   __
 % 
 ```
 
-You can now already uses the shell, the _help_ command list the available commands.
+You can now already use the shell, the _help_ command lists the available commands.
 
 ## Creating a command
 
-For the sake of simplicity we will write a single script that starts the Shell service and deploy our command. In the real world you would probably have the command in one file and the deployment in another.
+For the sake of simplicity we will write a single script that starts the Shell service and deploys our command. In the real world you would probably have the command in one file and the deployment in another.
 
 The [documentation](http://vertx.io/docs/vertx-shell/js/#_extending_vert_x_shell) explains how to add a new command to Vert.x shell, we can just copy this section and append it to the _vertx-http-client.js_ script:
 
