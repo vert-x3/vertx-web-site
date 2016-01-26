@@ -12,7 +12,7 @@
             <p class="blog-post-meta">{{post.date | date}} by
               <a href="http://github.com/{{post.author}}">{{post.author}}</a></p>
           {% endif %}
-          <article>{{post.excerpt | safe | admonition | extractContent }}</article>
+          <article>{{post.excerpt | safe | admonition | extractContent | render(_ctx) }}</article>
           <p><a href="{{ site_url }}{{post.path}}/">Read more &raquo;</a></p>
           <hr/>
       </article>

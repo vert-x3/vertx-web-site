@@ -53,6 +53,14 @@ Open your browser to:
 * Linux: `http://localhost:4000`
 * Mac: `http://192.168.99.100:4000`
 
+### Checking for broken links
+
+You can run a gulp task that will build the website and then check for broken links.
+
+    gulp check-links
+
+Make sure you have built the website with `mvn site` first if you haven't done so already.
+
 ## A word on URLs
 
 All URLs and links in the website should be absolute. You can use the template

@@ -23,12 +23,12 @@ event bus, ensuring that other services running on the cluster will not be expos
 
 This is what you should expect to see:
 
-![Screencast](/assets/blog/vertx3-realtime-webapps/screencast.gif)
+![Screencast]({{ site_url }}assets/blog/vertx3-realtime-webapps/screencast.gif)
 
 
 ## Bootstrap a project
 
-If you followed the previous [series]((/blog/my-first-vert-x-3-application/index.html) on Vert.x development, you saw
+If you followed the previous [series]({{ site_url }}blog/my-first-vert-x-3-application/index.html) on Vert.x development, you saw
 that Java and Maven were the main topic, since Vert.x is polyglot I will focus on JavaScript and
 [NPM](https://www.npmjs.com/) as my programming language and package management tool.
 
@@ -62,7 +62,7 @@ you can run the application. You can add it to the `dependencies` property and i
 ```
 
 If you do not know why there is the dependency on `vertx3-full` or why the added `scripts` property please check the
-[older](/blog/vert-x3-says-hello-to-npm-users/index.html) blog post about it.
+[older]({{ site_url }}blog/vert-x3-says-hello-to-npm-users/index.html) blog post about it.
 
 ## Project Structure
 
