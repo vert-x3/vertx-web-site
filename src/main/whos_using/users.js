@@ -194,6 +194,10 @@ var all_users = {
     src: "movingimage_logo.png",
     link: "https://www.movingimage24.com",
     height: 84
+  }, {
+    src: "Viking-Labs-Logo-White.png",
+    link: "http://vikinglabs.com.br",
+    height: 39
   }]
 };
 
