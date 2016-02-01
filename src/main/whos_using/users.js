@@ -201,7 +201,8 @@ var all_users = {
   }, {
     src: "tesco_logo.png",
     link: "http://www.tesco.com/",
-    height: 48
+    height: 48,
+    wikipedia: "https://en.wikipedia.org/wiki/Tesco"
   }]
 };
 
