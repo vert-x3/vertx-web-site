@@ -198,6 +198,10 @@ var all_users = {
     src: "Viking-Labs-Logo-White.png",
     link: "http://vikinglabs.com.br",
     height: 39
+  }, {
+    src: "tesco_logo.png",
+    link: "http://www.tesco.com/",
+    height: 48
   }]
 };
 
