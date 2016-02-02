@@ -203,6 +203,11 @@ var all_users = {
     link: "http://www.tesco.com/",
     height: 48,
     wikipedia: "https://en.wikipedia.org/wiki/Tesco"
+  },
+  {
+    src: "hot_schedules_white.png",
+    link: "https://hotschedules.com/",
+    height: 48
   }]
 };
 
