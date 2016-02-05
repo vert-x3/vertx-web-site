@@ -98,7 +98,7 @@ import io.vertx.ceylon.core { ... }
 import io.vertx.ceylon.core.http { ... }
 shared class Server() extends Verticle() {
   start() => vertx.createHttpServer()
-    .requestHandler((HttpServerRequest req) =>
+    .requestHandler(req) =>
       req.response()
         .putHeader("content-type", "text/plain")
         .end("Hello from Vert.x!")

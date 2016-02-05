@@ -56,11 +56,18 @@
     </license>
   </licenses>
 
+  <repositories>
+      <repository>
+        <id>staging</id>
+        <url>https://oss.sonatype.org/content/repositories/iovertx-2404</url>
+      </repository>
+  </repositories>
+
   <properties>
 
-    <vertx.version>3.3.0-SNAPSHOT</vertx.version>
+    <vertx.version>3.2.1</vertx.version>
     <vertx.download.version>3.2.0</vertx.download.version>
-    <vertx.docs.version>3.3.0-SNAPSHOT</vertx.docs.version>
+    <vertx.docs.version>3.2.1</vertx.docs.version>
 
     <asciidoclet.version>1.5.1</asciidoclet.version>
     <apacheds-protocol-dns.version>1.5.7</apacheds-protocol-dns.version>

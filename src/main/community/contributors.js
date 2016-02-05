@@ -3,17 +3,9 @@
 
 // Full Time Developers
 var full_time_developers = [{
-  github_id: "purplefox",
-  name: "Tim Fox",
-  role: "Project lead",
-  avatar: "http://www.gravatar.com/avatar/9cd3a5dcf7413cb13ba60bf8d520ea9b?s=80",
-  homepage: "http://tfox.org/",
-  github: "https://github.com/purplefox",
-  twitter: "https://twitter.com/timfox"
-}, {
   github_id: "vietj",
   name: "Julien Viet",
-  role: "Core developer",
+  role: "Project lead",
   avatar: "http://www.gravatar.com/avatar/cb52062fbd7e159b54e3c298d622fe72?s=80",
   homepage: "http://blog.julienviet.com",
   github: "https://github.com/vietj",
