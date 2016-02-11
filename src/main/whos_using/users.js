@@ -208,6 +208,10 @@ var all_users = {
     src: "hot_schedules_white.png",
     link: "https://hotschedules.com/",
     height: 48
+  }, {
+    src: "databerries-white.png",
+    link: "http://databerries.com/",
+    height: 40
   }]
 };
 
