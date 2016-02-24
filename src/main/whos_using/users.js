@@ -212,6 +212,11 @@ var all_users = {
     src: "databerries-white.png",
     link: "http://databerries.com/",
     height: 40
+  }, {
+    src: "zalando_logo.png",
+    link: "https://www.zalando.com/",
+    wikipedia: "https://en.wikipedia.org/wiki/Zalando",
+    height: 50
   }]
 };
 
