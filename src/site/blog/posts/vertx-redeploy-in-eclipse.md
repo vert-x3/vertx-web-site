@@ -31,8 +31,8 @@ The following screencast explains how you configure a vert.x application to be r
 To summarize the last configuration:
 
 * it's a Java application configuration
-* it's uses `io.vertx.core.Launcher` as main class
-* In the _Program arguments_ (_Arguments_ tab), write: `run --redeploy="src/**/*.java" --launcher-class=org.acme.vertx.Main`
+* it uses `io.vertx.core.Launcher` as main class
+* In the _Program arguments_ (_Arguments_ tab), write: `run org.acme.vertx.Main --redeploy="src/**/*.java" --launcher-class=io.vertx.core.Launcher`
 
 ## Redeploy with your own Main class
 
@@ -57,6 +57,6 @@ The redeploy feature from vert.x lets you use your own `Main` class:
 
 1. Create another `Run` configuration
 2. Set the `Main-Class` to `io.vertx.core.Launcher` (yes, the one from vert.x not yours)
-3. In the application parameter add: `run --redeploy="src/**/*.java" --launcher-class=org.acme.vertx.Main`
+3. In the application parameter add: `run org.acme.vertx.Main --redeploy="src/**/*.java" --launcher-class=io.vertx.core.Launcher`
 
 With this configuration, the application is launched in background using your own `Main` class, and will restart the application every time you change your source code (you can even change the source code of your `Main` class).
