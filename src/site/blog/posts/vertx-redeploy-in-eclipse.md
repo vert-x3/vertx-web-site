@@ -31,8 +31,8 @@ The following screencast explains how you configure a vert.x application to be r
 To summarize the last configuration:
 
 * it's a Java application configuration
-* it's uses `io.vertx.core.Launcher` as main class
-* In the _Program arguments_ (_Arguments_ tab), write: `run --redeploy="src/**/*.java" --launcher-class=org.acme.vertx.Main`
+* it uses `io.vertx.core.Launcher` as main class
+* In the _Program arguments_ (_Arguments_ tab), write: `run org.acme.vertx.Main --redeploy="src/**/*.java" --launcher-class=io.vertx.core.Launcher`
 
 ## Redeploy with your own Main class
 
