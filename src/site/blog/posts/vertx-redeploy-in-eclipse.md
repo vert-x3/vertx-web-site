@@ -57,6 +57,6 @@ The redeploy feature from vert.x lets you use your own `Main` class:
 
 1. Create another `Run` configuration
 2. Set the `Main-Class` to `io.vertx.core.Launcher` (yes, the one from vert.x not yours)
-3. In the application parameter add: `run org.acme.vertx.Main --redeploy="src/**/*.java" --launcher-class=io.vertx.core.Launcher`
+3. In the application parameter add: `run --redeploy="src/**/*.java" --launcher-class=org.acme.vertx.Main`
 
 With this configuration, the application is launched in background using your own `Main` class, and will restart the application every time you change your source code (you can even change the source code of your `Main` class).
