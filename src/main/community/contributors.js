@@ -124,6 +124,13 @@ var maintainers = [{
   github: "https://github.com/davsclaus",
   homepage: "http://davsclaus.com/",
   contribution: "Camel bridge"
+}, {
+  github_id: "agura",
+  name: "Andrey Gura",
+  avatar: "https://avatars.githubusercontent.com/u/1387185?v=3&s=80",
+  github: "https://github.com/agura",
+  homepage: "https://github.com/agura",
+  contribution: "Apache Ignite Cluster Manager"
 }];
 
 // Contributors
