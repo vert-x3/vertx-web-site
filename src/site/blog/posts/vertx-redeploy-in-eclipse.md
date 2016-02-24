@@ -32,7 +32,7 @@ To summarize the last configuration:
 
 * it's a Java application configuration
 * it uses `io.vertx.core.Launcher` as main class
-* In the _Program arguments_ (_Arguments_ tab), write: `run org.acme.vertx.Main --redeploy="src/**/*.java" --launcher-class=io.vertx.core.Launcher`
+* In the _Program arguments_ (_Arguments_ tab), write: `run org.acme.verticle.MyMainVerticle --redeploy="src/**/*.java" --launcher-class=io.vertx.core.Launcher`
 
 ## Redeploy with your own Main class
 
