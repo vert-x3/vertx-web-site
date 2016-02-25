@@ -214,7 +214,7 @@ var all_users = {
     height: 40
   }, {
     src: "zalando_logo.png",
-    link: "https://www.zalando.com/",
+    link: "https://tech.zalando.com/",
     wikipedia: "https://en.wikipedia.org/wiki/Zalando",
     height: 50
   }]
