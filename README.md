@@ -4,14 +4,7 @@
 
 # The Vert.x 3.0 web-site repository
 
-**Browse the (experimental, work in progress) [Vert.x 3.0 web-site](http://vert-x3.github.io/)**
-
-This repository contains the Vert.x 3.x web site.
-
-This includes both the static site and the documentation.
-
-The documentation is generated, by pulling in the *-html.zip files created by sub projects (e.g. vertx-core, vertx-lang-js)
-and unzipping them into the site.
+This repository is containing the Vert.x Web Site source. The web site is available on: http://vertx.io.
 
 ## Building
 
