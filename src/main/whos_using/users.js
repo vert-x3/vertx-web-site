@@ -217,6 +217,10 @@ var all_users = {
     link: "https://tech.zalando.com/",
     wikipedia: "https://en.wikipedia.org/wiki/Zalando",
     height: 50
+  }, {
+    src: "machineshop.png",
+    link: "http://www.machineshop.io/",
+    height: 30
   }]
 };
 
