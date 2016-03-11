@@ -221,6 +221,11 @@ var all_users = {
     src: "machineshop.png",
     link: "http://www.machineshop.io/",
     height: 30
+  }, {
+    src: "swiss-post.png",
+    link: "http://https://www.post.ch",
+    height: 50,
+    wikipedia: "https://en.wikipedia.org/wiki/Swiss_Post"
   }]
 };
 
