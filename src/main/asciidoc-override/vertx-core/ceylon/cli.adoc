@@ -1,0 +1,312 @@
+Vert.x Core provides an API for parsing command line arguments passed to programs.
+
+It's also able to print help
+messages detailing the options available for a command line tool. Even if such features are far from
+the Vert.x core topics, this API is used in the `Launcher` class that you can use in _fat-jar_
+and in the `vertx` command line tools. In addition, it's polyglot (can be used from any supported language) and is
+used in Vert.x Shell.
+
+Vert.x CLI provides a model to describe your command line interface, but also a parser. This parser supports
+different types of syntax:
+
+* POSIX like options (ie. `tar -zxvf foo.tar.gz`)
+* GNU like long options (ie. `du --human-readable --max-depth=1`)
+* Java like properties (ie. `java -Djava.awt.headless=true -Djava.net.useSystemProxies=true Foo`)
+* Short options with value attached (ie. `gcc -O2 foo.c`)
+* Long options with single hyphen (ie. `ant -projecthelp`)
+
+Using the CLI api is a 3-steps process:
+
+1. The definition of the command line interface
+2. The parsing of the user command line
+3. The query / interrogation
+
+=== Definition Stage
+
+Each command line interface must define the set of options and arguments that will be used. It also requires a
+name. The CLI API uses the `link:../../ceylondoc/vertx-core//cli/Option.type.html[Option]` and `link:../../ceylondoc/vertx-core//cli/Argument.type.html[Argument]` classes to
+describe options and arguments:
+
+[source,ceylon]
+----
+import io.vertx.ceylon.core.cli { cli_ = cli } 
+
+...
+
+value cli = cli_.create("copy").setSummary("A command line interface to copy files.").addOption(Option {
+  longName = "directory";
+  shortName = "R";
+  description = "enables directory support";
+  flag = true;
+}).addArgument(Argument {
+  index = 0;
+  description = "The source";
+  argName = "source";
+}).addArgument(Argument {
+  index = 0;
+  description = "The destination";
+  argName = "target";
+});
+
+----
+
+As you can see, you can create a new `link:../../ceylondoc/vertx-core//cli/CLI.type.html[CLI]` using
+`link:../../ceylondoc/vertx-core//cli/CLI.object.html#create(java.lang.String)[CLI.create]`. The passed string is the name of the CLI. Once created you
+can set the summary and description. The summary is intended to be short (one line), while the description can
+contain more details. Each option and argument are also added on the `CLI` object using the
+`link:../../ceylondoc/vertx-core//cli/CLI.type.html#addArgument(io.vertx.core.cli.Argument)[addArgument]` and
+`link:../../ceylondoc/vertx-core//cli/CLI.type.html#addOption(io.vertx.core.cli.Option)[addOption]` methods.
+
+==== Options
+
+An `link:../../ceylondoc/vertx-core//cli/Option.type.html[Option]` is a command line parameter identified by a _key_ present in the user command
+line. Options must have at least a long name or a short name. Long name are generally used using a `--` prefix,
+while short names are used with a single `-`. Options can get a description displayed in the usage (see below).
+Options can receive 0, 1 or several values. An option receiving 0 values is a `flag`, and must be declared using
+`link:../../ceylondoc/vertx-core//cli/Option.type.html#setFlag(boolean)[flag]`. By default, options receive a single value, however, you can
+configure the option to receive several values using `link:../../ceylondoc/vertx-core//cli/Option.type.html#setMultiValued(boolean)[multiValued]`:
+
+[source,ceylon]
+----
+import io.vertx.ceylon.core.cli { cli_ = cli } 
+
+...
+
+value cli = cli_.create("some-name").setSummary("A command line interface illustrating the options valuation.").addOption(Option {
+  longName = "flag";
+  shortName = "f";
+  flag = true;
+  description = "a flag";
+}).addOption(Option {
+  longName = "single";
+  shortName = "s";
+  description = "a single-valued option";
+}).addOption(Option {
+  longName = "multiple";
+  shortName = "m";
+  multiValued = true;
+  description = "a multi-valued option";
+});
+
+----
+
+Options can be marked as mandatory. A mandatory option not set in the user command line throws an exception during
+the parsing:
+
+[source,ceylon]
+----
+import io.vertx.ceylon.core.cli { cli_ = cli } 
+
+...
+
+value cli = cli_.create("some-name").addOption(Option {
+  longName = "mandatory";
+  required = true;
+  description = "a mandatory option";
+});
+
+----
+
+Non-mandatory options can have a _default value_. This value would be used if the user does not set the option in
+the command line:
+
+[source,ceylon]
+----
+import io.vertx.ceylon.core.cli { cli_ = cli } 
+
+...
+
+value cli = cli_.create("some-name").addOption(Option {
+  longName = "optional";
+  defaultValue = "hello";
+  description = "an optional option with a default value";
+});
+
+----
+
+An option can be _hidden_ using the `link:../../ceylondoc/vertx-core//cli/Option.type.html#setHidden(boolean)[hidden]` method. Hidden option are
+not listed in the usage, but can still be used in the user command line (for power-users).
+
+If the option value is contrained to a fixed set, you can set the different acceptable choices:
+
+[source,ceylon]
+----
+import io.vertx.ceylon.core.cli { cli_ = cli } 
+
+...
+
+value cli = cli_.create("some-name").addOption(Option {
+  longName = "color";
+  defaultValue = "green";
+  choices = {"blue" , "red" , "green" };
+  description = "a color";
+});
+
+----
+
+Options can also be instantiated from their JSON form.
+
+==== Arguments
+
+Unlike options, arguments do not have a _key_ and are identified by their _index_. For example, in
+`java com.acme.Foo`, `com.acme.Foo` is an argument.
+
+Arguments do not have a name, there are identified using a 0-based index. The first parameter has the
+index `0`:
+
+[source,ceylon]
+----
+import io.vertx.ceylon.core.cli { cli_ = cli } 
+
+...
+
+value cli = cli_.create("some-name").addArgument(Argument {
+  index = 0;
+  description = "the first argument";
+  argName = "arg1";
+}).addArgument(Argument {
+  index = 1;
+  description = "the second argument";
+  argName = "arg2";
+});
+
+----
+
+If you don't set the argument indexes, it computes it automatically by using the declaration order.
+
+[source,ceylon]
+----
+import io.vertx.ceylon.core.cli { cli_ = cli } 
+
+...
+
+value cli = cli_.create("some-name").addArgument(Argument {
+  description = "the first argument";
+  argName = "arg1";
+}).addArgument(Argument {
+  description = "the second argument";
+  argName = "arg2";
+});
+
+----
+
+The `argName` is optional and used in the usage message.
+
+As options, `link:../../ceylondoc/vertx-core//cli/Argument.type.html[Argument]` can:
+
+* be hidden using `link:../../ceylondoc/vertx-core//cli/Argument.type.html#setHidden(boolean)[hidden]`
+* be mandatory using `link:../../ceylondoc/vertx-core//cli/Argument.type.html#setRequired(boolean)[required]`
+* have a default value using `link:../../ceylondoc/vertx-core//cli/Argument.type.html#setDefaultValue(java.lang.String)[defaultValue]`
+* receive several values using `link:../../ceylondoc/vertx-core//cli/Argument.type.html#setMultiValued(boolean)[multiValued]` - only the last argument
+can be multi-valued.
+
+Arguments can also be instantiated from their JSON form.
+
+==== Usage generation
+
+Once your `link:../../ceylondoc/vertx-core//cli/CLI.type.html[CLI]` instance is configured, you can generate the _usage_ message:
+
+[source,ceylon]
+----
+import io.vertx.ceylon.core.cli { cli_ = cli } 
+
+...
+
+value cli = cli_.create("copy").setSummary("A command line interface to copy files.").addOption(Option {
+  longName = "directory";
+  shortName = "R";
+  description = "enables directory support";
+  flag = true;
+}).addArgument(Argument {
+  index = 0;
+  description = "The source";
+  argName = "source";
+}).addArgument(Argument {
+  index = 0;
+  description = "The destination";
+  argName = "target";
+});
+
+value builder = StringBuilder();
+cli.usage(builder);
+
+----
+
+It generates an usage message like this one:
+
+[source]
+----
+Usage: copy [-R] source target
+
+A command line interface to copy files.
+
+  -R,--directory   enables directory support
+----
+
+If you need to tune the usage message, check the `UsageMessageFormatter` class.
+
+=== Parsing Stage
+
+Once your `link:../../ceylondoc/vertx-core//cli/CLI.type.html[CLI]` instance is configured, you can parse the user command line to evaluate
+each option and argument:
+
+[source,ceylon]
+----
+value commandLine = cli.parse(userCommandLineArguments);
+
+----
+
+The `link:../../ceylondoc/vertx-core//cli/CLI.type.html#parse(java.util.List)[parse]` method returns a `link:../../ceylondoc/vertx-core//cli/CommandLine.type.html[CommandLine]`
+object containing the values. By default, it validates the user command line and checks that each mandatory options
+and arguments have been set as well as the number of values received by each option. You can disable the
+validation by passing `false` as second parameter of `link:../../ceylondoc/vertx-core//cli/CLI.type.html#parse(java.util.List,%20boolean)[parse]`.
+This is useful if you want to check an argument or option is present even if the parsed command line is invalid.
+
+You can check whether or not the
+`link:../../ceylondoc/vertx-core//cli/CommandLine.type.html[CommandLine]` is valid using `link:../../ceylondoc/vertx-core//cli/CommandLine.type.html#isValid()[isValid]`.
+
+=== Query / Interrogation Stage
+
+Once parsed, you can retrieve the values of the options and arguments from the
+`link:../../ceylondoc/vertx-core//cli/CommandLine.type.html[CommandLine]` object returned by the `link:../../ceylondoc/vertx-core//cli/CLI.type.html#parse(java.util.List)[parse]`
+method:
+
+[source,ceylon]
+----
+value commandLine = cli.parse(userCommandLineArguments);
+value opt = commandLine.getOptionValue("my-option");
+value flag = commandLine.isFlagEnabled("my-flag");
+value arg0 = commandLine.getArgumentValue(0);
+
+----
+
+One of your option can have been marked as "help". If a user command line enabled a "help" option, the validation
+won't failed, but give you the opportunity to check if the user asks for help:
+
+[source,ceylon]
+----
+import io.vertx.ceylon.core.cli { cli_ = cli } 
+
+...
+
+value cli = cli_.create("test").addOption(Option {
+  longName = "help";
+  shortName = "h";
+  flag = true;
+  help = true;
+}).addOption(Option {
+  longName = "mandatory";
+  required = true;
+});
+
+value line = cli.parse(Collections.singletonList("-h"));
+
+// The parsing does not fail and let you do:
+if (!line.isValid() && line.isAskingForHelp()) {
+  value builder = StringBuilder();
+  cli.usage(builder);
+  stream.print(builder.toString());
+};
+
+----
+

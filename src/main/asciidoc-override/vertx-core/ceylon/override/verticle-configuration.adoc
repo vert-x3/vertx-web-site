@@ -1,0 +1,38 @@
+=== Passing configuration to a verticle
+
+Configuration in the form of JSON can be passed to a verticle at deployment time:
+
+[source]
+----
+value config = JsonObject {
+  "name"->"Tim",
+  "directory"->"blah"
+};
+value options = DeploymentOptions {
+  config = config;
+};
+
+vertx.deployVerticle("otherVerticle.java", options);
+----
+
+NOTE: we suppose `ceylon.json::Object` is aliased to `JsonObject`
+
+This configuration is then available via the `io.vertx.ceylon.core::Context` object.
+
+The configuration is returned as a
+`JsonObject` object so you can retrieve data as follows:
+
+[source]
+----
+print("``vertx.getOrCreateContext().config()?.get("name") else "no config"``")
+----
+
+=== Accessing environment variables in a Verticle
+
+Environment variables and system properties are accessible from a verticle using the Java API:
+
+[source,javascript]
+----
+print("``System.getProperty("foo")``");
+print("``System.getenv("HOME")``");
+----
