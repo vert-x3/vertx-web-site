@@ -3,7 +3,6 @@ title: Vertx 3 and Azure cloud platform tutorial
 date: 2016-03-17
 template: post.html
 author: post
-draft: true
 ---
 
 Vert.x 3.2.1 applications can quickly be deployed on [Microsoft Azure](http://portal.azure.com/). Deployment is independent of your build so it is all about configuration.
