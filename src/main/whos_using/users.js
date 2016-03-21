@@ -226,6 +226,10 @@ var all_users = {
     link: "http://https://www.post.ch",
     height: 50,
     wikipedia: "https://en.wikipedia.org/wiki/Swiss_Post"
+  }, {
+    src: "jdriven_white.png",
+    link: "http://www.jdriven.com",
+    height: 46
   }]
 };
 
