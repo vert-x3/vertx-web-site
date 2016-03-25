@@ -21,8 +21,10 @@ This how you would deploy your app:
 
 ## Screencast
 
-The following screencast explains how you can do this from scratch:
+The following screencast 
 
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/nGQs_swWwAM" frameborder="0" allowfullscreen></iframe>
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nGQs_swWwAM" frameborder="0" allowfullscreen></iframe>
+</div>
 
 Don't forget to follow our [youtube channel](https://www.youtube.com/channel/UCGN6L3tRhs92Uer3c6VxOSA)!
