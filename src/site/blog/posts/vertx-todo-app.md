@@ -72,16 +72,16 @@ For every todo entry we need to maintain four pieces of information:
 * URL        -  unique URL for every ToDo task
 * Order      -  has an integer value
 
-Keeping this in mind, we create a [ToDoItem](https://github.com/Ashwin-Surana/to-do-backend/blob/master/src/main/java/io/vertx/example/todo/domain/ToDoItem.java) POJO class. We will use this class to store information on every todo entry the user makes.
+Keeping this in mind, we create a [`ToDoItem`](https://github.com/Ashwin-Surana/to-do-backend/blob/master/src/main/java/io/vertx/example/todo/domain/ToDoItem.java) POJO class. We will use this class to store information on every todo entry the user makes.
 
-[WARNING It is important that we don't change the name of the fields as we will be encoding and decoding objects of this class using [Json](http://vertx.io/docs/apidocs/io/vertx/core/json/Json.html) class provided by Vert.X Core API.]
+[WARNING It is important that we don't change the name of the fields as we will be encoding and decoding objects of this class using [`Json`](http://vertx.io/docs/apidocs/io/vertx/core/json/Json.html) class provided by Vert.X Core API.]
 
- Next up, we have to maintain the todo list of items in our application. The user should be able to fetch all todo items, create a new todo item, delete as well as update an existing item. So, the next step is to write a service to support all these operations and maintain a list of todos. For the simplicity of this post, we will maintain the list of todos in an ArrayList. This [ToDoService](https://github.com/Ashwin-Surana/to-do-backend/blob/master/src/main/java/io/vertx/example/todo/service/ToDoService.java) class will maintain the entries of every ToDoItem and supports all operations discussed above.
+ Next up, we have to maintain the todo list of items in our application. The user should be able to fetch all todo items, create a new todo item, delete as well as update an existing item. So, the next step is to write a service to support all these operations and maintain a list of todos. For the simplicity of this post, we will maintain the list of todos in an ArrayList. This [`ToDoService`](https://github.com/Ashwin-Surana/to-do-backend/blob/master/src/main/java/io/vertx/example/todo/service/ToDoService.java) class will maintain the entries of every ToDoItem and supports all operations discussed above.
 
 ##It's time for Vert.X
 Now that we are done writing the service, it’s time to get to the heart of the application - Vert.x! We start off by creating a verticle. Verticles are chunks of code deployed and run by Vert.x. The advantage of Vert.X is that you don’t have to stick to one language. It is a polyglot framework - we can implement one verticle, in say Java and another in Groovy. (But for our application, we restrict ourselves to Java 8).
 
-So here we have a [ToDoVerticle](https://github.com/Ashwin-Surana/to-do-backend/blob/master/src/main/java/io/vertx/example/todo/verticles/ToDoVerticle.java) which implements the REST endpoints mentioned above. Don't get overwhelmed by the lines of code in the ToDoVerticle. To make it easier for you to understand, let's analyse the  code in bits and pieces. 
+So here we have a [`ToDoVerticle`](https://github.com/Ashwin-Surana/to-do-backend/blob/master/src/main/java/io/vertx/example/todo/verticles/ToDoVerticle.java) which implements the REST endpoints mentioned above. Don't get overwhelmed by the lines of code in the ToDoVerticle. To make it easier for you to understand, let's analyse the  code in bits and pieces. 
 
 ```
 public void start() throws Exception {
@@ -98,10 +98,10 @@ When the verticle is deployed, its start method is invoked. In this method, we h
         setupCORS();
  }
 ```
-In the init() method, we create a [Router](http://vertx.io/docs/apidocs/io/vertx/ext/web/Router.html) object. This router object is responsible for routing all incoming HTTP requests to the first matching [Route](http://vertx.io/docs/apidocs/io/vertx/ext/web/Route.html). A route then invokes the request handler, if the request's path, method, etc. match the criteria. So once the router object is created, we instantiate the ToDoService, followed by a method call to setupCORS(). 
+In the init() method, we create a [`Router`](http://vertx.io/docs/apidocs/io/vertx/ext/web/Router.html) object. This router object is responsible for routing all incoming HTTP requests to the first matching [`Route`](http://vertx.io/docs/apidocs/io/vertx/ext/web/Route.html). A route then invokes the request handler, if the request's path, method, etc. match the criteria. So once the router object is created, we instantiate the ToDoService, followed by a method call to setupCORS(). 
 
 ##TODO: Setup CORS
-For the routes `/todo` and `/todo/:id`, we define the [CorsHandler](http://vertx.io/docs/apidocs/io/vertx/ext/web/handler/CorsHandler.html).
+For the routes `/todo` and `/todo/:id`, we define the [`CorsHandler`](http://vertx.io/docs/apidocs/io/vertx/ext/web/handler/CorsHandler.html).
 ```
  private void setupCORS() {
         Set<HttpMethod> toDoUrlMethodSet = new HashSet<>(Arrays.asList(HttpMethod.GET,
@@ -137,30 +137,30 @@ In the `setRoutes()` method, mapping for a HTTP request on a route and its corre
 ```
 private void setRoutes() {
                 // TODO_URL = "/todo"
-        router.get(TODO_URL).handler(this::getToDos);
-        router.delete(TODO_URL).handler(this::clearToDo);
+        router.get(TODO_URL).handler(this::getAllToDo);
+        router.delete(TODO_URL).handler(this::deleteAllToDo);
         router.post(TODO_URL).handler(this::createToDo);
                  //TODO_ID_URL = "/todo/:id" 
-        router.get(TODO_ID_URL).handler(this::getToDoWithId);
-        router.delete(TODO_ID_URL).handler(this::deleteToDoWithId);
-        router.patch(TODO_ID_URL).handler(this::updateToDoWithId);
+        router.get(TODO_ID_URL).handler(this::getToDo);
+        router.delete(TODO_ID_URL).handler(this::deleteToDo);
+        router.patch(TODO_ID_URL).handler(this::updateToDo);
 }
 ```
 To drill down further, consider this line
 ```
-router.get(TODO_URL).handler(this::getToDos);
+router.get(TODO_URL).handler(this::getAllToDo);
 ```
-Here, we inform the router to invoke getToDos() method if a HttpRequest of HttpMethod **GET** arrives on the route TODO_URL = "/todo". Here, `this::getToDos` is a lambda expression that has been introduced in Java 8. An alternative for this is to implement the interface [Handler<RoutingContext>](http://vertx.io/docs/apidocs/io/vertx/core/Handler.html). Similarly you can interpret the other routes that has been defined.
+Here, we inform the router to invoke getToDos() method if a HttpRequest of HttpMethod **GET** arrives on the route TODO_URL = "/todo". Here, `this::getAllToDo` is a lambda expression that has been introduced in Java 8. An alternative for this is to implement the interface [`Handler<RoutingContext>`](http://vertx.io/docs/apidocs/io/vertx/core/Handler.html). Similarly you can interpret the other routes that has been defined.
 
-Let's take a look in to `getToDos()` method to gain understanding on how to process the request. 
+Let's take a look in to `getAllToDo()` method to gain understanding on how to process the request. 
 ```
-private void getToDos(RoutingContext context) {
+private void getAllToDo(RoutingContext context) {
         context.response().setStatusCode(HttpResponseStatus.OK.code())
                 .putHeader("content-type", "application/json; charset=utf-8")
                 .end(Json.encode(toDoService.getAll()));
 }
 ```
-Every handler gets a [RoutingContext](http://vertx.io/docs/apidocs/io/vertx/ext/web/RoutingContext.html) object, for the accepted request. The context has access to [HttpServerRequest](http://vertx.io/docs/apidocs/io/vertx/core/http/HttpServerRequest.html) and [HttpServerResponse](http://vertx.io/docs/apidocs/io/vertx/core/http/HttpServerResponse.html). So when we get a GET request from the user, we encode the list of todo items as a json message and send it as a response with content type as `application/json` and the HTTP response status code as `200` (i.e. OK). 
+Every handler gets a [`RoutingContext`](http://vertx.io/docs/apidocs/io/vertx/ext/web/RoutingContext.html) object, for the accepted request. The context has access to [`HttpServerRequest`](http://vertx.io/docs/apidocs/io/vertx/core/http/HttpServerRequest.html) and [`HttpServerResponse`](http://vertx.io/docs/apidocs/io/vertx/core/http/HttpServerResponse.html). So when we get a GET request from the user, we encode the list of todo items as a json message and send it as a response with content type as `application/json` and the HTTP response status code as `200` (i.e. OK). 
 
 That was quite simple right? Now let's try understanding another handler, `createToDo()`
 ```
@@ -178,7 +178,7 @@ That was quite simple right? Now let's try understanding another handler, `creat
 ```  
 When the user creates a new todo entry in the webpage, a **POST** request is received. The body of this request contains the information of this todo entry as a json string. We decode this json string as a todo item and add it to the todo list and send the repsonse as json string of the created todo item and HTTP Status as **CREATED**. 
 
-Similarly other REST API's have been implemented. So far we are done initializing the CORS handlers on the route and implementing the REST services. What's remaining is to start an HTTP Server. That's what the method call to         startServer() does.
+Similarly other REST API's have been implemented. So far we are done initializing the CORS handlers on the route and implementing the REST services. What's remaining is to start an HTTP Server. That's what the method call to startServer() does.
 
 ```
 private void startServer() {
@@ -189,7 +189,7 @@ private void startServer() {
 ```
 We create a HttpServer which listens to a port and a host address as set in the system property. We attach a request handler for the server so that for all incoming request to this HttpServer, the router then routes the request to a matching route.
 
-With this done, we can now compile and build our application. But aren't we missing a Main class? Well, we don't have to write one necessarily. Instead, we can use the [Launcher](http://vertx.io/docs/apidocs/io/vertx/core/Launcher.html) main class available in Vert.X Core API. 
+With this done, we can now compile and build our application. But aren't we missing a Main class? Well, we don't have to write one necessarily. Instead, we can use the [`Launcher`](http://vertx.io/docs/apidocs/io/vertx/core/Launcher.html) main class available in Vert.X Core API. 
 
 ##TODO: Package Application
 
@@ -237,7 +237,9 @@ To execute the fat jar, use the following command
 ```
 java -Dhttp.port=8000 -jar to-do-list-1.0-SNAPSHOT-fat.jar
 ```
-We are setting the system property http.port to be 8000, on which the HttpServer will listen.The application should execute and run without any error and the `ToDoVerticle` should get deployed. Finally, we have the application up and running. Time for some testing! Navigate to this [site](http://www.todobackend.com/specs/index.html) and paste the link `http://localhost:8000/todo` in the text field and run the tests.
+We are setting the system property http.port to be 8000, on which the HttpServer will listen.The application should execute and run without any error and the `ToDoVerticle` should get deployed. Finally, we have the application up and running. 
+
+Time for some testing! Navigate to this [site](http://www.todobackend.com/specs/index.html) and paste the link `http://localhost:8000/todo` in the text field and run the tests.
 
 [NOTE The above link assumes that you are executing the application in your own machine (i.e. localhost). If that's not the case, modify the link to your server's address.]
 
