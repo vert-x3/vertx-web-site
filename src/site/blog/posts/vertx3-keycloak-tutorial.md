@@ -3,7 +3,6 @@ title: Vertx 3 and Keycloak tutorial
 date: 2016-03-30
 template: post.html
 author: pmlopes
-draft: true
 ---
 
 With the upcoming release of Vert.x 3.3 securing your application with Keycloak is even easier than before.
