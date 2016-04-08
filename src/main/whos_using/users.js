@@ -223,13 +223,18 @@ var all_users = {
     height: 30
   }, {
     src: "swiss-post.png",
-    link: "http://https://www.post.ch",
+    link: "https://www.post.ch",
     height: 50,
     wikipedia: "https://en.wikipedia.org/wiki/Swiss_Post"
   }, {
     src: "jdriven_white.png",
     link: "http://www.jdriven.com",
     height: 46
+  }, {
+    src: "swisscom.png",
+    link: "https://swisscom.ch",
+    height: 90,
+    wikipedia: "https://en.wikipedia.org/wiki/Swisscom"
   }]
 };
 
