@@ -7,12 +7,14 @@
 //   is advised to sort them in the list below as well.
 
 var all_users = {
-  max_home_page_users: 12, // maximum number of users on the home page
+  max_home_page_users: 16, // maximum number of users on the home page
   logos: [{
     src: "AirWatch_logo.png",
     link: "http://www.air-watch.com",
     height: 84,
-    wikipedia: "http://en.wikipedia.org/wiki/AirWatch"
+    wikipedia: "http://en.wikipedia.org/wiki/AirWatch",
+    revenue_billion: 1.181,
+    employees: 2300
   }, {
     src: "apislabs.png",
     link: "http://apislabs.us/",
@@ -22,8 +24,8 @@ var all_users = {
     link: "http://www.bosch-si.com",
     height: 53,
     wikipedia: "http://en.wikipedia.org/wiki/Robert_Bosch_GmbH",
-    revenue_billion: 48.9,
-    employees: 290000
+    revenue_billion: 70.6,
+    employees: 375000
   }, {
     src: "boundary.png",
     link: "http://www.boundary.com/",
@@ -62,8 +64,7 @@ var all_users = {
     link: "http://www.igd.fraunhofer.de",
     height: 49,
     wikipedia: "http://en.wikipedia.org/wiki/Fraunhofer_Society",
-    revenue_billion: 1.7,
-    employees: 23000
+    employees: 24000
   }, {
     src: "gentics.png",
     link: "http://www.gentics.com/",
@@ -139,14 +140,14 @@ var all_users = {
     link: "http://www.rbs.com",
     height: 55,
     wikipedia: "http://en.wikipedia.org/wiki/The_Royal_Bank_of_Scotland",
-    employees: 141000
+    employees: 92400
   }, {
     src: "RedHat.svg.png",
     link: "http://www.redhat.com",
     height: 65,
     wikipedia: "http://en.wikipedia.org/wiki/Red_Hat",
     revenue_billion: 1.5,
-    employees: 7300
+    employees: 8300
   }, {
     src: "sketchtogether_logo.png",
     link: "https://sketchtogether.com",
@@ -202,7 +203,9 @@ var all_users = {
     src: "tesco_logo.png",
     link: "http://www.tesco.com/",
     height: 48,
-    wikipedia: "https://en.wikipedia.org/wiki/Tesco"
+    wikipedia: "https://en.wikipedia.org/wiki/Tesco",
+    revenue_billion: 88455,
+    employees: 500000
   },
   {
     src: "hot_schedules_white.png",
@@ -216,7 +219,9 @@ var all_users = {
     src: "zalando_logo.png",
     link: "https://tech.zalando.com/",
     wikipedia: "https://en.wikipedia.org/wiki/Zalando",
-    height: 50
+    height: 50,
+    employees: 10000,
+    revenue_billion: 3
   }, {
     src: "machineshop.png",
     link: "http://www.machineshop.io/",
@@ -225,7 +230,9 @@ var all_users = {
     src: "swiss-post.png",
     link: "https://www.post.ch",
     height: 50,
-    wikipedia: "https://en.wikipedia.org/wiki/Swiss_Post"
+    wikipedia: "https://en.wikipedia.org/wiki/Swiss_Post",
+    revenue_billion: 8.5,
+    employees: 62341
   }, {
     src: "jdriven_white.png",
     link: "http://www.jdriven.com",
@@ -234,7 +241,9 @@ var all_users = {
     src: "swisscom.png",
     link: "https://swisscom.ch",
     height: 100,
-    wikipedia: "https://en.wikipedia.org/wiki/Swisscom"
+    wikipedia: "https://en.wikipedia.org/wiki/Swisscom",
+    revenue_billion: 11.7,
+    employees: 21125
   }]
 };
 
@@ -257,12 +266,6 @@ function sort_by_relevance(a, b) {
     return -1;
   }
   if (b.revenue_billion && !a.revenue_billion) {
-    return 1;
-  }
-  if (a.employees && !b.employees) {
-    return -1;
-  }
-  if (b.employees && !a.employees) {
     return 1;
   }
   if (a.revenue_billion && b.revenue_billion) {
