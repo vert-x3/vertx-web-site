@@ -131,6 +131,13 @@ var maintainers = [{
   github: "https://github.com/agura",
   homepage: "https://github.com/agura",
   contribution: "Apache Ignite Cluster Manager"
+}, {
+  github_id: "poiuytrez",
+  name: "Guillaume Charhon",
+  avatar: "https://avatars.githubusercontent.com/u/1167433?v=3&s=80",
+  github: "https://github.com/poiuytrez",
+  homepage: "https://github.com/poiuytrez",
+  contribution: "RabbitMQ client"
 }];
 
 // Contributors
