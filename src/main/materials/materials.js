@@ -245,6 +245,13 @@ var conferences = [
         speaker: "Hugo Cordier &amp; Michel Guillet",
         conference: "Paris Vert.x User Group",
         link: "https://speakerdeck.com/melusyn/how-do-we-use-vert-dot-x-at-melusyn"
+    },
+    {
+        title: "Vert.x pour l'IoT dans l'embarqué",
+        date: "21/04/2016",
+        speaker: "Laurent Huet",
+        conference: "Devoxx France 2016",
+        link: "https://github.com/lhuet/vertxOnRpiAndOdroid"
     }
 ];
 
