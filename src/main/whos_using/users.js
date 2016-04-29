@@ -240,7 +240,7 @@ var all_users = {
   }, {
     src: "swisscom.png",
     link: "https://swisscom.ch",
-    height: 100,
+    height: 65,
     wikipedia: "https://en.wikipedia.org/wiki/Swisscom",
     revenue_billion: 11.7,
     employees: 21125
