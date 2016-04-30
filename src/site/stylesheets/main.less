@@ -344,6 +344,21 @@ footer {
         margin: @line-height-computed / 2 0;
     }
 
+    .jprofiler {
+      color: @gray-light;
+      text-decoration: none;
+
+      a {
+        text-decoration: none;
+        white-space: nowrap;
+        color: @gray-light;
+      }
+
+      a::hover a::active a:visited {
+        text-decoration: none;
+      }
+    }
+
     .copyright {
         text-align: right;
 
