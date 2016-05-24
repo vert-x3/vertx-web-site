@@ -252,6 +252,13 @@ var conferences = [
         speaker: "Laurent Huet",
         conference: "Devoxx France 2016",
         link: "https://github.com/lhuet/vertxOnRpiAndOdroid"
+    },
+    {
+        title: "Vert.x - from zero to (micro-) hero - a lab",
+        date: "20/04/2016",
+        speaker: "Clement Escoffier, Julien Viet",
+        conference: "Devoxx France 2016",
+        link: "http://vertx-lab.dynamis-technologies.com"
     }
 ];
 
