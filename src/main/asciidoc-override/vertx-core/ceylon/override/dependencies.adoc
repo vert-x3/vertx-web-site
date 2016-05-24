@@ -1,0 +1,21 @@
+If you are embedding Vert.x in Ceylon you should import Vert.x modules of your Ceylon module:
+
+[source,xml,subs="+attributes"]
+----
+native("jvm")
+module my.module "1.0.0" {
+  shared import io.vertx.ceylon.core "3.2.2";
+}
+----
+
+The following stack of modules is supported in 3.2.0-SNAPSHOT:
+
+- `io.vertx.ceylon.core`
+- `io.vertx.ceylon.jdbc`
+- `io.vertx.ceylon.sql`
+- `io.vertx.ceylon.web`
+- `io.vertx.ceylon.auth.common`
+- `io.vertx.ceylon.auth.jdbc`
+- `io.vertx.ceylon.auth.jwt`
+- `io.vertx.ceylon.auth.oauth2`
+- `io.vertx.ceylon.auth.shiro`
