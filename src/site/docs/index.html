@@ -45,6 +45,16 @@ sidebar: true
       <li><a href="#sync">Vert.x Sync.</a></li>
     </ul>
   </li>
+  <li><a href="#microservices">Microservices</a>
+    <ul class="sectlevel2 nav">
+      <li><a href="#discovery">Vert.x Service Discovery</a></li>
+      <li><a href="#circuit-breaker">Vert.x Circuit Breaker</a></li>
+      <li><a href="#discovery-docker-links">Service Discovery for Docker</a></li>
+      <li><a href="#discovery-kubernetes">Service Discovery for Kubernetes</a></li>
+      <li><a href="#discovery-consul">Service Discovery for Consul</a></li>
+      <li><a href="#discovery-redis">Service Discovery backend on Redis</a></li>
+    </ul>
+  </li>
   <li><a href="#devops">Devops</a>
     <ul class="sectlevel2 nav">
       <li><a href="#metrics-dropwizard">Vert.x Metrics - Dropwizard</a></li>
@@ -798,6 +808,193 @@ sidebar: true
               </table>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-sync">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/sync-examples">Examples</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 id="microservices">Microservices Toolbox</h3>
+          <p>Vert.x offers various component to build microservice-based applications.</p>
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 id="metrics">Vert.x Discovery Service</h4>
+              <p>This component lets you publish, lookup and bind to any type of services.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-service/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-service/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-service/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-service/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="circuit-breaker">Vert.x Circuit Breaker</h4>
+              <p>This component provides an implementation of the circuit breaker pattern for Vert.x</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-circuit-breaker/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-circuit-breaker/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-circuit-breaker/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-circuit-breaker/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-circuit-breakers">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="discovery-kubernetes">Vert.x Discovery Service - Kubernetes</h4>
+              <p>This component imports Kubernetes services into the Vert.x Discovery Service.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-bridge-kubernetes/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-bridge-kubernetes/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-bridge-kubernetes/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-bridge-kubernetes/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 id="discovery-kubernetes">Vert.x Discovery Service - Docker Links</h4>
+              <p>This component analyzes Docker links to import services into the Vert.x Discovery Service.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-bridge-docker-links/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-bridge-docker-links/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-bridge-docker-links/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-bridge-docker-links/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="discovery-kubernetes">Vert.x Discovery Service - Consul</h4>
+              <p>This component imports services from Consul into the Vert.x Discovery Service.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-bridge-consul/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-bridge-consul/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-bridge-consul/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-bridge-consul/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="discovery-kubernetes">Vert.x Discovery Service - Redis Backend</h4>
+              <p>This component provides an alternative discovery backend using Redis.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-backend-redis/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-backend-redis/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-backend-redis/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-discovery-backend-redis/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
               </ul>
             </div>
           </div>
