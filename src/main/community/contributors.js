@@ -83,7 +83,7 @@ var maintainers = [{
   github: "https://github.com/kuujo",
   name: "Jordan Halterman",
   homepage: "http://atomix.io",
-  contribution: "Zookeeper/Python"
+  contribution: "Python"
 }, {
   github_id: "LarsTimm",
   avatar: "https://avatars.githubusercontent.com/u/12085953?v=3&s=80",
@@ -138,6 +138,13 @@ var maintainers = [{
   github: "https://github.com/poiuytrez",
   homepage: "https://github.com/poiuytrez",
   contribution: "RabbitMQ client"
+}, {
+  github_id: "stream1984",
+  name: "Stream Liu",
+  contribution: "Zookeeper Cluster Manager",
+  avatar: "https://s.gravatar.com/avatar/421414eb861cf22a469d90ff8c8de980?s=80",
+  homepage: "http://www.streamis.me",
+  github: "https://github.com/stream1984"
 }];
 
 // Contributors
