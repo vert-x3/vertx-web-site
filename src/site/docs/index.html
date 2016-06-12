@@ -27,6 +27,8 @@ sidebar: true
       <li><a href="#stomp">STOMP</a></li>
       <li><a href="#tcp">TCP Event Bus Bridge</a></li>
       <li><a href="#camel">Camel Bridge</a></li>
+      <li><a href="#amqp">AMQP Bridge</a></li>
+      <li><a href="#rabbit">RabbitMQ Client</a></li>
     </ul>
   </li>
   <li><a href="#authentication_and_authorisation">Authentication and Authorisation</a>
@@ -83,8 +85,9 @@ sidebar: true
   </li>
   <li><a href="#cloud">Cloud</a>
     <ul class="sectlevel2 nav">
-      <li><a href="#openshift_cartridge">Vert.x OpenShift Cartridge</a></li>
-      <li><a href="#openshift_using_diy_cartridge">Vert.x OpenShift Using DIY Cartridge</a></li>
+      <li><a href="#openshift_cartridge">Vert.x OpenShift 2 Cartridge</a></li>
+      <li><a href="#openshift_using_diy_cartridge">Vert.x OpenShift 2 - DIY Cartridge</a></li>
+      <li><a href="#openshift_s2i">Vert.x OpenShift 3 S2I</a></li>
     </ul>
   </li>
   <li><a href="#advanced">Advanced</a>
@@ -513,6 +516,66 @@ sidebar: true
                 <li><a href="https://github.com/vert-x3/vertx-camel-bridge">Source</a></li>
               </ul>
             </div>
+            <div class="col-md-4">
+              <h4 id="amqp">AMQP Bridge <small><span class="label label-primary">Technical Preview</span></small></h4>
+              <p>An eventbus bridge that connect to an AMQP broker or router.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-amqp-bridge">Source</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="amqp">RabbitMQ Client <small><span class="label label-primary">Technical Preview</span></small></h4>
+              <p>A client to interact with RabbitMQ.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-rabbitmq-client/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-rabbitmq-client/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-rabbitmq-client/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-rabbitmq-client/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-rabbitmq-client">Source</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -807,7 +870,7 @@ sidebar: true
           <p>Vert.x offers various component to build microservice-based applications.</p>
           <div class="row">
             <div class="col-sm-4">
-              <h4 id="metrics">Vert.x Discovery Service</h4>
+              <h4 id="metrics">Vert.x Discovery Service<span class="label label-primary">Technical Preview</span></small></h4>
               <p>This component lets you publish, lookup and bind to any type of services.</p>
               <table>
                 <tr>
@@ -836,7 +899,7 @@ sidebar: true
               </ul>
             </div>
             <div class="col-sm-4">
-              <h4 id="circuit-breaker">Vert.x Circuit Breaker</h4>
+              <h4 id="circuit-breaker">Vert.x Circuit Breaker<span class="label label-primary">Technical Preview</span></small></h4>
               <p>This component provides an implementation of the circuit breaker pattern for Vert.x</p>
               <table>
                 <tr>
@@ -1244,7 +1307,7 @@ sidebar: true
           <h3 id="cloud">Cloud</h3>
           <div class="row">
             <div class="col-md-4">
-              <h4 id="openshift_cartridge">Vert.x OpenShift Cartridge</h4>
+              <h4 id="openshift_cartridge">Vert.x OpenShift 2 Cartridge</h4>
               <p>This cartridge allows you to easily run clusterable Vert.x applications on the
                 <a href="https://www.openshift.com/">Red Hat OpenShift</a> cloud platform.</p>
               <ul class="list-unstyled">
@@ -1253,12 +1316,20 @@ sidebar: true
               </ul>
             </div>
             <div class="col-md-4">
-              <h4 id="openshift_using_diy_cartridge">Vert.x OpenShift Using DIY Cartridge</h4>
+              <h4 id="openshift_using_diy_cartridge">Vert.x OpenShift 2 - DIY Cartridge</h4>
               <p>This cartridge allows you to get started running simple applications quickly on the
                 <a href="https://www.openshift.com/">Red Hat OpenShift</a> cloud platform.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-openshift-diy-quickstart">Source</a></li>
                 <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/openshift-example">Examples</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="openshift_s2i">Vert.x OpenShift 3 S2I</h4>
+              <p>A source to image support for Openshift 3.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-openshift-s2i">Source</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-openshift-s2i/README.adoc">Manual</a></li>
               </ul>
             </div>
           </div>
