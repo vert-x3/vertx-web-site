@@ -1,1 +1,0 @@
-Message delivery headers are available exclusively with the Java api.

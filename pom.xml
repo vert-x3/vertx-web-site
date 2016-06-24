@@ -24,11 +24,11 @@
   <parent>
     <groupId>io.vertx</groupId>
     <artifactId>vertx-parent</artifactId>
-    <version>8</version>
+    <version>9</version>
   </parent>
 
   <artifactId>vertx-web-site</artifactId>
-  <version>3.2.1</version>
+  <version>3.3.0</version>
 
   <name>Vert.x Website</name>
 
@@ -56,22 +56,13 @@
     </license>
   </licenses>
 
-  <repositories>
-      <repository>
-        <id>staging</id>
-        <url>https://oss.sonatype.org/content/repositories/iovertx-2404</url>
-      </repository>
-  </repositories>
-
   <properties>
-
-    <vertx.version>3.2.1</vertx.version>
-    <vertx.download.version>3.2.1</vertx.download.version>
-    <vertx.docs.version>3.2.1</vertx.docs.version>
+    <vertx.version>3.3.0</vertx.version>
+    <vertx.download.version>3.3.0</vertx.download.version>
+    <vertx.docs.version>3.3.0</vertx.docs.version>
 
     <asciidoclet.version>1.5.1</asciidoclet.version>
     <apacheds-protocol-dns.version>1.5.7</apacheds-protocol-dns.version>
-    <asciidoc.dir>${project.build.directory}/asciidoc</asciidoc.dir>
 
     <github.global.server>github</github.global.server>
 
@@ -188,7 +179,6 @@
           <plugin>
             <groupId>org.asciidoctor</groupId>
             <artifactId>asciidoctor-maven-plugin</artifactId>
-            <version>1.5.2</version>
             <configuration>
               <backend>html</backend>
               <doctype>book</doctype>
@@ -288,7 +278,7 @@
           <plugin>
             <groupId>com.github.eirslett</groupId>
             <artifactId>frontend-maven-plugin</artifactId>
-            <version>0.0.26</version>
+            <version>0.0.28</version>
             <executions>
               <!-- install node.js -->
               <execution>
@@ -372,7 +362,7 @@
           <plugin>
             <groupId>org.jolokia</groupId>
             <artifactId>docker-maven-plugin</artifactId>
-            <version>0.13.7</version>
+            <version>0.13.9</version>
             <executions>
             <execution>
               <id>build</id>

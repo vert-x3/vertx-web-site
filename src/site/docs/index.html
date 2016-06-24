@@ -26,6 +26,9 @@ sidebar: true
       <li><a href="#jca_adaptor">JCA Adaptor</a></li>
       <li><a href="#stomp">STOMP</a></li>
       <li><a href="#tcp">TCP Event Bus Bridge</a></li>
+      <li><a href="#camel">Camel Bridge</a></li>
+      <li><a href="#amqp">AMQP Bridge</a></li>
+      <li><a href="#rabbit">RabbitMQ Client</a></li>
     </ul>
   </li>
   <li><a href="#authentication_and_authorisation">Authentication and Authorisation</a>
@@ -44,6 +47,16 @@ sidebar: true
       <li><a href="#sync">Vert.x Sync.</a></li>
     </ul>
   </li>
+  <li><a href="#microservices">Microservices</a>
+    <ul class="sectlevel2 nav">
+      <li><a href="#discovery">Vert.x Service Discovery</a></li>
+      <li><a href="#circuit-breaker">Vert.x Circuit Breaker</a></li>
+      <li><a href="#discovery-docker-links">Service Discovery for Docker</a></li>
+      <li><a href="#discovery-kubernetes">Service Discovery for Kubernetes</a></li>
+      <li><a href="#discovery-consul">Service Discovery for Consul</a></li>
+      <li><a href="#discovery-redis">Service Discovery backend on Redis</a></li>
+    </ul>
+  </li>
   <li><a href="#devops">Devops</a>
     <ul class="sectlevel2 nav">
       <li><a href="#metrics-dropwizard">Vert.x Metrics - Dropwizard</a></li>
@@ -58,6 +71,7 @@ sidebar: true
     <ul class="sectlevel2 nav">
       <li><a href="#hazelcast">Hazelcast</a></li>
       <li><a href="#jgroups">JGroups</a></li>
+      <li><a href="#ignite">Apache Ignite</a></li>
     </ul>
   </li>
   <li><a href="#services">Services</a>
@@ -71,8 +85,9 @@ sidebar: true
   </li>
   <li><a href="#cloud">Cloud</a>
     <ul class="sectlevel2 nav">
-      <li><a href="#openshift_cartridge">Vert.x OpenShift Cartridge</a></li>
-      <li><a href="#openshift_using_diy_cartridge">Vert.x OpenShift Using DIY Cartridge</a></li>
+      <li><a href="#openshift_cartridge">Vert.x OpenShift 2 Cartridge</a></li>
+      <li><a href="#openshift_using_diy_cartridge">Vert.x OpenShift 2 - DIY Cartridge</a></li>
+      <li><a href="#openshift_s2i">Vert.x OpenShift 3 S2I</a></li>
     </ul>
   </li>
   <li><a href="#advanced">Advanced</a>
@@ -186,7 +201,7 @@ sidebar: true
 
         <div class="col-sm-12  col-md-6">
           <h3 id="web">Web</h3>
-          <p>Vert.x-Web is a toolkit for writing sophisticated modern web applications and HTTP microservices.</p>
+          <p>Vert.x-Web is a tool-kit for writing sophisticated modern web applications and HTTP microservices.</p>
           <table>
             <tr>
               <td>Java</td>
@@ -487,6 +502,80 @@ sidebar: true
                 <li><a href="https://github.com/vert-x3/vertx-tcp-eventbus-bridge">Source</a></li>
               </ul>
             </div>
+            <div class="col-md-4">
+              <h4 id="tcp">Camel Bridge</h4>
+              <p>An eventbus bridge that lets you interact with Camel endpoints and routes</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-camel-bridge/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-camel-bridge">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="amqp">AMQP Bridge <small><span class="label label-primary">Technical Preview</span></small></h4>
+              <p>An eventbus bridge that connect to an AMQP broker or router.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-amqp-bridge">Source</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="amqp">RabbitMQ Client <small><span class="label label-primary">Technical Preview</span></small></h4>
+              <p>A client to interact with RabbitMQ.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-rabbitmq-client/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-rabbitmq-client/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-rabbitmq-client/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-rabbitmq-client/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-rabbitmq-client">Source</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -777,6 +866,193 @@ sidebar: true
 
       <div class="row">
         <div class="col-sm-12">
+          <h3 id="microservices">Microservices</h3>
+          <p>Vert.x offers various component to build microservice-based applications.</p>
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 id="metrics">Vert.x Discovery Service <small><span class="label label-primary">Technical Preview</span></small></h4>
+              <p>This component lets you publish, lookup and bind to any type of services.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="circuit-breaker">Vert.x Circuit Breaker <small><span class="label label-primary">Technical Preview</span></small></h4>
+              <p>This component provides an implementation of the circuit breaker pattern for Vert.x</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-circuit-breaker/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-circuit-breaker/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-circuit-breaker/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-circuit-breaker/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-circuit-breaker">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="discovery-kubernetes">Vert.x Discovery Service - Kubernetes</h4>
+              <p>This component imports Kubernetes services into the Vert.x Discovery Service.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-kubernetes/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-kubernetes/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-kubernetes/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-kubernetes/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 id="discovery-kubernetes">Vert.x Discovery Service - Docker Links</h4>
+              <p>This component analyzes Docker links to import services into the Vert.x Discovery Service.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-docker-links/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-docker-links/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-docker-links/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-docker-links/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="discovery-kubernetes">Vert.x Discovery Service - Consul</h4>
+              <p>This component imports services from Consul into the Vert.x Discovery Service.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-consul/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-consul/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-consul/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-consul/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="discovery-kubernetes">Vert.x Discovery Service - Redis Backend</h4>
+              <p>This component provides an alternative discovery backend using Redis.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery-backend-redis/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery-backend-redis/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery-backend-redis/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-service-discovery-backend-redis/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-sm-12">
           <h3 id="devops">Devops</h3>
           <p>Vert.x offers various component to keep your Vert.x application on track when running in production</p>
           <div class="row">
@@ -951,6 +1227,16 @@ sidebar: true
               </ul>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-6">
+              <h4 id="ignite">Apache Ignite <small><span class="label label-primary">Technical Preview</span></small></h4>
+              <p>Cluster manager implementation that uses <a href="http://ignite.apache.org/">Apache Ignite</a>.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-ignite">Source</a></li>
+                <li><a href="{{ site_url }}docs/vertx-ignite/java">Manual</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1021,7 +1307,7 @@ sidebar: true
           <h3 id="cloud">Cloud</h3>
           <div class="row">
             <div class="col-md-4">
-              <h4 id="openshift_cartridge">Vert.x OpenShift Cartridge</h4>
+              <h4 id="openshift_cartridge">Vert.x OpenShift 2 Cartridge</h4>
               <p>This cartridge allows you to easily run clusterable Vert.x applications on the
                 <a href="https://www.openshift.com/">Red Hat OpenShift</a> cloud platform.</p>
               <ul class="list-unstyled">
@@ -1030,12 +1316,20 @@ sidebar: true
               </ul>
             </div>
             <div class="col-md-4">
-              <h4 id="openshift_using_diy_cartridge">Vert.x OpenShift Using DIY Cartridge</h4>
+              <h4 id="openshift_using_diy_cartridge">Vert.x OpenShift 2 - DIY Cartridge</h4>
               <p>This cartridge allows you to get started running simple applications quickly on the
                 <a href="https://www.openshift.com/">Red Hat OpenShift</a> cloud platform.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-openshift-diy-quickstart">Source</a></li>
                 <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/openshift-example">Examples</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="openshift_s2i">Vert.x OpenShift 3 S2I</h4>
+              <p>A source to image support for Openshift 3.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-openshift-s2i">Source</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-openshift-s2i/README.adoc">Manual</a></li>
               </ul>
             </div>
           </div>
