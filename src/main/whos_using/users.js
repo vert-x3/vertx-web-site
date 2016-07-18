@@ -252,6 +252,10 @@ var all_users = {
     src: "credittone-logo.png",
     link: "http://www.credittone.com",
     height: 100
+  }, {
+    src: "mindera-logo.png",
+    link: "http://www.mindera.com",
+    height: 50
   }]
 };
 
