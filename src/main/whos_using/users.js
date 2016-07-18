@@ -248,6 +248,10 @@ var all_users = {
     src: "leapcloud-logo.png",
     link: "http://leapcloud.cn",
     height: 40
+  }, {
+    src: "credittone-logo.png",
+    link: "http://www.credittone.com",
+    height: 100
   }]
 };
 
