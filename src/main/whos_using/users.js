@@ -244,6 +244,10 @@ var all_users = {
     wikipedia: "https://en.wikipedia.org/wiki/Swisscom",
     revenue_billion: 11.7,
     employees: 21125
+  }, {
+    src: "leapcloud-logo.png",
+    link: "http://leapcloud.cn",
+    height: 40
   }]
 };
 
