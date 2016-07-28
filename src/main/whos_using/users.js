@@ -256,6 +256,10 @@ var all_users = {
     src: "mindera-logo.png",
     link: "http://www.mindera.com",
     height: 50
+  }, {
+    src: "lianshi.png",
+    link: "http://www.ciphergateway.com",
+    height: 150
   }]
 };
 
