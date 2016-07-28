@@ -17,7 +17,12 @@ This post entry describes a solution to achieve centralized logging of Vert.x ap
     - [Logstash](#logstash)
     - [Elasticsearch](#elasticsearch)
     - [Kibana](#kibana)
-- [Demo]()
+- [Demo](#demo)
+    - [Installation](#installation)
+    - [Building the example](#building-the-example)
+    - [Building the Vert.x Microservices workshop Docker images](#building-the-vertx-microservices-workshop-docker-images)
+    - [Running the example](#running-the-example)
+    - [The demo](#the-demo)
 - [Conclusion](#conclusion)
 
 ## Overview
@@ -200,7 +205,7 @@ In order to run this demo, it is necessary to have Docker installed, then procee
 ### Building the example
 The Docker images belonging to the Vert.x Microservices workshop need to be built separately to this project before this project can be launched.
 
-## Building the Vert.x Microservices workshop Docker images.
+### Building the Vert.x Microservices workshop Docker images.
 Build the _root_ project and the _Trader Dashboard_ followed by each of the modules contained in the solution folder. Issue the following commands for this:
 
 ```
@@ -217,7 +222,7 @@ cd ../quote-generator/
 mvn package docker:build
 ```
 
-## Running the example
+### Running the example
 
 After building the previous images, build and run the example with the following command:
 
@@ -225,9 +230,11 @@ After building the previous images, build and run the example with the following
 docker-compose up
 ```
 
-## The demo
+### The demo
 
 ## Conclusion
-The ELK stack is a powerful set of tools that ease the aggregation of logs coming from distributed services into a central server. Its main pillar, Elasticsearch, provides the indexing and search capabilities of our log data. Also, it is accompanied by the input/output components: Logstash, which can be flexibly configured to accept different data sources; and Kibana, which can be customized to present the information in the most convenient way.
+The ELK stack is a powerful set of tools that ease the aggregation of logs coming from distributed services into a central server. Its main pillar, Elasticsearch, provides the indexing and search capabilities of our log data. Also, it is accompanied by the convenient input/output components: Logstash, which can be flexibly configured to accept different data sources; and Kibana, which can be customized to present the information in the most convenient way.
 
-Logstash has been designed to work seamlessly with Filebeat, the log shipper which represents a robust solution that can be adapted to our already developed applications without having to make *significant* changes to our architecture. In addition, Logstash can accept varied types of sources, filter the data, and process it before delivering to Elasticsearch. This flexibility comes with the price of having extra elements in our log aggregation pipeline, which can represent an increase of processing overhead or a point-of-failure. This additional overhead could be avoided if an application would be capable of delivering its log output directly to Elasticsearch.
+Logstash has been designed to work seamlessly with Filebeat, the log shipper which represents a robust solution that can be adapted to our applications without having to make *significant* changes to our architecture. In addition, Logstash can accept varied types of sources, filter the data, and process it before delivering to Elasticsearch. This flexibility comes with the price of having extra elements in our log aggregation pipeline, which can represent an increase of processing overhead or a point-of-failure. This additional overhead could be avoided if an application would be capable of delivering its log output directly to Elasticsearch.
+
+Happy logging!
