@@ -254,11 +254,11 @@ var conferences = [
         link: "https://github.com/lhuet/vertxOnRpiAndOdroid"
     },
     {
-        title: "Vert.x - from zero to (micro-) hero - a lab",
-        date: "20/04/2016",
-        speaker: "Clement Escoffier, Julien Viet",
-        conference: "Devoxx France 2016",
-        link: "http://vertx-lab.dynamis-technologies.com"
+        title: "Building microservices with Vert.x",
+        date: "10/06/2016",
+        speaker: "Bert Jan Schrijver",
+        conference: "Devoxx UK",
+        link: "https://www.youtube.com/watch?v=yLg-LPSRjho"
     }
 ];
 
@@ -269,6 +269,21 @@ var articles = [
         link: "http://www.infoq.com/articles/vertx-3-tim-fox",
         author: "Rick Hightower &amp; Tim Fox",
         date: "22/06/2015"
+    }
+];
+
+var tutorials = [
+    {
+        title: "Vert.x - From zero to (micro-) hero",
+        link: "http://vertx-lab.dynamis-technologies.com",
+        author: "Clement Escoffier",
+        date: "28/07/2016"
+    },
+    {
+        title: "Introduction to Vert.x",
+        link: "http://vertx.io/blog/posts/introduction-to-vertx.html",
+        author: "Clement Escoffier",
+        date: "30/11/2015"
     }
 ];
 
@@ -288,5 +303,6 @@ sortByDateDesc = function (c1, c2) {
 
 module.exports = {
     conferences: sort(conferences),
-    articles: sort(articles)
+    articles: sort(articles),
+    tutorials: sort(tutorials)
 };

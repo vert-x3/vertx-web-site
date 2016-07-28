@@ -334,6 +334,7 @@ function build(done, dev) {
       "contributors": sorted_contributors,
       "conferences": materials.conferences,
       "articles": materials.articles,
+      "tutorials": materials.tutorials,
       "users_home_page": users.users_home_page,
       "users_all": users.users_all
     }))
