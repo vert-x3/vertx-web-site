@@ -6,27 +6,24 @@ author: ricardohmon
 ---
 
 Centralized logging is an important topic while building a Microservices architecture and it is a step forward to adopting the DevOps culture. Having an overall solution partitioned into a set of services distributed across the Internet can represent a challenge when trying to monitor the log output of each of them, hence, a tool that helps to accomplish this could be very helpful. 
-This post entry describes a solution to achieve centralized logging of Vert.x applications using the [ELK stack](https://www.elastic.co/webinars/introduction-elk-stack), a set of tools including Logstash, Elasticsearch, and Kibana that are well-known to work seamlessly together.
+This post entry describes a solution to achieve centralized logging of Vert.x applications using the [ELK stack](https://www.elastic.co/webinars/introduction-elk-stack), a set of tools including Logstash, Elasticsearch, and Kibana that are well known to work seamlessly together.
 
 ## Table of contents
-- [Overview]()
-- [Requirements]()
-- [App logging configuration]()
-    - [Log4j2 logging]()
-    - [Filebeat configuration]()
-- [ELK configuration]()
-    - [Logstash]()
-    - [Elasticsearch]()
-    - [Kibana]()
-- [Conclusion]()
+- [Overview](#overview)
+- [App logging configuration](#app-logging-configuration)
+    - [Log4j2 logging](#log4j2-logging)
+    - [Filebeat configuration](#filebeat-configuration)
+- [ELK configuration](#elk-configuration)
+    - [Logstash](#logstash)
+    - [Elasticsearch](#elasticsearch)
+    - [Kibana](#kibana)
+- [Demo]()
+- [Conclusion](#conclusion)
 
 ## Overview
 As shown in the diagram below, the general centralized logging solution comprises two main elements: the application server, which runs our Vert.x application; and a separate server, hosting the ELK stack. Both elements are linked by Filebeat, a highly configurable tool capable of shipping our application logs to the Logstash instance, i.e., our gateway to the ELK stack.
 
 ![Overview of centralized logging with ELK](/assets/blog/centralized-logging-using-elk/elk-overview.svg)
-
-## Requirements
-* Log output to file. Filebeat ships log data read from log files, hence it is important to configure Vert.x log output files.
 
 ## App logging configuration
 Vert.x uses JUL logging as default, however, it also provides the means to [configure]({{ site_url }}docs/vertx-core/java/#_logging) Log4j or SLF4J as the logging framework. Let's take a look at a Log4j sample configuration.
@@ -100,7 +97,7 @@ Logstash is the component within the ELK stack that is in charge of aggregating 
 Configuring Logstash is straightforward with the help of the specific input and output plugins for Beats and Elasticsearch, respectively. 
 In the previous section we mentioned that Filebeat could be easily coupled with Logstash. Now, we see that this can be done by just specifying `Beat` as the input plugin and set the parameters needed to be reached by our shippers (listening port, ssl key and certificate location).
 
-```puppet
+```bash
     input {
       beats {
         port => 5044
@@ -113,7 +110,7 @@ In the previous section we mentioned that Filebeat could be easily coupled with 
 Now that we are ready to receive logs from the app, we can use Logstash filtering capabilities to specify the format of our logs and extract the fields so they can be indexed more efficiently by Elasticsearch.  
 The `grok` filtering plugin comes handy in this situation. This plugin allows to declare the logs format using predefined and customized patterns based in regular expressions allowing to declare new fields from the information extracted from each log line. In the following block, we instruct Logstash to recognize our Log4j pattern inside a `message` field, which contains the log message shipped by Filebeat. After that, the `date` filtering plugin parses the `timestamp` field extracted in the previous step and replaces it for the one set by Filebeat after reading the log output file.
 
-```puppet
+```bash
     filter {
       grok {
         break_on_match => false
@@ -128,7 +125,7 @@ The `grok` filtering plugin comes handy in this situation. This plugin allows to
 
 The Log4j pattern is not included within the Logstash configuration, however, we can specify it using predefined data formats shipped with Logstash and adapt it to the specific log formats required in our application, as shown next.
 
-```apache
+```
     # Pattern to match our Log4j format
     SPACING (?:[\s]+)
     LOGGER (?:[a-zA-Z$_][a-zA-Z$_0-9]*\.)*[a-zA-Z$_][a-zA-Z$_0-9]*
@@ -189,6 +186,46 @@ In the example below, we see a index template that would be applied to any index
 ### Kibana
 Although we could fetch all our logs from Elasticsearch through its API, Kibana is a powerful tool that allows a more friendly query and visualization.
 Besides the option to query our data through the available indexed field names and search boxes allowing typing specific queries, Kibana allows creating our own _Visualizations_ and _Dashboards_. Combined, they represent a powerful way to display data and gain insight in a customized manner.
+
+## Demo
+This post is accompanied by a demo based on the Vert.x Microservices [workshop](http://vertx-lab.dynamis-technologies.com/).Also, the ELK stack is provisioned using a preconfigured Docker image by [Sébastien Pujadas](https://github.com/spujadas).
+
+Following the guidelines in this post, this demo configures each of the Microservices of the workshop, sets up a Filebeat process on each of them to ship the logs to a central container hosting the ELK stack.
+
+### Installation
+In order to run this demo, it is necessary to have Docker installed, then proceed with:
+* Cloning or downloading the demo [repository](https://github.com/ricardohmon/vertx-elk).
+* Separately, obtaining the source code of the [branch](https://github.com/ricardohmon/vertx-microservices-workshop/tree/elk-demo) of the Microservices workshop adapted for this demo.
+
+### Building the example
+The Docker images belonging to the Vert.x Microservices workshop need to be built separately to this project before this project can be launched.
+
+## Building the Vert.x Microservices workshop Docker images.
+Build the _root_ project and the _Trader Dashboard_ followed by each of the modules contained in the solution folder. Issue the following commands for this:
+
+```
+mvn clean install
+cd trader-dashboard
+mvn package docker:build
+cd ../solution/audit-service
+mvn package docker:build
+cd ../compulsive-traders
+mvn package docker:build
+cd ../portfolio-service
+mvn package docker:build
+cd ../quote-generator/
+mvn package docker:build
+```
+
+## Running the example
+
+After building the previous images, build and run the example with the following command:
+
+```
+docker-compose up
+```
+
+## The demo
 
 ## Conclusion
 The ELK stack is a powerful set of tools that ease the aggregation of logs coming from distributed services into a central server. Its main pillar, Elasticsearch, provides the indexing and search capabilities of our log data. Also, it is accompanied by the input/output components: Logstash, which can be flexibly configured to accept different data sources; and Kibana, which can be customized to present the information in the most convenient way.
