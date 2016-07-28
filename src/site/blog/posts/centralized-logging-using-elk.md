@@ -29,7 +29,7 @@ As shown in the diagram below, the general centralized logging solution comprise
 * Log output to file. Filebeat ships log data read from log files, hence it is important to configure Vert.x log output files.
 
 ## App logging configuration
-Vert.x uses JUL logging as default, however, it also provides the means to [configure({{ site_url }}docs/vertx-core/java/#_logging) Log4j or SLF4J as the logging framework. Let's take a look at a Log4j sample configuration.
+Vert.x uses JUL logging as default, however, it also provides the means to [configure]({{ site_url }}docs/vertx-core/java/#_logging) Log4j or SLF4J as the logging framework. Let's take a look at a Log4j sample configuration.
 
 ### Log4j2 Logging
 In order to enable Log4j, we take advantage of SLF4j's ability to attach different logging frameworks at runtime. For this reason, we declare Log4j's binaries as dependencies in our Maven POM file together with the SLF4J API. 
@@ -113,7 +113,7 @@ In the previous section we mentioned that Filebeat could be easily coupled with 
 Now that we are ready to receive logs from the app, we can use Logstash filtering capabilities to specify the format of our logs and extract the fields so they can be indexed more efficiently by Elasticsearch.  
 The `grok` filtering plugin comes handy in this situation. This plugin allows to declare the logs format using predefined and customized patterns based in regular expressions allowing to declare new fields from the information extracted from each log line. In the following block, we instruct Logstash to recognize our Log4j pattern inside a `message` field, which contains the log message shipped by Filebeat. After that, the `date` filtering plugin parses the `timestamp` field extracted in the previous step and replaces it for the one set by Filebeat after reading the log output file.
 
-```
+```puppet
     filter {
       grok {
         break_on_match => false
