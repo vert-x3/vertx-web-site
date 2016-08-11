@@ -29,6 +29,7 @@ Given that Vert.x is a framework that consists in a few libraries which can be s
 ## Overview
 As seen in the diagram below, this post describes a method to define a Jenkins build job which will react to changes in a code repository. After succesfully building the project, the job will execute an Ansible _playbook_ to deploy the new application version to the hosts specified within the Ansible configuration.
 
+![Overview of the continous delivery process](/assets/blog/continuous-delivery-jenkins-ansible/ansible-jenkins-overview.svg)
 ## Creating a Jenkins build job using Job DSL
 Jenkins has created a convenient way to define build jobs using a DSL. While this option avoids the hassle of configuring build jobs manually, it supports all features of the regular interface through its [API](https://jenkinsci.github.io/job-dsl-plugin/). It is possible to use Ansible together with Jenkins with the help of the Ansible [plugin](https://wiki.jenkins-ci.org/display/JENKINS/Ansible+Plugin/), whose instructions are also included in the Job DSL [API](https://github.com/jenkinsci/ansible-plugin/blob/master/README.md). Alternatively to the Job DSL Plugin, Ansible can be used inside the definition of Jenkins Pipeline, one of tool's most recent features.
 
@@ -176,5 +177,6 @@ This command will launch a virtual machine hosting Jenkins with the required plu
 ### Demo
 Watch the previous demo in action in the following screencast:
 
-
-
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/GQd_Rfeu6Yo" frameborder="0" allowfullscreen></iframe>
+</div>
