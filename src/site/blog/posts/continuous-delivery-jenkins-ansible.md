@@ -4,7 +4,7 @@ date: 2016-07-26
 template: post.html
 author: ricardohmon
 ---
-
+This blog entry describes an approach to adopt _Continuous Delivery_ for Vert.x applications using Jenkins and Ansible by taking advantage of the Jenkins Job DSL and Ansible plugins.
 
 ## Table of contents
 - [Preamble](#preamble)
@@ -109,8 +109,8 @@ Vert.x ships with the convenient `start`/`stop`/`list` commands that result very
     register: running_app_list
     when: st.stat.exists == True
   - name: Stop app if it is already running (avoid multiple running instances)
-    command: java -jar /usr/share/vertx_app/app-fatjar.jar stop \{\{ item | regex_replace('^(?P<V_id>.[8]-.[4]-.[4].[4].[12])\t.*', '\\g<V_id>') \}\}
-    with_items: "\{\{ running_app_list.stdout_lines|default([]) \}\}"
+    command: java -jar /usr/share/vertx_app/app-fatjar.jar stop {% raw %}{{ item | regex_replace('^(?P<V_id>.[8]-.[4]-.[4].[4].[12])\t.*', '\\g<V_id>') }}{% endraw %}
+    with_items: "{% raw %}{{ running_app_list.stdout_lines|default([]) }}{% endraw %}"
     when: st.stat.exists == True and (item | regex_replace('.*\t(.*)$', '\\1') | match('.*/app-fatjar.jar$'))
 
   # Main role
@@ -131,17 +131,17 @@ Once we took care of the actions shown before, the remaining tasks (included in 
 
 ```yaml
 - name: Install Java 1.8 and some basic dependencies
-  yum: name=\{\{item\}\} state=present
+  yum: name={% raw %}{{ item }}{% endraw %} state=present
   with_items:
    - java-1.8.0-openjdk
 - name: Ensure app dir exists
   file: path=/usr/share/vertx_app/ recurse=yes state=directory mode=0744
 - name: Copy the Vert.x application jar package
-  copy: src=\{\{ app_jar \}\} dest=/usr/share/vertx_app/app-fatjar.jar mode=0755
+  copy: src={% raw %}{{ app_jar }}{% endraw %} dest=/usr/share/vertx_app/app-fatjar.jar mode=0755
 - name: Ensure config dir exists
   file: path=/etc/vertx_app/ recurse=yes state=directory mode=0744
 - name: Copy the application config file if needed
-  copy: src=\{\{ app_config \}\} dest=/etc/vertx_app/config.json mode=0755
+  copy: src={% raw %}{{ app_config }}{% endraw %} dest=/etc/vertx_app/config.json mode=0755
   when: app_config is defined
 ```
 
@@ -150,7 +150,7 @@ Once we took care of the actions shown before, the remaining tasks (included in 
 
 ```yaml
 - name: Run Vert.x application as a service, ignore the SIGHUP signal
-  shell: nohup java { { vertx_opts } } -jar /usr/share/vertx_app/app-fatjar.jar start { { launch_params } }
+  shell: nohup java {% raw %}{{ vertx_opts }}{% endraw %} -jar /usr/share/vertx_app/app-fatjar.jar start {% raw %}{{ launch_params }}{% endraw %}
   register: svc_run_out
 - name: Print run output
   debug: var=svc_run_out.stdout_lines
