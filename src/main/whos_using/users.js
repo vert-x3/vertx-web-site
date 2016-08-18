@@ -9,6 +9,10 @@
 var all_users = {
   max_home_page_users: 16, // maximum number of users on the home page
   logos: [{
+    src: "Adnato.png",
+    link: "http://www.adnato.com/",
+    height: 55
+  }, {
     src: "AirWatch_logo.png",
     link: "http://www.air-watch.com",
     height: 84,
