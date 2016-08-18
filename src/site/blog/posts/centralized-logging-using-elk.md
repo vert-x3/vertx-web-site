@@ -18,6 +18,7 @@ This post entry describes a solution to achieve centralized logging of Vert.x ap
     - [Logstash](#logstash)
     - [Elasticsearch](#elasticsearch)
     - [Kibana](#kibana)
+- [Log shipping challenge](#log-shipping-challenge)
 - [Demo](#demo)
     - [Installation](#installation)
     - [Building the example](#building-the-example)
@@ -38,11 +39,11 @@ As shown in the diagram below, the general centralized logging solution comprise
 ![Overview of centralized logging with ELK](/assets/blog/centralized-logging-using-elk/elk-overview.svg)
 
 ## App logging configuration
-Vert.x uses JUL logging as default, however, it also provides the means to [configure]({{ site_url }}docs/vertx-core/java/#_logging) Log4j or SLF4J as the logging framework. Let's take a look at a Log4j sample configuration.
+Vert.x uses JUL logging as default, however, it also provides the means to [configure]({{ site_url }}docs/vertx-core/java/#_logging) Log4j or SLF4J as the logging framework. Let's take a look at a Log4j example configuration.
 
 ### Log4j Logging
 In order to enable Log4j, we take advantage of SLF4j's ability to attach different logging frameworks at runtime. For this reason, we declare Log4j's binaries as dependencies in our Maven POM file together with the SLF4J API. 
-Additionally, for Vert.x applications it is important to keep the logging functions asynchronous, therefore, we include the LMAX Disruptor binaries in the classpath, as specified in the Log4J [docs](https://logging.apache.org/log4j/2.x/manual/async.html).
+Additionally, for Vert.x applications it is important to keep the logging functions asynchronous, therefore, we include the LMAX Disruptor binaries in the classpath, as specified in the Log4j [docs](https://logging.apache.org/log4j/2.x/manual/async.html).
 
 ```xml
 <dependency>
@@ -71,12 +72,13 @@ Additionally, for Vert.x applications it is important to keep the logging functi
   <version>${disruptor.version}</version>
 </dependency>
 ```
-An additional step to enable asynchronous Log4j logging in Vert.x involves setting two system properties: _vertx.logger-delegate-factory-class-name_, to configure the alternate logging framework; and _Log4jContextSelector_, to instruct Log4J to log asynchronously.
+
+An additional step to enable asynchronous Log4j logging in Vert.x involves setting two system properties: `vertx.logger-delegate-factory-class-name`, to configure the alternate logging framework; and `Log4jContextSelector`, to instruct Log4j to log asynchronously.
 
 One last step concerning Log4j configuration involves specifying the format of the log output. One option to do this is through XML files placed in the _Resources_ folder of the application, which will be automatically found by the logging framework at runtime. Inside this configuration, we set our logs to be stored to a filesystem path that will be required by Filebeat.
 
 ### Filebeat configuration
-Now that we have configured the log output of our Vert.x application to be stored in the file system, we delegate to Filebeat the task of forwarding the logs to the Logstash instance. Filebeat can be configured through a YAML file containing the logs output location and the pattern to interpret multiline logs (i.e., stack traces). Also, the Logstash output plugin is configured with the host location and secured using the certificate from the machine hosting Logstash. We set the _document_type_ to the type of instance that this log belongs, which could later help us while indexing our logs inside Elasticsearch.
+Now that we have configured the log output of our Vert.x application to be stored in the file system, we delegate to Filebeat the task of forwarding the logs to the Logstash instance. Filebeat can be configured through a YAML file containing the logs output location and the pattern to interpret multiline logs (i.e., stack traces). Also, the Logstash output plugin is configured with the host location and a secure connection is enforced using the certificate from the machine hosting Logstash. We set the `document_type` to the type of instance that this log belongs to, which could later help us while indexing our logs inside Elasticsearch.
 
 ```yaml
 filebeat: 
@@ -119,6 +121,7 @@ input {
   }
 }
 ```
+
 Now that we are ready to receive logs from the app, we can use Logstash filtering capabilities to specify the format of our logs and extract the fields so they can be indexed more efficiently by Elasticsearch.  
 The `grok` filtering plugin comes handy in this situation. This plugin allows to declare the logs format using predefined and customized patterns based in regular expressions allowing to declare new fields from the information extracted from each log line. In the following block, we instruct Logstash to recognize our Log4j pattern inside a `message` field, which contains the log message shipped by Filebeat. After that, the `date` filtering plugin parses the `timestamp` field extracted in the previous step and replaces it for the one set by Filebeat after reading the log output file.
 
@@ -145,9 +148,25 @@ LINE %{INT}?
 LOG4J %{TIMESTAMP_ISO8601:timestamp_string} %{LOGLEVEL:log_level}%{SPACING}%{LOGGER:logger_name}:%{LINE:loc_line} - %{JAVALOGMESSAGE:log_message}
 ```
 
+Finally, we take a look at Logstash's output configuration. This simply points to our elasticsearch instance, instructs it to provide a list of all cluster nodes (`sniffing`), defines the name pattern for our indices, assigns the document type according to the metadata coming from Filebeat, and allows to define a custom index template for our data.
+
+```
+output {
+  elasticsearch {
+    hosts => ["localhost"]
+    sniffing => true
+    manage_template => true
+    index => "%{[@metadata][beat]}-%{+YYYY.MM.dd}"
+    document_type => "%{[@metadata][type]}"
+    template => "/etc/filebeat/vertx_app_filebeat.json"
+    template_overwrite => true
+  }
+}
+```
+
 ### Elasticsearch
 Elasticsearch is the central component that enables the efficient indexing and real-time search capabilities of the stack. To take the most advantage of Elasticsearch, we can provide an indexing template of our incoming logs, which can help to optimize the data storage and match the queries issued by Kibana at a later point.  
-In the example below, we see a index template that would be applied to any index matching the pattern `filebeat-*`. Additionally, we declare our new log fields `type`, `host`, `log_level`, `logger_name`, and `log_message`, which are set as `not_analyzed` except for the last two that are set as `analyzed` allowing to perform queries based on regular expressions and not restricted to query the full text.
+In the example below, we see an index template that would be applied to any index matching the pattern `filebeat-*`. Additionally, we declare our new log fields `type`, `host`, `log_level`, `logger_name`, and `log_message`, which are set as `not_analyzed` except for the last two that are set as `analyzed` allowing to perform queries based on regular expressions and not restricted to query the full text.
 
 ```json
 {
@@ -200,8 +219,15 @@ Although we could fetch all our logs from Elasticsearch through its API, Kibana 
 Besides the option to query our data through the available indexed field names and search boxes allowing typing specific queries, Kibana allows creating our own _Visualizations_ and _Dashboards_. Combined, they represent a powerful way to display data and gain insight in a customized manner.
 The accompanied demo ships with a couple of sample dashboards and visualizations that take advantage of the log fields that we specified in our index template and throw valuable insight. This includes: visualizing the number of log messages received by ELK, observe the proportion of messages that each log source produces, and directly find out the sources of error logs.
 
+## Log shipping challenge
+The solution presented here relied on Filebeat to ship log data to Logstash. However, if you are familiar with the Log4j framework you may be aware that there exists a _SocketAppender_ that allows to write log events directly to a remote server using a TCP connection. Although including the Filebeat + Logstash combination  may sound an unnecessary overhead to the logging pipeline, they provide a number of benefits in comparison to the Log4j socket alternative:
+* The SocketAppender relies on the specific serialization of Log4j's _LogEvent_ objects, which is no an interchangeable format as JSON, which is used by the Beats solution. Although there are [attempts](https://github.com/majikthys/log4j2-logstash-jsonevent-layout) to output the logs in a JSON format for Logstash, it doesn't support multiline logs, which results in messages being split into different events by Logstash. On the other hand, there is no official nor stable [input plugin](https://www.elastic.co/guide/en/logstash/current/input-plugins.html) for Log4j version 2.
+* While enabling Log4j's async logging mode in an application delegates logging operations to separate threads, given their coexistence in the same JVM there is still the risk of data loss in case of a sudden JVM termination without proper log channel closing.
+* Filebeat is a data shipper designed to deal with many constraints that arise in distributed environments in a reliable manner, therefore it provides options to tailor and scale this operation to our needs: the possibility to load balance between multiple Logstash instances, specify the number of simultaneous Filebeat workers that ship log files, and specify a compression level in order to reduce the consumed bandwidth. Besides that, logs can be shipped in specific batch sizes, with maximum amount of retries, and specifying a connection timeout.
+* Lastly, although Filebeat can forward logs directly to Elasticsearch, using Logstash as an intermediary offers the possibility to collect logs from diverse sources (e.g., system metrics).
+
 ## Demo
-This post is accompanied by a demo based on the Vert.x Microservices [workshop](http://vertx-lab.dynamis-technologies.com/).Also, the ELK stack is provisioned using a preconfigured Docker image by [Sébastien Pujadas](https://github.com/spujadas).
+This post is accompanied by a demo based on the Vert.x Microservices [workshop](http://vertx-lab.dynamis-technologies.com/). Also, the ELK stack is provisioned using a preconfigured Docker image by [Sébastien Pujadas](https://github.com/spujadas).
 
 Following the guidelines in this post, this demo configures each of the Microservices of the workshop, sets up a Filebeat process on each of them to ship the logs to a central container hosting the ELK stack.
 
