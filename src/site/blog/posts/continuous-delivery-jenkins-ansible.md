@@ -75,12 +75,12 @@ An Ansible Playbook results quite convenient to deploy a Vert.x application to a
 
 2) Actual application deployment task. Here, several considerations are done:
 - The application may require that only one host is updated at the time.  
-This can be achieved with the `serial` option, while the order of the deployment to hosts can be enforced in the `hosts` option. 
-Note: even though we could have declared `all` hosts, Ansible does not provide an explicit way to specify the order.
+This can be achieved with the `serial` option, while the order of the deployment to hosts can be enforced in the `hosts` option.    
+[NOTE Host processing order | Even though we could have declared `all` hosts, Ansible does not provide an explicit way to specify the order.]
 - Java is a system requirement for our Vert.x applications.  
 Besides installing it (keep reading), we need to declare the `JAVA_HOME` environment variable.
 - A deployment may just represent an update to an already running application (_Continuous Deployment_), hence it is convenient to stop the previous application inside the `pre_tasks` and take post-deployment actions in the `post_tasks`.
-Vert.x ships with the convenient `start`/`stop`/`list` commands that result very helpful here. We can use the `list` command and use the `id` of the running application to stop it before deploying a new version.
+Vert.x ships with the convenient `start`/`stop`/`list` commands that result very helpful here. We can use the `list` command and extract (using regex) the `id` of the running application of its output to stop it before deploying a new version.
 [NOTE Hint | If our solution includes a load balancer or proxy, we could deal with them at this step as described in Ansible's [best practices](http://docs.ansible.com/ansible/playbooks_delegation.html) for rolling updates]
 - Call to a `role` that makes the actual application deployment. The Jenkins Ansible Plugin includes, between others, a `WORKSPACE` environment variable, which may result very helpful in the following tasks, as shown later.
 
@@ -156,7 +156,10 @@ Once we took care of the actions shown before, the remaining tasks (included in 
   debug: var=svc_run_out.stdout_lines
 ```
 
+[NOTE Launching the Vert.x app | This example uses the `start` command to launch the application as a service. This method may result more comfortable than creating an [init.d script](http://vertx.io/blog/vert-x-3-init-d-script/) or calling Vert.x from [command line](https://github.com/vert-x3/vertx-examples/#running-at-the-command-line), which would have required to install the Vert.x libraries in an independent Ansible task. ]
+
 This describes all the configuration needed to be able to build from a repository using Jenkins and deploy the results to our hosts with Ansible.
+
 
 ## Sample sources and demo
 The sample configurations presented before are part of a complete demo focused on the Vert.x microservices [workshop](http://vertx-lab.dynamis-technologies.com/) to exemplify a basic Continuous Delivery scenario. This set up is available in a [repository](https://github.com/ricardohmon/vertx-ansible) and contains, in addition, a pre-configured Jenkins-based demo ready to host the build job described the previous sections. The demo scenario requires Vagrant and Virtualbox to be launched.
