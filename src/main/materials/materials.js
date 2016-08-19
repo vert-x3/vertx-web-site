@@ -239,6 +239,13 @@ var conferences = [
         conference: "Joker 2015",
         link: "https://www.youtube.com/watch?v=JRFwicUlwyI&list=PLVe-2wcL84b8x3krxqsYHwlmfb4kb8A4n&index=14"
     },
+     {
+        title: "Vert.x 3: What's new?",
+        date: "05/11/2015",
+        speaker: "Erwin de Gier",
+        conference: "JFall 2015",
+        link: "https://www.youtube.com/watch?v=blGAtipoh-U&feature=youtu.be"
+    },
     {
         title: "How do we use Vert.x at Melusyn?",
         date: "02/12/2015",
