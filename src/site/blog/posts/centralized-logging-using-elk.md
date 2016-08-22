@@ -39,43 +39,28 @@ As shown in the diagram below, the general centralized logging solution comprise
 ![Overview of centralized logging with ELK](/assets/blog/centralized-logging-using-elk/elk-overview.svg)
 
 ## App logging configuration
-Vert.x uses JUL logging as default, however, it also provides the means to [configure]({{ site_url }}docs/vertx-core/java/#_logging) Log4j or SLF4J as the logging framework. Let's take a look at a Log4j example configuration.
+The approach described here is based on a Filebeat + Logstash configuration, that means first we need to make sure our app logs to a file, whose records will be shipped to Logstash by Filebeat. Luckily, Vert.x provides the means to [configure]({{ site_url }}docs/vertx-core/java/#_logging) alternative logging frameworks (e.g., Log4j, Log4j2 and SLF4J) besides the default JUL logging. However, we can use Filebeat independently of the logging framework chosen.
 
 ### Log4j Logging
-In order to enable Log4j, we take advantage of SLF4j's ability to attach different logging frameworks at runtime. For this reason, we declare Log4j's binaries as dependencies in our Maven POM file together with the SLF4J API. 
-Additionally, for Vert.x applications it is important to keep the logging functions asynchronous, therefore, we include the LMAX Disruptor binaries in the classpath, as specified in the Log4j [docs](https://logging.apache.org/log4j/2.x/manual/async.html).
+The demo that accompanies this post relies on Log4j2 as the logging framework. We instructed Vert.x to use this framework following the [guidelines]({{ site_url }}docs/vertx-core/java/#_logging) and we made sure our logging calls are made asynchronous, since we don't want them to block our application. For this purpose, we opted for the `AsyncAppender` and this was included in the Log4J configuration together with the log output format described in a XML configuration available in the application's _Resource_ folder.
 
 ```xml
-<dependency>
-  <groupId>org.slf4j</groupId>
-  <artifactId>slf4j-api</artifactId>
-  <version>${slf4j.version}</version>
-</dependency>
-<dependency>
-  <groupId>org.apache.logging.log4j</groupId>
-  <artifactId>log4j-slf4j-impl</artifactId>
-  <version>${log4j2.version}</version>
-</dependency>
-<dependency>
-  <groupId>org.apache.logging.log4j</groupId>
-  <artifactId>log4j-api</artifactId>
-  <version>${log4j2.version}</version>
-</dependency>
-<dependency>
-  <groupId>org.apache.logging.log4j</groupId>
-  <artifactId>log4j-core</artifactId>
-  <version>${log4j2.version}</version>
-</dependency>
-<dependency>
-  <groupId>com.lmax</groupId>
-  <artifactId>disruptor</artifactId>
-  <version>${disruptor.version}</version>
-</dependency>
+<Configuration>
+  <Appenders>
+    <RollingFile name="vertx_logs" append="true" fileName="/var/log/vertx.log" filePattern="/var/log/vertx/$${date:yyyy-MM}/vertx-%d{MM-dd-yyyy}-%i.log.gz">
+      <PatternLayout pattern="%d{ISO8601} %-5p %c:%L - %m%n" />
+    </RollingFile>
+    <Async name="vertx_async">
+      <AppenderRef ref="vertx_logs"/>
+    </Async>
+  </Appenders>
+  <Loggers>
+    <Root level="DEBUG">
+      <AppenderRef ref="vertx_async" />
+    </Root>
+  </Loggers>
+</Configuration>
 ```
-
-An additional step to enable asynchronous Log4j logging in Vert.x involves setting two system properties: `vertx.logger-delegate-factory-class-name`, to configure the alternate logging framework; and `Log4jContextSelector`, to instruct Log4j to log asynchronously.
-
-One last step concerning Log4j configuration involves specifying the format of the log output. One option to do this is through XML files placed in the _Resources_ folder of the application, which will be automatically found by the logging framework at runtime. Inside this configuration, we set our logs to be stored to a filesystem path that will be required by Filebeat.
 
 ### Filebeat configuration
 Now that we have configured the log output of our Vert.x application to be stored in the file system, we delegate to Filebeat the task of forwarding the logs to the Logstash instance. Filebeat can be configured through a YAML file containing the logs output location and the pattern to interpret multiline logs (i.e., stack traces). Also, the Logstash output plugin is configured with the host location and a secure connection is enforced using the certificate from the machine hosting Logstash. We set the `document_type` to the type of instance that this log belongs to, which could later help us while indexing our logs inside Elasticsearch.
@@ -219,6 +204,8 @@ Although we could fetch all our logs from Elasticsearch through its API, Kibana 
 Besides the option to query our data through the available indexed field names and search boxes allowing typing specific queries, Kibana allows creating our own _Visualizations_ and _Dashboards_. Combined, they represent a powerful way to display data and gain insight in a customized manner.
 The accompanied demo ships with a couple of sample dashboards and visualizations that take advantage of the log fields that we specified in our index template and throw valuable insight. This includes: visualizing the number of log messages received by ELK, observe the proportion of messages that each log source produces, and directly find out the sources of error logs.
 
+<img src="/assets/blog/centralized-logging-using-elk/kibana-dashboard.png" alt="Kibana Dashboard" style="width: 70%; display: block; margin: auto;"/>
+
 ## Log shipping challenge
 The solution presented here relied on Filebeat to ship log data to Logstash. However, if you are familiar with the Log4j framework you may be aware that there exists a _SocketAppender_ that allows to write log events directly to a remote server using a TCP connection. Although including the Filebeat + Logstash combination  may sound an unnecessary overhead to the logging pipeline, they provide a number of benefits in comparison to the Log4j socket alternative:
 * The SocketAppender relies on the specific serialization of Log4j's _LogEvent_ objects, which is no an interchangeable format as JSON, which is used by the Beats solution. Although there are [attempts](https://github.com/majikthys/log4j2-logstash-jsonevent-layout) to output the logs in a JSON format for Logstash, it doesn't support multiline logs, which results in messages being split into different events by Logstash. On the other hand, there is no official nor stable [input plugin](https://www.elastic.co/guide/en/logstash/current/input-plugins.html) for Log4j version 2.
@@ -227,7 +214,8 @@ The solution presented here relied on Filebeat to ship log data to Logstash. How
 * Lastly, although Filebeat can forward logs directly to Elasticsearch, using Logstash as an intermediary offers the possibility to collect logs from diverse sources (e.g., system metrics).
 
 ## Demo
-This post is accompanied by a demo based on the Vert.x Microservices [workshop](http://vertx-lab.dynamis-technologies.com/). Also, the ELK stack is provisioned using a preconfigured Docker image by [Sébastien Pujadas](https://github.com/spujadas).
+This post is accompanied by a demo based on the Vert.x Microservices [workshop](http://vertx-lab.dynamis-technologies.com/), where each of them is shipped in a Docker container simulating a distributed system composed of independent addressable nodes.    
+Also, the ELK stack is provisioned using a preconfigured Docker image by [Sébastien Pujadas](https://github.com/spujadas).
 
 Following the guidelines in this post, this demo configures each of the Microservices of the workshop, sets up a Filebeat process on each of them to ship the logs to a central container hosting the ELK stack.
 
