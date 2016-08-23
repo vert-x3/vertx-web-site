@@ -15,6 +15,7 @@ This blog entry describes an approach to adopt _Continuous Delivery_ for Vert.x 
 - [Sample sources and demo](#sample-sources-and-demo)
     - [Launch instructions](#launch-instructions)
     - [Demo](#demo)
+- [Conclusion](#conclusion)
 
 ## Preamble
 This post was written in context of the project titled "[DevOps tooling for Vert.x applications](https://summerofcode.withgoogle.com/projects/#4858492141699072)", one of the projects at Vert.x taking place during the 2016 edition of [Google Summer of Code](https://summerofcode.withgoogle.com/about/), a program that aims to bring students together with open source organizations in order to help them to gain exposure to software development practices and real-world challenges.
@@ -183,3 +184,11 @@ Watch the previous demo in action in the following screencast:
 <div class="embed-responsive embed-responsive-16by9">
 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/GQd_Rfeu6Yo" frameborder="0" allowfullscreen></iframe>
 </div>
+
+## Conclusion
+Continuous Delivery approach is a _must_ in modern software development lifecycles (including Vert.x-based applications) and a step further towards adopting a DevOps culture. There are a number of tools that enable it and one example is the combination of Jenkins + Ansible described in this post.    
+While Jenkins offers the possibility to integrate recent changes perceived in a codebase and build runnable artifacts, Ansible can help to deploy them to hosting environments. The usage of both tools can be coupled easily with the help of the Job DSL plugin, a feature of Jenkins that allows describing a build job using a _domain-specific language_, which can help to integrate additional steps and tools to a _CD_ pipeline.
+
+Further enhancements can be done to this basic pipeline, such as, integrating the recent [Pipeline plugin](https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Plugin), a feature that allows a better orchestration of CD stages; inclusion of notification and alerting services; and, ultimately a zero-downtime deployment approach, which could be achieved with the help of a proxy; plus, tons of options available trough Jenkins plugins.
+
+Thanks for reading!
