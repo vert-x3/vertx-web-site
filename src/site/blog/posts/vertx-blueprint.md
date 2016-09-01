@@ -1,11 +1,13 @@
 ---
-title: Vert.x Blueprint Tutorial
-date: 2016-08-24
+title: Vert.x Blueprint Tutorials
+date: 2016-09-01
 template: post.html
 author: sczyh30
 ---
 
 The Vert.x Blueprint project aims to provide guidelines to Vert.x users to implement various applications such as message-based applications and microservices. This post introduces the content of each blueprints.
+
+This work has been done in the context of a [Google Summer of Code project](https://developers.google.com/open-source/gsoc/) .
 
 # Overview
 
@@ -13,18 +15,18 @@ The blueprint project contains three parts: **Todo Backend**, **Vert.x Kue** and
 
 # Vert.x Blueprint - Todo Backend
 
-The project **repository**: [sczyh30/vertx-blueprint-todo-backend](https://github.com/sczyh30/vertx-blueprint-todo-backend).
+**Repository**: [sczyh30/vertx-blueprint-todo-backend](https://github.com/sczyh30/vertx-blueprint-todo-backend).
 
-This blueprint is a todo-backend implementation using Vert.x and various persistence (e.g. Redis or MySQL). It is intended to be an introduction to basic Vert.x web RESTful service development. From this blueprint, developers could learn:
+This blueprint is a todo-backend implementation using Vert.x and various persistence (e.g. Redis or MySQL). It is intended to be an introduction to basic Vert.x web RESTful service development. From this blueprint, developers  learn:
 
-- What is Vert.x and its basic design
+- What is Vert.x and its principles
 - What is and how to use `Verticle`
-- How to develop a REST API using Vert.x Web
+- How to develop a REST API using [Vert.x Web](http://vertx.io/docs/vertx-web/java/)
 - How to make use of **asynchronous development model**
-- Future-based reactive asynchronous pattern
-- How to use persistence such as *Redis* and *MySQL* with the help of Vert.x data access components
+- `Future`-based asynchronous patterns
+- How to use persistence such as *Redis* and *MySQL* with the help of Vert.x async data
 
-The tutorial documents:
+The tutorials are:
 
 - [Vert.x Blueprint - Todo Backend (English version)](http://sczyh30.github.io/vertx-blueprint-todo-backend/)
 - [Vert.x Blueprint - Todo Backend (Chinese version)](http://sczyh30.github.io/vertx-blueprint-todo-backend/cn/)
@@ -33,23 +35,23 @@ The tutorial documents:
 
 # Vert.x Blueprint - Vert.x Kue
 
-The project **repository**: [sczyh30/vertx-blueprint-job-queue](https://github.com/sczyh30/vertx-blueprint-job-queue).
+**Repository**: [sczyh30/vertx-blueprint-job-queue](https://github.com/sczyh30/vertx-blueprint-job-queue).
 
 This blueprint is a priority job queue developed with Vert.x and backed by Redis. It's a Vert.x implementation version of [Automattic/kue](https://github.com/Automattic/kue) that can be used in production.
 
-Feature document of Vert.x Kue is available here: [Vert.x Kue Features](https://github.com/sczyh30/vertx-blueprint-job-queue/blob/master/docs/en/vertx-kue-features-en.md).
+The list of features provided by Vert.x Kue is available here: [Vert.x Kue Features](https://github.com/sczyh30/vertx-blueprint-job-queue/blob/master/docs/en/vertx-kue-features-en.md).
 
-This blueprint is intended to be an introduction to message-based application development using Vert.x. From this blueprint, developers could learn:
+This blueprint is intended to be an introduction to message-based application development using Vert.x. From this blueprint, developers learn:
 
 - How to make use of **Vert.x Event Bus** (distributed)
-- How to develop message based application with Vert.x
-- Event pattern of event bus (Pub/sub, point to point)
+- How to develop message based applications with Vert.x
+- Event and message patterns with the event bus (Pub/sub, point to point)
 - How to design clustered Vert.x applications
 - How to design and implement a job queue
 - How to use **Vert.x Service Proxy**
-- More complicated practice about Vert.x Redis
+- More complex usage of [Vert.x Redis](http://vertx.io/docs/vertx-redis-client/java/)
 
-The tutorial documents:
+The tutorial are:
 
 - English version
   - [Vert.x Kue Core Tutorial - English Version](http://sczyh30.github.io/vertx-blueprint-job-queue/kue-core/index.html)
@@ -62,14 +64,14 @@ The tutorial documents:
 
 # Vert.x Blueprint - Online Shopping Microservice
 
-The project **repository**: [sczyh30/vertx-blueprint-microservice](https://github.com/sczyh30/vertx-blueprint-microservice).
+**Repository**: [sczyh30/vertx-blueprint-microservice](https://github.com/sczyh30/vertx-blueprint-microservice).
 
-This blueprint is a micro shop microservice application developed with Vert.x. It is intended to be an illustration on how to develop microservice applications using Vert.x toolkit. From this blueprint, developers could learn:
+This blueprint is a micro-shop microservice application developed with Vert.x. It is intended to be an illustration on how to develop microservice applications using Vert.x. From this blueprint, developers learn:
 
 - Microservice development with Vert.x
 - Asynchronous development model
-- Reactive and functional pattern
-- Event sourcing pattern
+- Reactive patterns
+- Event sourcing patterns
 - Asynchronous RPC on the clustered event bus
 - Various type of services (e.g. HTTP endpoint, message source, event bus service)
 - Vert.x Service Discovery
@@ -80,7 +82,7 @@ This blueprint is a micro shop microservice application developed with Vert.x. I
 
 And many more things...
 
-The tutorial documents:
+The tutorial are:
 
 - English version
   - [Vert.x Microservice Blueprint Tutorial - Development](http://sczyh30.github.io/vertx-blueprint-microservice/index.html)
