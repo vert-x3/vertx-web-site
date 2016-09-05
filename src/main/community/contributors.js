@@ -96,6 +96,7 @@ var maintainers = [{
   github_id: "codepitbull",
   avatar: "https://pbs.twimg.com/profile_images/1900844895/rec_400x400.jpg",
   github: "https://github.com/codepitbull",
+  homepage: "http://codepitbull.de/",
   name: "Jochen Mader",
   contribution: "Scala"
 }, {
