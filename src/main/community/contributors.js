@@ -26,6 +26,14 @@ var full_time_developers = [{
   homepage: "http://escoffier.me/",
   github: "https://github.com/cescoffier",
   twitter: "https://twitter.com/clementplop"
+}, {
+  github_id: "tsegismont",
+  name: "Thomas Segismont",
+  role: "Core developer",
+  avatar: "https://avatars1.githubusercontent.com/u/1500598?v=3&s=80",
+  homepage: "http://tsegismont.blogspot.fr",
+  github: "https://github.com/tsegismont",
+  twitter: "https://twitter.com/tsegismont"
 }];
 
 // Component maintainers
@@ -85,10 +93,10 @@ var maintainers = [{
   homepage: "http://atomix.io",
   contribution: "Python"
 }, {
-  github_id: "LarsTimm",
-  avatar: "https://avatars.githubusercontent.com/u/12085953?v=3&s=80",
-  github: "https://github.com/LarsTimm",
-  name: "Lars Timm",
+  github_id: "codepitbull",
+  avatar: "https://pbs.twimg.com/profile_images/1900844895/rec_400x400.jpg",
+  github: "https://github.com/codepitbull",
+  name: "Jochen Mader",
   contribution: "Scala"
 }, {
   github_id: "karianna",
@@ -103,13 +111,6 @@ var maintainers = [{
   github: "https://github.com/rajith77",
   name: "Rajith Muditha Attapattu",
   contribution: "AMQP bridge"
-}, {
-  github_id: "tsegismont",
-  avatar: "https://avatars.githubusercontent.com/u/1500598?v=3&s=80",
-  github: "https://github.com/tsegismont",
-  name: "Thomas Segismont",
-  homepage: "http://tsegismont.blogspot.fr/",
-  contribution: "Hawkular Metrics"
 }, {
   github_id: "maeste",
   name: "Stefano Maestri",
