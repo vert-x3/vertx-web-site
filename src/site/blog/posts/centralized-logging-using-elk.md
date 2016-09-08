@@ -1,6 +1,6 @@
 ---
 title: Centralized logging for Vert.x applications using the ELK stack
-date: 2016-07-26
+date: 2016-09-08
 template: post.html
 author: ricardohmon
 ---
@@ -31,7 +31,7 @@ This post entry describes a solution to achieve centralized logging of Vert.x ap
 This post was written in context of the project titled "[DevOps tooling for Vert.x applications](https://summerofcode.withgoogle.com/projects/#4858492141699072)", one of the Vert.x projects taking place during the 2016 edition of [Google Summer of Code](https://summerofcode.withgoogle.com/about/), a program that aims to bring together students with open source organizations, in order to help them to gain exposure to software development practices and real-world challenges.
 
 ## Introduction
-Centralized logging is an important topic while building a Microservices architecture and it is a step forward to adopting the DevOps culture. Having an overall solution partitioned into a set of services distributed across the Internet can represent a challenge when trying to monitor the log output of each of them, hence, a tool that helps to accomplish this results very helpful. 
+Centralized logging is an important topic while building a Microservices architecture and it is a step forward to adopting the DevOps culture. Having an overall solution partitioned into a set of services distributed across the Internet can represent a challenge when trying to monitor the log output of each of them, hence, a tool that helps to accomplish this results very helpful.
 
 ## Overview
 As shown in the diagram below, the general centralized logging solution comprises two main elements: the application server, which runs our Vert.x application; and a separate server, hosting the ELK stack. Both elements are linked by Filebeat, a highly configurable tool capable of shipping our application logs to the Logstash instance, i.e., our gateway to the ELK stack.
@@ -66,20 +66,20 @@ The demo that accompanies this post relies on Log4j2 as the logging framework. W
 Now that we have configured the log output of our Vert.x application to be stored in the file system, we delegate to Filebeat the task of forwarding the logs to the Logstash instance. Filebeat can be configured through a YAML file containing the logs output location and the pattern to interpret multiline logs (i.e., stack traces). Also, the Logstash output plugin is configured with the host location and a secure connection is enforced using the certificate from the machine hosting Logstash. We set the `document_type` to the type of instance that this log belongs to, which could later help us while indexing our logs inside Elasticsearch.
 
 ```yaml
-filebeat: 
-  prospectors: 
-    - 
+filebeat:
+  prospectors:
+    -
       document_type: trader_dashboard
-      paths: 
+      paths:
         - /var/log/vertx.log
       multiline:
         pattern: "^[0-9]+"
         negate: true
         match: after
-output: 
-  logstash: 
+output:
+  logstash:
     enabled: true
-    hosts: 
+    hosts:
       - elk:5044
     timeout: 15
     tls:
@@ -93,7 +93,7 @@ To take fully advantage of the ELK stack with respect to Vert.x and our app logs
 
 ### Logstash
 Logstash is the component within the ELK stack that is in charge of aggregating the logs from each of the sources and forwarding them to the Elasticsearch instance.   
-Configuring Logstash is straightforward with the help of the specific input and output plugins for Beats and Elasticsearch, respectively. 
+Configuring Logstash is straightforward with the help of the specific input and output plugins for Beats and Elasticsearch, respectively.
 In the previous section we mentioned that Filebeat could be easily coupled with Logstash. Now, we see that this can be done by just specifying `Beat` as the input plugin and set the parameters needed to be reached by our shippers (listening port, ssl key and certificate location).
 
 ```bash
