@@ -266,6 +266,13 @@ var conferences = [
         speaker: "Bert Jan Schrijver",
         conference: "Devoxx UK",
         link: "https://www.youtube.com/watch?v=yLg-LPSRjho"
+    },
+    {
+        title: "Let’s build a scalable async Vert.x app in < 60 min ",
+        conference: "JavaZone 2016",
+        date: "07/09/2016",
+        speaker: "Paulo Lopes",
+        link: "https://vimeo.com/album/4133413/video/181905280"
     }
 ];
 
@@ -276,15 +283,57 @@ var articles = [
         link: "http://www.infoq.com/articles/vertx-3-tim-fox",
         author: "Rick Hightower &amp; Tim Fox",
         date: "22/06/2015"
+    },
+    {
+      title: "Vert.x 3.3.0 Features Enhanced Networking Microservices, Testing and More",
+      media: "InfoQ",
+      link: "https://www.infoq.com/news/2016/06/Vert.x-3.3.0-release-features",
+      author: "Clement Escoffier",
+      date: "30/06/2016"
+    },
+    {
+      title: "Vertx.io 3.3.0 Service Discovery: Getting Started",
+      media: "DZone",
+      link: "https://dzone.com/articles/vertx-330-development-automation",
+      author: "Ugur ARPACI",
+      date: "02/07/2016"
+    },
+    {
+      title: "Launching Vert.x Dynamically",
+      media: "DZone",
+      link: "https://dzone.com/articles/vertx-launcher",
+      author: "Sercan Karaoglu",
+      date: "29/06/2016"
+    },
+    {
+      title: "Reactive Microservices and Service Discovery with Vert.x",
+      media: "DZone",
+      link: "https://dzone.com/articles/reactive-microservices-and-service-discovery-with",
+      author: "Sercan Karaoglu",
+      date: "26/07/2016"
+    },
+    {
+      title: "Location Transparency With Vert.x",
+      media: "DZone",
+      link: "https://dzone.com/articles/location-transparency-with-vertx",
+      author: "Sercan Karaoglu",
+      date: "06/09/2016"
+    },
+    {
+      title: "Secure Your Vertx 3 App With Pac4j",
+      media: "DZone",
+      link: "https://dzone.com/articles/secure-your-vertx",
+      author: "Jérôme Leleu",
+      date: "18/01/2016"
     }
 ];
 
 var tutorials = [
     {
         title: "Vert.x - From zero to (micro-) hero",
-        link: "http://vertx-lab.dynamis-technologies.com",
+        link: "http://escoffier.me/vertx-hol",
         author: "Clement Escoffier",
-        date: "28/07/2016"
+        date: "09/09/2016"
     },
     {
         title: "Introduction to Vert.x",
