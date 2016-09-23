@@ -60,12 +60,6 @@ var maintainers = [{
   name: "Fabio Marinelli",
   contribution: "JGroups Cluster Manager"
 }, {
-  github_id: "chirino",
-  avatar: "https://avatars.githubusercontent.com/u/103255?v=3&s=80",
-  github: "https://github.com/chirino",
-  name: "Hiram Chirino",
-  contribution: "Vert.x Proton"
-}, {
   github_id: "jstrachan",
   avatar: "https://avatars.githubusercontent.com/u/30140?v=3&s=80",
   github: "https://github.com/jstrachan",
@@ -107,10 +101,10 @@ var maintainers = [{
   homepage: "http://martijnverburg.blogspot.com",
   contribution: "MongoDB client"
 }, {
-  github_id: "rajith77",
-  avatar: "https://avatars.githubusercontent.com/u/1030331?v=3&s=80",
-  github: "https://github.com/rajith77",
-  name: "Rajith Muditha Attapattu",
+  github_id: "gemmellr",
+  avatar: "https://avatars0.githubusercontent.com/u/5106823?v=3&s=80",
+  github: "https://github.com/gemmellr",
+  name: "Robbie Gemmell",
   contribution: "AMQP bridge"
 }, {
   github_id: "maeste",
