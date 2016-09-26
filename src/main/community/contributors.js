@@ -102,10 +102,10 @@ var maintainers = [{
   contribution: "MongoDB client"
 }, {
   github_id: "gemmellr",
-  avatar: "https://avatars0.githubusercontent.com/u/5106823?v=3&s=80",
+  avatar: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/3/005/063/2a2/3a921c5.jpg",
   github: "https://github.com/gemmellr",
   name: "Robbie Gemmell",
-  contribution: "AMQP bridge"
+  contribution: "AMQP bridge, Proton"
 }, {
   github_id: "maeste",
   name: "Stefano Maestri",
@@ -141,6 +141,13 @@ var maintainers = [{
   avatar: "https://s.gravatar.com/avatar/421414eb861cf22a469d90ff8c8de980?s=80",
   homepage: "http://www.streamis.me",
   github: "https://github.com/stream1984"
+}, {
+  github_id: "ruslansennov",
+  name: "Ruslan Sennov",
+  contribution: "Consul Client",
+  avatar: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/4/000/175/035/229e194.jpg",
+  homepage: "http://ruslan-sennov.blogspot.fr/",
+  github: "https://github.com/ruslansennov"
 }];
 
 // Contributors
