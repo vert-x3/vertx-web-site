@@ -1,6 +1,6 @@
 ---
 title: Vert.x featuring Continuous Delivery with Jenkins and Ansible
-date: 2016-07-26
+date: 2016-09-28
 template: post.html
 author: ricardohmon
 ---
@@ -63,7 +63,7 @@ job('vertx-microservices-workshop-job') {
         credentialsId('vagrant-key')  
         colorizedOutput(true)  
       }  
-  
+
     }  
 }
 ```
@@ -71,7 +71,7 @@ job('vertx-microservices-workshop-job') {
 ## Deploying Vert.x app using Ansible
 An Ansible Playbook results quite convenient to deploy a Vert.x application to a number of hosts while still taking considerations for each of them. Below is a sample playbook that deploys the respective application to each of the hosts described in an _inventory_ file. The playbook comprises the following tasks and takes the listed considerations:
 
-1) A task that targets only hosts with a database. 
+1) A task that targets only hosts with a database.
 - The target hosts is specified with the name of the host (or hosts group) defined in the inventory file.
 
 2) Actual application deployment task. Here, several considerations are done:
@@ -125,7 +125,7 @@ Vert.x ships with the convenient `start`/`stop`/`list` commands that result very
 
 Once we took care of the actions shown before, the remaining tasks (included in the main deployment role) reduce to the following:
 
-1) Prepare the target machine with the proper environment to run our application. This includes: 
+1) Prepare the target machine with the proper environment to run our application. This includes:
 - Set up Java (pretty convenient to do it through a package manager).
 - Copy the Vert.x application package to the appropriate folder (quite simple using a fat jar). The actual name and location of the jar package in the Jenkins environment can be defined using host-specific [variables](http://docs.ansible.com/ansible/playbooks_delegation.html).
 - In case necessary, copy the required config files.
