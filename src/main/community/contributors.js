@@ -110,6 +110,8 @@ var maintainers = [{
   github_id: "ppatierno",
   avatar: "https://avatars2.githubusercontent.com/u/5842311?v=3&s=140",
   github: "https://github.com/ppatierno",
+  homepage: "https://paolopatierno.wordpress.com/",
+  twitter: "https://twitter.com/ppatierno",
   name: "Paolo Patierno",
   contribution: "MQTT server"
 }, {
