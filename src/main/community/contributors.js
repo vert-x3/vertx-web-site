@@ -107,6 +107,14 @@ var maintainers = [{
   name: "Robbie Gemmell",
   contribution: "AMQP bridge, Proton"
 }, {
+  github_id: "ppatierno",
+  avatar: "https://avatars2.githubusercontent.com/u/5842311?v=3&s=140",
+  github: "https://github.com/ppatierno",
+  homepage: "https://paolopatierno.wordpress.com/",
+  twitter: "https://twitter.com/ppatierno",
+  name: "Paolo Patierno",
+  contribution: "MQTT server"
+}, {
   github_id: "maeste",
   name: "Stefano Maestri",
   avatar: "https://avatars.githubusercontent.com/u/74194?v=3&s=80",
