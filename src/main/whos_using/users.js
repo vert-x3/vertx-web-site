@@ -132,6 +132,10 @@ var all_users = {
     link: "http://www.phenixid.se/",
     height: 50
   }, {
+	 src: "Pismo.png",
+	 link: "http://pismo.io/",
+	 height: 50
+  }, {
     src: "plasmatherm.png",
     link: "http://www.plasmatherm.com/",
     height: 25
