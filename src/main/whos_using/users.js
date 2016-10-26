@@ -100,6 +100,10 @@ var all_users = {
     height: 45,
     wikipedia: "http://en.wikipedia.org/wiki/Liferay"
   }, {
+    src: "ligatus_logo.png",
+    link: "http://www.ligatus.com/",
+    height: 55
+  }, {
     src: "malmberg_logo.png",
     link: "http://www.malmberg.nl/",
     height: 60
