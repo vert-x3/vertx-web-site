@@ -13,7 +13,7 @@ if [ ${#v} -ge 1 ]; then VERSION=$v;
 fi
 
 echo "Cloning project"
-git clone https://github.com/cescoffier/vertx-gradle-starter.git ${PROJECT_NAME}
+git clone https://github.com/vert-x3/vertx-gradle-starter.git ${PROJECT_NAME}
 
 echo "Generating project"
 rm -Rf ${PROJECT_NAME}/.git

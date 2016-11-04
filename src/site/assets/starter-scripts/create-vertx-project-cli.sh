@@ -8,7 +8,7 @@ if [ ${#projectName} -ge 1 ]; then PROJECT_NAME=$projectName;
 fi
 
 echo "Cloning project"
-git clone https://github.com/cescoffier/vertx-cli-starter.git ${PROJECT_NAME}
+git clone https://github.com/vert-x3/vertx-cli-starter.git ${PROJECT_NAME}
 
 echo "Generating project"
 rm -Rf ${PROJECT_NAME}/.git
