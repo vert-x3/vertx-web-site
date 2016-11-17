@@ -34,6 +34,14 @@ var full_time_developers = [{
   homepage: "http://tsegismont.blogspot.fr",
   github: "https://github.com/tsegismont",
   twitter: "https://twitter.com/tsegismont"
+}, {
+  github_id: "jponge",
+  name: "Julien Ponge",
+  role: "Core developer",
+  avatar: "https://avatars.githubusercontent.com/u/25961?v=3&s=80",
+  github: "https://github.com/jponge",
+  twitter: "https://twitter.com/jponge",
+  homepage: "https://julien.ponge.org/"
 }];
 
 // Component maintainers
