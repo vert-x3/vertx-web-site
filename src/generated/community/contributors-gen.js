@@ -1,5 +1,5 @@
 // AUTO-GENERATED FILE. DO NOT EDIT! CALL `gulp update-contributors` INSTEAD.
-// CREATED: Mon Jan 04 2016 12:11:25 GMT+0100 (CET)
+// CREATED: Wed Nov 30 2016 19:15:48 GMT+0100 (CET)
 module.exports = { contributors: [
   {
     "github_id": "4z3",
@@ -21,14 +21,14 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/594308?v=3&s=80",
     "github": "https://github.com/abdlquadri",
     "name": "abdlquadri",
-    "contributions": 1
+    "contributions": 3
   },
   {
     "github_id": "abstractj",
     "avatar": "https://avatars.githubusercontent.com/u/21758?v=3&s=80",
     "github": "https://github.com/abstractj",
     "name": "Bruno Oliveira",
-    "homepage": "http://abstractj.org",
+    "homepage": "https://abstractj.org",
     "contributions": 1
   },
   {
@@ -36,6 +36,7 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/1521539?v=3&s=80",
     "github": "https://github.com/adrianluisgonzalez",
     "name": "Adrian",
+    "homepage": "https://www.linkedin.com/in/adrian-gonzalez-3b30a168",
     "contributions": 26
   },
   {
@@ -43,14 +44,14 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/1456317?v=3&s=80",
     "github": "https://github.com/aesteve",
     "name": "Arnaud Esteve",
-    "contributions": 11
+    "contributions": 19
   },
   {
     "github_id": "agura",
     "avatar": "https://avatars.githubusercontent.com/u/1387185?v=3&s=80",
     "github": "https://github.com/agura",
     "name": "Andrey Gura",
-    "contributions": 1
+    "contributions": 22
   },
   {
     "github_id": "ahtik",
@@ -59,6 +60,14 @@ module.exports = { contributors: [
     "name": "Ahti Kitsik",
     "homepage": "http://ahtik.com",
     "contributions": 1
+  },
+  {
+    "github_id": "ahus1",
+    "avatar": "https://avatars.githubusercontent.com/u/3957921?v=3&s=80",
+    "github": "https://github.com/ahus1",
+    "name": "Alexander Schwartz",
+    "homepage": "http://www.ahus1.de",
+    "contributions": 5
   },
   {
     "github_id": "akostadinov",
@@ -73,8 +82,8 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/156144?v=3&s=80",
     "github": "https://github.com/alexlehm",
     "name": "Alexander Lehmann",
-    "homepage": "http://about.me/alexlehm",
-    "contributions": 257
+    "homepage": "https://about.me/alexlehm",
+    "contributions": 352
   },
   {
     "github_id": "alexvetter",
@@ -116,6 +125,14 @@ module.exports = { contributors: [
     "contributions": 3
   },
   {
+    "github_id": "amannocci",
+    "avatar": "https://avatars.githubusercontent.com/u/10237040?v=3&s=80",
+    "github": "https://github.com/amannocci",
+    "name": "Adrien Mannocci",
+    "homepage": "https://techcode.io/",
+    "contributions": 1
+  },
+  {
     "github_id": "andyhedges",
     "avatar": "https://avatars.githubusercontent.com/u/958352?v=3&s=80",
     "github": "https://github.com/andyhedges",
@@ -128,8 +145,15 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/304674?v=3&s=80",
     "github": "https://github.com/angeloh",
     "name": "Angelo H",
-    "homepage": "https://wiredin.io",
+    "homepage": "https://leadiq.io",
     "contributions": 1
+  },
+  {
+    "github_id": "ANierbeck",
+    "avatar": "https://avatars.githubusercontent.com/u/405121?v=3&s=80",
+    "github": "https://github.com/ANierbeck",
+    "name": "Achim Nierbeck",
+    "contributions": 2
   },
   {
     "github_id": "apatrida",
@@ -147,11 +171,27 @@ module.exports = { contributors: [
     "contributions": 2
   },
   {
+    "github_id": "arturmkrtchyan",
+    "avatar": "https://avatars.githubusercontent.com/u/601646?v=3&s=80",
+    "github": "https://github.com/arturmkrtchyan",
+    "name": "Artur Mkrtchyan",
+    "homepage": "http://arturmkrtchyan.com/",
+    "contributions": 2
+  },
+  {
+    "github_id": "aruis",
+    "avatar": "https://avatars.githubusercontent.com/u/1785495?v=3&s=80",
+    "github": "https://github.com/aruis",
+    "name": "Liu Rui",
+    "contributions": 2
+  },
+  {
     "github_id": "aschrijver",
     "avatar": "https://avatars.githubusercontent.com/u/5111931?v=3&s=80",
     "github": "https://github.com/aschrijver",
     "name": "Arnold Schrijver",
-    "contributions": 2
+    "homepage": "http://engagingspaces.io",
+    "contributions": 23
   },
   {
     "github_id": "ashertarno",
@@ -160,6 +200,28 @@ module.exports = { contributors: [
     "name": "Asher Tarnopolski",
     "homepage": "http://il.linkedin.com/in/ashertarnopolski",
     "contributions": 4
+  },
+  {
+    "github_id": "Ashwin-Surana",
+    "avatar": "https://avatars.githubusercontent.com/u/3000242?v=3&s=80",
+    "github": "https://github.com/Ashwin-Surana",
+    "name": "Ashwin Surana",
+    "contributions": 4
+  },
+  {
+    "github_id": "augeneinblick",
+    "avatar": "https://avatars.githubusercontent.com/u/12995948?v=3&s=80",
+    "github": "https://github.com/augeneinblick",
+    "name": "augeneinblick",
+    "contributions": 4
+  },
+  {
+    "github_id": "auszone",
+    "avatar": "https://avatars.githubusercontent.com/u/6831159?v=3&s=80",
+    "github": "https://github.com/auszone",
+    "name": "Austin Kuo",
+    "homepage": "http://www.hckuo.me",
+    "contributions": 15
   },
   {
     "github_id": "baldmountain",
@@ -184,6 +246,14 @@ module.exports = { contributors: [
     "contributions": 2
   },
   {
+    "github_id": "benoitf",
+    "avatar": "https://avatars.githubusercontent.com/u/436777?v=3&s=80",
+    "github": "https://github.com/benoitf",
+    "name": "Florent BENOIT",
+    "homepage": "http://linkedin.com/in/florentbenoit",
+    "contributions": 1
+  },
+  {
     "github_id": "bfx",
     "avatar": "https://avatars.githubusercontent.com/u/2572196?v=3&s=80",
     "github": "https://github.com/bfx",
@@ -197,6 +267,14 @@ module.exports = { contributors: [
     "github": "https://github.com/bhowell2",
     "name": "Blake",
     "contributions": 2
+  },
+  {
+    "github_id": "blackadmin",
+    "avatar": "https://avatars.githubusercontent.com/u/2764257?v=3&s=80",
+    "github": "https://github.com/blackadmin",
+    "name": "Harmeet Singh",
+    "homepage": "http://cloudblocks.in/",
+    "contributions": 1
   },
   {
     "github_id": "blackorzar",
@@ -232,6 +310,7 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/4145582?v=3&s=80",
     "github": "https://github.com/boyvanduuren",
     "name": "Boy van Duuren",
+    "homepage": "https://vanduuren.xyz",
     "contributions": 1
   },
   {
@@ -250,19 +329,32 @@ module.exports = { contributors: [
     "contributions": 1
   },
   {
-    "github_id": "brosander",
-    "avatar": "https://avatars.githubusercontent.com/u/596137?v=3&s=80",
-    "github": "https://github.com/brosander",
-    "name": "Bryan Rosander",
-    "homepage": "http://rosander.ninja/",
+    "github_id": "brasseld",
+    "avatar": "https://avatars.githubusercontent.com/u/133094?v=3&s=80",
+    "github": "https://github.com/brasseld",
+    "name": "Brassely David",
+    "contributions": 2
+  },
+  {
+    "github_id": "bruders",
+    "avatar": "https://avatars.githubusercontent.com/u/69554?v=3&s=80",
+    "github": "https://github.com/bruders",
+    "name": "bruders",
     "contributions": 1
+  },
+  {
+    "github_id": "brunoais",
+    "avatar": "https://avatars.githubusercontent.com/u/639467?v=3&s=80",
+    "github": "https://github.com/brunoais",
+    "name": "brunoais",
+    "contributions": 100
   },
   {
     "github_id": "bschev",
     "avatar": "https://avatars.githubusercontent.com/u/10374418?v=3&s=80",
     "github": "https://github.com/bschev",
     "name": "Bernadette Schulze Everding",
-    "contributions": 1
+    "contributions": 3
   },
   {
     "github_id": "bura",
@@ -270,6 +362,14 @@ module.exports = { contributors: [
     "github": "https://github.com/bura",
     "name": "Andrey Bloschetsov",
     "contributions": 1
+  },
+  {
+    "github_id": "cazacugmihai",
+    "avatar": "https://avatars.githubusercontent.com/u/89212?v=3&s=80",
+    "github": "https://github.com/cazacugmihai",
+    "name": "Mihai Cazacu",
+    "homepage": "http://www.macrobit.ro",
+    "contributions": 2
   },
   {
     "github_id": "cdjones32",
@@ -283,15 +383,31 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/402301?v=3&s=80",
     "github": "https://github.com/cescoffier",
     "name": "Clement Escoffier",
-    "contributions": 1046
+    "contributions": 2003
+  },
+  {
+    "github_id": "chirino",
+    "avatar": "https://avatars.githubusercontent.com/u/103255?v=3&s=80",
+    "github": "https://github.com/chirino",
+    "name": "Hiram Chirino",
+    "homepage": "http://hiramchirino.com",
+    "contributions": 23
+  },
+  {
+    "github_id": "cinterloper",
+    "avatar": "https://avatars.githubusercontent.com/u/1668926?v=3&s=80",
+    "github": "https://github.com/cinterloper",
+    "name": "Grant Haywood",
+    "homepage": "http://iowntheinter.net",
+    "contributions": 4
   },
   {
     "github_id": "circlespainter",
     "avatar": "https://avatars.githubusercontent.com/u/6113296?v=3&s=80",
     "github": "https://github.com/circlespainter",
     "name": "Fabio Tudone",
-    "homepage": "http://dreamtimecircles.com",
-    "contributions": 2
+    "homepage": "https://circlespainter.github.io/",
+    "contributions": 5
   },
   {
     "github_id": "cjryan",
@@ -301,11 +417,35 @@ module.exports = { contributors: [
     "contributions": 1
   },
   {
+    "github_id": "clonyara",
+    "avatar": "https://avatars.githubusercontent.com/u/2677650?v=3&s=80",
+    "github": "https://github.com/clonyara",
+    "name": "Yanik G",
+    "homepage": "http://www.cs.bgu.ac.il/~ygleyzer/",
+    "contributions": 3
+  },
+  {
+    "github_id": "cmoulliard",
+    "avatar": "https://avatars.githubusercontent.com/u/463790?v=3&s=80",
+    "github": "https://github.com/cmoulliard",
+    "name": "Charles Moulliard",
+    "homepage": "http://cmoulliard.github.io",
+    "contributions": 2
+  },
+  {
+    "github_id": "codepitbull",
+    "avatar": "https://avatars.githubusercontent.com/u/1409931?v=3&s=80",
+    "github": "https://github.com/codepitbull",
+    "name": "Jochen Mader",
+    "homepage": "http://codepitbull.de",
+    "contributions": 9
+  },
+  {
     "github_id": "codesipcoffee",
     "avatar": "https://avatars.githubusercontent.com/u/7108590?v=3&s=80",
     "github": "https://github.com/codesipcoffee",
     "name": "Micah Stevenson",
-    "contributions": 1
+    "contributions": 2
   },
   {
     "github_id": "coniu",
@@ -330,6 +470,22 @@ module.exports = { contributors: [
     "contributions": 1
   },
   {
+    "github_id": "creativeprogramming",
+    "avatar": "https://avatars.githubusercontent.com/u/954291?v=3&s=80",
+    "github": "https://github.com/creativeprogramming",
+    "name": "Stefano Gargiulo",
+    "homepage": "http://creativeprogramming.it",
+    "contributions": 16
+  },
+  {
+    "github_id": "cstamas",
+    "avatar": "https://avatars.githubusercontent.com/u/45165?v=3&s=80",
+    "github": "https://github.com/cstamas",
+    "name": "Tamas Cservenak",
+    "homepage": "http://www.cstamas.org/",
+    "contributions": 4
+  },
+  {
     "github_id": "culmat",
     "avatar": "https://avatars.githubusercontent.com/u/638519?v=3&s=80",
     "github": "https://github.com/culmat",
@@ -337,11 +493,40 @@ module.exports = { contributors: [
     "contributions": 4
   },
   {
+    "github_id": "cy6erGn0m",
+    "avatar": "https://avatars.githubusercontent.com/u/762598?v=3&s=80",
+    "github": "https://github.com/cy6erGn0m",
+    "name": "Sergey Mashkov",
+    "homepage": "https://vk.com/mashkov.sergey",
+    "contributions": 10
+  },
+  {
+    "github_id": "dan-lind",
+    "avatar": "https://avatars.githubusercontent.com/u/433464?v=3&s=80",
+    "github": "https://github.com/dan-lind",
+    "name": "Daniel Lindberg",
+    "contributions": 5
+  },
+  {
     "github_id": "dankraw",
     "avatar": "https://avatars.githubusercontent.com/u/2399036?v=3&s=80",
     "github": "https://github.com/dankraw",
     "name": "Daniel Krawczyk",
     "contributions": 1
+  },
+  {
+    "github_id": "dankristensen",
+    "avatar": "https://avatars.githubusercontent.com/u/1816596?v=3&s=80",
+    "github": "https://github.com/dankristensen",
+    "name": "dankristensen",
+    "contributions": 2
+  },
+  {
+    "github_id": "dano",
+    "avatar": "https://avatars.githubusercontent.com/u/38807?v=3&s=80",
+    "github": "https://github.com/dano",
+    "name": "Dan O'Reilly",
+    "contributions": 14
   },
   {
     "github_id": "danthegoodman",
@@ -364,6 +549,30 @@ module.exports = { contributors: [
     "github": "https://github.com/darylteo",
     "name": "Daryl Teo",
     "homepage": "http://darylteo.com",
+    "contributions": 5
+  },
+  {
+    "github_id": "davidafsilva",
+    "avatar": "https://avatars.githubusercontent.com/u/2266642?v=3&s=80",
+    "github": "https://github.com/davidafsilva",
+    "name": "David Silva",
+    "homepage": "http://davidafsilva.pt",
+    "contributions": 1
+  },
+  {
+    "github_id": "davidaparicio",
+    "avatar": "https://avatars.githubusercontent.com/u/809982?v=3&s=80",
+    "github": "https://github.com/davidaparicio",
+    "name": "David Aparicio",
+    "homepage": "http://david.aparicio.eu",
+    "contributions": 2
+  },
+  {
+    "github_id": "davsclaus",
+    "avatar": "https://avatars.githubusercontent.com/u/477100?v=3&s=80",
+    "github": "https://github.com/davsclaus",
+    "name": "Claus Ibsen",
+    "homepage": "http://davsclaus.com/",
     "contributions": 5
   },
   {
@@ -404,11 +613,26 @@ module.exports = { contributors: [
     "contributions": 1
   },
   {
-    "github_id": "diabolicallab",
+    "github_id": "derveloper",
+    "avatar": "https://avatars.githubusercontent.com/u/18556?v=3&s=80",
+    "github": "https://github.com/derveloper",
+    "name": "Tristan Leo",
+    "contributions": 1
+  },
+  {
+    "github_id": "dgbustos",
+    "avatar": "https://avatars.githubusercontent.com/u/16764171?v=3&s=80",
+    "github": "https://github.com/dgbustos",
+    "name": "dgbustos",
+    "contributions": 1
+  },
+  {
+    "github_id": "diabolicallabs",
     "avatar": "https://avatars.githubusercontent.com/u/6454397?v=3&s=80",
-    "github": "https://github.com/diabolicallab",
-    "name": "diabolicallab",
-    "contributions": 2
+    "github": "https://github.com/diabolicallabs",
+    "name": "David Bush",
+    "homepage": "http://diabolicallabs.com",
+    "contributions": 5
   },
   {
     "github_id": "diega",
@@ -419,6 +643,28 @@ module.exports = { contributors: [
     "contributions": 2
   },
   {
+    "github_id": "DieterDePaepe",
+    "avatar": "https://avatars.githubusercontent.com/u/3605663?v=3&s=80",
+    "github": "https://github.com/DieterDePaepe",
+    "name": "Dieter De Paepe",
+    "contributions": 1
+  },
+  {
+    "github_id": "drfits",
+    "avatar": "https://avatars.githubusercontent.com/u/2554003?v=3&s=80",
+    "github": "https://github.com/drfits",
+    "name": "Evgeniy Fitsner",
+    "homepage": "http://www.drfits.com",
+    "contributions": 2
+  },
+  {
+    "github_id": "eboukamza",
+    "avatar": "https://avatars.githubusercontent.com/u/4034433?v=3&s=80",
+    "github": "https://github.com/eboukamza",
+    "name": "Elias Boukamza",
+    "contributions": 12
+  },
+  {
     "github_id": "edgarchan",
     "avatar": "https://avatars.githubusercontent.com/u/161952?v=3&s=80",
     "github": "https://github.com/edgarchan",
@@ -426,11 +672,55 @@ module.exports = { contributors: [
     "contributions": 12
   },
   {
+    "github_id": "eemmiirr",
+    "avatar": "https://avatars.githubusercontent.com/u/4640075?v=3&s=80",
+    "github": "https://github.com/eemmiirr",
+    "name": "Emir Dizdarevic",
+    "contributions": 2
+  },
+  {
     "github_id": "elad-yosifon",
     "avatar": "https://avatars.githubusercontent.com/u/2989684?v=3&s=80",
     "github": "https://github.com/elad-yosifon",
     "name": "Elad Yosifon",
     "contributions": 1
+  },
+  {
+    "github_id": "EmadAlblueshi",
+    "avatar": "https://avatars.githubusercontent.com/u/6061055?v=3&s=80",
+    "github": "https://github.com/EmadAlblueshi",
+    "name": "Emad Alblueshi",
+    "contributions": 20
+  },
+  {
+    "github_id": "eodgooch",
+    "avatar": "https://avatars.githubusercontent.com/u/1612131?v=3&s=80",
+    "github": "https://github.com/eodgooch",
+    "name": "Aaron Gooch",
+    "contributions": 2
+  },
+  {
+    "github_id": "ernestojpg",
+    "avatar": "https://avatars.githubusercontent.com/u/2565383?v=3&s=80",
+    "github": "https://github.com/ernestojpg",
+    "name": "Ernesto J. Perez Garcia",
+    "homepage": "http://www.ernestojpg.com",
+    "contributions": 2
+  },
+  {
+    "github_id": "erwindeg",
+    "avatar": "https://avatars.githubusercontent.com/u/11213171?v=3&s=80",
+    "github": "https://github.com/erwindeg",
+    "name": "erwindeg",
+    "homepage": "http://edegier.nl",
+    "contributions": 2
+  },
+  {
+    "github_id": "etourdot",
+    "avatar": "https://avatars.githubusercontent.com/u/2045667?v=3&s=80",
+    "github": "https://github.com/etourdot",
+    "name": "Emmanuel Tourdot",
+    "contributions": 3
   },
   {
     "github_id": "figroc",
@@ -444,7 +734,7 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/790571?v=3&s=80",
     "github": "https://github.com/fmarinelli",
     "name": "fmarinelli",
-    "contributions": 37
+    "contributions": 42
   },
   {
     "github_id": "fmatar",
@@ -460,6 +750,14 @@ module.exports = { contributors: [
     "name": "Marek Schmidt",
     "homepage": "http://www.zemarov.org/~marcho/",
     "contributions": 1
+  },
+  {
+    "github_id": "fzakaria",
+    "avatar": "https://avatars.githubusercontent.com/u/605070?v=3&s=80",
+    "github": "https://github.com/fzakaria",
+    "name": "Farid Zakaria",
+    "homepage": "http://www.fzakaria.com",
+    "contributions": 3
   },
   {
     "github_id": "galderz",
@@ -478,18 +776,98 @@ module.exports = { contributors: [
     "contributions": 63
   },
   {
+    "github_id": "garricko",
+    "avatar": "https://avatars.githubusercontent.com/u/1234201?v=3&s=80",
+    "github": "https://github.com/garricko",
+    "name": "Garrick Olson",
+    "contributions": 1
+  },
+  {
+    "github_id": "gastaldi",
+    "avatar": "https://avatars.githubusercontent.com/u/54133?v=3&s=80",
+    "github": "https://github.com/gastaldi",
+    "name": "George Gastaldi",
+    "homepage": "http://gastaldi.wordpress.com",
+    "contributions": 4
+  },
+  {
+    "github_id": "gchauvet",
+    "avatar": "https://avatars.githubusercontent.com/u/156972?v=3&s=80",
+    "github": "https://github.com/gchauvet",
+    "name": "Chauvet Guillaume",
+    "contributions": 4
+  },
+  {
+    "github_id": "gemmellr",
+    "avatar": "https://avatars.githubusercontent.com/u/5106823?v=3&s=80",
+    "github": "https://github.com/gemmellr",
+    "name": "Robbie Gemmell",
+    "contributions": 185
+  },
+  {
+    "github_id": "georgekankava",
+    "avatar": "https://avatars.githubusercontent.com/u/16732352?v=3&s=80",
+    "github": "https://github.com/georgekankava",
+    "name": "George Kankava",
+    "contributions": 2
+  },
+  {
+    "github_id": "giovibal",
+    "avatar": "https://avatars.githubusercontent.com/u/914655?v=3&s=80",
+    "github": "https://github.com/giovibal",
+    "name": "Giovanni Baleani",
+    "contributions": 1
+  },
+  {
     "github_id": "gitplaneta",
     "avatar": "https://avatars.githubusercontent.com/u/2615595?v=3&s=80",
     "github": "https://github.com/gitplaneta",
     "name": "Radosław Busz",
-    "homepage": "https://twitter.com/radekbusz",
-    "contributions": 7
+    "homepage": "http://busz.eu",
+    "contributions": 10
+  },
+  {
+    "github_id": "gmokki",
+    "avatar": "https://avatars.githubusercontent.com/u/171299?v=3&s=80",
+    "github": "https://github.com/gmokki",
+    "name": "Mikko Tiihonen",
+    "contributions": 8
   },
   {
     "github_id": "gprasant",
     "avatar": "https://avatars.githubusercontent.com/u/212911?v=3&s=80",
     "github": "https://github.com/gprasant",
     "name": "gprasant",
+    "contributions": 2
+  },
+  {
+    "github_id": "Gsantomaggio",
+    "avatar": "https://avatars.githubusercontent.com/u/386987?v=3&s=80",
+    "github": "https://github.com/Gsantomaggio",
+    "name": "Gabriele Santomaggio",
+    "homepage": "https://www.erlang-solutions.com/",
+    "contributions": 2
+  },
+  {
+    "github_id": "harisankars",
+    "avatar": "https://avatars.githubusercontent.com/u/4605326?v=3&s=80",
+    "github": "https://github.com/harisankars",
+    "name": "harisankars",
+    "contributions": 1
+  },
+  {
+    "github_id": "hasancelik",
+    "avatar": "https://avatars.githubusercontent.com/u/6005622?v=3&s=80",
+    "github": "https://github.com/hasancelik",
+    "name": "Hasan Çelik",
+    "contributions": 1
+  },
+  {
+    "github_id": "hekonsek",
+    "avatar": "https://avatars.githubusercontent.com/u/822903?v=3&s=80",
+    "github": "https://github.com/hekonsek",
+    "name": "Henryk Konsek",
+    "homepage": "https://twitter.com/hekonsek",
     "contributions": 2
   },
   {
@@ -534,6 +912,15 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/1731854?v=3&s=80",
     "github": "https://github.com/icha024",
     "name": "Ian",
+    "homepage": "http://clianz.com",
+    "contributions": 1
+  },
+  {
+    "github_id": "ieugen",
+    "avatar": "https://avatars.githubusercontent.com/u/1050920?v=3&s=80",
+    "github": "https://github.com/ieugen",
+    "name": "Ioan Eugen Stan",
+    "homepage": "https://netdava.com",
     "contributions": 1
   },
   {
@@ -545,11 +932,19 @@ module.exports = { contributors: [
     "contributions": 2
   },
   {
+    "github_id": "igouss",
+    "avatar": "https://avatars.githubusercontent.com/u/339?v=3&s=80",
+    "github": "https://github.com/igouss",
+    "name": "Iouri Goussev",
+    "homepage": "http://blog.naxsoft.com",
+    "contributions": 1
+  },
+  {
     "github_id": "imavroukakis",
     "avatar": "https://avatars.githubusercontent.com/u/1764981?v=3&s=80",
     "github": "https://github.com/imavroukakis",
     "name": "Ioannis Mavroukakis",
-    "contributions": 11
+    "contributions": 12
   },
   {
     "github_id": "InfoSec812",
@@ -557,7 +952,28 @@ module.exports = { contributors: [
     "github": "https://github.com/InfoSec812",
     "name": "Deven Phillips",
     "homepage": "http://blog.zanclus.com/",
-    "contributions": 5
+    "contributions": 6
+  },
+  {
+    "github_id": "ismailhabib",
+    "avatar": "https://avatars.githubusercontent.com/u/4030198?v=3&s=80",
+    "github": "https://github.com/ismailhabib",
+    "name": "Ismail Habib Muhammad",
+    "contributions": 1
+  },
+  {
+    "github_id": "iweiss",
+    "avatar": "https://avatars.githubusercontent.com/u/4449438?v=3&s=80",
+    "github": "https://github.com/iweiss",
+    "name": "Ingo Weiss",
+    "contributions": 1
+  },
+  {
+    "github_id": "JacpFX",
+    "avatar": "https://avatars.githubusercontent.com/u/5213498?v=3&s=80",
+    "github": "https://github.com/JacpFX",
+    "name": "Andy Moncsek",
+    "contributions": 4
   },
   {
     "github_id": "jannehietamaki",
@@ -576,13 +992,6 @@ module.exports = { contributors: [
     "contributions": 2
   },
   {
-    "github_id": "jarthorn",
-    "avatar": "https://avatars.githubusercontent.com/u/193877?v=3&s=80",
-    "github": "https://github.com/jarthorn",
-    "name": "John Arthorne",
-    "contributions": 1
-  },
-  {
     "github_id": "jasonparekh",
     "avatar": "https://avatars.githubusercontent.com/u/475137?v=3&s=80",
     "github": "https://github.com/jasonparekh",
@@ -595,6 +1004,13 @@ module.exports = { contributors: [
     "github": "https://github.com/jbeard6",
     "name": "Joseph Beard",
     "homepage": "http://www.josephbeard.net",
+    "contributions": 2
+  },
+  {
+    "github_id": "jbtrystram",
+    "avatar": "https://avatars.githubusercontent.com/u/12406409?v=3&s=80",
+    "github": "https://github.com/jbtrystram",
+    "name": "Trystram Jean-Baptiste",
     "contributions": 2
   },
   {
@@ -627,10 +1043,18 @@ module.exports = { contributors: [
     "contributions": 20
   },
   {
-    "github_id": "jfmole",
-    "avatar": "https://avatars.githubusercontent.com/u/302113?v=3&s=80",
-    "github": "https://github.com/jfmole",
-    "name": "John Moscato",
+    "github_id": "jerrinot",
+    "avatar": "https://avatars.githubusercontent.com/u/158619?v=3&s=80",
+    "github": "https://github.com/jerrinot",
+    "name": "Jaromir Hamala",
+    "contributions": 2
+  },
+  {
+    "github_id": "jhalterman",
+    "avatar": "https://avatars.githubusercontent.com/u/228804?v=3&s=80",
+    "github": "https://github.com/jhalterman",
+    "name": "Jonathan Halterman",
+    "homepage": "http://twitter.com/jhalt",
     "contributions": 1
   },
   {
@@ -646,6 +1070,13 @@ module.exports = { contributors: [
     "github": "https://github.com/jkeys089",
     "name": "jkeys089",
     "contributions": 2
+  },
+  {
+    "github_id": "jklingsporn",
+    "avatar": "https://avatars.githubusercontent.com/u/6339806?v=3&s=80",
+    "github": "https://github.com/jklingsporn",
+    "name": "jklingsporn",
+    "contributions": 1
   },
   {
     "github_id": "jkneb",
@@ -669,13 +1100,21 @@ module.exports = { contributors: [
     "github": "https://github.com/jkutner",
     "name": "Joe Kutner",
     "homepage": "http://healthyprog.com",
-    "contributions": 4
+    "contributions": 6
+  },
+  {
+    "github_id": "jmoscato",
+    "avatar": "https://avatars.githubusercontent.com/u/302113?v=3&s=80",
+    "github": "https://github.com/jmoscato",
+    "name": "John Moscato",
+    "contributions": 1
   },
   {
     "github_id": "jmusacchio",
     "avatar": "https://avatars.githubusercontent.com/u/7712684?v=3&s=80",
     "github": "https://github.com/jmusacchio",
     "name": "Juan Manuel Musacchio",
+    "homepage": "https://jmusacchio.github.io",
     "contributions": 1
   },
   {
@@ -699,7 +1138,7 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/1615532?v=3&s=80",
     "github": "https://github.com/johnoliver",
     "name": "John Oliver",
-    "contributions": 16
+    "contributions": 24
   },
   {
     "github_id": "JohnWarnerEF",
@@ -723,6 +1162,20 @@ module.exports = { contributors: [
     "contributions": 3
   },
   {
+    "github_id": "joson",
+    "avatar": "https://avatars.githubusercontent.com/u/212632?v=3&s=80",
+    "github": "https://github.com/joson",
+    "name": "joson",
+    "contributions": 1
+  },
+  {
+    "github_id": "JotBePunkt",
+    "avatar": "https://avatars.githubusercontent.com/u/1052470?v=3&s=80",
+    "github": "https://github.com/JotBePunkt",
+    "name": "Jens Baitinger",
+    "contributions": 1
+  },
+  {
     "github_id": "Jotschi",
     "avatar": "https://avatars.githubusercontent.com/u/326605?v=3&s=80",
     "github": "https://github.com/Jotschi",
@@ -731,11 +1184,18 @@ module.exports = { contributors: [
     "contributions": 5
   },
   {
+    "github_id": "joydip",
+    "avatar": "https://avatars.githubusercontent.com/u/1226085?v=3&s=80",
+    "github": "https://github.com/joydip",
+    "name": "Joydip Basu",
+    "contributions": 2
+  },
+  {
     "github_id": "jpmeyer",
     "avatar": "https://avatars.githubusercontent.com/u/3030965?v=3&s=80",
     "github": "https://github.com/jpmeyer",
     "name": "John Meyer",
-    "homepage": "http://www.shareaholic.com",
+    "homepage": "https://jpmeyer.github.io",
     "contributions": 4
   },
   {
@@ -744,14 +1204,21 @@ module.exports = { contributors: [
     "github": "https://github.com/jponge",
     "name": "Julien Ponge",
     "homepage": "https://julien.ponge.org/",
-    "contributions": 6
+    "contributions": 13
+  },
+  {
+    "github_id": "jsmithe",
+    "avatar": "https://avatars.githubusercontent.com/u/15017861?v=3&s=80",
+    "github": "https://github.com/jsmithe",
+    "name": "jsmithe",
+    "contributions": 1
   },
   {
     "github_id": "jstrachan",
     "avatar": "https://avatars.githubusercontent.com/u/30140?v=3&s=80",
     "github": "https://github.com/jstrachan",
     "name": "James Strachan",
-    "homepage": "http://macstrac.blogspot.com/",
+    "homepage": "https://medium.com/@jstrachan/",
     "contributions": 4
   },
   {
@@ -759,7 +1226,14 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/633168?v=3&s=80",
     "github": "https://github.com/jtruelove",
     "name": "Jeremy Truelove",
-    "contributions": 9
+    "contributions": 10
+  },
+  {
+    "github_id": "julianladisch",
+    "avatar": "https://avatars.githubusercontent.com/u/533612?v=3&s=80",
+    "github": "https://github.com/julianladisch",
+    "name": "julianladisch",
+    "contributions": 2
   },
   {
     "github_id": "julien3",
@@ -769,11 +1243,17 @@ module.exports = { contributors: [
     "contributions": 1
   },
   {
+    "github_id": "Junbong",
+    "avatar": "https://avatars.githubusercontent.com/u/6138662?v=3&s=80",
+    "github": "https://github.com/Junbong",
+    "name": "Junbong Lee",
+    "contributions": 6
+  },
+  {
     "github_id": "jvmvik",
     "avatar": "https://avatars.githubusercontent.com/u/330204?v=3&s=80",
     "github": "https://github.com/jvmvik",
     "name": "Victor Benarbia",
-    "homepage": "http://blog.milkyway.io",
     "contributions": 1
   },
   {
@@ -791,18 +1271,24 @@ module.exports = { contributors: [
     "contributions": 1
   },
   {
+    "github_id": "k-mack",
+    "avatar": "https://avatars.githubusercontent.com/u/2957142?v=3&s=80",
+    "github": "https://github.com/k-mack",
+    "name": "Kevin Macksamie",
+    "contributions": 1
+  },
+  {
     "github_id": "kajmagnus79",
     "avatar": "https://avatars.githubusercontent.com/u/548833?v=3&s=80",
     "github": "https://github.com/kajmagnus79",
     "name": "KajMagnus",
-    "homepage": "http://www.debiki.com",
     "contributions": 3
   },
   {
     "github_id": "kaklakariada",
     "avatar": "https://avatars.githubusercontent.com/u/4711730?v=3&s=80",
     "github": "https://github.com/kaklakariada",
-    "name": "kaklakariada",
+    "name": "chπ",
     "contributions": 1
   },
   {
@@ -818,7 +1304,7 @@ module.exports = { contributors: [
     "github": "https://github.com/karianna",
     "name": "Martijn Verburg",
     "homepage": "http://martijnverburg.blogspot.com",
-    "contributions": 14
+    "contributions": 33
   },
   {
     "github_id": "keesun",
@@ -829,11 +1315,56 @@ module.exports = { contributors: [
     "contributions": 2
   },
   {
+    "github_id": "kennedyoliveira",
+    "avatar": "https://avatars.githubusercontent.com/u/7723330?v=3&s=80",
+    "github": "https://github.com/kennedyoliveira",
+    "name": "Kennedy Oliveira",
+    "contributions": 1
+  },
+  {
+    "github_id": "kerko",
+    "avatar": "https://avatars.githubusercontent.com/u/4713073?v=3&s=80",
+    "github": "https://github.com/kerko",
+    "name": "Jan Kerkenhoff",
+    "homepage": "http://kerkenhoff.com",
+    "contributions": 2
+  },
+  {
+    "github_id": "Kevin-A",
+    "avatar": "https://avatars.githubusercontent.com/u/6153447?v=3&s=80",
+    "github": "https://github.com/Kevin-A",
+    "name": "Kevin Adegeest",
+    "homepage": "http://www.emptymind.me",
+    "contributions": 1
+  },
+  {
+    "github_id": "kevlarC",
+    "avatar": "https://avatars.githubusercontent.com/u/7290403?v=3&s=80",
+    "github": "https://github.com/kevlarC",
+    "name": "Kevin Cross",
+    "contributions": 1
+  },
+  {
+    "github_id": "kliakos",
+    "avatar": "https://avatars.githubusercontent.com/u/5412103?v=3&s=80",
+    "github": "https://github.com/kliakos",
+    "name": "Konstantinos Liakos",
+    "contributions": 1
+  },
+  {
     "github_id": "kromit",
     "avatar": "https://avatars.githubusercontent.com/u/5220821?v=3&s=80",
     "github": "https://github.com/kromit",
     "name": "kromit",
     "contributions": 5
+  },
+  {
+    "github_id": "kthoms",
+    "avatar": "https://avatars.githubusercontent.com/u/265597?v=3&s=80",
+    "github": "https://github.com/kthoms",
+    "name": "Karsten Thoms",
+    "homepage": "http://kthoms.wordpress.com",
+    "contributions": 1
   },
   {
     "github_id": "kuujo",
@@ -874,11 +1405,40 @@ module.exports = { contributors: [
     "contributions": 7
   },
   {
+    "github_id": "lburgazzoli",
+    "avatar": "https://avatars.githubusercontent.com/u/1868933?v=3&s=80",
+    "github": "https://github.com/lburgazzoli",
+    "name": "Luca Burgazzoli",
+    "homepage": "http://lburgazzoli.github.io",
+    "contributions": 3
+  },
+  {
     "github_id": "leolux",
     "avatar": "https://avatars.githubusercontent.com/u/5385814?v=3&s=80",
     "github": "https://github.com/leolux",
     "name": "leolux",
-    "contributions": 2
+    "contributions": 3
+  },
+  {
+    "github_id": "leosilvadev",
+    "avatar": "https://avatars.githubusercontent.com/u/5465808?v=3&s=80",
+    "github": "https://github.com/leosilvadev",
+    "name": "Leonardo Silva",
+    "contributions": 6
+  },
+  {
+    "github_id": "lhuet",
+    "avatar": "https://avatars.githubusercontent.com/u/133396?v=3&s=80",
+    "github": "https://github.com/lhuet",
+    "name": "Laurent HUET",
+    "contributions": 1
+  },
+  {
+    "github_id": "LisiLisenok",
+    "avatar": "https://avatars.githubusercontent.com/u/10707943?v=3&s=80",
+    "github": "https://github.com/LisiLisenok",
+    "name": "Lisi",
+    "contributions": 1
   },
   {
     "github_id": "litch",
@@ -889,6 +1449,13 @@ module.exports = { contributors: [
     "contributions": 4
   },
   {
+    "github_id": "llfbandit",
+    "avatar": "https://avatars.githubusercontent.com/u/3672960?v=3&s=80",
+    "github": "https://github.com/llfbandit",
+    "name": "llfbandit",
+    "contributions": 7
+  },
+  {
     "github_id": "LostInBrittany",
     "avatar": "https://avatars.githubusercontent.com/u/726476?v=3&s=80",
     "github": "https://github.com/LostInBrittany",
@@ -897,11 +1464,27 @@ module.exports = { contributors: [
     "contributions": 88
   },
   {
+    "github_id": "lujop",
+    "avatar": "https://avatars.githubusercontent.com/u/920260?v=3&s=80",
+    "github": "https://github.com/lujop",
+    "name": "Joan Pujol",
+    "homepage": "http://www.joanpujol.cat",
+    "contributions": 2
+  },
+  {
+    "github_id": "lulf",
+    "avatar": "https://avatars.githubusercontent.com/u/19670?v=3&s=80",
+    "github": "https://github.com/lulf",
+    "name": "Ulf Lilleengen",
+    "homepage": "http://lulf.no",
+    "contributions": 1
+  },
+  {
     "github_id": "macedigital",
     "avatar": "https://avatars.githubusercontent.com/u/248495?v=3&s=80",
     "github": "https://github.com/macedigital",
     "name": "Matthias Adler",
-    "homepage": "http://matthiasadler.info",
+    "homepage": "https://matthiasadler.info/",
     "contributions": 3
   },
   {
@@ -919,12 +1502,42 @@ module.exports = { contributors: [
     "contributions": 4
   },
   {
+    "github_id": "marcenuc",
+    "avatar": "https://avatars.githubusercontent.com/u/5284?v=3&s=80",
+    "github": "https://github.com/marcenuc",
+    "name": "Marcello Nuccio",
+    "contributions": 2
+  },
+  {
+    "github_id": "marcust",
+    "avatar": "https://avatars.githubusercontent.com/u/95655?v=3&s=80",
+    "github": "https://github.com/marcust",
+    "name": "Marcus Thiesen",
+    "homepage": "http://blog.thiesen.org",
+    "contributions": 2
+  },
+  {
     "github_id": "marekjelen",
     "avatar": "https://avatars.githubusercontent.com/u/156068?v=3&s=80",
     "github": "https://github.com/marekjelen",
     "name": "Marek Jelen",
     "homepage": "http://www.mjelen.eu",
     "contributions": 3
+  },
+  {
+    "github_id": "mariomac",
+    "avatar": "https://avatars.githubusercontent.com/u/939550?v=3&s=80",
+    "github": "https://github.com/mariomac",
+    "name": "Mario Macías",
+    "homepage": "http://www.macias.info",
+    "contributions": 1
+  },
+  {
+    "github_id": "Mart-Bogdan",
+    "avatar": "https://avatars.githubusercontent.com/u/775038?v=3&s=80",
+    "github": "https://github.com/Mart-Bogdan",
+    "name": "Bogdan Mart",
+    "contributions": 2
   },
   {
     "github_id": "marx-espirit",
@@ -934,10 +1547,18 @@ module.exports = { contributors: [
     "contributions": 2
   },
   {
+    "github_id": "matty",
+    "avatar": "https://avatars.githubusercontent.com/u/5208976?v=3&s=80",
+    "github": "https://github.com/matty",
+    "name": "Matty Southall",
+    "contributions": 9
+  },
+  {
     "github_id": "mattyb678",
     "avatar": "https://avatars.githubusercontent.com/u/1524704?v=3&s=80",
     "github": "https://github.com/mattyb678",
     "name": "Matt Berteaux",
+    "homepage": "http://mattyb.xyz",
     "contributions": 1
   },
   {
@@ -947,6 +1568,20 @@ module.exports = { contributors: [
     "name": "Matthias Wessendorf",
     "homepage": "http://matthiaswessendorf.wordpress.com",
     "contributions": 2
+  },
+  {
+    "github_id": "MazizEsa",
+    "avatar": "https://avatars.githubusercontent.com/u/1955327?v=3&s=80",
+    "github": "https://github.com/MazizEsa",
+    "name": "Maziz",
+    "contributions": 7
+  },
+  {
+    "github_id": "mcweba",
+    "avatar": "https://avatars.githubusercontent.com/u/8819088?v=3&s=80",
+    "github": "https://github.com/mcweba",
+    "name": "Marc-André Weber",
+    "contributions": 3
   },
   {
     "github_id": "megesdal",
@@ -961,7 +1596,7 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/4507985?v=3&s=80",
     "github": "https://github.com/meggarr",
     "name": "meggarr",
-    "contributions": 2
+    "contributions": 7
   },
   {
     "github_id": "mellster2012",
@@ -977,14 +1612,14 @@ module.exports = { contributors: [
     "github": "https://github.com/meshuga",
     "name": "Patryk Orwat",
     "homepage": "https://pl.linkedin.com/in/meshuga",
-    "contributions": 10
+    "contributions": 11
   },
   {
-    "github_id": "mgardziejewski",
-    "avatar": "https://avatars.githubusercontent.com/u/12063190?v=3&s=80",
-    "github": "https://github.com/mgardziejewski",
-    "name": "mgardziejewski",
-    "contributions": 3
+    "github_id": "mgouline",
+    "avatar": "https://avatars.githubusercontent.com/u/1960272?v=3&s=80",
+    "github": "https://github.com/mgouline",
+    "name": "Mike Gouline",
+    "contributions": 7
   },
   {
     "github_id": "mguillet",
@@ -992,15 +1627,23 @@ module.exports = { contributors: [
     "github": "https://github.com/mguillet",
     "name": "Michel Guillet",
     "homepage": "http://www.linkedin.com/in/michelguillet",
-    "contributions": 5
+    "contributions": 6
+  },
+  {
+    "github_id": "michalyao",
+    "avatar": "https://avatars.githubusercontent.com/u/17451490?v=3&s=80",
+    "github": "https://github.com/michalyao",
+    "name": "Yao Yao",
+    "homepage": "http://yoryor.me",
+    "contributions": 3
   },
   {
     "github_id": "michel-kraemer",
     "avatar": "https://avatars.githubusercontent.com/u/295407?v=3&s=80",
     "github": "https://github.com/michel-kraemer",
     "name": "Michel Krämer",
-    "homepage": "http://www.michel-kraemer.com",
-    "contributions": 123
+    "homepage": "https://www.michel-kraemer.com",
+    "contributions": 160
   },
   {
     "github_id": "mikaelkaron",
@@ -1015,7 +1658,22 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/1318862?v=3&s=80",
     "github": "https://github.com/millross",
     "name": "Jez Prime (Millross Consultants)",
-    "contributions": 5
+    "contributions": 7
+  },
+  {
+    "github_id": "mkouba",
+    "avatar": "https://avatars.githubusercontent.com/u/913004?v=3&s=80",
+    "github": "https://github.com/mkouba",
+    "name": "Martin Kouba",
+    "contributions": 2
+  },
+  {
+    "github_id": "monzou",
+    "avatar": "https://avatars.githubusercontent.com/u/212607?v=3&s=80",
+    "github": "https://github.com/monzou",
+    "name": "Takuro Monji",
+    "homepage": "http://qiita.com/monzou",
+    "contributions": 1
   },
   {
     "github_id": "mpas",
@@ -1026,10 +1684,18 @@ module.exports = { contributors: [
     "contributions": 2
   },
   {
+    "github_id": "msanguineti",
+    "avatar": "https://avatars.githubusercontent.com/u/19243840?v=3&s=80",
+    "github": "https://github.com/msanguineti",
+    "name": "Mirco Sanguineti",
+    "contributions": 6
+  },
+  {
     "github_id": "msavy",
     "avatar": "https://avatars.githubusercontent.com/u/423513?v=3&s=80",
     "github": "https://github.com/msavy",
     "name": "Marc Savy",
+    "homepage": "http://www.rhymewithgravy.com",
     "contributions": 2
   },
   {
@@ -1037,7 +1703,7 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/706567?v=3&s=80",
     "github": "https://github.com/msoute",
     "name": "Marcel Soute",
-    "contributions": 8
+    "contributions": 9
   },
   {
     "github_id": "mstruk",
@@ -1055,12 +1721,19 @@ module.exports = { contributors: [
     "contributions": 2
   },
   {
+    "github_id": "mwarc",
+    "avatar": "https://avatars.githubusercontent.com/u/11618469?v=3&s=80",
+    "github": "https://github.com/mwarc",
+    "name": "Marcin Warczyglowa",
+    "contributions": 1
+  },
+  {
     "github_id": "Narigo",
     "avatar": "https://avatars.githubusercontent.com/u/1767865?v=3&s=80",
     "github": "https://github.com/Narigo",
     "name": "Joern Bernhardt",
     "homepage": "http://www.campudus.com/",
-    "contributions": 292
+    "contributions": 313
   },
   {
     "github_id": "nfmelendez",
@@ -1130,6 +1803,21 @@ module.exports = { contributors: [
     "contributions": 7
   },
   {
+    "github_id": "P4Awd",
+    "avatar": "https://avatars.githubusercontent.com/u/22350152?v=3&s=80",
+    "github": "https://github.com/P4Awd",
+    "name": "P4Awd",
+    "contributions": 2
+  },
+  {
+    "github_id": "Pahan-Madusha",
+    "avatar": "https://avatars.githubusercontent.com/u/11527956?v=3&s=80",
+    "github": "https://github.com/Pahan-Madusha",
+    "name": "Pahan Madusha",
+    "homepage": "https://randomposts22.blogspot.com",
+    "contributions": 5
+  },
+  {
     "github_id": "patoi",
     "avatar": "https://avatars.githubusercontent.com/u/1846548?v=3&s=80",
     "github": "https://github.com/patoi",
@@ -1143,7 +1831,15 @@ module.exports = { contributors: [
     "github": "https://github.com/paulbakker",
     "name": "Paul Bakker",
     "homepage": "http://twitter.com/pbakker",
-    "contributions": 1
+    "contributions": 23
+  },
+  {
+    "github_id": "paulmiddelkoop",
+    "avatar": "https://avatars.githubusercontent.com/u/1841917?v=3&s=80",
+    "github": "https://github.com/paulmiddelkoop",
+    "name": "Paul Middelkoop",
+    "homepage": "http://www.pamisoft.nl",
+    "contributions": 2
   },
   {
     "github_id": "pdalpra",
@@ -1158,7 +1854,7 @@ module.exports = { contributors: [
     "github": "https://github.com/peterhendriks",
     "name": "Peter Hendriks",
     "homepage": "http://www.22flows.nl",
-    "contributions": 1
+    "contributions": 3
   },
   {
     "github_id": "petermd",
@@ -1166,7 +1862,15 @@ module.exports = { contributors: [
     "github": "https://github.com/petermd",
     "name": "Peter McDonnell",
     "homepage": "http://twitter.com/petermd",
-    "contributions": 46
+    "contributions": 50
+  },
+  {
+    "github_id": "pflanzenmoerder",
+    "avatar": "https://avatars.githubusercontent.com/u/185474?v=3&s=80",
+    "github": "https://github.com/pflanzenmoerder",
+    "name": "Jochen Mader",
+    "homepage": "http://codepitbull.wordpress.com",
+    "contributions": 68
   },
   {
     "github_id": "philidem",
@@ -1188,7 +1892,7 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/303151?v=3&s=80",
     "github": "https://github.com/pidster",
     "name": "Pid",
-    "homepage": "http://pidster.org",
+    "homepage": "http://www.pidster.com",
     "contributions": 213
   },
   {
@@ -1198,6 +1902,13 @@ module.exports = { contributors: [
     "name": "Peter Ledbrook",
     "homepage": "http://www.cacoethes.co.uk/",
     "contributions": 1
+  },
+  {
+    "github_id": "plombardi89",
+    "avatar": "https://avatars.githubusercontent.com/u/893096?v=3&s=80",
+    "github": "https://github.com/plombardi89",
+    "name": "Philip Lombardi",
+    "contributions": 2
   },
   {
     "github_id": "pmarino90",
@@ -1211,8 +1922,30 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/849467?v=3&s=80",
     "github": "https://github.com/pmlopes",
     "name": "Paulo Lopes",
-    "homepage": "http://www.jetdrone.com",
-    "contributions": 646
+    "homepage": "http://www.jetdrone.xyz",
+    "contributions": 1160
+  },
+  {
+    "github_id": "poiuytrez",
+    "avatar": "https://avatars.githubusercontent.com/u/1167433?v=3&s=80",
+    "github": "https://github.com/poiuytrez",
+    "name": "Guillaume Charhon",
+    "contributions": 29
+  },
+  {
+    "github_id": "pontushellgren",
+    "avatar": "https://avatars.githubusercontent.com/u/2283184?v=3&s=80",
+    "github": "https://github.com/pontushellgren",
+    "name": "Pontus",
+    "contributions": 1
+  },
+  {
+    "github_id": "ppatierno",
+    "avatar": "https://avatars.githubusercontent.com/u/5842311?v=3&s=80",
+    "github": "https://github.com/ppatierno",
+    "name": "Paolo Patierno",
+    "homepage": "https://paolopatierno.wordpress.com/",
+    "contributions": 95
   },
   {
     "github_id": "purplefox",
@@ -1220,7 +1953,7 @@ module.exports = { contributors: [
     "github": "https://github.com/purplefox",
     "name": "Tim Fox",
     "homepage": "http://tfox.org",
-    "contributions": 3985
+    "contributions": 3996
   },
   {
     "github_id": "pwielgolaski",
@@ -1236,6 +1969,14 @@ module.exports = { contributors: [
     "name": "Douglas Campos",
     "homepage": "http://blog.qmx.me",
     "contributions": 4
+  },
+  {
+    "github_id": "rafabene",
+    "avatar": "https://avatars.githubusercontent.com/u/30131?v=3&s=80",
+    "github": "https://github.com/rafabene",
+    "name": "Rafael Benevides",
+    "homepage": "http://rafabene.com",
+    "contributions": 1
   },
   {
     "github_id": "rajith77",
@@ -1272,7 +2013,7 @@ module.exports = { contributors: [
     "github": "https://github.com/remi128",
     "name": "Michael Remme",
     "homepage": "http://www.braintags.de",
-    "contributions": 20
+    "contributions": 21
   },
   {
     "github_id": "renatolond",
@@ -1290,12 +2031,27 @@ module.exports = { contributors: [
     "contributions": 6
   },
   {
+    "github_id": "rhusar",
+    "avatar": "https://avatars.githubusercontent.com/u/765506?v=3&s=80",
+    "github": "https://github.com/rhusar",
+    "name": "Radoslav Husar",
+    "homepage": "https://radoslavhusar.com",
+    "contributions": 1
+  },
+  {
+    "github_id": "ricardohmon",
+    "avatar": "https://avatars.githubusercontent.com/u/4780952?v=3&s=80",
+    "github": "https://github.com/ricardohmon",
+    "name": "Ricardo Hernandez",
+    "contributions": 18
+  },
+  {
     "github_id": "RichardHightower",
     "avatar": "https://avatars.githubusercontent.com/u/382678?v=3&s=80",
     "github": "https://github.com/RichardHightower",
     "name": "Richard Hightower",
-    "homepage": "http://rick-hightower.blogspot.com/",
-    "contributions": 2
+    "homepage": "https://github.com/advantageous/reakt",
+    "contributions": 4
   },
   {
     "github_id": "RichardWarburton",
@@ -1306,12 +2062,33 @@ module.exports = { contributors: [
     "contributions": 7
   },
   {
+    "github_id": "riperez",
+    "avatar": "https://avatars.githubusercontent.com/u/3994958?v=3&s=80",
+    "github": "https://github.com/riperez",
+    "name": "Richard Perez",
+    "contributions": 1
+  },
+  {
+    "github_id": "rkozmer",
+    "avatar": "https://avatars.githubusercontent.com/u/570381?v=3&s=80",
+    "github": "https://github.com/rkozmer",
+    "name": "Rado Kozmer",
+    "contributions": 2
+  },
+  {
+    "github_id": "RuchiraKulathunga",
+    "avatar": "https://avatars.githubusercontent.com/u/14351353?v=3&s=80",
+    "github": "https://github.com/RuchiraKulathunga",
+    "name": "Ruchira Kulathunga",
+    "contributions": 6
+  },
+  {
     "github_id": "ruslansennov",
     "avatar": "https://avatars.githubusercontent.com/u/1582377?v=3&s=80",
     "github": "https://github.com/ruslansennov",
     "name": "Ruslan Sennov",
     "homepage": "http://ruslan-sennov.blogspot.com/",
-    "contributions": 1
+    "contributions": 85
   },
   {
     "github_id": "rworsnop",
@@ -1319,6 +2096,21 @@ module.exports = { contributors: [
     "github": "https://github.com/rworsnop",
     "name": "Rob Worsnop",
     "contributions": 4
+  },
+  {
+    "github_id": "sameer7",
+    "avatar": "https://avatars.githubusercontent.com/u/6242711?v=3&s=80",
+    "github": "https://github.com/sameer7",
+    "name": "sameer7",
+    "contributions": 4
+  },
+  {
+    "github_id": "Sanne",
+    "avatar": "https://avatars.githubusercontent.com/u/42573?v=3&s=80",
+    "github": "https://github.com/Sanne",
+    "name": "Sanne Grinovero",
+    "homepage": "http://in.relation.to/Bloggers/Sanne",
+    "contributions": 10
   },
   {
     "github_id": "SaschaSchmidt",
@@ -1335,6 +2127,21 @@ module.exports = { contributors: [
     "contributions": 1
   },
   {
+    "github_id": "sczyh30",
+    "avatar": "https://avatars.githubusercontent.com/u/9434884?v=3&s=80",
+    "github": "https://github.com/sczyh30",
+    "name": "Eric Zhao",
+    "homepage": "http://www.sczyh30.com",
+    "contributions": 10
+  },
+  {
+    "github_id": "sdhays",
+    "avatar": "https://avatars.githubusercontent.com/u/19920009?v=3&s=80",
+    "github": "https://github.com/sdhays",
+    "name": "sdhays",
+    "contributions": 1
+  },
+  {
     "github_id": "sebastienblanc",
     "avatar": "https://avatars.githubusercontent.com/u/335133?v=3&s=80",
     "github": "https://github.com/sebastienblanc",
@@ -1347,7 +2154,7 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/1710006?v=3&s=80",
     "github": "https://github.com/sfitts",
     "name": "Sean Fitts",
-    "contributions": 4
+    "contributions": 5
   },
   {
     "github_id": "sharathp",
@@ -1361,13 +2168,14 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/1207225?v=3&s=80",
     "github": "https://github.com/shaunrader",
     "name": "shaunrader",
-    "contributions": 1
+    "contributions": 2
   },
   {
     "github_id": "sibay",
     "avatar": "https://avatars.githubusercontent.com/u/12139958?v=3&s=80",
     "github": "https://github.com/sibay",
     "name": "Tarek El-Sibay",
+    "homepage": "http://www.notizwerk.de",
     "contributions": 5
   },
   {
@@ -1389,7 +2197,7 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/1950206?v=3&s=80",
     "github": "https://github.com/slayful",
     "name": "Michał Turek",
-    "contributions": 1
+    "contributions": 5
   },
   {
     "github_id": "spriet2000",
@@ -1397,6 +2205,14 @@ module.exports = { contributors: [
     "github": "https://github.com/spriet2000",
     "name": "spriet2000",
     "contributions": 1
+  },
+  {
+    "github_id": "squaredfinancialit",
+    "avatar": "https://avatars.githubusercontent.com/u/6515640?v=3&s=80",
+    "github": "https://github.com/squaredfinancialit",
+    "name": "Squared Financial IT",
+    "homepage": "http://squaredfinancial.com",
+    "contributions": 2
   },
   {
     "github_id": "sramki",
@@ -1417,14 +2233,21 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/333299?v=3&s=80",
     "github": "https://github.com/stampy88",
     "name": "dave sinclair",
-    "contributions": 3
+    "contributions": 5
   },
   {
     "github_id": "stream1984",
     "avatar": "https://avatars.githubusercontent.com/u/273171?v=3&s=80",
     "github": "https://github.com/stream1984",
     "name": "Stream",
-    "contributions": 27
+    "contributions": 11
+  },
+  {
+    "github_id": "suryatech",
+    "avatar": "https://avatars.githubusercontent.com/u/6257686?v=3&s=80",
+    "github": "https://github.com/suryatech",
+    "name": "Surya P",
+    "contributions": 1
   },
   {
     "github_id": "sventech",
@@ -1471,7 +2294,7 @@ module.exports = { contributors: [
     "avatar": "https://avatars.githubusercontent.com/u/445123?v=3&s=80",
     "github": "https://github.com/testn",
     "name": "testn",
-    "contributions": 9
+    "contributions": 10
   },
   {
     "github_id": "thiagogcm",
@@ -1484,7 +2307,7 @@ module.exports = { contributors: [
     "github_id": "thmarx",
     "avatar": "https://avatars.githubusercontent.com/u/232434?v=3&s=80",
     "github": "https://github.com/thmarx",
-    "name": "Thorsten",
+    "name": "Thorsten Marx ㋡",
     "contributions": 5
   },
   {
@@ -1494,6 +2317,13 @@ module.exports = { contributors: [
     "name": "Jonathan wagner",
     "homepage": "http://www.getbigbang.com",
     "contributions": 2
+  },
+  {
+    "github_id": "TikhonovNikolay",
+    "avatar": "https://avatars.githubusercontent.com/u/2759299?v=3&s=80",
+    "github": "https://github.com/TikhonovNikolay",
+    "name": "TikhonovNikolay",
+    "contributions": 1
   },
   {
     "github_id": "timyates",
@@ -1517,7 +2347,7 @@ module.exports = { contributors: [
     "github": "https://github.com/tobias",
     "name": "Toby Crawley",
     "homepage": "http://tcrawley.org/",
-    "contributions": 321
+    "contributions": 325
   },
   {
     "github_id": "tsegismont",
@@ -1525,7 +2355,14 @@ module.exports = { contributors: [
     "github": "https://github.com/tsegismont",
     "name": "Thomas Segismont",
     "homepage": "http://tsegismont.blogspot.fr/",
-    "contributions": 31
+    "contributions": 187
+  },
+  {
+    "github_id": "tychobrailleur",
+    "avatar": "https://avatars.githubusercontent.com/u/114285?v=3&s=80",
+    "github": "https://github.com/tychobrailleur",
+    "name": "Sébastien Le Callonnec",
+    "contributions": 1
   },
   {
     "github_id": "ufoscout",
@@ -1535,27 +2372,33 @@ module.exports = { contributors: [
     "contributions": 2
   },
   {
+    "github_id": "ustinovvladi",
+    "avatar": "https://avatars.githubusercontent.com/u/19666970?v=3&s=80",
+    "github": "https://github.com/ustinovvladi",
+    "name": "ustinovvladi",
+    "contributions": 1
+  },
+  {
+    "github_id": "vbekiaris",
+    "avatar": "https://avatars.githubusercontent.com/u/1212378?v=3&s=80",
+    "github": "https://github.com/vbekiaris",
+    "name": "Vassilis Bekiaris",
+    "contributions": 6
+  },
+  {
     "github_id": "vietj",
     "avatar": "https://avatars.githubusercontent.com/u/225674?v=3&s=80",
     "github": "https://github.com/vietj",
     "name": "Julien Viet",
     "homepage": "http://blog.julienviet.com",
-    "contributions": 3690
-  },
-  {
-    "github_id": "VitorFreitas",
-    "avatar": "https://avatars.githubusercontent.com/u/860053?v=3&s=80",
-    "github": "https://github.com/VitorFreitas",
-    "name": "Vitor Barbosa de Freitas",
-    "homepage": "http://vtrbtf.com",
-    "contributions": 12
+    "contributions": 5410
   },
   {
     "github_id": "VojtechVitek",
     "avatar": "https://avatars.githubusercontent.com/u/139342?v=3&s=80",
     "github": "https://github.com/VojtechVitek",
     "name": "Vojtech Vitek",
-    "homepage": "http://vojtechvitek.com",
+    "homepage": "http://www.vojtechvitek.com",
     "contributions": 2
   },
   {
@@ -1564,6 +2407,14 @@ module.exports = { contributors: [
     "github": "https://github.com/Voxelot",
     "name": "Brandon Kite",
     "contributions": 2
+  },
+  {
+    "github_id": "vtrbtf",
+    "avatar": "https://avatars.githubusercontent.com/u/860053?v=3&s=80",
+    "github": "https://github.com/vtrbtf",
+    "name": "Vitor Barbosa de Freitas",
+    "homepage": "http://vtrbtf.com",
+    "contributions": 12
   },
   {
     "github_id": "w0mbat",
@@ -1580,6 +2431,21 @@ module.exports = { contributors: [
     "name": "Andreas Weise",
     "homepage": "http://avm.de/",
     "contributions": 2
+  },
+  {
+    "github_id": "weaver-viii",
+    "avatar": "https://avatars.githubusercontent.com/u/2807040?v=3&s=80",
+    "github": "https://github.com/weaver-viii",
+    "name": "Roman Ch.",
+    "homepage": "http://www.airtickets.flights/",
+    "contributions": 2
+  },
+  {
+    "github_id": "wem",
+    "avatar": "https://avatars.githubusercontent.com/u/1784773?v=3&s=80",
+    "github": "https://github.com/wem",
+    "name": "Michel Werren",
+    "contributions": 1
   },
   {
     "github_id": "whatevercode",
@@ -1612,19 +2478,19 @@ module.exports = { contributors: [
     "contributions": 1
   },
   {
-    "github_id": "wprice",
-    "avatar": "https://avatars.githubusercontent.com/u/467370?v=3&s=80",
-    "github": "https://github.com/wprice",
-    "name": "Weston M. Price",
-    "homepage": "http://www.redhat.com/en",
-    "contributions": 71
-  },
-  {
     "github_id": "wrobelm",
     "avatar": "https://avatars.githubusercontent.com/u/7239170?v=3&s=80",
     "github": "https://github.com/wrobelm",
     "name": "wrobelm",
     "contributions": 3
+  },
+  {
+    "github_id": "xkr47",
+    "avatar": "https://avatars.githubusercontent.com/u/1488474?v=3&s=80",
+    "github": "https://github.com/xkr47",
+    "name": "Jonas Berlin",
+    "homepage": "http://xkr47.outerspace.dyndns.org/",
+    "contributions": 5
   },
   {
     "github_id": "yerinle",
