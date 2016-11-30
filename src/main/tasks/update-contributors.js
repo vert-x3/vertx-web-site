@@ -133,12 +133,10 @@ function getAllContributors(repos, github, done) {
 
       // add all contributors of this repository to the result list
       contributors.forEach(function(c) {
-        console.log(c.login, c.contributions);
         var found = false;
         for (var j = 0; j < allContributors.length; ++j) {
           if (allContributors[j].login === c.login) {
             allContributors[j].contributions += c.contributions;
-            console.log("SUM", allContributors[j].login, allContributors[j].contributions);
             found = true;
             break;
           }
