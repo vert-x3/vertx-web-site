@@ -563,7 +563,7 @@ gulp.task("update-contributors", function() {
   return updateContributors(githubConfig.client_id, githubConfig.client_secret)
     .pipe(inject.wrap("// AUTO-GENERATED FILE. DO NOT EDIT! CALL `gulp update-contributors` INSTEAD.\n" +
       "// CREATED: " + Date() + "\nmodule.exports = { contributors: ", " };"))
-    .pipe(gulp.dest(path.join(paths.src_gen, "main", "community")));
+    .pipe(gulp.dest(path.join(paths.src_gen, "community")));
 });
 
 // clean target directory
