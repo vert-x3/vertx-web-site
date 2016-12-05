@@ -5,7 +5,7 @@ date: 2016-12-02
 author: pmlopes
 ---
 
-`Oauth2` support exists in Eclipse vert.x since version 3.2.0. The implementation follows the principles that rule the whole vert.x ecosystem: unopinionated, it does what you want it to do, simple but not too simple.
+`Oauth2` support exists in Eclipse Vert.x since version 3.2.0. The implementation follows the principles that rule the whole vert.x ecosystem: unopinionated, it does what you want it to do, simple but not too simple.
 
 This works fine because `OAuth2` is a widely spread standard and vendors adhere to it quite well. However due to the API and the details of the specification it requires some knowledge on what kind of _flow_ your application needs to support, what are the endpoints for authorizing and getting tokens. This information, even though easily accessible to anyone who's got the time and will, to read the vendor documentation is easy to find, but it means that developers would need to spend time in a non-project problem-related task.
 
