@@ -1,12 +1,14 @@
 ---
 title: Getting started with new fabric8 Vert.x Maven Plugin
 date: 2016-12-07
-draft: true
 template: post.html
+draft: true
 author: kameshsampath
 ---
 
 The all new [fabric8 Vert.x Maven Plugin](http://vmp.fabric8.io) allows you to setup, package, run, start, stop and redeploy easily with a very little configuration resulting in a less verbose `pom.xml`.
+
+[INFO The plugin is developed under the [fabric8](https://fabric8.io/) umbrella]
 
 Traditionally Vert.x applications using [Apache Maven](http://maven.apache.org) need to have one or more of the following plugins,
 *  [Maven Shade Plugin](https://maven.apache.org/plugins/maven-shade-plugin/) - aids in packaging a uber jar of Vert.x application with additional configurations to perform SPI combining, MANIFEST.MF entries etc.,
