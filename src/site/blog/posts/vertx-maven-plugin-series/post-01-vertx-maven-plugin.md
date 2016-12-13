@@ -1,28 +1,28 @@
 ---
-title: Getting started with new Vertx Maven Plugin
+title: Getting started with new Vert.x Maven Plugin
 date: 2016-12-07
 template: post.html
 draft: true
 author: kameshsampath
 ---
 
-The all new [Vertx Maven Plugin](http://vmp.fabric8.io) allows you to setup, package, run, start, stop and redeploy easily with a very little configuration resulting in a less verbose `pom.xml`.
+The all new [Vert.x Maven Plugin](http://vmp.fabric8.io) allows you to setup, package, run, start, stop and redeploy easily with a very little configuration resulting in a less verbose `pom.xml`.
 
-Traditionally Vertx applications using maven as build tool need to have one or more of the following plugins,
-*  [Maven Shade Plugin](https://maven.apache.org/plugins/maven-shade-plugin/) - aids in packaging a uber jar of vertx application with additional configurations to perform SPI combining, MANIFEST.MF entries etc.,
-*  [Maven Exec Plugin](http://www.mojohaus.org/exec-maven-plugin/) - aids in starting the vert.x application
-*  [Maven Ant Plugin](https://maven.apache.org/plugins/maven-ant-plugin/) - aids in stopping the running vert.x application
+Traditionally Vert.x applications using [Apache Maven](http://maven.apache.org) need to have one or more of the following plugins,
+*  [Maven Shade Plugin](https://maven.apache.org/plugins/maven-shade-plugin/) - aids in packaging a uber jar of Vert.x application with additional configurations to perform SPI combining, MANIFEST.MF entries etc.,
+*  [Maven Exec Plugin](http://www.mojohaus.org/exec-maven-plugin/) - aids in starting the Vert.x application
+*  [Maven Ant Plugin](https://maven.apache.org/plugins/maven-ant-plugin/) - aids in stopping the running Vert.x application
 
 Though these are great plugins and does what is required, but end of the day the developer is left with a verbose `pom.xml` which might become harder to maintain as the application or its configuration grows, even if we decide to go this way and use the plugins, there are somethings like the one listed below which can't done or done easily,
-* `run` application on foreground - which is a typical way during development where the application starts in foreground of maven build and killed automatically once we it `Ctrl + c`
-* `redeploy` - one of the coolest feature of Vertx allowing us to perform hot deployments, still we can manage to do this with IDE support but not natively using maven - typically cases where we disable Automatic Builds via IDE
-* `setup` Vertx applications with sane defaults and required Vertx dependencies e.g. vertx-core
+* `run` application on foreground - which is a typical way during development where the application starts in foreground of [Apache Maven](http://maven.apache.org) build and killed automatically once we it `Ctrl + c`(or `CMD + c` on Mac)
+* `redeploy` - one of the coolest feature of Vert.x allowing us to perform hot deployments, still we can manage to do this with IDE support but not natively using [Apache Maven](http://maven.apache.org) - typically cases where we disable Automatic Builds via IDE
+* `setup` Vert.x applications with sensible defaults and required Vert.x dependencies e.g. vertx-core
 
-In this first blog of Vertx Maven Plugin series we will help you to get started with this new [Vertx Maven Plugin](http://vmp.fabric8.io), highlighting how this plugin helps alleviating the aforementioned pain points with a less verbose `pom.xml`.
+In this first blog of Vert.x Maven Plugin series we will help you to get started with this new [Vert.x Maven Plugin](http://vmp.fabric8.io), highlighting how this plugin helps alleviating the aforementioned pain points with a less verbose `pom.xml`.
 
-The maven plugin source code is available at [github](https://github.io/fabric8io/vertx-maven-plugin) with maven plugin documentation available at [Vertx maven plugin](http://vmp.fabric8.io)
+The [Apache Maven](http://maven.apache.org) plugin source code is available at [github](https://github.com/fabric8io/vertx-maven-plugin) with [Apache Maven](http://maven.apache.org) plugin documentation available at [Vert.x Maven Plugin](http://vmp.fabric8.io)
 
-The source code of the examples used in this blog are available at [github](https://github.io/kameshsampath/vmp-blog)
+The source code of the examples used in this blog are available at [github](https://github.com/kameshsampath/vmp-blog)
 
 ## Let's setup it up
 
@@ -43,17 +43,17 @@ The command did the following for you on the project:
 
 * added couple of properties
   * `fabric8.vertx.plugin.version`  - the latest vert.x maven plugin version
-  * `vertx.version` - the latest Vertx framework version
-* add the Vertx dependency BOM  and vertx-core dependency corresponding to `vertx.version`
-* add `vertx-maven-plugin` with a single execution for goals [initalize](https://vmp.fabric8.io/#vertx:initalize) and [package](https://vmp.fabric8.io/#vertx:package)
+  * `vertx.version` - the latest Vert.x framework version
+* add the Vert.x dependency BOM  and vertx-core dependency corresponding to `vertx.version`
+* add `vertx-maven-plugin` with a single execution for goals [initialize](https://vmp.fabric8.io/#vertx:initalize) and [package](https://vmp.fabric8.io/#vertx:package)
 
 The source code until this step is available in [here](https://github.com/kameshsampath/vmp-blog/tree/setup)
 
-Voilà you are now all set to go with your Vertx application building with maven!!
+Voilà, you are now all set to go with your Vert.x application building with [Apache Maven](http://maven.apache.org)!!
 
 ## Let's package it
 
-Now we have set our project to use `vertx-maven-plugin`, lets now add a simple verticle and package the Vertx application as typicall *uber* jar in Vertx world we call them as *fat* jar.  The source code of this section is available [here](https://github.com/kameshsampath/vmp-blog/tree/package).
+Now we have set our project to use `vertx-maven-plugin`, lets now add a simple verticle and package the Vert.x application as typicall *uber* jar in Vert.x world we call them as *fat* jar.  The source code of this section is available [here](https://github.com/kameshsampath/vmp-blog/tree/package).
 
 To make package work correctly we need to add property called `vertx.verticle`, which will be used by the vertx-maven-plugin to set the `Main-Verticle` attribute of the `MANIFEST.MF`.  Please refer to the [package](https://vmp.fabric8.io/#vertx:package) of the vertx-maven-plugin for other possible configurations.  There is also a [examples](https://vmp.fabric8.io/#vertx:examples) section of the vertx-maven-plugin which provides various samples snippets.
 
@@ -63,11 +63,11 @@ The updated `pom.xml` with added property `vertx-maven-plugin` is shown below,
 
 <script src="https://gist.github.com/kameshsampath/24a1ed6a377b118f06af2c4b4ddf0ca0.js"></script>
 
-To package the Vertx application, run the following maven command from the project,
+To package the Vert.x application, run the following [Apache Maven](http://maven.apache.org) command from the project,
 ```bash
 mvn clean package
 ```
-On successful run of the above command you should see the file with name `${project.finalName}.jar` created in the `${project.build.directory}`, you could now do the following to start and run the Vertx application.
+On successful run of the above command you should see the file with name `${project.finalName}.jar` created in the `${project.build.directory}`, you could now do the following to start and run the Vert.x application.
 ```bash
 java -jar ${project.build.directory}/${project.finalName}.jar
 ```
@@ -82,4 +82,10 @@ Manifest-Version                         1.0
 
 The source code until this step is available in [here](https://github.com/kameshsampath/vmp-blog/tree/package)
 
-In the next part of this series we will see on the other features of the vertx-maven-plugin.
+## What's next ?
+
+It's good have the jar packaged and run using `java -jar uber-jar`, but when doing typical development you don't  want to do frequent [Apache Maven](http://maven.apache.org) packaging and wish to see your changes automatically redeployed.
+
+Don't worry!!! As part of [Vert.x Maven Plugin](http://vmp.fabric8.io) we have added the incremental builder to [Apache Maven](http://maven.apache.org) build, which will watch for your source and resource changes to perform automatic re-build and delegate the redeployment to Vert.x.
+
+Run,redeploy and other features of the [Vert.x Maven Plugin](http://vmp.fabric8.io) will be explored in detail in the next part of this series, until the have fun with [Vert.x Maven Plugin](http://vmp.fabric8.io)!!
