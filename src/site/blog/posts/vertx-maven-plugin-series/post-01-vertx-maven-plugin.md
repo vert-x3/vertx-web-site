@@ -1,12 +1,12 @@
 ---
-title: Getting started with new Vert.x Maven Plugin
+title: Getting started with new fabric8 Vert.x Maven Plugin
 date: 2016-12-07
-template: post.html
 draft: true
+template: post.html
 author: kameshsampath
 ---
 
-The all new [Vert.x Maven Plugin](http://vmp.fabric8.io) allows you to setup, package, run, start, stop and redeploy easily with a very little configuration resulting in a less verbose `pom.xml`.
+The all new [fabric8 Vert.x Maven Plugin](http://vmp.fabric8.io) allows you to setup, package, run, start, stop and redeploy easily with a very little configuration resulting in a less verbose `pom.xml`.
 
 Traditionally Vert.x applications using [Apache Maven](http://maven.apache.org) need to have one or more of the following plugins,
 *  [Maven Shade Plugin](https://maven.apache.org/plugins/maven-shade-plugin/) - aids in packaging a uber jar of Vert.x application with additional configurations to perform SPI combining, MANIFEST.MF entries etc.,
@@ -18,13 +18,13 @@ Though these are great plugins and does what is required, but end of the day the
 * `redeploy` - one of the coolest feature of Vert.x allowing us to perform hot deployments, still we can manage to do this with IDE support but not natively using [Apache Maven](http://maven.apache.org) - typically cases where we disable Automatic Builds via IDE
 * `setup` Vert.x applications with sensible defaults and required Vert.x dependencies e.g. vertx-core
 
-In this first blog of Vert.x Maven Plugin series we will help you to get started with this new [Vert.x Maven Plugin](http://vmp.fabric8.io), highlighting how this plugin helps alleviating the aforementioned pain points with a less verbose `pom.xml`.
+In this first blog of fabric8 Vert.x Maven Plugin series we will help you to get started with this new [fabric8 Vert.x Maven Plugin](http://vmp.fabric8.io), highlighting how this plugin helps alleviating the aforementioned pain points with a less verbose `pom.xml`.
 
-The [Apache Maven](http://maven.apache.org) plugin source code is available at [github](https://github.com/fabric8io/vertx-maven-plugin) with [Apache Maven](http://maven.apache.org) plugin documentation available at [Vert.x Maven Plugin](http://vmp.fabric8.io)
+The [Apache Maven](http://maven.apache.org) plugin source code is available at [github](https://github.com/fabric8io/vertx-maven-plugin) with [Apache Maven](http://maven.apache.org) plugin documentation available at [fabric8 Vert.x Maven Plugin](http://vmp.fabric8.io)
 
 The source code of the examples used in this blog are available at [github](https://github.com/kameshsampath/vmp-blog)
 
-## Let's setup it up
+## Let's set it up
 
 Its very easy to setup and get started, lets say you have project called _vmp-blog_ with the following content as part of `pom.xml`
 
@@ -36,13 +36,13 @@ from the project directory just run the following command,
 mvn io.fabric8:vertx-maven-plugin:1.0.0:setup
 ```
 
-On successfull execution of the above command the project _vmp-blog_'s `pom.xml` will be updated as shown below,
+On successfull execution of the above command the project's `pom.xml` will be updated as shown below,
 <script src="https://gist.github.com/kameshsampath/3c2e96d98f1e16d0f7a0501c05ce0d12.js"></script>
 
 The command did the following for you on the project:
 
 * added couple of properties
-  * `fabric8.vertx.plugin.version`  - the latest vert.x maven plugin version
+  * `fabric8.vertx.plugin.version`  - the latest fabric8 vert.x maven plugin version
   * `vertx.version` - the latest Vert.x framework version
 * add the Vert.x dependency BOM  and vertx-core dependency corresponding to `vertx.version`
 * add `vertx-maven-plugin` with a single execution for goals [initialize](https://vmp.fabric8.io/#vertx:initalize) and [package](https://vmp.fabric8.io/#vertx:package)
@@ -91,7 +91,7 @@ foo.bar.baz.MyImpl
 ${combine}
 ```
 
-During package if the [Vert.x Maven Plugin](http://vmp.fabric8.io) finds another `com.fasterxml.jackson.core.JsonFactory` service definition file within the project dependencies with content _foo.bar.baz2.MyImpl2_, then it merges the content into `com.fasterxml.jackson.core.JsonFactory` of `${project.basedir}/src/main/resources/META-INF/services`, resulting in a content as shown below,
+During package if the [fabric8 Vert.x Maven Plugin](http://vmp.fabric8.io) finds another `com.fasterxml.jackson.core.JsonFactory` service definition file within the project dependencies with content _foo.bar.baz2.MyImpl2_, then it merges the content into `com.fasterxml.jackson.core.JsonFactory` of `${project.basedir}/src/main/resources/META-INF/services`, resulting in a content as shown below,
 
 ```
 foo.bar.baz.MyImpl
@@ -104,6 +104,6 @@ The position of `${combine}` controls the ordering of the merge, since we added 
 
 It's good have the jar packaged and run using `java -jar uber-jar`, but when doing typical development you don't  want to do frequent [Apache Maven](http://maven.apache.org) packaging and wish to see your changes automatically redeployed.
 
-Don't worry!!! As part of [Vert.x Maven Plugin](http://vmp.fabric8.io) we have added the incremental builder to [Apache Maven](http://maven.apache.org) build, which will watch for your source and resource changes to perform automatic re-build and delegate the redeployment to Vert.x.
+Don't worry!!! As part of [fabric8 Vert.x Maven Plugin](http://vmp.fabric8.io) we have added the incremental builder to [Apache Maven](http://maven.apache.org) build, which will watch for your source and resource changes to perform automatic re-build and delegate the redeployment to Vert.x.
 
-Run,redeploy and other features of the [Vert.x Maven Plugin](http://vmp.fabric8.io) will be explored in detail in the next part of this series, until the have fun with [Vert.x Maven Plugin](http://vmp.fabric8.io)!!
+Run,redeploy and other features of the [fabric8 Vert.x Maven Plugin](http://vmp.fabric8.io) will be explored in detail in the next part of this series, until the have fun with [fabric8 Vert.x Maven Plugin](http://vmp.fabric8.io)!!
