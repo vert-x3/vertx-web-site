@@ -2,7 +2,6 @@
 title: Getting started with new Vert.x Maven Plugin
 date: 2016-12-07
 template: post.html
-draft: true
 author: kameshsampath
 ---
 
@@ -81,6 +80,24 @@ Manifest-Version                         1.0
 ```
 
 The source code until this step is available in [here](https://github.com/kameshsampath/vmp-blog/tree/package)
+
+### SPI Combination
+
+The package goal by default does SPI combination, lets say you have a service file called `com.fasterxml.jackson.core.JsonFactory` in `${project.basedir}/src/main/resources/META-INF/services` with contents as shown below,
+
+```
+foo.bar.baz.MyImpl
+${combine}
+```
+
+During package if the [Vert.x Maven Plugin](http://vmp.fabric8.io) finds another `com.fasterxml.jackson.core.JsonFactory` service definition file within the project dependencies with content _foo.bar.baz2.MyImpl2_, then it merges the content into `com.fasterxml.jackson.core.JsonFactory` of `${project.basedir}/src/main/resources/META-INF/services`, resulting in a content as shown below,
+
+```
+foo.bar.baz.MyImpl
+foo.bar.baz2.MyImpl2
+```
+
+The position of `${combine}` controls the ordering of the merge, since we added `${combine}` below _foo.bar.baz.MyImpl_ all other SPI definitions will be appended below _foo.bar.baz.MyImpl_
 
 ## What's next ?
 
