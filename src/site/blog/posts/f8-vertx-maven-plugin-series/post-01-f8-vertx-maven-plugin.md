@@ -2,7 +2,6 @@
 title: Getting started with new fabric8 Vert.x Maven Plugin
 date: 2016-12-07
 template: post.html
-draft: true
 author: kameshsampath
 ---
 
