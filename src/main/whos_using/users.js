@@ -268,6 +268,10 @@ var all_users = {
     src: "lianshi.png",
     link: "http://www.ciphergateway.com",
     height: 150
+  }, {
+    src: "instana.png",
+    link: "https://www.instana.com",
+    height: 25
   }]
 };
 
