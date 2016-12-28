@@ -6,6 +6,8 @@ author: ppatierno
 draft: true
 ---
 
+[NOTE this is a re-publication of the following [blog post](https://paolopatierno.wordpress.com/2016/12/27/internet-of-things-reactive-and-asynchronous-with-vert-x/)]
+
 ![Vert.x IoT](/assets/blog/vertx-iot/vertx-iot.png)
 
 I have to admit … before joining Red Hat I didn’t know about the [*Eclipse Vert.x*](http://vertx.io/) project but it took me few days to fall in love with it !
