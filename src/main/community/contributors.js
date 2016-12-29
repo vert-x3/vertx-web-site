@@ -121,7 +121,7 @@ var maintainers = [{
   homepage: "https://paolopatierno.wordpress.com/",
   twitter: "https://twitter.com/ppatierno",
   name: "Paolo Patierno",
-  contribution: "MQTT server"
+  contribution: "MQTT server, Kafka client"
 }, {
   github_id: "maeste",
   name: "Stefano Maestri",
