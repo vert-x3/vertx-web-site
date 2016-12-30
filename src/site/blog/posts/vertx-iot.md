@@ -42,6 +42,6 @@ Last but not least, the Vert.x [Kafka client](https://github.com/vert-x3/vertx-k
 
 ## Conclusion
 
-The current Vert.x code base provides quite interesting components for developing IoT solutions which are already available in the current 3.3.3 version (see Vert.x Proton and AMQP bridge) and that will be available soon in the future 3.3.4 version (see MQTT server and Kafka client). Of course, you don’t need to wait for their official release because, even if under development, you can already adopt these components and provide your feedback to the community.
+The current Vert.x code base provides quite interesting components for developing IoT solutions which are already available in the current 3.3.3 version (see Vert.x Proton and AMQP bridge) and that will be available soon in the future 3.4.0 version (see MQTT server and Kafka client). Of course, you don’t need to wait for their official release because, even if under development, you can already adopt these components and provide your feedback to the community.
 
 This ecosystem will grow in the future and Vert.x will be a leading actor in the IoT applications world based on a microservices architecture !
