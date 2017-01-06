@@ -272,7 +272,28 @@ var all_users = {
     src: "instana.png",
     link: "https://www.instana.com",
     height: 25
-  }]
+  },
+  {
+    src: "lastminute.png",
+    link: "http://www.lastminute.com",
+    height: 21,
+    wikipedia: 'https://en.wikipedia.org/wiki/Lastminute.com_Group',
+    employees: 1500
+  },
+  {
+    src: "rumbo.png",
+    link: "http://www.rumbo.es",
+    height: 59,
+    wikipedia: 'https://en.wikipedia.org/wiki/Lastminute.com_Group',
+    employees: 1500
+  },
+  {
+    src: "volagratis.png",
+    link: "http://www.volagratis.com",
+    height: 44,
+    wikipedia: 'https://en.wikipedia.org/wiki/Lastminute.com_Group',
+    employees: 1500
+  },]
 };
 
 function sort_by_logo_name(a, b) {
