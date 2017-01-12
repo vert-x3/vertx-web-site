@@ -60,6 +60,10 @@ var all_users = {
     link: "http://www.exent.com/",
     height: 50
   }, {
+    src: "fluxon_logo.png",
+    link: "https://www.fluxon.fr/",
+    height: 56
+  }, {
     src: "fraunhofer-white.png",
     link: "http://www.igd.fraunhofer.de",
     height: 49,
