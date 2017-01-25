@@ -1,9 +1,9 @@
 ---
 title: Building services and APIs with AMQP 1.0
 template: post.html
-date: 2017-01-24
+date: 2017-01-25
 author: scholzj
-draft: true
+draft: false
 ---
 
 Microservices and APIs are everywhere. Everyone talks about them, presentation slides are full of them ... some people are actually even building them. Microservices and APIs are of course not completely new concepts and they are a bit over-hyped. But in general the ideas behind them are not bad. Unfortunately, many people seem to believe that the only way how to implement an API in microservice is to use HTTP and REST. That is of course not true. Microservices and APIs can be based on many different protocols and technologies. My favorite one is of course [AMQP](http://www.amqp.org). Don't take me wrong, HTTP and REST is not necessarily bad. But in some cases AMQP is simply better and creating AMQP based APIs does not need to be complicated.
