@@ -1,9 +1,8 @@
 ---
 title: An Introduction to the Vert.x Context Object
 template: post.html
-date: 2017-01-29
+date: 2017-01-31
 author: millross
-draft: true
 ---
 
 Under the hood, the vert.x Context class plays a critical part in maintaining the thread-safety guarantees of verticles. Most of the time, vert.x coders don't need to make use of Context objects directly. However, sometimes you may need to. This article provides a brief introduction to the vert.x Context class, which covers why it's important, and why and when you might wish to make use of the Context directly, based on the author's experience of building a generic async library which can be used with vert.x.
