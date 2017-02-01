@@ -32,7 +32,7 @@ Succeeded in deploying verticle
 And connect to the shell:
 
 ```
-Juliens-MacBook-Pro:~ julien$ telnet localhost 5000
+Juliens-MacBook-Pro:~ julien$ telnet localhost 4000
 Trying ::1...
 telnet: connect to address ::1: Connection refused
 Trying 127.0.0.1...
