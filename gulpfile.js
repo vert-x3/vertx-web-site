@@ -1,4 +1,3 @@
-var bower = require("gulp-bower");
 var compress = require("compression");
 var connect = require("connect");
 var contributors = require("./src/main/community/contributors.js");
@@ -73,13 +72,13 @@ var siteUrlDev = "http://localhost:" + devPort + contextPathDev;
 
 // paths to source files
 var paths = {
-  bootstrap_js: "bower_components/bootstrap/dist/js/bootstrap.min.js",
+  bootstrap_js: "node_modules/bootstrap/dist/js/bootstrap.min.js",
   docs_generated: "target/docs-generated",
   entypo: "Entypo+",
   less_includes: [
     "src/site/stylesheets",
     "src/main/less",
-    "bower_components/bootstrap/less"
+    "node_modules/bootstrap/less"
   ],
   src: "src/site",
   src_gen: "src/generated",
@@ -408,11 +407,6 @@ function buildDocs(done, dev) {
     .build(done);
 }
 
-// install bower dependencies
-gulp.task("bower", function() {
-  return bower();
-});
-
 // download bootstrap themes for AsciiDoc
 gulp.task("install-asciidoc-bs-themes", function(done) {
   if (fs.existsSync(paths.target_asciidoctor_bs_themes)) {
@@ -441,7 +435,7 @@ gulp.task("icons", function() {
 });
 
 // copy required javascripts
-gulp.task("scripts", ["bower"], function() {
+gulp.task("scripts", function() {
   return gulp.src(paths.bootstrap_js)
     .pipe(gulp.dest(paths.target_scripts));
 });
