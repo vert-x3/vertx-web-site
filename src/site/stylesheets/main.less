@@ -124,10 +124,6 @@
 
     .btn {
         font-weight: 500;
-
-        .icon {
-            margin-right: 6px;
-        }
     }
 
     .github-btn {
@@ -290,14 +286,10 @@
             }
 
             &.btn {
-                text-decoration: none;
+                text-decoration: none !important;
 
                 &:hover {
                     color: @brand-primary;
-                }
-
-                 .icon {
-                    padding-bottom: 4px;
                 }
             }
         }
@@ -383,16 +375,6 @@ footer {
     }
 }
 
-// entypo icons
-.icon {
-    fill: currentColor;
-    height: @line-height-computed * 0.9;
-    width: @line-height-computed * 0.9;
-    line-height: 1em;
-    float: left;
-    margin: 0.2em 0.2em 0 0;
-}
-
 /** Community page */
 .community-container {
     padding-top: @line-height-computed;
@@ -429,7 +411,7 @@ footer {
         padding-bottom: @line-height-computed;
     }
 
-    .icon {
+    .fa {
         height: @line-height-computed * 0.8;
         margin: 0.3em 0.3em 0 0;
         color: @gray;
@@ -708,10 +690,6 @@ pre code {
         text-align: left;
         font-weight: 500;
         margin: @line-height-computed / 2 0;
-
-        .icon {
-            margin-right: 6px;
-        }
 
         small {
             font-size: @font-size-base;

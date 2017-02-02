@@ -11,7 +11,6 @@ var generateDistributionInfo = require("./src/main/tasks/generate-distribution-i
 var githubConfig = require("./github.json");
 var gulp = require("gulp");
 var gutil = require("gulp-util");
-var iconfilter = require("./src/main/filters/iconfilter.js");
 var inject = require("gulp-inject-string");
 var materials = require("./src/main/materials/materials.js");
 var mkdirp = require("mkdirp");
@@ -74,7 +73,6 @@ var siteUrlDev = "http://localhost:" + devPort + contextPathDev;
 var paths = {
   bootstrap_js: "node_modules/bootstrap/dist/js/bootstrap.min.js",
   docs_generated: "target/docs-generated",
-  entypo: "Entypo+",
   less_includes: [
     "src/site/stylesheets",
     "src/main/less",
@@ -87,7 +85,6 @@ var paths = {
   target_asciidoctor_bs_themes: "target/asciidoctor-bs-themes",
   target_distributioninfo: "target/distribution-info/distribution-info.json",
   target_docs: "target/site/docs",
-  target_icons: "target/site/assets/icons",
   target_scripts: "target/site/javascripts",
   target_stylesheets: "target/site/stylesheets",
   target_vertx2: "vertx2",
@@ -156,8 +153,6 @@ function build(done, dev) {
   if (!useTemplateCache) {
     swig.setDefaults({ cache: false });
   }
-
-  swig.setTag("icon", iconfilter.parse, iconfilter.compile, iconfilter.ends, iconfilter.block);
 
   var site_url = siteUrl;
   if (dev) {
@@ -419,21 +414,6 @@ gulp.task("install-asciidoc-bs-themes", function(done) {
     .pipe(gulp.dest(paths.target_asciidoctor_bs_themes));
 });
 
-// copy svg icons
-gulp.task("icons", function() {
-  return gulp.src(path.join(paths.entypo, "**/*.svg"))
-    .pipe(flatten())
-    .pipe(rename(function(path) {
-      // rename 'resize-100%.svg' because the maven-scm-publish-plugin has
-      // problems with the percent sign which it considers an escape character
-      if (path.basename === "resize-100%") {
-        path.basename = "resize-100"
-      }
-    }))
-    .pipe(replace(/id="[^"]+"/, 'id="icon"')) // set id of all icons to a fixed value so we can reference it easier
-    .pipe(gulp.dest(path.join(paths.target_icons, "entypo")));
-});
-
 // copy required javascripts
 gulp.task("scripts", function() {
   return gulp.src(paths.bootstrap_js)
@@ -446,7 +426,7 @@ gulp.task("site-docs", function(done) {
 })
 
 // build site
-gulp.task("site", ["icons", "scripts", "site-docs", "install-asciidoc-bs-themes",
+gulp.task("site", ["scripts", "site-docs", "install-asciidoc-bs-themes",
     "generate-distribution-info"], function(done) {
   build(done);
 });
