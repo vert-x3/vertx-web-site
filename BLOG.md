@@ -11,15 +11,17 @@ writing posts.
 
 First, fork the https://github.com/vert-x3/vertx-web-site project in order to create a pull request with your content.
 
-Once forked, create a new branch from the `master` branch. Create a markdown document in `src/site/blog/posts`. The file must use the `.md` extension.
+Once forked, create a new branch from the `master` branch. Create a markdown document in `src/site/blog/posts`.
 
-The post must starts with some metadata contained in a _header_ part:
+The documents's filename must be in the form `date-title.md` or more precisely `YYYY-MM-DD-post-title.md`. For example, if you want to write a post with the title 'My first blog post' and you want to publish it on 28 June 2078 then the filename should be `2078-06-28-my-first-blog-post.md`.
+
+The post must start with some metadata contained in a _header_ part:
 
 ```
 ---
-title: A Catchy Title
+title: My first blog post
 template: post.html
-date: 2015-06-26
+date: 2078-06-28
 author: cescoffier
 ---
 

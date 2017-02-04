@@ -5,6 +5,7 @@
   "main": "gulpfile.js",
   "private": true,
   "devDependencies": {
+    "bootstrap": "3.3.4",
     "compression": "^1.4.3",
     "connect": "^3.3.5",
     "consolidate": "^0.12.1",
@@ -12,7 +13,6 @@
     "filesize": "^3.1.5",
     "github": "^0.2.4",
     "gulp": "^3.9.0",
-    "gulp-bower": "0.0.11",
     "gulp-decompress": "^1.0.2",
     "gulp-flatten": "0.0.4",
     "gulp-inject-string": "0.0.2",

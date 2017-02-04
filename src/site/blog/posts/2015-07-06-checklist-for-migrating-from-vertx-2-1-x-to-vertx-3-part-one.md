@@ -1,7 +1,7 @@
 ---
 title: Checklist for Migrating from Vert.x 2.1.x to Vert.x 3 - Part One
 template: post.html
-date: 2015-07-6
+date: 2015-07-06
 author: bytor99999
 ---
 

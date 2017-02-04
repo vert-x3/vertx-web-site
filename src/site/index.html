@@ -12,7 +12,7 @@ stickyheader: true
         <div class="buttons">
           <a class="btn btn-default btn-lg btn-transparent"
              href="{{ site_url }}download/" role="button">
-            {% icon "install" %} Download v{{ project_version }}</a><br>
+            <span class="fa fa-download"></span> Download v{{ project_version }}</a><br>
           <span class="github-btn">
             <iframe src="https://ghbtns.com/github-btn.html?user=eclipse&amp;repo=vert.x&amp;type=star&amp;count=true&amp;size=large"
                   frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
@@ -204,7 +204,7 @@ shared class Server() extends Verticle() {
 
         <div class="row">
           <div class="col-sm-12 wanttobelisted">
-            <a class="btn btn-default btn-md btn-transparent" href="{{ site_url }}whos_using" role="button">{% icon "list" %} More &hellip;</a><br>
+            <a class="btn btn-default btn-md btn-transparent" href="{{ site_url }}whos_using" role="button"><span class="fa fa-list"></span> More &hellip;</a><br>
           </div>
         </div>
       </div>
