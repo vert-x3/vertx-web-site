@@ -27,3 +27,4 @@ src/scratchpad
 bower_components/
 node/
 node_modules/
+.vscode
