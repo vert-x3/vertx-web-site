@@ -161,6 +161,10 @@ var all_users = {
     revenue_billion: 1.5,
     employees: 8300
   }, {
+    src: "setkeeper_logo.png",
+    link: "https://setkeeper.com",
+    height: 31
+  }, {
     src: "sketchtogether_logo.png",
     link: "https://sketchtogether.com",
     height: 71
