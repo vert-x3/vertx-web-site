@@ -110,6 +110,23 @@
         </pluginManagement>
 
         <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.5.0</version>
+            <executions>
+              <execution>
+                <id>copy-beta-docs</id>
+                <phase>pre-site</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <executable>./copy-3.4.0-beta-docs.sh</executable>
+            </configuration>
+          </plugin>
 
           <plugin>
             <!--
