@@ -8,9 +8,71 @@ heading: Google Summer of Code Ideas
     <div class="row">
         <div class="col-sm-12">
             <p>Here is a list of ideas for <a href="https://www.google-melange.com/">Google Summer of code</a> projects. Feel free to submit your ideas.</p>
-            <p>If you are interested by one of these subjects, send a mail to <a href="mailto:vertx-enquiries@googlegroups.com">vertx-enquiries@googlegroups.com</a>. To submit your porosol, use the <a href="https://summerofcode.withgoogle.com/organizations/6170617833324544/"><strong>vert.x</strong></a> organisation. Don't forget to read the tips at the end of this page. If you have questions, feel free to chat with us on IRC (freenode server, #vertx channel).</p>
+            <p>If you are interested by one of these subjects, send a mail to <a href="mailto:vertx-enquiries@googlegroups.com">vertx-enquiries@googlegroups.com</a>. To submit your porosol, use the <a href="https://summerofcode.withgoogle.com/organizations/6170617833324544/"><strong>Eclipse Vert.x</strong></a> organisation. Don't forget to read the tips at the end of this page. If you have questions, feel free to chat with us on IRC (freenode server, #vertx channel).</p>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+          <h3>Vert.x-Web purely functional handlers</h3>
+          <strong>Summary of idea:</strong>
+          <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. Use any function as a vertx-web handler, then provide an API to compose these functions in a "RouterBuilder API" way. This should be a totally separated project, keeping vertx-web as is for now and targeting "pure JVM languages" (Java, Kotlin, Groovy, Scala), especially those who have "first-level" functions (and maybe annotations).</p>
+
+          <strong>What should be achieved:</strong>
+
+          <ul>
+            <li>any lambda can now be used as a vert.x web handler, automatically resolving lambda parameters.</li>
+            <li>provide the ability to deal with futures in vert.x-web, if a lambda is returning an AsyncResult, then:
+              <ul>
+                <li>the next handler should only be called once the future is completed.
+                <li>the context should automatically been failed if the asyncresult is failed.
+              </ul>
+            </li>
+            <li>allow users to define custom parameters resolvers by implementing an interface such as Resolvable&lt;RoutingContext, T&gt; or AsyncResolvable&lt;RoutingContext, T&gt;.</li>
+            <li>create a "builder-like" API on top of vertx-web's Router to deal with such lambdas.</li>
+          </ul>
+
+          <p>For further reference and examples see the following <a href="https://groups.google.com/forum/#!topic/vertx/01tCUjTm01s">google group post</a>.</p>
+
+          <strong>Knowledge prerequisite:</strong> Java (8), Gradle or Maven is a plus<br/>
+          <strong>Skill level:</strong> Intermediate, Experienced<br/>
+          <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col-sm-12">
+            <h3>Vertx-Web implement HTTP standard responses logic to Router</h3>
+            <strong>Summary of idea:</strong>
+            <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. Vert.x Web Router is a general purpose router that matches paths to handlers. Although this is "good enough" for many applications it does not adhere properly to the HTTP protocol. The issue is more obvious since the API allows filtering on mime type but failure to match such a request does not respect the protocol.</p>
+
+            <strong>Current inconsistent cases:</strong>
+
+            <ul>
+              <li>A router contains a route path but with misses the right HTTP verb, instead of returning 404 it should return 405.</li>
+              <li>A router contains a route for a specific mime type but the request contains a different payload mime type, instead of returning 404 it should return 406.</li>
+              <li>A router contains a route that produces a specific mime type but the request requires a different payload mime type, instead of returning 404 it should return 415.</li>
+              <li>An OPTIONS request should list the allowed verbs for the given path.</li>
+              <li>Errors thrown during path parameter parsing should throw 400 instead of 500.</li>
+            </ul>
+
+            <p>The project should start with a review of the HTTP protocol including version 2 and identify faulty situations as described above. A proposal for a refactoring of the internal of the Router class while keeping the existing API is a must.</p>
+
+            <p>The code should be properly documented and easy to extend so later one can for example plug REST documentation generators, etc...</p>
+
+            <strong>Knowledge prerequisite:</strong> Java (8), Jenkins, Gradle or Maven is a plus<br/>
+            <strong>Skill level:</strong> Intermediate, Experienced<br/>
+            <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <h1>Previous ideas (2016)</h1>
+          </div>
+        </div>
 
     <div class="row">
         <div class="col-sm-12">
@@ -60,18 +122,5 @@ heading: Google Summer of Code Ideas
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-12">
-              <h2>Writing your proposal</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-            <ul>
-            <li>On the blueprint applications - please point to some code implementing a basic version to the todo backend application with a redis / mongo or sql backend (choose the one you prefer). Just create a github repository with your code.</li>
-            <li>On the devops subject - please mention the “devops” tools you have used, and what would be your approach for a 0 downtime update behind a proxy.</li>
-            <li>On the event bus clients - first specify the set of language you would implement (regardless the one from the subject), then please describe in a few words how the vert.x eventbus TCP bridge works (protocol-wise). It would let us know if you understand what’s behind the hood.</li>
-          </ul>
-        </div>
       </div>
 </div>
