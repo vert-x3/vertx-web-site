@@ -13,7 +13,11 @@ mkdir -p target/docs/${VERSION}
 
 cd target/beta
 
-wget -O docs.zip http://repo1.maven.org/maven2/io/vertx/vertx-stack-docs/${VERSION}/vertx-stack-docs-${VERSION}-docs.zip 
+wget -O docs.zip http://repo1.maven.org/maven2/io/vertx/vertx-stack-docs/${VERSION}/vertx-stack-docs-${VERSION}-docs.zip
 unzip docs.zip
 rm docs.zip
-mv * ../docs/${VERSION}
+wget -O docs.zip http://repo1.maven.org/maven2/io/vertx/vertx-mqtt-server/${VERSION}/vertx-mqtt-server-${VERSION}-docs.zip
+mkdir vertx-mqtt-server
+unzip -d vertx-mqtt-server docs.zip
+rm docs.zip
+mv * ../docs/${VERSION}/
