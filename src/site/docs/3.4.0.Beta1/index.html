@@ -57,6 +57,14 @@ sidebar: true
       <li><a href="#discovery-kubernetes">Service Discovery for Kubernetes</a></li>
       <li><a href="#discovery-consul">Service Discovery for Consul</a></li>
       <li><a href="#discovery-redis">Service Discovery backend on Redis</a></li>
+      <li><a href="#config">Service Config</a></li>
+      <li><a href="#config-kubernetes-configmap">Service Config store on Kubernetes Configmap</a></li>
+      <li><a href="#config-redis">Service Config store on Redis</a></li>
+      <li><a href="#config-spring-config-server">Service Config store on Spring Config Server</a></li>
+      <li><a href="#config-zookeeper">Service Config store on Zookeeper</a></li>
+      <li><a href="#config-git">Service Config store on Git</a></li>
+      <li><a href="#config-yaml">Service Config Yaml format</a></li>
+      <li><a href="#config-hocon">Service Config Hocon format</a></li>
     </ul>
   </li>
   <li><a href="#mqtt-server">IoT</a></li>
@@ -998,6 +1006,37 @@ sidebar: true
               </ul>
             </div>
             <div class="col-sm-4">
+              <h4 id="config">Vert.x Config</h4>
+              <p>This component provides an extensible way to configure Vert.x applications.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-config">Source</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
               <h4 id="discovery-kubernetes">Vert.x Service Discovery - Kubernetes</h4>
               <p>This component imports Kubernetes services into the Vert.x Discovery Service.</p>
               <table>
@@ -1026,8 +1065,6 @@ sidebar: true
                 <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
               </ul>
             </div>
-          </div>
-          <div class="row">
             <div class="col-sm-4">
               <h4 id="discovery-docker-links">Vert.x Service Discovery - Docker Links</h4>
               <p>This component analyzes Docker links to import services into the Vert.x Discovery Service.</p>
@@ -1086,6 +1123,8 @@ sidebar: true
                 <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
               </ul>
             </div>
+          </div>
+          <div class="row">
             <div class="col-sm-4">
               <h4 id="discovery-redis">Vert.x Service Discovery - Redis Backend</h4>
               <p>This component provides an alternative discovery backend using Redis.</p>
@@ -1113,6 +1152,213 @@ sidebar: true
               </table>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="config-kubernetes-configmap">Vert.x Config - Kubernetes Configmap Store</h4>
+              <p>This component provides a Kubernetes Configmap based configuration store.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-kubernetes-configmap/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-kubernetes-configmap/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-kubernetes-configmap/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-kubernetes-configmap/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-config">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="config-redis">Vert.x Config - Redis Store</h4>
+              <p>This component provides a Redis based configuration store.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-redis/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-redis/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-redis/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-redis/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-config">Source</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 id="config-spring-config-server">Vert.x Config - Spring Config Server Store</h4>
+              <p>This component provides a Spring Config Server based configuration store.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-spring-config-server/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-spring-config-server/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-spring-config-server/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-spring-config-server/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-config">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="config-zookeeper">Vert.x Config - Zookeeper Store</h4>
+              <p>This component provides a Zookeeper based configuration store.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-zookeeper/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-zookeeper/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-zookeeper/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-zookeeper/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-config">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="config-yaml">Vert.x Config - Yaml format</h4>
+              <p>This component provides a Yaml format support.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-yaml/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-yaml/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-yaml/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-yaml/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-config">Source</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 id="config-git">Vert.x Config - Git Store</h4>
+              <p>This component provides a Git based configuration store.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-git/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-git/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-git/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-git/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-config">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="config-hocon">Vert.x Config - Hocon format</h4>
+              <p>This component provides a Hocon format support.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-hocon/java/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-hocon/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-hocon/groovy/">Manual</a></td>
+                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-hocon/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-config">Source</a></li>
               </ul>
             </div>
           </div>
