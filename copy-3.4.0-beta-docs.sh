@@ -19,5 +19,8 @@ rm docs.zip
 wget -O docs.zip http://repo1.maven.org/maven2/io/vertx/vertx-mqtt-server/${VERSION}/vertx-mqtt-server-${VERSION}-docs.zip
 mkdir vertx-mqtt-server
 unzip -d vertx-mqtt-server docs.zip
+wget -O docs.zip http://repo1.maven.org/maven2/io/vertx/vertx-kafka-client/${VERSION}/vertx-kafka-client-${VERSION}-docs.zip
+mkdir vertx-kafka-client
+unzip -d vertx-kafka-client docs.zip
 rm docs.zip
 mv * ../docs/${VERSION}/
