@@ -1,6 +1,6 @@
 ---
 template: page.html
-title: Eclipse Vert.x Documentation
+title: Vert.x Documentation
 heading: Documentation
 sidebar: true
 ---
@@ -11,6 +11,7 @@ sidebar: true
   <li><a href="#explore">Explore</a></li>
   <li><a href="#core">Core</a></li>
   <li><a href="#web">Web</a></li>
+  <li><a href="#web-client">Web Client</a></li>
   <li><a href="#data_access">Data access</a>
     <ul class="sectlevel2 nav">
       <li><a href="#mongodb_client">MongoDB client</a></li>
@@ -29,6 +30,8 @@ sidebar: true
       <li><a href="#camel">Camel Bridge</a></li>
       <li><a href="#amqp">AMQP Bridge</a></li>
       <li><a href="#rabbit">RabbitMQ Client</a></li>
+      <li><a href="#kafka">Kafka Client</a></li>
+      <li><a href="#consul">Consul Client</a></li>
     </ul>
   </li>
   <li><a href="#authentication_and_authorisation">Authentication and Authorisation</a>
@@ -55,8 +58,17 @@ sidebar: true
       <li><a href="#discovery-kubernetes">Service Discovery for Kubernetes</a></li>
       <li><a href="#discovery-consul">Service Discovery for Consul</a></li>
       <li><a href="#discovery-redis">Service Discovery backend on Redis</a></li>
+      <li><a href="#config">Service Config</a></li>
+      <li><a href="#config-kubernetes-configmap">Service Config store on Kubernetes Configmap</a></li>
+      <li><a href="#config-redis">Service Config store on Redis</a></li>
+      <li><a href="#config-spring-config-server">Service Config store on Spring Config Server</a></li>
+      <li><a href="#config-zookeeper">Service Config store on Zookeeper</a></li>
+      <li><a href="#config-git">Service Config store on Git</a></li>
+      <li><a href="#config-yaml">Service Config Yaml format</a></li>
+      <li><a href="#config-hocon">Service Config Hocon format</a></li>
     </ul>
   </li>
+  <li><a href="#mqtt-server">IoT</a></li>
   <li><a href="#devops">Devops</a>
     <ul class="sectlevel2 nav">
       <li><a href="#metrics-dropwizard">Vert.x Metrics - Dropwizard</a></li>
@@ -70,7 +82,7 @@ sidebar: true
   <li><a href="#clustering">Clustering</a>
     <ul class="sectlevel2 nav">
       <li><a href="#hazelcast">Hazelcast</a></li>
-      <li><a href="#jgroups">JGroups</a></li>
+      <li><a href="#infinispan">Infinispan</a></li>
       <li><a href="#ignite">Apache Ignite</a></li>
     </ul>
   </li>
@@ -120,14 +132,14 @@ sidebar: true
           <h2 id="get_started" class="no-margin-top">Get Started</h2>
 
           <p>Vert.x can be used for many different things so we provide a wide range of
-            <a href="https://github.com/vert-x3/vertx-examples/">examples</a> demonstrating usage of Vert.x in many
+            <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOT">examples</a> demonstrating usage of Vert.x in many
             different situations - from getting started with a hello world example in
-            <a href="https://github.com/vert-x3/vertx-examples/tree/master/maven-simplest">Maven</a> or
-            <a href="https://github.com/vert-x3/vertx-examples/tree/master/gradle-simplest">Gradle</a>
-            to a range of <a href="https://github.com/vert-x3/vertx-examples/tree/master/web-examples">web application examples</a>.
+            <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/maven-simplest">Maven</a> or
+            <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/gradle-simplest">Gradle</a>
+            to a range of <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/web-examples">web application examples</a>.
           </p>
 
-          <p>Start with the main <a href="https://github.com/vert-x3/vertx-examples/blob/master/README.adoc">README</a>
+          <p>Start with the main <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTblob/master/README.adoc">README</a>
           and let that guide you through.</p>
 
           <p>You can also start by following the <a
@@ -161,76 +173,124 @@ sidebar: true
 
       <hr>
 
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <h3 id="core">Core</h3>
-          <p>Vert.x core contains fairly low level functionality including support for HTTP, TCP, file system access, and
-          various other features. You can use this directly in your own applications, and it's used by many of the other
-          components of Vert.x</p>
-          <table>
-            <tr>
-              <td>Java</td>
-              <td><a href="{{ site_url }}docs/vertx-core/java/">Manual</a></td>
-              <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
-            </tr>
-            <tr>
-              <td>JavaScript</td>
-              <td><a href="{{ site_url }}docs/vertx-core/js/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
-            </tr>
-            <tr>
-              <td>Groovy</td>
-              <td><a href="{{ site_url }}docs/vertx-core/groovy/">Manual</a></td>
-              <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
-            </tr>
-            <tr>
-              <td>Ruby</td>
-              <td><a href="{{ site_url }}docs/vertx-core/ruby/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
-            </tr>
-            <tr>
-              <td>Ceylon</td>
-              <td><a href="{{ site_url }}docs/vertx-core/ceylon/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/ceylondoc/vertx-core">API</a></td>
-            </tr>
-          </table>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/eclipse/vert.x">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/core-examples">Examples</a></li>
-          </ul>
+        <div class="row">
+          <div class="col-sm-12 col-md-12">
+            <h3 id="core">Core</h3>
+            <p>Vert.x core contains fairly low level functionality including support for HTTP, TCP, file system access, and
+              various other features. You can use this directly in your own applications, and it's used by many of the other
+              components of Vert.x</p>
+            <table>
+              <tr>
+                <td>Java</td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-core/java/">Manual</a></td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+              </tr>
+              <tr>
+                <td>JavaScript</td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-core/js/">Manual</a></td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+              </tr>
+              <tr>
+                <td>Groovy</td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-core/groovy/">Manual</a></td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+              </tr>
+              <tr>
+                <td>Ruby</td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-core/ruby/">Manual</a></td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+              </tr>
+              <tr>
+                <td>Ceylon</td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-core/ceylon/">Manual</a></td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/ceylondoc/vertx-core">API</a></td>
+              </tr>
+              <tr>
+                <td>Kotlin</td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-core/kotlin/">Manual</a></td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+              </tr>
+            </table>
+            <ul class="list-unstyled">
+              <li><a href="https://github.com/eclipse/vert.x">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/core-examples">Examples</a></li>
+            </ul>
+          </div>
         </div>
 
+      <hr>
+
+      <div class="row">
         <div class="col-sm-12  col-md-6">
           <h3 id="web">Web</h3>
           <p>Vert.x-Web is a tool-kit for writing sophisticated modern web applications and HTTP microservices.</p>
           <table>
             <tr>
               <td>Java</td>
-              <td><a href="{{ site_url }}docs/vertx-web/java/">Manual</a></td>
-              <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-web/java/">Manual</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
             </tr>
             <tr>
               <td>JavaScript</td>
-              <td><a href="{{ site_url }}docs/vertx-web/js/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-web/js/">Manual</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
             </tr>
             <tr>
               <td>Groovy</td>
-              <td><a href="{{ site_url }}docs/vertx-web/groovy/">Manual</a></td>
-              <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-web/groovy/">Manual</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
             </tr>
             <tr>
               <td>Ruby</td>
-              <td><a href="{{ site_url }}docs/vertx-web/ruby/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-web/ruby/">Manual</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
             </tr>
             <tr>
               <td>Ceylon</td>
-              <td><a href="{{ site_url }}docs/vertx-web/ceylon/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/ceylondoc/vertx-web">API</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-web/ceylon/">Manual</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/ceylondoc/vertx-web">API</a></td>
+            </tr>
+            <tr>
+              <td>Kotlin</td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-web/kotlin/">Manual</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
             </tr>
           </table>
           <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-web">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/web-examples">Examples</a></li>
+            <li><a href="https://github.com/vert-x3/vertx-web">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/web-examples">Examples</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <h3 id="web-client">Web Client</h3>
+          <p>Vert.x Web Client is an easy to use advanced HTTP client.</p>
+          <table>
+            <tr>
+              <td>Java</td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-web-client/java/">Manual</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+            </tr>
+            <tr>
+              <td>JavaScript</td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-web-client/js/">Manual</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+            </tr>
+            <tr>
+              <td>Groovy</td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-web-client/groovy/">Manual</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+            </tr>
+            <tr>
+              <td>Ruby</td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-web-client/ruby/">Manual</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+            </tr>
+            <tr>
+              <td>Kotlin</td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-web-client/kotlin/">Manual</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+            </tr>
+          </table>
+          <ul class="list-unstyled">
+            <li><a href="hhttps://github.com/vert-x3/vertx-web">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/web-client-examples">Examples</a></li>
           </ul>
         </div>
       </div>
@@ -249,23 +309,28 @@ sidebar: true
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-mongo-client/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mongo-client/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-mongo-client/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mongo-client/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-mongo-client/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mongo-client/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-mongo-client/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mongo-client/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mongo-client/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -277,32 +342,37 @@ sidebar: true
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-jdbc-client/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-jdbc-client/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-jdbc-client/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-jdbc-client/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-jdbc-client/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-jdbc-client/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-jdbc-client/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-jdbc-client/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ceylon</td>
-                  <td><a href="{{ site_url }}docs/vertx-jdbc-client/ceylon/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/ceylondoc/vertx-jdbc">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-jdbc-client/ceylon/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/ceylondoc/vertx-jdbc">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-jdbc-client/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-jdbc-client">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/jdbc-examples">Examples</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-jdbc-client">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/jdbc-examples">Examples</a></li>
               </ul>
             </div>
             <div class="col-md-4">
@@ -310,28 +380,33 @@ sidebar: true
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-sql-common/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-sql-common/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-sql-common/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-sql-common/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-sql-common/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-sql-common/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-sql-common/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-sql-common/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ceylon</td>
-                  <td><a href="{{ site_url }}docs/vertx-sql-common/ceylon/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/ceylondoc/vertx-sql">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-sql-common/ceylon/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/ceylondoc/vertx-sql">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-sql-common/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/ceylondoc/vertx-sql">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -345,51 +420,61 @@ sidebar: true
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-redis-client/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-redis-client/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-redis-client/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-redis-client/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-redis-client/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-redis-client/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-redis-client/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-redis-client/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-redis-client/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-redis-client">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/redis-examples">Examples</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-redis-client">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/redis-examples">Examples</a></li>
               </ul>
             </div>
             <div class="col-md-4">
-              <h4 id="mysql_pg_client">MySQL / PostgreSQL client <small><span class="label label-primary">Technical Preview</span></small></h4>
+              <h4 id="mysql_pg_client">MySQL / PostgreSQL client</h4>
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-mysql-postgresql-client/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mysql-postgresql-client/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-mysql-postgresql-client/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mysql-postgresql-client/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-mysql-postgresql-client/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mysql-postgresql-client/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-mysql-postgresql-client/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mysql-postgresql-client/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mysql-postgresql-client/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -412,27 +497,32 @@ sidebar: true
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-mail-client/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mail-client/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-mail-client/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mail-client/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-mail-client/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mail-client/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-mail-client/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mail-client/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mail-client/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-mail-client/tree/master/vertx-mail-client">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/mail-examples">Examples</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-mail-client/tree/master/vertx-mail-client">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/mail-examples">Examples</a></li>
               </ul>
             </div>
             <div class="col-md-4">
@@ -441,23 +531,28 @@ sidebar: true
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-stomp/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-stomp/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-stomp/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-stomp/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-stomp/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-stomp/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-stomp/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-stomp/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-stomp/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -479,23 +574,28 @@ sidebar: true
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-tcp-eventbus-bridge/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-tcp-eventbus-bridge/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-tcp-eventbus-bridge/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-tcp-eventbus-bridge/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-tcp-eventbus-bridge/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -503,77 +603,155 @@ sidebar: true
               </ul>
             </div>
             <div class="col-md-4">
-              <h4 id="tcp">Camel Bridge</h4>
+              <h4 id="camel">Camel Bridge</h4>
               <p>An eventbus bridge that lets you interact with Apache Camel endpoints and routes</p>
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-camel-bridge/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-camel-bridge/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-camel-bridge">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/camel-bridge-examples">Examples</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-camel-bridge">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/camel-bridge-examples">Examples</a></li>
               </ul>
             </div>
             <div class="col-md-4">
-              <h4 id="amqp">AMQP Bridge <small><span class="label label-primary">Technical Preview</span></small></h4>
+              <h4 id="amqp">AMQP Bridge</h4>
               <p>A bridge for interacting with an AMQP 1.0 broker or router.</p>
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-amqp-bridge/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-amqp-bridge/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-amqp-bridge/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-amqp-bridge/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-amqp-bridge/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-amqp-bridge">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/amqp-bridge-examples">Examples</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-amqp-bridge">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/amqp-bridge-examples">Examples</a></li>
               </ul>
             </div>
           </div>
           <div class="row">
             <div class="col-md-4">
-              <h4 id="amqp">RabbitMQ Client <small><span class="label label-primary">Technical Preview</span></small></h4>
+              <h4 id="rabbit">RabbitMQ Client</h4>
               <p>A client to interact with RabbitMQ.</p>
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-rabbitmq-client/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-rabbitmq-client/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-rabbitmq-client/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-rabbitmq-client/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-rabbitmq-client/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-rabbitmq-client/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-rabbitmq-client/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-rabbitmq-client/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-rabbitmq-client/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-rabbitmq-client">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="kafka">Kafka Client</h4>
+              <p>A client to interact with Apache Kfaka.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-kafka-client/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-kafka-client/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-kafka-client/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-kafka-client/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-kafka-client/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-kafka-client">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="consul">Consul Client <small><span class="label label-primary">Technical Preview</span></small></h4>
+              <p>A client to interact with Consul.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-consul-client/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-consul-client/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-consul-client/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-consul-client/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-consul-client/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-consul-client">Source</a></li>
               </ul>
             </div>
           </div>
@@ -593,28 +771,33 @@ sidebar: true
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-common/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-common/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-common/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-common/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-common/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-common/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-common/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-common/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ceylon</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-common/ceylon/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/ceylondoc/vertx-auth-common">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-common/ceylon/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/ceylondoc/vertx-auth-common">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-common/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -627,28 +810,33 @@ sidebar: true
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-jdbc/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-jdbc/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-jdbc/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-jdbc/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-jdbc/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-jdbc/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-jdbc/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-jdbc/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ceylon</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-jdbc/ceylon/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/ceylondoc/vertx-auth-jdbc">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-jdbc/ceylon/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/ceylondoc/vertx-auth-jdbc">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-jdbc/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -661,28 +849,33 @@ sidebar: true
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-jwt/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-jwt/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-jwt/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-jwt/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-jwt/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-jwt/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-jwt/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-jwt/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ceylon</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-jwt/ceylon/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/ceylondoc/vertx-auth-jwt">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-jwt/ceylon/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/ceylondoc/vertx-auth-jwt">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-jwt/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -697,28 +890,33 @@ sidebar: true
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-shiro/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-shiro/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-shiro/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-shiro/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-shiro/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-shiro/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-shiro/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-shiro/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ceylon</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-shiro/ceylon/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/ceylondoc/vertx-auth-shiro">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-shiro/ceylon/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/ceylondoc/vertx-auth-shiro">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-shiro/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -731,23 +929,28 @@ sidebar: true
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-mongo/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-mongo/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-mongo/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-mongo/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-mongo/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-mongo/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-mongo/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-mongo/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-mongo/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -755,33 +958,38 @@ sidebar: true
               </ul>
             </div>
             <div class="col-sm-4">
-              <h4 id="shiro_auth">OAuth 2</h4>
+              <h4 id="oauth2_auth">OAuth 2</h4>
               <p>Auth implementation for OAuth2</p>
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-oauth2/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-oauth2/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-oauth2/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-oauth2/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-oauth2/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-oauth2/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-oauth2/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-oauth2/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ceylon</td>
-                  <td><a href="{{ site_url }}docs/vertx-auth-oauth2/ceylon/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/ceylondoc/vertx-auth-oauth2">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-oauth2/ceylon/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/ceylondoc/vertx-auth-oauth2">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-auth-oauth2/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -809,22 +1017,22 @@ sidebar: true
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-rx/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-rx/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-rx/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-rx/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-rx/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-rx/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-rx">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/rx-examples">Examples</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-rx">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/rx-examples">Examples</a></li>
               </ul>
             </div>
             <div class="col-md-4">
@@ -834,8 +1042,8 @@ sidebar: true
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-reactive-streams/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-reactive-streams/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -850,12 +1058,12 @@ sidebar: true
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-sync/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-sync/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-sync">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/sync-examples">Examples</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-sync">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/sync-examples">Examples</a></li>
               </ul>
             </div>
           </div>
@@ -870,28 +1078,33 @@ sidebar: true
           <p>Vert.x offers various component to build microservice-based applications.</p>
           <div class="row">
             <div class="col-sm-4">
-              <h4 id="metrics">Vert.x Discovery Service <small><span class="label label-primary">Technical Preview</span></small></h4>
+              <h4 id="discovery">Vert.x Service Discovery</h4>
               <p>This component lets you publish, lookup and bind to any type of services.</p>
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -899,28 +1112,33 @@ sidebar: true
               </ul>
             </div>
             <div class="col-sm-4">
-              <h4 id="circuit-breaker">Vert.x Circuit Breaker <small><span class="label label-primary">Technical Preview</span></small></h4>
+              <h4 id="circuit-breaker">Vert.x Circuit Breaker</h4>
               <p>This component provides an implementation of the circuit breaker pattern for Vert.x</p>
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-circuit-breaker/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-circuit-breaker/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-circuit-breaker/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-circuit-breaker/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-circuit-breaker/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-circuit-breaker/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-circuit-breaker/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-circuit-breaker/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-circuit-breaker/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -928,28 +1146,137 @@ sidebar: true
               </ul>
             </div>
             <div class="col-sm-4">
-              <h4 id="discovery-kubernetes">Vert.x Discovery Service - Kubernetes</h4>
+              <h4 id="config">Vert.x Config</h4>
+              <p>This component provides an extensible way to configure Vert.x applications.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-config">Source</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 id="discovery-kubernetes">Vert.x Service Discovery - Kubernetes</h4>
               <p>This component imports Kubernetes services into the Vert.x Discovery Service.</p>
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-kubernetes/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-bridge-kubernetes/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-kubernetes/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-bridge-kubernetes/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-kubernetes/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-bridge-kubernetes/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-kubernetes/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-bridge-kubernetes/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-bridge-kubernetes/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="discovery-docker-links">Vert.x Service Discovery - Docker Links</h4>
+              <p>This component analyzes Docker links to import services into the Vert.x Discovery Service.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-bridge-docker-links/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-bridge-docker-links/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-bridge-docker-links/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-bridge-docker-links/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-bridge-docker-links/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="discovery-consul">Vert.x Service Discovery - Consul</h4>
+              <p>This component imports services from Consul into the Vert.x Discovery Service.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-bridge-consul/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-bridge-consul/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-bridge-consul/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-bridge-consul/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-bridge-consul/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -959,95 +1286,325 @@ sidebar: true
           </div>
           <div class="row">
             <div class="col-sm-4">
-              <h4 id="discovery-kubernetes">Vert.x Discovery Service - Docker Links</h4>
-              <p>This component analyzes Docker links to import services into the Vert.x Discovery Service.</p>
-              <table>
-                <tr>
-                  <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-docker-links/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-docker-links/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-docker-links/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-docker-links/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
-                </tr>
-              </table>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
-              </ul>
-            </div>
-            <div class="col-sm-4">
-              <h4 id="discovery-kubernetes">Vert.x Discovery Service - Consul</h4>
-              <p>This component imports services from Consul into the Vert.x Discovery Service.</p>
-              <table>
-                <tr>
-                  <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-consul/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-consul/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-consul/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery-bridge-consul/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
-                </tr>
-              </table>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
-              </ul>
-            </div>
-            <div class="col-sm-4">
-              <h4 id="discovery-kubernetes">Vert.x Discovery Service - Redis Backend</h4>
+              <h4 id="discovery-redis">Vert.x Service Discovery - Redis Backend</h4>
               <p>This component provides an alternative discovery backend using Redis.</p>
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery-backend-redis/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-backend-redis/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery-backend-redis/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-backend-redis/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery-backend-redis/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-backend-redis/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-service-discovery-backend-redis/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-backend-redis/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-discovery-backend-redis/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-service-discovery">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="config-kubernetes-configmap">Vert.x Config - Kubernetes Configmap Store</h4>
+              <p>This component provides a Kubernetes Configmap based configuration store.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-kubernetes-configmap/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-kubernetes-configmap/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-kubernetes-configmap/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-kubernetes-configmap/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-kubernetes-configmap/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-config">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="config-redis">Vert.x Config - Redis Store</h4>
+              <p>This component provides a Redis based configuration store.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-redis/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-redis/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-redis/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-redis/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-redis/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-config">Source</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 id="config-spring-config-server">Vert.x Config - Spring Config Server Store</h4>
+              <p>This component provides a Spring Config Server based configuration store.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-spring-config-server/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-spring-config-server/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-spring-config-server/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-spring-config-server/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-spring-config-server/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-config">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="config-zookeeper">Vert.x Config - Zookeeper Store</h4>
+              <p>This component provides a Zookeeper based configuration store.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-zookeeper/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-zookeeper/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-zookeeper/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-zookeeper/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-zookeeper/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-config">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="config-yaml">Vert.x Config - Yaml format</h4>
+              <p>This component provides a Yaml format support.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-yaml/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-yaml/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-yaml/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-yaml/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-yaml/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-config">Source</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 id="config-git">Vert.x Config - Git Store</h4>
+              <p>This component provides a Git based configuration store.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-git/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-git/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-git/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-git/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-git/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-config">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="config-hocon">Vert.x Config - Hocon format</h4>
+              <p>This component provides a Hocon format support.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-hocon/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-hocon/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-hocon/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-hocon/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-config-hocon/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-config">Source</a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
+
+      <hr>
+
+        <div class="row">
+          <div class="col-sm-12 col-md-12">
+            <h3 id="mqtt-server">MQTT Server <small><span class="label label-primary">Technical Preview</span></small></h3>
+            <p>Vert.x MQTT Server is able to handle connections, communication and messages exchange with remote MQTT
+              clients. Its API provides a bunch of events related to protocol messages received by clients and
+              exposes allow to send messages to them.</p>
+            <table>
+              <tr>
+                <td>Java</td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mqtt-server/java/">Manual</a></td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+              </tr>
+              <tr>
+                <td>JavaScript</td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mqtt-server/js/">Manual</a></td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
+              </tr>
+              <tr>
+                <td>Groovy</td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mqtt-server/groovy/">Manual</a></td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+              </tr>
+              <tr>
+                <td>Ruby</td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mqtt-server/ruby/">Manual</a></td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+              </tr>
+              <tr>
+                <td>Kotlin</td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-mqtt-server/kotlin/">Manual</a></td>
+                <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
+              </tr>
+            </table>
+            <ul class="list-unstyled">
+              <li><a href="https://github.com/vert-x3/vertx-mqtt-server">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/mqtt-server-examples">Examples</a></li>
+            </ul>
+          </div>
+        </div>
 
       <hr>
 
@@ -1057,57 +1614,67 @@ sidebar: true
           <p>Vert.x offers various component to keep your Vert.x application on track when running in production</p>
           <div class="row">
             <div class="col-sm-4">
-              <h4 id="metrics">Metrics using Dropwizard</h4>
+              <h4 id="metrics-dropwizard">Metrics using Dropwizard</h4>
               <p>This component captures metrics from Vert.x core components and exposes them using <a href="http://metrics.dropwizard.io/">Dropwizard</a>.</p>
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-dropwizard-metrics/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-dropwizard-metrics/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-dropwizard-metrics/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-dropwizard-metrics/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-dropwizard-metrics/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-dropwizard-metrics">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/metrics-examples">Examples</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-dropwizard-metrics">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/metrics-examples">Examples</a></li>
               </ul>
             </div>
             <div class="col-sm-4">
-              <h4 id="metrics">Metrics using Hawkular</h4>
+              <h4 id="metrics-hawkular">Metrics using Hawkular</h4>
               <p>This component captures metrics from Vert.x core components and send them to <a href="http://www.hawkular.org/">Hawkular</a>.</p>
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-hawkular-metrics/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-hawkular-metrics/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-hawkular-metrics/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-hawkular-metrics/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-hawkular-metrics/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-hawkular-metrics/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-hawkular-metrics/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-hawkular-metrics/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-hawkular-metrics/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -1120,23 +1687,28 @@ sidebar: true
               <table>
                 <tr>
                   <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-shell/java/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-shell/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-shell/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-shell/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
                 </tr>
                 <tr>
                   <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-shell/groovy/">Manual</a></td>
-                  <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-shell/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
                   <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-shell/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-shell/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-shell/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -1151,17 +1723,17 @@ sidebar: true
                 containers.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-stack/tree/master/stack-docker">Source</a></li>
-                <li><a href="{{ site_url }}docs/vertx-docker">Manual</a></li>
+                <li><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-docker">Manual</a></li>
                 <li><a href="https://hub.docker.com/u/vertx/">Docker registry</a></li>
-                <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/docker-examples">Examples</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/docker-examples">Examples</a></li>
               </ul>
             </div>
             <div class="col-sm-4">
-              <h4 id="docker_images">Stack Manager</h4>
+              <h4 id="stack_manager">Stack Manager</h4>
               <p>The stack manager (provided in the Vert.x distros) lets you add and remove artifacts from your stack.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-stack/tree/master/stack-manager">Source</a></li>
-                <li><a href="{{ site_url }}docs/vertx-stack-manager/stack-manager">Manual</a></li>
+                <li><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-stack-manager/stack-manager">Manual</a></li>
               </ul>
             </div>
           </div>
@@ -1177,27 +1749,32 @@ sidebar: true
           <table>
             <tr>
               <td>Java</td>
-              <td><a href="{{ site_url }}docs/vertx-unit/java/">Manual</a></td>
-              <td><a href="http://vertx.io/docs/apidocs/">API</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-unit/java/">Manual</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
             </tr>
             <tr>
               <td>JavaScript</td>
-              <td><a href="{{ site_url }}docs/vertx-unit/js/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-unit/js/">Manual</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/jsdoc/">API</a></td>
             </tr>
             <tr>
               <td>Groovy</td>
-              <td><a href="{{ site_url }}docs/vertx-unit/groovy/">Manual</a></td>
-              <td><a href="http://vertx.io/docs/groovydoc/">API</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-unit/groovy/">Manual</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
             </tr>
             <tr>
               <td>Ruby</td>
-              <td><a href="{{ site_url }}docs/vertx-unit/ruby/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-unit/ruby/">Manual</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/yardoc/">API</a></td>
+            </tr>
+            <tr>
+              <td>Kotlin</td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-unit/kotlin/">Manual</a></td>
+              <td><a href="{{ site_url }}docs/3.4.0.Beta1/apidocs/">API</a></td>
             </tr>
           </table>
           <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-unit">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/unit-examples">Examples</a></li>
+            <li><a href="https://github.com/vert-x3/vertx-unit">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/unit-examples">Examples</a></li>
           </ul>
         </div>
       </div>
@@ -1215,25 +1792,25 @@ sidebar: true
               <p>Cluster manager implementation that uses Hazelcast. This is the default.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-hazelcast">Source</a></li>
-                <li><a href="{{ site_url }}docs/vertx-hazelcast/java">Manual</a></li>
+                <li><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-hazelcast/java">Manual</a></li>
               </ul>
             </div>
             <div class="col-md-6">
-              <h4 id="jgroups">JGroups <small><span class="label label-primary">Technical Preview</span></small></h4>
-              <p>Cluster manager implementation that uses <a href="http://jgroups.org/">JGroups</a>.</p>
+              <h4 id="infinispan">Infinispan <small><span class="label label-primary">Technical Preview</span></small></h4>
+              <p>Cluster manager implementation that uses <a href="http://infinispan.org/">Infinispan</a>.</p>
               <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-jgroups">Source</a></li>
-                <li><a href="{{ site_url }}docs/vertx-jgroups/java">Manual</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-infinispan">Source</a></li>
+                <li><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-infinispan/java">Manual</a></li>
               </ul>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
-              <h4 id="ignite">Apache Ignite <small><span class="label label-primary">Technical Preview</span></small></h4>
+              <h4 id="ignite">Apache Ignite</h4>
               <p>Cluster manager implementation that uses <a href="http://ignite.apache.org/">Apache Ignite</a>.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-ignite">Source</a></li>
-                <li><a href="{{ site_url }}docs/vertx-ignite/java">Manual</a></li>
+                <li><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-ignite/java">Manual</a></li>
               </ul>
             </div>
           </div>
@@ -1253,7 +1830,7 @@ sidebar: true
               <p>How to package and deploy Vert.x independent <em>services<em>.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-service-factory">Source</a></li>
-                <li><a href="{{ site_url }}docs/vertx-service-factory/java">Manual</a></li>
+                <li><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-factory/java">Manual</a></li>
               </ul>
             </div>
             <div class="col-md-4">
@@ -1261,8 +1838,8 @@ sidebar: true
               <p>Proxies allow remote event bus services to be called as if they were local.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-service-proxy">Source</a></li>
-                <li><a href="{{ site_url }}docs/vertx-service-proxy/java">Manual</a></li>
-                <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/service-proxy-examples">Examples</a></li>
+                <li><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-service-proxy/java">Manual</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/service-proxy-examples">Examples</a></li>
               </ul>
             </div>
             <div class="col-md-4">
@@ -1270,8 +1847,8 @@ sidebar: true
               <p>Allow event bus services to be called from JavaScript (browser or Node.js).</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-web/tree/master/vertx-sockjs-service-proxy">Source</a></li>
-                <li><a href="{{ site_url }}docs/vertx-sockjs-service-proxy/java">Manual</a></li>
-                <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/service-proxy-examples">Examples</a></li>
+                <li><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-sockjs-service-proxy/java">Manual</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/service-proxy-examples">Examples</a></li>
               </ul>
             </div>
           </div>
@@ -1281,8 +1858,8 @@ sidebar: true
               <p>This lets you dynamically install and deploy services from Maven at run-time.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-maven-service-factory">Source</a></li>
-                <li><a href="{{ site_url }}docs/vertx-maven-service-factory/java">Manual</a></li>
-                <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/maven-service-factory-examples">Examples</a>
+                <li><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-maven-service-factory/java">Manual</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/maven-service-factory-examples">Examples</a>
               </ul>
             </div>
             <div class="col-md-4">
@@ -1293,7 +1870,7 @@ sidebar: true
                 <li>
                   <a href="https://github.com/vert-x3/vertx-http-service-factory">Source</a>
                 </li>
-                <li><a href="{{ site_url }}docs/vertx-http-service-factory/java">Manual</a></li>
+                <li><a href="{{ site_url }}docs/3.4.0.Beta1/vertx-http-service-factory/java">Manual</a></li>
               </ul>
             </div>
           </div>
@@ -1312,7 +1889,7 @@ sidebar: true
                 <a href="https://www.openshift.com/">Red Hat OpenShift</a> cloud platform.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-openshift-cartridge">Source</a></li>
-                <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/openshift2-example">Examples</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/openshift2-example">Examples</a></li>
               </ul>
             </div>
             <div class="col-md-4">
@@ -1321,7 +1898,7 @@ sidebar: true
                 <a href="https://www.openshift.com/">Red Hat OpenShift</a> cloud platform.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-openshift-diy-quickstart">Source</a></li>
-                <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/openshift2-example">Examples</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/openshift2-example">Examples</a></li>
               </ul>
             </div>
             <div class="col-md-4">
@@ -1368,7 +1945,7 @@ sidebar: true
           </div>
           <div class="row">
             <div class="col-md-4">
-              <h4 id="distro">Bridge Common</h4>
+              <h4 id="bridge">Bridge Common</h4>
               <p>This project contains the data object used by all eventbus bridges.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-bridge-common">Source</a></li>
