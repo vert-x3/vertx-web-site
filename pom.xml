@@ -68,7 +68,7 @@
 
     <highlightjs.version>8.7</highlightjs.version>
 
-    <host>vertx.io</host>
+    <host>www.julienviet.com/vertx</host>
   </properties>
 
   <dependencies>
