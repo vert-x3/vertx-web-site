@@ -26,9 +26,6 @@ sidebar: true
       <li><a href="#mail_client">Mail Client</a></li>
       <li><a href="#jca_adaptor">JCA Adaptor</a></li>
       <li><a href="#stomp">STOMP</a></li>
-      <li><a href="#tcp">TCP Event Bus Bridge</a></li>
-      <li><a href="#camel">Camel Bridge</a></li>
-      <li><a href="#amqp">AMQP Bridge</a></li>
       <li><a href="#rabbit">RabbitMQ Client</a></li>
       <li><a href="#kafka">Kafka Client</a></li>
       <li><a href="#consul">Consul Client</a></li>
@@ -69,6 +66,13 @@ sidebar: true
     </ul>
   </li>
   <li><a href="#mqtt-server">IoT</a></li>
+  <li><a href="#bridges">Event Bus bridges</a>
+    <ul class="sectlevel2 nav">
+      <li><a href="#tcp">TCP Event Bus Bridge</a></li>
+      <li><a href="#camel">Camel Bridge</a></li>
+      <li><a href="#amqp">AMQP Bridge</a></li>
+    </ul>
+  </li>
   <li><a href="#devops">Devops</a>
     <ul class="sectlevel2 nav">
       <li><a href="#metrics-dropwizard">Vert.x Metrics - Dropwizard</a></li>
@@ -564,90 +568,6 @@ sidebar: true
               <p>Vert.x provides a Java Connector Architecture (JCA) adaptor which allows it to interoperate with any JavaEE application server.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-jca">Source</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <h4 id="tcp">TCP Eventbus Bridge</h4>
-              <p>An eventbus bridge that lets you interact with Vert.x from any application thanks to a TCP socket.</p>
-              <table>
-                <tr>
-                  <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/java/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/groovy/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Kotlin</td>
-                  <td><a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-              </table>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-tcp-eventbus-bridge">Source</a></li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <h4 id="camel">Camel Bridge</h4>
-              <p>An eventbus bridge that lets you interact with Apache Camel endpoints and routes</p>
-              <table>
-                <tr>
-                  <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-camel-bridge/java/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-              </table>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-camel-bridge">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/camel-bridge-examples">Examples</a></li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <h4 id="amqp">AMQP Bridge</h4>
-              <p>A bridge for interacting with an AMQP 1.0 broker or router.</p>
-              <table>
-                <tr>
-                  <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/java/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/groovy/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Kotlin</td>
-                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-              </table>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-amqp-bridge">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/amqp-bridge-examples">Examples</a></li>
               </ul>
             </div>
           </div>
@@ -1605,6 +1525,99 @@ sidebar: true
             </ul>
           </div>
         </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 id="bridges">Event Bus Bridge</h3>
+          <p>Vert.x offers various bridges to extend the Event Bus beyond the JVM</p>
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="tcp">TCP Eventbus Bridge</h4>
+              <p>An eventbus bridge that lets you interact with Vert.x from any application thanks to a TCP socket.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-tcp-eventbus-bridge">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="amqp">AMQP Bridge</h4>
+              <p>A bridge for interacting with an AMQP 1.0 broker or router.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-amqp-bridge">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/amqp-bridge-examples">Examples</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="camel">Camel Bridge</h4>
+              <p>An eventbus bridge that lets you interact with Apache Camel endpoints and routes</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-camel-bridge/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-camel-bridge">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/camel-bridge-examples">Examples</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <hr>
 
