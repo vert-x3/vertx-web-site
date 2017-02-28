@@ -92,9 +92,10 @@ sidebar: true
   </li>
   <li><a href="#services">Services</a>
     <ul class="sectlevel2 nav">
-      <li><a href="#service_factories">Service Factories</a></li>
       <li><a href="#service_proxies">Service Proxies</a></li>
       <li><a href="#sockjs_service_proxies">SockJS Service Proxies</a></li>
+      <li><a href="#grpc">gRPC</a></li>
+      <li><a href="#service_factories">Service Factories</a></li>
       <li><a href="#maven_service_factory">Maven Service Factory</a></li>
       <li><a href="#http_service_factory">HTTP Service Factory</a></li>
     </ul>
@@ -1839,14 +1840,6 @@ sidebar: true
           Services are deployed using a service identifier which decouples the user from details of the implementation.</p>
           <div class="row">
             <div class="col-md-4">
-              <h4 id="service_factories">Service Factories</h4>
-              <p>How to package and deploy Vert.x independent <em>services<em>.</p>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-service-factory">Source</a></li>
-                <li><a href="{{ site_url }}docs/vertx-service-factory/java">Manual</a></li>
-              </ul>
-            </div>
-            <div class="col-md-4">
               <h4 id="service_proxies">Service Proxies</h4>
               <p>Proxies allow remote event bus services to be called as if they were local.</p>
               <ul class="list-unstyled">
@@ -1864,8 +1857,24 @@ sidebar: true
                 <li><a href="https://github.com/vert-x3/vertx-examples/tree/3.4.0-SNAPSHOTtree/master/service-proxy-examples">Examples</a></li>
               </ul>
             </div>
+            <div class="col-md-4">
+              <h4 id="grpc">gRPC</h4>
+              <p>Implement gRPC Clients and Servers for Vert.x.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-grpc">Source</a></li>
+                <li><a href="{{ site_url }}docs/vertx-grpc/java">Manual</a></li>
+              </ul>
+            </div>
           </div>
           <div class="row">
+            <div class="col-md-4">
+              <h4 id="service_factories">Service Factories</h4>
+              <p>How to package and deploy Vert.x independent <em>services<em>.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-service-factory">Source</a></li>
+                <li><a href="{{ site_url }}docs/vertx-service-factory/java">Manual</a></li>
+              </ul>
+            </div>
             <div class="col-md-4">
               <h4 id="maven_service_factory">Maven Service Factory</h4>
               <p>This lets you dynamically install and deploy services from Maven at run-time.</p>
