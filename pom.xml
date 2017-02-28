@@ -76,7 +76,7 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-stack-docs</artifactId>
-      <version>${vertx.version}</version>
+      <version>${vertx.docs.version}</version>
       <classifier>docs</classifier>
       <type>zip</type>
     </dependency>
