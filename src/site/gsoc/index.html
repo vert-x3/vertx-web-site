@@ -84,68 +84,6 @@ heading: Google Summer of Code Ideas
 
   <div class="row">
     <div class="col-sm-12">
-      <h3>Vert.x Code Quality Assessment</h3>
-      <strong>Summary of idea:</strong>
-      <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation
-        of reactive, highly concurrent, polyglot applications. The project evolves at a very fast pace and new features get
-        added with every release. It is time to assess how much deprecation we have over the whole set of reppos that the core
-        project covers and ensure that the polyglot API's do cover the full spectrum that is offered by the native Java implementation.</p>
-
-      <strong>What should be achieved:</strong>
-
-      <ul>
-        <li>Identify (and provide solution on how to replace the) use of deprecated APIs.</li>
-        <li>Identify the use of inconsistent APIs
-          <ul>
-            <li>For example the usage of AsyncResult objects vs Futures.</li>
-          </ul>
-        </li>
-        <li>Automate collection of metrics:
-          <ul>
-            <li>Test coverage.</li>
-            <li>Technical Debt.</li>
-            <li>Security check.</li>
-            <li>Up to date dependencies.</li>
-          </ul>
-        </li>
-        <li>Propose automation to report these metrics so maintainers can judge what needs to be done next easier.</li>
-      </ul>
-
-      <strong>Knowledge prerequisite:</strong> Java (8), Gradle or Maven, SonarQube is a plus<br/>
-      <strong>Skill level:</strong> Intermediate, Experienced<br/>
-      <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-12">
-      <h3>Vert.x Webite</h3>
-      <strong>Summary of idea:</strong>
-      <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation
-        of reactive, highly concurrent, polyglot applications. The current website is quite static and serves us well, but there
-        is so much work done during last year's GSoC that should be included too. There is also a need to have better showcasing
-        of what vert.x can do, with automation of examples. Many examples are offered by the project reppo but they need more
-        visibility.</p>
-
-      <strong>What should be achieved:</strong>
-
-      <ul>
-        <li>Propose a "scalable" alternative to the current site (ultimate goal is single click deploy).</li>
-        <li>Integrate vert.x examples with the website to showcase our APIs:
-          <ul>
-            <li>Automate the generation of examples/demos from the demo repo, this should include documentation plus the code</li>
-          </ul>
-        </li>
-      </ul>
-
-      <strong>Knowledge prerequisite:</strong> Java (8), JavaScript, Jekyll, GitHub API's is a plus<br/>
-      <strong>Skill level:</strong> Intermediate, Experienced<br/>
-      <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-12">
       <h3>Vert.x R language support</h3>
       <strong>Summary of idea:</strong>
       <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation
@@ -163,6 +101,38 @@ heading: Google Summer of Code Ideas
 
       <strong>Knowledge prerequisite:</strong> Java (8), MVEL, R<br/>
       <strong>Skill level:</strong> Intermediate, Experienced<br/>
+      <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Vert.x Certbot plugin</h3>
+      <strong>Summary of idea:</strong>
+      <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation
+        of reactive, highly concurrent, polyglot applications.</p>
+
+      <p><a href="https://certbot.eff.org">Certbot</a> is an easy-to-use automatic client that fetches and deploys SSL/TLS
+        certificates for your webserver. Certbot was developed by EFF and others as a client for Let’s Encrypt and was
+        previously known as “the official Let’s Encrypt client” or “the Let’s Encrypt Python client.” Certbot will also
+        work with any other CAs that support the ACME protocol.</p>
+
+        <p>Certbot has several plugins for common web servers and can be used in manual mode with Vert.x too. This
+          project would be about <a href="https://certbot.eff.org/docs/contributing.html">coding a new plugin</a> for Certbot
+          that would make the use of SSL certificates even easier for the Vert.x user community. The Certbot project is very
+          open to new plugins and there is plenty of documentation. The project would be to follow the intructions from
+          the link above and implement a tighter integration with Vert.x.</p>
+
+      <strong>What should be achieved:</strong>
+
+      <ul>
+        <li>Get acquainted with Certbot Python API</li>
+        <li>Writing a plugin for applications using Vert.x Core + Vert.x Web</li>
+        <li>Submit a PR</li>
+      </ul>
+
+      <strong>Knowledge prerequisite:</strong> Python, Git<br/>
+      <strong>Skill level:</strong> Intermediate<br/>
       <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
     </div>
   </div>
