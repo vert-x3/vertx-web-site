@@ -1,0 +1,109 @@
+---
+template: page.html
+title: Eclipse Vert.x Downloads
+heading: Download
+---
+
+<div class="container downloads-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+      On this page, you can download the vert.x <em>distributions</em>. Alternatively, you can browse available packages from <a href="https://bintray.com/vertx/downloads/distribution/{{ project_version }}/view">Bintray</a>.</p>
+      <p>The distributions are providing the <code>vertx</code> command line tool. To modify the content of the distribution once downloaded, use the <a href="{{ site_url }}docs/vertx-stack-manager/stack-manager/">stack manager</a>.
+      </p>
+      <p>
+        If you are using Apache Maven or Gradle, you don't need to download anything, as the required artifacts are retrieved by your dependency manager.
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <h2>Minimal distribution</h2>
+      <p>Low-level distribution containing only Vert.x core components and
+      language interfaces for Java, JavaScript, Groovy, Ruby and Ceylon.</p>
+      <p>{% for d in distribution_info.min %}
+      <a class="btn btn-default btn-lg" href="https://bintray.com/artifact/download/vertx/downloads/{{ d.name }}" role="button"><span class="fa fa-download"></span> Vert.x {{ d.version }} min ({{ d.ext }})<br>
+      <small>{{ d.date }} | {{ d.size }}</small></a>
+      {% endfor %}</p>
+    </div>
+
+    <div class="col-md-6">
+      <h2>Full distribution</h2>
+      <p>This package encompasses the minimum distribution plus all
+      components from the official Vert.x stack.</p>
+      <p>{% for d in distribution_info.full %}
+      <a class="btn btn-default btn-lg" href="https://bintray.com/artifact/download/vertx/downloads/{{ d.name }}" role="button"><span class="fa fa-download"></span> Vert.x {{ d.version }} full ({{ d.ext }})<br>
+      <small>{{ d.date }} | {{ d.size }}</small></a>
+      {% endfor %}</p>
+    </div>
+
+  </div>
+
+  <hr/>
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <h2>From NPM</h2>
+      <p>You can download the vert.x distributions from <a href="https://www.npmjs.com">NPM</a>:</p>
+      <p>
+        <code>npm install vertx3-min<br/>
+        npm install vertx3-full</code>
+      </p>
+    </div>
+
+    <div class="col-md-6">
+      <h2>From Docker</h2>
+      <p>You can install the <em>full</em> vert.x distribution in a Docker container:</p>
+      <p>
+        <code>docker run -i -t vertx/vertx3-exec</code>
+      </p>
+      <p>More details <a href="{{ site_url }}docs/vertx-docker/">here</a>.
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <h2>From SDKMan</h2>
+      <p>You can download the <em>full</em> vert.x distributions from <a href="http://sdkman.io/">SDKMan</a>:</p>
+      <p>
+        <code>sdk install vertx</code>
+      </p>
+    </div>
+
+    <div class="col-md-6">
+      <h2>From Homebrew</h2>
+      <p>The <em>full</em> distribution can be downloaded from <a href="http://brew.sh/">Homebrew</a>:</p>
+      <p>
+        <code>brew install vert.x</code>
+      </p>
+    </div>
+
+  </div>
+
+  <hr/>
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <h2>Snapshots</h2>
+      <p>We have continuous integration builds for all the Vert.x components on
+      <a href="https://vertx.ci.cloudbees.com/view/vert.x-3/">CloudBees</a>. We
+      also publish shapshots to the
+      <a href="https://oss.sonatype.org/content/repositories/snapshots/io/vertx/">Sonatype OSS Snapshot repository</a>.</p>
+    </div>
+
+    <div class="col-md-6">
+      <h2>Older releases</h2>
+      <p>Older Vert.x releases (including 2.x) can still be downloaded from our
+      <a href="https://bintray.com/vertx/downloads/distribution/view">Bintray repository</a>.</p>
+    </div>
+
+  </div>
+
+</div>

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="Vert.x is a tool-kit for building reactive applications on the JVM." name="description">
+  <meta content="Eclipse Vert.x is a tool-kit for building reactive applications on the JVM." name="description">
   <link href="{{ site_url }}stylesheets/{% if stylesheet %}{{ stylesheet }}{% else %}main.css{% endif %}" media="screen" rel="stylesheet">
   <link href="{{ site_url }}stylesheets/font-awesome.min.css" media="screen" rel="stylesheet">
   <link href="{{ site_url }}javascripts/styles/rainbow.min.css" media="screen" rel="stylesheet">
@@ -13,7 +13,26 @@
   <!--[if lt IE 9]>
   <script src="http://static.jboss.org/theme/js/libs/html5/pre3.6/html5.min.js"></script>
   <![endif]-->
-  <link href="{{ site_url }}assets/favicons/vertx-favicon-5.ico" rel="shortcut icon">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="{{ site_url }}assets/favicons/vertx-favicon-7/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="{{ site_url }}assets/favicons/vertx-favicon-7/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="{{ site_url }}assets/favicons/vertx-favicon-7/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ site_url }}assets/favicons/vertx-favicon-7/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="{{ site_url }}assets/favicons/vertx-favicon-7/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="{{ site_url }}assets/favicons/vertx-favicon-7/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="{{ site_url }}assets/favicons/vertx-favicon-7/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{ site_url }}assets/favicons/vertx-favicon-7/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ site_url }}assets/favicons/vertx-favicon-7/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="{{ site_url }}assets/favicons/vertx-favicon-7/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="{{ site_url }}assets/favicons/vertx-favicon-7/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="{{ site_url }}assets/favicons/vertx-favicon-7/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="{{ site_url }}assets/favicons/vertx-favicon-7/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="{{ site_url }}assets/favicons/vertx-favicon-7/manifest.json">
+  <link rel="mask-icon" href="{{ site_url }}assets/favicons/vertx-favicon-7/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#7d3194">
+  <meta name="msapplication-TileImage" content="{{ site_url }}assets/favicons/vertx-favicon-7/mstile-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
   <link href="http://fonts.googleapis.com/css?family=Ubuntu:400,500,700,400italic" rel="stylesheet" type="text/css">
   <link rel="alternate" type="application/rss+xml" title="RSS"
      href="{{ site_url }}feed.xml">
@@ -23,7 +42,9 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
     ga('create', 'UA-30144458-1', 'auto');
+    ga('create', 'UA-71153120-1', 'auto', 'tracker');
     ga('send', 'pageview');
+    ga('tracker.send', 'pageview');
   </script>
 </head>
 <body>
@@ -48,13 +69,12 @@
     </div>
     <nav class="collapse navbar-collapse" id="vertx-navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
-        <!--<li class=""><a href="vertx-home.html">HOME</a></li>-->
-        <li><a href="https://bintray.com/vertx/downloads/distribution/view">Download</a></li>
+        <li><a href="{{ site_url }}download/">Download</a></li>
         <li><a href="{{ site_url }}docs/">Documentation</a></li>
         <li><a href="https://github.com/vert-x3/wiki/wiki">Wiki</a></li>
         <li><a href="{{ site_url }}community/">Community</a></li>
-        <li><a href="{{ site_url }}blog/blog.html">Blog</a></li>
-        <li><a href="{{ site_url }}vertx2/" class="vertx-2-link">Vert.x 2</a></li>
+        <li><a href="{{ site_url }}materials/">Materials</a></li>
+        <li><a href="{{ site_url }}blog/">Blog</a></li>        
       </ul>
     </nav>
   </div>

@@ -4,33 +4,55 @@
 
 # The Vert.x 3.0 web-site repository
 
-**Browse the (experimental, work in progress) [Vert.x 3.0 web-site](http://vert-x3.github.io/)**
-
-This repository contains the Vert.x 3.x web site.
-
-This includes both the static site and the documentation.
-
-The documentation is generated, by pulling in the *-html.zip files created by sub projects (e.g. vertx-core, vertx-lang-js)
-and unzipping them into the site.
+This repository is containing the Vert.x Web Site source. The web site is available on: http://vertx.io.
 
 ## Building
 
-You can build the site with `mvn site`. This will assemble and transform the various parts of the site and place
-it in `target/site`.
+### Building the production version
 
-## Building continuously during development
+    mvn clean site
 
-If you only change the site pages, you can activate the gulp watch mode (after having built the site once) with
-`gulp watch`. This will scan for changes and rebuild the part of the site that needs to be refreshed.
+This will assemble and transform the various parts of the site and place it in `target/site`.
+
+Then open `target/site/index.html`. Notice that all links targets `http://vertx.io`.
+
+### Building a dev version with gulp
+
+If you have gulp install and want to work on the web site with "hot redeploy" of your change:
+
+    mvn clean site; gulp watch
+
+Then open `http://localhost:4000`.
 
 The documentation pages will not be rebuilt continuously. If you change the header or footer templates and
 want to update the documentation pages, you need to stop the watch mode with `Ctrl+C` and start it again
 with `gulp watch`.
 
-## Previewing during development
+### Building a dev version with docker
 
-`gulp watch` starts a small embedded web server that lets you preview the website under
-`http://localhost:4000`. The port can be changed in the `gulpfile.js` file.
+(No hot-redeploy)
+
+If you don't have gulp, you can build a version of the web site running in a docker container:
+
+To build:
+* Linux: `mvn site -Pdocker -Dhost=localhost:4000`
+* Mac: `mvn site -Pdocker -Dhost=192.168.99.100:4000`
+
+To run:
+
+    docker run -p 4000:80 vert-x3/vertx-web-site
+
+Open your browser to:
+* Linux: `http://localhost:4000`
+* Mac: `http://192.168.99.100:4000`
+
+### Checking for broken links
+
+You can run a gulp task that will build the website and then check for broken links.
+
+    gulp check-links
+
+Make sure you have built the website with `mvn site` first if you haven't done so already.
 
 ## A word on URLs
 
@@ -42,6 +64,11 @@ contains a trailing slash. You can configure it in the `gulpfile.js` file.
 
 Heads up: keeping all URLs absolute allows us to quickly move the web-site to another
 path on the web server by just changing the global `site_url` variable.
+
+In order to obtain nice URLs, all pages should be put in their own directory and
+called index.html. For example, the entry page of the blog is under
+`blog/index.html`. Therefore it can be reached under `http://vertx.io/blog`. If
+you link to such a page always use the nice URL (without `index.html`).
 
 ## The blog
 
@@ -61,7 +88,7 @@ to add new people.
 To automatically generate a list of contributors who are not already defined
 in `contributors.js` run `gulp update-contributors`. The script retrieves a list
 of people who contributed to Vert.x projects (i.e. projects from the `vert-x3`
-organisation on GitHub) and saves it to `src-gen/main/community/contributors-gen.js`.
+organisation on GitHub) and saves it to `src/generated/community/contributors-gen.js`.
 Never edit this file directly. It will always be overwritten by the
 `update-contributors` gulp task.
 

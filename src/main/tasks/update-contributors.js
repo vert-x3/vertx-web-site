@@ -84,12 +84,16 @@ function getAllRepos(orgs, github, done) {
 }
 
 /**
- * Get the usernames of all people who contributed to a repository
+ * Get all people who contributed to a repository and return their login and
+ * number of contributions
  */
 function getContributors(org, repo, github, done) {
   var result = [];
   github.repos.getContributors({ user: org, repo: repo }, collector(github, function(e) {
-    result.push(e.login);
+    result.push({
+      login: e.login,
+      contributions: e.contributions || 0
+    });
   }, function(err) {
     if (err) {
       done(err);
@@ -101,6 +105,7 @@ function getContributors(org, repo, github, done) {
 
 /**
  * Loop through the given repositories and get the usernames of all contributors
+ * and the number of their contributions
  */
 function getAllContributors(repos, github, done) {
   var reposClone = repos.slice(0);
@@ -128,7 +133,15 @@ function getAllContributors(repos, github, done) {
 
       // add all contributors of this repository to the result list
       contributors.forEach(function(c) {
-        if (allContributors.indexOf(c) < 0) {
+        var found = false;
+        for (var j = 0; j < allContributors.length; ++j) {
+          if (allContributors[j].login === c.login) {
+            allContributors[j].contributions += c.contributions;
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
           allContributors.push(c);
         }
       });
@@ -187,14 +200,15 @@ function getAllUserDetails(users, github, done) {
 
     // get next user to query
     var user = usersClone.shift();
-    gutil.log(user + " ...");
+    gutil.log(user.login + " ...");
 
-    getUserDetails(user, github, function(err, details) {
+    getUserDetails(user.login, github, function(err, details) {
       if (err) {
         done(err);
         return;
       }
 
+      details.contributions = user.contributions;
       allUsers.push(details);
 
       // query next user
@@ -208,7 +222,7 @@ function getAllUserDetails(users, github, done) {
 /**
  * Get all Vert.x contributors
  */
-function getAll(current_contributors, github, done) {
+function getAll(github, done) {
   // get all repositories of the vert-x and vert-x3 organisations
   var orgs = ["vert-x", "vert-x3"];
   gutil.log("Get all repositories ...")
@@ -229,16 +243,6 @@ function getAll(current_contributors, github, done) {
         return;
       }
 
-      // filter out all pre-defined contributors
-      contributors = contributors.filter(function(c) {
-        for (var i = 0; i < current_contributors.length; ++i) {
-          if (current_contributors[i].github_id.toUpperCase() === c.toUpperCase()) {
-            return false;
-          }
-        }
-        return true;
-      });
-
       // query user details of all contributors
       gutil.log("Query user details ...");
       getAllUserDetails(contributors, github, done);
@@ -246,9 +250,7 @@ function getAll(current_contributors, github, done) {
   })
 }
 
-module.exports = function(client_id, client_secret, current_contributors) {
-
-
+module.exports = function(client_id, client_secret) {
   var github = new GitHubApi({ version: "3.0.0" });
 
   if (client_id && client_secret) {
@@ -265,11 +267,13 @@ module.exports = function(client_id, client_secret, current_contributors) {
   });
 
   // collect all contributors
-  getAll(current_contributors, github, function(err, contributors) {
+  getAll(github, function(err, contributors) {
     if (err) {
       result.emit("error", err);
       return;
     }
+
+    contributors.sort(function(a, b){return a['github_id'].localeCompare(b['github_id'])});
 
     // write contributors to output stream
     var file = new gutil.File({
