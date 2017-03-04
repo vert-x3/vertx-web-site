@@ -1,0 +1,16 @@
+<div class="col-sm-4 blog-sidebar">
+  <div class="blog-contribute">
+    {% set recent = collections.blog|limit(5, 0) %}
+    <h4>Recent Posts</h4>
+    <ul>
+      {% for post in recent %}
+      <li><a href="{{site_url}}{{post.path}}/">{{post.title}}</a></li>
+      {% endfor %}
+    </ul>
+    <a class="browse-all" href="{{site_url}}blog/archives">&laquo; Browse all posts by date</a>
+    <hr/>
+    <p>Have something interesting to say about Vert.x? Want to contribute to this blog? Just check the
+      <a href="https://github.com/vert-x3/vertx-web-site/blob/master/BLOG.md">instructions</a>.
+    <p>
+  </div>
+</div>

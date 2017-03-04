@@ -124,10 +124,6 @@
 
     .btn {
         font-weight: 500;
-
-        .icon {
-            margin-right: 6px;
-        }
     }
 
     .github-btn {
@@ -290,14 +286,10 @@
             }
 
             &.btn {
-                text-decoration: none;
+                text-decoration: none !important;
 
                 &:hover {
                     color: @brand-primary;
-                }
-
-                 .icon {
-                    padding-bottom: 4px;
                 }
             }
         }
@@ -344,10 +336,25 @@ footer {
         margin: @line-height-computed / 2 0;
     }
 
+    .jprofiler {
+      color: @gray-light;
+      text-decoration: none;
+
+      a {
+        text-decoration: none;
+        white-space: nowrap;
+        color: @gray-light;
+      }
+
+      a::hover a::active a:visited {
+        text-decoration: none;
+      }
+    }
+
     .copyright {
         text-align: right;
 
-        @media (max-width: (@screen-xs-max)) {
+        @media (max-width: (@screen-sm-max)) {
             text-align: center;
         }
 
@@ -366,16 +373,6 @@ footer {
         background-color: #fff;
         color: @brand-primary;
     }
-}
-
-// entypo icons
-.icon {
-    fill: currentColor;
-    height: @line-height-computed * 0.9;
-    width: @line-height-computed * 0.9;
-    line-height: 1em;
-    float: left;
-    margin: 0.2em 0.2em 0 0;
 }
 
 /** Community page */
@@ -414,7 +411,7 @@ footer {
         padding-bottom: @line-height-computed;
     }
 
-    .icon {
+    .fa {
         height: @line-height-computed * 0.8;
         margin: 0.3em 0.3em 0 0;
         color: @gray;
@@ -568,11 +565,26 @@ footer {
     .no-margin-top {
         margin-top: 0;
     }
+
+    table {
+        margin-bottom: 12.5px;
+
+        td {
+            padding-right: 1em;
+        }
+    }
 }
 
 // do not display language name. it interferes with the code.
 .listingblock:hover code[class*="language-"]:before {
     display: none;
+}
+
+// display horizontal scroll bar for code blocks if necessary
+pre code {
+    white-space: pre;
+    word-wrap: normal;
+    overflow-x: auto;
 }
 
 // Blog
@@ -581,64 +593,107 @@ footer {
  */
 
 .blog {
-  .blog-post {
-    margin-bottom: 60px;
-  }
-
-  .blog-post-title {
-    margin-bottom: 5px;
-    font-size: 38px;
-  }
-
-  .blog-post-meta {
-    margin-bottom: 20px;
-    color: #999;
-  }
-
-  .pagination {
-    .pagination__link--older {
-
+    .blog-post {
+        margin-bottom: 60px;
     }
-    .pagination__link--newer {
-      float: right;
-    }
-  }
 
-  pre {
-    background-color: white;
-    border: none;
-
-    code {
-      border-radius: 4px;
+    .blog-post-title {
+        margin-bottom: 5px;
+        font-size: @font-size-h1;
+        border-left: 8px solid #782b90;
+        padding: 10px 15px;
+        margin-top: @line-height-computed;
     }
-  }
+
+    .blog-post-meta {
+        margin-bottom: 20px;
+        color: #999;
+    }
+
+    .blog-sidebar {
+        h4 {
+            margin-top: @line-height-computed;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+
+            li {
+                padding-bottom: @line-height-computed / 4;
+            }
+        }
+
+        .browse-all {
+            margin-top: 0.5em;
+            display: block;
+            font-style: italic;
+        }
+    }
+
+    .blog-archives-entry {
+        padding-bottom: @line-height-computed / 2;
+    }
+
+    .pagination {
+        .pagination__link--older {
+        }
+        .pagination__link--newer {
+            float: right;
+        }
+    }
+
+    pre {
+        background-color: white;
+        border: none;
+        padding: 0;
+        margin-bottom: @line-height-computed;
+
+        code {
+            border-radius: 4px;
+        }
+    }
 }
 
 .admonition-block {
-  .admonition-icon {
-    color: @brand-primary;
-    font-size: @font-size-h1;
-    vertical-align: middle;
-  }
+    .admonition-icon {
+        color: @brand-primary;
+        font-size: @font-size-h1;
+        vertical-align: middle;
+    }
 
-  table {
-    border-collapse: separate;
-    border-spacing: 0;
-    background-color: @gray-lighter;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    display: block;
-  }
+    table {
+        border-collapse: separate;
+        border-spacing: 0;
+        background-color: @gray-lighter;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        display: block;
+    }
 
-  td.admonition-icon {
-    vertical-align: top;
-  }
+    td.admonition-icon {
+        vertical-align: top;
+    }
 
-  .title {
-    font-weight: bold;
-  }
+    .title {
+        font-weight: bold;
+    }
 
-  td {
-    padding: 7px;
-  }
+    td {
+        padding: 7px;
+    }
+}
+
+.downloads-container {
+    .btn {
+        text-align: left;
+        font-weight: 500;
+        margin: @line-height-computed / 2 0;
+
+        small {
+            font-size: @font-size-base;
+            color: @gray-light;
+        }
+    }
 }

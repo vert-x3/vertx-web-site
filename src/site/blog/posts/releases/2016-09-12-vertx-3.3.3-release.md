@@ -1,0 +1,26 @@
+---
+title: Vert.x 3.3.3 is released !
+date: 2016-09-12
+template: post.html
+author: cescoffier
+---
+
+We have just released Vert.x 3.3.3, a bug fix release of Vert.x 3.3.x.
+
+Since the release of Vert.x 3.3.2, quite a few bugs have been reported. We would like to thank you all for reporting these issues.
+
+Vert.x 3.3.3 release notes:
+
+* https://github.com/vert-x3/wiki/wiki/3.3.3---Release-Notes
+
+The event bus client using the SockJS bridge are available from NPM, Bower and as a WebJar:
+
+* https://www.npmjs.com/package/vertx3-eventbus-client
+* https://github.com/vert-x3/vertx-bus-bower
+* http://www.webjars.org/
+
+Docker images are also available on the [Docker Hub](https://hub.docker.com/u/vertx/). The Vert.x distribution is also available from [SDKMan](http://sdkman.io/index.html) and [HomeBrew](http://brew.sh/).
+
+The artifacts have been deployed to [Maven Central](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22io.vertx%22%20AND%20v%3A%223.3.3%22) and you can get the distribution on [Bintray](https://bintray.com/vertx/downloads/distribution/3.3.3/view).
+
+Happy coding !

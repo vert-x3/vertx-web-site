@@ -1,6 +1,6 @@
 ---
 template: page.html
-title: Vert.x
+title: Eclipse Vert.x
 stickyheader: true
 ---
 
@@ -8,9 +8,11 @@ stickyheader: true
   <div class="container">
     <div class="row">
       <div class="col-sm-offset-2 col-sm-8 text-center">
-        <h2><strong>Vert.x</strong> is a tool-kit for building <strong>reactive</strong> applications on the <strong>JVM</strong>.</h2>
+        <h2>Eclipse <strong>Vert.x</strong> is a tool-kit for building <strong>reactive</strong> applications on the <strong>JVM</strong>.</h2>
         <div class="buttons">
-          <a class="btn btn-default btn-lg btn-transparent" href="https://bintray.com/vertx/downloads/distribution/3.0.0/view" role="button">{% icon "install" %} Download v3.0.0</a><br>
+          <a class="btn btn-default btn-lg btn-transparent"
+             href="{{ site_url }}download/" role="button">
+            <span class="fa fa-download"></span> Download v{{ project_version }}</a><br>
           <span class="github-btn">
             <iframe src="https://ghbtns.com/github-btn.html?user=eclipse&amp;repo=vert.x&amp;type=star&amp;count=true&amp;size=large"
                   frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
@@ -25,7 +27,7 @@ stickyheader: true
   <div class="row">
     <div class="col-sm-6">
       <h2>Scale</h2>
-      <p>Vert.x is <em>event driven</em> and <em>non blocking</em>. This means your app can handle a lot of concurrency
+      <p>Eclipse Vert.x is <em>event driven</em> and <em>non blocking</em>. This means your app can handle a lot of concurrency
         using a small number of kernel threads. Vert.x lets your app scale with minimal hardware.</p>
     </div>
 
@@ -45,6 +47,7 @@ stickyheader: true
           <li><a href="#ws_js" data-toggle="tab">JavaScript</a></li>
           <li><a href="#ws_groovy" data-toggle="tab">Groovy</a></li>
           <li><a href="#ws_ruby" data-toggle="tab">Ruby</a></li>
+          <li><a href="#ws_ceylon" data-toggle="tab">Ceylon</a></li>
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="ws_java">
@@ -89,12 +92,26 @@ $vertx.create_http_server().request_handler() { |req|
 }.listen(8080)</code></pre>
           </div>
 
+          <div class="tab-pane" id="ws_ceylon">
+            <pre class="prettyprint"><code class="ceylon">
+import io.vertx.ceylon.core { ... }
+import io.vertx.ceylon.core.http { ... }
+shared class Server() extends Verticle() {
+  start() => vertx.createHttpServer()
+    .requestHandler((req) =>
+      req.response()
+        .putHeader("content-type", "text/plain")
+        .end("Hello from Vert.x!")
+    ).listen(8080);
+}</code></pre>
+          </div>
+
         </div>
       </div>
       <div class="col-sm-6 text-right">
         <h2>Polyglot</h2>
         <p>You can use Vert.x with multiple languages including <strong>Java</strong>, <strong>JavaScript</strong>,
-          <strong>Groovy</strong>, and <strong>Ruby</strong>.</p>
+          <strong>Groovy</strong>, <strong>Ruby</strong>, and <strong>Ceylon</strong>.</p>
         <p>Vert.x doesn't preach about what language is <em>best</em> &mdash; you choose the languages <em>you</em> want
           based on the task at hand and the skill-set of your team.</p>
         <p>We provide <em>idiomatic</em> APIs for every language that Vert.x supports.</p>
@@ -187,7 +204,7 @@ $vertx.create_http_server().request_handler() { |req|
 
         <div class="row">
           <div class="col-sm-12 wanttobelisted">
-            <a class="btn btn-default btn-md btn-transparent" href="{{ site_url }}whos_using" role="button">{% icon "list" %} More &hellip;</a><br>
+            <a class="btn btn-default btn-md btn-transparent" href="{{ site_url }}whos_using" role="button"><span class="fa fa-list"></span> More &hellip;</a><br>
           </div>
         </div>
       </div>
