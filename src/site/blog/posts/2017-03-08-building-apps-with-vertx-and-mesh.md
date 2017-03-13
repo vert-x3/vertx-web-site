@@ -1,9 +1,8 @@
 ---
 title: Data-driven Apps made easy with Vert.x 3.4.0 and headless CMS Gentics Mesh 
 template: post.html
-date: 2017-03-08
+date: 2017-03-13
 author: jotschi
-draft: true
 ---
 
 In this article, I would like to share why Vert.x is not only a robust foundation for the [headless Content Management System Gentics Mesh](http://getmesh.io/) but also how the recent release 3.4.0 can be used to build a template-based web server with Gentics Mesh and handlebars.
