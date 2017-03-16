@@ -21,9 +21,10 @@ In this post I will introduce the new stack and how the power of Scala can be us
 
 ## Basics
 vertx-lang-scala is based on Scala 2.12. There are no plans to support 2.11.
+
 All modules available for Vert.x are supported (you can check  [here](https://github.com/vert-x3/vertx-lang-scala/tree/master/vertx-lang-scala-stack).
 
-TIP: All modules use the following naming-scheme: *io.vertx:<name-of-vertx-module>-scala_2.12:<vertx-major-version>*. The Scala version of *io.vertx:vert-web:3.4.0* would be *io.vertx:vertx-web-scala_2.12:3.4.0*.
+**Modules use the following naming-scheme: *io.vertx:<name-of-vertx-module>-scala_2.12:<vertx-major-version>*. The Scala version of *io.vertx:vert-web:3.4.0* would be *io.vertx:vertx-web-scala_2.12:3.4.0*.**
 
 There is an sbt-based [quickstart-project](https://github.com/vert-x3/vertx-sbt-starter) available that will be updated for each Vert.x-release.
 
@@ -48,7 +49,7 @@ You just got the following things:
 We will now run the application to get some quick satisfaction. Use `sbt assembly` to produce the fat-jar followed by `java -jar target/scala-2.12/vertx-scala-sbt-assembly-0.1-SNAPSHOT.jar`. Now point your browser to [http://localhost:8666/hello](http://localhost:8666/hello) for a classic welcome message.
 
 ## The details
-Open your IDE so we can take a look at what's going on under the hood. We start with the +HttpVerticle+.
+Open your IDE so we can take a look at what's going on under the hood. We start with the _HttpVerticle_.
 
 ```scala
 package io.vertx.scala.sbt
@@ -75,17 +76,17 @@ class HttpVerticle extends ScalaVerticle { // <1>
   }
 }
 ```
-1. +ScalaVerticle+ is the base class for all Scala-Verticles. It provides all required methods to integrate with the Vert.x-runtime.
-2. There are two ways to start a Verticle. Overriding +startFuture+, like in this example, tells Vert.x to only consider the Verticle fully started after the returned +Future[Unit]+ has been successfully completed. Alternatively one can override +start+ and by that signal to Vert.x the instant availabilty of the Verticle.
-3. This block creates a +Router+ for incoming HTTP-requests. It registeres a handler to answer with "world" if a request to the URL "/hello" arrives. The class is coming from the [Vert.x-web-module](http://vertx.io/docs/vertx-web/scala/).
+1. _ScalaVerticle_ is the base class for all Scala-Verticles. It provides all required methods to integrate with the Vert.x-runtime.
+2. There are two ways to start a Verticle. Overriding _startFuture_, like in this example, tells Vert.x to only consider the Verticle fully started after the returned _Future[Unit]_ has been successfully completed. Alternatively one can override _start_ and by that signal to Vert.x the instant availabilty of the Verticle.
+3. This block creates a _Router_ for incoming HTTP-requests. It registeres a handler to answer with "world" if a request to the URL "/hello" arrives. The class is coming from the [Vert.x-web-module](http://vertx.io/docs/vertx-web/scala/).
 4. Every Verticle has access to the Vert.x-instance. Here we use it to create a webserver and register our router to handle incoming requests.
-5. We finally reached the reason why I use +startFuture+ in the first place. All operations in Vert.x are asynchronous. So starting the webserver most definitely means it takes some more time until it bound to the given port (8666 in this case). That's why +listenFuture+ is used, which returns a +Future+ which in turn contains the actual instance of the webserver that just got started. So our Verticle will be ready to receive requests *after* the returned +Future* has been completed.
-6. In most cases we can return the +Future+ directly. In this case the +Future+ returned by +listenFuture+ has the wrong type. We get a +Future[HttpServer]+ but we need a +Future[Unit]+ as you can see in the signature of +startFuture+. This call takes care of mapping the given +Future[HttpServer]+ to the required return type.
+5. We finally reached the reason why I use _startFuture_ in the first place. All operations in Vert.x are asynchronous. So starting the webserver most definitely means it takes some more time until it bound to the given port (8666 in this case). That's why _listenFuture_ is used, which returns a _Future_ which in turn contains the actual instance of the webserver that just got started. So our Verticle will be ready to receive requests *after* the returned _Future_ has been completed.
+6. In most cases we can return the _Future_ directly. In this case the _Future_ returned by _listenFuture_ has the wrong type. We get a _Future[HttpServer]_ but we need a _Future[Unit]_ as you can see in the signature of _startFuture_. This call takes care of mapping the given _Future[HttpServer]_ to the required return type.
 
 ## Testing
 I use [ScalaTest](http://www.scalatest.org/) for all my testing needs. It comes with stellar support for asynchronous operations and is a perfect fit for testing Vert.x-applications.
 
-The following +HttpVerticleSpec+ shows how to test an HTTP-API using only Vert.x-classes. Personally I prefer [REST-assured](http://rest-assured.io/) with its rich DSL. For this post I wanted to stick with Vert.x-API, so here we go.
+The following _HttpVerticleSpec_ shows how to test an HTTP-API using only Vert.x-classes. Personally I prefer [REST-assured](http://rest-assured.io/) with its rich DSL. For this post I wanted to stick with Vert.x-API, so here we go.
 
 ```scala
 package io.vertx.scala.sbt
@@ -111,11 +112,11 @@ class HttpVerticleSpec extends VerticleTesting[HttpVerticle] with Matchers { // 
 
 }
 ```
-1. +VerticelTesting+ is a base class for your tests included with the quickstart-project. It's a small helper that takes care of deploying/undeploying the Verticle to be tested and manages a Vert.x-instance. It additionally extends link:http://www.scalatest.org/user_guide/async_testing[AsyncFlatSpec] so we can use Futures as test-return-types.
+1. _VerticelTesting_ is a base class for your tests included with the quickstart-project. It's a small helper that takes care of deploying/undeploying the Verticle to be tested and manages a Vert.x-instance. It additionally extends link:http://www.scalatest.org/user_guide/async_testing[AsyncFlatSpec] so we can use Futures as test-return-types.
 2. Isn't it nice and readable?
 3. The promise is required as the whole test will run async
-4. We use the vertx-instance provided by +VerticleTesting+ to create a Netty-based HttpClient. We instruct the client to call the specified URL and to succeed the +Promise+ with the returned body.
-5. This creates the actual assertion. After getting the +Future+ from the +Promise+ an assertion is created: *The Result should be equal to the String "world"*. ScalaTest takes care of evaluating the returned +Future+.
+4. We use the vertx-instance provided by _VerticleTesting_ to create a Netty-based HttpClient. We instruct the client to call the specified URL and to succeed the _Promise_ with the returned body.
+5. This creates the actual assertion. After getting the _Future_ from the _Promise_ an assertion is created: *The Result should be equal to the String "world"*. ScalaTest takes care of evaluating the returned _Future_.
 
 That's all you need to get started!
 
@@ -131,9 +132,9 @@ vertx.deployVerticle("com.foo.OtherVerticle", res -> {
   }
 });
 ```
-The +deployVerticle+ method takes the Verticle-name and a +Handler[AsyncResult]+ as its arguments. The +Handler[AsyncResult]+ is called after Vert.x tried deploying the Verticle. This style can also be used for Scala (which might ease the transition when coming from the Java-world) but their is a way more scalaish way of doing this.
+The _deployVerticle_ method takes the Verticle-name and a _Handler[AsyncResult]_ as its arguments. The _Handler[AsyncResult]_ is called after Vert.x tried deploying the Verticle. This style can also be used for Scala (which might ease the transition when coming from the Java-world) but their is a way more scalaish way of doing this.
 
-For every method taking a +Handler[AsyncResult]+ as its argument I create an alternative method using [Scala-Futures](http://docs.scala-lang.org/overviews/core/futures.html).
+For every method taking a _Handler[AsyncResult]_ as its argument I create an alternative method using [Scala-Futures](http://docs.scala-lang.org/overviews/core/futures.html).
 
 ```scala
 vertx.deployVerticleFuture("com.foo.OtherVerticle") // <1>
@@ -142,18 +143,18 @@ vertx.deployVerticleFuture("com.foo.OtherVerticle") // <1>
     case Failure(t) => t.printStackTrace()
   }
 ```
-1. A method providing a +Future+ based alternative gets *Future* appended to its name and returns a +Future+ instead of taking a +Handler+ as its argument.
-2. We are now free to use +Future+ the way we want. In this case onComplete is used to react on the completion.
+1. A method providing a _Future_ based alternative gets *Future* appended to its name and returns a _Future_ instead of taking a _Handler_ as its argument.
+2. We are now free to use _Future_ the way we want. In this case onComplete is used to react on the completion.
 3. Pattern matching on the result *<3*
 
-I strongly recommend using thsi approach over using +Handlers+ as you won't run into Callback-hell and you get all the goodies Scala provides for async operations.
+I strongly recommend using thsi approach over using _Handlers_ as you won't run into Callback-hell and you get all the goodies Scala provides for async operations.
 
 TIP: Future and Promise both need a ExecutionContext. The [VertxExecutionContext](https://github.com/vert-x3/vertx-lang-scala/blob/master/vertx-lang-scala/src/main/scala/io/vertx/lang/scala/VertxExecutionContext.scala) is made implicitly available inside the [ScalaVerticle](https://github.com/vert-x3/vertx-lang-scala/blob/master/vertx-lang-scala/src/main/scala/io/vertx/lang/scala/ScalaVerticle.scala). It makes sure all  operations are executed on the correct Event Loop. If you are using Vert.x without Verticles you have to provide it on your own.
 
 ## Using the console
 A great feature of sbt is the embedded, configurabel Scala-console. The console available in the quickstart-project is preconfigured to provide a fresh Vert.x-instance and all required imports so you can start playing around with Vert.x in an instant.
 
-Execute the following commands in the project-folder to deploy the +HttpVerticle+:
+Execute the following commands in the project-folder to deploy the _HttpVerticle_:
 
 ```bash
 sbt
