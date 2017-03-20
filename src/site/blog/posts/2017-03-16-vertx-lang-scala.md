@@ -22,9 +22,9 @@ In this post I will introduce the new stack and how the power of Scala can be us
 ## Basics
 vertx-lang-scala is based on Scala 2.12. There are no plans to support 2.11.
 
-All modules available for Vert.x are supported (you can check  [here](https://github.com/vert-x3/vertx-lang-scala/tree/master/vertx-lang-scala-stack).
+All modules available for Vert.x are supported (you can check  [here](https://github.com/vert-x3/vertx-lang-scala/tree/master/vertx-lang-scala-stack) ).
 
-**Modules use the following naming-scheme: *io.vertx:&lt;name-of-vertx-module&gt;-scala_2.12:&lt;vertx-major-version&gt;*. The Scala version of *io.vertx:vert-web:3.4.0* would be *io.vertx:vertx-web-scala_2.12:3.4.0*.**
+[NOTE Future and Promise both need a ExecutionContext | Modules use the following naming-scheme: *io.vertx:&lt;name-of-vertx-module&gt;-scala_2.12:&lt;vertx-major-version&gt;*. The Scala version of *io.vertx:vert-web:3.4.0* would be *io.vertx:vertx-web-scala_2.12:3.4.0*.]
 
 There is an sbt-based [quickstart-project](https://github.com/vert-x3/vertx-sbt-starter) available that will be updated for each Vert.x-release.
 
