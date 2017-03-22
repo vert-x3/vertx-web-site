@@ -48,6 +48,8 @@ stickyheader: true
           <li><a href="#ws_groovy" data-toggle="tab">Groovy</a></li>
           <li><a href="#ws_ruby" data-toggle="tab">Ruby</a></li>
           <li><a href="#ws_ceylon" data-toggle="tab">Ceylon</a></li>
+          <li><a href="#ws_scala" data-toggle="tab">Scala</a></li>
+          <li><a href="#ws_kotlin" data-toggle="tab">Kotlin</a></li>
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="ws_java">
@@ -103,6 +105,37 @@ shared class Server() extends Verticle() {
         .putHeader("content-type", "text/plain")
         .end("Hello from Vert.x!")
     ).listen(8080);
+}</code></pre>
+          </div>
+
+          <div class="tab-pane" id="ws_scala">
+            <pre class="prettyprint"><code class="scala">
+import io.vertx.lang.scala.ScalaVerticle
+class Server extends ScalaVerticle {
+  override def start(): Unit = {
+    vertx
+      .createHttpServer()
+     .requestHandler(_.response()
+       .putHeader(“content-type”, “text/plain”)
+       .end(“Hello from Vert.x”))
+     .listen(8080)
+  }
+}}</code></pre>
+          </div>
+
+          <div class="tab-pane" id="ws_kotlin">
+            <pre class="prettyprint"><code class="kotlin">
+import io.vertx.core.AbstractVerticle
+class Server : AbstractVerticle() {
+  override fun start() {
+    vertx.createHttpServer()
+      .requestHandler() { req ->
+        req.response()
+          .putHeader(“content-type”, “text/plain”)
+          .end("Hello from Vert.x”)
+        }
+      .listen(8080)
+  }
 }</code></pre>
           </div>
 
