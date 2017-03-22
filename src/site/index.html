@@ -129,7 +129,7 @@ import io.vertx.core.AbstractVerticle
 class Server : AbstractVerticle() {
   override fun start() {
     vertx.createHttpServer()
-      .requestHandler() { req ->
+      .requestHandler { req ->
         req.response()
           .putHeader(“content-type”, “text/plain”)
           .end("Hello from Vert.x”)
@@ -144,7 +144,7 @@ class Server : AbstractVerticle() {
       <div class="col-sm-6 text-right">
         <h2>Polyglot</h2>
         <p>You can use Vert.x with multiple languages including <strong>Java</strong>, <strong>JavaScript</strong>,
-          <strong>Groovy</strong>, <strong>Ruby</strong>, and <strong>Ceylon</strong>.</p>
+          <strong>Groovy</strong>, <strong>Ruby</strong>, <strong>Ceylon</strong>, <strong>Scala</strong> and <strong>Kotlin</strong>.</p>
         <p>Vert.x doesn't preach about what language is <em>best</em> &mdash; you choose the languages <em>you</em> want
           based on the task at hand and the skill-set of your team.</p>
         <p>We provide <em>idiomatic</em> APIs for every language that Vert.x supports.</p>
