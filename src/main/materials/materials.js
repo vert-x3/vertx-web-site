@@ -273,6 +273,13 @@ var conferences = [
         date: "07/09/2016",
         speaker: "Paulo Lopes",
         link: "https://vimeo.com/album/4133413/video/181905280"
+    },
+    {
+        title: "Modern app programming with RxJava and Vert.x",
+        conference: "Reactsphere 2017",
+        date: "02/03/2017",
+        speaker: "Thomas Segismont",
+        link: "https://youtu.be/XMJYNhuSKbY"
     }
 ];
 
