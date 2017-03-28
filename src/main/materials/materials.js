@@ -280,6 +280,13 @@ var conferences = [
         date: "02/03/2017",
         speaker: "Thomas Segismont",
         link: "https://youtu.be/XMJYNhuSKbY"
+    },
+    {
+        title: "Reactive Internet of Things : the Vert.x way (italian)",
+        conference: "Meet{cast} meetup Rome",
+        date: "16/03/2017",
+        speaker: "Paolo Patierno",
+        link: "https://channel9.msdn.com/Series/Meetcast/Reactive-Internet-of-Things--the-Vertx-way"
     }
 ];
 
