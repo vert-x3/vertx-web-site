@@ -39,8 +39,9 @@ heading: Google Summer of Code Ideas
         <div class="col-sm-12">            
             <h3>Developing a Vert.x based MQTT client (in the spirit of Eclipse Paho)</h3>
             <strong>Summary of idea:</strong>
-            <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. Eclipse Paho is the umbrella project for all MQTT clients written in
-                different languages. A Vert.x version should be developed as a wrapper around the Java based version, exposing all the main features of MQTT clients as defined by the MQTT 3.1.1 spec.</p>
+            <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. The project is about writing a native Vert.x MQTT client using the
+              Netty library for handling all the network communications and the related MQTT codec for encoding/decoding the packets on the wire; it also means that an MQTT protocol state machine should be developed from scratch. The client should expose all 
+              the main features of MQTT clients as defined by the MQTT 3.1.1 spec.</p>
 
             <strong>Knowledge prerequisite:</strong> Java (8), Maven, MQTT 3.1.1 spec is a plus<br/>
             <strong>Skill level:</strong> Intermediate, Experienced<br/>
