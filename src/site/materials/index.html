@@ -88,6 +88,9 @@ sidebar: true
                     {% if conf.conference %}
                     <h5><span class="fa fa-map-marker"></span>&nbsp;{{ conf.conference }}</h5>
                     {% endif %}
+                    {% if conf.slides %}
+                    <h5><span class="fa fa-graduation-cap"><a href="{{ conf.slides }}">Slides</a></span></h5>
+                    {% endif %}
                     <h5><span class="fa fa-calendar"></span>&nbsp;{{ conf.date }}</h5>
                 </div>
                 <hr/>
