@@ -287,6 +287,13 @@ var conferences = [
         date: "16/03/2017",
         speaker: "Paolo Patierno",
         link: "https://channel9.msdn.com/Series/Meetcast/Reactive-Internet-of-Things--the-Vertx-way"
+    },
+    {
+        title: "Applications Réactives avec Eclipse Vert.x",
+        conference: "Devoxx France 2017",
+        date: "05/04/2017",
+        speaker: "Julien Ponge &amp; Julien Viet",
+        link: "https://speakerdeck.com/jponge/applications-reactives-avec-eclipse-vert-dot-x"
     }
 ];
 
