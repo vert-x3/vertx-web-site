@@ -301,7 +301,14 @@ var all_users = {
     height: 44,
     wikipedia: 'https://en.wikipedia.org/wiki/Lastminute.com_Group',
     employees: 1500
-  },]
+  },
+  {
+    src: "ilanus-logo-transparent-white.png",
+    link: "http://www.ilanus.com",
+    height: 58,
+    wikipedia: 'https://en.wikipedia.org/wiki/Www.ilanus.com',
+    employees: 5
+  }]
 };
 
 function sort_by_logo_name(a, b) {
