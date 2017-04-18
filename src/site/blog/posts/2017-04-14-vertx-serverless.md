@@ -1,7 +1,7 @@
 ---
 title: Dynamic Routing in Serverless Microservice with Vert.x Event Bus
 template: post.html
-date: 2017-03-13
+date: 2017-04-14
 author: bytekast
 ---
 
