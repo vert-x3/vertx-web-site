@@ -21,7 +21,7 @@ _Image source: https://www.voxxed.com_
 To build this kind of app, [MeteorJS](https://www.meteor.com) is the new cool kid on the block (v1.0 released in october 2014): **a full stack Javascript platform to build connected-client reactive applications**. It allows JS developers to build and deploy amazing modern web and mobile apps (iOS/Android) in no time, using a unified backend+frontend code within a single app repo. That's a pretty ambitious approach but it requires a very opinionated and highly coupled JS tech stack and it's still a pretty niche framework.
 
 Moreover, we are a Java shop on the backend. At AgoraPulse, we rely heavily on :
-* [Angular](https://angular.io) and [Ionic](http://ionicframework.com) for the JS frontend (with a shared business/data architecture based on Ngrx),
+* [Angular](https://angular.io) and [Ionic](http://ionicframework.com) for the JS frontend (with a shared business/data architecture based on [Ngrx](https://github.com/ngrx/store)),
 * [Groovy](http://www.groovy-lang.org) and [Grails](https://grails.org) ecosystem for the JVM backend.
 
 So my question is: 
@@ -33,26 +33,24 @@ We just want to be able to :
 1. build a reactive app with an event bus on the JVM, and
 2. extend the event bus down to the browser to be able to publish/subscribe to real-time events from an Angular app.
 
-## Server side (JVM)
+### Server side (JVM)
 
 Reactive apps is a hot topic nowadays and there are many great libs/platforms to build this type of event-driven architecture on the JVM:
 * [Vert.x](http://vertx.io),
 * [Lightbend](https://www.lightbend.com) platform (Play, Akka, Scala),
 * Spring [Project Reactor](http://projectreactor.io) (integrated into Grails 3.0).
 
-## Client side
+### Client side
 
 [ReactJS](http://facebook.github.io/react/) and [Angular](https://angular.io) are the two most popular framework right now to build modern JS apps. Most platforms use [SockJS](https://github.com/sockjs/sockjs-client) to handle real-time connections:
 * [Vertx-web](http://vertx.io/docs/vertx-web/groovy/) provides a SockJS server implementation with an event bus bridge and a [vertx-evenbus.js](http://vertx.io/docs/vertx-web/groovy/#_sockjs_event_bus_bridge) client library (very easy to use),
 * Spring provides websocket SockJS support though Spring Messaging and Websocket libs (see an example [here](https://spring.io/guides/gs/messaging-stomp-websocket/))
 
-## Final choice: Vert.x + Angular
+### Final choice: Vert.x + Angular
 
 In the end, I've chosen to experiment with Vert.x for its excellent Groovy support, distributed event bus, scalability and ease of use.
 
 I enjoyed it very much. Let me show you the result of my experimentation which is the root of our real-time features coming very soon in AgoraPulse v6.0!
-
-![Vertx logo](/assets/blog/vertx-realtime-angular-ngrx/vertx-logo.png)
 
 ## Why Vert.x?
 
@@ -190,7 +188,8 @@ export class AppEventBusEffects {
         .do((action: RemoteAction) => {
             this.appEventBusService.publishAction(action);
         });
-  @Effect({dispatch: false}) login$ = this.actions$
+
+    @Effect({dispatch: false}) login$ = this.actions$
         .ofType(UserActionTypes.LOGIN)
         .do(() => {
             this.appEventBusService.connect();
