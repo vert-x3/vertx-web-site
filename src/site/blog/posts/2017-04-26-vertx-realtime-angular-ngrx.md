@@ -3,7 +3,6 @@ title: Building a real-time web app with Angular/Ngrx and Vert.x
 template: post.html
 date: 2017-04-26
 author: benorama
-draft: true
 ---
 
 Nowadays, there are multiple tech stacks to build a real-time web app. What are the best choices to build real-time Angular client apps, connected to a JVM-based backend? This article describes an Angular+Vertx real-time architecture with a Proof of Concept demo app.
@@ -24,11 +23,11 @@ Moreover, we are a Java shop on the backend. At AgoraPulse, we rely heavily on :
 * [Angular](https://angular.io) and [Ionic](http://ionicframework.com) for the JS frontend (with a shared business/data architecture based on [Ngrx](https://github.com/ngrx/store)),
 * [Groovy](http://www.groovy-lang.org) and [Grails](https://grails.org) ecosystem for the JVM backend.
 
-So my question is: 
+So my question is:
 
 > What are the best choices to build real-time Angular client apps, connected to a JVM-based backend these days?
 
-Our requirements are pretty basic. We don't need full Meteor's end-to-end application model. 
+Our requirements are pretty basic. We don't need full Meteor's end-to-end application model.
 We just want to be able to :
 1. build a reactive app with an event bus on the JVM, and
 2. extend the event bus down to the browser to be able to publish/subscribe to real-time events from an Angular app.
@@ -180,7 +179,7 @@ The event bus publishing logic is achieved through a simple Ngrx Effects. Any ac
 ```typescript
 @Injectable()
 export class AppEventBusEffects {
-  
+
     constructor(private actions$: Actions, private appEventBusService: AppEventBusService) {}
     // Listen to all actions and publish remote actions to account event bus
     @Effect({dispatch: false}) remoteAction$ = this.actions$
