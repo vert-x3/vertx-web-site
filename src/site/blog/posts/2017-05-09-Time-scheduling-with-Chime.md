@@ -8,7 +8,7 @@ draft: true
 
 ## Time scheduling.  
 
-Vert.x executes periodic and delayed actions with
+Eclipse Vert.x executes periodic and delayed actions with
 [periodic and one-shot timers](http://vertx.io/docs/vertx-core/java/#_executing_periodic_and_delayed_actions).
 This is the base for time scheduling and reach feature extension must be rather interesting.
 Be notified at certain date / time, take into account holidays,
