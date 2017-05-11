@@ -184,6 +184,10 @@ var all_users = {
             height: 90,
             link: "http://touk.pl/"
         }, {
+            src: "usetogether.png",
+            height: 80,
+            link: "http://www.use-together.com/"
+        }, {
             src: "vertix.png",
             link: "http://www.vertixone.com/",
             height: 50
