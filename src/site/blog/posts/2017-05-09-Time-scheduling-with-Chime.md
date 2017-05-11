@@ -3,7 +3,6 @@ title: Time scheduling with Chime
 template: post.html
 date: 2017-05-09
 author: LisiLisenok
-draft: true
 ---
 
 ## Time scheduling.  
