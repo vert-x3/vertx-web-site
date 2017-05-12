@@ -8,15 +8,15 @@ draft: true
 
 An introduction to the Vert.X-Swagger project. How to use the SwaggerRouter and the Swagger Vertex Codegen plugin.
 
-[NOTE : Though Vert.X is polyglot, Vert.X-Swagger project only supports Java. 
+[NOTE Though Vert.X is polyglot, Vert.X-Swagger project only supports Java. 
 If you want to contribute to support more languages, you're welcome :) ] 
 
 ## Vert.X & Swagger
-Vert.X and its component Vert.X-Web are very cool for writing REST APIs. The  **[Router](http://vertx.io/docs/apidocs/io/vertx/ext/web/Router.html)** is very useful to manage all resources of an API.
+[Vert.X][vertx-core] and [Vert.X-Web][vertx-web] are very cool for writing REST APIs. The [Router][vertx-router] is very useful to manage all resources of an API.
 
-To start a new API, I usually use the "design-first" approach and [Swagger](http://swagger.io/specification/) is my best friend to define what my API is supposed to do. Then, comes the "boring" part of the job : convert the swagger file content into java code. That's always the same : resources, operations, models...
+To start a new API, I usually use the "design-first" approach and [Swagger][swagger] is my best friend to define what my API is supposed to do. Then, comes the "boring" part of the job : convert the swagger file content into java code. That's always the same : resources, operations, models...
 
-Fortunately, Swagger provides a codegen tool : [Swagger-Codegen](https://github.com/swagger-api/swagger-codegen). With this tool, you can generate a server stub based on your swagger definition file. 
+Fortunately, Swagger provides a codegen tool : [Swagger-Codegen][swagger-codegen]. With this tool, you can generate a server stub based on your swagger definition file. 
 However, even if this generator provides many diffrent languages, Vert.X was missing.
 
 This is where the **Vert.X-Swagger** project comes in.
@@ -38,10 +38,6 @@ The main class of this module is **SwaggerRouter**. It's more or less a *Factory
 ## Let see how it works
 ### Generating the server
 First of all, a swagger definition file is needed. Here's a YAML File, but it could be a JSON file. :
-<style type="text/css">
-  .gist-file
-  .gist-data {max-height: 500px;}
-</style>
 <script src="https://gist.github.com/phiz71/6c654f3da2d4124d3fe65e5aaaaedf55.js"></script>
 
 Then, these libraries have to be downloaded :
@@ -95,10 +91,11 @@ In **2a** and **2b** you can find :
 #### Example : the Bottles verticle
 <script src="https://gist.github.com/phiz71/c0aadbb4f26ebed8e2e145d0b4a8d210.js"></script>
 
-[IMPORTANT In all *XXXAPI*Verticles, you will find a variable called *service*. It is a *XXXAPI* type and it is instanciated with a *XXXAPI*Impl contructor. This class does not exist yet since it is the business of your API.
+[IMPORTANT Your API need to be implemented |
+In all *XXXAPI*Verticles, you will find a variable called *service*. It is a *XXXAPI* type and it is instanciated with a *XXXAPI*Impl contructor. This class does not exist yet since it is the business of your API.
 **Then you will have to create these implementations**
 
-`Line 23` of `BottlesApiVerticle.java` 
+Line `23` of `BottlesApiVerticle.java` 
 ```java
 BottlesApi service = new BottlesApiImpl();
 ```
@@ -135,3 +132,9 @@ You can also use the SwaggerRouter in your own project without using swagger-cod
 In future releases, more information from the swagger file will be used to configure the router and certainly others languages will be supported.
 
 Thanks for reading.
+
+[vertx-core]: http://vertx.io/docs/vertx-core/java/
+[vertx-web]: http://vertx.io/docs/vertx-web/java/
+[vertx-router]: http://vertx.io/docs/apidocs/io/vertx/ext/web/Router.html
+[swagger]: http://swagger.io/specification/
+[swagger-codegen]: https://github.com/swagger-api/swagger-codegen
