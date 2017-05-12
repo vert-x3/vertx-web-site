@@ -1,7 +1,7 @@
 ---
 title: Presentation of the Vert.X - Swagger project
 template: post.html
-date: 2017-05-17
+date: 2017-05-12
 author: phiz71
 draft: true
 ---
@@ -30,10 +30,11 @@ The generated server mainly contains :
  * POJOs for `definitions`
  * one Verticle per `tag`
  * one MainVerticle, which manage others APIVerticle and start an HttpServer.
+
 [NOTE the MainVerticle use *vertx-swagger-router*]
 
 ### vertx-swagger-router:
-The main class of this module is **SwaggerRouter**. It's more or less a *Factory* (Maybe I should rename the class) that can create a [Router](http://vertx.io/docs/apidocs/io/vertx/ext/web/Router.html), using the swagger definition file to configure all the routes. For each route, it extracts parameters from the request (`Query`, `Path`, `Header`, `Body`, `Form`) and send them on the eventBus, using either the `operationId` as the address or a computed id (just a parameter in the constructor).
+The main class of this module is `SwaggerRouter`. It's more or less a *Factory* (Maybe I should rename the class) that can create a [Router][vertx-router], using the swagger definition file to configure all the routes. For each route, it extracts parameters from the request (`Query`, `Path`, `Header`, `Body`, `Form`) and send them on the eventBus, using either the `operationId` as the address or a computed id (just a parameter in the constructor).
 
 ## Let see how it works
 ### Generating the server
@@ -41,8 +42,8 @@ First of all, a swagger definition file is needed. Here's a YAML File, but it co
 <script src="https://gist.github.com/phiz71/6c654f3da2d4124d3fe65e5aaaaedf55.js"></script>
 
 Then, these libraries have to be downloaded :
- * [swagger-codegen](http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.2.2/swagger-codegen-cli-2.2.2.jar)
- * [vertx-swagger-codegen](http://central.maven.org/maven2/com/github/phiz71/vertx-swagger-codegen/1.0.0/vertx-swagger-codegen-1.0.0.jar)
+ * [swagger-codegen][swagger-codegen-lib]
+ * [vertx-swagger-codegen][vertx-swagger-codegen-lib]
 
 Finally, you juste have to run this command
 ```
@@ -77,7 +78,7 @@ And this in your destination folder:
 ![Generated sources](/assets/blog/vertx-swagger-presentation/GeneratedProject.png)
 
 ### Code Review
-AS you can see in **1**,  the vertx-swagger-codegen plugin has created one POJO by definition in the swagger file.
+AS you can see in **1**,  the vertx-swagger-codegen plugin has created one POJO by `definition` in the swagger file.
 #### Example : the bottle definition 
 <script src="https://gist.github.com/phiz71/eabafda440b24881126089128d677121.js"></script>
 
@@ -107,7 +108,7 @@ As Vert.X is **unopinionated** and as the way the vertx-swagger-codegen creates 
 Just import this jar into your project :
 <script src="https://gist.github.com/phiz71/56e723362a1d1370c7262bff246fb087.js"></script>
 
-And you will be able to create your `Router` like this :
+You will be able to create your [Router][vertx-router] like this :
 ```java
 FileSystem vertxFileSystem = vertx.fileSystem();
 vertxFileSystem.readFile("***YOUR_SWAGGER_FILE***", readFile -> {
@@ -120,11 +121,13 @@ vertxFileSystem.readFile("***YOUR_SWAGGER_FILE***", readFile -> {
         [...]
    }
 });
+
 ```
-[NOTE you can ignore the last parameter in `SwaggerRouter.swaggerRouter(...)`. As a result, services identifiers will be computed instead of using `operationId` from the swagger file. `GET /bottles/{bottle_id}` will become *GET_bottles_bottle-id*]
+[NOTE you can ignore the last parameter in `SwaggerRouter.swaggerRouter(...)`. As a result, services identifiers will be computed instead of using `operationId` from the swagger file. 
+For instance, `GET /bottles/{bottle_id}` will become *GET_bottles_bottle-id*]
 
 ## Conclusion
-Vert.X and Swagger are great tools to build and document an API. The Vert.X-Swagger project is a simple tool made to save time, letting the developpers focusing on business code.
+Vert.X and Swagger are great tools to build and document an API. The Vert.X-Swagger project was made to save time, letting the developpers focusing on business code.
 It can be seen as an API framework over Vert.X.
 
 You can also use the SwaggerRouter in your own project without using swagger-codegen.
@@ -138,3 +141,5 @@ Thanks for reading.
 [vertx-router]: http://vertx.io/docs/apidocs/io/vertx/ext/web/Router.html
 [swagger]: http://swagger.io/specification/
 [swagger-codegen]: https://github.com/swagger-api/swagger-codegen
+[swagger-codegen-lib]: http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.2.2/swagger-codegen-cli-2.2.2.jar
+[vertx-swagger-codegen-lib]: http://central.maven.org/maven2/com/github/phiz71/vertx-swagger-codegen/1.0.0/vertx-swagger-codegen-1.0.0.jar
