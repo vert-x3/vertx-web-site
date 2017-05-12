@@ -8,11 +8,11 @@ draft: true
 
 An introduction to the Vert.X-Swagger project. How to use the SwaggerRouter and the Swagger Vertex Codegen plugin.
 
-[NOTE Though Vert.X is polyglot, Vert.X-Swagger project only supports Java. 
+[NOTE Though Eclipse Vert.X is polyglot, Vert.X-Swagger project only supports Java. 
 If you want to contribute to support more languages, you're welcome :) ] 
 
-## Vert.X & Swagger
-[Vert.X][vertx-core] and [Vert.X-Web][vertx-web] are very cool for writing REST APIs. The [Router][vertx-router] is very useful to manage all resources of an API.
+## Eclipse Vert.X & Swagger
+[Eclipse Vert.X][vertx-core] and [Vert.X-Web][vertx-web] are very convenient for writing REST APIs. The [Router][vertx-router] is very useful to manage all resources of an API.
 
 To start a new API, I usually use the "design-first" approach and [Swagger][swagger] is my best friend to define what my API is supposed to do. Then, comes the "boring" part of the job : convert the swagger file content into java code. That's always the same : resources, operations, models...
 
