@@ -1,5 +1,5 @@
 ---
-title: Presentation of the Vert.X - Swagger project
+title: Presentation of the Vert.X-Swagger project
 template: post.html
 date: 2017-05-12
 author: phiz71
