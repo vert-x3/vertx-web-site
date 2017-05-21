@@ -82,6 +82,14 @@
     </dependency>
 
     <dependency>
+      <groupId>io.vertx.guides</groupId>
+      <artifactId>wiki-guide</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <classifier>docs</classifier>
+      <type>zip</type>
+    </dependency>
+
+    <dependency>
       <groupId>org.webjars</groupId>
       <artifactId>highlightjs</artifactId>
       <version>${highlightjs.version}</version>
@@ -153,6 +161,22 @@
                   <includeTypes>zip</includeTypes>
                   <includeClassifiers>docs</includeClassifiers>
                   <outputDirectory>${project.build.directory}/docs</outputDirectory>
+                </configuration>
+              </execution>
+
+              <!-- Unpack Java guide -->
+              <execution>
+                <id>unpack-java-guide</id>
+                <goals>
+                  <goal>unpack-dependencies</goal>
+                </goals>
+                <phase>pre-site</phase>
+                <configuration>
+                  <includeGroupIds>io.vertx.guides</includeGroupIds>
+                  <includeArtifactIds>wiki-guide</includeArtifactIds>
+                  <includeTypes>zip</includeTypes>
+                  <includeClassifiers>docs</includeClassifiers>
+                  <outputDirectory>${project.build.directory}/docs/java-guide</outputDirectory>
                 </configuration>
               </execution>
 
