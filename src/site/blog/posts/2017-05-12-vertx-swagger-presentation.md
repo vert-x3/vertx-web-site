@@ -1,28 +1,28 @@
 ---
-title: Presentation of the Vert.X-Swagger project
+title: Presentation of the Vert.x-Swagger project
 template: post.html
-date: 2017-05-12
+date: 2017-05-22
 author: phiz71
-draft: true
 ---
 
-An introduction to the [Vert.X-Swagger] project. How to use the Swagger-Codegen plugin and the SwaggerRouter class.
+This post is an introduction to the [Vert.x-Swagger] project, and describe how to use the `Swagger-Codegen` plugin and the `SwaggerRouter` class.
 
-## Eclipse Vert.X & Swagger
-[Vert.X][vertx-core] and [Vert.X-Web] are very convenient to write REST API and especially the [Router] which is very useful to manage all resources of an API.
+## Eclipse Vert.x & Swagger
+[Vert.x][vertx-core] and [Vert.x Web][vert.x-web] are very convenient to write REST API and especially the [Router] which is very useful to manage all resources of an API.
 
 But when I start a new API, I usually use the "design-first" approach and [Swagger] is my best friend to define what my API is supposed to do. And then, comes the "boring" part of the job : convert the swagger file content into java code. That's always the same : resources, operations, models...
 
 Fortunately, Swagger provides a codegen tool : [Swagger-Codegen]. With this tool, you can generate a server stub based on your swagger definition file. 
 However, even if this generator provides many different languages and framework, Vert.X is missing.
 
-This is where the **[Vert.X-Swagger]** project comes in.
+This is where the [Vert.x-Swagger] project comes in.
 
 ## The project
-**Vert.X-Swagger** is a maven project that contains 2 modules  
+**Vert.x-Swagger** is a maven project providing 2 modules.
 
 ### vertx-swagger-codegen
-It's a [Swagger-Codegen] plugin, which add the capability of generating a Java Vert.X WebServer to the generator.
+It's a [Swagger-Codegen] plugin, which add the capability of generating a Java Vert.x WebServer to the generator.
+
 The generated server mainly contains :
  * POJOs for `definitions`
  * one Verticle per `tag`
@@ -30,8 +30,8 @@ The generated server mainly contains :
 
 [NOTE the MainVerticle use *vertx-swagger-router*]
 
-### vertx-swagger-router:
-The main class of this module is `SwaggerRouter`. It's more or less a *Factory* (and maybe I should rename the class) that can create a [Router][vertx-router], using the swagger definition file to configure all the routes. For each route, it extracts parameters from the request (`Query`, `Path`, `Header`, `Body`, `Form`) and send them on the eventBus, using either the `operationId` as the address or a computed id (just a parameter in the constructor).
+### vertx-swagger-router
+The main class of this module is `SwaggerRouter`. It's more or less a *Factory* (and maybe I should rename the class) that can create a [Router][router], using the swagger definition file to configure all the routes. For each route, it extracts parameters from the request (`Query`, `Path`, `Header`, `Body`, `Form`) and send them on the eventBus, using either the `operationId` as the address or a computed id (just a parameter in the constructor).
 
 ## Let see how it works
 [INFO For this post, I will use a simplified swagger file but you can find a more complex example [here][petstore-vertx-sample] based on the [petstore] swagger file]
@@ -72,6 +72,7 @@ You should have something like that in your console:
 [main] INFO io.swagger.codegen.AbstractGenerator - writing file [path/to/destination/folder]/.swagger-codegen-ignore
 ```
 And this in your destination folder:
+
 ![Generated sources](/assets/blog/vertx-swagger-presentation/GeneratedProject.png)
 
 ### What have been created ?
@@ -103,7 +104,7 @@ In all **XXXAPI**Verticles, you will find a variable called *service*. It is a *
 
 
 ## Fine, but what if I don't want to build my API like this ?
-Well, Vert.X is **unopinionated** but the way the *vertx-swagger-codegen* creates the server stub **is not**. 
+Well, Vert.x is **unopinionated** but the way the *vertx-swagger-codegen* creates the server stub **is not**. 
 So if you want to implement your API the way you want, while enjoying dynamic routing based on a swagger file, the *vertx-swagger-router* library can be used standalone. 
 
 Just import this jar into your project :
@@ -126,14 +127,14 @@ vertxFileSystem.readFile("***YOUR_SWAGGER_FILE***", readFile -> {
 For instance, `GET /bottles/{bottle_id}` will become *GET_bottles_bottle-id*]
 
 ## Conclusion
-Vert.X and Swagger are great tools to build and document an API but using both in the same project can be painful. The [Vert.X-Swagger] project was made to save time, letting the developpers focusing on business code.
+Vert.x and Swagger are great tools to build and document an API but using both in the same project can be painful. The [Vert.x-Swagger] project was made to save time, letting the developers focusing on business code.
 It can be seen as an API framework over Vert.X.
 
 You can also use the `SwaggerRouter` in your own project without using Swagger-Codegen.
 
 In future releases, more information from the swagger file will be used to configure the router and certainly others languages will be supported.
 
-[NOTE Though Vert.X is polyglot, Vert.X-Swagger project only supports Java. If you want to contribute to support more languages, you're welcome :) ] 
+[NOTE Though Vert.x is polyglot, Vert.x-Swagger project only supports Java. If you want to contribute to support more languages, you're welcome :) ] 
 
 Thanks for reading.
 
