@@ -207,6 +207,7 @@
               <doctype>book</doctype>
               <relativeBaseDir>true</relativeBaseDir>
               <preserveDirectories>true</preserveDirectories>
+              <imagesDir>images@</imagesDir>
               <eruby>erb</eruby>
               <templateDir>${basedir}/src/main/docs/templates</templateDir>
               <attributes>
