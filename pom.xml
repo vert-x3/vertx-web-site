@@ -172,8 +172,8 @@
                 </goals>
                 <phase>pre-site</phase>
                 <configuration>
-                  <includeGroupIds>io.vertx.guides</includeGroupIds>
-                  <includeArtifactIds>wiki-guide</includeArtifactIds>
+                  <includeGroupIds>io.vertx</includeGroupIds>
+                  <includeArtifactIds>guide-for-java-devs</includeArtifactIds>
                   <includeTypes>zip</includeTypes>
                   <includeClassifiers>docs</includeClassifiers>
                   <outputDirectory>${project.build.directory}/docs/java-guide</outputDirectory>
