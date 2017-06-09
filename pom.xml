@@ -82,8 +82,8 @@
     </dependency>
 
     <dependency>
-      <groupId>io.vertx.guides</groupId>
-      <artifactId>wiki-guide</artifactId>
+      <groupId>io.vertx</groupId>
+      <artifactId>guide-for-java-devs</artifactId>
       <version>1.0-SNAPSHOT</version>
       <classifier>docs</classifier>
       <type>zip</type>
@@ -172,11 +172,11 @@
                 </goals>
                 <phase>pre-site</phase>
                 <configuration>
-                  <includeGroupIds>io.vertx.guides</includeGroupIds>
-                  <includeArtifactIds>wiki-guide</includeArtifactIds>
+                  <includeGroupIds>io.vertx</includeGroupIds>
+                  <includeArtifactIds>guide-for-java-devs</includeArtifactIds>
                   <includeTypes>zip</includeTypes>
                   <includeClassifiers>docs</includeClassifiers>
-                  <outputDirectory>${project.build.directory}/docs/java-guide</outputDirectory>
+                  <outputDirectory>${project.build.directory}/docs/guide-for-java-devs</outputDirectory>
                 </configuration>
               </execution>
 
