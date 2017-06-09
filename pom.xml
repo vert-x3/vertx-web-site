@@ -176,7 +176,7 @@
                   <includeArtifactIds>guide-for-java-devs</includeArtifactIds>
                   <includeTypes>zip</includeTypes>
                   <includeClassifiers>docs</includeClassifiers>
-                  <outputDirectory>${project.build.directory}/docs/java-guide</outputDirectory>
+                  <outputDirectory>${project.build.directory}/docs/guide-for-java-devs</outputDirectory>
                 </configuration>
               </execution>
 
