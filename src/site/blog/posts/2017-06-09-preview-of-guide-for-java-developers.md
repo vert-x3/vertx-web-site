@@ -3,7 +3,6 @@ title: Preview of a guide for Java developers
 template: post.html
 date: 2017-06-09
 author: jponge
-draft: true
 ---
 
 I could not attend the last Eclipse Vert.x community face-to-face meeting last fall, but one item that was discussed is the need for guides aimed at certain types of developers.
