@@ -6,7 +6,7 @@ author: jponge
 draft: true
 ---
 
-I could not attend the last Vert.x community face-to-face meeting last fall, but one item that was discussed is the need for guides aimed at certain types of developers.
+I could not attend the last Eclipse Vert.x community face-to-face meeting last fall, but one item that was discussed is the need for guides aimed at certain types of developers.
 One of my missions as part of joining the team was to work on this and I'm very happy to share it with you today!
 
 ## A gentle guide to asynchronous programming with Eclipse Vert.x for enterprise application developers
@@ -33,7 +33,7 @@ The guide takes a gradual approach by starting with a "quick and dirty" solution
 ## We need your feedback!
 
 The code is available at [https://github.com/vert-x3/vertx-guide-for-java-devs](https://github.com/vert-x3/vertx-guide-for-java-devs).
-You can report feedback as Github issues and even offer pull-requests.
+You can report feedback as Github issues to that repository and even offer pull-requests.
 
 You can check it out from GitHub (the AsciiDoc is being rendered fine from the repository interface) or you can check out pre-rendered HTML and PDF versions that I am temporarily sharing and keeping up-to-date from my Dropbox: [https://www.dropbox.com/sh/ni9znfkzlkl3q12/AABn-OCi1CZfgbTzOU0jYQpJa?dl=0](https://www.dropbox.com/sh/ni9znfkzlkl3q12/AABn-OCi1CZfgbTzOU0jYQpJa?dl=0)
 
