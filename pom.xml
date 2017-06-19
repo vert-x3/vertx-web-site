@@ -238,10 +238,8 @@
                   <backend>html</backend>
                   <attributes>
                     <toc>left</toc>
-                    <attributes>
-                      <stylesheet>/stylesheets/docs.css</stylesheet>
-                      <linkcss></linkcss>
-                    </attributes>
+                    <stylesheet>/stylesheets/docs.css</stylesheet>
+                    <linkcss></linkcss>
                     <sourceHighlighter>prettify</sourceHighlighter>
                   </attributes>
                   <sourceDirectory>${project.build.directory}/docs</sourceDirectory>
@@ -258,14 +256,33 @@
                   <backend>html</backend>
                   <attributes>
                     <toc>left</toc>
-                    <attributes>
-                      <stylesheet>/stylesheets/docs.css</stylesheet>
-                      <linkcss></linkcss>
-                    </attributes>
+                    <stylesheet>/stylesheets/docs.css</stylesheet>
+                    <linkcss></linkcss>
                     <sourceHighlighter>prettify</sourceHighlighter>
                   </attributes>
                   <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
                   <outputDirectory>${project.build.directory}/docs-generated</outputDirectory>
+                </configuration>
+              </execution>
+              <execution>
+                <id>guide-for-java-devs-to-html</id>
+                <goals>
+                  <goal>process-asciidoc</goal>
+                </goals>
+                <phase>site</phase>
+                <configuration>
+                  <backend>html</backend>
+                  <attributes>
+                    <toc>left</toc>
+                    <stylesheet>/stylesheets/docs.css</stylesheet>
+                    <linkcss></linkcss>
+                    <rendered-pdf-link>guide-for-java-devs.pdf</rendered-pdf-link>
+                    <sourceHighlighter>prettify</sourceHighlighter>
+                  </attributes>
+                  <sourceDirectory>${project.build.directory}/docs/guide-for-java-devs</sourceDirectory>
+                  <sourceDocumentName>index.adoc</sourceDocumentName>
+                  <outputDirectory>${project.build.directory}/docs-generated/guide-for-java-devs-override
+                  </outputDirectory>
                 </configuration>
               </execution>
               <execution>
@@ -342,15 +359,19 @@
               </execution>
 
               <execution>
-                <id>fix-guide-for-java-devs-pdf-filename</id>
+                <id>fix-guide-for-java-devs-files</id>
                 <goals>
                   <goal>run</goal>
                 </goals>
                 <phase>site</phase>
                 <configuration>
                   <target>
+                    <move file="${project.build.directory}/docs-generated/guide-for-java-devs-override/index.html"
+                          todir="${project.build.directory}/docs-generated/guide-for-java-devs"
+                          overwrite="true"/>
                     <move file="${project.build.directory}/docs-generated/guide-for-java-devs/index.pdf"
                           tofile="${project.build.directory}/docs-generated/guide-for-java-devs/guide-for-java-devs.pdf"/>
+                    <delete dir="${project.build.directory}/docs-generated/guide-for-java-devs-override"/>
                   </target>
                 </configuration>
               </execution>
