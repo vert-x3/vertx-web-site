@@ -164,6 +164,13 @@ var maintainers = [{
   avatar: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/4/000/175/035/229e194.jpg",
   homepage: "http://ruslan-sennov.blogspot.fr/",
   github: "https://github.com/ruslansennov"
+}, {
+  github_id: "fromage",
+  name: "Stéphane Épardaud",
+  contribution: "Ceylon language",
+  avatar: "https://avatars0.githubusercontent.com/u/179265?v=3&u=545a452f4ae4d1d3d77b2a4e84e40ebaad54c8cf&s=400",
+  homepage: "http://stephane.epardaud.fr/",
+  github: "https://github.com/fromage"
 }];
 
 // Contributors

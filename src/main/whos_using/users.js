@@ -24,8 +24,8 @@ var all_users = {
             link: "http://www.bosch-si.com",
             height: 53,
             wikipedia: "http://en.wikipedia.org/wiki/Robert_Bosch_GmbH",
-            revenue_billion: 70.6,
-            employees: 375000
+            revenue_billion: 73.1,
+            employees: 390000
         }, {
             src: "boundary.png",
             link: "http://www.boundary.com/",
@@ -158,8 +158,8 @@ var all_users = {
             link: "http://www.redhat.com",
             height: 65,
             wikipedia: "http://en.wikipedia.org/wiki/Red_Hat",
-            revenue_billion: 1.5,
-            employees: 8300
+            revenue_billion: 2.4,
+            employees: 10250
         }, {
             src: "setkeeper_logo.png",
             link: "https://setkeeper.com",
@@ -224,7 +224,7 @@ var all_users = {
             link: "http://www.tesco.com/",
             height: 48,
             wikipedia: "https://en.wikipedia.org/wiki/Tesco",
-            revenue_billion: 88455,
+            revenue_billion: 55.917,
             employees: 500000
         },
         {
@@ -263,7 +263,7 @@ var all_users = {
             height: 65,
             wikipedia: "https://en.wikipedia.org/wiki/Swisscom",
             revenue_billion: 11.7,
-            employees: 21125
+            employees: 21637
         }, {
             src: "leapcloud-logo.png",
             link: "http://leapcloud.cn",
@@ -311,6 +311,14 @@ var all_users = {
             link: "http://activeos.com",
             height: 65
         },
+        {
+            src: "dbg-bw-logo.png",
+            link: "http://deutsche-boerse.com/dbg-en/",
+            height: 38,
+            employees: 5283,
+            wikipedia: "https://en.wikipedia.org/wiki/Deutsche_B%C3%B6rse",
+            revenue_billion: 2.367
+        }
     ]
 };
 
