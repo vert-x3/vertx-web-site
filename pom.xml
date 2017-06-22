@@ -300,6 +300,7 @@
                     <toc></toc>
                     <toclevels>4</toclevels>
                     <sectnums></sectnums>
+                    <front-cover-image>cover.pdf</front-cover-image>
                   </attributes>
                   <sourceDirectory>${project.build.directory}/docs/guide-for-java-devs</sourceDirectory>
                   <sourceDocumentName>index.adoc</sourceDocumentName>
