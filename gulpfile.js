@@ -327,6 +327,7 @@ function build(done, dev) {
       "maintainers": sorted_maintainers,
       "contributors": sorted_contributors,
       "conferences": materials.conferences,
+      "books": materials.books,
       "articles": materials.articles,
       "tutorials": materials.tutorials,
       "users_home_page": users.users_home_page,
