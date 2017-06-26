@@ -7,98 +7,128 @@ sidebar: true
 
 {% macro toc() %}
 <ul class="sectlevel1 nav">
-    <li><a href="#articles">Articles</a></li>
-    <li><a href="#tutorials">Tutorials</a></li>
-    <li><a href="#presentations">Presentations</a></li>
+  <li><a href="#books">Books</a></li>
+  <li><a href="#articles">Articles</a></li>
+  <li><a href="#tutorials">Tutorials</a></li>
+  <li><a href="#presentations">Presentations</a></li>
 </ul>
 {% endmacro %}
 
 <div class="container docs-content">
-    <div class="row">
-        <div class="col-sm-8">
-            <p>Vert.x has been presented in numerous conferences and workshops. This page lists the presented talks,
-                articles and tutorials about Vert.x. Want to add yours? Open a pull request on the <a href="https://github.com/vert-x3/vertx-web-site">web site</a>.</p>
-        </div>
-        <div class="col-sm-4 hidden-xs hidden-sm">
-            <div id="sidebar" data-spy="affix" class="affix-top sidebar-no-level2">
-                {{ toc() }}
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <p>
+        Vert.x has been presented in many conferences and workshops.
+        This page lists the books, presented talks, articles and tutorials about Vert.x.
+      </p>
+      <p>
+        Interested in adding yours?
+        <a href="https://github.com/vert-x3/vertx-web-site">Open a pull request on the web site!</a>
+      </p>
     </div>
-
-    <div class="row">
-        <div class="col-sm-8">
-            <h2 id="articles">Articles</h2>
-            {# macro that iterates over a list of articles and generates items #}
-            {% macro generate_articles(articles) %}
-            {% for article in articles %}
-            <div>
-                <h4><a href="{{article.link}}"><span class="fa fa-newspaper-o"></span>&nbsp;{{ article.title }}&nbsp;
-                </a></h4>
-                <div style="margin-left: 15px">
-                    <h5><span class="fa fa-user"></span>&nbsp;{{ article.author }}</h5>
-                    {% if article.media %}
-                    <h5><span class="fa fa-map-marker"></span>&nbsp;{{ article.media }}</h5>
-                    {% endif %}
-                    <h5><span class="fa fa-calendar"></span>&nbsp;{{ article.date }}</h5>
-                </div>
-                <hr/>
-            </div>
-            {% endfor %}
-            {% endmacro %}
-
-            {{ generate_articles(articles) }}
-        </div>
+    <div class="col-sm-4 hidden-xs hidden-sm">
+      <div id="sidebar" data-spy="affix" class="affix-top sidebar-no-level2">
+        {{ toc() }}
+      </div>
     </div>
+  </div>
 
-    <div class="row">
-        <div class="col-sm-8">
-            <h2 id="tutorials">Tutorials</h2>
-            {# macro that iterates over a list of tutorials and generates items #}
-            {% macro generate_tutorials(tutorials) %}
-            {% for tutorial in tutorials %}
-            <div>
-                <h4><a href="{{tutorial.link}}"><span class="fa fa-newspaper-o"></span>&nbsp;{{ tutorial.title }}&nbsp;
-                </a></h4>
-                <div style="margin-left: 15px">
-                    <h5><span class="fa fa-user"></span>&nbsp;{{ tutorial.author }}</h5>
-                    <h5><span class="fa fa-calendar"></span>&nbsp;{{ tutorial.date }}</h5>
-                </div>
-                <hr/>
-            </div>
-            {% endfor %}
-            {% endmacro %}
-
-            {{ generate_tutorials(tutorials) }}
+  <div class="row">
+    <div class="col-sm-8">
+      <h2 id="books">Books</h2>
+      {# macro that iterates over a list of books and generates items #}
+      {% macro generate_books(books) %}
+      {% for book in books %}
+      <div>
+        <h4>
+          <a href="{{book.link}}"><span class="fa book"></span>&nbsp;{{ book.title }}&nbsp;</a>
+        </h4>
+        <div style="margin-left: 15px">
+          <h5><span class="fa fa-user"></span>&nbsp;{{ book.author }}</h5>
+          <h5><span class="fa fa-calendar"></span>&nbsp;{{ book.date }}</h5>
         </div>
+        <hr/>
+      </div>
+      {% endfor %}
+      {% endmacro %}
+
+      {{ generate_books(books) }}
     </div>
+  </div>
 
-
-    <div class="row">
-        <div class="col-sm-8">
-            <h2 id="presentations">Presentations</h2>
-            {# macro that iterates over a list of conferences and generates items #}
-            {% macro generate_event(conferences) %}
-            {% for conf in conferences %}
-            <div>
-                <h4><a href="{{conf.link}}"><span class="fa fa-play-circle-o"></span>&nbsp;{{ conf.title }}&nbsp;
-                </a></h4>
-                <div style="margin-left: 15px">
-                    <h5><span class="fa fa-user"></span>&nbsp;{{ conf.speaker }}</h5>
-                    {% if conf.conference %}
-                    <h5><span class="fa fa-map-marker"></span>&nbsp;{{ conf.conference }}</h5>
-                    {% endif %}
-                    {% if conf.slides %}
-                    <h5><span class="fa fa-graduation-cap"><a href="{{ conf.slides }}">Slides</a></span></h5>
-                    {% endif %}
-                    <h5><span class="fa fa-calendar"></span>&nbsp;{{ conf.date }}</h5>
-                </div>
-                <hr/>
-            </div>
-            {% endfor %}
-            {% endmacro %}
-
-            {{ generate_event(conferences) }}
+  <div class="row">
+    <div class="col-sm-8">
+      <h2 id="articles">Articles</h2>
+      {# macro that iterates over a list of articles and generates items #}
+      {% macro generate_articles(articles) %}
+      {% for article in articles %}
+      <div>
+        <h4><a href="{{article.link}}"><span class="fa fa-newspaper-o"></span>&nbsp;{{ article.title }}&nbsp;
+        </a></h4>
+        <div style="margin-left: 15px">
+          <h5><span class="fa fa-user"></span>&nbsp;{{ article.author }}</h5>
+          {% if article.media %}
+          <h5><span class="fa fa-map-marker"></span>&nbsp;{{ article.media }}</h5>
+          {% endif %}
+          <h5><span class="fa fa-calendar"></span>&nbsp;{{ article.date }}</h5>
         </div>
+        <hr/>
+      </div>
+      {% endfor %}
+      {% endmacro %}
+
+      {{ generate_articles(articles) }}
     </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <h2 id="tutorials">Tutorials</h2>
+      {# macro that iterates over a list of tutorials and generates items #}
+      {% macro generate_tutorials(tutorials) %}
+      {% for tutorial in tutorials %}
+      <div>
+        <h4><a href="{{tutorial.link}}"><span class="fa fa-newspaper-o"></span>&nbsp;{{ tutorial.title }}&nbsp;
+        </a></h4>
+        <div style="margin-left: 15px">
+          <h5><span class="fa fa-user"></span>&nbsp;{{ tutorial.author }}</h5>
+          <h5><span class="fa fa-calendar"></span>&nbsp;{{ tutorial.date }}</h5>
+        </div>
+        <hr/>
+      </div>
+      {% endfor %}
+      {% endmacro %}
+
+      {{ generate_tutorials(tutorials) }}
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-8">
+      <h2 id="presentations">Presentations</h2>
+      {# macro that iterates over a list of conferences and generates items #}
+      {% macro generate_event(conferences) %}
+      {% for conf in conferences %}
+      <div>
+        <h4><a href="{{conf.link}}"><span class="fa fa-play-circle-o"></span>&nbsp;{{ conf.title }}&nbsp;
+        </a></h4>
+        <div style="margin-left: 15px">
+          <h5><span class="fa fa-user"></span>&nbsp;{{ conf.speaker }}</h5>
+          {% if conf.conference %}
+          <h5><span class="fa fa-map-marker"></span>&nbsp;{{ conf.conference }}</h5>
+          {% endif %}
+          {% if conf.slides %}
+          <h5><span class="fa fa-graduation-cap"><a href="{{ conf.slides }}">Slides</a></span></h5>
+          {% endif %}
+          <h5><span class="fa fa-calendar"></span>&nbsp;{{ conf.date }}</h5>
+        </div>
+        <hr/>
+      </div>
+      {% endfor %}
+      {% endmacro %}
+
+      {{ generate_event(conferences) }}
+    </div>
+  </div>
 </div>

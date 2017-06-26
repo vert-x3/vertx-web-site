@@ -69,6 +69,10 @@
     <highlightjs.version>8.7</highlightjs.version>
 
     <host>vertx.io</host>
+
+    <asciidoctorj-pdf.version>1.5.0-alpha.15</asciidoctorj-pdf.version>
+    <asciidoctor-maven-plugin.version>1.5.5</asciidoctor-maven-plugin.version>
+    <asciidoctorj.version>1.5.5</asciidoctorj.version>
   </properties>
 
   <dependencies>
@@ -82,12 +86,27 @@
     </dependency>
 
     <dependency>
+      <groupId>com.github.vert-x3</groupId>
+      <artifactId>vertx-guide-for-java-devs</artifactId>
+      <version>1.0</version>
+      <classifier>docs</classifier>
+      <type>zip</type>
+    </dependency>
+
+    <dependency>
       <groupId>org.webjars</groupId>
       <artifactId>highlightjs</artifactId>
       <version>${highlightjs.version}</version>
     </dependency>
 
   </dependencies>
+
+  <repositories>
+    <repository>
+      <id>JitPack</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
 
   <profiles>
     <profile>
@@ -156,6 +175,22 @@
                 </configuration>
               </execution>
 
+              <!-- Unpack Java guide -->
+              <execution>
+                <id>unpack-java-guide</id>
+                <goals>
+                  <goal>unpack-dependencies</goal>
+                </goals>
+                <phase>pre-site</phase>
+                <configuration>
+                  <includeGroupIds>com.github.vert-x3</includeGroupIds>
+                  <includeArtifactIds>vertx-guide-for-java-devs</includeArtifactIds>
+                  <includeTypes>zip</includeTypes>
+                  <includeClassifiers>docs</includeClassifiers>
+                  <outputDirectory>${project.build.directory}/docs/guide-for-java-devs</outputDirectory>
+                </configuration>
+              </execution>
+
               <!-- unpack webjars -->
               <execution>
                 <id>unpack-webjars</id>
@@ -178,18 +213,26 @@
           <plugin>
             <groupId>org.asciidoctor</groupId>
             <artifactId>asciidoctor-maven-plugin</artifactId>
+            <version>${asciidoctor-maven-plugin.version}</version>
+            <dependencies>
+              <dependency>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctorj-pdf</artifactId>
+                <version>${asciidoctorj-pdf.version}</version>
+              </dependency>
+              <dependency>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctorj</artifactId>
+                <version>${asciidoctorj.version}</version>
+              </dependency>
+            </dependencies>
             <configuration>
-              <backend>html</backend>
               <doctype>book</doctype>
               <relativeBaseDir>true</relativeBaseDir>
               <preserveDirectories>true</preserveDirectories>
+              <imagesDir>images@</imagesDir>
               <eruby>erb</eruby>
               <templateDir>${basedir}/src/main/docs/templates</templateDir>
-              <attributes>
-                <stylesheet>/stylesheets/docs.css</stylesheet>
-                <linkcss></linkcss>
-              </attributes>
-              <sourceHighlighter>prettify</sourceHighlighter>
             </configuration>
             <executions>
               <execution>
@@ -199,8 +242,12 @@
                 </goals>
                 <phase>site</phase>
                 <configuration>
+                  <backend>html</backend>
                   <attributes>
                     <toc>left</toc>
+                    <stylesheet>/stylesheets/docs.css</stylesheet>
+                    <linkcss></linkcss>
+                    <sourceHighlighter>prettify</sourceHighlighter>
                   </attributes>
                   <sourceDirectory>${project.build.directory}/docs</sourceDirectory>
                   <outputDirectory>${project.build.directory}/docs-generated</outputDirectory>
@@ -213,15 +260,63 @@
                 </goals>
                 <phase>site</phase>
                 <configuration>
+                  <backend>html</backend>
                   <attributes>
                     <toc>left</toc>
+                    <stylesheet>/stylesheets/docs.css</stylesheet>
+                    <linkcss></linkcss>
+                    <sourceHighlighter>prettify</sourceHighlighter>
                   </attributes>
                   <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
                   <outputDirectory>${project.build.directory}/docs-generated</outputDirectory>
                 </configuration>
               </execution>
+              <execution>
+                <id>guide-for-java-devs-to-html</id>
+                <goals>
+                  <goal>process-asciidoc</goal>
+                </goals>
+                <phase>site</phase>
+                <configuration>
+                  <backend>html</backend>
+                  <attributes>
+                    <toc>left</toc>
+                    <stylesheet>/stylesheets/docs.css</stylesheet>
+                    <linkcss></linkcss>
+                    <rendered-pdf-link>guide-for-java-devs.pdf</rendered-pdf-link>
+                    <sourceHighlighter>prettify</sourceHighlighter>
+                  </attributes>
+                  <sourceDirectory>${project.build.directory}/docs/guide-for-java-devs</sourceDirectory>
+                  <sourceDocumentName>index.adoc</sourceDocumentName>
+                  <outputDirectory>${project.build.directory}/docs-generated/guide-for-java-devs-override
+                  </outputDirectory>
+                </configuration>
+              </execution>
+              <execution>
+                <id>guide-for-java-devs-to-pdf</id>
+                <goals>
+                  <goal>process-asciidoc</goal>
+                </goals>
+                <phase>site</phase>
+                <configuration>
+                  <backend>pdf</backend>
+                  <sourceHighlighter>rouge</sourceHighlighter>
+                  <attributes>
+                    <icons>font</icons>
+                    <autofit-option></autofit-option>
+                    <toc></toc>
+                    <toclevels>4</toclevels>
+                    <sectnums></sectnums>
+                    <front-cover-image>cover.pdf</front-cover-image>
+                  </attributes>
+                  <sourceDirectory>${project.build.directory}/docs/guide-for-java-devs</sourceDirectory>
+                  <sourceDocumentName>index.adoc</sourceDocumentName>
+                  <outputDirectory>${project.build.directory}/docs-generated/guide-for-java-devs</outputDirectory>
+                </configuration>
+              </execution>
             </executions>
           </plugin>
+
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-site-plugin</artifactId>
@@ -270,6 +365,25 @@
                 </goals>
                 <phase>site</phase>
               </execution>
+
+              <execution>
+                <id>fix-guide-for-java-devs-files</id>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <phase>site</phase>
+                <configuration>
+                  <target>
+                    <move file="${project.build.directory}/docs-generated/guide-for-java-devs-override/index.html"
+                          todir="${project.build.directory}/docs-generated/guide-for-java-devs"
+                          overwrite="true"/>
+                    <move file="${project.build.directory}/docs-generated/guide-for-java-devs/index.pdf"
+                          tofile="${project.build.directory}/docs-generated/guide-for-java-devs/guide-for-java-devs.pdf"/>
+                    <delete dir="${project.build.directory}/docs-generated/guide-for-java-devs-override"/>
+                  </target>
+                </configuration>
+              </execution>
+
             </executions>
           </plugin>
 
@@ -364,14 +478,14 @@
             <artifactId>docker-maven-plugin</artifactId>
             <version>0.13.9</version>
             <executions>
-            <execution>
-              <id>build</id>
-              <goals>
-                <goal>build</goal>
-              </goals>
-              <phase>site</phase>
-            </execution>
-          </executions>
+              <execution>
+                <id>build</id>
+                <goals>
+                  <goal>build</goal>
+                </goals>
+                <phase>site</phase>
+              </execution>
+            </executions>
             <configuration>
               <images>
                 <image>
