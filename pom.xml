@@ -86,9 +86,9 @@
     </dependency>
 
     <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>guide-for-java-devs</artifactId>
-      <version>1.0</version>
+      <groupId>com.github.vert-x3</groupId>
+      <artifactId>vertx-guide-for-java-devs</artifactId>
+      <version>master-SNAPSHOT</version>
       <classifier>docs</classifier>
       <type>zip</type>
     </dependency>
@@ -100,6 +100,13 @@
     </dependency>
 
   </dependencies>
+
+  <repositories>
+    <repository>
+      <id>JitPack</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
 
   <profiles>
     <profile>
@@ -176,8 +183,8 @@
                 </goals>
                 <phase>pre-site</phase>
                 <configuration>
-                  <includeGroupIds>io.vertx</includeGroupIds>
-                  <includeArtifactIds>guide-for-java-devs</includeArtifactIds>
+                  <includeGroupIds>com.github.vert-x3</includeGroupIds>
+                  <includeArtifactIds>vertx-guide-for-java-devs</includeArtifactIds>
                   <includeTypes>zip</includeTypes>
                   <includeClassifiers>docs</includeClassifiers>
                   <outputDirectory>${project.build.directory}/docs/guide-for-java-devs</outputDirectory>
