@@ -116,8 +116,8 @@ class Server extends ScalaVerticle {
     vertx
       .createHttpServer()
      .requestHandler(_.response()
-       .putHeader(“content-type”, “text/plain”)
-       .end(“Hello from Vert.x”))
+       .putHeader("content-type", "text/plain")
+       .end("Hello from Vert.x"))
      .listen(8080)
   }
 }}</code></pre>
@@ -131,8 +131,8 @@ class Server : AbstractVerticle() {
     vertx.createHttpServer()
       .requestHandler { req ->
         req.response()
-          .putHeader(“content-type”, “text/plain”)
-          .end("Hello from Vert.x”)
+          .putHeader("content-type", "text/plain")
+          .end("Hello from Vert.x")
         }
       .listen(8080)
   }
