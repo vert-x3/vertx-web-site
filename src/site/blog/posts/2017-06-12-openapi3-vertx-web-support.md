@@ -1,9 +1,9 @@
 ---
 title: OpenAPI (fka Swagger) 3 support in Vert.x now in test stage!
-date: 2017-06-12
+date: 2017-07-04
 template: post.html
 author: slinkydeveloper
-draft: true
+draft: false
 ---
 As GSoC 2017's student, I'm actually working on an embedded support to OpenAPI 3 standard inside Vert.x framework. Now, after a lot of work, you can try it!
 
