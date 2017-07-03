@@ -45,7 +45,7 @@ We are in a testing stage, so the vertx-web official repo doesn't contain it. To
 <dependency>
     <groupId>com.github.slinkydeveloper</groupId>
     <artifactId>vertx-web</artifactId>
-    <version>designdriven-SNAPSHOT</version>
+    <version>89d6254d50</version> <!-- Or <version>designdriven-SNAPSHOT</version> for latest versions -->
 </dependency>
 ```
 Then you have to add this maven repository in your `pom.xml`
