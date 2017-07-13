@@ -126,7 +126,6 @@ public class App extends AbstractVerticle {
     router.route().handler(CookieHandler.create());
     router.route().handler(SessionHandler
         .create(LocalSessionStore.create(vertx))
-        .setCookieHttpOnlyFlag(true)
         .setCookieSecureFlag(true)
     );
     router.route().handler(CSRFHandler.create("not a good secret"));
