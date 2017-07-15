@@ -171,6 +171,14 @@ var maintainers = [{
   avatar: "https://avatars0.githubusercontent.com/u/179265?v=3&u=545a452f4ae4d1d3d77b2a4e84e40ebaad54c8cf&s=400",
   homepage: "http://stephane.epardaud.fr/",
   github: "https://github.com/fromage"
+}, {
+  github_id: "danielpetisme",
+  name: "Daniel Petisme",
+  contribution: "Vert.x Starter",
+  avatar: "https://avatars.githubusercontent.com/u/593564?v=3&s=80",
+  homepage: "http://danielpetisme.com",
+  github: "https://github.com/danielpetisme",
+  twitter: "https://twitter.com/danielpetisme"
 }];
 
 // Contributors
