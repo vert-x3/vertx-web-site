@@ -318,6 +318,12 @@ var all_users = {
             employees: 5283,
             wikipedia: "https://en.wikipedia.org/wiki/Deutsche_B%C3%B6rse",
             revenue_billion: 2.367
+        },
+		{
+            src: "mobitech_logo_white.png",
+            link: "http://mobitech.io/",
+            height: 31,
+            employees: 24
         }
     ]
 };
