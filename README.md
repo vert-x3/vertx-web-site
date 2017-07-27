@@ -28,6 +28,8 @@ The documentation pages will not be rebuilt continuously. If you change the head
 want to update the documentation pages, you need to stop the watch mode with `Ctrl+C` and start it again
 with `gulp watch`.
 
+**WARNING: because all URLs point to `localhost` you must `mvn clean` before deploying the production version at `vertx.io`.**
+
 ### Building a dev version with docker
 
 (No hot-redeploy)
@@ -76,8 +78,7 @@ Read [BLOG.md](BLOG.md)
 
 ## Publishing
 
-Run `mvn site-deploy` to publish the site to your GitHub account. Configure the
-correct URL to your repository in the `pom.xml` file.
+Run `./deploy.sh` to publish the site.
 
 ## Update contributors
 
