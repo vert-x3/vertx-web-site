@@ -5,7 +5,7 @@
  VERSION=3.5.0.Beta1
  DIR=target/beta
  # Should be replaced by http://repo1.maven.org/maven2 when the release is on maven central
- REPO=https://oss.sonatype.org/content/repositories/iovertx-3687
+ REPO=http://repo1.maven.org/maven2
  
  rm -Rf ${DIR}
  rm -Rf target/docs/${VERSION}
