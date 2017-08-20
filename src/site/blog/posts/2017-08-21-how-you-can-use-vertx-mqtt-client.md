@@ -1,12 +1,12 @@
 ---
 title: How I can use Vert.x MQTT cleint?
 template: post.html
-date: 2017-07-24
+date: 2017-08-21
 author: sammers21
 draft: true
 ---
 
-The thing I would like to tell you about in this article is set upping Vert.x MQTT client. Actually, I have a [real example](https://github.com/Sammers21/vertx-mqtt-client-example) so you can try it quickly.
+The thing I would like to tell you about in this article is setting up Vert.x MQTT client. Actually, I have a [real example](https://github.com/Sammers21/vertx-mqtt-client-example) so you can try it quickly.
 
 If you are using Maven or Gradle, add the following dependency to the dependencies section of your project descriptor to access the Vert.x MQTT client:
 
@@ -15,8 +15,8 @@ If you are using Maven or Gradle, add the following dependency to the dependenci
 ```xml
 <dependency>
     <groupId>io.vertx</groupId>
-    <artifactId>vertx-mqtt-client</artifactId>
-    <version>3.5.0-SNAPSHOT</version>
+    <artifactId>vertx-mqtt</artifactId>
+    <version>3.5.0.Beta1</version>
 </dependency>
 ```
 
@@ -24,16 +24,8 @@ If you are using Maven or Gradle, add the following dependency to the dependenci
 
 ```groovy
 dependencies {
-  compile 'io.vertx:vertx-core:3.4.2'
+  compile 'io.vertx:vertx-mqtt:3.5.0.Beta1'
 }
-```
-
-The Vert.x MQTT client will be released on 04 August with Vert.x 3.5.0 release, so artifact cant be downloaded from Maven central for now and you should install artifact locally. To do so execute this:
-
-```bash
-git clone https://github.com/Sammers21/vertx-mqtt-client
-cd vertx-mqtt-client
-mvn clean install
 ```
 
 Now that you’ve set up your project, you can create a simple application which will receive all messages from all broker channels:
@@ -50,9 +42,11 @@ public class MainVerticle extends AbstractVerticle {
 
   @Override
   public void start() {
-    MqttClientOptions options = new MqttClientOptions()
+     MqttClientOptions options = new MqttClientOptions();
       // specify broker host
-      .setHost("iot.eclipse.org");
+      options.setHost("iot.eclipse.org");
+      // specify max size of message in bytes
+      options.setMaxMessageSize(100_000_000);
 
     MqttClient client = MqttClient.create(vertx, options);
 
@@ -73,7 +67,7 @@ public class MainVerticle extends AbstractVerticle {
 }
 ```
 
-The **publishHandler** is the handler called each time the broker, located at iot.eclipse.org:1883, send a message to you, from the topics you subscribing for.
+The **publishHandler** is the handler called each time the broker, located at iot.eclipse.org:1883, sends a message to you, from the topics you subscribing for.
 
 But just providing a handler is not enough, you should also connect to the broker and subscribe to some topics. For this reason, you should use a **connect** method and then call **subscribe** when connection established. 
 
@@ -88,7 +82,7 @@ If you have completed all steps correctly the result should look like that:
 
 ![](http://i.imgur.com/b4yYQJE.gif)
 
-As the alternative and recommended way to bootstrap Vert.x applications you can use [vertx-maven-starter](https://github.com/vert-x3/vertx-maven-starter) or [vertx-gradle-starter](https://github.com/vert-x3/vertx-gradle-starter). For completing this guide I have used the first one. The final source code available [here](https://github.com/Sammers21/vertx-mqtt-client-example). If you would like to learn more about Vert.x MQTT client API then check out the [full documentation](https://github.com/vert-x3/vertx-mqtt-client/blob/initial-work/src/main/asciidoc/java/index.adoc). 
+As the alternative and recommended way to bootstrap Vert.x applications you can use [vertx-maven-starter](https://github.com/vert-x3/vertx-maven-starter) or [vertx-gradle-starter](https://github.com/vert-x3/vertx-gradle-starter). For completing this guide I have used the first one. The final source code available [here](https://github.com/Sammers21/vertx-mqtt-client-example). If you would like to learn more about Vert.x MQTT client API then check out the [full documentation](https://github.com/vert-x3/vertx-mqtt-client/blob/initial-work/src/main/asciidoc/java/index.adoc) and [more examples](https://github.com/vert-x3/vertx-examples/tree/3.5.0.beta1/mqtt-examples). 
 
 Thank you for reading!
 
