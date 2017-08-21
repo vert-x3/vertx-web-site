@@ -1,5 +1,5 @@
 ---
-title: Introducing Vert.x MQTT client?
+title: Introducing Vert.x MQTT client
 template: post.html
 date: 2017-08-21
 author: sammers21
