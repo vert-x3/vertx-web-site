@@ -1,12 +1,12 @@
 ---
-title: How I can use Vert.x MQTT cleint?
+title: Introducing Vert.x MQTT client?
 template: post.html
 date: 2017-08-21
 author: sammers21
-draft: true
+draft: false 
 ---
 
-The thing I would like to tell you about in this article is setting up Vert.x MQTT client. Actually, I have a [real example](https://github.com/Sammers21/vertx-mqtt-client-example) so you can try it quickly.
+In this article we will see how to sett up the new Vert.x MQTT client. Actually, I have a [real example](https://github.com/Sammers21/vertx-mqtt-client-example) so you can try it quickly.
 
 If you are using Maven or Gradle, add the following dependency to the dependencies section of your project descriptor to access the Vert.x MQTT client:
 
@@ -67,18 +67,18 @@ public class MainVerticle extends AbstractVerticle {
 }
 ```
 
-The **publishHandler** is the handler called each time the broker, located at iot.eclipse.org:1883, sends a message to you, from the topics you subscribing for.
+The **publishHandler** is the handler called each time the broker, located at `iot.eclipse.org:1883`, sends a message to you, from the topics you are subscribing for.
 
-But just providing a handler is not enough, you should also connect to the broker and subscribe to some topics. For this reason, you should use a **connect** method and then call **subscribe** when connection established. 
+But only providing a handler is not enough, you should also connect to the broker and subscribe to some topics. For this reason, you should use the **connect** method and then call **subscribe** when the connection established. 
 
-To deploy this verticle from typical application you should have in your **main** method something like that:
+To deploy this verticle from an application you should have in your **main** method something like that:
 
 ```java
 Vertx vertx = Vertx.vertx();
 vertx.deployVerticle(MainVerticle.class.getCanonicalName());
 ```
 
-If you have completed all steps correctly the result should look like that:
+When you have completed all steps correctly the result should look like that:
 
 ![](http://i.imgur.com/b4yYQJE.gif)
 
