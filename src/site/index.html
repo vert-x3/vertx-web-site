@@ -133,8 +133,7 @@ class Server : AbstractVerticle() {
         req.response()
           .putHeader("content-type", "text/plain")
           .end("Hello from Vert.x")
-        }
-      .listen(8080)
+      }.listen(8080)
   }
 }</code></pre>
           </div>
