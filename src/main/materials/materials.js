@@ -310,6 +310,13 @@ var conferences = [
     date: "05/04/2017",
     speaker: "Julien Ponge &amp; Julien Viet",
     link: "https://speakerdeck.com/jponge/applications-reactives-avec-eclipse-vert-dot-x"
+  },
+  {
+    title: "Vert.x + Kotlin - fuga dal callback-hell (italian)",
+    conference: "JUG Milano",
+    date: "04/05/2017",
+    speaker: "Francesco Vasco",
+    link: "https://www.youtube.com/watch?v=coQucUwJMJU"
   }
 ];
 
