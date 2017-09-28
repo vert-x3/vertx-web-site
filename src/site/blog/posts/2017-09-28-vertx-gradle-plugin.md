@@ -1,12 +1,12 @@
 ---
-title: A Vert.x Gradle Plugin
+title: An Eclipse Vert.x Gradle Plugin
 template: post.html
 date: 2017-09-28
 author: jponge
 draft: false
 ---
 
-Vert.x is a versatile toolkit, and as such it does not have any strong opinion on the tools that you should be using.
+Eclipse Vert.x is a versatile toolkit, and as such it does not have any strong opinion on the tools that you should be using.
 
 Gradle is a popular build tool in the JVM ecosystem, and it is quite easy to use for building Vert.x project as [show in one of the `vertx-examples` samples](https://github.com/vert-x3/vertx-examples/blob/master/gradle-verticles/gradle-verticle/build.gradle) where a so-called _fat Jar_ is being produced.
 
