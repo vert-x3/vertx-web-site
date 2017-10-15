@@ -9,8 +9,13 @@ sidebar: true
   <li><a href="#get_started">Get Started</a></li>
   <li><a href="#explore">Explore</a></li>
   <li><a href="#core">Core</a></li>
-  <li><a href="#web">Web</a></li>
-  <li><a href="#web-client">Web Client</a></li>
+  <li><a href="#web">Web</a>
+    <ul class="sectlevel2 nav">
+      <li><a href="#web2">Web</a></li>
+      <li><a href="#web-client">Web client</a></li>
+      <li><a href="#web-api-contract">Web API contract</a></li>
+    </ul>
+  </li>
   <li><a href="#data_access">Data access</a>
     <ul class="sectlevel2 nav">
       <li><a href="#mongodb_client">MongoDB client</a></li>
@@ -140,15 +145,15 @@ sidebar: true
 
           <h4>Books</h4>
           <div class="col-sm-6">
-            <a href="/docs/guide-for-java-devs">
-              <img src="/assets/book-covers/cover-ggaajd-ponge.png"
+            <a href="{{ site_url }}/docs/guide-for-java-devs">
+              <img src="{{ site_url }}/assets/book-covers/cover-ggaajd-ponge.png"
                    class="thumbnail"
                    alt="A gentle guide to asynchronous programming with Eclipse Vert.x for Java developers">
             </a>
           </div>
           <div class="col-sm-6">
             <a href="https://developers.redhat.com/promotions/building-reactive-microservices-in-java/">
-              <img src="/assets/book-covers/cover-brmj-escoffier.png"
+              <img src="{{ site_url }}/assets/book-covers/cover-brmj-escoffier.png"
                    class="thumbnail"
                    alt="Building Reactive Microservices in Java">
             </a>
@@ -220,7 +225,7 @@ sidebar: true
             <tr>
               <td>Kotlin</td>
               <td><a href="{{ site_url }}docs/vertx-core/kotlin/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+              <td><a href="{{ site_url }}docs/kdoc/vertx">API</a></td>
             </tr>
             <tr>
               <td>Scala</td>
@@ -238,90 +243,137 @@ sidebar: true
       <hr>
 
       <div class="row">
-        <div class="col-sm-12  col-md-6">
+        <div class="col-sm-12">
           <h3 id="web">Web</h3>
-          <p>Vert.x-Web is a tool-kit for writing sophisticated modern web applications and HTTP microservices.</p>
-          <table>
-            <tr>
-              <td>Java</td>
-              <td><a href="{{ site_url }}docs/vertx-web/java/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-            </tr>
-            <tr>
-              <td>JavaScript</td>
-              <td><a href="{{ site_url }}docs/vertx-web/js/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
-            </tr>
-            <tr>
-              <td>Groovy</td>
-              <td><a href="{{ site_url }}docs/vertx-web/groovy/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-            </tr>
-            <tr>
-              <td>Ruby</td>
-              <td><a href="{{ site_url }}docs/vertx-web/ruby/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
-            </tr>
-            <tr>
-              <td>Ceylon</td>
-              <td><a href="{{ site_url }}docs/vertx-web/ceylon/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/ceylondoc/vertx-web">API</a></td>
-            </tr>
-            <tr>
-              <td>Kotlin</td>
-              <td><a href="{{ site_url }}docs/vertx-web/kotlin/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-            </tr>
-            <tr>
-              <td>Scala</td>
-              <td><a href="{{ site_url }}docs/vertx-web/scala/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/scaladocs/">API</a></td>
-            </tr>
-          </table>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-web/tree/master/vertx-web">Source</a> | <a
-              href="https://github.com/vert-x3/vertx-examples/tree/master/web-examples">Examples</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <h3 id="web-client">Web Client</h3>
-          <p>Vert.x Web Client is an easy to use advanced HTTP client.</p>
-          <table>
-            <tr>
-              <td>Java</td>
-              <td><a href="{{ site_url }}docs/vertx-web-client/java/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-            </tr>
-            <tr>
-              <td>JavaScript</td>
-              <td><a href="{{ site_url }}docs/vertx-web-client/js/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
-            </tr>
-            <tr>
-              <td>Groovy</td>
-              <td><a href="{{ site_url }}docs/vertx-web-client/groovy/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-            </tr>
-            <tr>
-              <td>Ruby</td>
-              <td><a href="{{ site_url }}docs/vertx-web-client/ruby/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
-            </tr>
-            <tr>
-              <td>Kotlin</td>
-              <td><a href="{{ site_url }}docs/vertx-web-client/kotlin/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-            </tr>
-            <tr>
-              <td>Scala</td>
-              <td><a href="{{ site_url }}docs/vertx-web-client/scala/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/scaladocs/">API</a></td>
-            </tr>
-          </table>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-web/tree/master/vertx-web-client">Source</a> | <a
-              href="https://github.com/vert-x3/vertx-examples/tree/master/web-client-examples">Examples</a></li>
-          </ul>
+          <!--<p>Todo</p>-->
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="web2">Web</h4>
+              <p>Vert.x-Web is a tool-kit for writing sophisticated modern web applications and HTTP microservices.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-web/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-web/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-web/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-web/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ceylon</td>
+                  <td><a href="{{ site_url }}docs/vertx-web/ceylon/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/ceylondoc/vertx-web">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/vertx-web/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Scala</td>
+                  <td><a href="{{ site_url }}docs/vertx-web/scala/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/scaladocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-web/tree/master/vertx-web">Source</a> | <a
+                  href="https://github.com/vert-x3/vertx-examples/tree/master/web-examples">Examples</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="web_client">Web Client</h4>
+              <p>Vert.x Web Client is an easy to use advanced HTTP client.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-web-client/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-web-client/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-web-client/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-web-client/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/vertx-web-client/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Scala</td>
+                  <td><a href="{{ site_url }}docs/vertx-web-client/scala/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/scaladocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-web/tree/master/vertx-web-client">Source</a> | <a
+                  href="https://github.com/vert-x3/vertx-examples/tree/master/web-client-examples">Examples</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="web_api_contract">Web API Contract</h4>
+              <p>Web API Contract supports OpenApi 3 specification for a design first approach, it
+              also provides a validation framework</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-web-api-contract/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-web-api-contract/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-web-api-contract/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-web-api-contract/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/vertx-web-api-contract/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Scala</td>
+                  <td><a href="{{ site_url }}docs/vertx-web-api-contract/scala/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/scaladocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-web/tree/master/vertx-web-api-contract">Source</a> <!--| <a
+                  href="https://github.com/vert-x3/vertx-examples/tree/master/web-client-examples">Examples</a>--></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -362,7 +414,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-mongo-client/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -405,7 +457,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-jdbc-client/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -449,7 +501,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-sql-common/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/ceylondoc/vertx-sql">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -489,7 +541,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-redis-client/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -528,7 +580,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-mysql-postgresql-client/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -577,7 +629,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-mail-client/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -617,7 +669,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-stomp/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -666,7 +718,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-rabbitmq-client/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -704,7 +756,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-kafka-client/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -745,7 +797,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-consul-client/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -782,7 +834,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-amqp-bridge/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -833,7 +885,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-tcp-eventbus-bridge/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -904,7 +956,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-auth-common/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -948,7 +1000,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-auth-jdbc/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -992,7 +1044,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-auth-jwt/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -1038,7 +1090,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-auth-shiro/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -1077,7 +1129,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-auth-mongo/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -1121,7 +1173,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-auth-oauth2/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -1162,7 +1214,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-auth-htdigest/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -1187,31 +1239,33 @@ sidebar: true
           <div class="row">
             <div class="col-md-4">
               <h4 id="rx">Vert.x Rx</h4>
-              <p>Don't like callback-style APIs? Vert.x provides <em>Rx-ified</em> (using <a
-                href="https://github.com/ReactiveX/RxJava">RxJava</a>) versions for most of its APIs so you can use
-                those if you prefer.</p>
-              <p>RxJava is a great choice when you want to perform complex operations on multiple asynchronous streams
-                of data.</p>
+              <p>Don't like callback-style APIs? Vert.x provides <em>Rx-ified</em> (using <a href="https://github.com/ReactiveX/RxJava">RxJava</a>)
+                versions for most of its APIs so you can use those if you prefer.</p>
+              <p>RxJava is a great choice when you want to perform complex operations on multiple asynchronous streams of data.</p>
               <table>
                 <tr>
-                  <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-rx/java/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td>RxJava 1</td>
+                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/vertx-rx/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
-                  <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-rx/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  <td>RxJava 2</td>
+                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/vertx-rx/java2/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/apidocs/">API</a></td>
                 </tr>
                 <tr>
-                  <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-rx/groovy/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td>RxJS</td>
+                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/vertx-rx/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>RxGroovy</td>
+                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/vertx-rx/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/apidocs/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-rx">Source</a> | <a
-                  href="https://github.com/vert-x3/vertx-examples/tree/master/rx-examples">Examples</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-rx">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.5.0.beta1/rx-examples">Examples</a></li>
               </ul>
             </div>
             <div class="col-md-4">
@@ -1249,6 +1303,25 @@ sidebar: true
               </ul>
             </div>
           </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="kotlin_coroutines">Kotlin coroutines</h4>
+              <p>TODO</p>
+              <table>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/vertx-lang-kotlin-coroutines/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-lang-kotlin/tree/master/vertx-lang-kotlin-coroutines">Source</a> <!--| <a
+                  href="https://github.com/vert-x3/vertx-examples/tree/master/sync-examples">Examples</a>--></li>
+              </ul>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -1286,7 +1359,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-service-discovery/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -1325,7 +1398,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-circuit-breaker/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -1364,7 +1437,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-config/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -1384,9 +1457,7 @@ sidebar: true
 
       <div class="row">
         <div class="col-sm-12 col-md-12">
-          <h3 id="mqtt-server">MQTT Server
-            <small><span class="label label-primary">Technical Preview</span></small>
-          </h3>
+          <h3 id="mqtt-server">MQTT Server</h3>
           <p>Vert.x MQTT Server is able to handle connections, communication and messages exchange with remote MQTT
             clients. Its API provides a bunch of events related to protocol messages received by clients and exposes
             allow to send messages
@@ -1415,7 +1486,7 @@ sidebar: true
             <tr>
               <td>Kotlin</td>
               <td><a href="{{ site_url }}docs/vertx-mqtt-server/kotlin/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+              <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
             </tr>
             <tr>
               <td>Scala</td>
@@ -1465,7 +1536,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -1506,7 +1577,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-hawkular-metrics/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -1545,7 +1616,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-health-check/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
               </table>
               <ul class="list-unstyled">
@@ -1581,7 +1652,7 @@ sidebar: true
                 <tr>
                   <td>Kotlin</td>
                   <td><a href="{{ site_url }}docs/vertx-shell/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
                 </tr>
                 <tr>
                   <td>Scala</td>
@@ -1648,7 +1719,7 @@ sidebar: true
             <tr>
               <td>Kotlin</td>
               <td><a href="{{ site_url }}docs/vertx-unit/kotlin/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+              <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
             </tr>
           </table>
           <ul class="list-unstyled">
@@ -1675,9 +1746,7 @@ sidebar: true
               </ul>
             </div>
             <div class="col-md-6">
-              <h4 id="infinispan">Infinispan
-                <small><span class="label label-primary">Technical Preview</span></small>
-              </h4>
+              <h4 id="infinispan">Infinispan</h4>
               <p>Cluster manager implementation that uses <a href="http://infinispan.org/">Infinispan</a>.</p>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-infinispan">Source</a></li>
@@ -1695,9 +1764,7 @@ sidebar: true
               </ul>
             </div>
             <div class="col-md-6">
-              <h4 id="zookeeper">Apache Zookeeper
-                <small><span class="label label-primary">Technical Preview</span></small>
-              </h4>
+              <h4 id="zookeeper">Apache Zookeeper</h4>
               <p>Cluster manager implementation that uses <a href="http://zookeeper.apache.org/">Apache Zookeeper</a>.
               </p>
               <ul class="list-unstyled">
