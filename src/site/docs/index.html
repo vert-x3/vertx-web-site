@@ -25,6 +25,14 @@ sidebar: true
       <li><a href="#mysql_pg_client">MySQL / PostgreSQL client</a></li>
     </ul>
   </li>
+  <li><a href="#reactive">Reactive</a>
+    <ul class="sectlevel2 nav">
+      <li><a href="#rx">Vert.x Rx</a></li>
+      <li><a href="#reactive_streams">Reactive streams.</a></li>
+      <li><a href="#sync">Vert.x Sync.</a></li>
+      <li><a href="#kotlin_coroutines">Kotlin Coroutines.</a></li>
+    </ul>
+  </li>
   <li><a href="#integration">Integration</a>
     <ul class="sectlevel2 nav">
       <li><a href="#mail_client">Mail Client</a></li>
@@ -49,13 +57,6 @@ sidebar: true
       <li><a href="#jwt_auth">JWT auth</a></li>
       <li><a href="#shiro_auth">Shiro auth</a></li>
       <li><a href="#oauth2_auth">OAuth 2</a></li>
-    </ul>
-  </li>
-  <li><a href="#reactive">Reactive</a>
-    <ul class="sectlevel2 nav">
-      <li><a href="#rx">Vert.x Rx</a></li>
-      <li><a href="#reactive_streams">Reactive streams.</a></li>
-      <li><a href="#sync">Vert.x Sync.</a></li>
     </ul>
   </li>
   <li><a href="#microservices">Microservices</a>
@@ -593,6 +594,102 @@ sidebar: true
               </ul>
             </div>
           </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 id="reactive">Reactive</h3>
+          <p>Vert.x provides a couple of components to make your applications more reactive.</p>
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="rx">Vert.x Rx</h4>
+              <p>Don't like callback-style APIs? Vert.x provides <em>Rx-ified</em> (using <a href="https://github.com/ReactiveX/RxJava">RxJava</a>)
+                versions for most of its APIs so you can use those if you prefer.</p>
+              <p>RxJava is a great choice when you want to perform complex operations on multiple asynchronous streams of data.</p>
+              <table>
+                <tr>
+                  <td>RxJava 1</td>
+                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/vertx-rx/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>RxJava 2</td>
+                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/vertx-rx/java2/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>RxJS</td>
+                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/vertx-rx/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>RxGroovy</td>
+                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/vertx-rx/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-rx">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.5.0.beta1/rx-examples">Examples</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="reactive_streams">Reactive streams</h4>
+              <p>Vert.x supports <a href="http://www.reactive-streams.org/">reactive streams</a> so your applications
+                can interoperate with other reactive systems such as Akka or Project Reactor.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-reactive-streams/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-reactive-streams">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 id="sync">Vert.x Sync</h4>
+              <p>Vertx-sync allows you to deploy verticles that run using fibers. Fibers are very lightweight threads
+                that can be blocked without blocking a kernel thread. This enables you to write your verticle code in a
+                familiar sequential style.
+              </p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-sync/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-sync">Source</a> | <a
+                  href="https://github.com/vert-x3/vertx-examples/tree/master/sync-examples">Examples</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <h4 id="kotlin_coroutines">Kotlin coroutines</h4>
+              <p><a href="https://kotlinlang.org/docs/reference/coroutines.html">Kotlin coroutines</a> for
+                Vert.x, gives you super powers such as async/await or Go-like channels. This enables you to write your
+                verticle code in a familiar sequential style.</p>
+              <table>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/vertx-lang-kotlin-coroutines/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-lang-kotlin/tree/master/vertx-lang-kotlin-coroutines">Source</a> <!--| <a
+                  href="https://github.com/vert-x3/vertx-examples/tree/master/sync-examples">Examples</a>--></li>
+              </ul>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -1227,102 +1324,6 @@ sidebar: true
               </ul>
             </div>
           </div>
-        </div>
-      </div>
-
-      <hr>
-
-      <div class="row">
-        <div class="col-sm-12">
-          <h3 id="reactive">Reactive</h3>
-          <p>Vert.x provides a couple of components to make your applications more reactive.</p>
-          <div class="row">
-            <div class="col-md-4">
-              <h4 id="rx">Vert.x Rx</h4>
-              <p>Don't like callback-style APIs? Vert.x provides <em>Rx-ified</em> (using <a href="https://github.com/ReactiveX/RxJava">RxJava</a>)
-                versions for most of its APIs so you can use those if you prefer.</p>
-              <p>RxJava is a great choice when you want to perform complex operations on multiple asynchronous streams of data.</p>
-              <table>
-                <tr>
-                  <td>RxJava 1</td>
-                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/vertx-rx/java/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>RxJava 2</td>
-                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/vertx-rx/java2/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>RxJS</td>
-                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/vertx-rx/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/jsdoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>RxGroovy</td>
-                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/vertx-rx/groovy/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/3.5.0.Beta1/apidocs/">API</a></td>
-                </tr>
-              </table>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-rx">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/3.5.0.beta1/rx-examples">Examples</a></li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <h4 id="reactive_streams">Reactive streams</h4>
-              <p>Vert.x supports <a href="http://www.reactive-streams.org/">reactive streams</a> so your applications
-                can interoperate with other reactive systems such as Akka or Project Reactor.</p>
-              <table>
-                <tr>
-                  <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-reactive-streams/java/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-              </table>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-reactive-streams">Source</a></li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <h4 id="sync">Vert.x Sync</h4>
-              <p>Vertx-sync allows you to deploy verticles that run using fibers. Fibers are very lightweight threads
-                that can be blocked without blocking a kernel thread. This enables you to write your verticle code in a
-                familiar sequential style.
-              </p>
-              <table>
-                <tr>
-                  <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-sync/java/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-              </table>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-sync">Source</a> | <a
-                  href="https://github.com/vert-x3/vertx-examples/tree/master/sync-examples">Examples</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-4">
-              <h4 id="kotlin_coroutines">Kotlin coroutines</h4>
-              <p><a href="https://kotlinlang.org/docs/reference/coroutines.html">Kotlin coroutines</a> for
-                Vert.x, gives you super powers such as async/await or Go-like channels. This enables you to write your
-                verticle code in a familiar sequential style.</p>
-              <table>
-                <tr>
-                  <td>Kotlin</td>
-                  <td><a href="{{ site_url }}docs/vertx-lang-kotlin-coroutines/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
-                </tr>
-              </table>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-lang-kotlin/tree/master/vertx-lang-kotlin-coroutines">Source</a> <!--| <a
-                  href="https://github.com/vert-x3/vertx-examples/tree/master/sync-examples">Examples</a>--></li>
-              </ul>
-            </div>
-          </div>
-
         </div>
       </div>
 
