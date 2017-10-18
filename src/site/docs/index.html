@@ -828,8 +828,7 @@ sidebar: true
           <h3 id="mqtt">MQTT</h3>
           <p>Vert.x MQTT provides client/server for MQTT.
             The server is able to handle connections, communication and messages exchange with remote MQTT
-            clients. Its API provides a bunch of events related to protocol messages received by clients and exposes
-            allow to send messages to them. It also provides an 3.1.1 MQTT compliant client with a bunch of methods for connecting/disconnecting to a broker,
+            clients. The client is 3.1.1 MQTT compliant with a bunch of methods for connecting/disconnecting to a broker,
             publishing messages and subscribing to topics.
           </p>
           <table>
@@ -1271,11 +1270,38 @@ sidebar: true
               </ul>
             </div>
             <div class="col-md-4">
-              <h4 id="jca_adaptor">JCA Adaptor</h4>
-              <p>Vert.x provides a Java Connector Architecture (JCA) adaptor which allows it to interoperate with any
-                JavaEE application server.</p>
+              <h4 id="consul">Consul Client</h4>
+              <p>A client to interact with Consul.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-consul-client/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-consul-client/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-consul-client/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-consul-client/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/vertx-consul-client/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
+                </tr>
+              </table>
               <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-jca">Source</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-consul-client">Source</a> | <a
+                  href="https://github.com/vert-x3/vertx-examples/tree/master/consul-examples">Examples</a></li>
               </ul>
             </div>
           </div>
@@ -1358,40 +1384,11 @@ sidebar: true
               </ul>
             </div>
             <div class="col-md-4">
-              <h4 id="consul">Consul Client
-                <small><span class="label label-primary">Technical Preview</span></small>
-              </h4>
-              <p>A client to interact with Consul.</p>
-              <table>
-                <tr>
-                  <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-consul-client/java/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-consul-client/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-consul-client/groovy/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-consul-client/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Kotlin</td>
-                  <td><a href="{{ site_url }}docs/vertx-consul-client/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
-                </tr>
-              </table>
+              <h4 id="jca_adaptor">JCA Adaptor</h4>
+              <p>Vert.x provides a Java Connector Architecture (JCA) adaptor which allows it to interoperate with any
+                JavaEE application server.</p>
               <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-consul-client">Source</a> | <a
-                  href="https://github.com/vert-x3/vertx-examples/tree/master/consul-examples">Examples</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-jca">Source</a></li>
               </ul>
             </div>
           </div>
