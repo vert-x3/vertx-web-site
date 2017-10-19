@@ -28,7 +28,7 @@
   </parent>
 
   <artifactId>vertx-web-site</artifactId>
-  <version>3.4.2</version>
+  <version>3.5.0</version>
 
   <name>Vert.x Website</name>
 
@@ -58,7 +58,7 @@
 
   <properties>
     <vertx.version>3.5.0</vertx.version>
-    <vertx.download.version>3.4.2</vertx.download.version>
+    <vertx.download.version>3.5.0</vertx.download.version>
     <vertx.docs.version>3.5.0</vertx.docs.version>
 
     <asciidoclet.version>1.5.1</asciidoclet.version>
