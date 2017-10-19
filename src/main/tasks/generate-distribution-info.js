@@ -10,7 +10,7 @@ var TEMPLATE_MIN_TAR_GZ  = "vert.x-{{version}}.tar.gz";
 var TEMPLATE_MIN_ZIP     = "vert.x-{{version}}.zip";
 var TEMPLATE_FULL_TAR_GZ = "vert.x-{{version}}-full.tar.gz";
 var TEMPLATE_FULL_ZIP    = "vert.x-{{version}}-full.zip";
-var TEMPLATE_HTML_ZIP    = "vertx-{{version}}-html.zip";
+var TEMPLATE_HTML_ZIP    = "vertx-docs-{{version}}-html.zip";
 
 var DATE_FORMAT = "mmm dS, yyyy";
 
