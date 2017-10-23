@@ -11,7 +11,7 @@ var books = [
     title: "A gentle guide to asynchronous programming with Eclipse Vert.x for Java developers",
     author: "Julien Ponge, Thomas Segismont and Julien Viet",
     link: "/docs/guide-for-java-devs",
-    date: "23/06/2017"
+    date: "19/10/2017"
   }
 ];
 
