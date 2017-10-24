@@ -492,6 +492,6 @@ mvn clean verify
 
 Wow, what a trip ! We are done... In this post we have seen how we can gain confidence in Vert.x applications by implementing both unit and integration tests. Unit tests, thanks to vert.x unit, are able to check the asynchronous aspect of Vert.x application, but could be complex for large scenarios. Thanks to Rest Assured and AssertJ, integration tests are dead simple to write... but the setup is not straightforward. This post have shown how it can be configured easily. Obviously, you could also use AssertJ and Rest Assured in your unit tests.
 
-Next time, we are going to replace the _in memory_ backend with a database, and use asynchronous integration with this database.
+In the [next post](http://vertx.io/blog/using-the-asynchronous-sql-client/), we replace the _in memory_ backend with a database, and use asynchronous integration with this database.
 
 Stay Tuned & Happy Coding !
