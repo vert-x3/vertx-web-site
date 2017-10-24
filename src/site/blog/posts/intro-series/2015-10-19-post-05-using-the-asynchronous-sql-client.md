@@ -300,6 +300,6 @@ Open your browser to `http://localhost:8082/assets/index.html`, and you should s
 
 In this post, we saw how you can use JDBC database with vert.x, and thus without too much burden. You may have been surprised by the asynchronous development model, but once you start using it, it's hard to come back.
 
-Next time, let's see how the same application can use mongoDB instead of HSQL.
+In the [next post](http://vertx.io/blog/combine-vert-x-and-mongo-to-build-a-giant/), we see how the same application can use mongoDB instead of HSQL.
 
 Stay tuned, and happy coding !
