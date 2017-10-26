@@ -317,6 +317,18 @@ var conferences = [
     date: "04/05/2017",
     speaker: "Francesco Vasco",
     link: "https://www.youtube.com/watch?v=coQucUwJMJU"
+  },
+  {
+    title: "Vert.x - Kotlin User Group Lyon",
+    conference: "Kotlin User Group",
+    date: "09/11/2017",
+    speaker: "Julien Ponge"
+  },
+  {
+    title: "Vert.x - Eclipse Day Lyon",
+    conference: "Eclipse Day Lyon",
+    date: "28/11/2017",
+    speaker: "Julien Ponge"
   }
 ];
 
