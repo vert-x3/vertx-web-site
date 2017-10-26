@@ -322,13 +322,15 @@ var conferences = [
     title: "Vert.x - Kotlin User Group Lyon",
     conference: "Kotlin User Group",
     date: "09/11/2017",
-    speaker: "Julien Ponge"
+    speaker: "Julien Ponge",
+    link: "https://www.meetup.com/Lyon-Kotlin-User-Group/"
   },
   {
     title: "Vert.x - Eclipse Day Lyon",
     conference: "Eclipse Day Lyon",
     date: "28/11/2017",
-    speaker: "Julien Ponge"
+    speaker: "Julien Ponge",
+    link: "http://www.digital-league.org/evenement/eclipse-day-lyon/"
   }
 ];
 
