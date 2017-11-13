@@ -13,7 +13,7 @@ draft: true
 ### Intro:
 Recently I stumbleupon [**Vertx**](http://vertx.io/). **Event-driven, asynchronized, lightweight, reactive, highly performant, polyglot** application framework. Ideal for writing **micro-services**. I played around with it for a while and really enjoyed the concept of **serverless** applications.
 
-I developed a few apps and cases and started to wonder how to run and deploy theme so that I get a 100% reliable service. I suddenly remembered the tech seminar that I attended recently, specifically session about serverless apps with [**AWS**](https://aws.amazon.com/) (Amazon Web Services) **Lambda**. Lambda is a serverless compute service that runs your code in response to events and automatically manages the underlying compute resources for you. Fairly similar concepts **Vertx** and **AWS Lambda**, so maybe they complement each other? As it turns out they do, **Vertx** can get most of your **Lambdas**…
+I developed a few apps and cases and started to wonder how to run and deploy them so that I get a 100% reliable service. I suddenly remembered the tech seminar that I attended recently, specifically session about serverless apps with [**AWS**](https://aws.amazon.com/) (Amazon Web Services) **Lambda**. Lambda is a serverless compute service that runs your code in response to events and automatically manages the underlying compute resources for you. Fairly similar concepts **Vertx** and **AWS Lambda**, so maybe they complement each other? As it turns out they do, **Vertx** can get most of your **Lambdas**…
 
 Using the [**Serverless Framework**](https://serverless.com/) to create, manage and deploy your new **Lambdas** I was able to get this **micro-service** up and running in no time.
 
