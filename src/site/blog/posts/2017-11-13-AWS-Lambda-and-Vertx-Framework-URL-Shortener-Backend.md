@@ -15,16 +15,16 @@ Recently I stumbleupon [**Vertx**](http://vertx.io/). **Event-driven, asynchroni
 
 I developed a few apps and cases and started to wonder how to run and deploy theme so that I get a 100% reliable service. I suddenly remembered the tech seminar that I attended recently, specifically session about serverless apps with [**AWS**](https://aws.amazon.com/) (Amazon Web Services) **Lambda**. Lambda is a serverless compute service that runs your code in response to events and automatically manages the underlying compute resources for you. Fairly similar concepts **Vertx** and **AWS Lambda**, so maybe they complement each other? As it turns out they do, **Vertx** can get most of your **Lambdas**…
 
-Using the [**Serverless Framework**](https://serverless.com/) to create, manage and deploy your new **Lambdas** I was able to get this microservice up and running in no time.
+Using the [**Serverless Framework**](https://serverless.com/) to create, manage and deploy your new **Lambdas** I was able to get this **micro-service** up and running in no time.
 
 *Enough with the talk, lets see the implementation.*
 
 ### Code:
 *Handler Class, entry point of AWS Request.*
 
-The first issue that I had was the sync Event Handler that is provided by AWS. So I had to by pass it with Future. In the Handler class I first initiate Vertx instance in a static block and deploy few Verticles that will do the work. This class only receives the event, extracts needed data from the request and passes the data to Vertx EventBus. After the Consumers handle the request Handler class will generate a proper response and finish the AWS request.
+The first issue that I had was the **sync** Event Handler that is provided by AWS. So I had to by pass it with Future. In the Handler class I first initiate Vertx instance in a static block and deploy few Verticles that will do the work. This class only receives the event, extracts needed data from the request and passes the data to Vertx EventBus. After the Consumers handle the request, Handler class will generate a proper response and finish the AWS request.
 <script src="https://gist.github.com/pendula95/583eb45bd0a7990136fba029bdcd555b.js"></script>
-*Line 4-18:* This is where Vertx instance is created, Verticles are deployed and Async JDBC client is created. I figured out that it is better to created JDBC client here as in some cases I was timeout when that logic was in the Verticle start method.
+*Line 4-18:* This is where Vertx instance is created, Verticles are deployed and **Async JDBC** client is created. I figured out that it is better to created JDBC client here as in some cases I was timeout when that logic was in the Verticle start method.
 
 *Line 27-36:* These are helper lines, parsing and formatting the data so I can pass it to the Verticles.
 
@@ -38,7 +38,7 @@ The first issue that I had was the sync Event Handler that is provided by AWS. S
 
 Verticle class is pretty forward. Consumers that will process the message, methods for working with JDBC and helper methods for hashing/dehashing id. The logic behind url shortening is fairly simple here. Each long url is stored in database with a unique id and few additional columns. Row id is hashed and returned as short url. When retrieving long url hash is decoded to row id and long url is retrieved. Later user is redirected to long url. With this implementation, on 6 char short url (characters after the domain) you get 62^6 combinations which is 56 800 235 584 rows for storing your urls. TinyURL is currently at 6 long char urls (characters after domain). You can of course implement methods for reusing and recycling ids.
 <script src="https://gist.github.com/pendula95/aeb4479162e6e33504add2af9fa68bc5.js"></script>
-As said, this is all fairly straight forward, if you are already familiar with Vertx. If you are thinking why have I repeated the code for establish a **JDBC** connection, here is the explanation *(line: 10-16)*. I was getting Timeouts when creating JDBC connection in Verticles. To avoid this I also added this code to my Handler class. This way connection is created there and because of the **Vertx** implementation any later attempt to create it again will result in just getting the instances from the first invocation. This escaped the need to pass the instances directly from the Handler class when creating Verticle instances.
+As said, this is all fairly straight forward, if you are already familiar with **Vertx**. If you are thinking why have I repeated the code for establish a **JDBC** connection, here is the explanation *(line: 10-16)*. I was getting Timeouts when creating JDBC connection in Verticles. To avoid this I also added this code to my Handler class. This way connection is created there and because of the **Vertx** implementation any later attempt to create it again will result in just getting the instances from the first invocation. This escaped the need to pass the instances directly from the Handler class when creating Verticle instances.
 
  
 
