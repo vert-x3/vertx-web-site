@@ -312,6 +312,11 @@ var all_users = {
             height: 65
         },
         {
+            src: "1000geeks.png",
+            link: "http://www.1000geeks.com",
+            height: 125
+        },
+        {
             src: "dbg-bw-logo.png",
             link: "http://deutsche-boerse.com/dbg-en/",
             height: 38,
