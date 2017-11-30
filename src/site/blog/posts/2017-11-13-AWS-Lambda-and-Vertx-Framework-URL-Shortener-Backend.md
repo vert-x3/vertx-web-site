@@ -1,5 +1,5 @@
 ---
-title: AWS Lambda & Vertx Framework URL Shortener Backend
+title: Eclipse Vert.x based Framework URL shortened Backend
 template: post.html
 date: 2017-11-13
 author: pendula95
