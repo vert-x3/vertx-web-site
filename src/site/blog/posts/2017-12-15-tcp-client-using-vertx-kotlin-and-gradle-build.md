@@ -3,6 +3,7 @@ title: TCP Client using Vert.x, Kotlin and Gradle build
 template: post.html
 date: 2017-12-15
 author: usmansaleem
+draft: true
 ---
 
 As part of my hobby project to control RaspberryPi using Google Home Mini and/or Alexa, I wanted to write a very simple TCP client that keeps a connection open to one of my custom written server in cloud (I will write another blog post to cover the server side on a later date). The requirement of the client is to send a shared secret upon connecting and then keep waiting for message from server. Vert.x, Kotlin and Gradle allow rapid development of such project. The generated jar can be executed on Raspberry Pi. These steps outline the project setup and related source code to showcase a Vert.x and Kotlin project with Gradle.
