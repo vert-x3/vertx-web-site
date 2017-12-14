@@ -89,30 +89,13 @@ The contents of this class is as follows
 ## Explaining the Code
 The `fun main(args: Array<String>)` is not strictly required, it quickly allows running the Vert.x verticle from within IDE. You will also notice a small hack in the method for setting system property `vertx.disableDnsResolver` which is to avoid a Netty bug that I observed when running on Windows machine and remote server is down. Of course, since we are using vertx-gradle-plugin, we can also use `gradle vertxRun` to run our verticle. In this case the `main` method will not get called.
 
-The `override fun start()` method where all our magic happens. The `socket.handler` will get called when server send message to client.
+The `override fun start()` method calls `fireReconnectTimer` which in turn calls `reconnect` method. `reconnect` method contains the connection logic to server as well as it calls `fireReconnectTimer` if it is unable to connect to server or disconnects from server. In `reconnect` method the `socket.handler` gets called when server send message to client.
+
 ```
 socket.handler({ data ->
                         logger.info("Data received: ${data}")
                         //TODO: Do the work here ...
                })
-```
-
-You may notice that the client connect logic is contained within eventbus consumer. We are using Vert.x eventbus model to achieve the reconnect approach.
-
-```
-vertx.eventBus().consumer<String>("reconnect-event", {
-  ...
-}
-```
-
-This allows us to perform the whole connect logic when connection gets closed from server. Following method publish the message and gets called from startup, server down and socket close handlers.
-
-```
-private fun fireReconnectEvent() {
-        vertx.setTimer(5000, {
-            vertx.eventBus().publish("reconnect-event", "connect")
-        })
-}
 ```
 
 ## Distributing the project
