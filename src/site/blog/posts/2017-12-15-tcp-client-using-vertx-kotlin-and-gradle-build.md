@@ -1,5 +1,5 @@
 ---
-title: TCP Client using Vert.x, Kotlin and Gradle build
+title: TCP Client using Eclipse Vert.x, Kotlin and Gradle build
 template: post.html
 date: 2017-12-15
 author: usmansaleem
@@ -11,19 +11,21 @@ As part of my hobby project to control RaspberryPi using Google Home Mini and/or
 ## Project Directory Structure
 From command line (or via Windows Explorer, whatever you prefer to use) create a directory for project,for instance `vertx-net-client`. Since we are using Kotlin, we will place all Kotlin files in `src/main/kotlin` folder. The `src/main/resources` folder will contain our logging configuration related files.
 
-
 ```
 cd vertx-net-client
 mkdir -p src/main/kotlin
 mkdir -p src/main/resources
 ```
 
-### .gitignore
+### Project Files
+We need to add following files in the project
+
+* `.gitignore`
 If you want to check your project into git, you may consider adding following `.gitignore` file at root of your project
 
 <script src="https://gist.github.com/usmansaleem/b5838484a20cb8b08f236f2265ad7a8e.js"></script>
 
-### logback.xml
+* `logback.xml`
 This example is using slf4j and logback for logging. If you decide to use it in your project, you may also add following logback.xml file in `src/main/resources`. Modify it as per your requirements. This example will
 log on console.
 
@@ -44,8 +46,8 @@ The above commands will generate following files and directories.
 gradle/  gradlew  gradlew.bat
 ```
 
-### build.gradle
-Create (and/or copy and modify) following `build.gradle` in your project's root directory
+### Gradle build file `build.gradle`
+Create (and/or copy and modify) following `build.gradle` in your project's root directory. Our example gradle build file is using [vertx-gradle-plugin](https://github.com/jponge/vertx-gradle-plugin/).
 
 <script src="https://gist.github.com/usmansaleem/e723f25b827e0a925eaef2957a80132d.js"></script>
 
@@ -71,7 +73,9 @@ Now that our project structure is ready, time to add the meat of the project. Yo
 Create a new package under `src/main/kotlin`. The package name should be adapted from the following section of `build.gradle`
 
 ```
-def mainVerticleName = 'info.usmans.blog.vertx.NetClientVerticle'
+vertx {
+    mainVerticle = "info.usmans.blog.vertx.NetClientVerticle"
+}
 ```
 
 From the above example, the package name is `info.usmans.blog.vertx`
@@ -82,7 +86,8 @@ The contents of this class is as follows
 
 <script src="https://gist.github.com/usmansaleem/2a176a7b752fcb72f7f31964809696fe.js"></script>
 
-The `fun main(args: Array<String>)` is not strictly required, but it allows running the Vert.x verticle from within IDE quickly. You will also notice a small hack in the method for setting system property `vertx.disableDnsResolver` which is to avoid a Netty bug that I observed when running on Windows machine and remote server is down.
+## Explaining the Code
+The `fun main(args: Array<String>)` is not strictly required, it quickly allows running the Vert.x verticle from within IDE. You will also notice a small hack in the method for setting system property `vertx.disableDnsResolver` which is to avoid a Netty bug that I observed when running on Windows machine and remote server is down. Of course, since we are using vertx-gradle-plugin, we can also use `gradle vertxRun` to run our verticle. In this case the `main` method will not get called.
 
 The `override fun start()` method where all our magic happens. The `socket.handler` will get called when server send message to client.
 ```
@@ -93,7 +98,6 @@ socket.handler({ data ->
 ```
 
 You may notice that the client connect logic is contained within eventbus consumer. We are using Vert.x eventbus model to achieve the reconnect approach.
-
 
 ```
 vertx.eventBus().consumer<String>("reconnect-event", {
@@ -111,12 +115,24 @@ private fun fireReconnectEvent() {
 }
 ```
 
-## Redistributable jar
-To create redistributable jar, use `./gradlew shadowJar` command. Or if using IntelliJ: from Gradle projects, Tasks, shadow, shadowJar (right click run). This command will generate `./build/libs/vertx-net-client-shadow.jar` which can be executed from command line as
+## Distributing the project
+To create redistributable jar, use `./gradlew shadowJar` command. Or if using IntelliJ: from Gradle projects, Tasks, shadow, shadowJar (right click run). This command will generate `./build/libs/vertx-net-client-fat.jar`.
+
+### Executing the client
+
+The client jar can be executed using following command:
 
 ```
- java -DserverHost=127.0.0.1 -DserverPort=8888 -DconnectMessage="hello" -jar vertx-net-client-shadow.jar
+ java -DserverHost=127.0.0.1 -DserverPort=8888 -DconnectMessage="hello" -jar vertx-net-client-full.jar
 ```
+
+If you wish to use SLF4J for Vert.x internal logging, you need to pass system property `vertx.logger-delegate-factory-class-name` with value of `io.vertx.core.logging.SLF4JLogDelegateFactory`. The final command would look like:
+
+```
+java -DserverHost=127.0.0.1 -DserverPort=8888 -DconnectMessage="hello" -Dvertx.logger-delegate-factory-class-name="io.vertx.core.logging.SLF4JLogDelegateFactory" -jar vertx-net-client-full.jar
+```
+
+You can configure Vert.x logging levels in logback.xml file if required.
 
 ## Conclustion
 This post describes how easy it is to create a simple TCP client using Vert.x, Kotlin and Gradle build system. Hopefully the techniques shown here will serve as a starting point for your next DIY project.
