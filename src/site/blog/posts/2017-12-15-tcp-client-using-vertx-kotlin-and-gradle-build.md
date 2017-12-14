@@ -134,7 +134,7 @@ java -DserverHost=127.0.0.1 -DserverPort=8888 -DconnectMessage="hello" -Dvertx.l
 
 You can configure Vert.x logging levels in logback.xml file if required.
 
-## Conclustion
+## Conclusion
 This post describes how easy it is to create a simple TCP client using Vert.x, Kotlin and Gradle build system. Hopefully the techniques shown here will serve as a starting point for your next DIY project.
 
 [INFO Info | This post is adapted and reproduced from [author's blog post](https://usmans.info/usmansaleem/blog/tcp_client_using_vertx_kotlin_gradle)]
