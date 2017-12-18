@@ -179,6 +179,14 @@ var maintainers = [{
   homepage: "http://danielpetisme.com",
   github: "https://github.com/danielpetisme",
   twitter: "https://twitter.com/danielpetisme"
+}, {
+  github_id: "slinkydeveloper",
+  name: "Francesco Guardiani",
+  contribution: "Vert.x Web API Contract",
+  avatar: "https://avatars1.githubusercontent.com/u/6706544?s=460&v=4",
+  homepage: "https://slinkydeveloper.github.io/",
+  github: "https://github.com/slinkydeveloper",
+  twitter: "https://twitter.com/SlinkyGuardiani"
 }];
 
 // Contributors
