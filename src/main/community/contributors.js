@@ -62,19 +62,6 @@ var maintainers = [{
   twitter: "https://twitter.com/alexlehm",
   homepage: "https://about.me/alexlehm"
 }, {
-  github_id: "fmarinelli",
-  avatar: "https://avatars.githubusercontent.com/u/790571?v=3&s=80",
-  github: "https://github.com/fmarinelli",
-  name: "Fabio Marinelli",
-  contribution: "JGroups Cluster Manager"
-}, {
-  github_id: "jstrachan",
-  avatar: "https://avatars.githubusercontent.com/u/30140?v=3&s=80",
-  github: "https://github.com/jstrachan",
-  name: "James Strachan",
-  homepage: "http://macstrac.blogspot.com/",
-  contribution: "Kubernetes/Fabric8"
-}, {
   github_id: "Narigo",
   avatar: "https://avatars.githubusercontent.com/u/1767865?v=3&s=80",
   github: "https://github.com/Narigo",
