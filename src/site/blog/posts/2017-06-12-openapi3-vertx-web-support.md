@@ -5,6 +5,8 @@ template: post.html
 author: slinkydeveloper
 draft: false
 ---
+[IMPORTANT Now on upstream! | We have published this package with name `vertx-web-api-contract` ]
+
 As GSoC 2017's student, I'm actually working on an embedded support to OpenAPI 3 standard inside Eclipse Vert.x framework. Now, after a lot of work, you can try it!
 
 ## Why OpenAPI 3?
