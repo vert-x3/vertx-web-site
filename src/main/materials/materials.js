@@ -383,6 +383,20 @@ var articles = [
     link: "https://dzone.com/articles/secure-your-vertx",
     author: "Jérôme Leleu",
     date: "18/01/2016"
+  },
+  {
+    title: "First Steps With Vert.x and Infinispan - Part 1: REST API",
+    media: "DZone",
+    link: "https://dzone.com/articles/first-steps-with-vertx-and-infinispan-rest-api",
+    author: "Katia Aresti",
+    date: "17/12/2017"
+  },
+  {
+    title: "First Steps With Vert.x and Infinispan - Part 2: PUSH API",
+    media: "DZone",
+    link: "https://dzone.com/articles/first-steps-with-vertx-and-infinispan-push-api-par",
+    author: "Katia Aresti",
+    date: "18/12/2017"
   }
 ];
 
