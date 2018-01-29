@@ -51,6 +51,104 @@ heading: Google Summer of Code Ideas
 
     <div class="row">
       <div class="col-sm-12">
+          <h3>Vertx-Web implement HTTP standard responses logic to Router</h3>
+          <strong>Summary of idea:</strong>
+          <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. Vert.x Web Router is a general purpose router that matches paths to handlers.
+              Although this is "good enough" for many applications it does not adhere properly to the HTTP protocol. The issue is more obvious since the API allows filtering on mime type but failure to match such a request does not respect the protocol.</p>
+
+          <strong>Current inconsistent cases:</strong>
+
+          <ul>
+              <li>A router contains a route path but with misses the right HTTP verb, instead of returning 404 it should return 405.</li>
+              <li>A router contains a route for a specific mime type but the request contains a different payload mime type, instead of returning 404 it should return 406.</li>
+              <li>A router contains a route that produces a specific mime type but the request requires a different payload mime type, instead of returning 404 it should return 415.</li>
+              <li>An OPTIONS request should list the allowed verbs for the given path.</li>
+              <li>Errors thrown during path parameter parsing should throw 400 instead of 500.</li>
+          </ul>
+
+          <p>The project should start with a review of the HTTP protocol including version 2 and identify faulty situations as described above. A proposal for a refactoring of the internal of the Router class while keeping the existing API is a must.</p>
+
+          <p>The code should be properly documented and easy to extend so later one can for example plug REST documentation generators, etc...
+          </p>
+
+          <strong>Knowledge prerequisite:</strong> Java (8), Jenkins, Gradle or Maven is a plus<br/>
+          <strong>Skill level:</strong> Intermediate, Experienced<br/>
+          <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+        <h3>Vert.x R language support</h3>
+        <strong>Summary of idea:</strong>
+        <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. R is an open source programming language and software environment for
+            statistical computing and graphics that is supported by the R Foundation for Statistical Computing. The R language is widely used among statisticians and data miners for developing statistical software and data analysis. Polls, surveys
+            of data miners, and studies of scholarly literature databases show that R's popularity has increased substantially in recent years.</p>
+
+        <strong>What should be achieved:</strong>
+
+        <ul>
+            <li>Propose a vertx-lang-r using <a href="http://www.renjin.org">renjin</a></li>
+        </ul>
+
+        <strong>Knowledge prerequisite:</strong> Java (8), MVEL, R<br/>
+        <strong>Skill level:</strong> Intermediate, Experienced<br/>
+        <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Vert.x Certbot plugin</h3>
+        <strong>Summary of idea:</strong>
+        <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications.</p>
+
+        <p><a href="https://certbot.eff.org">Certbot</a> is an easy-to-use automatic client that fetches and deploys SSL/TLS certificates for your webserver. Certbot was developed by EFF and others as a client for Let’s Encrypt and was previously known
+            as “the official Let’s Encrypt client” or “the Let’s Encrypt Python client.” Certbot will also work with any other CAs that support the ACME protocol.</p>
+
+        <p>Certbot has several plugins for common web servers and can be used in manual mode with Vert.x too. This project would be about <a href="https://certbot.eff.org/docs/contributing.html">coding a new plugin</a> for Certbot that would make the
+            use of SSL certificates even easier for the Vert.x user community. The Certbot project is very open to new plugins and there is plenty of documentation. The project would be to follow the intructions from the link above and implement a
+            tighter integration with Vert.x.</p>
+
+        <strong>What should be achieved:</strong>
+
+        <ul>
+            <li>Get acquainted with Certbot Python API</li>
+            <li>Writing a plugin for applications using Vert.x Core + Vert.x Web</li>
+            <li>Submit a PR</li>
+        </ul>
+
+        <strong>Knowledge prerequisite:</strong> Python, Git<br/>
+        <strong>Skill level:</strong> Intermediate<br/>
+        <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+      <h3>Vert.x Blockchain client</h3>
+      <strong>Summary of idea:</strong>
+      <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications.</p>
+
+      <p>There are many blockchain services e.g.: <a href="https://ethereum.org">ethereum</a> which have java client APIs. These APIs are however modeled after
+        blocking APIs making it not suitable for reactive systems. The idea is to implement a pure async client following the ideas from <a href="https://github.com/ethereum/web3.js">web3.js</a>.</p>
+
+      <strong>What should be achieved:</strong>
+
+      <ul>
+          <li>Get acquainted with Ethereum API</li>
+          <li>Writing a pure async driver (not a wrapper around web3j) for applications using Vert.x Core</li>
+          <li>Submit a PR</li>
+      </ul>
+
+      <strong>Knowledge prerequisite:</strong> Java, JavaScript, Git<br/>
+      <strong>Skill level:</strong> Intermediate<br/>
+      <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
+  </div>
+</div>
+
+<div class="row">
+      <div class="col-sm-12">
         <h1>Previous ideas (2017)</h1>
       </div>
     </div>
@@ -87,34 +185,6 @@ heading: Google Summer of Code Ideas
 
     <div class="row">
         <div class="col-sm-12">
-            <h3>Vertx-Web implement HTTP standard responses logic to Router</h3>
-            <strong>Summary of idea:</strong>
-            <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. Vert.x Web Router is a general purpose router that matches paths to handlers.
-                Although this is "good enough" for many applications it does not adhere properly to the HTTP protocol. The issue is more obvious since the API allows filtering on mime type but failure to match such a request does not respect the protocol.</p>
-
-            <strong>Current inconsistent cases:</strong>
-
-            <ul>
-                <li>A router contains a route path but with misses the right HTTP verb, instead of returning 404 it should return 405.</li>
-                <li>A router contains a route for a specific mime type but the request contains a different payload mime type, instead of returning 404 it should return 406.</li>
-                <li>A router contains a route that produces a specific mime type but the request requires a different payload mime type, instead of returning 404 it should return 415.</li>
-                <li>An OPTIONS request should list the allowed verbs for the given path.</li>
-                <li>Errors thrown during path parameter parsing should throw 400 instead of 500.</li>
-            </ul>
-
-            <p>The project should start with a review of the HTTP protocol including version 2 and identify faulty situations as described above. A proposal for a refactoring of the internal of the Router class while keeping the existing API is a must.</p>
-
-            <p>The code should be properly documented and easy to extend so later one can for example plug REST documentation generators, etc...
-            </p>
-
-            <strong>Knowledge prerequisite:</strong> Java (8), Jenkins, Gradle or Maven is a plus<br/>
-            <strong>Skill level:</strong> Intermediate, Experienced<br/>
-            <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12">
             <h3>Administration Console for Vert.x Applications</h3>
             <strong>Summary of idea:</strong>
             <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. This topic is about implementing an extensible administration console.</p>
@@ -136,54 +206,6 @@ heading: Google Summer of Code Ideas
 
             <strong>Knowledge prerequisite:</strong> Java (8), CSS, JavaScript Gradle or Maven is a plus<br/>
             <strong>Skill level:</strong> Intermediate, Experienced<br/>
-            <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-sm-12">
-            <h3>Vert.x R language support</h3>
-            <strong>Summary of idea:</strong>
-            <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. R is an open source programming language and software environment for
-                statistical computing and graphics that is supported by the R Foundation for Statistical Computing. The R language is widely used among statisticians and data miners for developing statistical software and data analysis. Polls, surveys
-                of data miners, and studies of scholarly literature databases show that R's popularity has increased substantially in recent years.</p>
-
-            <strong>What should be achieved:</strong>
-
-            <ul>
-                <li>Propose a vertx-lang-r using <a href="http://www.renjin.org">renjin</a></li>
-            </ul>
-
-            <strong>Knowledge prerequisite:</strong> Java (8), MVEL, R<br/>
-            <strong>Skill level:</strong> Intermediate, Experienced<br/>
-            <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <h3>Vert.x Certbot plugin</h3>
-            <strong>Summary of idea:</strong>
-            <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications.</p>
-
-            <p><a href="https://certbot.eff.org">Certbot</a> is an easy-to-use automatic client that fetches and deploys SSL/TLS certificates for your webserver. Certbot was developed by EFF and others as a client for Let’s Encrypt and was previously known
-                as “the official Let’s Encrypt client” or “the Let’s Encrypt Python client.” Certbot will also work with any other CAs that support the ACME protocol.</p>
-
-            <p>Certbot has several plugins for common web servers and can be used in manual mode with Vert.x too. This project would be about <a href="https://certbot.eff.org/docs/contributing.html">coding a new plugin</a> for Certbot that would make the
-                use of SSL certificates even easier for the Vert.x user community. The Certbot project is very open to new plugins and there is plenty of documentation. The project would be to follow the intructions from the link above and implement a
-                tighter integration with Vert.x.</p>
-
-            <strong>What should be achieved:</strong>
-
-            <ul>
-                <li>Get acquainted with Certbot Python API</li>
-                <li>Writing a plugin for applications using Vert.x Core + Vert.x Web</li>
-                <li>Submit a PR</li>
-            </ul>
-
-            <strong>Knowledge prerequisite:</strong> Python, Git<br/>
-            <strong>Skill level:</strong> Intermediate<br/>
             <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
         </div>
     </div>
