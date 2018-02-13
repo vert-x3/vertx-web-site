@@ -336,7 +336,7 @@ sidebar: true
             <div class="col-md-4">
               <h4 id="web_api_contract">Web API Contract</h4>
               <p>Web API Contract supports OpenApi 3 specification for a design first approach, it
-              also provides a validation framework</p>
+                also provides a validation framework</p>
               <table>
                 <tr>
                   <td>Java</td>
@@ -371,7 +371,8 @@ sidebar: true
               </table>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-web/tree/master/vertx-web-api-contract">Source</a> | <a
-                  href="https://github.com/vert-x3/vertx-examples/tree/master/web-examples#openapi-3-server">Examples</a></li>
+                  href="https://github.com/vert-x3/vertx-examples/tree/master/web-examples#http-request-validation-and-openapi-3-router-factory">Examples</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -606,9 +607,11 @@ sidebar: true
           <div class="row">
             <div class="col-md-4">
               <h4 id="rx">Vert.x Rx</h4>
-              <p>Don't like callback-style APIs? Vert.x provides <em>Rx-ified</em> (using <a href="https://github.com/ReactiveX/RxJava">RxJava</a>)
+              <p>Don't like callback-style APIs? Vert.x provides <em>Rx-ified</em> (using <a
+                href="https://github.com/ReactiveX/RxJava">RxJava</a>)
                 versions for most of its APIs so you can use those if you prefer.</p>
-              <p>RxJava is a great choice when you want to perform complex operations on multiple asynchronous streams of data.</p>
+              <p>RxJava is a great choice when you want to perform complex operations on multiple asynchronous streams
+                of data.</p>
               <table>
                 <tr>
                   <td>RxJava 1</td>
@@ -633,8 +636,10 @@ sidebar: true
               </table>
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-rx">Source</a>
-                  | <a href="https://github.com/vert-x3/vertx-examples/tree/master/rxjava-1-examples">RxJava1 Examples</a>
-                  | <a href="https://github.com/vert-x3/vertx-examples/tree/master/rxjava-2-examples">RxJava2 Examples</a>
+                  | <a href="https://github.com/vert-x3/vertx-examples/tree/master/rxjava-1-examples">RxJava1
+                    Examples</a>
+                  | <a href="https://github.com/vert-x3/vertx-examples/tree/master/rxjava-2-examples">RxJava2
+                    Examples</a>
                 </li>
               </ul>
             </div>
@@ -687,8 +692,10 @@ sidebar: true
                 </tr>
               </table>
               <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-lang-kotlin/tree/master/vertx-lang-kotlin-coroutines">Source</a> | <a
-                  href="https://github.com/vert-x3/vertx-examples/tree/master/kotlin-examples/coroutines">Examples</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-lang-kotlin/tree/master/vertx-lang-kotlin-coroutines">Source</a>
+                  | <a
+                    href="https://github.com/vert-x3/vertx-examples/tree/master/kotlin-examples/coroutines">Examples</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -831,7 +838,8 @@ sidebar: true
           <h3 id="mqtt">MQTT</h3>
           <p>Vert.x MQTT provides client/server for MQTT.
             The server is able to handle connections, communication and messages exchange with remote MQTT
-            clients. The client is 3.1.1 MQTT compliant with a bunch of methods for connecting/disconnecting to a broker,
+            clients. The client is 3.1.1 MQTT compliant with a bunch of methods for connecting/disconnecting to a
+            broker,
             publishing messages and subscribing to topics.
           </p>
           <table>
@@ -1696,40 +1704,55 @@ sidebar: true
       <hr>
 
       <div class="row">
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12">
           <h3 id="testing">Testing</h3>
-          <p>Vert.x-Unit is an unit testing tool-kit especially design to work well with asynchronous code.</p>
-          <table>
-            <tr>
-              <td>Java</td>
-              <td><a href="{{ site_url }}docs/vertx-unit/java/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-            </tr>
-            <tr>
-              <td>JavaScript</td>
-              <td><a href="{{ site_url }}docs/vertx-unit/js/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
-            </tr>
-            <tr>
-              <td>Groovy</td>
-              <td><a href="{{ site_url }}docs/vertx-unit/groovy/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-            </tr>
-            <tr>
-              <td>Ruby</td>
-              <td><a href="{{ site_url }}docs/vertx-unit/ruby/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
-            </tr>
-            <tr>
-              <td>Kotlin</td>
-              <td><a href="{{ site_url }}docs/vertx-unit/kotlin/">Manual</a></td>
-              <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
-            </tr>
-          </table>
-          <ul class="list-unstyled">
-            <li><a href="https://github.com/vert-x3/vertx-unit">Source</a> | <a
-              href="https://github.com/vert-x3/vertx-examples/tree/master/unit-examples">Examples</a></li>
-          </ul>
+          <p>Vert.x supports unit testing for asynchronous code.</p>
+          <div class="row">
+            <div class="col-md-6">
+              <h4 id="vertx-unit">Vert.x Unit</h4>
+              <p>Vert.x-Unit is an unit testing tool-kit especially design to work well with asynchronous code.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-unit/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-unit/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-unit/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-unit/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/vertx-unit/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-unit">Source</a> | <a
+                  href="https://github.com/vert-x3/vertx-examples/tree/master/unit-examples">Examples</a></li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h4 id="vertx-junit5">Vert.x JUnit 5</h4>
+              <p>This module offers integration and support for writing Vert.x tests with JUnit 5.</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-junit5">Source</a></li>
+                <li><a href="{{ site_url }}docs/vertx-junit5/java/">Manual</a></li>
+                <li><a href="https://github.com/vert-x3/vertx-examples/tree/master/junit5-examples">Examples</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
