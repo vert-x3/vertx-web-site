@@ -28,7 +28,7 @@
   </parent>
 
   <artifactId>vertx-web-site</artifactId>
-  <version>3.5.1-SNAPSHOT</version>
+  <version>3.5.1</version>
 
   <name>Vert.x Website</name>
 
