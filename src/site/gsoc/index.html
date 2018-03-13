@@ -1,161 +1,62 @@
 ---
 template: page.html
-title: Google Summer of Code Ideas
-heading: Google Summer of Code Ideas
+title: Google Summer of Code
+heading: Google Summer of Code
 ---
 <div class="container docs-content">
 
-    <div class="row">
-        <div class="col-sm-12">
-            <p>Here is a list of ideas for <a href="https://summerofcode.withgoogle.com/">Google Summer of code</a> projects. Feel free to submit your ideas.</p>
-            <p>If you are interested by one of these subjects, send a mail to <a href="mailto:vertx-enquiries@googlegroups.com">vertx-enquiries@googlegroups.com</a>. To submit your proposal, use the <a href="https://summerofcode.withgoogle.com/organizations/4901344189087744/"><strong>Eclipse Vert.x</strong></a>                organisation. Don't forget to read the tips at the end of this page. If you have questions, feel free to chat with us on IRC (freenode server, #vertx channel).</p>
-        </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Summer of Code 2018</h2>
     </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-        <h2>Prerequisites</h2>
-        <p>Each year, we ask the students to prepare their GSOC application with a small project. This year (GSOC 2017), this project is a Twitter Wall. A Twitter Wall is a web page displaying the "latest" tweets. Everytime there is a new tweet, the wall is updated to display it.</p>
-        <p> For this project, you need to create a Vert.x application using Vert.x Web, the SockJS bridge and the Vert.x Web client. You can also extend it with OAuth. You can also use a server side template engine if you want. You will host the source code of the project on GitHub and add a link to the repo in your application form. Don't forget to write a <em>readme</em> with the build and run instructions. <strong>All</strong> students willing to work on Vert.x during their GSOC must implement this project.</p>
-        <p>The twitter wall application:</p>
-        <ul>
-            <li>retrieves tweets (matching configurable query) from Twitter using the <a href="https://dev.twitter.com/rest/public">Twitter API</a>,</li>
-            <li>displays the tweets in a web page,</li>
-            <li>polls the API periodically (configurable) to update the tweets,</li>
-            <li>send the new tweets to the web page using the SockJS bridge,</li>
-            <li>update the displayed tweets on the web page dynamically (no reload of the page, consume the messages from the SockJS bridge).</li>
-        </ul>
-        <p>If you have any questions, send a mail on the <a href="https://groups.google.com/forum/#!forum/vertx">Vert.x Google Group</a>.</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <h2>Project Ideas (2018)</h2>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <h3>Vert.x API Gateway</h3>
-            <strong>Summary of idea:</strong>
-            <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications.
-              The project is about writing an API gateway toolkit that will be the base for writing API gateways with Vert.x.
-              It will be based on the Vert.x router and an existing HTTP reverse proxy library, the following features will be
-              implemented: circuit breaker capabilities, rate limiting, load balancing and a plugable backend architecture.</p>
-            <strong>Knowledge prerequisite:</strong> Java (8), Maven, HTTP spec<br/>
-            <strong>Skill level:</strong> Experienced<br/>
-            <strong>Contact(s) / potential mentors(s):</strong> jviet@redhat.com<br/>
-        </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-12">
-          <h3>Vertx-Web implement HTTP standard responses logic to Router</h3>
-          <strong>Summary of idea:</strong>
-          <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. Vert.x Web Router is a general purpose router that matches paths to handlers.
-              Although this is "good enough" for many applications it does not adhere properly to the HTTP protocol. The issue is more obvious since the API allows filtering on mime type but failure to match such a request does not respect the protocol.</p>
-
-          <strong>Current inconsistent cases:</strong>
-
-          <ul>
-              <li>A router contains a route path but with misses the right HTTP verb, instead of returning 404 it should return 405.</li>
-              <li>A router contains a route for a specific mime type but the request contains a different payload mime type, instead of returning 404 it should return 406.</li>
-              <li>A router contains a route that produces a specific mime type but the request requires a different payload mime type, instead of returning 404 it should return 415.</li>
-              <li>An OPTIONS request should list the allowed verbs for the given path.</li>
-              <li>Errors thrown during path parameter parsing should throw 400 instead of 500.</li>
-          </ul>
-
-          <p>The project should start with a review of the HTTP protocol including version 2 and identify faulty situations as described above. A proposal for a refactoring of the internal of the Router class while keeping the existing API is a must.</p>
-
-          <p>The code should be properly documented and easy to extend so later one can for example plug REST documentation generators, etc...
-          </p>
-
-          <strong>Knowledge prerequisite:</strong> Java (8), Jenkins, Gradle or Maven is a plus<br/>
-          <strong>Skill level:</strong> Intermediate, Experienced<br/>
-          <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
-      </div>
   </div>
 
   <div class="row">
     <div class="col-sm-12">
-        <h3>Vert.x R language support</h3>
-        <strong>Summary of idea:</strong>
-        <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. R is an open source programming language and software environment for
-            statistical computing and graphics that is supported by the R Foundation for Statistical Computing. The R language is widely used among statisticians and data miners for developing statistical software and data analysis. Polls, surveys
-            of data miners, and studies of scholarly literature databases show that R's popularity has increased substantially in recent years.</p>
-
-        <strong>What should be achieved:</strong>
-
-        <ul>
-            <li>Propose a vertx-lang-r using <a href="http://www.renjin.org">renjin</a></li>
-        </ul>
-
-        <strong>Knowledge prerequisite:</strong> Java (8), MVEL, R<br/>
-        <strong>Skill level:</strong> Intermediate, Experienced<br/>
-        <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
+      <p>
+        In 2018, the Eclipse Vert.x team proposes subjects for
+        <a href="https://summerofcode.withgoogle.com/">Google Summer of Code</a> through the Eclipse organization.
+      </p>
+      <p>
+        Project ideas are listed on the
+        <a href="https://wiki.eclipse.org/Google_Summer_of_Code_2018_Ideas#Eclipse_Vert.x">Eclipse Wiki page for GSoC</a>.
+        If you are interested by one of these subjects, send an email to the possible mentor (link on the Eclipse wiki page).
+      </p>
+      <p>
+        To submit your proposal, use the
+        <a href="https://summerofcode.withgoogle.com/organizations/6364590460370944/"><strong>Eclipse</strong></a> organisation.
+      </p>
+      <p>
+        In addition to the GSoC proposal document, we ask candidates to
+        <a href="https://github.com/tsegismont/vertx-gsoc-2018-qotd">implement a simple Vert.x application</a>.
+        This helps us make sure candidates have a basic understanding of asynchronous programming and the Vert.x toolkit.
+        <strong>Submit your proposal even if not done with the assessment application!</strong>
+        Google will not extend the submission period but we can continue reviewing assessments while evaluating the submitted proposals.
+      </p>
+      <p>
+        If you have questions, feel free to ask possible mentors via email or on
+        <a href="/community">community channels</a>.
+      </p>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-sm-12">
-        <h3>Vert.x Certbot plugin</h3>
-        <strong>Summary of idea:</strong>
-        <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications.</p>
-
-        <p><a href="https://certbot.eff.org">Certbot</a> is an easy-to-use automatic client that fetches and deploys SSL/TLS certificates for your webserver. Certbot was developed by EFF and others as a client for Let’s Encrypt and was previously known
-            as “the official Let’s Encrypt client” or “the Let’s Encrypt Python client.” Certbot will also work with any other CAs that support the ACME protocol.</p>
-
-        <p>Certbot has several plugins for common web servers and can be used in manual mode with Vert.x too. This project would be about <a href="https://certbot.eff.org/docs/contributing.html">coding a new plugin</a> for Certbot that would make the
-            use of SSL certificates even easier for the Vert.x user community. The Certbot project is very open to new plugins and there is plenty of documentation. The project would be to follow the intructions from the link above and implement a
-            tighter integration with Vert.x.</p>
-
-        <strong>What should be achieved:</strong>
-
-        <ul>
-            <li>Get acquainted with Certbot Python API</li>
-            <li>Writing a plugin for applications using Vert.x Core + Vert.x Web</li>
-            <li>Submit a PR</li>
-        </ul>
-
-        <strong>Knowledge prerequisite:</strong> Python, Git<br/>
-        <strong>Skill level:</strong> Intermediate<br/>
-        <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
-    </div>
-</div>
-
-<div class="row">
-  <div class="col-sm-12">
-      <h3>Vert.x Blockchain client</h3>
-      <strong>Summary of idea:</strong>
-      <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications.</p>
-
-      <p>There are many blockchain services e.g.: <a href="https://ethereum.org">ethereum</a> which have java client APIs. These APIs are however modeled after
-        blocking APIs making it not suitable for reactive systems. The idea is to implement a pure async client following the ideas from <a href="https://github.com/ethereum/web3.js">web3.js</a>.</p>
-
-      <strong>What should be achieved:</strong>
-
-      <ul>
-          <li>Get acquainted with Ethereum API</li>
-          <li>Writing a pure async driver (not a wrapper around web3j) for applications using Vert.x Core</li>
-          <li>Submit a PR</li>
-      </ul>
-
-      <strong>Knowledge prerequisite:</strong> Java, JavaScript, Git<br/>
-      <strong>Skill level:</strong> Intermediate<br/>
-      <strong>Contact(s) / potential mentors(s):</strong> plopes@redhat.com, clement.escoffier@redhat.com<br/>
   </div>
-</div>
 
-<div class="row">
-      <div class="col-sm-12">
-        <h1>Previous ideas (2017)</h1>
-      </div>
+  <hr>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Archives</h2>
     </div>
+  </div>
 
-    <div class="row">
-        <div class="col-sm-12">
-            <h3>Vert.x-Web purely functional handlers</h3>
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>2017 ideas</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Vert.x-Web purely functional handlers</h4>
             <strong>Summary of idea:</strong>
             <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. Use any function as a vertx-web handler, then provide an API to compose
                 these functions in a "RouterBuilder API" way. This should be a totally separated project, keeping vertx-web as is for now and targeting "pure JVM languages" (Java, Kotlin, Groovy, Scala), especially those who have "first-level" functions
@@ -185,7 +86,7 @@ heading: Google Summer of Code Ideas
 
     <div class="row">
         <div class="col-sm-12">
-            <h3>Administration Console for Vert.x Applications</h3>
+          <h4>Administration Console for Vert.x Applications</h4>
             <strong>Summary of idea:</strong>
             <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. This topic is about implementing an extensible administration console.</p>
             <p>The outcome should be able to be consumed as a Vert.x Web Handler, but also as guidelines to build such extensible dashboards.</p>
@@ -212,7 +113,7 @@ heading: Google Summer of Code Ideas
 
     <div class="row">
         <div class="col-sm-12">
-            <h3>Vert.x on Embedded JDK</h3>
+          <h4>Vert.x on Embedded JDK</h4>
             <strong>Summary of idea:</strong>
             <p><a href="http://vertx.io">Eclipse Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. More and more Vert.x is getting used on IoT fields now that we offer
                 support for MQTT and are lightweight when compared to other Java frameworks. It is important that Vert.x applications can run as expected under the embedded JDK using the compact profiles (<a href="http://openjdk.java.net/jeps/161">JEP-161</a>).
@@ -241,13 +142,13 @@ heading: Google Summer of Code Ideas
 
     <div class="row">
         <div class="col-sm-12">
-            <h1>Previous ideas (2016)</h1>
+          <h3>2016 ideas</h3>
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm-12">
-            <h3>Implementation of “blueprint” Vert.x applications</h3>
+          <h4>Implementation of “blueprint” Vert.x applications</h4>
             <strong>Summary of idea:</strong>
             <p><a href="http://vertx.io">Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. The idea of the project is to implement a set of applications using the Vert.x
                 toolkit to illustrate how different classes of applications can be done. This project aims to provide guidelines to Vert.x users to implement various applications.</p>
@@ -264,7 +165,7 @@ heading: Google Summer of Code Ideas
 
     <div class="row">
         <div class="col-sm-12">
-            <h3>DevOps tooling for Vert.x applications</h3>
+          <h4>DevOps tooling for Vert.x applications</h4>
             <strong>Summary of idea:</strong>
             <p><a href="http://vertx.io">Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. The idea of the project is to implement a set of tools / guidelines to implement
                 Vert.x using a “devops” approach. This cover continuous integration, continuous deployment, production settings and so on.</p>
@@ -284,7 +185,7 @@ heading: Google Summer of Code Ideas
 
     <div class="row">
         <div class="col-sm-12">
-            <h3>Event bus clients for C, Objective-C, and Rust applications</h3>
+          <h4>Event bus clients for C, Objective-C, and Rust applications</h4>
             <strong>Summary of idea:</strong>
             <p><a href="http://vertx.io">Vert.x</a> is a toolkit for the Java Virtual Machine enabling the implementation of reactive, highly concurrent, polyglot applications. Thanks to its eventbus, any application can interact with Vert.x applications.
                 The idea of the project is to provide a set of libraries to ease the integration of Vert.x applications with applications developed in Go, Rust and C.</p>
