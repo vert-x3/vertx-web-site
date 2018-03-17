@@ -64,7 +64,7 @@ var contextPathDev = "/";
 var devPort = 4000;
 
 // website url in production mode (must be absolute; protocol and host may be omitted)
-var siteUrl = "http://" + projectData.host + contextPath;
+var siteUrl = "https://" + projectData.host + contextPath;
 
 // website url in development mode (must be absolute; protocol and host may be omitted)
 var siteUrlDev = "http://localhost:" + devPort + contextPathDev;
