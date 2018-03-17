@@ -2,7 +2,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   <!-- <link rel="stylesheet/less" href="bootstrap/less/bootstrap.less">
   <script src="bootstrap/less/less-1.3.3.min.js"></script>
   -->
@@ -456,7 +456,7 @@ vertx.deploy_worker_verticle("verticle5.py", app_config["verticle5_conf"], 10)
         "age": 1234,
         "shoe_size": 12,
         "pi": 3.14159
-    }, 
+    },
     "verticle3_conf": {
         "strange": true
     },
@@ -465,7 +465,7 @@ vertx.deploy_worker_verticle("verticle5.py", app_config["verticle5_conf"], 10)
     },
     "verticle5_conf": {
         "tel_no": "123123123"
-    }       
+    }
 }
 </pre>
 <p>Then set the <code>AppStarter</code> as the main of your module and then you can start your entire application by simply running:</p>
@@ -700,7 +700,7 @@ buff.append_str(str, 'UTF-16')            # Append string as sequence of bytes i
 
 buff = Buffer.create
 
-buff.set_fixnum(0, 4, 123123) # Set number as 4 bytes written at index 0 
+buff.set_fixnum(0, 4, 123123) # Set number as 4 bytes written at index 0
 buff.set_float(1000, 8, 414.123123123) # Set float as 8 bytes at index 1000
 </pre>
 <p>To set FixNums:</p>
@@ -1162,7 +1162,7 @@ def connect_handler(sock):
         if sock.write_queue_full:
             sock.pause()
             @sock.drain_handler
-            def drain_handler(): 
+            def drain_handler():
                 sock.resume()
 
 server.listen(1234, 'localhost')
@@ -1350,7 +1350,7 @@ server = vertx.create_http_server()
 
 @server.request_handler
 def request_handler(request):
-@request.body_handler 
+@request.body_handler
     def body_handler(body):
         print "The total body received was %d bytes"% body.length
 
@@ -1606,7 +1606,7 @@ client.host = 'foo.com'
 
 def response_handler(resp): print "got response %s"% resp.status_code
 
-request = client.post('/some-path', response_handler). 
+request = client.post('/some-path', response_handler).
 put_header('Some-Header', 'Some-Value').
     put_header('Some-Other-Header', 'Some-Other-Value').
     end()
@@ -1624,7 +1624,7 @@ put_header('Some-Header', 'Some-Value').
 <pre class="prettyprint">client = vertx.create_http_client()
 client.host = 'foo.com'
 
-def response_handler(resp): 
+def response_handler(resp):
 print "server returned status code:  %s"% resp.status_code
 print "server returned status message: %s"% resp.status_message
 
@@ -1637,7 +1637,7 @@ client.get_now('/some-path', response_handler)
 <pre class="prettyprint">client = vertx.create_http_client()
 client.host = 'foo.com'
 
-def response_handler(resp): 
+def response_handler(resp):
     @resp.data_handler
 def data_handler(buffer):
     print "I received %s bytes"% buffer.length
@@ -1676,7 +1676,7 @@ client.get_now('/some-path', response_handler)
 <pre class="prettyprint">client = vertx.create_http_client()
 client.host = 'foo.com'
 
-def response_handler(resp): 
+def response_handler(resp):
 @resp.body_handler
 def body_handler(body):
     print "The total body received was %s bytes"% body.length
@@ -1694,7 +1694,7 @@ client.get_now('/some-path', response_handler)
 <pre class="prettyprint">client = vertx.create_http_client()
 client.host = 'foo.com'
 
-def response_handler(resp): 
+def response_handler(resp):
 print "Got a response: %s"% resp.status_code
 request = client.put('/some-path', response_handler)
 
@@ -1802,7 +1802,7 @@ server.request_handler(route_matcher).listen(8080, 'localhost')
 <p>It will display 'first is animals and second is cats'.    </p>
 <h2 id="handling-requests-where-nothing-matches">Handling requests where nothing matches</h2><br/>
 <p>You can use the <code>no_match</code> method to specify a handler that will be called if nothing matches. If you don't specify a no match handler and nothing matches, a 404 will be returned.</p>
-<pre class="prettyprint">@route_matcher.no_match 
+<pre class="prettyprint">@route_matcher.no_match
 def no_match(req): req.response.end('Nothing matched')
 </pre>
 <h1 id="websockets">WebSockets</h1><br/>
@@ -1814,7 +1814,7 @@ from core.streams import Pump
 
 server = vertx.create_http_server()
 
-@server.websocket_handler 
+@server.websocket_handler
 def websocket_handler(websocket):
     pass
 
@@ -1829,7 +1829,7 @@ from core.streams import Pump
 
 server = vertx.create_http_server()
 
-@server.websocket_handler 
+@server.websocket_handler
 def websocket_handler(websocket):
     Pump(websocket, websocket).start()
 
@@ -1847,7 +1847,7 @@ from core.streams import Pump
 
 server = vertx.create_http_server()
 
-@server.websocket_handler 
+@server.websocket_handler
 def websocket_handler(websocket):
 
     if websocket.path == '/services/echo':
@@ -2125,7 +2125,7 @@ server.listen(8080)
 fs = vertx.file_system()
 
 def handler(err, res):
-if not err: print 'Copy was successful'         
+if not err: print 'Copy was successful'
 fs.copy('foo.dat', 'bar.dat', handler)
 </pre>
 <ul>
@@ -2328,11 +2328,11 @@ if err:
         # File open, write a buffer 5 times into a file
         buff = Buffer.create('foo')
         for i in range(1, 6):
-            def write_handler(err, res):          
+            def write_handler(err, res):
                 if err:
                     print "Failed to write ", err
                 else:
-                    print 'Written ok'  
+                    print 'Written ok'
             async_file.write(buff, buff.length() * i, write_handler)
 
 
@@ -2383,7 +2383,7 @@ def open_handler(err, async_file):
         pump = Pump(async_file, request)
         pump.start()
         @async_file.end_handler
-        def end_handler(): 
+        def end_handler():
             # File sent, end HTTP requuest
             request.end()
 

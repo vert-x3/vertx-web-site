@@ -2,7 +2,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   <!-- <link rel="stylesheet/less" href="bootstrap/less/bootstrap.less">
   <script src="bootstrap/less/less-1.3.3.min.js"></script>
   -->
@@ -1959,7 +1959,7 @@ as calling</code>write`.</p>
 <p>To check the path, you can query the <a href="https://modules.ceylon-lang.org/repo/1/io/vertx/ceylon/core/1.0.0/module-doc/api/http/ServerWebSocket.type.html#path"><code>ServerWebSocket.path</code></a> attribute of the websocket. You can then call the <a href="https://modules.ceylon-lang.org/repo/1/io/vertx/ceylon/core/1.0.0/module-doc/api/http/ServerWebSocket.type.html#reject"><code>ServerWebSocket.reject</code></a> method to reject the websocket.</p>
 <pre class="prettyprint">value server = vertx.createHttpServer();
 
-server.websocketHandler { 
+server.websocketHandler {
   void handle(ServerWebSocket ws) {
     if (ws.path().equals("/services/echo")) {
       value pump = ws.readStream.pump(ws.writeStream);
@@ -2475,7 +2475,7 @@ as calling</code>write`.</p>
 <p>To check the path, you can query the <a href="https://modules.ceylon-lang.org/repo/1/io/vertx/ceylon/core/1.0.0/module-doc/api/http/ServerWebSocket.type.html#path"><code>ServerWebSocket.path</code></a> attribute of the websocket. You can then call the <a href="https://modules.ceylon-lang.org/repo/1/io/vertx/ceylon/core/1.0.0/module-doc/api/http/ServerWebSocket.type.html#reject"><code>ServerWebSocket.reject</code></a> method to reject the websocket.</p>
 <pre class="prettyprint">value server = vertx.createHttpServer();
 
-server.websocketHandler { 
+server.websocketHandler {
   void handle(ServerWebSocket ws) {
     if (ws.path().equals("/services/echo")) {
       value pump = ws.readStream.pump(ws.writeStream);
@@ -2991,7 +2991,7 @@ as calling</code>write`.</p>
 <p>To check the path, you can query the <a href="https://modules.ceylon-lang.org/repo/1/io/vertx/ceylon/core/1.0.0/module-doc/api/http/ServerWebSocket.type.html#path"><code>ServerWebSocket.path</code></a> attribute of the websocket. You can then call the <a href="https://modules.ceylon-lang.org/repo/1/io/vertx/ceylon/core/1.0.0/module-doc/api/http/ServerWebSocket.type.html#reject"><code>ServerWebSocket.reject</code></a> method to reject the websocket.</p>
 <pre class="prettyprint">value server = vertx.createHttpServer();
 
-server.websocketHandler { 
+server.websocketHandler {
   void handle(ServerWebSocket ws) {
     if (ws.path().equals("/services/echo")) {
       value pump = ws.readStream.pump(ws.writeStream);

@@ -2,7 +2,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   <!-- <link rel="stylesheet/less" href="bootstrap/less/bootstrap.less">
   <script src="bootstrap/less/less-1.3.3.min.js"></script>
   -->
@@ -398,7 +398,7 @@ the <code>vertx.core/config</code> function. For example:</p>
 
 ;; Do something with config
 
-(println "number of wibbles is #{config.wibble_number}" 
+(println "number of wibbles is #{config.wibble_number}"
          (:wibble-number (core/config)))
 </pre>
 <p>The config returned is a Clojure map with keyword keys. You can use
@@ -454,7 +454,7 @@ same parameters as <code>vertx.core/deploy-verticle</code> with the same
 meanings.</p>
 <h2 id="deploying-a-module-programmatically">Deploying a module programmatically</h2><br/>
 <p>You should use <code>vertx.core/deploy-module</code> to deploy a module, for example:</p>
-<pre class="prettyprint">(core/deploy-module "io.vertx~mod-mailer~2.0.0-beta1" 
+<pre class="prettyprint">(core/deploy-module "io.vertx~mod-mailer~2.0.0-beta1"
                     :config config)
 </pre>
 <p>Would deploy an instance of the <code>io.vertx~mod-mailer~2.0.0-beta1</code>
@@ -464,7 +464,7 @@ module with the specified configuration map. Please see the
 <p>Configuration can be passed to a verticle that is deployed
 programmatically. Inside the deployed verticle the configuration is
 accessed with the <code>vertx.core/config</code> function. For example:</p>
-<pre class="prettyprint">(core/deploy-verticle "my_verticle.clj" 
+<pre class="prettyprint">(core/deploy-verticle "my_verticle.clj"
                       :config {:name "foo" :age 234})
 </pre>
 <p>Then, in <code>my_verticle.clj</code> you can access the config via
@@ -483,17 +483,17 @@ application starter verticle.</p>
 (let [cfg (config)]
   ;; start the verticles that make up the app
 
-  (deploy-verticle "verticle1.clj" 
+  (deploy-verticle "verticle1.clj"
                    :config (:verticle1Config cfg))
-  (deploy-verticle "verticle2.clj" 
-                   :config (:verticle2Config cfg) 
+  (deploy-verticle "verticle2.clj"
+                   :config (:verticle2Config cfg)
                    :instances 5)
-  (deploy-verticle "verticle3.clj" 
+  (deploy-verticle "verticle3.clj"
                    :config (:verticle3Config cfg))
-  (deploy-worker-verticle "verticle4.clj" 
+  (deploy-worker-verticle "verticle4.clj"
                           :config (:verticle4Config cfg))
-  (deploy-worker-verticle "verticle5.clj" 
-                          :config (:verticle5Config cfg) 
+  (deploy-worker-verticle "verticle5.clj"
+                          :config (:verticle5Config cfg)
                           :instances 10))
 </pre>
 <p>Then set the <code>app.clj</code> verticle as the main of your module and then
@@ -508,7 +508,7 @@ you can start your entire application by simply running:</p>
     },
     verticle2Config: {
         // Config for verticle2
-    }, 
+    },
     verticle3Config: {
         // Config for verticle3
     },
@@ -517,7 +517,7 @@ you can start your entire application by simply running:</p>
     },
     verticle5Config: {
         // Config for verticle5
-    }  
+    }
 }
 </pre>
 <p>If your application is large and actually composed of multiple modules
@@ -529,11 +529,11 @@ so this means you will use at most one core on your server.</p>
 <p>Vert.x scales by deploying many verticle instances concurrently.</p>
 <p>If you want more than one instance of a particular verticle or module
 to be deployed, you can specify the number of instances as follows:</p>
-<pre class="prettyprint">(core/deploy-verticle "foo.ChildVerticle" 
+<pre class="prettyprint">(core/deploy-verticle "foo.ChildVerticle"
                       :instances 10)
 </pre>
 <p>Or</p>
-<pre class="prettyprint">(core/deploy-module "io.vertx~some-mod~1.0" 
+<pre class="prettyprint">(core/deploy-module "io.vertx~some-mod~1.0"
                     :instances 10)
 </pre>
 <p>The above examples would deploy 10 instances.</p>
@@ -543,7 +543,7 @@ until some time after the call to <code>deploy-verticle</code> or <code>deploy-m
 has returned. If you want to be notified when the verticle/module has
 completed being deployed, you can pass a function to <code>deploy-verticle</code>,
 which will be called when it's complete:</p>
-<pre class="prettyprint">(core/deploy-verticle "my_verticle.clj" 
+<pre class="prettyprint">(core/deploy-verticle "my_verticle.clj"
   :handler (fn [err deploy-id]
              (when-not err
                (println "It's been deployed OK!"))))
@@ -560,7 +560,7 @@ verticle is undeployed, so in most cases you will not need to undeploy
 a verticle manually, however if you do want to do this, it can be done
 by calling the <code>vertx.core/undeploy-verticle</code> function, passing in the
 deployment id.</p>
-<pre class="prettyprint">(core/deploy-verticle "my_verticle.rb" 
+<pre class="prettyprint">(core/deploy-verticle "my_verticle.rb"
   :handler (fn [err deploy-id]
              ;; Immediately undeploy it
              (when-not err
@@ -661,7 +661,7 @@ that has completed you can optionally specify a function to the
 <code>on-message</code> function as the third argument. This function will then
 be called once the information has reached all nodes of the
 cluster. E.g. :</p>
-<pre class="prettyprint">(eb/on-message "test.address" my-handler 
+<pre class="prettyprint">(eb/on-message "test.address" my-handler
   (fn [err]
     (println "Yippee! The handler info has been propagated across the cluster")))
 </pre>
@@ -698,7 +698,7 @@ pattern. The handler is chosen in a non strict round-robin fashion.</p>
 <p>Sometimes after you send a message you want to receive a reply from
 the recipient. This is known as the <em>request-response pattern</em>.</p>
 <p>To do this you send a message, and specify a function as a reply
-handler. When the receiver receives the message, it can use the 
+handler. When the receiver receives the message, it can use the
 <code>vertx.eventbus/reply</code> function to send a reply.</p>
 <p>When this function is invoked it causes a reply to be sent back to the
 sender where the reply handler is invoked. An example will make this
@@ -732,7 +732,7 @@ but if no reply is received before timeout, the handler will be
 automatically unregistered and your handler will be called with an
 exception-map as the first parameter you can deal with it in your code.</p>
 <p>Here's an example:</p>
-<pre class="prettyprint">(eb/send "test.address" "This is a message" 1000 
+<pre class="prettyprint">(eb/send "test.address" "This is a message" 1000
   (fn [err m]
     (if err
       (println "No reply was received before the 1 second timeout!")
@@ -758,7 +758,7 @@ two-arity reply handler function to get replies to the replies within a
 timeout. The API used is similar to before:</p>
 <pre class="prettyprint">(eb/on-message "test.address"
   (fn [m]
-    (eb/reply "This is a reply" 1000 
+    (eb/reply "This is a reply" 1000
       (fn [err m]
         (if err
           (println "No reply was received before the 1 second timeout!")
@@ -783,7 +783,7 @@ handler function will be called with an exception map of the form:</p>
     (eb/fail 123 "Not enough aardvarks")))
 
 
-(eb/send "test.address" "This is a message" 1000 
+(eb/send "test.address" "This is a message" 1000
   (fn [err m]
     (if err
       (do
@@ -1067,9 +1067,9 @@ available interfaces.</p>
 listening until some time <em>after</em> the call to listen has returned. If
 you want to be notified when the server is actually listening you can
 provide a handler function to the <code>listen</code> call. For example:</p>
-<pre class="prettyprint">(net/listen server 1234 "myhost" 
+<pre class="prettyprint">(net/listen server 1234 "myhost"
   (fn [err server]
-    (when-not err 
+    (when-not err
       (println "Now listening!"))))
 </pre>
 <h3 id="getting-notified-of-incoming-connections">Getting Notified of Incoming Connections</h3><br/>
@@ -1079,7 +1079,7 @@ represents the handler. The handler will be called when a connection
 is made, getting the NetSocket. <code>on-connect</code> returns the server,
 allowing invocations to be threaded:</p>
 <pre class="prettyprint">(-&gt; (net/socket)
-    (net/on-connect 
+    (net/on-connect
       (fn [socket]
         (println "A client has connected!")))
     (net/listen 1234))
@@ -1224,7 +1224,7 @@ an exception occurs (note that we're using a function from the
     (net/on-connect
       (fn [sock]
         (stream/on-exception sock
-          (fn [ex-map] 
+          (fn [ex-map]
             (println "Oops. Something went wrong" (:message ex-map))))))
 (net/listen 1234 "localhost"))
 </pre>
@@ -1240,7 +1240,7 @@ Vert.x instance by sending the buffer to the address of that handler.</p>
 method.</p>
 <p>For example to write some data to the NetSocket from a completely
 different verticle you could do:</p>
-<pre class="prettyprint">;; retrieve the write handler ID and share it via 
+<pre class="prettyprint">;; retrieve the write handler ID and share it via
 ;; some mechanism (eventbus, shared data, atom, etc)
 (.writeHandlerID sock)
 
@@ -1372,7 +1372,7 @@ SSL if the server does not have a certificate.</p>
 clients it should trust. This is only used if client authentication is
 required.</p>
 <p>To configure a server to use server certificates only:</p>
-<pre class="prettyprint">(net/server 
+<pre class="prettyprint">(net/server
   {:ssl true
    :key-store-path "/path/to/your/keystore/server-keystore.jks"
    :key-store-password "password"})
@@ -1380,7 +1380,7 @@ required.</p>
 <p>Making sure that <code>server-keystore.jks</code> contains the server
 certificate.</p>
 <p>To configure a server to also require client certificates:</p>
-<pre class="prettyprint">(net/server 
+<pre class="prettyprint">(net/server
   {:ssl true
    :key-store-path "/path/to/your/keystore/server-keystore.jks"
    :key-store-password "password"
@@ -1487,13 +1487,13 @@ fashion.</p>
                 (println err))))
 </pre>
 <p>Be aware that even if <code>err</code> is nil, it only means the data was written
-to the network stack, but gives no guarantee that it ever reached or 
+to the network stack, but gives no guarantee that it ever reached or
 will reach the remote peer at all.</p>
-<p>If you need such a guarantee then you want to use TCP with some 
+<p>If you need such a guarantee then you want to use TCP with some
 handshaking logic build on top.</p>
 <h2 id="receiving-datagram-packets">Receiving Datagram packets</h2><br/>
-<p>If you want to receive packets you need to bind the datagram socket by 
-calling <code>vertx.datagram/listen</code> on it, and register a function to 
+<p>If you want to receive packets you need to bind the datagram socket by
+calling <code>vertx.datagram/listen</code> on it, and register a function to
 receive the packets via <code>vertx.datagram/on-data</code>:</p>
 <pre class="prettyprint">(-&gt; (udp/socket)
     (udp/on-data (fn [packet-map] ...))
@@ -1540,7 +1540,7 @@ here:</p>
       (fn [packet] ...))
     (udp/join-multicast-group "230.0.0.1"
       (fn [err socket]
-        (if-not err 
+        (if-not err
           (println "join succeeded")))))
 </pre>
 <h3 id="leaving-a-multicast-group">Leaving a Multicast group</h3><br/>
@@ -1588,7 +1588,7 @@ it's supported.</p>
 <p><code>:traffic-class</code> - ??</p>
 </li>
 <li>
-<p><code>:broadcast</code> - controls the SO_BROADCAST socket option. When this option is set, 
+<p><code>:broadcast</code> - controls the SO_BROADCAST socket option. When this option is set,
                  Datagram (UDP) packets may be sent to a local interface's broadcast address.</p>
 </li>
 <li>
@@ -1697,7 +1697,7 @@ write queue has processed its backlog:</p>
           (fn [buffer]
             (stream/write sock buffer)
             (if (.writeQueueFull sock)
-              (do 
+              (do
                 (.pause sock)
                 (stream/on-drain #(.resume sock))))))))
     (net/listen 1234 "localhost"))
@@ -1801,7 +1801,7 @@ provide a handler to the <code>listen</code> call. For example:</p>
 handler. This is done by calling the <code>vertx.http/on-request</code> function,
 passing in the handler:</p>
 <pre class="prettyprint">(-&gt; (http/server)
-    (http/on-request 
+    (http/on-request
       (fn [request]
         (println "An HTTP request has been received")))
     (http/listen 8080))
@@ -1934,7 +1934,7 @@ following:</p>
           ;; Append the chunk to the buffer
           (stream/on-data request (partial buf/append! body!))
           ;; invoked when the entire body has been read
-          (stream/on-end 
+          (stream/on-end
             #(println "The total body received was" (.length body!) "bytes")))))
     (http/listen 8080))
 </pre>
@@ -2019,7 +2019,7 @@ setter methods (<code>.setStatusCode</code>, <code>.setStatusMessage</code>).</p
 <pre class="prettyprint">(-&gt; (http/server)
     (http/on-request
       #(-&gt; %
-           (http/server-response 
+           (http/server-response
              {:status-code 404
               :status-message "Too many gerbils"})
            http/end))
@@ -2128,10 +2128,10 @@ directory:</p>
       (fn [req]
         (-&gt; req
             http/server-response
-            (http/send-file 
+            (http/send-file
               (str "web/"
                 (let [path (.path req)]
-                  (cond 
+                  (cond
                     (= path "/") "index.html"
                     (not (re-find #"\.\." path)) path
                     :default "error.html"))))))
@@ -2139,7 +2139,7 @@ directory:</p>
 </pre>
 <p>There's also a variant of <code>send-file</code> which takes the name of a file
 to serve if the specified file cannot be found:</p>
-<pre class="prettyprint">(http/send-file response (str "web/" file) 
+<pre class="prettyprint">(http/send-file response (str "web/" file)
   :not-found "handler_404.html")
 </pre>
 <p><em>Note: If you use <code>send-file</code> while using HTTPS it will copy through
@@ -2157,7 +2157,7 @@ the HttpResponse. It uses a pump for the body, so it will work even if
 the HTTP request body is much larger than can fit in memory at any one
 time:</p>
 <pre class="prettyprint">(-&gt; (http/server)
-    (on-request 
+    (on-request
       (fn [req]
         (let [response (http/server-response req)]
           (http/add-headers response (http/headers req))
@@ -2340,7 +2340,7 @@ HTTP response arrive. Here's an example:</p>
     (http/get-now "/some-path"
       (fn [resp]
         (stream/on-data resp
-          (fn [buf] 
+          (fn [buf]
             (println "I received" (.length buf) "bytes"))))))
 </pre>
 <p>The response object implements the <code>ReadStream</code> interface so you can
@@ -2554,7 +2554,7 @@ above instead of pattern strings.</p>
 <p>You can use the <code>no-match</code> function to specify a handler that will be
 called if nothing matches. If you don't specify a no match handler and
 nothing matches, a 404 will be returned.</p>
-<pre class="prettyprint">(route/no-match 
+<pre class="prettyprint">(route/no-match
   (fn [req]
     (http/end (server-response req) "Nothing matched")))
 </pre>
@@ -2567,7 +2567,7 @@ HTTP servers and HTTP clients (typically browsers).</p>
 but instead of setting a request handler you set a websocket handler
 on the server via <code>vertx.http.websocket/on-websocket</code>.</p>
 <pre class="prettyprint">(-&gt; (http/server)
-    (ws/on-websocket 
+    (ws/on-websocket
       (fn [ws]
         ;; A WebSocket has connected!
         ))
@@ -2582,7 +2582,7 @@ in the normal ways. I.e by setting a data handler and calling the
 information.</p>
 <p>For example, to echo all data received on a WebSocket:</p>
 <pre class="prettyprint">(-&gt; (http/server)
-    (ws/on-websocket 
+    (ws/on-websocket
       #(stream/pump % %))
     (listen 8080))
 </pre>
@@ -2596,7 +2596,7 @@ specific path.</p>
 websocket. You can then call the <code>.reject</code> method to reject the
 websocket.</p>
 <pre class="prettyprint">(-&gt; (http/server)
-    (ws/on-websocket 
+    (ws/on-websocket
       (fn [ws]
         (if (= "/services/echo" (.path ws))
           (stream/pump ws ws)
@@ -2813,9 +2813,9 @@ on the server side.</p>
 bridge any events sent to the path <code>eventbus</code> on to the server side
 event bus.</p>
 <pre class="prettyprint">(let [http-server (http/server)]
-  (sockjs/bridge 
+  (sockjs/bridge
     (sockjs/sockjs-server http-server)
-    {:prefix "/eventbus"} [{}] [{}]) 
+    {:prefix "/eventbus"} [{}] [{}])
   (http/listen http-server 8080 "localhost"))
 </pre>
 <h2 id="using-the-event-bus-from-client-side-javascript">Using the Event Bus from client-side JavaScript</h2><br/>
@@ -2871,7 +2871,7 @@ using the wrapper:</p>
 
 (def eb (atom nil))
 
-(defn register-handler [] 
+(defn register-handler []
   (eb/on-message @eb "some-address"
     #(.log js/console (str "received a message: " %))))
 
@@ -2947,7 +2947,7 @@ available permitted entries.</p>
 </ul>
 <p>Here is an example:</p>
 <pre class="prettyprint">(let [http-server (http/server)
-      sockjs-server 
+      sockjs-server
       auth-inbound [
                  ;;Let through any messages sent to 'demo.orderMgr'
                  {:address "demo.orderMgr"}
@@ -2965,9 +2965,9 @@ available permitted entries.</p>
 
                  ;;Let through any messages from addresses starting with "news." (e.g. news.europe, news.usa, etc)
                  {:address_re "news\\..+"}]
-    (sockjs/bridge 
+    (sockjs/bridge
       (sockjs/sockjs-server http-server)
-      {:prefix "/eventbus"} auth-inbound auth-outbound) 
+      {:prefix "/eventbus"} auth-inbound auth-outbound)
     (http/listen http-server 8080 "localhost"))
 </pre>
 <p>To let all messages through you can specify two arrays with a single
@@ -3325,9 +3325,9 @@ request:</p>
 <pre class="prettyprint">(let [client (http/client {:host "foo.com"})]
   (fs/open "some-file.dat"
     (fn [err file]
-      (if err 
+      (if err
         (println "Failed to open file" err)
-        (let [request 
+        (let [request
               (http/request client :PUT "/uploads"
                 (fn [resp]
                   (println "Response status code:" (.statusCode resp))))]
@@ -3431,7 +3431,7 @@ exception-map provides a <code>type</code> entry that specifies the error type.<
 port on localhost, or you can pass a port or port and host:</p>
 <pre class="prettyprint">(repl/start)
 </pre>
-<p><code>start</code> returns the id of the nREPL server, and can be passed to 
+<p><code>start</code> returns the id of the nREPL server, and can be passed to
 <code>vertx.repl/stop</code> to shut it down. </p>
 <p>Any number of nREPL servers can be active at one time. The nREPL
 servers run inside of a worker verticle, so code evaluated in the repl

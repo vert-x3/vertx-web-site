@@ -2,7 +2,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   <!-- <link rel="stylesheet/less" href="bootstrap/less/bootstrap.less">
   <script src="bootstrap/less/less-1.3.3.min.js"></script>
   -->
@@ -450,7 +450,7 @@ Vertx.deploy_worker_verticle("verticle5.rb", appConfig[:verticle5_config], 10)
     },
     verticle2Config: {
         // Config for verticle2
-    }, 
+    },
     verticle3Config: {
         // Config for verticle3
     },
@@ -459,7 +459,7 @@ Vertx.deploy_worker_verticle("verticle5.rb", appConfig[:verticle5_config], 10)
     },
     verticle5Config: {
         // Config for verticle5
-    }  
+    }
 }
 </pre>
 <p>If your application is large and actually composed of multiple modules rather than verticles you can use the same technique.</p>
@@ -524,7 +524,7 @@ end
 <h3 id="registering-and-unregistering-handlers">Registering and Unregistering Handlers</h3><br/>
 <p>To set a message handler on the address <code>test.address</code>, you call the method <code>register_handler</code> on the <code>EventBus</code> class</p>
 <pre class="prettyprint">id = Vertx::EventBus.register_handler('test.address') do |message|
-    puts "Got message body #{message.body}" 
+    puts "Got message body #{message.body}"
 end
 </pre>
 <p>It's as simple as that. The handler will then receive any messages sent to that address. The object passed into the handler is an instance of class <code>Message</code>. The body of the message is available via the <code>body</code> attribute. </p>
@@ -695,7 +695,7 @@ buff.append_str(str, 'UTF-16')            # Append string as sequence of bytes i
 <p>The buffer will always expand as necessary to accomodate the data.</p>
 <pre class="prettyprint">buff = Vertx::Buffer.create
 
-buff.set_fixnum(0, 4, 123123) # Set number as 4 bytes written at index 0 
+buff.set_fixnum(0, 4, 123123) # Set number as 4 bytes written at index 0
 buff.set_float(1000, 8, 414.123123123) # Set float as 8 bytes at index 1000
 </pre>
 <p>To set FixNums:</p>
@@ -790,7 +790,7 @@ Vertx.cancel_timer(timer_id)
 Vertx.set_periodic(1000) do |timer_id|
     puts "In event handler #{count}"
     count += 1
-    vertx.cancelTimer(timer_id) if count == 10        
+    vertx.cancelTimer(timer_id) if count == 10
 end
 </pre>
 <h1 id="writing-tcp-servers-and-clients">Writing TCP Servers and Clients</h1><br/>
@@ -810,7 +810,7 @@ server.listen(1234, 'myhost')
 <p>The second parameter is the hostname or ip address. If it is omitted it will default to <code>0.0.0.0</code> which means it will listen at all available interfaces.</p>
 <p>The actual bind is asynchronous so the server might not actually be listening until some time <em>after</em> the call to listen has returned. If you want to be notified when the server is actually listening you can provide a handler to the <code>listen</code> call. For example:</p>
 <pre class="prettyprint">server.listen(1234, "myhost") do |err|
-  puts "Now listening!" if !err                 
+  puts "Now listening!" if !err
 end
 </pre>
 <h3 id="getting-notified-of-incoming-connections">Getting Notified of Incoming Connections</h3><br/>
@@ -1177,7 +1177,7 @@ server.listen(8080, 'myhost')
 <p>The first parameter to <code>listen</code> is the port. The second parameter is the hostname or ip address. If the hostname is omitted it will default to <code>0.0.0.0</code> which means it will listen at all available interfaces.</p>
 <p>The actual bind is asynchronous so the server might not actually be listening until some time <em>after</em> the call to listen has returned. If you want to be notified when the server is actually listening you can provide a handler to the <code>listen</code> call. For example:</p>
 <pre class="prettyprint">server.listen(8080, 'myhost') do |err|
-puts "Now listening!" if !err                   
+puts "Now listening!" if !err
 end
 </pre>
 <h3 id="getting-notified-of-incoming-requests">Getting Notified of Incoming Requests</h3><br/>
@@ -1329,7 +1329,7 @@ end
 <pre class="prettyprint">request.end_handler do
    # The request has been all ready so now we can look at the form attributes
    attrs = request.form_attributes
-   # Do something with them        
+   # Do something with them
 end
 </pre>
 <h3 id="http-server-responses">HTTP Server Responses</h3><br/>
@@ -1451,12 +1451,12 @@ client.host = 'foo.com'
 <h3 id="pooling-and-keep-alive">Pooling and Keep Alive</h3><br/>
 <p>By default the <code>HttpClient</code> pools HTTP connections. As you make requests a connection is borrowed from the pool and returned when the HTTP response has ended.</p>
 <p>If you do not want connections to be pooled you can set <code>keep_alive</code> to <code>false</code>:</p>
-<pre class="prettyprint">client = Vertx::HttpClient.new    
+<pre class="prettyprint">client = Vertx::HttpClient.new
 client.keep_alive = false
 </pre>
 <p>In this case a new connection will be created for each HTTP request and closed once the response has ended.</p>
 <p>You can set the maximum number of connections that the client will pool as follows:</p>
-<pre class="prettyprint">client = Vertx::HttpClient.new    
+<pre class="prettyprint">client = Vertx::HttpClient.new
 client.max_pool_size = 10
 </pre>
 <p>The default value is <code>1</code>.</p>
@@ -1471,7 +1471,7 @@ client.max_pool_size = 10
 client.host = 'foo.com'
 
 request = client.post('/some-path/') do |resp|
-    puts "got response #{resp.status_code}" 
+    puts "got response #{resp.status_code}"
 end
 
 request.end
@@ -1488,7 +1488,7 @@ request.end
 client.host = 'foo.com'
 
 request = client.request('POST', '/some-path/') do |resp|
-    puts "got response #{resp.status_code}" 
+    puts "got response #{resp.status_code}"
 end
 
 request.end
@@ -1498,7 +1498,7 @@ request.end
 client.host = 'foo.com'
 
 client.get_now('/some-path/') do |resp|
-    puts "got response #{resp.status_code}" 
+    puts "got response #{resp.status_code}"
 end
 </pre>
 <h4 id="handling-exceptions">Handling exceptions</h4><br/>
@@ -1533,7 +1533,7 @@ request.write(myBuffer)
 client.host = 'foo.com'
 
 request = client.post('/some-path') do |resp|
-    puts "got response #{resp.status_code}" 
+    puts "got response #{resp.status_code}"
 end
 
 request.headers['Some-Header'] = 'Some-Value'
@@ -1544,7 +1544,7 @@ request.end
 client.host = 'foo.com'
 
 request = client.post('/some-path') do |resp|
-    puts "got response #{resp.status_code}" 
+    puts "got response #{resp.status_code}"
 end.put_header('Some-Header', 'Some-Value').
     put_header('Some-Other-Header', 'Some-Other-Value').
     end
@@ -1566,7 +1566,7 @@ client.host = 'foo.com'
 
 client.get_now('/some-path') do |resp|
   puts "server returned status code: #{resp.status_code}"
-  puts "server returned status message: #{resp.status_message}"      
+  puts "server returned status message: #{resp.status_message}"
 end
 </pre>
 <h4 id="reading-data-from-the-response-body">Reading Data from the Response Body</h4><br/>
@@ -1577,7 +1577,7 @@ end
 client.host = 'foo.com'
 
 client.get_now('/some-path') do |resp|
-  resp.data_handler { |buffer| puts "I received #{buffer.length} bytes" }     
+  resp.data_handler { |buffer| puts "I received #{buffer.length} bytes" }
 end
 </pre>
 <p>The response object implements the <code>ReadStream</code> interface so you can pump the response body to a <code>WriteStream</code>. See the chapter on streams and pump for a detailed explanation.</p>
@@ -2053,7 +2053,7 @@ server.listen(8080)
 <p>Non recursive file copy. <code>source</code> is the source file name. <code>destination</code> is the destination file name.</p>
 <p>Here's an example:</p>
 <pre class="prettyprint">Vertx::FileSystem.copy('foo.dat', 'bar.dat') do |err|
-    puts 'Copy was successful' if !err        
+    puts 'Copy was successful' if !err
 end
 </pre>
 <ul>
@@ -2153,7 +2153,7 @@ end
 </ul>
 <p>If <code>create_parents</code> is <code>true</code>, this creates a new directory and creates any of its parents too. Here's an example</p>
 <pre class="prettyprint">Vertx::FileSystem.mkdir('a/b/c', true) do |err, res|
-   puts "Directory created ok" if !err       
+   puts "Directory created ok" if !err
 end
 </pre>
 <ul>
@@ -2187,7 +2187,7 @@ end
 <p>The body of the file will be returned as a <code>Buffer</code> in the handler.</p>
 <p>Here is an example:</p>
 <pre class="prettyprint">Vertx::FileSystem.read_file_as_buffer('myfile.dat') do |err, res|
-    puts "File contains: #{res.length} bytes" if !err        
+    puts "File contains: #{res.length} bytes" if !err
 end
 </pre>
 <h2 id="write_to_file">write_to_file</h2><br/>
@@ -2255,7 +2255,7 @@ If the file is created, <code>perms</code> is a Unix-style permissions string us
     else
         # File open, write a buffer 5 times into a file
         buff = Vertx::Buffer.create('foo')
-        (1..5).each do |i|            
+        (1..5).each do |i|
             async_file.write(buff, buff.length() * i) do |err, res|
                 if err
                     puts "Failed to write #{err}"
@@ -2282,7 +2282,7 @@ end
 <pre class="prettyprint">Vertx::FileSystem.open('some-file.dat') do |err, async_file|
     if err
         puts "Failed to open file #{err}"
-    else 
+    else
         buff = Vertx::Buffer.create(1000)
         (1..10).each do |i|
             async_file.read(buff, i * 100, i * 100, 100) do |err, res|
@@ -2314,7 +2314,7 @@ Vertx::FileSystem.open('some-file.dat') do |err, async_file|
         end
         pump = Vertx::Pump.new(async_file, request)
         pump.start
-        async_file.end_handler do 
+        async_file.end_handler do
             # File sent, end HTTP requuest
             request.end
         end

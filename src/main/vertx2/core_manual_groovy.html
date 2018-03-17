@@ -2,7 +2,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   <!-- <link rel="stylesheet/less" href="bootstrap/less/bootstrap.less">
   <script src="bootstrap/less/less-1.3.3.min.js"></script>
   -->
@@ -375,7 +375,7 @@ class EchoServer extends Verticle {
         }.listen(1234)
     }
 
-   def stop() {        
+   def stop() {
    }
 }
 </pre>
@@ -385,7 +385,7 @@ class EchoServer extends Verticle {
 <h2 id="asynchronous-start">Asynchronous start</h2><br/>
 <p>In some cases your Verticle has to do some other stuff asynchronous in its <code>start()</code> method, e.g. start other verticles, and the verticle shouldn't be considered started until those other actions are complete.</p>
 <p>If this is the case for your compiled Groovy verticle you can override the asynchronous version of the <code>start()</code> method:</p>
-<pre class="prettyprint">def start(Future&lt;Void&gt; startedResult) {    
+<pre class="prettyprint">def start(Future&lt;Void&gt; startedResult) {
   // For example - deploy some other verticle
   container.deployVerticle("foo.js") { deployResult -&gt;
     if (deployResult.succeeded) {
@@ -393,7 +393,7 @@ class EchoServer extends Verticle {
     } else {
       startedResult.setFailure(deployResult.cause)
     }
-  }      
+  }
 }
 </pre>
 <h2 id="verticle-clean-up">Verticle clean-up</h2><br/>
@@ -490,7 +490,7 @@ container.deployWorkerVerticle("verticle5.js", appConfig["verticle5_conf"], 10)
         "age": 1234,
         "shoe_size": 12,
         "pi": 3.14159
-    }, 
+    },
     "verticle3_conf": {
         "strange": true
     },
@@ -499,7 +499,7 @@ container.deployWorkerVerticle("verticle5.js", appConfig["verticle5_conf"], 10)
     },
     "verticle5_conf": {
         "tel_no": "123123123"
-    }       
+    }
 }
 </pre>
 <p>Then set the <code>AppStarter.groovy</code> as the main of your module and then you can start your entire application by simply running:</p>
@@ -518,12 +518,12 @@ container.deployWorkerVerticle("verticle5.js", appConfig["verticle5_conf"], 10)
 <p>The above examples would deploy 10 instances.</p>
 <h2 id="getting-notified-when-deployment-is-complete">Getting Notified when Deployment is complete</h2><br/>
 <p>The actual verticle deployment is asynchronous and might not complete until some time after the call to <code>deployVerticle</code> or <code>deployModule</code> has returned. If you want to be notified when the verticle has completed being deployed, you can pass a closure to <code>deployVerticle</code> or <code>deployModule</code>:</p>
-<pre class="prettyprint">container.deployVerticle("Foo.groovy") { asyncResult -&gt;       
+<pre class="prettyprint">container.deployVerticle("Foo.groovy") { asyncResult -&gt;
     if (asyncResult.succeeded) {
         println "The verticle has been deployed, deployment ID is ${asyncResult.result}"
     } else {
         asyncResult.cause.printStackTrace()
-    }        
+    }
 }
 </pre>
 <p>The handler will get passed an instance of <code>AsyncResult</code> when it completes. You can use the properties <code>succeeded</code> and <code>failed</code> on <code>AsyncResult</code> to see if the operation completed ok.</p>
@@ -914,7 +914,7 @@ server.connectHandler { sock -&gt;
 <p>If you want to be notified when a socket is closed, you can set the `closedHandler':</p>
 <pre class="prettyprint">def server = vertx.createNetServer()
 
-server.connectHandler { sock -&gt; 
+server.connectHandler { sock -&gt;
     sock.closedHandler { println "The socket is now closed" }
 }.listen(1234, "localhost")
 </pre>
@@ -923,7 +923,7 @@ server.connectHandler { sock -&gt;
 <p>You can set an exception handler on the socket that will be called if an exception occurs asynchronously on the connection:</p>
 <pre class="prettyprint">def server = vertx.createNetServer()
 
-server.connectHandler { sock -&gt; 
+server.connectHandler { sock -&gt;
     sock.exceptionHandler { e -&gt; println "Oops! $e" }
 }.listen(1234, "localhost")
 </pre>
@@ -1209,7 +1209,7 @@ server.requestHandler { request -&gt;
         sb &lt;&lt; e.key &lt;&lt; ": " &lt;&lt; e.value &lt;&lt; '\n'
     }
     request.response.putHeader("Content-Type", "text/plain")
-    request.response.end(sb.toString())        
+    request.response.end(sb.toString())
 }.listen(8080, "localhost")
 </pre>
 <h4 id="request-params">Request params</h4><br/>
@@ -1269,7 +1269,7 @@ server.requestHandler{ request -&gt;
 <p>Vert.x understands file uploads submitted from HTML forms in browsers. In order to handle file uploads you should set the <code>uploadHandler</code> on the request. The handler will be called once for each upload in the form.</p>
 <pre class="prettyprint">request.expectMultiPart = true
 
-request.uploadHandler { upload -&gt; 
+request.uploadHandler { upload -&gt;
     // Do something with it
 }
 </pre>
@@ -1277,7 +1277,7 @@ request.uploadHandler { upload -&gt;
 <p>You can also stream it directly to disk using the convenience method <code>streamToFileSystem()</code>.</p>
 <pre class="prettyprint">request.expectMultiPart = true
 
-request.uploadHandler { upload -&gt; 
+request.uploadHandler { upload -&gt;
     upload.streamToFileSystem "uploads/${upload.filename()}"
 }
 </pre>
@@ -1428,7 +1428,7 @@ server.requestHandler{ req -&gt;
 <pre class="prettyprint">def client = vertx.createHttpClient(host: "foo.com")
 
 def request = client.post("/some-path/") { resp -&gt;
-  println "Got a response: ${resp.statusCode}"        
+  println "Got a response: ${resp.statusCode}"
 }
 
 request.end()
@@ -1718,7 +1718,7 @@ server.websocketHandler{ ws -&gt;
         Pump.createPump(ws, ws).start()
     } else {
         ws.reject()
-    }        
+    }
 }.listen(8080, "localhost")
 </pre>
 <h3 id="headers-on-the-websocket">Headers on the websocket</h3><br/>
@@ -2014,7 +2014,7 @@ r--r--r--
 </ul>
 <p>Here's an example:</p>
 <pre class="prettyprint">vertx.fileSystem("foo.dat", "bar.dat") { ar -&gt;
-    if (ar.succeeeded) {        
+    if (ar.succeeeded) {
         println "Props are: Last accessed: ${ar.result.lastAccessTime}"
         // etc
     } else {
@@ -2296,7 +2296,7 @@ client.lookup("vertx.io") { ar -
         println ar.result
     } else {
        log.error("Failed to resolve entry", ar.cause)
-    }    
+    }
 }
 </pre>
 <p>Be aware that it either would use an Inet4Address or Inet6Address in the AsyncResult depending on if an A or AAAA record was resolved.</p>
@@ -2309,7 +2309,7 @@ client.lookup4("vertx.io") { ar -&gt;
         println ar.result
     } else {
         log.error("Failed to resolve entry", ar.cause)
-    }    
+    }
 }
 </pre>
 <p>As it only resolves A records and so is ipv4 only it will use Inet4Address as result.  </p>
@@ -2322,7 +2322,7 @@ client.lookup6("vertx.io") { ar -&gt;
         println ar.result
     } else {
         log.error("Failed to resolve entry", ar.cause)
-    }    
+    }
 }
 </pre>
 <p>As it only resolves AAAA records and so is ipv6 only it will use Inet6Address as result.  </p>
@@ -2338,7 +2338,7 @@ client.resolveA("vertx.io") { ar -&gt;
         }
     } else {
         log.error("Failed to resolve entry", ar.cause)
-    }    
+    }
 }
 </pre>
 <p>As it only resolves A records and so is ipv4 only it will use Inet4Address as result.  </p>
@@ -2354,7 +2354,7 @@ client.resolveAAAA("vertx.io") { ar -&gt;
         }
     } else {
         log.error("Failed to resolve entry", ar.cause)
-    }    
+    }
 })
 </pre>
 <p>As it only resolves AAAA records and so is ipv6 only it will use Inet6Address as result.  </p>
@@ -2370,7 +2370,7 @@ client.resolveCNAME("vertx.io") { ar -&gt;
         }
     } else {
         log.error("Failed to resolve entry", ar.cause)
-    }    
+    }
 }
 </pre>
 <h2 id="resolvemx">resolveMX</h2><br/>
@@ -2385,7 +2385,7 @@ client.resolveMX("vertx.io") { ar -&gt;
         }
     } else {
         log.error("Failed to resolve entry", ar.cause)
-    }    
+    }
 }
 </pre>
 <p>Be aware that the List will contain the MxRecords sorted by the priority of them, which means MxRecords with smaller priority coming first in the List.</p>
@@ -2406,7 +2406,7 @@ client.resolveTXT("vertx.io") { ar -&gt;
         }
     } else {
         log.error("Failed to resolve entry", ar.cause)
-    }    
+    }
 }
 </pre>
 <h2 id="resolvens">resolveNS</h2><br/>
@@ -2421,7 +2421,7 @@ client.resolveNS("vertx.io") { ar -&gt;
         }
     } else {
         log.error("Failed to resolve entry", ar.cause)
-    }    
+    }
 }
 </pre>
 <h2 id="resolvesrv">resolveSRV</h2><br/>
@@ -2436,7 +2436,7 @@ client.resolveMX("vertx.io") { ar -&gt;
         }
     } else {
         log.error("Failed to resolve entry", ar.cause)
-    }    
+    }
 }
 </pre>
 <p>Be aware that the List will contain the SrvRecords sorted by the priority of them, which means SrvRecords with smaller priority coming first in the List.</p>
@@ -2462,7 +2462,7 @@ client.resolvePTR("1.0.0.10.in-addr.arpa") { ar -&gt;
         println record
     } else {
         log.error("Failed to resolve entry", ar.cause)
-    }    
+    }
 }
 </pre>
 <h2 id="reverselookup">reverseLookup</h2><br/>
@@ -2475,7 +2475,7 @@ client.reverseLookup("10.0.0.1") { ar -&gt;
         println record
     } else {
         log.error("Failed to resolve entry", ar.cause)
-    }    
+    }
 }
 </pre>
 <h2 id="error-handling">Error handling</h2><br/>
@@ -2525,7 +2525,7 @@ client.lookup("nonexisting.vert.io") { ar -&gt;
         } else {
             log.error("Failed to resolve entry", ar.cause)
         }
-    }    
+    }
 }
 </pre></div>
       </div>
