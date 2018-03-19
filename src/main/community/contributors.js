@@ -83,7 +83,7 @@ var maintainers = [{
   contribution: "Python"
 }, {
   github_id: "codepitbull",
-  avatar: "https://pbs.twimg.com/profile_images/1900844895/rec_400x400.jpg",
+  avatar: "https://avatars0.githubusercontent.com/u/1409931?s=460&v=4",
   github: "https://github.com/codepitbull",
   homepage: "http://codepitbull.de/",
   name: "Jochen Mader",
