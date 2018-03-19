@@ -22,6 +22,7 @@ var rename = require("gulp-rename");
 var replace = require("gulp-replace");
 var request = require("request");
 var serveStatic = require("serve-static");
+var slug = require("slug-component");
 var source = require("vinyl-source-stream");
 var streamify = require("gulp-streamify");
 var swig = require("swig");
@@ -218,6 +219,10 @@ function build(done, dev) {
 
         "link": function(url) {
           return site_url + url;
+        },
+
+        "slug": function(title) {
+          return slug(title);
         },
 
         // Only for the blog page navigation.
