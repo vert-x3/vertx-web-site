@@ -6,7 +6,7 @@ var full_time_developers = [{
   github_id: "vietj",
   name: "Julien Viet",
   role: "Project lead",
-  avatar: "http://www.gravatar.com/avatar/cb52062fbd7e159b54e3c298d622fe72?s=80",
+  avatar: "https://www.gravatar.com/avatar/cb52062fbd7e159b54e3c298d622fe72?s=80",
   homepage: "http://blog.julienviet.com",
   github: "https://github.com/vietj",
   twitter: "https://twitter.com/julienviet"
@@ -14,7 +14,7 @@ var full_time_developers = [{
   github_id: "pmlopes",
   name: "Paulo Lopes",
   role: "Core developer",
-  avatar: "http://www.gravatar.com/avatar/e948f0816514cc90a10bbe9ca1060d60?s=80",
+  avatar: "https://www.gravatar.com/avatar/e948f0816514cc90a10bbe9ca1060d60?s=80",
   homepage: "http://pmlopes.svbtle.com/",
   github: "https://github.com/pmlopes",
   twitter: "https://twitter.com/jetdrone"
@@ -22,7 +22,7 @@ var full_time_developers = [{
   github_id: "cescoffier",
   name: "Clement Escoffier",
   role: "Core developer",
-  avatar: "http://gravatar.com/avatar/ab937f7df990a673446f1e30fd9ccfba?s=80",
+  avatar: "https://gravatar.com/avatar/ab937f7df990a673446f1e30fd9ccfba?s=80",
   homepage: "http://escoffier.me/",
   github: "https://github.com/cescoffier",
   twitter: "https://twitter.com/clementplop"
@@ -49,7 +49,7 @@ var maintainers = [{
   github_id: "michel-kraemer",
   name: "Michel Kr&auml;mer",
   contribution: "Web-site",
-  avatar: "http://www.gravatar.com/avatar/bdcf8af7892cb0147cb22828d37e872f?s=80",
+  avatar: "https://www.gravatar.com/avatar/bdcf8af7892cb0147cb22828d37e872f?s=80",
   homepage: "http://www.michel-kraemer.com",
   github: "https://github.com/michel-kraemer",
   google_plus: "https://plus.google.com/115526316201910245712"
@@ -180,14 +180,14 @@ var maintainers = [{
 var contributors = [{
   github_id: "jotschi",
   name: "Johannes Sch&uuml;th",
-  avatar: "http://www.gravatar.com/avatar/1e57b87157678193e7a0faf22ae3e958?s=80",
+  avatar: "https://www.gravatar.com/avatar/1e57b87157678193e7a0faf22ae3e958?s=80",
   homepage: "http://www.jotschi.de",
   github: "https://github.com/jotschi",
   twitter: "https://twitter.com/jotschi"
 }, {
   github_id: "msoute",
   name: "Marcel Soute",
-  avatar: "http://www.gravatar.com/avatar/4fe2cb46fafbdfd35b32be964b0b1597?s=80",
+  avatar: "https://www.gravatar.com/avatar/4fe2cb46fafbdfd35b32be964b0b1597?s=80",
   github: "https://github.com/msoute",
   twitter: "https://twitter.com/marcelsoute"
 }, {
@@ -202,7 +202,7 @@ var contributors = [{
 }, {
   github_id: "sisqbates",
   name: "Ferran Puig",
-  avatar: "http://www.gravatar.com/avatar/1490b5d8f7be9ccf0c056ff58ba95e0e?s=80",
+  avatar: "https://www.gravatar.com/avatar/1490b5d8f7be9ccf0c056ff58ba95e0e?s=80",
   github: "https://github.com/sisqbates",
   twitter: "https://twitter.com/sisqbates"
 }, {
