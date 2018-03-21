@@ -55,7 +55,7 @@ var admonitions = require("./src/main/admonition/admonition.js");
 
 // path to website on the server in production mode (i.e. when running
 // `gulp build`). MUST BE ABSOLUTE AND MUST END WITH A SLASH!
-var contextPath = "/preview/";
+var contextPath = "/";
 
 // path to website on the server in development mode (i.e. when running
 // `gulp watch`). MUST BE ABSOLUTE AND MUST END WITH A SLASH!
