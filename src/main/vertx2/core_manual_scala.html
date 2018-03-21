@@ -2,7 +2,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   <!-- <link rel="stylesheet/less" href="bootstrap/less/bootstrap.less">
   <script src="bootstrap/less/less-1.3.3.min.js"></script>
   -->
@@ -412,7 +412,7 @@ class Server extends Verticle {
 </pre>
 <p>And than you can use pattern matching with Try[_] like this:</p>
 <pre class="prettyprint">override def start(startedResult: Promise[Unit]) {
-    container.deployVerticle("foo.js", Json.obj(), 1, { 
+    container.deployVerticle("foo.js", Json.obj(), 1, {
         case Success(result) =&gt; startedResult.success(result)
         case Failure(x) =&gt; startedResult.failure(x)
     }: Try[String] =&gt; Unit)
@@ -514,7 +514,7 @@ container.deployWorkerVerticle("verticle5.js", verticle5Config, 10)
         "age": 1234,
         "shoe_size": 12,
         "pi": 3.14159
-    }, 
+    },
     "verticle3_conf": {
         "strange": true
     },
@@ -523,7 +523,7 @@ container.deployWorkerVerticle("verticle5.js", verticle5Config, 10)
     },
     "verticle5_conf": {
         "tel_no": "123123123"
-    }       
+    }
 }
 </pre>
 <p>Then set the <code>AppStarter</code> as the main of your module and then you can start your entire application by simply running:</p>
@@ -841,7 +841,7 @@ for (i &lt;- 0 until buff.length() by 4) {
 <p>A usage example would be using a Scala verticle to send or receive JSON messages from the event bus.</p>
 <pre class="prettyprint">val eb = vertx.eventBus
 
-val obj = Json.obj("foo" -&gt; "wibble", "age" -&gt; 1000)                                     
+val obj = Json.obj("foo" -&gt; "wibble", "age" -&gt; 1000)
 eb.send("some-address", obj)
 
 
@@ -871,7 +871,7 @@ logger.info("First this is printed")
 <h2 id="periodic-timers">Periodic Timers</h2><br/>
 <p>You can also set a timer to fire periodically by using the <code>setPeriodic</code> method. There will be an initial delay equal to the period. The return value of <code>setPeriodic</code> is a unique timer id (long). This can be later used if the timer needs to be cancelled. The argument passed into the timer event handler is also the unique timer id:</p>
 <pre class="prettyprint">val timerID = vertx.setPeriodic(1000, { timerID: Long =&gt;
-    logger.info("And every second this is printed")   
+    logger.info("And every second this is printed")
 })
 
 logger.info("First this is printed")
@@ -886,7 +886,7 @@ vertx.cancelTimer(timerID)
 </pre>
 <p>Or you can cancel it from inside the event handler. The following example cancels the timer after it has fired 10 times.</p>
 <pre class="prettyprint">var count: Int = 0
-val timerID = vertx.setPeriodic(1000, { timerID: Long =&gt; 
+val timerID = vertx.setPeriodic(1000, { timerID: Long =&gt;
     logger.info("In event handler " + count)
     count = count + 1
     if (count == 10) {
@@ -1013,7 +1013,7 @@ sock.write(myBuffer)
 <p>If you want to be notified when a socket is closed, you can set the `closedHandler':</p>
 <pre class="prettyprint">vertx.createNetServer.connectHandler({ sock: NetSocket =&gt;
     sock.closeHandler({
-        logger.info("The socket is now closed")   
+        logger.info("The socket is now closed")
     })
 }).listen(1234, "localhost")
 </pre>
@@ -1192,7 +1192,7 @@ client.setReconnectInterval(500)
 </pre>
 <p>And there we have it. The <code>drainHandler</code> event handler will get called when the write queue is ready to accept more data, this resumes the <code>NetSocket</code> which allows it to read more data.</p>
 <p>It's very common to want to do this when writing Vert.x applications, so we provide a helper class called <code>Pump</code> which does all this hard work for you. You just feed it the <code>ReadStream</code> and the <code>WriteStream</code> and it tell it to start:</p>
-<pre class="prettyprint">vertx.createNetServer.connectHandler({ sock: NetSocket =&gt;      
+<pre class="prettyprint">vertx.createNetServer.connectHandler({ sock: NetSocket =&gt;
     Pump.create(sock, sock).start()
 }).listen(1234, "localhost")
 </pre>
@@ -1307,7 +1307,7 @@ server.requestHandler({ request: HttpServerRequest =&gt;
         sb.append(header.getKey()).append(": ").append(header.getValue()).append("\n")
     }
     request.response().putHeader("content-type", "text/plain")
-    request.response().end(sb.toString())        
+    request.response().end(sb.toString())
 }).listen(8080, "localhost")
 </pre>
 <h4 id="request-params">Request params</h4><br/>
@@ -1345,7 +1345,7 @@ param2: 'xyz
     })
     request.endHandler({
         // The entire body has now been received
-        logger.info("The total body received was " + body.length() + " bytes") 
+        logger.info("The total body received was " + body.length() + " bytes")
     })
 }).listen(8080, "localhost")
 </pre>
@@ -1388,7 +1388,7 @@ request.uploadHandler({ upload: HttpServerFileUpload =&gt;
 <p>As previously mentioned, the HTTP request object contains a method <code>response()</code>. This returns the HTTP response for the request. You use it to write the response back to the client.</p>
 <h3 id="setting-status-code-and-message">Setting Status Code and Message</h3><br/>
 <p>To set the HTTP status code for the response use the <code>setStatusCode()</code> method, e.g.</p>
-<pre class="prettyprint">vertx.createHttpServer.requestHandler({ request: HttpServerRequest =&gt;    
+<pre class="prettyprint">vertx.createHttpServer.requestHandler({ request: HttpServerRequest =&gt;
     request.response().setStatusCode(739).setStatusMessage("Too many gerbils").end()
 }).listen(8080, "localhost")
 </pre>
@@ -1469,8 +1469,8 @@ request.response().trailers().add("Favourite-Shakin-Stevens-Song", "Behind the G
 <h3 id="pumping-responses">Pumping Responses</h3><br/>
 <p>Since the HTTP Response implements <code>WriteStream</code> you can pump to it from any <code>ReadStream</code>, e.g. an <code>AsyncFile</code>, <code>NetSocket</code>, <code>WebSocket</code> or <code>HttpServerRequest</code>.</p>
 <p>Here's an example which echoes HttpRequest headers and body back in the HttpResponse. It uses a pump for the body, so it will work even if the HTTP request body is much larger than can fit in memory at any one time:</p>
-<pre class="prettyprint">vertx.createHttpServer.requestHandler({ req: HttpServerRequest =&gt;   
-    req.response().headers().set(req.headers())  
+<pre class="prettyprint">vertx.createHttpServer.requestHandler({ req: HttpServerRequest =&gt;
+    req.response().headers().set(req.headers())
     Pump.createPump(req, req.response()).start()
     req.endHandler({
         req.response().end()
@@ -1478,9 +1478,9 @@ request.response().trailers().add("Favourite-Shakin-Stevens-Song", "Behind the G
 }).listen(8080, "localhost")
 </pre>
 <h3 id="http-compression">HTTP Compression</h3><br/>
-<p>Vert.x comes with support for HTTP Compression out of the box. 
-Which means you are able to automatically compress the body of the responses before they are sent back to the Client. 
-If the client does not support HTTP Compression the responses are sent back without compressing the body. 
+<p>Vert.x comes with support for HTTP Compression out of the box.
+Which means you are able to automatically compress the body of the responses before they are sent back to the Client.
+If the client does not support HTTP Compression the responses are sent back without compressing the body.
 This allows to handle Client that support HTTP Compression and those that not support it at the same time.</p>
 <p>To enable compression you only need to do:</p>
 <pre class="prettyprint">val server = vertx.createHttpServer()
@@ -1653,7 +1653,7 @@ request.end()
 <p>The body handler is called only once when the <em>entire</em> response body has been read.</p>
 <p><em>Beware of doing this with very large responses since the entire response body will be stored in memory.</em></p>
 <p>Here's an example using <code>bodyHandler</code>:</p>
-<pre class="prettyprint">vertx.createHttpClient().setHost("foo.com").getNow("/some-path/", { resp: HttpClientResponse =&gt;    
+<pre class="prettyprint">vertx.createHttpClient().setHost("foo.com").getNow("/some-path/", { resp: HttpClientResponse =&gt;
     resp.bodyHandler( { body: Buffer =&gt;
         // The entire response body has been received
         logger.info("The total body received was " + body.length() + " bytes")
@@ -1678,7 +1678,7 @@ val request = client.put("/some-path/", { resp: HttpClientResponse =&gt;
 request.putHeader("Expect", "100-Continue")
 
 request.continueHandler({
-    // OK to send rest of body            
+    // OK to send rest of body
     request.write("Some data").end()
 }.asInstanceOf[Handler[Void]])
 
@@ -1689,7 +1689,7 @@ request.sendHead()
 compressed response bodies. A Http server is free to either compress with one of the supported compression algorithm or send the body back without compress it at all. So this
 is only a hint for the Http server which it may ignore at all.</p>
 <p>To tell the Http server which compression is supported by the <code>HttpClient</code> it will include a 'Accept-Encoding' header with the supported
-compression algorithm as value. Multiple compression algorithms are supported. In case of Vert.x this will result in have the 
+compression algorithm as value. Multiple compression algorithms are supported. In case of Vert.x this will result in have the
 following header added:</p>
 <pre class="prettyprint">Accept-Encoding: gzip, deflate
 </pre>
@@ -1779,7 +1779,7 @@ val routeMatcher = new RouteMatcher()
 
 routeMatcher.allWithRegEx("\\/([^\\/]+)\\/([^\\/]+)", { req: HttpServerRequest =&gt;
     val first = req.params().get("param0")
-    val second = req.params().get("param1")          
+    val second = req.params().get("param1")
     req.response.end("first is " + first + " and second is " + second)
 })
 
@@ -1818,7 +1818,7 @@ server.requestHandler(routeMatcher).listen(8080, "localhost")
 <p>To check the path, you can query the <code>path()</code> method of the websocket. You can then call the <code>reject()</code> method to reject the websocket.</p>
 <pre class="prettyprint">vertx.createHttpServer.websocketHandler({ ws: ServerWebSocket =&gt;
     if (ws.path().equals("/services/echo")) {
-        Pump.createPump(ws, ws).start()                      
+        Pump.createPump(ws, ws).start()
     } else {
         ws.reject()
     }
@@ -2015,7 +2015,7 @@ val inboundPermitted2 = Json.obj("address" -&gt; "demo.persistor", "match" -&gt;
 
 inboundPermitted.add(inboundPermitted2)
 
-// Allow through any message with a field `wibble` with value `foo`.                                            
+// Allow through any message with a field `wibble` with value `foo`.
 val inboundPermitted3 = Json.obj("match" -&gt; Json.obj("wibble" -&gt; "foo"))
 inboundPermitted.add(inboundPermitted3)
 
@@ -2125,7 +2125,7 @@ r--r--r--
     if (ar.succeeded()) {
         logger.info("File props are:")
         logger.info("Last accessed: " + ar.result().lastAccessTime())
-        // etc 
+        // etc
     } else {
         logger.error("Failed to get props", ar.cause())
     }
@@ -2151,8 +2151,8 @@ r--r--r--
 <p><code>readSymLink(link, handler)</code></p>
 <p><code>link</code> is the name of the link to read. An usage example would be:</p>
 <pre class="prettyprint">vertx.fileSystem.readSymlink("somelink", { ar: AsyncResult[String] =&gt;
-    if (ar.succeeded()) {                
-        logger.info("Link points at  " + ar.result())               
+    if (ar.succeeded()) {
+        logger.info("Link points at  " + ar.result())
     } else {
         logger.error("Failed to read", ar.cause())
     }
@@ -2181,8 +2181,8 @@ r--r--r--
 </ul>
 <p>If <code>createParents</code> is <code>true</code>, this creates a new directory and creates any of its parents too. Here's an example</p>
 <pre class="prettyprint">vertx.fileSystem.mkdir("a/b/c", true, { ar: AsyncResult[Void] =&gt;
-    if (ar.succeeded()) {                
-        logger.info("Directory created ok")               
+    if (ar.succeeded()) {
+        logger.info("Directory created ok")
     } else {
         logger.error("Failed to mkdir", ar.cause())
     }
@@ -2204,11 +2204,11 @@ r--r--r--
 </ul>
 <p>List only the contents of a directory which match the filter. Here's an example which only lists files with an extension <code>txt</code> in a directory.</p>
 <pre class="prettyprint">vertx.fileSystem.readDir("mydirectory", "^.*\\.txt$", { ar: AsyncResult[Array[String]] =&gt;
-    if (ar.succeeded()) {                
+    if (ar.succeeded()) {
         logger.info("Directory contains these .txt files")
         for (i &lt;- 0 until ar.result().length) {
             logger.info(ar.result()(i))
-        }               
+        }
     } else {
         logger.error("Failed to read", ar.cause())
     }
@@ -2239,7 +2239,7 @@ r--r--r--
 <p><code>exists(file, handler)</code>. Where <code>file</code> is the file name.</p>
 <p>The result is returned in the handler.</p>
 <pre class="prettyprint">vertx.fileSystem.exists("some-file.txt", { ar: AsyncResult[Boolean] =&gt;
-    if (ar.succeeded()) {                
+    if (ar.succeeded()) {
         logger.info("File " + (if(ar.result()) "exists" else "does not exist"))
     } else {
         logger.error("Failed to check existence", ar.cause())
@@ -2257,9 +2257,9 @@ r--r--r--
 </ul>
 <p>Here is an example:</p>
 <pre class="prettyprint">vertx.fileSystem.fsProps("mydir", { ar: AsyncResult[FileSystemProps] =&gt;
-    if (ar.succeeded()) {                
+    if (ar.succeeded()) {
         logger.info("total space: " + ar.result().totalSpace())
-        // etc            
+        // etc
     } else {
         logger.error("Failed to check existence", ar.cause())
     }
@@ -2290,9 +2290,9 @@ r--r--r--
 <p>Opens a file. <code>file</code> is the file name. If <code>read</code> is <code>true</code> it is opened for reading. If <code>write</code> is <code>true</code> it is opened for writing. It <code>createNew</code> is <code>true</code> it creates it if it does not already exist. If <code>flush</code> is <code>true</code> all writes are immediately flushed through the OS cache (default value of <code>flush</code> is false).</p>
 <p>When the file is opened, an instance of <code>org.vertx.java.core.file.AsyncFile</code> is passed into the result handler:</p>
 <pre class="prettyprint">vertx.fileSystem.open("some-file.dat", { ar: AsyncResult[AsyncFile] =&gt;
-    if (ar.succeeded()) {                
+    if (ar.succeeded()) {
         logger.info("File opened ok!")
-        // etc            
+        // etc
     } else {
         logger.error("Failed to open file", ar.cause())
     }
@@ -2312,20 +2312,20 @@ r--r--r--
 </ul>
 <p>Here is an example of random access writes:</p>
 <pre class="prettyprint">vertx.fileSystem.open("some-file.dat", { ar: AsyncResult[AsyncFile] =&gt;
-    if (ar.succeeded()) {    
-        val asyncFile = ar.result()           
-        // File open, write a buffer 5 times into a file              
+    if (ar.succeeded()) {
+        val asyncFile = ar.result()
+        // File open, write a buffer 5 times into a file
         val buff = Buffer("foo")
         for (i &lt;- 0 until 5) {
             asyncFile.write(buff, buff.length() * i, { ar: AsyncResult[Void] =&gt;
-                if (ar.succeeded()) {               
+                if (ar.succeeded()) {
                     logger.info("Written ok!")
-                    // etc            
+                    // etc
                 } else {
                     logger.error("Failed to write", ar.cause())
                 }
-            }) 
-        }            
+            })
+        }
     } else {
         logger.error("Failed to open file", ar.cause())
     }
@@ -2343,19 +2343,19 @@ r--r--r--
 </ul>
 <p>Here's an example of random access reads:</p>
 <pre class="prettyprint">vertx.fileSystem.open("some-file.dat", { ar: AsyncResult[AsyncFile] =&gt;
-    if (ar.succeeded()) {    
+    if (ar.succeeded()) {
         val asyncFile = ar.result()
         val buff = Buffer(1000)
         for (i &lt;- 0 until 10) {
             asyncFile.read(buff, i * 100, i * 100, 100, { ar: AsyncResult[Buffer] =&gt;
-                if (ar.succeeded()) {                
+                if (ar.succeeded()) {
                     logger.info("Read ok!")
-                    // etc            
+                    // etc
                 } else {
                     logger.error("Failed to write", ar.cause())
                 }
-            })  
-        }      
+            })
+        }
     } else {
         logger.error("Failed to open file", ar.cause())
     }
@@ -2371,7 +2371,7 @@ r--r--r--
 <pre class="prettyprint">val client = vertx.createHttpClient.setHost("foo.com")
 
 vertx.fileSystem.open("some-file.dat", { ar: AsyncResult[AsyncFile] =&gt;
-    if (ar.succeeded()) {    
+    if (ar.succeeded()) {
         val request = client.put("/uploads", { resp: HttpClientResponse =&gt;
             logger.info("Received response: " + resp.statusCode())
         })
@@ -2381,7 +2381,7 @@ vertx.fileSystem.open("some-file.dat", { ar: AsyncResult[AsyncFile] =&gt;
         asyncFile.endHandler({
             // File sent, end HTTP requuest
             request.end()
-        })    
+        })
     } else {
         logger.error("Failed to open file", ar.cause())
     }

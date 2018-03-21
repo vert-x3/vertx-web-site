@@ -2,7 +2,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   <!-- <link rel="stylesheet/less" href="bootstrap/less/bootstrap.less">
   <script src="bootstrap/less/less-1.3.3.min.js"></script>
   -->
@@ -507,7 +507,7 @@ vertx.deployWorkerVerticle("verticle5.js", appConfig.verticle5Config, 10);
     },
     verticle2Config: {
         // Config for verticle2
-    }, 
+    },
     verticle3Config: {
         // Config for verticle3
     },
@@ -516,7 +516,7 @@ vertx.deployWorkerVerticle("verticle5.js", appConfig.verticle5Config, 10);
     },
     verticle5Config: {
         // Config for verticle5
-    }  
+    }
 }
 </pre>
 <p>If your application is large and actually composed of multiple modules rather than verticles you can use the same technique.</p>
@@ -817,7 +817,7 @@ var str = buff.getString(pos, end, 'UTF-16'); // Read from pos to end interprete
 <p>A one shot timer calls an event handler after a certain delay, expressed in milliseconds. </p>
 <p>To set a timer to fire once you use the <code>setTimer</code> method passing in the delay and a handler function</p>
 <pre class="prettyprint">var timerID = vertx.setTimer(1000, function(timerID) {
-    console.log("And one second later this is printed"); 
+    console.log("And one second later this is printed");
 });
 
 console.log("First this is printed");
@@ -826,7 +826,7 @@ console.log("First this is printed");
 <h2 id="periodic-timers">Periodic Timers</h2><br/>
 <p>You can also set a timer to fire periodically by using the <code>setPeriodic</code> method. There will be an initial delay equal to the period. The return value of <code>setPeriodic</code> is a unique timer id (long). This can be later used if the timer needs to be cancelled. The argument passed into the timer event handler is also the unique timer id:</p>
 <pre class="prettyprint">var timerID = vertx.setPeriodic(1000, function(timerID) {
-    console.log("And every second this is printed"); 
+    console.log("And every second this is printed");
 });
 
 console.log("First this is printed");
@@ -844,7 +844,7 @@ vertx.cancelTimer(timerID);
 <pre class="prettyprint">var count = 0;
 
 vertx.setPeriodic(1000, function(id) {
-    console.log('In event handler ' + count); 
+    console.log('In event handler ' + count);
     count++;
     if (count === 10) {
         vertx.cancelTimer(id);
@@ -988,8 +988,8 @@ server.connectHandler(function(sock) {
 
 server.connectHandler(function(sock) {
 
-    sock.closedHandler(function() {        
-        console.log('The socket is now closed');            
+    sock.closedHandler(function() {
+        console.log('The socket is now closed');
     });
 });
 </pre>
@@ -1000,8 +1000,8 @@ server.connectHandler(function(sock) {
 
 server.connectHandler(function(sock) {
 
-    sock.exceptionHandler(function(ex) {        
-        console.error('Oops. Something went wrong ' + ex.getMessage());            
+    sock.exceptionHandler(function(ex) {
+        console.error('Oops. Something went wrong ' + ex.getMessage());
     });
 });
 </pre>
@@ -1139,7 +1139,7 @@ server.connectHandler(function(sock) {
 
         // Write data straight back on the socket
 
-        sock.write(buffer); 
+        sock.write(buffer);
     });
 
 }).listen(1234, 'localhost');
@@ -1152,8 +1152,8 @@ server.connectHandler(function(sock) {
 
     sock.dataHandler(function(buffer) {
 
-        if (!sock.writeQueueFull()) {      
-            sock.write(buffer); 
+        if (!sock.writeQueueFull()) {
+            sock.write(buffer);
         }
     });
 
@@ -1166,8 +1166,8 @@ server.connectHandler(function(sock) {
 
     sock.dataHandler(function(buffer) {
 
-        sock.write(buffer); 
-        if (sock.writeQueueFull()) {      
+        sock.write(buffer);
+        if (sock.writeQueueFull()) {
             sock.pause();
         }
     });
@@ -1181,8 +1181,8 @@ server.connectHandler(function(sock) {
 
     sock.dataHandler(function(buffer) {
 
-        sock.write(buffer); 
-        if (sock.writeQueueFull()) {      
+        sock.write(buffer);
+        if (sock.writeQueueFull()) {
             sock.pause();
 
             sock.drainHandler(function() {
@@ -1422,7 +1422,7 @@ request.uploadHandler(function(upload) {
 <pre class="prettyprint">var server = vertx.createHttpServer();
 
 server.requestHandler(function(req) {
-    request.response.statusCode(777).statusMessage("Too many gerbils").end();       
+    request.response.statusCode(777).statusMessage("Too many gerbils").end();
 }).listen(8080, "localhost");
 </pre>
 <p>You can also use the <code>statusMessage()</code> function to set the status message. If you do not set the status message a default message will be used.    </p>
@@ -1493,7 +1493,7 @@ server.requestHandler(function(req) {
   } else if (req.path().indexOf('..') == -1) {
     file = req.path();
   }
-  req.response.sendFile('web/' + file);   
+  req.response.sendFile('web/' + file);
 }).listen(8080, 'localhost');
 </pre>
 <p>There's also a version of <code>sendFile</code> which takes the name of a file to serve if the specified file cannot be found:</p>
@@ -1646,8 +1646,8 @@ request.end();
 <pre class="prettyprint">var client = vertx.createHttpClient().host("foo.com");
 
 client.getNow("/some-path/", function(resp) {
-    console.log('server returned status code: ' + resp.statusCode());   
-    console.log('server returned status message: ' + resp.statusMessage());   
+    console.log('server returned status code: ' + resp.statusCode());
+    console.log('server returned status message: ' + resp.statusMessage());
 });
 </pre>
 <h4 id="reading-data-from-the-response-body">Reading Data from the Response Body</h4><br/>
@@ -1659,7 +1659,7 @@ client.getNow("/some-path/", function(resp) {
 client.getNow('/some-path', function(resp) {
   resp.dataHandler(function(buffer) {
     console.log('I received ' + buffer.length() + ' bytes');
-  });    
+  });
 });
 </pre>
 <p>The response object implements the <code>ReadStream</code> interface so you can pump the response body to a <code>WriteStream</code>. See the chapter on streams and pump for a detailed explanation. </p>
@@ -1765,7 +1765,7 @@ routeMatcher.get('/animals/dogs', function(req) {
 });
 
 routeMatcher.get('/animals/cats', function(req) {
-    req.response().end('You requested cats');    
+    req.response().end('You requested cats');
 });
 
 server.requestHandler(routeMatcher).listen(8080, 'localhost');
@@ -1781,7 +1781,7 @@ server.requestHandler(routeMatcher).listen(8080, 'localhost');
 
 var routeMatcher = new vertx.RouteMatcher();
 
-routeMatcher.put('/:blogname/:post', function(req) {        
+routeMatcher.put('/:blogname/:post', function(req) {
     var blogName = req.params().get('blogname');
     var post = req.params().get('post');
     req.response().end('blogname is ' + blogName + ', post is ' + post);
@@ -1802,7 +1802,7 @@ server.requestHandler(routeMatcher).listen(8080, 'localhost');
 
 var routeMatcher = new vertx.RouteMatcher();
 
-routeMatcher.allWithRegEx('\/([^\/]+)\/([^\/]+)', function(req) {        
+routeMatcher.allWithRegEx('\/([^\/]+)\/([^\/]+)', function(req) {
     var first = req.params().get('param0');
     var second = req.params().get('param1');
     req.response.end("first is " + first + " and second is " + second);
@@ -1857,7 +1857,7 @@ server.websocketHandler(function(websocket) {
     new vertx.Pump(websocket, websocket).start();
   } else {
     websocket.reject();
-  }        
+  }
 }).listen(8080, 'localhost');
 </pre>
 <h3 id="headers-on-the-websocket">Headers on the websocket</h3><br/>
@@ -2168,7 +2168,7 @@ r--r--r--
     } else {
         console.log('File props are:');
         console.log('Last accessed: ' + props.lastAccessTime);
-        // etc 
+        // etc
     }
 });
 </pre>
@@ -2244,7 +2244,7 @@ r--r--r--
   if (!err) {
     console.log('Directory contains these .txt files');
     for (var i = 0; i &lt; res.length; i++) {
-      console.log(res[i]);  
+      console.log(res[i]);
     }
   }
 });
@@ -2324,7 +2324,7 @@ var flags = vertx.FileSystem.OPEN_READ | vertx.FileSystem.OPEN_WRITE;
             console.log('Failed to open file ' + err);
         } else {
             console.log('File opened ok');
-            asyncFile.close(); // Close it    
+            asyncFile.close(); // Close it
         }
     });
 </pre>
@@ -2354,7 +2354,7 @@ var flags = vertx.FileSystem.OPEN_READ | vertx.FileSystem.OPEN_WRITE;
         if (err) {
             console.log('Failed to open file ' + err);
         } else {
-            // File open, write a buffer 5 times into a file              
+            // File open, write a buffer 5 times into a file
             var buff = new vertx.Buffer('foo');
             for (var i = 0; i &lt; 5; i++) {
                 asyncFile.write(buff, buff.length() * i, function(err) {
@@ -2363,7 +2363,7 @@ var flags = vertx.FileSystem.OPEN_READ | vertx.FileSystem.OPEN_WRITE;
                     } else {
                         console.log('Written ok');
                     }
-                });    
+                });
             }
         }
     });
@@ -2382,7 +2382,7 @@ var flags = vertx.FileSystem.OPEN_READ | vertx.FileSystem.OPEN_WRITE;
 <pre class="prettyprint">vertx.fileSystem.open('some-file.dat', function(err, asyncFile) {
     if (err) {
         console.log('Failed to open file ' + err);
-    } else {                   
+    } else {
         var buff = new vertx.Buffer(1000);
         for (var i = 0; i &lt; 10; i++) {
             asyncFile.read(buff, i * 100, i * 100, 100, function(err) {
@@ -2391,7 +2391,7 @@ var flags = vertx.FileSystem.OPEN_READ | vertx.FileSystem.OPEN_WRITE;
                 } else {
                     console.log('Read ok');
                 }
-            });    
+            });
         }
     }
 });
@@ -2407,11 +2407,11 @@ var flags = vertx.FileSystem.OPEN_READ | vertx.FileSystem.OPEN_WRITE;
 vertx.fileSystem.open('some-file.dat', function(err, asyncFile) {
     if (err) {
         console.log('Failed to open file ' + err);
-    } else {                   
+    } else {
         var request = client.put('/uploads', function(resp) {
             console.log('resp status code ' + resp.statusCode());
-        });            
-        new vertx.Pump(asyncFile, request).start();            
+        });
+        new vertx.Pump(asyncFile, request).start();
         asyncFile.endHandler(function() {
             // File sent, end HTTP requuest
             request.end();
@@ -2542,7 +2542,7 @@ define which Mail-Server accepts emails for a given domain.</p>
 <p>The result handler will be provided with an array of MxRecords sorted by
 priority, with lowest priority numbers first. E.g. record.priority of 1
 comes before record.priority of 2 in the list.</p>
-<p>The MxRecord allows you to access the priority and the name of the record 
+<p>The MxRecord allows you to access the priority and the name of the record
 as object properties.</p>
 <pre class="prettyprint">record = records[0]
 record.priority
@@ -2664,7 +2664,7 @@ inspect the cause in more detail.</p>
 <h3 id="badtime">BADTIME</h3><br/>
 <p>Bad timestamp</p>
 <p>All of those errors are generated by the DNS Server itself.</p>
-<p>The DNS response code will be provided as a 
+<p>The DNS response code will be provided as a
 You can obtain the DnsResponseCode from the DnsException like:</p>
 <pre class="prettyprint">client.lookup('not.exist.vertx.io', function(err, result) {
     if (err != null &amp;&amp; err instanceof org.vertx.java.core.dns.DnsException) {

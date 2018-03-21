@@ -47,6 +47,7 @@
     "request": "2.55.0",
     "serve-static": "^1.9.2",
     "simplecrawler": "^0.5.4",
+    "slug-component": "^1.1.0",
     "swig": "^1.4.2",
     "through2": "^0.6.5",
     "vinyl-source-stream": "^1.1.0"
