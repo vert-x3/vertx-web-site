@@ -6,17 +6,17 @@ author: jotak
 draft: true
 ---
 
-Vert.x is already providing metrics for some time, through the [vertx-dropwizard-metrics](https://vertx.io/docs/vertx-dropwizard-metrics/java/) and [vertx-hawkular-metrics](https://vertx.io/docs/vertx-hawkular-metrics/java/) modules. Both of them implement a service provider interface (SPI) to collect the Vert.x metrics and make them available to their respective backends.
+Vert.x has already been providing metrics for some time, through the [vertx-dropwizard-metrics](https://vertx.io/docs/vertx-dropwizard-metrics/java/) and [vertx-hawkular-metrics](https://vertx.io/docs/vertx-hawkular-metrics/java/) modules. Both of them implement a service provider interface (SPI) to collect the Vert.x metrics and make them available to their respective backends.
 
 A new module, [vertx-micrometer-metrics](https://vertx.io/docs/vertx-micrometer-metrics/java/), is now added to the family. It implements the same SPI, which means that it is able to provide the same metrics.
-[_Micrometer.io_](http://micrometer.io/) is a pretty new metrics library, quite comparable to _dropwizard metrics_ in that it stores metrics in a local, in-memory registry and is able to store them in various backends such as _Graphite_ or _InfluxDB_. It has several advantages as we will see below.
+[_Micrometer.io_](http://micrometer.io/) is a pretty new metrics library, quite comparable to _dropwizard metrics_ in that it collects metrics in a local, in-memory registry and is able to store them in various backends such as _Graphite_ or _InfluxDB_. It has several advantages as we will see below.
 
-## What is Micrometer?
+## Tell me more about Micrometer
 
 [_Micrometer.io_](http://micrometer.io/) describes itself as a a vendor-neutral application metrics facade.
 It provides a well designed API, in Java, to define _gauges_, _counters_, _timers_ and _distribution summaries_.
 
-Among the available backends, Micrometer natively supports _Graphite_, _InfluxDB_, _JMX_, _Prometheus_ and [several others](http://micrometer.io/docs). Prometheus is very popular in the Kubernetes and microservices ecosystems, so its support by Micrometer was a strong motivation for implementing _vertx-micrometer-metrics_.
+Among the available backends, Micrometer natively supports _Graphite_, _InfluxDB_, _JMX_, _Prometheus_ and [several others](http://micrometer.io/docs). Prometheus is very popular in the Kubernetes and microservices ecosystems, so its support by Micrometer was a strong motivation for implementing it in Vert.x.
 
 For the the moment, our implementation in Vert.x supports _Prometheus_, _InfluxDB_ and _JMX_. More should quickly come in the near future.
 
@@ -24,9 +24,9 @@ For the the moment, our implementation in Vert.x supports _Prometheus_, _InfluxD
 
 Another interesting aspect in Micrometer is that it handles metrics _dimensionality_: metrics can be associated with a set of key/value pairs (sometimes refered as _tags_, sometimes as _labels_). Every value brings a new dimension to the metric, so that in Prometheus or any other backend that supports dimensionality, we can query for datapoints of one or several dimensions, or query for datapoints aggregated over several dimensions.
 
-For instance, `vertx_http_server_connections` accepts labels `local` and `remote`.
+  *Example: our metric `vertx_http_server_connections` accepts labels `local` and `remote`, that are used to store addresses on HTTP connections*
 
-[NOTE Note | Prometheus is used in the following examples, but equivalent queries can be performed with _InfluxDB_.]
+[NOTE | Prometheus is used in the following examples, but equivalent queries can be performed with _InfluxDB_.]
 
 In Prometheus, the query `vertx_http_server_connections` will return as many timeseries as there are combinations of `local` and `remote` values. Example:
 
@@ -46,7 +46,7 @@ To get an aggregate, Prometheus (PromQL) provides several [aggregation operators
 
 ## So what are the Vert.x metrics?
 
-People already familiar with the existing metrics modules (_dropwizard_ or _hawkular_) will not be disoriented. They are roughly the same. The main difference is where previous metric names could have a variable part within, such as `vertx.eventbus.handlers.myaddress`, here we take advantage of dimensionality and we will have `vertx_eventbus_handlers{address="myaddress"}`.
+People already familiar with the existing metrics modules (_dropwizard_ or _hawkular_) will not be too disoriented. They are roughly the same. The main difference is where previously, some metric names could have a variable part within - such as `vertx.eventbus.handlers.myaddress` - here we take advantage of dimensionality and we will have `vertx_eventbus_handlers{address="myaddress"}`.
 
 Some other metrics are no longer useful, for instance the dropwizard's `vertx.eventbus.messages.pending`, `vertx.eventbus.messages.pending-local` and `vertx.eventbus.messages.pending-remote` are now just `vertx_eventbus_pending{side=local}` and `vertx_eventbus_pending{side=remote}` in micrometer. The sum of them can easily be computed at query time.
 
@@ -71,51 +71,51 @@ This section will guide you through a quick setup to run a Vert.x application wi
 The configuration and the maven imports will vary according to the backend storage that will be used. For maven, the common part is always:
 
 ```xml
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-micrometer-metrics</artifactId>
-      <version>3.5.1</version>
-    </dependency>
+<dependency>
+  <groupId>io.vertx</groupId>
+  <artifactId>vertx-micrometer-metrics</artifactId>
+  <version>3.5.1</version>
+</dependency>
 ```
 
 * Then, to report to InfluxDB:
 
 ```xml
-    <dependency>
-      <groupId>io.micrometer</groupId>
-      <artifactId>micrometer-registry-influx</artifactId>
-      <version>1.0.0</version>
-    </dependency>
+<dependency>
+  <groupId>io.micrometer</groupId>
+  <artifactId>micrometer-registry-influx</artifactId>
+  <version>1.0.0</version>
+</dependency>
 ```
 
 * Or Prometheus:
 
 ```xml
-    <dependency>
-      <groupId>io.micrometer</groupId>
-      <artifactId>micrometer-registry-prometheus</artifactId>
-      <version>1.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-web</artifactId>
-      <version>3.5.1</version>
-    </dependency>
+<dependency>
+  <groupId>io.micrometer</groupId>
+  <artifactId>micrometer-registry-prometheus</artifactId>
+  <version>1.0.0</version>
+</dependency>
+<dependency>
+  <groupId>io.vertx</groupId>
+  <artifactId>vertx-web</artifactId>
+  <version>3.5.1</version>
+</dependency>
 ```
 
-Remark that, since Prometheus pulls metrics from their source, they must be exposed as an HTTP endpoint. That's why `vertx-web` is imported here. It is not _absolutely_ necessary (it's possible to get the metrics registry content and expose it in any other way) but it's probably the easiest way to do.
+Remark that, since Prometheus pulls metrics from their source, they must be exposed on an HTTP endpoint. That's why `vertx-web` is imported here. It is not _absolutely_ necessary (it's possible to get the metrics registry content and expose it in any other way) but it's probably the easiest way to do.
 
 * Or JMX:
 
 ```xml
-    <dependency>
-      <groupId>io.micrometer</groupId>
-      <artifactId>micrometer-registry-jmx</artifactId>
-      <version>1.0.0</version>
-    </dependency>
+<dependency>
+  <groupId>io.micrometer</groupId>
+  <artifactId>micrometer-registry-jmx</artifactId>
+  <version>1.0.0</version>
+</dependency>
 ```
 
-[NOTE Note | At the moment, it is not possible to report metrics to several backends at the same time. [It might be soon implemented](https://github.com/vert-x3/vertx-micrometer-metrics/issues/16)]
+[NOTE Note | At the moment, it is not possible to report metrics to several backends at the same time. [It might be soon implemented](https://github.com/vert-x3/vertx-micrometer-metrics/issues/16)].
 
 ### Setting up Vert.x options
 
@@ -124,57 +124,57 @@ A `MicrometerMetricsOptions` object must be created and passed to `VertxOptions`
 * InfluxDB example:
 
 ```java
-    // Default InfluxDB options will push metrics to localhost:8086, db "default"
-    MicrometerMetricsOptions options = new MicrometerMetricsOptions()
-      .setInfluxDbOptions(new VertxInfluxDbOptions().setEnabled(true))
-      .setEnabled(true);
-    Vertx vertx = Vertx.vertx(new VertxOptions().setMetricsOptions(options));
-    // Then deploy verticles with this vertx instance
+// Default InfluxDB options will push metrics to localhost:8086, db "default"
+MicrometerMetricsOptions options = new MicrometerMetricsOptions()
+  .setInfluxDbOptions(new VertxInfluxDbOptions().setEnabled(true))
+  .setEnabled(true);
+Vertx vertx = Vertx.vertx(new VertxOptions().setMetricsOptions(options));
+// Then deploy verticles with this vertx instance
 ```
 
 * Prometheus example:
 
 ```java
-    // Deploy with embedded server: prometheus metrics will be automatically exposed,
-    // independently from any other HTTP server defined
-    MicrometerMetricsOptions options = new MicrometerMetricsOptions()
-      .setPrometheusOptions(new VertxPrometheusOptions()
-        .setStartEmbeddedServer(true)
-        .setEmbeddedServerOptions(new HttpServerOptions().setPort(8081))
-        .setEnabled(true))
-      .setEnabled(true);
-    Vertx vertx = Vertx.vertx(new VertxOptions().setMetricsOptions(options));
-    // Then deploy verticles with this vertx instance
+// Deploy with embedded server: prometheus metrics will be automatically exposed,
+// independently from any other HTTP server defined
+MicrometerMetricsOptions options = new MicrometerMetricsOptions()
+  .setPrometheusOptions(new VertxPrometheusOptions()
+    .setStartEmbeddedServer(true)
+    .setEmbeddedServerOptions(new HttpServerOptions().setPort(8081))
+    .setEnabled(true))
+  .setEnabled(true);
+Vertx vertx = Vertx.vertx(new VertxOptions().setMetricsOptions(options));
+// Then deploy verticles with this vertx instance
 ```
 
 * Or Prometheus with the `/metrics` endpoint bound to an existing HTTP server:
 
 ```java
-    // Deploy without embedded server: we need to "manually" expose the prometheus metrics
-    MicrometerMetricsOptions options = new MicrometerMetricsOptions()
-      .setPrometheusOptions(new VertxPrometheusOptions().setEnabled(true))
-      .setEnabled(true);
-    Vertx vertx = Vertx.vertx(new VertxOptions().setMetricsOptions(options));
+// Deploy without embedded server: we need to "manually" expose the prometheus metrics
+MicrometerMetricsOptions options = new MicrometerMetricsOptions()
+  .setPrometheusOptions(new VertxPrometheusOptions().setEnabled(true))
+  .setEnabled(true);
+Vertx vertx = Vertx.vertx(new VertxOptions().setMetricsOptions(options));
 
-    Router router = Router.router(vertx);
-    PrometheusMeterRegistry registry = (PrometheusMeterRegistry) BackendRegistries.getDefaultNow();
-    // Setup a route for metrics
-    router.route("/metrics").handler(ctx -> {
-      String response = registry.scrape();
-      ctx.response().end(response);
-    });
-    vertx.createHttpServer().requestHandler(router::accept).listen(8080);
+Router router = Router.router(vertx);
+PrometheusMeterRegistry registry = (PrometheusMeterRegistry) BackendRegistries.getDefaultNow();
+// Setup a route for metrics
+router.route("/metrics").handler(ctx -> {
+  String response = registry.scrape();
+  ctx.response().end(response);
+});
+vertx.createHttpServer().requestHandler(router::accept).listen(8080);
 ```
 
 * JMX example:
 
 ```java
-    // Default JMX options will publish MBeans under domain "metrics"
-    MicrometerMetricsOptions options = new MicrometerMetricsOptions()
-      .setJmxMetricsOptions(new VertxJmxMetricsOptions().setEnabled(true))
-      .setEnabled(true);
-    Vertx vertx = Vertx.vertx(new VertxOptions().setMetricsOptions(options));
-    // Then deploy verticles with this vertx instance
+// Default JMX options will publish MBeans under domain "metrics"
+MicrometerMetricsOptions options = new MicrometerMetricsOptions()
+  .setJmxMetricsOptions(new VertxJmxMetricsOptions().setEnabled(true))
+  .setEnabled(true);
+Vertx vertx = Vertx.vertx(new VertxOptions().setMetricsOptions(options));
+// Then deploy verticles with this vertx instance
 ```
 
 ### Setup the backend server
@@ -189,17 +189,17 @@ docker run -p 8086:8086 influxdb
 * [Prometheus](https://prometheus.io/docs/prometheus/latest/getting_started/) needs some configuration since it pulls metrics from the sources. Once it is installed, configure the scrape endpoints in `prometheus.yml`:
 
 ```yaml
-  - job_name: 'vertx-8081'
-    static_configs:
-      - targets: ['localhost:8081']
+- job_name: 'vertx-8081'
+  static_configs:
+    - targets: ['localhost:8081']
 ```
 
 or, when using `/metrics` endpoint bound to an existing HTTP server:
 
 ```yaml
-  - job_name: 'vertx-8080'
-    static_configs:
-      - targets: ['localhost:8080']
+- job_name: 'vertx-8080'
+  static_configs:
+    - targets: ['localhost:8080']
 ```
 
 * For JMX there is nothing special to configure.
@@ -209,29 +209,29 @@ or, when using `/metrics` endpoint bound to an existing HTTP server:
 From now on, all Vert.x metrics will be collected and sent to the configured backend. In our Vert.x example, we setup an HTTP server metrics:
 
 ```java
-    Router router = Router.router(vertx);
-    router.get("/").handler(ctx -> {
-      ctx.response().end("Hello Micrometer from HTTP!");
-    });
-    vertx.createHttpServer().requestHandler(router::accept).listen(8080);
+Router router = Router.router(vertx);
+router.get("/").handler(ctx -> {
+  ctx.response().end("Hello Micrometer from HTTP!");
+});
+vertx.createHttpServer().requestHandler(router::accept).listen(8080);
 ```
 
  And some event bus ping-pong:
 
 ```java
-    // Producer side
-    vertx.setPeriodic(1000, x -> {
-      vertx.eventBus().send("greeting", "Hello Micrometer from event bus!");
-    });
+// Producer side
+vertx.setPeriodic(1000, x -> {
+  vertx.eventBus().send("greeting", "Hello Micrometer from event bus!");
+});
 ```
 
 ```java
-    // Consumer side
-    vertx.eventBus().<String>consumer("greeting", message -> {
-      String greeting = message.body();
-      System.out.println("Received: " + greeting);
-      message.reply("Hello back!");
-    });
+// Consumer side
+vertx.eventBus().<String>consumer("greeting", message -> {
+  String greeting = message.body();
+  System.out.println("Received: " + greeting);
+  message.reply("Hello back!");
+});
 ```
 
 To trigger some activity on the HTTP server, we can write a small bash script:
@@ -263,7 +263,7 @@ Because the module gives you access to its Micrometer registry, you can add your
 Getting the default registry is straightforward:
 
 ```java
-  MeterRegistry registry = BackendRegistries.getDefaultNow();
+MeterRegistry registry = BackendRegistries.getDefaultNow();
 ```
 
 Then you have plain access to the [Micrometer API](https://micrometer.io/docs/concepts).
