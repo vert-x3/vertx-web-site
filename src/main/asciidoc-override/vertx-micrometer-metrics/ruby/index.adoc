@@ -1,0 +1,772 @@
+= Vert.x Micrometer Metrics
+
+This project is an implementation of the Vert.x Metrics Service Provider Interface (SPI).
+
+It uses link:http://micrometer.io/[Micrometer] for managing metrics and reporting to several backends.
+
+== Features
+
+* Vert.x core tools monitoring: TCP/HTTP client and servers, `link:../../yardoc/Vertx/DatagramSocket.html[DatagramSocket]`,
+`link:../../yardoc/Vertx/EventBus.html[EventBus]` and pools
+* User defined metrics through Micrometer
+* Reporting to https://www.influxdata.com/[InfluxDB], https://prometheus.io/[Prometheus] or JMX.
+
+== InfluxDB
+
+=== Prerequisites
+
+Follow the https://docs.influxdata.com/influxdb/latest/introduction/getting_started/[instructions to get InfluxDb up and running].
+
+=== Getting started
+
+The modules _vertx-micrometer-metrics_ and _micrometer-registry-influx_ must be present in the classpath.
+
+Maven users should add this to their project POM file:
+
+[source,xml,subs="+attributes"]
+----
+<dependency>
+  <groupId>io.vertx</groupId>
+  <artifactId>vertx-micrometer-metrics</artifactId>
+  <version>3.5.1</version>
+</dependency>
+<dependency>
+  <groupId>io.micrometer</groupId>
+  <artifactId>micrometer-registry-influx</artifactId>
+  <version>1.0.0</version>
+</dependency>
+----
+
+And Gradle users, to their build file:
+
+[source,groovy,subs="+attributes"]
+----
+compile 'io.vertx:vertx-micrometer-metrics:3.5.1'
+compile 'io.micrometer:micrometer-registry-influx:1.0.0'
+----
+
+=== Configuration examples
+
+Vert.x does not enable SPI implementations by default. You must enable metric collection in the Vert.x options.
+
+[source,ruby]
+----
+require 'vertx/vertx'
+vertx = Vertx::Vertx.vertx({
+  'metricsOptions' => {
+    'influxDbOptions' => {
+      'enabled' => true
+    },
+    'enabled' => true
+  }
+})
+
+----
+
+==== Using a specific URI and database name
+
+[source,ruby]
+----
+require 'vertx/vertx'
+vertx = Vertx::Vertx.vertx({
+  'metricsOptions' => {
+    'influxDbOptions' => {
+      'enabled' => true,
+      'uri' => "http://influxdb.example.com:8888",
+      'db' => "sales-department"
+    },
+    'enabled' => true
+  }
+})
+
+----
+
+==== With authentication
+
+[source,ruby]
+----
+require 'vertx/vertx'
+vertx = Vertx::Vertx.vertx({
+  'metricsOptions' => {
+    'influxDbOptions' => {
+      'enabled' => true,
+      'userName' => "username",
+      'password' => "password"
+    },
+    'enabled' => true
+  }
+})
+
+----
+
+== Prometheus
+
+=== Prerequisites
+
+Follow the https://prometheus.io/docs/prometheus/latest/getting_started/[instructions to get Prometheus up and running].
+
+=== Getting started
+
+The modules _vertx-micrometer-metrics_ and _micrometer-registry-prometheus_ must be present in the classpath.
+You may also probably need _vertx-web_, to expose the metrics.
+
+Maven users should add this to their project POM file:
+
+[source,xml,subs="+attributes"]
+----
+<dependency>
+  <groupId>io.vertx</groupId>
+  <artifactId>vertx-micrometer-metrics</artifactId>
+  <version>3.5.1</version>
+</dependency>
+<dependency>
+  <groupId>io.micrometer</groupId>
+  <artifactId>micrometer-registry-prometheus</artifactId>
+  <version>1.0.0</version>
+</dependency>
+<dependency>
+  <groupId>io.vertx</groupId>
+  <artifactId>vertx-web</artifactId>
+  <version>3.5.1</version>
+</dependency>
+----
+
+And Gradle users, to their build file:
+
+[source,groovy,subs="+attributes"]
+----
+compile 'io.vertx:vertx-micrometer-metrics:3.5.1'
+compile 'io.micrometer:micrometer-registry-prometheus:1.0.0'
+compile 'io.vertx:vertx-web:3.5.1'
+----
+
+=== Configuration examples
+
+Vert.x does not enable SPI implementations by default. You must enable metric collection in the Vert.x options
+
+[source,ruby]
+----
+require 'vertx/vertx'
+vertx = Vertx::Vertx.vertx({
+  'metricsOptions' => {
+    'prometheusOptions' => {
+      'enabled' => true
+    },
+    'enabled' => true
+  }
+})
+
+----
+
+==== Using an embedded HTTP server wih custom endpoint
+
+[source,ruby]
+----
+require 'vertx/vertx'
+vertx = Vertx::Vertx.vertx({
+  'metricsOptions' => {
+    'prometheusOptions' => {
+      'enabled' => true,
+      'startEmbeddedServer' => true,
+      'embeddedServerOptions' => {
+        'port' => 8080
+      },
+      'embeddedServerEndpoint' => "/metrics/vertx"
+    },
+    'enabled' => true
+  }
+})
+
+----
+
+If the embedded server endpoint is not specified, it defaults to _/metrics_.
+
+==== Binding metrics to an existing Vert.x router
+
+[source,ruby]
+----
+require 'vertx/vertx'
+require 'vertx-web/router'
+vertx = Vertx::Vertx.vertx({
+  'metricsOptions' => {
+    'prometheusOptions' => {
+      'enabled' => true
+    },
+    'enabled' => true
+  }
+})
+
+# Later on, creating a router
+router = VertxWeb::Router.router(vertx)
+router.route("/metrics").handler() { |routingContext|
+  prometheusRegistry = Java::IoVertxMicrometerBackends::BackendRegistries.get_default_now()
+  if (prometheusRegistry != nil)
+    response = prometheusRegistry.scrape()
+    routingContext.response().end(response)
+  else
+    routingContext.fail(500)
+  end
+}
+vertx.create_http_server().request_handler(&router.method(:accept)).listen(8080)
+
+----
+
+== JMX
+
+=== Getting started
+
+The modules _vertx-micrometer-metrics_ and _micrometer-registry-jmx_ must be present in the classpath.
+
+Maven users should add this to their project POM file:
+
+[source,xml,subs="+attributes"]
+----
+<dependency>
+  <groupId>io.vertx</groupId>
+  <artifactId>vertx-micrometer-metrics</artifactId>
+  <version>3.5.1</version>
+</dependency>
+<dependency>
+  <groupId>io.micrometer</groupId>
+  <artifactId>micrometer-registry-jmx</artifactId>
+  <version>1.0.0</version>
+</dependency>
+----
+
+And Gradle users, to their build file:
+
+[source,groovy,subs="+attributes"]
+----
+compile 'io.vertx:vertx-micrometer-metrics:3.5.1'
+compile 'io.micrometer:micrometer-registry-jmx:1.0.0'
+----
+
+=== Configuration examples
+
+Vert.x does not enable SPI implementations by default. You must enable metric collection in the Vert.x options
+
+[source,ruby]
+----
+require 'vertx/vertx'
+vertx = Vertx::Vertx.vertx({
+  'metricsOptions' => {
+    'jmxMetricsOptions' => {
+      'enabled' => true
+    },
+    'enabled' => true
+  }
+})
+
+----
+
+==== With step and domain
+
+In Micrometer, `step` refers to the reporting period, in seconds. `domain` is the JMX domain under which
+MBeans are registered.
+
+[source,ruby]
+----
+require 'vertx/vertx'
+vertx = Vertx::Vertx.vertx({
+  'metricsOptions' => {
+    'jmxMetricsOptions' => {
+      'enabled' => true,
+      'step' => 5,
+      'domain' => "my.metrics.domain"
+    },
+    'enabled' => true
+  }
+})
+
+----
+
+== Advanced usage
+
+Please refer to `io.vertx.micrometer.MicrometerMetricsOptions` for an exhaustive list of options.
+
+=== Disable some metric domains
+
+Restricting the Vert.x modules being monitored can be done using
+`io.vertx.micrometer.MicrometerMetricsOptions#disabledMetricsCategories`.
+
+For a full list of domains, see `io.vertx.micrometer.MetricsDomain`
+
+=== User-defined metrics
+
+The Micrometer registries are accessible, in order to create new metrics or fetch the existing ones.
+By default, an unique registry is used and will be shared across the Vert.x instances of the JVM:
+
+[source,ruby]
+----
+registry = Java::IoVertxMicrometerBackends::BackendRegistries.get_default_now()
+
+----
+
+It is also possible to have separate registries per Vertx instance, by giving a registry name in metrics options.
+Then it can be retrieved specifically:
+
+[source,ruby]
+----
+require 'vertx/vertx'
+vertx = Vertx::Vertx.vertx({
+  'metricsOptions' => {
+    'influxDbOptions' => {
+      'enabled' => true
+    },
+    'registryName' => "my registry",
+    'enabled' => true
+  }
+})
+
+# Later on:
+registry = Java::IoVertxMicrometerBackends::BackendRegistries.get_now("my registry")
+
+----
+
+As an example, here is a custom timer that will track the execution time of a piece of code that is regularly called:
+
+[source,ruby]
+----
+registry = Java::IoVertxMicrometerBackends::BackendRegistries.get_default_now()
+timer = Java::IoMicrometerCoreInstrument::Timer.builder("my.timer").description("a description of what this timer does").register(registry)
+
+@vertx.set_periodic(1000) { |l|
+  timer.record(lambda {
+    # Running here some operation to monitor
+  })
+}
+
+----
+
+For more examples, documentation about the Micrometer registry and how to create metrics, check
+link:http://micrometer.io/docs/concepts#_registry[Micrometer doc].
+
+=== Other instrumentation
+
+Since plain access to Micrometer registries is provided, it is possible to leverage the Micrometer API.
+For instance, to instrument the JVM:
+
+[source,ruby]
+----
+registry = Java::IoVertxMicrometerBackends::BackendRegistries.get_default_now()
+
+Java::IoMicrometerCoreInstrumentBinderJvm::ClassLoaderMetrics.new().bind_to(registry)
+Java::IoMicrometerCoreInstrumentBinderJvm::JvmMemoryMetrics.new().bind_to(registry)
+Java::IoMicrometerCoreInstrumentBinderJvm::JvmGcMetrics.new().bind_to(registry)
+Java::IoMicrometerCoreInstrumentBinderSystem::ProcessorMetrics.new().bind_to(registry)
+Java::IoMicrometerCoreInstrumentBinderJvm::JvmThreadMetrics.new().bind_to(registry)
+
+----
+
+_From link:http://micrometer.io/docs/ref/jvm[Micrometer documentation]._
+
+=== Label matchers
+
+The labels (aka tags, or fields...) can be configured through the use of matchers. Here is an example
+to whitelist HTTP server metrics per host name and port:
+
+[source,ruby]
+----
+require 'vertx/vertx'
+vertx = Vertx::Vertx.vertx({
+  'metricsOptions' => {
+    'prometheusOptions' => {
+      'enabled' => true
+    },
+    'labelMatchs' => [
+      {
+        'domain' => "HTTP_SERVER",
+        'label' => "local",
+        'value' => "localhost:8080"
+      }
+    ],
+    'enabled' => true
+  }
+})
+
+----
+
+Matching rules can work on exact strings or regular expressions (the former is more performant).
+When a pattern matches, the value can also be renamed with an alias. By playing with regex and aliases it is possible
+to ignore a label partitioning:
+
+[source,ruby]
+----
+require 'vertx/vertx'
+vertx = Vertx::Vertx.vertx({
+  'metricsOptions' => {
+    'prometheusOptions' => {
+      'enabled' => true
+    },
+    'labelMatchs' => [
+      {
+        'label' => "remote",
+        'type' => "REGEX",
+        'value' => ".*",
+        'alias' => "_"
+      }
+    ],
+    'enabled' => true
+  }
+})
+
+----
+
+Here, any value for the label "remote" will be replaced with "_".
+
+Sometimes, having some labels results in a high cardinality of label values, which can cause troubles / bad
+performances on the metrics backend.
+This is often the case with the _remote_ label on server metrics.
+For that reason, there are rules in the default metrics options to ignore it (one for HTTP server, one for Net server metrics).
+It is still possible to stop ignoring it by clearing the label matchers:
+
+[source,ruby]
+----
+require 'vertx/vertx'
+vertx = Vertx::Vertx.vertx({
+  'metricsOptions' => {
+    'prometheusOptions' => {
+      'enabled' => true
+    },
+    'labelMatchs' => Array.new,
+    'enabled' => true
+  }
+})
+
+----
+
+Label matching uses Micrometer's `MeterFilter` under the hood. This API can be accessed directly as well:
+
+[source,ruby]
+----
+registry = Java::IoVertxMicrometerBackends::BackendRegistries.get_default_now()
+
+registry.config().meter_filter(Java::IoMicrometerCoreInstrumentConfig::MeterFilter.ignore_tags("address", "remote")).meter_filter(Java::IoMicrometerCoreInstrumentConfig::MeterFilter.rename_tag("vertx.verticle", "deployed", "instances"))
+
+----
+
+_See also link:http://micrometer.io/docs/concepts#_meter_filters[other examples]._
+
+=== Snapshots
+
+A `io.vertx.micrometer.MetricsService` can be created out of a `link:../../yardoc/Vertx/Measured.html[Measured]` object
+in order to take a snapshot of its related metrics and measurements.
+The snapshot is returned as a `link:unavailable[JsonObject]`.
+
+A well known _Measured_ object is simply `link:../../yardoc/Vertx/Vertx.html[Vertx]`:
+
+[source,ruby]
+----
+require 'vertx-micrometer-metrics/metrics_service'
+metricsService = VertxMicrometerMetrics::MetricsService.create(@vertx)
+metrics = metricsService.get_metrics_snapshot()
+puts metrics
+
+----
+
+Other components, such as an `link:../../yardoc/Vertx/EventBus.html[EventBus]` or a `link:../../yardoc/Vertx/HttpServer.html[HttpServer]` are
+measurable:
+
+[source,ruby]
+----
+require 'vertx-micrometer-metrics/metrics_service'
+server = @vertx.create_http_server()
+metricsService = VertxMicrometerMetrics::MetricsService.create(server)
+metrics = metricsService.get_metrics_snapshot()
+puts metrics
+
+----
+
+Finally it is possible to filter the returned metrics from their base names:
+
+[source,ruby]
+----
+require 'vertx-micrometer-metrics/metrics_service'
+metricsService = VertxMicrometerMetrics::MetricsService.create(@vertx)
+# Client + server
+metrics = metricsService.get_metrics_snapshot("vertx.http")
+puts metrics
+
+----
+
+== Vert.x core tools metrics
+
+This section lists all the metrics generated by monitoring the Vert.x core tools.
+
+=== Net Client
+
+[cols="15,50,35", options="header"]
+|===
+|Metric type
+|Metric name
+|Description
+
+|Gauge
+|`vertx_net_client_connections{local=<local address>,remote=<remote address>}`
+|Number of connections to the remote host currently opened.
+
+|Summary
+|`vertx_net_client_bytesReceived{local=<local address>,remote=<remote address>}`
+|Number of bytes received from the remote host.
+
+|Summary
+|`vertx_net_client_bytesSent{local=<local address>,remote=<remote address>}`
+|Number of bytes sent to the remote host.
+
+|Counter
+|`vertx_net_client_errors{local=<local address>,remote=<remote address>,class=<class>}`
+|Number of errors.
+
+|===
+
+=== HTTP Client
+
+[cols="15,50,35", options="header"]
+|===
+|Metric type
+|Metric name
+|Description
+
+|Gauge
+|`vertx_http_client_connections{local=<local address>,remote=<remote address>}`
+|Number of connections to the remote host currently opened.
+
+|Summary
+|`vertx_http_client_bytesReceived{local=<local address>,remote=<remote address>}`
+|Number of bytes received from the remote host.
+
+|Summary
+|`vertx_http_client_bytesSent{local=<local address>,remote=<remote address>}`
+|Number of bytes sent to the remote host.
+
+|Counter
+|`vertx_http_client_errors{local=<local address>,remote=<remote address>,class=<class>}`
+|Number of errors.
+
+|Gauge
+|`vertx_http_client_requests{local=<local address>,remote=<remote address>}`
+|Number of requests waiting for a response.
+
+|Counter
+|`vertx_http_client_requestCount{local=<local address>,remote=<remote address>,method=<http method>}`
+|Number of requests sent.
+
+|Timer
+|`vertx_http_client_responseTime{local=<local address>,remote=<remote address>}`
+|Response time.
+
+|Counter
+|`vertx_http_client_responseCount{local=<local address>,remote=<remote address>,code=<response code>}`
+|Number of received responses.
+
+|Gauge
+|`vertx_http_client_wsConnections{local=<local address>,remote=<remote address>}`
+|Number of websockets currently opened.
+
+|===
+
+=== Datagram socket
+
+[cols="15,50,35", options="header"]
+|===
+|Metric type
+|Metric name
+|Description
+
+|Summary
+|`vertx_datagram_bytesReceived{local=<local>,remote=<remote>}`
+|Total number of bytes received on the `<host>:<port>` listening address.
+
+|Summary
+|`vertx_datagram_bytesSent{remote=<remote>}`
+|Total number of bytes sent to the remote host.
+
+|Counter
+|`vertx_datagram_errors{class=<class>}`
+|Total number of errors.
+
+|===
+
+=== Net Server
+
+[cols="15,50,35", options="header"]
+|===
+|Metric type
+|Metric name
+|Description
+
+|Gauge
+|`vertx_net_server_connections{local=<local address>}`
+|Number of opened connections to the Net Server.
+
+|Summary
+|`vertx_net_server_bytesReceived{local=<local address>}`
+|Number of bytes received by the Net Server.
+
+|Summary
+|`vertx_net_server_bytesSent{local=<local address>}`
+|Number of bytes sent by the Net Server.
+
+|Counter
+|`vertx_net_server_errors{local=<local address>,class=<class>}`
+|Number of errors.
+
+|===
+
+=== HTTP Server
+
+[cols="15,50,35", options="header"]
+|===
+|Metric type
+|Metric name
+|Description
+
+|Gauge
+|`vertx_http_server_connections{local=<local address>}`
+|Number of opened connections to the HTTP Server.
+
+|Summary
+|`vertx_http_server_bytesReceived{local=<local address>}`
+|Number of bytes received by the HTTP Server.
+
+|Summary
+|`vertx_http_server_bytesSent{local=<local address>}`
+|Number of bytes sent by the HTTP Server.
+
+|Counter
+|`vertx_http_server_errors{local=<local address>,class=<class>}`
+|Number of errors.
+
+|Gauge
+|`vertx_http_server_requests{local=<local address>}`
+|Number of requests being processed.
+
+|Counter
+|`vertx_http_server_requestCount{local=<local address>,method=<http method>,code=<response code>}`
+|Number of processed requests.
+
+|Counter
+|`vertx_http_server_requestResetCount{local=<local address>}`
+|Number of requests reset.
+
+|Timer
+|`vertx_http_server_processingTime{local=<local address>}`
+|Request processing time.
+
+|Gauge
+|`vertx_http_client_wsConnections{local=<local address>}`
+|Number of websockets currently opened.
+
+|===
+
+=== Event Bus
+
+[cols="15,50,35", options="header"]
+|===
+|Metric type
+|Metric name
+|Description
+
+|Gauge
+|`vertx_eventbus_handlers{address=<address>}`
+|Number of event bus handlers in use.
+
+|Counter
+|`vertx_eventbus_errors{address=<address>,class=<class>}`
+|Number of errors.
+
+|Summary
+|`vertx_eventbus_bytesWritten{address=<address>}`
+|Total number of bytes sent while sending messages to event bus cluster peers.
+
+|Summary
+|`vertx_eventbus_bytesRead{address=<address>}`
+|Total number of bytes received while reading messages from event bus cluster peers.
+
+|Gauge
+|`vertx_eventbus_pending{address=<address>,side=<local/remote>}`
+|Number of messages not processed yet. One message published will count for `N` pending if `N` handlers
+are registered to the corresponding address.
+
+|Counter
+|`vertx_eventbus_published{address=<address>,side=<local/remote>}`
+|Number of messages published (publish / subscribe).
+
+|Counter
+|`vertx_eventbus_sent{address=<address>,side=<local/remote>}`
+|Number of messages sent (point-to-point).
+
+|Counter
+|`vertx_eventbus_received{address=<address>,side=<local/remote>}`
+|Number of messages received.
+
+|Counter
+|`vertx_eventbus_delivered{address=<address>,side=<local/remote>}`
+|Number of messages delivered to handlers.
+
+|Counter
+|`vertx_eventbus_replyFailures{address=<address>,failure=<failure name>}`
+|Number of message reply failures.
+
+|Timer
+|`vertx_eventbus_processingTime{address=<address>}`
+|Processing time for handlers listening to the `address`.
+
+|===
+
+== Vert.x pool metrics
+
+This section lists all the metrics generated by monitoring Vert.x pools.
+
+There are two types currently supported:
+
+* _worker_ (see `link:../../yardoc/Vertx/WorkerExecutor.html[WorkerExecutor]`)
+* _datasource_ (created with Vert.x JDBC client)
+
+NOTE: Vert.x creates two worker pools upfront, _worker-thread_ and _internal-blocking_.
+
+[cols="15,50,35", options="header"]
+|===
+|Metric type
+|Metric name
+|Description
+
+|Timer
+|`vertx_pool_queue_delay{pool_type=<type>,pool_name=<name>}`
+|Time waiting for a resource (queue time).
+
+|Gauge
+|`vertx_pool_queue_size{pool_type=<type>,pool_name=<name>}`
+|Number of elements waiting for a resource.
+
+|Timer
+|`vertx_pool_usage{pool_type=<type>,pool_name=<name>}`
+|Time using a resource (i.e. processing time for worker pools).
+
+|Gauge
+|`vertx_pool_inUse{pool_type=<type>,pool_name=<name>}`
+|Number of resources used.
+
+|Counter
+|`vertx_pool_completed{pool_type=<type>,pool_name=<name>}`
+|Number of elements done with the resource (i.e. total number of tasks executed for worker pools).
+
+|Gauge
+|`vertx_pool_ratio{pool_type=<type>,pool_name=<name>}`
+|Pool usage ratio, only present if maximum pool size could be determined.
+
+|===
+
+== Verticle metrics
+
+[cols="15,50,35", options="header"]
+|===
+|Metric type
+|Metric name
+|Description
+
+|Gauge
+|`vertx_verticle_deployed{name=<name>}`
+|Number of verticle instances deployed.
+
+|===
