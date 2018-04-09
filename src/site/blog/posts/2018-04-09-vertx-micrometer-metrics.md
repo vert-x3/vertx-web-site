@@ -1,9 +1,9 @@
 ---
 title: Eclipse Vert.x metrics now with Micrometer.io
 template: post.html
-date: 2018-03-28
+date: 2018-04-09
 author: jotak
-draft: true
+draft: false
 ---
 
 Vert.x has already been providing metrics for some time, through the [vertx-dropwizard-metrics](https://vertx.io/docs/vertx-dropwizard-metrics/java/) and [vertx-hawkular-metrics](https://vertx.io/docs/vertx-hawkular-metrics/java/) modules. Both of them implement a service provider interface (SPI) to collect the Vert.x metrics and make them available to their respective backends.
