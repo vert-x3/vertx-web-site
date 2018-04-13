@@ -3,7 +3,7 @@ title: New community channels
 template: post.html
 date: 2018-04-13
 author: tsegismont
-draft: true
+draft: false
 ---
 
 If you visited the Eclipse Vert.x website recently, you might have noticed a couple of novelties on the [community](https://vertx.io/community) page:
