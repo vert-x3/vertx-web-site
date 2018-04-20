@@ -317,6 +317,11 @@ var all_users = {
             height: 125
         },
         {
+            src: "RubiconProject_logo.png",
+            link: "https://rubiconproject.com",
+            height: 80
+        },
+        {
             src: "dbg-bw-logo.png",
             link: "http://deutsche-boerse.com/dbg-en/",
             height: 38,
