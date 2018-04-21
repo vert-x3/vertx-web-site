@@ -1,22 +1,20 @@
 ---
-title: Introducing new consumer API for vertx-rabbitmq-client
+title: Eclipse Vert.x RabbitMQ client gets a new consumer API!
 template: post.html
 date: 2018-04-23
 author: Sammers21
 draft: true
 ---
 
-In vertx-rabbitmq-client 3.6.0 release we are going to have the new consumer API. In this article I am going to explain what was wrong with the old one and show how convenient the new one is.
+In Eclipse Vert.x 3.6.0 the RabbitMQ client will get a new consumer API. In this post we are going to show
+the improvements since the previous API and how easy it is to use now.
 
-## What was wrong?
+Before digging into the new API let's find out what were the limitations of the actual one:
 
-Before digging into the new API let's find out what was wrong with the old one.
+1. The API uses the event bus in such limiting the control of the consumer over the RabbitMQ queue.
+2. The message API is based on `JsonObject` which does not provide a typed API
 
-Here is the two main points againts the old API:
-1. Messages got obtainted from the event bus, without having ability to pause, resume consumption and chose backpressure strategy.
-2. Arrived message was not typed. Basically it was a JsonObject.
-
-## New API
+## The new API at a glance
 
 Here is how simple queue consumption looks like with the new API:
 
@@ -28,26 +26,42 @@ client.basicConsumer("my.queue", res -> {
     System.out.println("RabbitMQ consumer created !");
     RabbitMQConsumer mqConsumer = res.result();
     mqConsumer.handler((RabbitMQMessage message) -> {
-          System.out.println("Got message: " + message.body().toString());
+        System.out.println("Got message: " + message.body().toString());
     });
   } else {
+    // Oups something went wrong
     res.cause().printStackTrace();
   }
 });
 ```
 
 
-In the code, you are proving a queue name to read messages from and the handler called with an instance of _RabbitMQConsumer_ when the asynchronous operation got succeed. So then you can provide a handler to call when a message arrives via _RabbitMQConsumer#handler_ call. A very simple and idiomatic.
+Now to create a queue you simply call the `basicConsumer` method and you obtain asynchronously
+a `RabbitMQConsumer`.
 
-You may also note that when we a message arrives, it has a type of _RabbitMQMessage_, this is a typed message representation. So you are aware of all the fields a message may have at the compile time.
+Then you need to provide a handler called for each message consumed via _RabbitMQConsumer#handler_ which
+is the idiomatic way to consumer stream in Vert.x
 
-Since _RabbitMQConsumer_ is a _ReadStream_, you also allowed to _pause_, _resume_ the stream, subscribe to the end event, get notified when an exception occurs. Additionally, you can cancel the subscription by calling _RabbitMQConsumer#cancel_ method.
+You may also note that when we a message arrives, it has the type of `RabbitMQMessage`, this is a typed
+message representation.
+
+Since `RabbitMQConsumer` is a stream, you also allowed to `pause` and `resume` the stream, subscribe to the
+end event, get notified when an exception occurs.
+
+In addition, you can cancel the subscription by calling `RabbitMQConsumer#cancel` method.
 
 ## Backpressure
 
-Sometimes you have more incoming messages than you can handle. The new consumer API is aware of such situation and lets you store arrived messages in the internal queue before they got handler by the application. Indeed, you can configure the queue size. So here is how you can limit the internal queue size to 300:
+Sometimes you can have more incoming messages than you can handle.
+
+The new consumer API allows you to control this and lets you store arrived messages in the internal queue
+before they are delivered to the application. Indeed, you can configure the queue size.
+
+Here is how you can limit the internal queue size:
 
 ```java
+
+// Limit to max 300 messages
 QueueOptions options = new QueueOptions()
   .setMaxInternalQueueSize(300);
 
@@ -66,10 +80,16 @@ client.basicConsumer("my.queue", options, res -> {
 });
 ```
 
-One more interesting thing is what will happen the queue will be exceeded. In the example, the new message will be simply dropped. Another option is to drop the oldest message in the queue. In order to achieve this, you should specify the behavior by calling _QueueOptions#setKeepMostRecent_ method.
+When the intenral queue queue capacity is exceeded, the new message will be simply dropped.
 
-## Results
+An alternative option is to drop the oldest message in the queue.
 
-The new consumer API for vertx-rabbitmq-client is a more idiomatic and modern way to consume messages from a queue. The API is going to be recommended to use in the Vert.x 3.6.0 release, while the old will be deprecated.
+In order to achieve this, you should specify the behavior by calling `QueueOptions#setKeepMostRecent` method.
 
-Hope you enjoyed reading this article. See you soon.
+## Finally
+
+The new Vert.x RabbitMQ client consumer API is way more idiomatic and modern way to consume messages from a queue.
+
+This API is going to provided in the 3.6.0 release, while the old will be deprecated.
+
+I hope you enjoyed reading this article. See you soon on our [Gitter channel](https://gitter.im/eclipse-vertx/vertx-users)!
