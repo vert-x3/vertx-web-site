@@ -3,7 +3,7 @@ title: Eclipse Vert.x RabbitMQ client gets a new consumer API!
 template: post.html
 date: 2018-04-23
 author: Sammers21
-draft: true
+draft: false
 ---
 
 In Eclipse Vert.x 3.6.0 the RabbitMQ client will get a new consumer API. In this post we are going to show
