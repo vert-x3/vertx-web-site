@@ -171,18 +171,6 @@ $ ldd vertx-graalvm-native-image-test-0.0.1-SNAPSHOT
   /lib64/ld-linux-x86-64.so.2 (0x00007f8e8afb7000)
 ```
 
-### Performance
-
-I ran Apache benchmark on both versions.
-The logger in the request handler was disabled for both versions to remove logging side effects.
-
-```bash
-ab -n 160000 -c 200 http://localhost:8080/hello
-```
-
-* Native Image: 32k requests per second (mean)
-* Java 10 using shaded jar: 60k requests per second (mean)
-
 ### Memory
 
 ```bash
