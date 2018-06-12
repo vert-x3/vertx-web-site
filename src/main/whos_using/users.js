@@ -128,7 +128,6 @@ var all_users = {
             link: "http://origami3.com/",
             height: 54
         }, {            
-        }, {
             src: "opengov_light_2017.png",
             link: "https://opengov.com/",
             height: 40
