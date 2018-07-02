@@ -3,12 +3,9 @@ title: Simplified database transaction management with the Vert.x RxJava API
 template: post.html
 date: 2018-07-02
 author: tsegismont
-draft: true
 ---
 
-_TL;DR_
-
-_As of 3.5, managing database transactions with Vert.x requires a lot of boilerplate code._
+_TL;DR As of 3.5, managing database transactions with Vert.x requires a lot of boilerplate code._
 _Vert.x 3.6 will provide helpers and `Observable` transformers to easily make a reactive flow transactional._
 
 ## Simple queries with the _"Rxified"_ API
