@@ -74,6 +74,10 @@ var all_users = {
             link: "http://www.gentics.com/",
             height: 50
         }, {
+            src: "graviteeio.png",
+            link: 'https://gravitee.io',
+            height: 77
+        }, {
             src: "groupon-white.png",
             link: "http://www.groupon.com",
             height: 65,
