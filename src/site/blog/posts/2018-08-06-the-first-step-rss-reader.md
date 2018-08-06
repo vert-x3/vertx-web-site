@@ -177,7 +177,7 @@ cqlsh> SELECT description FROM rss_reader.articles_by_rss_link  limit 1;
 
 # Conclusion 
 
-In this article we figured out how to implement the first endpoint of RSS-reader app. Here is the link to the next article: [Step 2](LINK_TO_STEP_2)
+In this article we figured out how to implement the first endpoint of RSS-reader app. Here is the link to the next article: [Step 2](LINK_TO_STEP_2).
 
 
 Thanks for reading this. I hope you enjoyed reading this article. See you soon on our [Gitter channel](https://gitter.im/eclipse-vertx/vertx-users)!
