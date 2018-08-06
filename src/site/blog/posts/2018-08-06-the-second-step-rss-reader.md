@@ -41,7 +41,7 @@ private void getRssChannels(RoutingContext ctx) {
             return links.stream().map(selectChannelInfo::bind).map(
                     statement -> client.rxExecuteWithFullFetch(statement)
             ).collect(Collectors.toList());
-        }).flatMapSingle(signleOfRows -> signleOfRows)
+        }).flatMapSingle(singleOfRows -> singleOfRows)
                 .flatMap(Flowable::fromIterable)
                 .toList()
                 .subscribe(listOfRows -> {
