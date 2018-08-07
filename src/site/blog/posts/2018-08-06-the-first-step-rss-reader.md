@@ -33,6 +33,7 @@ For completing this tutorial you need:
 # Before
 
 Before completing this step make sure that you have successfully cloned the RSS reader repository and checked out the `step_1_rx` branch:
+
 ```bash
 git clone https://github.com/Sammers21/rss-reader
 cd rss-reader
@@ -65,11 +66,11 @@ CREATE TABLE channel_info_by_rss_link(rss_link text, last_fetch_time timestamp,t
 
 ## What to do on this step
 
-On this step we will implement only the first endpoint, while 2 others is for 2 anther steps.
+In this step we will implement only the first endpoint, while 2 others is for 2 anther steps.
 
 ## Project overview
 
-There is two notable classes in the project: `AppVerticle` and `FetchVerticle`. The first one is a [Verticle](https://vertx.io/docs/vertx-core/java/#_verticles) responsible for HTTP request handling and storage schema initialization. The second one is a [Verticle](https://vertx.io/docs/vertx-core/java/#_verticles) as well, but responsible for RSS feeds fetching.
+There are two notable classes in the project: `AppVerticle` and `FetchVerticle`. The first one is a [Verticle](https://vertx.io/docs/vertx-core/java/#_verticles) responsible for HTTP request handling and storage schema initialization. The second one is a [Verticle](https://vertx.io/docs/vertx-core/java/#_verticles) as well, but responsible for RSS feeds fetching.
 
 The idea is simple. When the application is starting the `AppVerticle` is deployed, then it tries to initialize storage schema, described in `src/main/resources/schema.cql` file by reading it and executing listed queries line by line. After the schema initialization the `AppVerticle` deploys `FetchVerticle` and starts a HTTP server.
 
@@ -120,7 +121,7 @@ private JsonObject invalidRequest() {
 }
 ```
 
-You may noticed that `insertNewLinkForUser` is a `PreparedStatement`, and should be initialized before the `AppVerticle` start. Let's do it in the `AppVerticle#prepareNecessaryQueries` method:
+You may notice that `insertNewLinkForUser` is a `PreparedStatement`, and should be initialized before the `AppVerticle` start. Let's do it in the `AppVerticle#prepareNecessaryQueries` method:
 
 
 ```java
