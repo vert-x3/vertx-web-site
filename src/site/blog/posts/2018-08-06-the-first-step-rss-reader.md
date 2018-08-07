@@ -64,9 +64,9 @@ CREATE TABLE articles_by_rss_link(rss_link text, pubDate timestamp, title text, 
 CREATE TABLE channel_info_by_rss_link(rss_link text, last_fetch_time timestamp,title text, site_link text, description text, PRIMARY KEY(rss_link));
 ```
 
-## What to do on this step
+## What to do in this step
 
-In this step we will implement only the first endpoint, while 2 others is for 2 anther steps.
+In this step we will implement only the first endpoint
 
 ## Project overview
 
