@@ -26,7 +26,7 @@ For completing this tutorial you need:
 * Linux or OS X operating system
 * Java 8 or higher
 * Git
-* Apache Cassandra 3.0 or higher. See the first step of [the section](https://github.com/Sammers21/rss-reader/tree/step_1_rx#running) for installing&running Apache Cassandra.
+* Apache Cassandra 3.0 or higher. See the first step of [the section](https://github.com/Sammers21/rss-reader/tree/step_1_rx#running) for installing and running Apache Cassandra.
 * 1 hour of your time
 * You favorite code editor
 
