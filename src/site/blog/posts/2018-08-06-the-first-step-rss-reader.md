@@ -26,11 +26,17 @@ For completing this tutorial you need:
 * Linux or OS X operating system
 * Java 8 or higher
 * Git
-* Apache Cassandra 3.0 or higher. See the first step of [the section](https://github.com/Sammers21/rss-reader/tree/step_1_rx#running) for installing and running Apache Cassandra.
 * 1 hour of your time
 * You favorite code editor
 
-# Before
+For running the example you should ensure that Cassandra service is running locally on port 9042.
+As an option, you can run Cassandra with [ccm](https://github.com/riptano/ccm#installation)(Cassandra Cluster Manager).
+Follow [this](https://github.com/riptano/ccm#installation) instructions for installing ccm.
+After installing you will be able to run a single node cluster:
+    ```bash
+    ccm create rss_reader -v 3.11.2 -n 1 -s
+    ccm start
+    ```
 
 Before completing this step make sure that you have successfully cloned the RSS reader repository and checked out the `step_1_rx` branch:
 
@@ -40,8 +46,10 @@ cd rss-reader
 git checkout step_1_rx
 ```
 
-In order to make sure that you are able to run the app you need to go to the [Running](https://github.com/Sammers21/rss-reader/tree/step_1_rx#running) section and 
-follow the steps.
+Now you can try to tun this example and see if it works:
+```bash
+./gradlew vertxRun  
+```
 
 ## Schema
 
