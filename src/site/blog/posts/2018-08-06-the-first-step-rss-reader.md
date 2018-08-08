@@ -45,10 +45,19 @@ For running the example you should ensure that Cassandra service is running loca
 As an option, you can run Cassandra with [ccm](https://github.com/riptano/ccm#installation)(Cassandra Cluster Manager).
 Follow [this](https://github.com/riptano/ccm#installation) instructions for installing ccm.
 After installing you will be able to run a single node cluster:
-    ```bash
-    ccm create rss_reader -v 3.11.2 -n 1 -s
-    ccm start
-    ```
+
+```bash
+ccm create rss_reader -v 3.11.2 -n 1 -s
+ccm start
+```
+
+For now, [Eclipse Vert.x Cassandra client](https://github.com/Sammers21/vertx-cassandra-client) is not available in maven central, it means that you have to build and install it locally:
+
+```bash
+git clone https://github.com/Sammers21/vertx-cassandra-client
+cd vertx-cassandra-client
+mvn clean install -Dmaven.test.skip=true -s .travis.maven.settings.xml 
+```
 
 Before completing this step make sure that you have successfully cloned the RSS reader repository and checked out the `step_1_rx` branch:
 
