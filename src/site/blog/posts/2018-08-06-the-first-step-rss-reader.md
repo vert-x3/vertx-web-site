@@ -28,6 +28,9 @@ On the image wee see that browser space is split into 2 parts:
 1. Saved feed names
 2. List of articles for the selected feed
 
+Here you also can enter a link to a new feed, so the App will fetch and parse the feed. 
+After that, it will appear in the left column along with other saved feeds.
+
 # Requirements
 
 For completing this tutorial you need:
