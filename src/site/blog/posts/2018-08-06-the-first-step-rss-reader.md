@@ -19,6 +19,15 @@ Before starting, you should :
 
 You also may find it useful to read [the RSS 2.0](https://validator.w3.org/feed/docs/rss2.html) specification, because the resulted app is, basically, a storage of RSS 2.0 feeds.
 
+To give you an idea of what the App is about, here is how it look from the fronted side:
+
+![see how it looks](https://i.imgur.com/QnLieKA.png)
+
+On the image wee see that browser space is split into 2 parts:
+
+1. Saved feed names
+2. List of articles for the selected feed
+
 # Requirements
 
 For completing this tutorial you need:
