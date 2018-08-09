@@ -35,7 +35,6 @@ After that, it will appear in the left column along with other saved feeds.
 
 For completing this tutorial you need:
 
-* Linux or OS X operating system
 * Java 8 or higher
 * Git
 * 1 hour of your time
