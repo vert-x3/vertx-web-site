@@ -1,7 +1,7 @@
 ---
 title: The RSS reader tutorial
 template: post.html
-date: 2018-08-06
+date: 2018-08-13
 author: Sammers21
 draft: true
 --- 
