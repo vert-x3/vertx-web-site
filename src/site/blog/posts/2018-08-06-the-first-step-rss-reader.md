@@ -3,11 +3,12 @@ title: The RSS reader tutorial
 template: post.html
 date: 2018-08-06
 author: Sammers21
+draft: true
 --- 
 
 # The RSS reader tutorial
 
-This tutorial is dedicated for users who'd like to know how to use the Eclipse Vert.x Cassandra client with Rx Java 2 API in practice.
+This tutorial is dedicated for users who'd like to know how to use the Eclipse Vert.x Cassandra client with in practice.
 
 # Before you start this tutorial
 
@@ -58,12 +59,12 @@ cd vertx-cassandra-client
 mvn clean install -Dmaven.test.skip=true -s .travis.maven.settings.xml 
 ```
 
-Before completing this step make sure that you have successfully cloned the RSS reader repository and checked out the `step_1_rx` branch:
+Before completing this step make sure that you have successfully cloned the RSS reader repository and checked out the `step_1` branch:
 
 ```bash
 git clone https://github.com/Sammers21/rss-reader
 cd rss-reader
-git checkout step_1_rx
+git checkout step_1
 ```
 
 Now you can try to tun this example and see if it works:
@@ -82,7 +83,7 @@ In our case we'd like our application to have 3 endpoints:
 
 1. POST /user/{user_id}/rss_link - for adding links to a user's feed
 2. GET /user/{user_id}/rss_channels - for retrieving information about RSS channels a user subscribed on
-3. GET /articles/by_rss_link?link={rss_link} - for retrieving about articles on a specific RSS channel
+3. GET /articles/by_rss_link?link={rss_link} - for retrieving information about articles on a specific RSS channel
 
 For implementing this endpoints the schema should look in this way:
 
@@ -125,14 +126,16 @@ private void postRssLink(RoutingContext ctx) {
             responseWithInvalidRequest(ctx);
         } else {
             vertx.eventBus().send("fetch.rss.link", link);
+            Future<ResultSet> future = Future.future();
             BoundStatement query = insertNewLinkForUser.bind(userId, link);
-            client.rxExecute(query).subscribe(
-                    result -> {
-                        ctx.response().end(new JsonObject().put("message", "The feed just added").toString());
-                    }, error -> {
-                        ctx.response().setStatusCode(400).end(error.getMessage());
-                    }
-            );
+            client.execute(query, future);
+            future.setHandler(result -> {
+                if (result.succeeded()) {
+                    ctx.response().end(new JsonObject().put("message", "The feed just added").toString());
+                } else {
+                    ctx.response().setStatusCode(400).end(result.cause().getMessage());
+                }
+            });
         }
     });
 }
@@ -153,58 +156,72 @@ You may notice that `insertNewLinkForUser` is a `PreparedStatement`, and should 
 
 
 ```java
-private Single prepareNecessaryQueries() {
-    Single<PreparedStatement> rxPrepare = client.rxPrepare("INSERT INTO rss_by_user (login , rss_link ) VALUES ( ?, ?);");
-    rxPrepare.subscribe(preparedStatement -> insertNewLinkForUser = preparedStatement);
-    return rxPrepare;
+private Future<Void> prepareNecessaryQueries() {
+    Future<PreparedStatement> insertNewLinkForUserPrepFuture = Future.future();
+    client.prepare("INSERT INTO rss_by_user (login , rss_link ) VALUES ( ?, ?);", insertNewLinkForUserPrepFuture);
+
+    return insertNewLinkForUserPrepFuture.compose(preparedStatement -> {
+        insertNewLinkForUser = preparedStatement;
+        return Future.succeededFuture();
+    });
 }
 ```
 
 Also, we should not forget to fetch a RSS by the link sent to `FetchVerticle` via the Event Bus. We can do it in the `FetchVerticle#startFetchEventBusConsumer` method:
 
 ```java
+vertx.eventBus().localConsumer("fetch.rss.link", message -> {
+    String rssLink = (String) message.body();
+    log.info("fetching " + rssLink);
+    webClient.getAbs(rssLink).send(response -> {
+        if (response.succeeded()) {
+            String bodyAsString = response.result().bodyAsString("UTF-8");
+            try {
+                RssChannel rssChannel = new RssChannel(bodyAsString);
 
-private void startFetchEventBusConsumer() {
-    vertx.eventBus().localConsumer("fetch.rss.link", message -> {
-        String rssLink = (String) message.body();
-        log.info("fetching " + rssLink);
-        webClient.getAbs(rssLink).rxSend()
-                .subscribe(response -> {
-                    String bodyAsString = response.bodyAsString("UTF-8");
-                    try {
-                        RssChannel rssChannel = new RssChannel(bodyAsString);
-                        BatchStatement batchStatement = new BatchStatement();
-                        BoundStatement channelInfoInsertQuery = insertChannelInfo.bind(
-                                rssLink, new Date(System.currentTimeMillis()), rssChannel.description, rssChannel.link, rssChannel.title
-                        );
-                        batchStatement.add(channelInfoInsertQuery);
-                        for (Article article : rssChannel.articles) {
-                            batchStatement.add(insertArticleInfo.bind(rssLink, article.pubDate, article.link, article.description, article.title));
-                        }
-                        cassandraClient.rxExecute(batchStatement).subscribe(
-                                done -> log.info("Storage have just been updated with entries from: " + rssLink),
-                                error -> log.error("Unable to update storage with entities fetched from: " + rssLink, error)
-                        );
-                    } catch (Exception e) {
-                        log.error("Unable to handle: " + rssLink);
-                    }
-                }, e -> {
-                    log.error("Unable to fetch: " + rssLink, e);
-                });
+                BatchStatement batchStatement = new BatchStatement();
+                BoundStatement channelInfoInsertQuery = insertChannelInfo.bind(
+                        rssLink, new Date(System.currentTimeMillis()), rssChannel.description, rssChannel.link, rssChannel.title
+                );
+                batchStatement.add(channelInfoInsertQuery);
+
+                for (Article article : rssChannel.articles) {
+                    batchStatement.add(insertArticleInfo.bind(rssLink, article.pubDate, article.link, article.description, article.title));
+                }
+                Future<ResultSet> insertArticlesFuture = Future.future();
+                cassandraClient.execute(batchStatement, insertArticlesFuture);
+
+                insertArticlesFuture.compose(insertDone -> Future.succeededFuture());
+            } catch (Exception e) {
+                log.error("Unable to fetch: " + rssLink, e);
+            }
+        } else {
+            log.error("Unable to fetch: " + rssLink);
+        }
     });
-}
+});
 ```
 
 And, finally, this code would not work if `insertChannelInfo` and `insertArticleInfo` statements will not be initialized at verticle start. Let's to this in the `FetchVerticle#prepareNecessaryQueries` method:
 
 ```java
-private Completable prepareNecessaryQueries() {
-    Single<PreparedStatement> insertChannelInfoStatement = cassandraClient.rxPrepare("INSERT INTO channel_info_by_rss_link ( rss_link , last_fetch_time, description , site_link , title ) VALUES (?, ?, ?, ?, ?);");
-    insertChannelInfoStatement.subscribe(preparedStatement -> insertChannelInfo = preparedStatement);
-    Single<PreparedStatement> insertArticleInfoStatement = cassandraClient.rxPrepare("INSERT INTO articles_by_rss_link ( rss_link , pubdate , article_link , description , title ) VALUES ( ?, ?, ?, ?, ?);");
-    insertArticleInfoStatement.subscribe(preparedStatement -> insertArticleInfo = preparedStatement);
-    return Completable.concatArray(insertArticleInfoStatement.toCompletable(), insertChannelInfoStatement.toCompletable());
-}
+ private Future<Void> prepareNecessaryQueries() {
+        Future<PreparedStatement> insertChannelInfoPrepFuture = Future.future();
+        cassandraClient.prepare("INSERT INTO channel_info_by_rss_link ( rss_link , last_fetch_time, description , site_link , title ) VALUES (?, ?, ?, ?, ?);", insertChannelInfoPrepFuture);
+
+        Future<PreparedStatement> insertArticleInfoPrepFuture = Future.future();
+        cassandraClient.prepare("INSERT INTO articles_by_rss_link ( rss_link , pubdate , article_link , description , title ) VALUES ( ?, ?, ?, ?, ?);", insertArticleInfoPrepFuture);
+
+        return CompositeFuture.all(
+                insertChannelInfoPrepFuture.compose(preparedStatement -> {
+                    insertChannelInfo = preparedStatement;
+                    return Future.succeededFuture();
+                }), insertArticleInfoPrepFuture.compose(preparedStatement -> {
+                    insertArticleInfo = preparedStatement;
+                    return Future.succeededFuture();
+                })
+        ).mapEmpty();
+    }
 ```
 
 
@@ -231,7 +248,10 @@ cqlsh> SELECT description FROM rss_reader.articles_by_rss_link  limit 1;
 
 # Conclusion 
 
-In this article we figured out how to implement the first endpoint of RSS-reader app. Here is the link to the next article: [Step 2](LINK_TO_STEP_2).
+In this article we figured out how to implement the first endpoint of RSS-reader app. If you have any problems with completing this step you can checkout to `step_2`, where you can find all changes made for completing this step:
+```bash
+git checkout step_2
+```
 
 
 Thanks for reading this. I hope you enjoyed reading this article. See you soon on our [Gitter channel](https://gitter.im/eclipse-vertx/vertx-users)!
