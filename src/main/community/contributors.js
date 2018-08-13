@@ -174,6 +174,13 @@ var maintainers = [{
   homepage: "https://slinkydeveloper.github.io/",
   github: "https://github.com/slinkydeveloper",
   twitter: "https://twitter.com/SlinkyGuardiani"
+}, {
+  github_id: "Sammers21",
+  name: "Pavel Drankov",
+  contribution: "Cassandra and RabbitMQ client",
+  avatar: "https://avatars2.githubusercontent.com/u/16746106?v=4&s=80",
+  github: "https://github.com/Sammers21",
+  twitter: "https://twitter.com/pavel_drankov"
 }];
 
 // Contributors
