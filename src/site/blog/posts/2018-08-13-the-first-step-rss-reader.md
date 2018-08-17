@@ -51,10 +51,10 @@ ccm create rss_reader -v 3.11.2 -n 1 -s
 ccm start
 ```
 
-For now, [Eclipse Vert.x Cassandra client](https://github.com/Sammers21/vertx-cassandra-client) is not available in maven central, it means that you have to build and install it locally:
+For now, [Eclipse Vert.x Cassandra client](https://github.com/vert-x3/vertx-cassandra-client) is not available in maven central, it means that you have to build and install it locally:
 
 ```bash
-git clone https://github.com/Sammers21/vertx-cassandra-client
+git clone https://github.com/vert-x3/vertx-cassandra-client
 cd vertx-cassandra-client
 mvn clean install -Dmaven.test.skip=true -s .travis.maven.settings.xml 
 ```
