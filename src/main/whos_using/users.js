@@ -85,6 +85,13 @@ var all_users = {
             revenue_billion: 3.2,
             employees: 10000
         }, {
+         	src: "hopscotch_logo_white.png",
+            link: "http://www.hopscotch.in",
+            height: 90,
+            wikipedia: "https://en.wikipedia.org/wiki/Hopscotch_(company)",
+            revenue_billion: 0.06,
+            employees: 400
+        }, {
             src: "hulu_logo_transparent_small.png",
             link: "http://www.hulu.com/",
             height: 55,
