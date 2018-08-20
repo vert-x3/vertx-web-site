@@ -3,8 +3,8 @@ title: The RSS reader tutorial
 template: post.html
 date: 2018-08-20
 author: Sammers21
-draft: true
---- 
+draft: false
+---
 
 # The RSS reader tutorial
 
@@ -29,7 +29,7 @@ On the image we see that browser space is split into 2 parts:
 1. Saved feed names
 2. List of articles for the selected feed
 
-Here you also can enter a link to a new feed, so the App will fetch and parse the feed. 
+Here you also can enter a link to a new feed, so the App will fetch and parse the feed.
 After that, it will appear in the left column along with other saved feeds.
 
 # Requirements
@@ -56,7 +56,7 @@ For now, [Eclipse Vert.x Cassandra client](https://github.com/vert-x3/vertx-cass
 ```bash
 git clone https://github.com/vert-x3/vertx-cassandra-client
 cd vertx-cassandra-client
-mvn clean install -Dmaven.test.skip=true -s .travis.maven.settings.xml 
+mvn clean install -Dmaven.test.skip=true -s .travis.maven.settings.xml
 ```
 
 Before completing this step make sure that you have successfully cloned the RSS reader repository and checked out the `step_1` branch:
@@ -69,14 +69,14 @@ git checkout step_1
 
 Now you can try to tun this example and see if it works:
 ```bash
-./gradlew vertxRun  
+./gradlew vertxRun
 ```
 
 ## Schema
 
-If you are familiar with [Apache Cassandra](http://cassandra.apache.org/) you 
-should know that the way your data is stored in Cassandra is dependent on queries 
-you are running. It means that you need first to figure out what kind of queries 
+If you are familiar with [Apache Cassandra](http://cassandra.apache.org/) you
+should know that the way your data is stored in Cassandra is dependent on queries
+you are running. It means that you need first to figure out what kind of queries
 you will be running, and then you can produce a storage scheme.
 
 In our case we'd like our application to have 3 endpoints:
@@ -246,7 +246,7 @@ cqlsh> SELECT description FROM rss_reader.articles_by_rss_link  limit 1;
 (1 rows)
 ```
 
-# Conclusion 
+# Conclusion
 
 In this article we figured out how to implement the first endpoint of RSS-reader app. If you have any problems with completing this step you can checkout to `step_2`, where you can find all changes made for completing this step:
 ```bash
