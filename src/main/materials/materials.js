@@ -412,6 +412,12 @@ var tutorials = [
     link: "http://vertx.io/blog/posts/introduction-to-vertx.html",
     author: "Clement Escoffier",
     date: "30/11/2015"
+  },
+  {
+    title: "Building a giant web application with reactive Vertx.io and Mongo",
+    link: "https://github.com/greyseal/vertx-realworld-app",
+    author: "Saurabh Kukreti",
+    date: "21/08/2018"
   }
 ];
 
