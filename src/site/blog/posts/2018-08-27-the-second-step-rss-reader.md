@@ -7,7 +7,7 @@ author: Sammers21
 
 # Quick recap
 
-In (the previous step)[https://vertx.io/blog/the-rss-reader-tutorial/] we have successfully implemented the first endpoint 
+In [the previous step](https://vertx.io/blog/the-rss-reader-tutorial/) we have successfully implemented the first endpoint 
 of the RSS reader app.
 
 The RSS reader example assumes implementing 3 endpoints. This article is dedicated to implementing the ` GET /user/{user_id}/rss_channels ` endpoint.
