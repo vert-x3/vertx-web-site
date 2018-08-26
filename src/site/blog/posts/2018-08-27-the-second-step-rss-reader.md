@@ -17,13 +17,13 @@ Before completing this step, make sure your are in the `step_2` git branch:
 git checkout step_2
 ```
 
-# How we want the second endpoint to be implemented
+# Implementing the second endpoint
 
-Using the second endpoint we should be able to obtain an array of RSS channels by given `user_id`.
+The second endpoint produces an array of RSS channels by given `user_id`.
 
-To achieve this we need to execute 2 following queries for obtaining:
+We need to execute the two following queries to obtain:
 
-1. RSS links the user provided for fetching:
+1. RSS links a user provided for fetching:
     ```text
     SELECT rss_link FROM rss_by_user WHERE login = GIVEN_USER_ID ;
     ```
@@ -32,9 +32,9 @@ To achieve this we need to execute 2 following queries for obtaining:
     SELECT description, title, site_link, rss_link FROM channel_info_by_rss_link WHERE rss_link = GIVEN_LINK ;
     ```
 
-# Implementing
+# Implementation
 
-The endpoint will allow the fronted app show a list of RSS feeds a user subscribed on. Each time someone is accessing the endpoint the `AppVerticle#getRssChannels` method is called. We can implement this methods in this way:
+The endpoint allows the the front-end app to display a list of RSS feeds a user subscribed on. When the endpoint is accessed, the `AppVerticle#getRssChannels` method is called. We can implement this methods in this way:
 
 ```java
 private void getRssChannels(RoutingContext ctx) {
@@ -118,7 +118,7 @@ Also, this method is using `selectChannelInfo` and `selectRssLinksByLogin` field
 
 # Conclusion
 
-On this step, we have successfully implemented the second endpoint, which allow the browser app to obtain channels information for a specific user. To ensure that it is working fine, you need to visit your `localhost:8080` and click to the refresh button. Channel list should appear immediately.
+In this part, we have successfully implemented the second endpoint, which allows the browser app to obtain channels information for a specific user. To ensure that it is working fine, point your browser to `localhost:8080` and click to the refresh button. Channel list should appear immediately.
 
 If you have any problems with completing this step you can checkout to `step_3`, where you can find all changes made for completing this step:
 ```bash
