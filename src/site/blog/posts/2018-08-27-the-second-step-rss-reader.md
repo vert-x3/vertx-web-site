@@ -10,7 +10,7 @@ author: Sammers21
 In [the previous step](https://vertx.io/blog/the-rss-reader-tutorial/) we have successfully implemented the first endpoint 
 of the RSS reader app.
 
-The RSS reader example assumes implementing 3 endpoints. This article is dedicated to implementing the ` GET /user/{user_id}/rss_channels ` endpoint.
+The RSS reader example assumes implementing 3 endpoints. This article is dedicated to implementing the `GET /user/{user_id}/rss_channels` endpoint.
 
 Before completing this step, make sure your are in the `step_2` git branch:
 ```bash
@@ -21,20 +21,20 @@ git checkout step_2
 
 The second endpoint produces an array of RSS channels by given `user_id`.
 
-We need to execute the two following queries to obtain:
+We need to execute the two following queries to:
 
-1. RSS links a user provided for fetching:
+1. Fetch RSS links for a given user:
     ```text
     SELECT rss_link FROM rss_by_user WHERE login = GIVEN_USER_ID ;
     ```
-2. Channel info by a link:
+2. Fetch RSS channel details for a given link:
     ```text
     SELECT description, title, site_link, rss_link FROM channel_info_by_rss_link WHERE rss_link = GIVEN_LINK ;
     ```
 
 # Implementation
 
-The endpoint allows the the front-end app to display a list of RSS feeds a user subscribed on. When the endpoint is accessed, the `AppVerticle#getRssChannels` method is called. We can implement this methods in this way:
+The endpoint allows the the front-end app to display the list of RSS feeds a user subscribed on. When the endpoint is accessed, the `AppVerticle#getRssChannels` method is called. We can implement this method in this way:
 
 ```java
 private void getRssChannels(RoutingContext ctx) {
@@ -85,7 +85,7 @@ private void getRssChannels(RoutingContext ctx) {
 }
 ```
 
-Also, this method is using `selectChannelInfo` and `selectRssLinksByLogin` fields, they should be initialized in the `AppVerticle#prepareNecessaryQueries` method:
+Also, this method uses `selectChannelInfo` and `selectRssLinksByLogin` fields, they should be initialized in the `AppVerticle#prepareNecessaryQueries` method:
 
 
 ```java
