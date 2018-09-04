@@ -1,8 +1,9 @@
 ---
 title: The RSS reader tutorial. Step 2.
 template: post.html
-date: 2018-08-27
+date: 2018-09-04
 author: Sammers21
+draft: false
 --- 
 
 # Quick recap
