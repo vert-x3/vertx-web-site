@@ -16,6 +16,10 @@ var all_users = {
             revenue_billion: 1.181,
             employees: 2300
         }, {
+            src: "AntMedia_logo.png",
+            link: "https://antmedia.io",
+            height: 130,
+        }, {
             src: "apislabs.png",
             link: "http://apislabs.us/",
             height: 40
