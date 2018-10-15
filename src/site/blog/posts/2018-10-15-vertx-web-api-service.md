@@ -1,0 +1,189 @@
+---
+title: Vert.x Web API Service Introduction
+template: post.html
+date: 2018-10-15
+draft: true
+author: slinkydeveloper
+---
+
+# Vert.x Web API Service
+
+Vert.x 3.6 introduces a new package called `vertx-web-api-service`. With new Web API Services you can easily combine [Vert.x Web Router](https://vertx.io/docs/vertx-web/java/) and [Vert.x OpenAPI Router Factory](https://vertx.io/docs/vertx-web-api-contract/java/) features with [Vert.x Services on Event Bus](https://vertx.io/docs/vertx-service-proxy/java/).
+
+## Small recap on OpenAPI and Vert.x Web API Contract
+
+Let's start from this OpenAPI:
+
+```yaml
+openapi: 3.0.0
+paths:
+  /api/transactions:
+    get:
+      operationId: getTransactionsList
+      description: Get transactions list filtered by sender
+      x-vertx-event-bus: transactions_manager.myapp
+      parameters:
+        - name: from
+          in: query
+          description: Matches exactly the email from
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses: ...
+    post:
+      operationId: addTransaction
+      x-vertx-event-bus: transactions_manager.myapp
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Transaction"
+      responses: ...
+  /api/transactions/{transactionId}:
+    parameters:
+      - name: transactionId
+        in: path
+        required: true
+        schema:
+          type: string
+    put:
+      operationId: updateTransaction
+      x-vertx-event-bus: transactions_manager.myapp
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Transaction"
+      responses: ...
+    delete:
+      operationId: removeTransaction
+      x-vertx-event-bus: transactions_manager.myapp
+      responses: ...
+components:
+  schemas:
+    Transaction: ...
+    Error: ...
+```
+
+We defined `getTransactionsList`, `addTransaction`, `updateTransaction` and `removeTransaction`. Now with `OpenAPI3RouterFactory` we create a `Router` that accepts this various operations requests:
+
+```java
+OpenAPI3RouterFactory.create(vertx, "src/main/resources/petstore.yaml", ar -> {
+  if (ar.succeeded()) {
+    // Spec loaded with success
+    OpenAPI3RouterFactory routerFactory = ar.result();
+    routerFactory.addHandlerByOperationId("getTransactionsList", routingContext -> {
+      RequestParameters params = routingContext.get("parsedParameters");
+      RequestParameter from = params.queryParameter("from");
+      // getTransactionsList business logic
+    });
+    // add handlers for addTransaction, updateTransaction and removeTransaction
+    Router router = routerFactory.getRouter();
+  } else {
+    // Something went wrong during router factory initialization
+    Throwable exception = ar.cause();
+  }
+});
+```
+
+The `OpenAPI3RouterFactory` provides an easy way to create a specification compliant Router, but it doesn't provide a mechanism to decouple the business logic from your operation handlers. In a Vert.x typical application, when you receive a request to your router, you forward it to an event bus endpoint that performs some actions and sends the result back to the operation handler. Vert.x Web API Service simplifies that integration between Router Factory and Event Bus with a new code generator. The final result is a loose coupling between the Web Router logic and your request handling business logic.
+
+## Write your first Api service
+
+Let's say that we want to model a service that manages all operations regarding transactions CRUD. An example interface for this asynchronous service could be:
+
+```java
+public interface TransactionsManagerService {
+  void getTransactionsList(List<String> from, Handler<AsyncResult<List<Transaction>>> resultHandler);
+  void addTransaction(Transaction transaction, Handler<AsyncResult<Transaction>> resultHandler);
+  void updateTransaction(String transactionId, Transaction transaction, Handler<AsyncResult<Transaction>> resultHandler);
+  void removeTransaction(String transactionId, Handler<AsyncResult<Integer>> resultHandler);
+}
+```
+
+For each operation, we have some parameters, depending on the operation, and a callback (`resultHandler`) that should be called when the operation succeed or fail.
+
+As you already saw on `vertx-service-proxy`, you can define an Event Bus service with a Java interface similar to the one we just saw and then annotate it with `@ProxyGen`. This annotation will generate a _service handler_ for the defined service that can be plugged to the event bus with `ServiceBinder`. `vertx-web-api-service` works in a very similar way: you need to annotate the Java interface with `@WebApiServiceGen` and it will generate the service handler for the event bus.
+Let's rewrite the `TransactionsManagerService` to work as Web API Service:
+
+```java
+import io.vertx.ext.web.api.*;
+import io.vertx.ext.web.api.generator.WebApiServiceGen;
+
+@WebApiServiceGen
+public interface TransactionsManagerService {
+  void getTransactionsList(List<String> from, OperationRequest context, Handler<AsyncResult<OperationResponse>> resultHandler);
+  void addTransaction(Transaction body, OperationRequest context, Handler<AsyncResult<OperationResponse>> resultHandler);
+  void updateTransaction(String transactionId, Transaction body, OperationRequest context, Handler<AsyncResult<OperationResponse>> resultHandler);
+  void removeTransaction(String transactionId, OperationRequest context, Handler<AsyncResult<OperationResponse>> resultHandler);
+
+  // Factory method to instantiate the implementation
+  static TransactionsManagerService create(Vertx vertx) {
+    return new TransactionsManagerServiceImpl(vertx);
+  }
+}
+
+```
+
+First of all, look at the annotation `@WebApiServiceGen`. This annotation will trigger the code generator that generates the event bus handler for this service. Each method has the same two last parameters:
+
+* `OperationRequest context`: This data object contains the headers and the parameters of the request
+* `Handler<AsyncResult<OperationResponse>> resultHandler`: This callback accepts an `OperationResponse` data object that will encapsulate the body of the result, the status code, the status message and the headers
+
+The generated handler receives only the `OperationRequest` data object and extracts from it all operation parameters. For example, when the router receives a request at `getTransactionsList`, it sends to `TransactionsManagerService` the `OperationRequest` containing the `RequestParameters` map. From this map, the service generated handler extracts the `from` parameter. So **operation parameters name should match method parameters name**. When you want to extract the body you must use `body` keyword. For more details, please check the documentation
+
+## Implement the service
+
+Now that you have your interface, you can implement the service:
+
+```java
+public class TransactionsManagerServiceImpl implements TransactionsManagerService {
+
+  private Vertx vertx;
+
+  public TransactionsManagerServiceImpl(Vertx vertx) {  this.vertx = vertx;  }
+
+  @Override
+  public void getTransactionsList(List<String> from, OperationRequest context, Handler<AsyncResult<OperationResponse>> resultHandler){
+    // Write your business logic here
+    resultHandler.handle(Future.succeededFuture(OperationResult.completedWithJson(resultJson)));
+  }
+
+  // Implement other operations
+
+}
+```
+
+Check the `OperationResult` documentation to look at various handy methods to create a completed response.
+
+## Mount the Service
+
+Now that you have your service interface and implementation, you can mount your service with `ServiceBinder`:
+
+```java
+ServiceBinder serviceBinder = new ServiceBinder(vertx);
+
+TransactionsManagerService transactionsManagerService = TransactionsManagerService.create(vertx);
+registeredConsumers.add(
+  serviceBinder
+    .setAddress("transactions_manager.myapp")
+    .register(TransactionsManagerService.class, transactionsManagerService)
+);
+```
+
+## And the Router Factory?
+
+Now your service is up and running, but we need to connect it to the `Router` built by `OpenAPI3RouterFactory`. In our example we added an extension `x-vertx-event-bus` that specifies the address of the service. With this method, you only need to call `OpenAPI3RouterFactory.mountServicesFromExtensions()` to trigger a scan of all operations and mount all found service addresses. For each operation that contains `x-vertx-event-bus`, the Router Factory instantiates an handler that routes the incoming requests to the address you specified.
+
+Depending on your needs, you have four ways to match the service with router operation handlers. Check the documentation for all details.
+
+## And now?
+
+If you want to scaffold your project and generate all boilerplate that you don't want to write like service interfaces, parameters' data objects, responses' data objects, tests and so on please check out [pmlopes' vertx-starter](https://vertx-starter.jetdrone.xyz/#maven).
+
+Thank you for your time, stay tuned for more updates!
