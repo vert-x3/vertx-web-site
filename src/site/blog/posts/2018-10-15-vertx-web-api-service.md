@@ -93,7 +93,7 @@ OpenAPI3RouterFactory.create(vertx, "src/main/resources/petstore.yaml", ar -> {
 
 The `OpenAPI3RouterFactory` provides an easy way to create a specification compliant Router, but it doesn't provide a mechanism to decouple the business logic from your operation handlers. In a Vert.x typical application, when you receive a request to your router, you forward it to an event bus endpoint that performs some actions and sends the result back to the operation handler. Vert.x Web API Service simplifies that integration between Router Factory and Event Bus with a new code generator. The final result is a loose coupling between the Web Router logic and your request handling business logic.
 
-## Write your first Api service
+## Model your service
 
 Let's say that we want to model a service that manages all operations regarding transactions CRUD. An example interface for this asynchronous service could be:
 
@@ -109,6 +109,7 @@ public interface TransactionsManagerService {
 For each operation, we have some parameters, depending on the operation, and a callback (`resultHandler`) that should be called when the operation succeed or fail.
 
 As you already saw on `vertx-service-proxy`, you can define an Event Bus service with a Java interface similar to the one we just saw and then annotate it with `@ProxyGen`. This annotation will generate a _service handler_ for the defined service that can be plugged to the event bus with `ServiceBinder`. `vertx-web-api-service` works in a very similar way: you need to annotate the Java interface with `@WebApiServiceGen` and it will generate the service handler for the event bus.
+
 Let's rewrite the `TransactionsManagerService` to work as Web API Service:
 
 ```java
@@ -186,4 +187,4 @@ Depending on your needs, you have four ways to match the service with router ope
 
 If you want to scaffold your project and generate all boilerplate that you don't want to write like service interfaces, parameters' data objects, responses' data objects, tests and so on please check out [pmlopes' vertx-starter](https://vertx-starter.jetdrone.xyz/#maven).
 
-Thank you for your time, stay tuned for more updates!
+Thanks you for your time, stay tuned for more updates! And please provide feedback about this new package!
