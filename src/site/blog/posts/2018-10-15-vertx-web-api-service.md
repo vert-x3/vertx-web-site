@@ -185,6 +185,6 @@ Depending on your needs, you have four ways to match the service with router ope
 
 ## And now?
 
-If you want to scaffold your project and generate all boilerplate that you don't want to write like service interfaces, parameters' data objects, responses' data objects, tests and so on please check out [pmlopes' vertx-starter](https://vertx-starter.jetdrone.xyz/#maven).
+Check out the complete example in [vertx-examples repo](https://github.com/vert-x3/vertx-examples/tree/master/vertx-web-api-service-example)
 
 Thanks you for your time, stay tuned for more updates! And please provide feedback about this new package!
