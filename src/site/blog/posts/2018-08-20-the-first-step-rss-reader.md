@@ -22,7 +22,7 @@ You also may find it useful to read [the RSS 2.0](https://validator.w3.org/feed/
 
 To give you an idea of what the App is about, here is how it looks like from the fronted side:
 
-![see how it looks](https://i.imgur.com/QnLieKA.png)
+![see how it looks](https://i.imgur.com/2V954zx.png)
 
 On the image we see that browser space is split into 2 parts:
 
