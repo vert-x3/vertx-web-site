@@ -232,8 +232,8 @@ function getAll(github, done) {
       return;
     }
 
-    // get contributors from the 'eclipse/vert.x' repository as well
-    repos.unshift("eclipse/vert.x");
+    // get contributors from the 'eclipse-vertx/vert.x' repository as well
+    repos.unshift("eclipse-vertx/vert.x");
 
     // get all contributors
     gutil.log("Get all contributors ...")

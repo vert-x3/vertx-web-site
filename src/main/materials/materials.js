@@ -397,6 +397,13 @@ var articles = [
     link: "https://dzone.com/articles/first-steps-with-vertx-and-infinispan-push-api-par",
     author: "Katia Aresti",
     date: "18/12/2017"
+  },
+  {
+    title: "Going reactive with Eclipse Vert.x and RX Java",
+    media: "Oracle Magazine",
+    link: "http://www.javamagazine.mozaicreader.com/JanFeb2018#&pageSet=32&page=0",
+    author: "Clement Escoffier, Julien Ponge",
+    date: "01/02/2018"
   }
 ];
 

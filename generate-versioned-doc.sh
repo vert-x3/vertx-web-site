@@ -2,7 +2,7 @@
 
 if [ $# -eq 0 ]
   then
-    echo "Copy the existing docs into a directory under /docs/<version>. Links are udpated to target this version"
+    echo "Copy the existing docs into a directory under /docs/<version>. Links are updated to target this version"
     echo "Usage: ./generate-versioned-doc.sh <version>"
     echo "For example: ./generate-versioned-doc.sh 3.5.0"
     echo "Once copied, run ./deploy.sh to update the web site (do not regenerate the site in between)"
@@ -12,7 +12,7 @@ fi
 export VERSION=$1
 export DOCS="target/site/docs"
 export COPY="target/copy-docs-${VERSION}"
-export REF="http\://vertx.io/docs"
+export REF="https\://vertx.io/docs"
 export PACKAGE_NAME="vertx-docs-${VERSION}.zip"
 
 echo "Generating doc package for ${VERSION}"

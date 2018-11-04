@@ -16,6 +16,10 @@ var all_users = {
             revenue_billion: 1.181,
             employees: 2300
         }, {
+            src: "AntMedia_logo.png",
+            link: "https://antmedia.io",
+            height: 130,
+        }, {
             src: "apislabs.png",
             link: "http://apislabs.us/",
             height: 40
@@ -56,6 +60,10 @@ var all_users = {
             link: "http://www.ef.edu",
             height: 55
         }, {
+            src: "ekuaibao.png",
+            link: "https://www.ekuaibao.com/",
+            height: 59
+        }, {
             src: "exent_logo.png",
             link: "http://www.exent.com/",
             height: 50
@@ -84,6 +92,13 @@ var all_users = {
             wikipedia: "http://en.wikipedia.org/wiki/Groupon",
             revenue_billion: 3.2,
             employees: 10000
+        }, {
+         	src: "hopscotch_logo_white.png",
+            link: "http://www.hopscotch.in",
+            height: 90,
+            wikipedia: "https://en.wikipedia.org/wiki/Hopscotch_(company)",
+            revenue_billion: 0.06,
+            employees: 400
         }, {
             src: "hulu_logo_transparent_small.png",
             link: "http://www.hulu.com/",
@@ -131,7 +146,7 @@ var all_users = {
             src: "origami.png",
             link: "http://origami3.com/",
             height: 54
-        }, {            
+        }, {
             src: "opengov_light_2017.png",
             link: "https://opengov.com/",
             height: 40
@@ -337,7 +352,7 @@ var all_users = {
             wikipedia: "https://en.wikipedia.org/wiki/Deutsche_B%C3%B6rse",
             revenue_billion: 2.367
         },
-		{
+		    {
             src: "mobitech_logo_white.png",
             link: "http://mobitech.io/",
             height: 31,
