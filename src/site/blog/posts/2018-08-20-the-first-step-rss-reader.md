@@ -51,14 +51,6 @@ ccm create rss_reader -v 3.11.2 -n 1 -s
 ccm start
 ```
 
-For now, [Eclipse Vert.x Cassandra client](https://github.com/vert-x3/vertx-cassandra-client) is not available in maven central, it means that you have to build and install it locally:
-
-```bash
-git clone https://github.com/vert-x3/vertx-cassandra-client
-cd vertx-cassandra-client
-mvn clean install -Dmaven.test.skip=true -s .travis.maven.settings.xml
-```
-
 Before completing this step make sure that you have successfully cloned the RSS reader repository and checked out the `step_1` branch:
 
 ```bash
@@ -81,9 +73,9 @@ you will be running, and then you can produce a storage scheme.
 
 In our case we'd like our application to have 3 endpoints:
 
-1. POST /user/{user_id}/rss_link - for adding links to a user's feed
-2. GET /user/{user_id}/rss_channels - for retrieving information about RSS channels a user subscribed on
-3. GET /articles/by_rss_link?link={rss_link} - for retrieving information about articles on a specific RSS channel
+1. `POST /user/{user_id}/rss_link` - for adding links to a user's feed
+2. `GET /user/{user_id}/rss_channels` - for retrieving information about RSS channels a user subscribed on
+3. `GET /articles/by_rss_link?link={rss_link}` - for retrieving information about articles on a specific RSS channel
 
 For implementing this endpoints the schema should look in this way:
 
