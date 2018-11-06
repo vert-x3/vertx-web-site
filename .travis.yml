@@ -1,7 +1,7 @@
 language: java
 branches:
   only:
-  - /^\d+\.\d+$/
+  - 3.6.0
 jobs:
   include:
     - stage: site
