@@ -7,7 +7,7 @@ jobs:
     - stage: site
       name: "Build web site"
       jdk: oraclejdk8
-      script: mvn site
+      script: mvn site -Dhost="vertx-ci.github.io/web-site-snapshot"  && rm target/site/CNAME
 deploy:
   condition: env(GITHUB_TOKEN) IS present
   provider: pages
