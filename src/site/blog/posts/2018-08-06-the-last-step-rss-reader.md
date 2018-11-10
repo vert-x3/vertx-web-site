@@ -19,7 +19,7 @@ git checkout step_3
 
 # Implementing the 3rd endpoint
 
-The 3rd endpoint responses with a list of articles, related to a specific RSS channel. In a request, we specify RSS channel by providing a link. On the application side, after receiving a request we execute the following query:
+The 3rd endpoint serves a list of articles, related to a specific RSS channel. In a request, we specify RSS channel by providing a link. On the application side, after receiving a request we execute the following query:
 
 ```text
 SELECT title, article_link, description, pubDate FROM articles_by_rss_link WHERE rss_link = RSS_LINK_FROM_REQUEST ;
