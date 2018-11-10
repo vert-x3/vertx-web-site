@@ -27,7 +27,7 @@ SELECT title, article_link, description, pubDate FROM articles_by_rss_link WHERE
 
 # Implementation
 
-For obtaining articles by RSS link we need to prepare a related statement first. Change `AppVerticle#prepareNecessaryQueries` in this way:
+To retrieve articles by RSS link we need to prepare a related statement first. Change `AppVerticle#prepareNecessaryQueries` in this way:
 
 ```java
 private Future<Void> prepareNecessaryQueries() {
