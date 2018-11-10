@@ -64,7 +64,7 @@ private Future<Void> prepareNecessaryQueries() {
 }
 ``` 
 
-And now, we can implement the `AppVerticle#getArticles` method. Basically, it will use the `selectArticlesByRssLink` statement for finding articles by the given link. Implementation:
+And now, we can implement the `AppVerticle#getArticles` method. Basically, it will use the `selectArticlesByRssLink` statement for finding articles by the given link. Here's the implementation:
 
 ```java
 private void getArticles(RoutingContext ctx) {
