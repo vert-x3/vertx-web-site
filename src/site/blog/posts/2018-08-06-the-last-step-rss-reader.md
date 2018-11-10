@@ -72,9 +72,7 @@ private void getArticles(RoutingContext ctx) {
     if (link == null) {
         responseWithInvalidRequest(ctx);
     } else {
-        Future<List<Row>> future = Future.future();
-        client.executeWithFullFetch(selectArticlesByRssLink.bind(link), future);
-        future.setHandler(handler -> {
+        client.executeWithFullFetch(selectArticlesByRssLink.bind(link), handler -> {
             if (handler.succeeded()) {
                 List<Row> rows = handler.result();
 
