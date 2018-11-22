@@ -93,6 +93,32 @@ OpenAPI3RouterFactory.create(vertx, "src/main/resources/petstore.yaml", ar -> {
 
 The `OpenAPI3RouterFactory` provides an easy way to create a specification compliant Router, but it doesn't provide a mechanism to decouple the business logic from your operation handlers. In a Vert.x typical application, when you receive a request to your router, you forward it to an event bus endpoint that performs some actions and sends the result back to the operation handler. Vert.x Web API Service simplifies that integration between Router Factory and Event Bus with a new code generator. The final result is a loose coupling between the Web Router logic and your request handling business logic.
 
+## Let's start with web api services!
+
+To use `vertx-web-api-service` you need to add this imports to your pom file:
+
+```xml
+<dependency>
+  <groupId>io.vertx</groupId>
+  <artifactId>vertx-codegen</artifactId>
+  <version>3.6.0</version>
+  <classifier>processor</classifier>
+</dependency>
+<dependency>
+  <groupId>io.vertx</groupId>
+  <artifactId>vertx-web-api-service</artifactId>
+  <version>3.6.0</version>
+</dependency>
+```
+
+We will proceed in this order:
+
+1. Model the service interface
+2. Rewrite it to work with web api services
+3. Implement the service
+4. Mount the service on event bus
+5. Use the router factory to build a router with handlers that connects to our event bus services
+
 ## Model your service
 
 Let's say that we want to model a service that manages all operations regarding transactions CRUD. An example interface for this asynchronous service could be:
@@ -110,7 +136,7 @@ For each operation, we have some parameters, depending on the operation, and a c
 
 As you already saw on `vertx-service-proxy`, you can define an Event Bus service with a Java interface similar to the one we just saw and then annotate it with `@ProxyGen`. This annotation will generate a _service handler_ for the defined service that can be plugged to the event bus with `ServiceBinder`. `vertx-web-api-service` works in a very similar way: you need to annotate the Java interface with `@WebApiServiceGen` and it will generate the service handler for the event bus.
 
-Let's rewrite the `TransactionsManagerService` to work as Web API Service:
+Let's rewrite the `TransactionsManagerService` to work with Web API Service:
 
 ```java
 import io.vertx.ext.web.api.*;
@@ -179,9 +205,28 @@ registeredConsumers.add(
 
 ## And the Router Factory?
 
-Now your service is up and running, but we need to connect it to the `Router` built by `OpenAPI3RouterFactory`. In our example we added an extension `x-vertx-event-bus` that specifies the address of the service. With this method, you only need to call `OpenAPI3RouterFactory.mountServicesFromExtensions()` to trigger a scan of all operations and mount all found service addresses. For each operation that contains `x-vertx-event-bus`, the Router Factory instantiates an handler that routes the incoming requests to the address you specified.
+Now your service is up and running, but we need to connect it to the `Router` built by `OpenAPI3RouterFactory`:
 
-Depending on your needs, you have four ways to match the service with router operation handlers. Check the documentation for all details.
+```java
+OpenAPI3RouterFactory.create(this.vertx, "my_spec.yaml", openAPI3RouterFactoryAsyncResult -> {
+  if (openAPI3RouterFactoryAsyncResult.succeeded()) {
+    OpenAPI3RouterFactory routerFactory = openAPI3RouterFactoryAsyncResult.result();
+    // Mount services on event bus based on extensions
+    routerFactory.mountServicesFromExtensions(); // <- Pure magic happens!
+    // Generate the router
+    Router router = routerFactory.getRouter();
+    server = vertx.createHttpServer(new HttpServerOptions().setPort(8080));
+    server.requestHandler(router).listen();
+    // Initialization completed
+  } else {
+    // Something went wrong during router factory initialization
+  }
+});
+```
+
+In our spec example we added an extension `x-vertx-event-bus` to each operation that specifies the address of the service. Using this extension, you only need to call `OpenAPI3RouterFactory.mountServicesFromExtensions()` to trigger a scan of all operations and mount all found service addresses. For each operation that contains `x-vertx-event-bus`, the Router Factory instantiates an handler that routes the incoming requests to the address you specified.
+
+This is one of the methods you can use to match services with router operation handlers. Check the documentation for all details.
 
 ## And now?
 
