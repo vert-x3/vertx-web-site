@@ -15,8 +15,8 @@ OpenAPI 2 is the most important industry-grade standard for API Specifications. 
 Vert.x project objective is to give you more integrated tools. With this new support, it gives you the ability to use the [Design Driven](https://swaggerhub.com/blog/api-design/design-first-or-code-first-api-development/) (or Design First) approach **without loading any thirds parties libraries**.
 
 ## Features
-The actually supported features are the following (we refeer to document Version 3.0.0-rc2):
-* OpenAPI 3 compliant API specification validation (thanks to [Kaizen-OpenApi-Parser](https://github.com/RepreZen/KaiZen-OpenApi-Parser)) with **loading of external Json schemas**
+The actually supported features are the following (we reefer to OpenAPI version 3.0.0):
+* OpenAPI 3 compliant API specification validation with **loading of external Json schemas**
 * Automatic request validation
 * Automatic mount of security validation handlers
 * Automatic 501 response for not implemented operations
@@ -45,29 +45,18 @@ Also, it's planned to release a **project skeleton generator** based on API spec
 We are in a testing stage, so the vertx-web official repo doesn't contain it. To include the modified version of vertx-web replace your vertx-web maven dependency with this one:
 ```xml
 <dependency>
-    <groupId>com.github.slinkydeveloper</groupId>
-    <artifactId>vertx-web</artifactId>
-    <version>89d6254d50</version> <!-- Or <version>designdriven-SNAPSHOT</version> for latest versions -->
+    <groupId>io.vertx</groupId>
+    <artifactId>vertx-web-api-contract</artifactId>
+    <version>3.6.0</version>
 </dependency>
 ```
-Then you have to add this maven repository in your `pom.xml`
-```xml
-<repositories>
-  <repository>
-      <id>jitpack.io</id>
-      <url>https://jitpack.io</url>
-  </repository>
-</repositories>
-```
-
-You can also use it with [gradle](https://jitpack.io/#slinkydeveloper/vertx-web/designdriven-SNAPSHOT)
 
 Now you can start using OpenAPI 3 inside your Vert.x powered app!
 
 First of all you need to load the specification and construct the router factory:
 ```java
 // Load the api spec. This operation is asynchronous
-OpenAPI3RouterFactory.createRouterFactoryFromFile(this.vertx, "src/main/resources/petstore.yaml", ar -> {
+OpenAPI3RouterFactory.create(this.vertx, "src/main/resources/petstore.yaml", ar -> {
     if (ar.succeeded()) {
         // Spec loaded with success
         OpenAPI3RouterFactory routerFactory = ar.result();
@@ -81,29 +70,15 @@ OpenAPI3RouterFactory.createRouterFactoryFromFile(this.vertx, "src/main/resource
 
 ## Handlers mounting
 
-Now load your first path. There are two functions to load the handlers:
-* `addHandler(HttpMethod method, String path, Handler<RoutingContext> handler, Handler<RoutingContext> failureHandler)`
-* `addHandlerByOperationId(String operationId, Handler<RoutingContext> handler, Handler<RoutingContext> failureHandler)`
+Now load handlers to your operations. Use `addHandlerByOperationId(String operationId, Handler<RoutingContext> handler)` to add an handler to a route that matches the `operationId`. To add a failure handler use `addFailureHandlerByOperationId(String operationId, Handler<RoutingContext> failureHandler) `
 
-This two functions wants an handler and a failure handler. You can, of course, **add multiple handlers to same operation**, without overwrite the existing ones.
-
-[IMPORTANT Add operations with operationId | Usage of combination of path and HTTP method is allowed, but it's better to add operations handlers with operationId, for performance reasons and to avoid paths nomenclature errors]
+You can, of course, **add multiple handlers to same operation**, without overwriting the existing ones.
 
 This is an example of `addHandlerByOperationId()`:
 ```java
 // Add an handler with operationId
 routerFactory.addHandlerByOperationId("listPets", routingContext -> {
     // Handle listPets operation (GET /pets)
-}, routingContext -> {
-    // Handle failure
-});
-```
-
-This is an example of `addHandler`:
-```java
-// Add an handler with a combination of HttpMethod and path
-routerFactory.addHandler(HttpMethod.POST, "/pets", routingContext -> {
-    // Handle /pets POST operation
 }, routingContext -> {
     // Handle failure
 });
@@ -187,7 +162,9 @@ if (failure instanceof ValidationException)
 
 Also the router factory provides two other tools:
 * It automatically mounts a 501 `Not Implemented` handler for operations where you haven't mounted any handler
-* It can load a default `ValidationException` failure handler (You can enable this feature via `routerFactory.enableValidationFailureHandler(true)`)
+* It can load a default `ValidationException` failure handler
+
+Both these options are configurable with [`RouterFactoryOptions`](https://vertx.io/docs/apidocs/io/vertx/ext/web/api/contract/RouterFactoryOptions.html)
 
 ## And now use it!
 Now you are ready to generate the `Router`!
@@ -202,15 +179,8 @@ server.requestHandler(router::accept).listen();
 [NOTE Lazy methods! | `getRouter()` generate the `Router` object, so you don't have to care about code definition order]
 
 ## And now?
-You can find a complete example here: [OpenAPI 3 Vert.x example gists](https://gist.github.com/slinkydeveloper/bdf5929c2506988d78fc08205089409a)
+You can find a complete example on [`vertx-examples`](https://github.com/vert-x3/vertx-examples/tree/master/web-examples#http-request-validation-and-openapi-3-router-factory)
 
-You can access to documentation (WIP) [here](https://github.com/slinkydeveloper/vertx-web/blob/designdriven/vertx-web/src/main/asciidoc/java/index.adoc#openapi-3) (for others languages, check out [here](https://github.com/slinkydeveloper/vertx-web/tree/designdriven/vertx-web/src/main/asciidoc)), but you can also check Javadoc inside code. These are the most important ones:
-* [DesignDrivenRouterFactory (Base interface of OpenAPI3RouterFactory)](https://github.com/slinkydeveloper/vertx-web/blob/designdriven/vertx-web/src/main/java/io/vertx/ext/web/designdriven/DesignDrivenRouterFactory.java)
-* [OpenAPI3RouterFactory](https://github.com/slinkydeveloper/vertx-web/blob/designdriven/vertx-web/src/main/java/io/vertx/ext/web/designdriven/OpenAPI3RouterFactory.java)
-* [RequestParameters (container of all parameters)](https://github.com/slinkydeveloper/vertx-web/blob/designdriven/vertx-web/src/main/java/io/vertx/ext/web/RequestParameters.java)
-* [RequestParameter (container of a parameter instance)](https://github.com/slinkydeveloper/vertx-web/blob/designdriven/vertx-web/src/main/java/io/vertx/ext/web/RequestParameter.java)
-* [ValidationException](https://github.com/slinkydeveloper/vertx-web/blob/designdriven/vertx-web/src/main/java/io/vertx/ext/web/validation/ValidationException.java)
-
-Follow [my fork of vertx-web project](https://github.com/slinkydeveloper/vertx-web) to get last updates.
+You can access to [documentation here](https://vertx.io/docs/#web) and [Javadoc here](https://vertx.io/docs/apidocs/io/vertx/ext/web/api/contract/package-summary.html)
 
 [IMPORTANT We want you! | Please give us your feedback opening an issue [here](https://github.com/slinkydeveloper/vertx-web/issues) ]
