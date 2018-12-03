@@ -26,77 +26,51 @@ The 3rd endpoint responses with a list of articles, related to a specific RSS ch
 
 # Implementation
 
-For obtaining articles by RSS link we need to prepare a related statement first. Change `AppVerticle#prepareNecessaryQueries` in this way:
+For obtaining articles by RSS link we need to prepare a related statement first. Change `AppVerticle#prepareSelectArticlesByRssLink` in this way:
 
 ```java
-    private Future<Void> prepareNecessaryQueries() {
-        Future<PreparedStatement> selectChannelInfoPrepFuture = Future.future();
-        client.prepare("SELECT description, title, site_link, rss_link FROM channel_info_by_rss_link WHERE rss_link = ? ;", selectChannelInfoPrepFuture);
-
-        Future<PreparedStatement> selectRssLinkByLoginPrepFuture = Future.future();
-        client.prepare("SELECT rss_link FROM rss_by_user WHERE login = ? ;", selectRssLinkByLoginPrepFuture);
-
-        Future<PreparedStatement> insertNewLinkForUserPrepFuture = Future.future();
-        client.prepare("INSERT INTO rss_by_user (login , rss_link ) VALUES ( ?, ?);", insertNewLinkForUserPrepFuture);
-
-        Future<PreparedStatement> selectArticlesByRssLinkPrepFuture = Future.future();
-        client.prepare("SELECT title, article_link, description, pubDate FROM articles_by_rss_link WHERE rss_link = ? ;", selectArticlesByRssLinkPrepFuture);
-
-        return CompositeFuture.all(
-                selectChannelInfoPrepFuture.compose(preparedStatement -> {
-                    selectChannelInfo = preparedStatement;
-                    return Future.succeededFuture();
-                }),
-                selectRssLinkByLoginPrepFuture.compose(preparedStatement -> {
-                    selectRssLinksByLogin = preparedStatement;
-                    return Future.succeededFuture();
-                }),
-                insertNewLinkForUserPrepFuture.compose(preparedStatement -> {
-                    insertNewLinkForUser = preparedStatement;
-                    return Future.succeededFuture();
-                }),
-                selectArticlesByRssLinkPrepFuture.compose(preparedStatement -> {
-                    selectArticlesByRssLink = preparedStatement;
-                    return Future.succeededFuture();
-                })
-        ).mapEmpty();
-    }
+private Future<Void> prepareSelectArticlesByRssLink() {
+    return Util.prepareQueryAndSetReference(client,
+            "SELECT title, article_link, description, pubDate FROM articles_by_rss_link WHERE rss_link = ? ;",
+            selectArticlesByRssLink
+    );
+}
 ``` 
 
 And now, we can implement the `AppVerticle#getArticles` method. Basically, it will use the `selectArticlesByRssLink` statement for finding articles by the given link. Implementation:
 
 ```java
-    private void getArticles(RoutingContext ctx) {
-        String link = ctx.request().getParam("link");
-        if (link == null) {
-            responseWithInvalidRequest(ctx);
-        } else {
-            Future<List<Row>> future = Future.future();
-            client.executeWithFullFetch(selectArticlesByRssLink.bind(link), future);
-            future.setHandler(handler -> {
-                if (handler.succeeded()) {
-                    List<Row> rows = handler.result();
+private void getArticles(RoutingContext ctx) {
+    String link = ctx.request().getParam("link");
+    if (link == null) {
+        responseWithInvalidRequest(ctx);
+    } else {
+        Future<List<Row>> future = Future.future();
+        client.executeWithFullFetch(selectArticlesByRssLink.bind(link), future);
+        future.setHandler(handler -> {
+            if (handler.succeeded()) {
+                List<Row> rows = handler.result();
 
-                    JsonObject responseJson = new JsonObject();
-                    JsonArray articles = new JsonArray();
+                JsonObject responseJson = new JsonObject();
+                JsonArray articles = new JsonArray();
 
-                    rows.forEach(eachRow -> articles.add(
-                            new JsonObject()
-                                    .put("title", eachRow.getString(0))
-                                    .put("link", eachRow.getString(1))
-                                    .put("description", eachRow.getString(2))
-                                    .put("pub_date", eachRow.getTimestamp(3).getTime())
-                    ));
+                rows.forEach(eachRow -> articles.add(
+                        new JsonObject()
+                                .put("title", eachRow.getString(0))
+                                .put("link", eachRow.getString(1))
+                                .put("description", eachRow.getString(2))
+                                .put("pub_date", eachRow.getTimestamp(3).getTime())
+                ));
 
-                    responseJson.put("articles", articles);
-                    ctx.response().end(responseJson.toString());
-                } else {
-                    log.error("failed to get articles for " + link, handler.cause());
-                    ctx.response().setStatusCode(500).end("Unable to retrieve the info from C*");
-                }
-            });
-        }
+                responseJson.put("articles", articles);
+                ctx.response().end(responseJson.toString());
+            } else {
+                log.error("failed to get articles for " + link, handler.cause());
+                ctx.response().setStatusCode(500).end("Unable to retrieve the info from C*");
+            }
+        });
     }
+}
 ```
 
 # Conclusion
