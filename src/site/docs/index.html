@@ -14,6 +14,7 @@ sidebar: true
             <li><a href="#web2">Web</a></li>
             <li><a href="#web-client">Web client</a></li>
             <li><a href="#web-api-contract">Web API contract</a></li>
+            <li><a href="#web-api-service">Web API Service</a></li>
         </ul>
     </li>
     <li><a href="#data_access">Data access</a>
@@ -141,6 +142,11 @@ sidebar: true
 
                     <h4>Books</h4>
                     <div class="col-sm-6">
+                      <a href="https://www.manning.com/books/vertx-in-action?a_aid=vertx-in-action&a_bid=22152024">
+                        <img src="{{ site_url }}/assets/book-covers/cover-vertxinaction-ponge.png" class="thumbnail" alt="Vert.x in Action: Asynchronous and Reactive Applications in Java ">
+                      </a>
+                    </div>
+                    <div class="col-sm-6">
                         <a href="{{ site_url }}/docs/guide-for-java-devs">
                             <img src="{{ site_url }}/assets/book-covers/cover-ggaajd-ponge.png" class="thumbnail" alt="A gentle guide to asynchronous programming with Eclipse Vert.x for Java developers">
                         </a>
@@ -150,11 +156,11 @@ sidebar: true
                             <img src="{{ site_url }}/assets/book-covers/cover-brmj-escoffier.png" class="thumbnail" alt="Building Reactive Microservices in Java">
                         </a>
                     </div>
-
-                    <h4>Materials</h4>
-                    <p>If you are interested in articles, tutorials and talks about Vert.x, please check the
-                        <a href="/materials">learning materials page</a>.</p>
-
+                </div>
+                <div class="col-sm-12">
+                  <h4>Materials</h4>
+                  <p>If you are interested in articles, tutorials and talks about Vert.x, please check the
+                    <a href="/materials">learning materials page</a>.</p>
                 </div>
             </div>
 
@@ -316,7 +322,7 @@ sidebar: true
                         </div>
                         <div class="col-md-4">
                             <h4 id="web_api_contract">Web API Contract</h4>
-                            <p>Web API Contract supports OpenApi 3 specification for a design first approach, it also provides a validation framework</p>
+                            <p>Web API Contract supports OpenApi 3 specification for a design first approach and provides a validation framework</p>
                             <table>
                                 <tr>
                                     <td>Java</td>
@@ -353,6 +359,23 @@ sidebar: true
                                 <li><a href="https://github.com/vert-x3/vertx-web/tree/master/vertx-web-api-contract">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/web-examples#http-request-validation-and-openapi-3-router-factory">Examples</a>
                                 </li>
                             </ul>
+                        </div>
+			                </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <h4 id="web_api_service">Web API Service <small><span class="label label-primary">Technical Preview</span></small></h4>
+                          <p>Connect your Router built with OpenAPI 3 directly to EventBus services</p>
+                          <table>
+                            <tr>
+                              <td>Java</td>
+                              <td><a href="{{ site_url }}docs/vertx-web-api-service/java/">Manual</a></td>
+                              <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                            </tr>
+                          </table>
+                          <ul class="list-unstyled">
+                            <li><a href="https://github.com/vert-x3/vertx-web/tree/master/vertx-web-api-service">Source</a> | <a href="https://github.com/vert-x3/vertx-examples/tree/master/vertx-web-api-service-example">Examples</a>
+                            </li>
+                          </ul>
                         </div>
                     </div>
                 </div>
@@ -567,6 +590,44 @@ sidebar: true
                             </table>
                             <ul class="list-unstyled">
                                 <li><a href="https://github.com/vert-x3/vertx-mysql-postgresql-client">Source</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h4 id="cassandra_client">Cassandra client <small><span class="label label-primary">Technical Preview</span></small></h4>
+                            <table>
+                                <tr>
+                                    <td>Java</td>
+                                    <td><a href="{{ site_url }}docs/vertx-cassandra-client/java/">Manual</a></td>
+                                    <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                                </tr>
+                                <tr>
+                                    <td>JavaScript</td>
+                                    <td><a href="{{ site_url }}docs/vertx-cassandra-client/js/">Manual</a></td>
+                                    <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Groovy</td>
+                                    <td><a href="{{ site_url }}docs/vertx-cassandra-client/groovy/">Manual</a></td>
+                                    <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Ruby</td>
+                                    <td><a href="{{ site_url }}docs/vertx-cassandra-client/ruby/">Manual</a></td>
+                                    <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Kotlin</td>
+                                    <td><a href="{{ site_url }}docs/vertx-cassandra-client/kotlin/">Manual</a></td>
+                                    <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Scala</td>
+                                    <td><a href="{{ site_url }}docs/vertx-cassandra-client/scala/">Manual</a></td>
+                                    <td><a href="{{ site_url }}docs/scaladocs/">API</a></td>
+                                </tr>
+                            </table>
+                            <ul class="list-unstyled">
+                                <li><a href="https://github.com/vert-x3/vertx-cassandra-client">Source</a></li>
                             </ul>
                         </div>
                     </div>
@@ -1698,7 +1759,7 @@ sidebar: true
                             </ul>
                         </div>
                         <div class="col-md-6">
-                            <h4 id="vertx-junit5">Vert.x JUnit 5 <small><span class="label label-primary">Technical Preview</span></small></h4>
+                            <h4 id="vertx-junit5">Vert.x JUnit 5</h4>
                             <p>This module offers integration and support for writing Vert.x tests with JUnit 5.</p>
                             <ul class="list-unstyled">
                                 <li><a href="https://github.com/vert-x3/vertx-junit5">Source</a></li>
