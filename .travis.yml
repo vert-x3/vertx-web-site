@@ -1,0 +1,27 @@
+language: java
+branches:
+  only:
+  - 3.6.0
+jobs:
+  include:
+    - stage: site
+      name: "Build web site"
+      jdk: oraclejdk8
+      script: mvn site -Dhost="vertx-ci.github.io/web-site-snapshot"  && rm target/site/CNAME
+deploy:
+  condition: env(GITHUB_TOKEN) IS present
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: false
+  repo: vertx-ci/web-site-snapshot
+  target-branch: master
+  local-dir: ./target/site
+  on:
+    branch: 3.6.0
+notifications:
+  email:
+    recipients:
+      - secure: "ESfK1tClMEf60sCtGiXPNcqwc3ZXGg446AGYLUg5mYK66LHxKwblseaUS9Imv23YaX0WzUj1ohxRtLpqPDYLOJKcfP6z2PXVBQkIchM/uQEc3HNZ8XH/eR1LESVKxesMmx/y2i9o5ChpJZQ3V2KVHPob2IH3j7JkQUBtSOVIjwY="
+    on_success: always
+    on_failure: always

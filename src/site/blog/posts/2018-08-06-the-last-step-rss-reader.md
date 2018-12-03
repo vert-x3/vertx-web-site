@@ -19,10 +19,11 @@ git checkout step_3
 
 # Implementing the 3rd endpoint
 
-The 3rd endpoint responses with a list of articles, related to a specific RSS channel. In a request, we specify RSS channel by providing a link. On the application side, after receiving a request we execute the following query:
-    ```text
-    SELECT title, article_link, description, pubDate FROM articles_by_rss_link WHERE rss_link = RSS_LINK_FROM_REQUEST ;
-    ```
+The 3rd endpoint serves a list of articles, related to a specific RSS channel. In a request, we specify RSS channel by providing a link. On the application side, after receiving a request we execute the following query:
+
+```text
+SELECT title, article_link, description, pubDate FROM articles_by_rss_link WHERE rss_link = RSS_LINK_FROM_REQUEST ;
+```
 
 # Implementation
 
@@ -37,7 +38,7 @@ private Future<Void> prepareSelectArticlesByRssLink() {
 }
 ``` 
 
-And now, we can implement the `AppVerticle#getArticles` method. Basically, it will use the `selectArticlesByRssLink` statement for finding articles by the given link. Implementation:
+And now, we can implement the `AppVerticle#getArticles` method. Basically, it will use the `selectArticlesByRssLink` statement for finding articles by the given link. Here's the implementation:
 
 ```java
 private void getArticles(RoutingContext ctx) {
@@ -45,9 +46,7 @@ private void getArticles(RoutingContext ctx) {
     if (link == null) {
         responseWithInvalidRequest(ctx);
     } else {
-        Future<List<Row>> future = Future.future();
-        client.executeWithFullFetch(selectArticlesByRssLink.bind(link), future);
-        future.setHandler(handler -> {
+        client.executeWithFullFetch(selectArticlesByRssLink.bind(link), handler -> {
             if (handler.succeeded()) {
                 List<Row> rows = handler.result();
 

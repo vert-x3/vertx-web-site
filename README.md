@@ -1,6 +1,6 @@
 # Vert.x 3.x web-site
 
-[![Build Status](https://vertx.ci.cloudbees.com/buildStatus/icon?job=vert.x3-website)](https://vertx.ci.cloudbees.com/view/vert.x-3/job/vert.x3-website/)
+[![Build Status](https://travis-ci.org/vert-x3/vertx-web-site.svg?branch=master)](https://travis-ci.org/vert-x3/vertx-web-site)
 
 # The Vert.x 3.0 web-site repository
 
