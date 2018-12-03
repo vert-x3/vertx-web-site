@@ -30,5 +30,5 @@ mkdir -p "${DOCS}/${VERSION}"
 #echo "Archive created: vertx-docs-${VERSION}.zip"
 echo "Copying content to site"
 cp -R "${COPY}/docs/" "${DOCS}/${VERSION}"
-echo "Now, just launch ./publish.sh"
+echo "Now, just launch ./deploy.sh"
 
