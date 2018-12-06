@@ -1,11 +1,13 @@
 ---
 title: The RSS reader tutorial. Step 3.
 template: post.html
-date: 2018-11-05
+date: 2018-12-06
 author: Sammers21
 --- 
 
 # Quick recap
+
+Now that [Vert.x 3.6.0 has been released](https://vertx.io/blog/eclipse-vert-x-3-6-0-released/), it's the perfect time to conclude our [Vert.x Cassandra Client](https://vertx.io/docs/vertx-cassandra-client/java/) tutorial!
 
 In [the previous step](https://vertx.io/blog/the-rss-reader-tutorial-step-2/) we have successfully implemented the second endpoint 
 of the RSS reader app.
