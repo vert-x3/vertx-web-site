@@ -135,6 +135,10 @@ var all_users = {
             link: "http://www.mammatustech.com/",
             height: 80
         }, {
+            src: "mnety_white.png",
+            link: "http://mnety.com/",
+            height: 61
+        }, {
             src: "noysi.png",
             link: "https://noysi.com/",
             height: 80
