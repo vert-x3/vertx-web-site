@@ -3,7 +3,6 @@ title: HTTP response validation with the Vert.x Web Client
 template: post.html
 date: 2018-12-10
 author: tsegismont
-draft: true
 --- 
 
 By default, a [Vert.x Web Client](/docs/vertx-web-client/java/) request ends with an error only if something wrong happens at the network level.
