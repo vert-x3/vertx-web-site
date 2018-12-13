@@ -1,8 +1,7 @@
 ---
 title: Vert.x Web API Service Introduction
 template: post.html
-date: 2018-10-15
-draft: true
+date: 2018-12-13
 author: slinkydeveloper
 ---
 
