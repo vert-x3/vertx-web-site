@@ -238,6 +238,6 @@ This is one of the methods you can use to match services with router operation h
 
 ## More examples
 
-Check out the complete example in [vertx-examples repo](https://github.com/vert-x3/vertx-examples/tree/master/vertx-web-api-service-example).
+Check out the complete example in [vertx-examples repo](https://github.com/vert-x3/vertx-examples/tree/master/web-api-service-example).
 
 Thanks you for your time, stay tuned for more updates! And please provide feedback about this new package!
