@@ -247,6 +247,10 @@ var all_users = {
             link: "http://vikinglabs.com.br",
             height: 39
         }, {
+            src: "valapay.png",
+            link: "https://www.valapay.com/",
+            height: 70
+        }, {
             src: "tesco_logo.png",
             link: "http://www.tesco.com/",
             height: 48,
