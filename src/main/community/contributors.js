@@ -181,13 +181,6 @@ var maintainers = [{
   avatar: "https://avatars2.githubusercontent.com/u/16746106?v=4&s=80",
   github: "https://github.com/Sammers21",
   twitter: "https://twitter.com/pavel_drankov"
-}, {
-  github_id: "gmariotti",
-  name: "Guido Pio Mariotti",
-  contribution: "Kotlin",
-  avatar: "https://avatars.githubusercontent.com/u/6508909?s=460&v=4",
-  github: "https://github.com/gmariotti",
-  twitter: "https://twitter.com/gmariotti10"
 }];
 
 // Contributors
@@ -239,6 +232,13 @@ var contributors = [{
   google_plus: "https://plus.google.com/u/0/+MarkLittleJBossCTO/",
   homepage: "http://markclittle.blogspot.co.uk",
   github: "https://github.com/nmcl"
+}, {
+  github_id: "gmariotti",
+  name: "Guido Pio Mariotti",
+  contribution: "Kotlin",
+  avatar: "https://avatars.githubusercontent.com/u/6508909?s=460&v=4",
+  github: "https://github.com/gmariotti",
+  twitter: "https://twitter.com/gmariotti10"
 }];
 
 module.exports = {
