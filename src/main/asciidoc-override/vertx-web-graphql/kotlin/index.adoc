@@ -114,9 +114,27 @@ The GraphQL-Java API is very well suited for the asynchronous world: the asynchr
 
 To https://vertx.io/docs/vertx-core/java/#golden_rule[avoid blocking the event loop], all you have to do is implement https://www.graphql-java.com/documentation/v12/data-fetching/[data fetchers] that return a `CompletionStage` instead of the result directly.
 
-[source,java]
+[source,kotlin]
 ----
-Code not translatable
+var dataFetcher = { environment ->
+
+  var completableFuture = java.util.concurrent.CompletableFuture()
+
+  retrieveLinksFromBackend(environment, { ar ->
+    if (ar.succeeded()) {
+      completableFuture.complete(ar.result())
+    } else {
+      completableFuture.completeExceptionally(ar.cause())
+    }
+  })
+
+  return completableFuture
+}
+
+var runtimeWiring = graphql.schema.idl.RuntimeWiring.newRuntimeWiring().type("Query", { builder ->
+  builder.dataFetcher("allLinks", dataFetcher)
+}).build()
+
 ----
 
 === Fetching data with callback-based APIs
@@ -126,9 +144,18 @@ But when you work with Vert.x callback-based APIs, it requires a bit of boilerpl
 
 This is where the `link:../../apidocs/io/vertx/ext/web/handler/graphql/VertxDataFetcher.html[VertxDataFetcher]` can help:
 
-[source,java]
+[source,kotlin]
 ----
-Code not translatable
+var dataFetcher = io.vertx.ext.web.handler.graphql.VertxDataFetcher({ environment, future ->
+
+  retrieveLinksFromBackend(environment, future)
+
+})
+
+var runtimeWiring = graphql.schema.idl.RuntimeWiring.newRuntimeWiring().type("Query", { builder ->
+  builder.dataFetcher("allLinks", dataFetcher)
+}).build()
+
 ----
 
 === Providing data fetchers with some context
@@ -141,7 +168,7 @@ Let's say your authentication layer stores a `User` object in the `link:../../ap
 
 You may retrieve this object by inspecting the `DataFetchingEnvironment`:
 
-[source,java]
+[source,kotlin]
 ----
 var dataFetcher = io.vertx.ext.web.handler.graphql.VertxDataFetcher({ environment, future ->
 
@@ -159,7 +186,7 @@ NOTE: The routing context is available with any kind of data fetchers, not just 
 
 If you prefer not to expose the routing context to your data fetchers, configure the GraphQL handler to customize the context object:
 
-[source,java]
+[source,kotlin]
 ----
 var dataFetcher = io.vertx.ext.web.handler.graphql.VertxDataFetcher({ environment, future ->
 
@@ -192,9 +219,12 @@ Nevertheless, some Vert.x data clients return `link:../../apidocs/io/vertx/core/
 
 If you don't need (or don't wish to) use a domain object layer, you can configure GraphQL-Java to use `link:../../apidocs/io/vertx/ext/web/handler/graphql/VertxPropertyDataFetcher.html[VertxPropertyDataFetcher]` instead:
 
-[source,java]
+[source,kotlin]
 ----
-Code not translatable
+var builder = graphql.schema.idl.RuntimeWiring.newRuntimeWiring()
+
+builder.wiringFactory(graphql.schema.idl.WiringFactory())
+
 ----
 
 TIP: `link:../../apidocs/io/vertx/ext/web/handler/graphql/VertxPropertyDataFetcher.html[VertxPropertyDataFetcher]` wraps a `PropertyDataFetcher` so you can still use it with domain objects.
@@ -205,7 +235,7 @@ Dataloaders help you to load data efficiently by batching fetch requests and cac
 
 First, you must configure the `GraphQL` object to use the `DataLoaderDispatcherInstrumentation`:
 
-[source,java]
+[source,kotlin]
 ----
 var dispatcherInstrumentation = graphql.execution.instrumentation.dataloader.DataLoaderDispatcherInstrumentation()
 
@@ -215,7 +245,7 @@ var graphQL = graphql.GraphQL.newGraphQL(graphQLSchema).instrumentation(dispatch
 
 Then create a batch loader:
 
-[source,java]
+[source,kotlin]
 ----
 var linksBatchLoader = { keys, environment ->
 
@@ -229,7 +259,7 @@ TIP: If you work with Vert.x callback-based APIs, you may use a `link:../../apid
 
 Eventually, configure the `link:../../apidocs/io/vertx/ext/web/handler/graphql/GraphQLHandler.html[GraphQLHandler]` to create a `DataLoaderRegistry` for each request:
 
-[source,java]
+[source,kotlin]
 ----
 Code not translatable
 ----
