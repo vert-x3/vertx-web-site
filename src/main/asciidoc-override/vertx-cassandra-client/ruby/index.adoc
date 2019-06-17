@@ -246,7 +246,7 @@ cassandraClient.prepare("SELECT * FROM my_keyspace.my_table where my_key = ? ") 
 
 ----
 
-And then use the https://docs.datastax.com/en/drivers/java/${datastax.driver.minor.version}/com/datastax/driver/core/PreparedStatement.html[`PreparedStatement`] for all the next queries:
+And then use the https://docs.datastax.com/en/drivers/java/3.5/com/datastax/driver/core/PreparedStatement.html[`PreparedStatement`] for all the next queries:
 
 [source,ruby]
 ----
@@ -274,7 +274,7 @@ cassandraClient.query_stream(preparedStatement.bind("my_value")) { |done_err,don
 
 === Batching
 
-In case you'd like to execute several queries at once, you can use https://docs.datastax.com/en/drivers/java/${datastax.driver.minor.version}/com/datastax/driver/core/BatchStatement.html[`BatchStatement`] for that:
+In case you'd like to execute several queries at once, you can use https://docs.datastax.com/en/drivers/java/3.5/com/datastax/driver/core/BatchStatement.html[`BatchStatement`] for that:
 
 [source,ruby]
 ----
@@ -302,7 +302,7 @@ First, add the following to the _dependencies_ section of your Maven POM file:
 <dependency>
  <groupId>com.datastax.cassandra</groupId>
  <artifactId>cassandra-driver-mapping</artifactId>
- <version>${datastax.driver.version}</version>
+ <version>3.5.0</version>
 </dependency>
 ----
 
@@ -310,7 +310,7 @@ Or, if you use Gradle:
 
 [source,groovy,subs="+attributes"]
 ----
-compile 'com.datastax.cassandra:cassandra-driver-mapping:${datastax.driver.version}'
+compile 'com.datastax.cassandra:cassandra-driver-mapping:3.5.0'
 ----
 
 Consider the following entity:
