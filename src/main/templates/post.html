@@ -12,22 +12,5 @@
       <!--%%end-of-content%%-->
     </article>
   </div>
-
-  <div class="row">
-    <div class="col-xs-12" id="disqus_thread"></div>
-  </div>
-  <script>
-  var disqus_config = function () {
-  this.page.url = "{{site_url}}blog/{{title|slug}}/";
-  this.page.identifier = "/blog/{{title|slug}}/";
-  };
-  (function() { // DON'T EDIT BELOW THIS LINE
-  var d = document, s = d.createElement('script');
-  s.src = 'https://vertx.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
-  })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
 {% include "footer.html" %}
