@@ -68,7 +68,7 @@
 
     <highlightjs.version>8.7</highlightjs.version>
 
-    <host>vertx.io</host>
+    <host>vertx-ci.github.io/web-site-snapshot</host>
 
     <asciidoctorj-pdf.version>1.5.0-alpha.15</asciidoctorj-pdf.version>
     <asciidoctor-maven-plugin.version>1.5.5</asciidoctor-maven-plugin.version>
