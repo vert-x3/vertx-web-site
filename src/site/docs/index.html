@@ -26,7 +26,6 @@ sidebar: true
       <li><a href="#redis_client">Redis client</a></li>
       <li><a href="#sql_common">SQL common</a></li>
       <li><a href="#jdbc_client">JDBC client</a></li>
-      <li><a href="#mysql_pg_client">MySQL / PostgreSQL client</a></li>
     </ul>
   </li>
   <li><a href="#reactive">Reactive</a>
@@ -60,7 +59,6 @@ sidebar: true
       <li><a href="#amqp_client">AMQP Client</a></li>
       <li><a href="#rabbit">RabbitMQ Client</a></li>
       <li><a href="#stomp">STOMP</a></li>
-      <li><a href="#amqp_bridge">AMQP Bridge</a></li>
     </ul>
   </li>
   <li><a href="#integration">Integration</a>
@@ -68,7 +66,6 @@ sidebar: true
       <li><a href="#kafka">Kafka Client</a></li>
       <li><a href="#mail_client">Mail Client</a></li>
       <li><a href="#consul">Consul Client</a></li>
-      <li><a href="#jca_adaptor">JCA Adaptor</a></li>
     </ul>
   </li>
   <li><a href="#bridges">Event Bus bridges</a>
@@ -729,44 +726,6 @@ sidebar: true
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-jdbc-client">Source</a> | <a
                   href="https://github.com/vert-x3/vertx-examples/tree/master/jdbc-examples">Examples</a></li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <h4 id="mysql_pg_client">MySQL / PostgreSQL client</h4>
-              <table>
-                <tr>
-                  <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-mysql-postgresql-client/java/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-mysql-postgresql-client/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-mysql-postgresql-client/groovy/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-mysql-postgresql-client/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Kotlin</td>
-                  <td><a href="{{ site_url }}docs/vertx-mysql-postgresql-client/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Scala</td>
-                  <td><a href="{{ site_url }}docs/vertx-mysql-postgresql-client/scala/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/scaladocs/">API</a></td>
-                </tr>
-              </table>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-mysql-postgresql-client">Source</a></li>
               </ul>
             </div>
           </div>
@@ -1465,48 +1424,6 @@ sidebar: true
               </ul>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-4">
-              <h4 id="amqp_bridge">AMQP Bridge</h4>
-              <p>A bridge for interacting with an AMQP 1.0 broker or router.</p>
-              <table>
-                <tr>
-                  <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/java/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/groovy/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Kotlin</td>
-                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Scala</td>
-                  <td><a href="{{ site_url }}docs/vertx-amqp-bridge/scala/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/scaladocs/">API</a></td>
-                </tr>
-              </table>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-amqp-bridge">Source</a> | <a
-                  href="https://github.com/vert-x3/vertx-examples/tree/master/amqp-bridge-examples">Examples</a></li>
-              </ul>
-            </div>
-          </div>
         </div>
       </div>
       <hr>
@@ -1627,16 +1544,6 @@ sidebar: true
               <ul class="list-unstyled">
                 <li><a href="https://github.com/vert-x3/vertx-consul-client">Source</a> | <a
                   href="https://github.com/vert-x3/vertx-examples/tree/master/consul-examples">Examples</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <h4 id="jca_adaptor">JCA Adaptor</h4>
-              <p>Vert.x provides a Java Connector Architecture (JCA) adaptor which allows it to interoperate with any
-                JavaEE application server.</p>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-jca">Source</a></li>
               </ul>
             </div>
           </div>
