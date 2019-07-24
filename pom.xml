@@ -58,7 +58,7 @@
 
   <properties>
     <vertx.version>4.0.0-SNAPSHOT</vertx.version>
-    <vertx.download.version>4.0.0</vertx.download.version>
+    <vertx.download.version>3.8.0</vertx.download.version>
     <vertx.docs.version>4.0.0-SNAPSHOT</vertx.docs.version>
 
     <asciidoclet.version>1.5.1</asciidoclet.version>
