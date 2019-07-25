@@ -44,6 +44,15 @@ sidebar: true
       <li><a href="#health_check">Health Check</a></li>
     </ul>
   </li>
+  <li><a href="#observability">Observability</a>
+    <ul class="sectlevel2 nav">
+      <li><a href="#metrics-dropwizard">Vert.x Metrics - Dropwizard</a></li>
+      <li><a href="#metrics-micrometer">Vert.x Metrics - Micrometer</a></li>
+      <li><a href="#docker_images">Health Check</a></li>
+      <li><a href="#opentracing">Vert.x Opentracing</a></li>
+      <li><a href="#zipkin">Vert.x Zipkin</a></li>
+    </ul>
+  </li>
   <li><a href="#mqtt">IoT</a></li>
   <li><a href="#authentication_and_authorisation">Authentication and Authorisation</a>
     <ul class="sectlevel2 nav">
@@ -76,8 +85,6 @@ sidebar: true
   </li>
   <li><a href="#devops">Devops</a>
     <ul class="sectlevel2 nav">
-      <li><a href="#metrics-dropwizard">Vert.x Metrics - Dropwizard</a></li>
-      <li><a href="#metrics-micrometer">Vert.x Metrics - Micrometer</a></li>
       <li><a href="#docker_images">Vert.x Docker Images</a></li>
       <li><a href="#shell">Vert.x Shell</a></li>
       <li><a href="#stack_manager">Vert.x Stack Manager</a></li>
@@ -969,6 +976,155 @@ sidebar: true
       <hr>
 
       <div class="row">
+        <div class="col-sm-12">
+          <h3 id="observability">Observability</h3>
+          <p>Vert.x offers various component to keep your Vert.x application on track when running in production</p>
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 id="metrics-dropwizard">Metrics using Dropwizard</h4>
+              <p>This component captures metrics from Vert.x core components and exposes them using <a
+                href="http://metrics.dropwizard.io/">Dropwizard</a>.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Scala</td>
+                  <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/scala/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/scaladocs/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-dropwizard-metrics">Source</a> | <a
+                  href="https://github.com/vert-x3/vertx-examples/tree/master/metrics-examples">Examples</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="metrics-micrometer">Metrics using Micrometer</h4>
+              <p>This component captures metrics from Vert.x core components and exposes them using <a
+                href="https://micrometer.io">Micrometer</a>.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-micrometer-metrics/java/">Manual</a></td>
+                  <!--
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  -->
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-micrometer-metrics/js/">Manual</a></td>
+                  <!--
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                  -->
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-micrometer-metrics/groovy/">Manual</a></td>
+                  <!--
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                  -->
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-micrometer-metrics/ruby/">Manual</a></td>
+                  <!--
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                  -->
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/vertx-micrometer-metrics/kotlin/">Manual</a></td>
+                  <!--
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
+                  -->
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-micrometer-metrics">Source</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="health_check">Vert.x Health Check</h4>
+              <p>This component provides a simple way to expose health checks.</p>
+              <table>
+                <tr>
+                  <td>Java</td>
+                  <td><a href="{{ site_url }}docs/vertx-health-check/java/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><a href="{{ site_url }}docs/vertx-health-check/js/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Groovy</td>
+                  <td><a href="{{ site_url }}docs/vertx-health-check/groovy/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Ruby</td>
+                  <td><a href="{{ site_url }}docs/vertx-health-check/ruby/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
+                </tr>
+                <tr>
+                  <td>Kotlin</td>
+                  <td><a href="{{ site_url }}docs/vertx-health-check/kotlin/">Manual</a></td>
+                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
+                </tr>
+              </table>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/vert-x3/vertx-web/tree/master/vertx-health-check">Source</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 id="opentracing">Tracing using Opentracing</h4>
+              <p>Opentracing integration</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/eclipse-vertx/vertx-tracing/tree/master/vertx-opentracing">Source</a></li>
+                <li><a href="{{ site_url }}docs/vertx-opentracing">Manual</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <h4 id="zipkin">Tracing using Zipkin</h4>
+              <p>Zipkin integration</p>
+              <ul class="list-unstyled">
+                <li><a href="https://github.com/eclipse-vertx/vertx-tracing/tree/master/vertx-zipkin">Source</a></li>
+                <li><a href="{{ site_url }}docs/vertx-zipkin">Manual</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
         <div class="col-sm-12 col-md-12">
           <h3 id="mqtt">MQTT</h3>
           <p>Vert.x MQTT provides client/server for MQTT. The server is able to handle connections, communication and
@@ -1621,128 +1777,6 @@ sidebar: true
         <div class="col-sm-12">
           <h3 id="devops">Devops</h3>
           <p>Vert.x offers various component to keep your Vert.x application on track when running in production</p>
-          <div class="row">
-            <div class="col-sm-4">
-              <h4 id="metrics-dropwizard">Metrics using Dropwizard</h4>
-              <p>This component captures metrics from Vert.x core components and exposes them using <a
-                href="http://metrics.dropwizard.io/">Dropwizard</a>.</p>
-              <table>
-                <tr>
-                  <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/java/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/groovy/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Kotlin</td>
-                  <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Scala</td>
-                  <td><a href="{{ site_url }}docs/vertx-dropwizard-metrics/scala/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/scaladocs/">API</a></td>
-                </tr>
-              </table>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-dropwizard-metrics">Source</a> | <a
-                  href="https://github.com/vert-x3/vertx-examples/tree/master/metrics-examples">Examples</a></li>
-              </ul>
-            </div>
-            <div class="col-sm-4">
-              <h4 id="metrics-micrometer">Metrics using Micrometer</h4>
-              <p>This component captures metrics from Vert.x core components and exposes them using <a
-                href="https://micrometer.io">Micrometer</a>.</p>
-              <table>
-                <tr>
-                  <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-micrometer-metrics/java/">Manual</a></td>
-                  <!--
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                  -->
-                </tr>
-                <tr>
-                  <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-micrometer-metrics/js/">Manual</a></td>
-                  <!--
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
-                  -->
-                </tr>
-                <tr>
-                  <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-micrometer-metrics/groovy/">Manual</a></td>
-                  <!--
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                  -->
-                </tr>
-                <tr>
-                  <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-micrometer-metrics/ruby/">Manual</a></td>
-                  <!--
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
-                  -->
-                </tr>
-                <tr>
-                  <td>Kotlin</td>
-                  <td><a href="{{ site_url }}docs/vertx-micrometer-metrics/kotlin/">Manual</a></td>
-                  <!--
-                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
-                  -->
-                </tr>
-              </table>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-micrometer-metrics">Source</a></li>
-              </ul>
-            </div>
-            <div class="col-sm-4">
-              <h4 id="health_check">Vert.x Health Check</h4>
-              <p>This component provides a simple way to expose health checks.</p>
-              <table>
-                <tr>
-                  <td>Java</td>
-                  <td><a href="{{ site_url }}docs/vertx-health-check/java/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>JavaScript</td>
-                  <td><a href="{{ site_url }}docs/vertx-health-check/js/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/jsdoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Groovy</td>
-                  <td><a href="{{ site_url }}docs/vertx-health-check/groovy/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/apidocs/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Ruby</td>
-                  <td><a href="{{ site_url }}docs/vertx-health-check/ruby/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/yardoc/">API</a></td>
-                </tr>
-                <tr>
-                  <td>Kotlin</td>
-                  <td><a href="{{ site_url }}docs/vertx-health-check/kotlin/">Manual</a></td>
-                  <td><a href="{{ site_url }}docs/kdoc/vertx/">API</a></td>
-                </tr>
-              </table>
-              <ul class="list-unstyled">
-                <li><a href="https://github.com/vert-x3/vertx-web/tree/master/vertx-health-check">Source</a></li>
-              </ul>
-            </div>
-          </div>
           <div class="row">
             <div class="col-sm-4">
               <h4 id="shell">Shell</h4>
