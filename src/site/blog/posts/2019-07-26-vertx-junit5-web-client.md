@@ -48,10 +48,10 @@ import static io.vertx.junit5.web.TestRequest.*;
   VertxExtension.class, // VertxExtension MUST be configured before VertxWebClientExtension
   VertxWebClientExtension.class
 })
-public class TestRequestExample {
+public class MultiTestRequestExample {
 
   @Test
-  public void test1(WebClient client, VertxTestContext testContext) {
+  public void test2(WebClient client, VertxTestContext testContext) {
     Checkpoint checkpoint = testContext.checkpoint(2); // Create the Checkpoint to flag when request succeds
 
     testRequest(
