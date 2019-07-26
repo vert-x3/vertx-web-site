@@ -37,7 +37,7 @@ public class TestRequestExample {
 }
 ```
 
-`testRequest()` will use Vert.x Web Client to send the request. When the response is received, It succeds the test or It correctly propagates assertion failures, if any.
+`testRequest()` will use Vert.x Web Client to send the request. When the response is received, It succeds the test or it correctly propagates assertion failures, if any.
 
 You can also send multiple requests using [`Checkpoint`](https://vertx.io/docs/apidocs/io/vertx/junit5/Checkpoint.html):
 
