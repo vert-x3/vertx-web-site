@@ -68,7 +68,7 @@ Instead of developing all new features exclusively in Vert.x 4, we introduce som
 so the community can benefit from them. The Vert.x 4 development focus on more fundamental changes that cannot be done
 in the 3.x series.
 
-<img src="{{ site_url }}assets/blog/vertx-4-milestone1-release/vertx-4-timeline.png" alt="Screenshot" class="img-responsive">
+<img src="{{ site_url }}assets/blog/vertx-4-milestone2-release/vertx-4-timeline.png" alt="Screenshot" class="img-responsive">
 
 This is the first milestone of Vert.x 4, we aim to release Vert.x 4 by the end of this year and you can of course
 expect more milestones to outline the progress of the effort.
