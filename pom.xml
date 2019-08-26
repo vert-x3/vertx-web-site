@@ -57,9 +57,9 @@
   </licenses>
 
   <properties>
-    <vertx.version>4.0.0-milestone1</vertx.version>
-    <vertx.download.version>3.8.0</vertx.download.version>
-    <vertx.docs.version>4.0.0-milestone1</vertx.docs.version>
+    <vertx.version>4.0.0-milestone2</vertx.version>
+    <vertx.download.version>3.8.1</vertx.download.version>
+    <vertx.docs.version>4.0.0-milestone2</vertx.docs.version>
 
     <asciidoclet.version>1.5.1</asciidoclet.version>
     <apacheds-protocol-dns.version>1.5.7</apacheds-protocol-dns.version>
