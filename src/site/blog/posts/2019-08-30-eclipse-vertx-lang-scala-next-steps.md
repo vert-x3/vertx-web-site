@@ -1,17 +1,24 @@
-# Vert.x Scala: The next steps
+---
+title: Scala for Eclipse Vert.x: The next steps
+template: post.html
+date: 2019-08-30
+author: codepitbull
+---
+
+# Scala for Eclipse Vert.x: The next steps
 
 ## TL;DR
 
-- No Scala 2.13 in Vert.x 3.x due to increased support burden
+- No Scala 2.13 in Eclipse Vert.x 3.x due to increased support burden
 - New value classes based approach for Vert.x 4
 
 ## Retrospective
 
-It's been more than two years since the inception of vert-lang-scala to the Vert.x ecosystem. And almost as long since I wrote my first [blog post](https://vertx.io/blog/scala-is-here/) about it. 
+It's been more than two years since the inception of `vert-lang-scala` to the Vert.x ecosystem. And almost as long since I wrote my first [blog post](https://vertx.io/blog/scala-is-here/) about it.
 
 A lot has happened since March 2017:
 
-- vertx-lang-scala kept up with new versions of Scala
+- `vertx-lang-scala` kept up with new versions of Scala
 - all Vert.x-modules are supported (35 so far)
 - a Giter8 based [template](https://github.com/vert-x3/vertx-scala.g8) was added for easily bootstrapping a Vert.x-Scala-project
 - Bugs were squashed
