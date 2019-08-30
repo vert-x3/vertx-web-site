@@ -1,5 +1,5 @@
 ---
-title: Scala for Eclipse Vert.x: The next steps
+title: Eclipse Vert.x for Scala next steps
 template: post.html
 date: 2019-08-30
 author: codepitbull
@@ -29,7 +29,7 @@ The numbers produced by this benchmark were very promising and and additional mo
 
 ## Old idea
 
-Before getting to the new ideas I want to take a look at the "old" one. 
+Before getting to the new ideas I want to take a look at the "old" one.
 
 The current version of vert-lang-scala is based around the idea of wrapping the Vert.x-API with a dedicated Scala-layer. That layer is created using a Freemarker-based code generator. I took this idea from the first try by Tim Fox for building that support.
 
@@ -37,8 +37,8 @@ Wrapping the existing Java-API was rather painful but gave me great flexibility 
 
 But an approach like that comes with a price:
 
-- There are a lot of intermediate objects being created. 
-- Many unneccessary conversions between Java/Scala types 
+- There are a lot of intermediate objects being created.
+- Many unneccessary conversions between Java/Scala types
 
 Both increased memory consumption and garbage collection activity quite a bit and has been bugging me from the beginning.
 
@@ -48,7 +48,7 @@ With Vert.x 4 approaching I was finally able to invest time into the rework I ha
 
 The core idea is to replace the current wrapping based approach with something more lightweight but native to the Scala-world.
 
-And that's where [value classes](https://docs.scala-lang.org/overviews/core/value-classes.html) come in. 
+And that's where [value classes](https://docs.scala-lang.org/overviews/core/value-classes.html) come in.
 
 Value classes allow the extension of existing classes with additional methods. They make it easy to control **when** methods become visible and do that with a minimum of overhead. To be precise: A wrapping class is normally ever only instantiated **once**.
 
@@ -113,7 +113,7 @@ I also switched from doing all conversions for collections automatically to hand
 
 The clear downside of this approach is that the Java-methods will stay visible since the java-classes won't be wrapped but extended. This might lead to some confusion but I am pretty sure the benefits outweight this downside.
 
-The bigger change will be the removal of automatic vonversion between Scala types (Long/Int/String and  Collections) and their Java counterparts. I spent considerable time trying to tune that part in the current version bbut always ended up hitting some edgecase. For now I've decided to have the user pick the right time to convert. 
+The bigger change will be the removal of automatic vonversion between Scala types (Long/Int/String and  Collections) and their Java counterparts. I spent considerable time trying to tune that part in the current version bbut always ended up hitting some edgecase. For now I've decided to have the user pick the right time to convert.
 
 I might still add this feature in a later version if user feedback points into that direction.
 
@@ -136,11 +136,11 @@ I haven't done a good job providing the results of our internal discussions on t
   - Scala ecosystems takes some time to do the switch to 2.13
   - We simply don't have the capacity to support both versions **AND** the upcoming new version
 - Vert.x 4 will receive 2.13 support
-  - Scala ecosystem will have moved closer to 2.13 adoption when Vert.x 4 comes out	
+  - Scala ecosystem will have moved closer to 2.13 adoption when Vert.x 4 comes out
 
 ## For the adventure seaker
 
-I actually did a port of vertx-lang-scala 3.8 to Scala 2.13 and you can grab the work in this [branch](https://github.com/vert-x3/vertx-lang-scala/tree/3.8_2.13). 
+I actually did a port of vertx-lang-scala 3.8 to Scala 2.13 and you can grab the work in this [branch](https://github.com/vert-x3/vertx-lang-scala/tree/3.8_2.13).
 
 Don't expect **ANY** support for this branch. This was only an experiment to see how much I had to change for initial 2.13 support.
 
