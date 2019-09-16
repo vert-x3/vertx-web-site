@@ -331,6 +331,13 @@ var conferences = [
     date: "28/11/2017",
     speaker: "Julien Ponge",
     link: "http://www.digital-league.org/evenement/eclipse-day-lyon/"
+  },
+  {
+    title: "Modern app programming with RxJava and Eclipse Vert.x",
+    conference: "QCon São Paulo",
+    date: "10/05/2018",
+    speaker: "Thomas Segismont",
+    link: "https://www.infoq.com/br/presentations/modern-app-programming-with-rxjava-and-eclipse-vertx/"
   }
 ];
 
@@ -434,7 +441,6 @@ function sort(dateable) {
 sortByDateDesc = function (c1, c2) {
   return c1.time < c2.time ? 1 : c1.time > c2.time ? -1 : 0;
 };
-
 
 module.exports = {
   books: sort(books),
