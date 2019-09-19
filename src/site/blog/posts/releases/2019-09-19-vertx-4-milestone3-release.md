@@ -1,6 +1,6 @@
 ---
 title: Eclipse Vert.x 4 milestone 3 released!
-date: 2019-09-20
+date: 2019-09-19
 template: post.html
 author: vietj
 draft: false
