@@ -86,6 +86,25 @@ For reusability mappers can also be `java.util.function.Function` instead, e.g
 @Mapper Function<ZonedDateTime, String> toJson = ZonedDateTime::toString;
 ```
 
+#### Mongo client GridFS
+
+The client can store and retrieve files and binary data using MongoDB GridFS.
+
+```java
+Future<String> fut = gridFsClient.uploadFile("file.name");
+
+fut.setHandler(res -> {
+   if (res.succeeded()) {
+     String id = res.result();
+     //The ID of the stored object in Grid FS
+   } else {
+     res.cause().printStackTrace();
+   }
+ });
+```
+
+The client can perform the usual CRUD operations on files and also provide bucket management.
+
 #### Vert.x Web utilities
 
 While the routing context will allow you to access the underlying request and response objects, sometimes it will be
