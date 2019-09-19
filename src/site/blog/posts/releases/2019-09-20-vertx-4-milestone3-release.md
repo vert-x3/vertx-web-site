@@ -180,9 +180,9 @@ The [deprecations and breaking changes](https://github.com/vert-x3/wiki/wiki/4.0
 
 For this release there are no Docker images.,
 
-The release artifacts have been deployed to [Maven Central](https://search.maven.org/search?q=g:io.vertx%20AND%20v:4.0.0-milestone2) and you can get the distribution on [Maven Central](https://repo1.maven.org/maven2/io/vertx/vertx-stack-manager/4.0.0-milestone2/).
+The release artifacts have been deployed to [Maven Central](https://search.maven.org/search?q=g:io.vertx%20AND%20v:4.0.0-milestone3) and you can get the distribution on [Maven Central](https://repo1.maven.org/maven2/io/vertx/vertx-stack-manager/4.0.0-milestone3/).
 
-You can bootstrap a Vert.x 4.0.0-milestone2 project using https://start.vertx.io.
+You can bootstrap a Vert.x 4.0.0-milestone3 project using https://start.vertx.io.
 
 The documentation has been deployed on this preview web-site https://vertx-ci.github.io/vertx-4-preview/docs/
 
