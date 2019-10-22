@@ -1,9 +1,8 @@
 ---
 title: Send web requests and assert results with vertx-junit5-web-client
-date: 2019-07-26
+date: 2019-10-22
 template: post.html
 author: slinkydeveloper
-draft: true
 ---
 
 In last Vert.x 3.8 release we added a new module called `vertx-junit5-web-client`, that brings [Vert.x Web Client](https://vertx.io/docs/vertx-web-client/java/) injection
