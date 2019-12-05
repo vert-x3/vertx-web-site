@@ -181,6 +181,13 @@ var maintainers = [{
   avatar: "https://avatars2.githubusercontent.com/u/16746106?v=4&s=80",
   github: "https://github.com/Sammers21",
   twitter: "https://twitter.com/pavel_drankov"
+}, {
+  github_id: "gaol",
+  name: "Lin Gao",
+  contribution: "Vertx Mail Client",
+  avatar: "https://avatars2.githubusercontent.com/u/541437?s=400&v=4",
+  github: "https://github.com/gaol",
+  twitter: "https://twitter.com/aoingl"
 }];
 
 // Contributors
