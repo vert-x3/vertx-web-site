@@ -6,7 +6,7 @@ author: vietj
 draft: false
 ---
 
-We are extremely pleased to announce the forth 4.0 milestone release of Eclipse Vert.x .
+We are extremely pleased to announce the fourth 4.0 milestone release of Eclipse Vert.x .
 
 Vert.x 4 is the evolution of the Vert.x 3.x series that will bring key features to Vert.x.
 
