@@ -188,6 +188,13 @@ var maintainers = [{
   avatar: "https://avatars2.githubusercontent.com/u/541437?s=400&v=4",
   github: "https://github.com/gaol",
   twitter: "https://twitter.com/aoingl"
+}, {
+  github_id: "BillyYccc",
+  name: "Billy Yuan",
+  contribution: "SQL Client",
+  avatar: "https://avatars2.githubusercontent.com/u/5463589?s=460&v=4",
+  github: "https://github.com/BillyYccc",
+  twitter: "https://twitter.com/billyyccc"
 }];
 
 // Contributors
