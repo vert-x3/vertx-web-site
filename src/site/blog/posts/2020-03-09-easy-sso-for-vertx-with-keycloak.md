@@ -1,16 +1,17 @@
 ---
-title: Easy SSO for Vertx with Keycloak
+title: Easy SSO for Vert.x with Keycloak
 template: post.html
 date: 2020-03-09
 draft: true
 author: thomasdarimont
 ---
 
-# Easy SSO for Vertx with Keycloak
+# Easy SSO for Vert.x with Keycloak
 
 ## TL;DR
 
 In this blog post you'll learn:
+
 - How to implement Single Sign-on with OpenID Connect
 - How to use Keycloak's OpenID Discovery to infer OpenID provider configuration
 - How to obtain user information
@@ -33,6 +34,7 @@ and OpenID Connect, obtain information about the current user, check for roles, 
 based Singe-Sign on, among many other things. I briefly looked for ways to securing a Vert.x app with Keycloak 
 and quickly found an [older Vert.x Keycloak integration example](https://vertx.io/blog/vertx-3-and-keycloak-tutorial/) in this very blog.
 Whilst this is a good start for beginners, the example contains a few issues, e.g.:
+
 - It uses hardcoded OpenID provider configuration
 - Features a very simplistic integration (for the sake of simplicity)
 - No user information used
@@ -44,7 +46,7 @@ So let's get started!
 
 ### Keycloak Setup
 
-To secure a Vert.x app with Keycloak we of course need a Keycloak instance. Allthough [Keycloak has a great getting started guide](https://www.keycloak.org/docs/latest/getting_started/) I wanted to make it a bit easier to put everything together, therefore I prepared a local Keycloak docker container [as described here](https://github.com/thomasdarimont/vertx-playground/tree/master/keycloak-vertx#start-keycloak-with-the-vertx-realm) that you can start easily, which comes with all the required configuration in place.
+To secure a Vert.x app with Keycloak we of course need a Keycloak instance. Although [Keycloak has a great getting started guide](https://www.keycloak.org/docs/latest/getting_started/) I wanted to make it a bit easier to put everything together, therefore I prepared a local Keycloak docker container [as described here](https://github.com/thomasdarimont/vertx-playground/tree/master/keycloak-vertx#start-keycloak-with-the-vertx-realm) that you can start easily, which comes with all the required configuration in place.
 
 The preconfigured Keycloak realm named `vertx` contains a `demo-client` for our Vert.x web app and a set 
 of users fo testing.
@@ -309,7 +311,7 @@ If the logout was successfull we destory our session via `ctx.session().destroy(
 
 The logout form is generated via the `createLogoutForm` method. 
 
-Note, that we need to obtain the generated `CSRFToken` to generate it into a hidden form input field that's passed to the logout form.
+Note, that we need to obtain the generated `CSRFToken` to generate it into a hidden form input field that's passed to the logout form:
 
 ```java
 private void handleLogout(RoutingContext ctx) {
@@ -338,7 +340,7 @@ private String createLogoutForm(RoutingContext ctx) {
 }
 ```
 
-Some additional plumbing
+Some additional plumbing:
 ```java
 private void respondWithOk(RoutingContext ctx, String contentType, String content) {
     respondWith(ctx, 200, contentType, content);
@@ -358,7 +360,6 @@ This concludes the Keycloak integration example.
 
 Check out the complete example in [keycloak-vertx Examples Repo](https://github.com/thomasdarimont/vertx-playground/tree/master/keycloak-vertx).
 
-Thanks you for your time, stay tuned for more updates! If you want to learn more about Keycloak, feel free to reach out 
-to me via [thomasdarimont on twitter](https://twitter.com/thomasdarimont).
+Thank you for your time, stay tuned for more updates! If you want to learn more about Keycloak, feel free to reach out to me. You can find me via [thomasdarimont on twitter](https://twitter.com/thomasdarimont).
 
 Happy Hacking!
