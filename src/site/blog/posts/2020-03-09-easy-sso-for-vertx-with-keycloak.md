@@ -23,7 +23,7 @@ In this blog post you'll learn:
 
 This is my first post in the Vert.x Blog and I must admit that up until now I have never used Vert.x in a real project.
 "Why are you here?", you might ask... Well I currently have two main hobbies, learning new things and securing apps with [Keycloak](https://www.keycloak.org/).
-So a few days ago, I stumbled upon the [Introduction to Vertx video series on youtube](https://www.youtube.com/watch?v=LsaXy7SRXMY&list=PLkeCJDaCC2ZsnySdg04Aq9D9FpAZY6K5D) by [Deven Phillips](https://twitter.com/infosec812) and I was immediately hooked. Vert.x was a new thing for me, so the next logical step was to figure out how to secure a Vert.x app with Keycloak.
+So a few days ago, I stumbled upon the [Introduction to Vert.x video series on youtube](https://www.youtube.com/watch?v=LsaXy7SRXMY&list=PLkeCJDaCC2ZsnySdg04Aq9D9FpAZY6K5D) by [Deven Phillips](https://twitter.com/infosec812) and I was immediately hooked. Vert.x was a new thing for me, so the next logical step was to figure out how to secure a Vert.x app with Keycloak.
 
 For this example I build a small web app with Vert.x that shows how to implement Single Sign-on (SSO) with Keycloak 
 and OpenID Connect, obtain information about the current user, check for roles, call bearer protected services and properly handling logout.
@@ -49,7 +49,7 @@ So let's get started!
 To secure a Vert.x app with Keycloak we of course need a Keycloak instance. Although [Keycloak has a great getting started guide](https://www.keycloak.org/docs/latest/getting_started/) I wanted to make it a bit easier to put everything together, therefore I prepared a local Keycloak docker container [as described here](https://github.com/thomasdarimont/vertx-playground/tree/master/keycloak-vertx#start-keycloak-with-the-vertx-realm) that you can start easily, which comes with all the required configuration in place.
 
 The preconfigured Keycloak realm named `vertx` contains a `demo-client` for our Vert.x web app and a set 
-of users fo testing.
+of users for testing.
 
 ```
 docker run \
@@ -70,12 +70,30 @@ docker run \
 The simple web app consists of a single `Verticle`, runs on `http://localhost:8090` and provides a few routes with protected resources. [You can find the complete example here](https://github.com/thomasdarimont/vertx-playground/blob/master/keycloak-vertx/src/main/java/demo/MainVerticle.java).
 
 The web app contains the following routes with handlers:
+
 - `/` - The unprotected index page
-- `/protected` - The protected page, users need to login to access pages beneath this path.
+- `/protected` - The protected page, which shows a greeting message, users need to login to access pages beneath this path.
 - `/protected/user` - The protected user page, which shows some information about the user.
 - `/protected/admin` - The protected admin page, which shows some information about the admin, only users with role `admin` can access this page.
 - `/protected/userinfo` - The protected userinfo page, obtains user information from the bearer token protected userinfo endpoint in Keycloak.
 - `/logout` - The protected logout resource, which triggers the user logout.
+
+### Running the app
+
+To run the app, we need to build our app via:
+```
+cd keycloak-vertx
+mvn clean package
+```
+
+This creates a runnable jar, which we can run via:
+```
+java -jar target/*.jar
+```
+
+Note, that you need to start Keycloak, since our app will try to fetch configuration from Keycloak.
+
+If the application is running, just browse to: `http://localhost:8090/`.
 
 An example interaction with the app can be seen in the following gif:
 ![Vert.x Keycloak Integration Demo](/assets/blog/vertx-keycloak-integration/2020-03-07-vertx-keycloak-integration.gif)
@@ -85,7 +103,7 @@ An example interaction with the app can be seen in the following gif:
 We start the configuration of our web app by creating a `Router` where we can add custom handler functions for our routes.
 To properly handle the authentication state we need to create a `SessionStore` and attach it to the `Router`.
 The `SessionStore` is used by our OAuth2/OpenID Connect infrastructure to associate authentication information with a session.
-Btw. the `SessionStore` can also be clustered if you need to distribute the server-side state. 
+By the way, the `SessionStore` can also be clustered if you need to distribute the server-side state. 
 
 Note that if you want to keep your server stateless but still want to support clustering, 
 then you could provide your own implementation of a `SessionStore` which stores the session information 
@@ -101,7 +119,7 @@ router.route().handler(sessionHandler);
 ```
 
 In order to protected against CSRF attacks it is good practice to protect HTML forms with a CSRF token. 
-We need this for our logout form that we'll see later. To do this we configure a `CSRFHandler` and add it to our `Router`.
+We need this for our logout form that we'll see later. To do this we configure a `CSRFHandler` and add it to our `Router`:
 ```java
 // CSRF handler setup required for logout form
 String csrfSecret = "zwiebelfische";
@@ -118,10 +136,11 @@ router.route().handler(ctx -> {
 ### Keycloak Setup via OpenID Connect Discovery
 
 Our app is registered as a confidential OpenID Connect client with Authorization Code Flow in Keycloak,
-thus we need to configure `client_id` and `client_secret`.
+thus we need to configure `client_id` and `client_secret`. Confidential clients are typically used
+for server-side web applications, where one can securely store the `client_secret`. You can find out more
+about[The different Client Access Types](https://www.keycloak.org/docs/latest/server_admin/index.html#_access-type) in the Keycloak documentation.
 
-Since we don't want to configure things like OAuth2 / OpenID Connect Endpoints ourselves, we use Keycloaks 
-OpenID Connect discovery endpoint to infer the necessary Oauth2 / OpenID Connect endpoint URLs.
+Since we don't want to configure things like OAuth2 / OpenID Connect Endpoints ourselves, we use Keycloak's OpenID Connect discovery endpoint to infer the necessary Oauth2 / OpenID Connect endpoint URLs.
 
 ```java
 String hostname = System.getProperty("http.host", "localhost");
@@ -162,7 +181,8 @@ getVertx().createHttpServer().requestHandler(router).listen(port);
 ```
 
 ### Route handlers
-We configure our route handlers via `configureRoutes`
+
+We configure our route handlers via `configureRoutes`:
 ```java
 private void configureRoutes(Router router, WebClient webClient, OAuth2Auth oauth2Auth) {
 
@@ -180,7 +200,7 @@ private void configureRoutes(Router router, WebClient webClient, OAuth2Auth oaut
 }
 ```
 
-The index handler exposes an unprotected resource.
+The index handler exposes an unprotected resource:
 ```java
 private void handleIndex(RoutingContext ctx) {
     respondWithOk(ctx, "text/html", "<h1>Welcome to Vert.x Keycloak Example</h1><br><a href=\"/protected\">Protected</a>");
@@ -198,7 +218,7 @@ To access the OAuth2 token information, we need to cast it to `OAuth2TokenImpl`.
 We can extract the user information like the username from the `IDToken` exposed by the user object via `user.idToken().getString("preferred_username")`. 
 Note, there are many more claims like (name, email, givenanme, familyname etc.) available. The [OpenID Connect Core Specification](https://openid.net/specs/openid-connect-core-1_0.html#Claims) contains a list of available claims.
 
-We also generate a list with links to the other pages which are supported.
+We also generate a list with links to the other pages which are supported:
 ```java
 private void handleGreet(RoutingContext ctx) {
 
@@ -218,7 +238,7 @@ private void handleGreet(RoutingContext ctx) {
 }
 ```
 
-The user page handler shows information about the current user.
+The user page handler shows information about the current user:
 ```java
 private void handleUserPage(RoutingContext ctx) {
 
@@ -234,12 +254,12 @@ private void handleUserPage(RoutingContext ctx) {
 ```
 
 ### Authorization: Checking for Required Roles
+
 Our app exposes a simple admin page which shows some information for admins, which should only be visible for admins. Thus we require that users must have the `admin` realm role in Keycloak to be able to access the admin page.
 
 This is done via a call to `user.isAuthorized("realm:admin", cb)`. The handler function `cb` exposes
 the result of the authorization check via the `AsyncResult<Boolean> res`. If the current user has the
-`admin` role then the result is `true` otherwise `false`.
-
+`admin` role then the result is `true` otherwise `false`:
 ```java
 private void handleAdminPage(RoutingContext ctx) {
 
@@ -267,12 +287,12 @@ private void handleAdminPage(RoutingContext ctx) {
 Often we need to call other services from our web app that are protected via Bearer Authentication. This means
 that we need a valid `access token` to access a resource provided on another server.
 
-To demonstrate this we use Keycloak's userinfo endpoint as a straw man to demonstrate backend calls with a bearer token.
+To demonstrate this we use Keycloak's `/userinfo` endpoint as a straw man to demonstrate backend calls with a bearer token.
 
 We can obtain the current valid `access token` via `user.opaqueAccessToken()`. 
 Since we use a `WebClient` to call the protected endpoint, we need to pass the `access token` 
 via the `Authorization` header by calling `bearerTokenAuthentication(user.opaqueAccessToken())` 
-in the current `HttpRequest` object.
+in the current `HttpRequest` object:
 
 ```java
 private Handler<RoutingContext> createUserInfoHandler(WebClient webClient, String userInfoUrl) {
