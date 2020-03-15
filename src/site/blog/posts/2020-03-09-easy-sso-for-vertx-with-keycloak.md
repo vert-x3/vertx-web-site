@@ -17,7 +17,7 @@ In this blog post you'll learn:
 - How to obtain user information
 - How to check for authorization
 - How to call a Bearer protected service with an Access Token
-- How to implement logout
+- How to implement a form based logout
 
 ## Hello Blog
 
@@ -81,12 +81,14 @@ The web app contains the following routes with handlers:
 ### Running the app
 
 To run the app, we need to build our app via:
+
 ```
 cd keycloak-vertx
 mvn clean package
 ```
 
 This creates a runnable jar, which we can run via:
+
 ```
 java -jar target/*.jar
 ```
@@ -119,14 +121,18 @@ router.route().handler(sessionHandler);
 ```
 
 In order to protected against CSRF attacks it is good practice to protect HTML forms with a CSRF token. 
-We need this for our logout form that we'll see later. To do this we configure a `CSRFHandler` and add it to our `Router`:
+We need this for our logout form that we'll see later.
+
+To do this we configure a `CSRFHandler` and add it to our `Router`:
+
 ```java
 // CSRF handler setup required for logout form
 String csrfSecret = "zwiebelfische";
 CSRFHandler csrfHandler = CSRFHandler.create(csrfSecret);
 router.route().handler(ctx -> {
-            // Ensure csrf token request parameter is available for CsrfHandler
-            // see Handling HTML forms https://vertx.io/docs/vertx-core/java/#_handling_requests
+            // Ensures that the csrf token request parameter is available for the CsrfHandler
+            // after the logout form was submitted.
+            // See "Handling HTML forms" https://vertx.io/docs/vertx-core/java/#_handling_requests
             ctx.request().setExpectMultipart(true);
             ctx.request().endHandler(v -> csrfHandler.handle(ctx));
         }
@@ -331,7 +337,11 @@ If the logout was successfull we destory our session via `ctx.session().destroy(
 
 The logout form is generated via the `createLogoutForm` method. 
 
-Note, that we need to obtain the generated `CSRFToken` to generate it into a hidden form input field that's passed to the logout form:
+As mentioned earlier, we need to protect our logout form with a CSRF token to prevent [CSRF attacks](https://owasp.org/www-community/attacks/csrf).
+
+Note: If we had endpoints that would accept data sent to the server, then we'd need to guard those endpoints with an CSRF token as well.
+
+We need to obtain the generated `CSRFToken` and render it into a hidden form input field that's transfered via HTTP POST when the logout form is submitted:
 
 ```java
 private void handleLogout(RoutingContext ctx) {
