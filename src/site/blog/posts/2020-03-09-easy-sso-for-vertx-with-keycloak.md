@@ -1,8 +1,7 @@
 ---
 title: Easy SSO for Vert.x with Keycloak
 template: post.html
-date: 2020-03-09
-draft: true
+date: 2020-03-16
 author: thomasdarimont
 ---
 
@@ -25,13 +24,13 @@ This is my first post in the Vert.x Blog and I must admit that up until now I ha
 "Why are you here?", you might ask... Well I currently have two main hobbies, learning new things and securing apps with [Keycloak](https://www.keycloak.org/).
 So a few days ago, I stumbled upon the [Introduction to Vert.x video series on youtube](https://www.youtube.com/watch?v=LsaXy7SRXMY&list=PLkeCJDaCC2ZsnySdg04Aq9D9FpAZY6K5D) by [Deven Phillips](https://twitter.com/infosec812) and I was immediately hooked. Vert.x was a new thing for me, so the next logical step was to figure out how to secure a Vert.x app with Keycloak.
 
-For this example I build a small web app with Vert.x that shows how to implement Single Sign-on (SSO) with Keycloak 
+For this example I build a small web app with Vert.x that shows how to implement Single Sign-on (SSO) with Keycloak
 and OpenID Connect, obtain information about the current user, check for roles, call bearer protected services and properly handling logout.
 
 ## Keycloak
 
-[Keycloak](https://www.keycloak.org/) is a Open Source Identity and Access Management solution which provides support for OpenID Connect 
-based Singe-Sign on, among many other things. I briefly looked for ways to securing a Vert.x app with Keycloak 
+[Keycloak](https://www.keycloak.org/) is a Open Source Identity and Access Management solution which provides support for OpenID Connect
+based Singe-Sign on, among many other things. I briefly looked for ways to securing a Vert.x app with Keycloak
 and quickly found an [older Vert.x Keycloak integration example](https://vertx.io/blog/vertx-3-and-keycloak-tutorial/) in this very blog.
 Whilst this is a good start for beginners, the example contains a few issues, e.g.:
 
@@ -48,7 +47,7 @@ So let's get started!
 
 To secure a Vert.x app with Keycloak we of course need a Keycloak instance. Although [Keycloak has a great getting started guide](https://www.keycloak.org/docs/latest/getting_started/) I wanted to make it a bit easier to put everything together, therefore I prepared a local Keycloak docker container [as described here](https://github.com/thomasdarimont/vertx-playground/tree/master/keycloak-vertx#start-keycloak-with-the-vertx-realm) that you can start easily, which comes with all the required configuration in place.
 
-The preconfigured Keycloak realm named `vertx` contains a `demo-client` for our Vert.x web app and a set 
+The preconfigured Keycloak realm named `vertx` contains a `demo-client` for our Vert.x web app and a set
 of users for testing.
 
 ```
@@ -98,17 +97,17 @@ Note, that you need to start Keycloak, since our app will try to fetch configura
 If the application is running, just browse to: `http://localhost:8090/`.
 
 An example interaction with the app can be seen in the following gif:
-![Vert.x Keycloak Integration Demo](/assets/blog/vertx-keycloak-integration/2020-03-07-vertx-keycloak-integration.gif)
+![Vert.x Keycloak Integration Demo]({{ site_url }}assets/blog/vertx-keycloak-integration/2020-03-07-vertx-keycloak-integration.gif)
 
 ### Router, SessionStore and CSRF Protection
 
 We start the configuration of our web app by creating a `Router` where we can add custom handler functions for our routes.
 To properly handle the authentication state we need to create a `SessionStore` and attach it to the `Router`.
 The `SessionStore` is used by our OAuth2/OpenID Connect infrastructure to associate authentication information with a session.
-By the way, the `SessionStore` can also be clustered if you need to distribute the server-side state. 
+By the way, the `SessionStore` can also be clustered if you need to distribute the server-side state.
 
-Note that if you want to keep your server stateless but still want to support clustering, 
-then you could provide your own implementation of a `SessionStore` which stores the session information 
+Note that if you want to keep your server stateless but still want to support clustering,
+then you could provide your own implementation of a `SessionStore` which stores the session information
 as an encrypted cookie on the Client.
 
 ```java
@@ -120,7 +119,7 @@ SessionHandler sessionHandler = SessionHandler.create(sessionStore);
 router.route().handler(sessionHandler);
 ```
 
-In order to protected against CSRF attacks it is good practice to protect HTML forms with a CSRF token. 
+In order to protected against CSRF attacks it is good practice to protect HTML forms with a CSRF token.
 We need this for our logout form that we'll see later.
 
 To do this we configure a `CSRFHandler` and add it to our `Router`:
@@ -221,7 +220,7 @@ The user greeting handler is protected by the Keycloak OAuth2 / OpenID Connect i
 the current user, we first need to call the `ctx.user()` method to get an user object we can work with.
 To access the OAuth2 token information, we need to cast it to `OAuth2TokenImpl`.
 
-We can extract the user information like the username from the `IDToken` exposed by the user object via `user.idToken().getString("preferred_username")`. 
+We can extract the user information like the username from the `IDToken` exposed by the user object via `user.idToken().getString("preferred_username")`.
 Note, there are many more claims like (name, email, givenanme, familyname etc.) available. The [OpenID Connect Core Specification](https://openid.net/specs/openid-connect-core-1_0.html#Claims) contains a list of available claims.
 
 We also generate a list with links to the other pages which are supported:
@@ -253,7 +252,7 @@ private void handleUserPage(RoutingContext ctx) {
     String username = user.idToken().getString("preferred_username");
     String displayName = oAuth2Token.idToken().getString("name");
 
-    String content = String.format("<h1>User Page: %s (%s) @%s</h1><a href=\"/protected\">Protected Area</a>", 
+    String content = String.format("<h1>User Page: %s (%s) @%s</h1><a href=\"/protected\">Protected Area</a>",
                                    username, displayName, Instant.now());
     respondWithOk(ctx, "text/html", content);
 }
@@ -281,7 +280,7 @@ private void handleAdminPage(RoutingContext ctx) {
 
         String username = user.idToken().getString("preferred_username");
 
-        String content = String.format("<h1>Admin Page: %s @%s</h1><a href=\"/protected\">Protected Area</a>", 
+        String content = String.format("<h1>Admin Page: %s @%s</h1><a href=\"/protected\">Protected Area</a>",
                                         username, Instant.now());
         respondWithOk(ctx, "text/html", content);
     });
@@ -295,9 +294,9 @@ that we need a valid `access token` to access a resource provided on another ser
 
 To demonstrate this we use Keycloak's `/userinfo` endpoint as a straw man to demonstrate backend calls with a bearer token.
 
-We can obtain the current valid `access token` via `user.opaqueAccessToken()`. 
-Since we use a `WebClient` to call the protected endpoint, we need to pass the `access token` 
-via the `Authorization` header by calling `bearerTokenAuthentication(user.opaqueAccessToken())` 
+We can obtain the current valid `access token` via `user.opaqueAccessToken()`.
+Since we use a `WebClient` to call the protected endpoint, we need to pass the `access token`
+via the `Authorization` header by calling `bearerTokenAuthentication(user.opaqueAccessToken())`
 in the current `HttpRequest` object:
 
 ```java
@@ -332,10 +331,10 @@ private Handler<RoutingContext> createUserInfoHandler(WebClient webClient, Strin
 Now that we got a working SSO login with authorization, it would be great if we would allow users to logout again.
 To do this we can leverage the built-in OpenID Connect logout functionality which can be called via `oAuth2Token.logout(cb)`.
 
-The handler function `cb` exposes the result of the logout action via the `AsyncResult<Void> res`. 
+The handler function `cb` exposes the result of the logout action via the `AsyncResult<Void> res`.
 If the logout was successfull we destory our session via `ctx.session().destroy()` and redirect the user to the index page.
 
-The logout form is generated via the `createLogoutForm` method. 
+The logout form is generated via the `createLogoutForm` method.
 
 As mentioned earlier, we need to protect our logout form with a CSRF token to prevent [CSRF attacks](https://owasp.org/www-community/attacks/csrf).
 
