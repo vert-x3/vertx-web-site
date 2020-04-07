@@ -45,6 +45,7 @@ stickyheader: true
         <ul class="nav nav-tabs">
           <li class="active"><a href="#ws_java" data-toggle="tab">Java</a></li>
           <li><a href="#ws_kotlin" data-toggle="tab">Kotlin</a></li>
+          <li><a href="#ws_rxjava" data-toggle="tab">RxJava</a></li>
           <li><a href="#ws_js" data-toggle="tab">JavaScript</a></li>
           <li><a href="#ws_groovy" data-toggle="tab">Groovy</a></li>
           <li><a href="#ws_ruby" data-toggle="tab">Ruby</a></li>
@@ -105,7 +106,7 @@ class Server extends ScalaVerticle {
        .end("Hello from Vert.x"))
      .listen(8080)
   }
-}}</code></pre>
+}</code></pre>
           </div>
 
           <div class="tab-pane" id="ws_kotlin">
@@ -119,6 +120,22 @@ class Server : AbstractVerticle() {
           .putHeader("content-type", "text/plain")
           .end("Hello from Vert.x")
       }.listen(8080)
+  }
+}</code></pre>
+          </div>
+
+          <div class="tab-pane" id="ws_rxjava">
+            <pre class="prettyprint"><code class="java">
+import io.reactivex.Completable;
+import io.vertx.reactivex.core.AbstractVerticle;
+public class Server extends AbstractVerticle {
+  public Completable rxStart() {
+    return vertx.createHttpServer().requestHandler(req -> {
+        req.response()
+          .putHeader("content-type", "text/plain")
+          .end("Hello from Vert.x!");
+        })
+      .rxListen(8080).ignoreElement();
   }
 }</code></pre>
           </div>
