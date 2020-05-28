@@ -3,7 +3,7 @@ title: Eclipse Vert.x 4 milestone 5 released!
 date: 2020-05-25
 template: post.html
 author: vietj
-draft: false
+draft: true
 ---
 
 We are extremely pleased to announce the fifth 4.0 milestone release of Eclipse Vert.x .
