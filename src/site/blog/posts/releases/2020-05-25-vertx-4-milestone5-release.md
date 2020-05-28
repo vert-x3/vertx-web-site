@@ -3,7 +3,7 @@ title: Eclipse Vert.x 4 milestone 5 released!
 date: 2020-05-25
 template: post.html
 author: vietj
-draft: true
+draft: false
 ---
 
 We are extremely pleased to announce the fifth 4.0 milestone release of Eclipse Vert.x .
@@ -98,6 +98,29 @@ Vert.x Web API Contract for the whole lifetime of Vert.x 4.
 We'll provide soon a migration guide for replacing Vert.x Web API Contract.
 
 Check out the [Web OpenAPI examples](https://github.com/vert-x3/vertx-web/blob/master/vertx-web-openapi/src/main/java/examples/OpenAPI3Examples.java)
+
+#### A new clustering SPI
+
+This milestone introduces a new clustering SPI that allows to:
+
+- simplify both Vert.x core and cluster manager implementations
+- leverage capabilities of some cluster managers (e.g. data loss protection)
+
+Read the [RFC](https://github.com/vert-x3/wiki/wiki/RFC:-clustering-SPI-revisited) document if you would like to know more.
+
+As a developer, you should not see much difference, the EventBus and Shared data API remain unchanged.
+
+However, if you operate a cluster in production, you cannot mix Vert.x 3 and Vert.x 4 nodes.
+
+The following cluster managers implementations have been updated: [`vertx-hazelcast`](https://vertx.io/docs/vertx-hazelcast/java/), [`vertx-infinispan`](https://vertx.io/docs/vertx-infinispan/java/) and [`vertx-iginite`](https://vertx.io/docs/vertx-ignite/java/) (thanks [Lukas Prettenthaler](https://github.com/zyclonite) for your help).
+The [`vertx-zookeeper`](https://vertx.io/docs/vertx-zookeeper/java/) update will be available in the next release.
+
+#### Upgrade to Infinispan 10 and Ignite 2.8.0
+
+Following-up on the clustering SPI update :
+
+- the Infinispan cluster manager now depends on Infinispan 10
+- the Apache Ignite cluster manager on 2.8.0
 
 #### Ramping up to Vert.x 4
 
