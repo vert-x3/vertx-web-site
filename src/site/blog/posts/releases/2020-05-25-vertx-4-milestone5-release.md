@@ -122,6 +122,37 @@ Following-up on the clustering SPI update :
 - the Infinispan cluster manager now depends on Infinispan 10
 - the Apache Ignite cluster manager on 2.8.0
 
+#### Complete refactoring on vertx-auth authn/authz split
+
+With `milestone5` we completed the refactoring to split authentication from authorization. All modules now implement at least one of the 2 interfaces:
+
+* AuthenticationProvider
+* AuthorizationProvider
+
+This was a long standing issue, that was blocking many users and a limitation of the old API. You can now, authenticate your users using a property file and authorize against a database if you so wish/need.
+
+This milestone also includes a few new modules:
+
+* `vertx-auth-ldap` which should replace `shiro`
+* `vertx-authproperties` which should replace `shiro`
+* `vertx-auth-sql` which will allow the usage of `sql-client`s as source of user data
+* `vertx-auth-webauthn` which is a new module for `FIDO2` `webauthn` authentication
+
+Many bug fixes have been done and missing features such as `JWK` rotation support for `OAuth2/OIDC`/`JWT` is now implemented.
+
+#### Vertx-web updates
+
+Vert.x-Web also got some updates, all internal state of the module is now immutable which allows it's usage from non single threaded environments such as Quarkus.
+
+The session handler code, went over a big makeover and you can now use other storages, for example:
+
+* `cookie-session-store` - stores all session data in a cookie
+* `redis-session-store` - store all session data in a redis key store database
+
+Sessions can be safer now, as the code has been updated to the latest OWASP recommendations and you can now use `cookieless` sessions, where the session key is passed in the URL.
+
+Routers are now proxy aware. When enabled, routers can parse the `Forward` headers and rebind the internal values for protocol, host and port for user convinience. This is quite useful when applications are deployed behind a caching server, which can modify the original request. 
+
 #### Ramping up to Vert.x 4
 
 Instead of developing all new features exclusively in Vert.x 4, we introduce some of these features in the 3.x branch
