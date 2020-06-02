@@ -151,7 +151,19 @@ The session handler code, went over a big makeover and you can now use other sto
 
 Sessions can be safer now, as the code has been updated to the latest OWASP recommendations and you can now use `cookieless` sessions, where the session key is passed in the URL.
 
-Routers are now proxy aware. When enabled, routers can parse the `Forward` headers and rebind the internal values for protocol, host and port for user convinience. This is quite useful when applications are deployed behind a caching server, which can modify the original request. 
+Routers are now proxy aware. When enabled, routers can parse the `Forward` headers and rebind the internal values for protocol, host and port for user convinience. This is quite useful when applications are deployed behind a caching server, which can modify the original request.
+
+#### JUnit 5 support updates
+
+The `vertx-junit5` module has had the following updates since the last milestone.
+
+* [The internals have been refactored](https://github.com/vert-x3/wiki/wiki/4.0.0-Deprecations-and-breaking-changes#split-the-core-implementation-and-extensions) to split the implementation and extensions around a service-provider interface.
+  While this is largely transparent in terms of API, you need to be aware that:
+  * the Vertx parameter should be placed before any parameter that requires it for creation, such as when injecting a WebClient,
+  * the vertx-junit5 module now only offers APIs for the Vert.x core module (vertx-core),
+  * the [reactiverse-junit5-extensions module](https://github.com/reactiverse/reactiverse-junit5-extensions) now hosts extensions that offer extra parameter types like WebClient,
+  * the RxJava 1 and 2 bindings are now offered as vertx-junit5-rx-java and vertx-junit5-rx-java2 modules in the vertx-junit5-extensions repository.
+* The `succeeding()` and `failing()` methods in `VertxTestContext` have been deprecated to improve ergonomics, you should now use methods `succeedingThenComplete()` and `failingThenComplete()`.
 
 #### Ramping up to Vert.x 4
 
