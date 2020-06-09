@@ -1,6 +1,6 @@
 ---
 title: Eclipse Vert.x 4 milestone 5 released!
-date: 2020-05-25
+date: 2020-06-10
 template: post.html
 author: vietj
 draft: true
@@ -13,12 +13,10 @@ Vert.x 4 is the evolution of the Vert.x 3.x series that will bring key features 
 This release aims to provide a reliable distribution of the current development of Vert.x 4 for people that
 want to try it and provide feedback.
 
-#### The new trio: Json Schema, Web Validation and Web OpenAPI
+#### New kids on the block: Json Schema, Web Validation and Web OpenAPI
 
-After the lessons we learnt in Vert.x 3.x, we decided to renew completely our support for
-HTTP request validation in `vertx-web` and Contract Driven development using [OpenAPI](https://github.com/OAI/OpenAPI-Specification).
-
-In this milestone, we introduce 3 new modules:
+we decide to take HTTP request validation in `vertx-web` and Contract Driven development using [OpenAPI](https://github.com/OAI/OpenAPI-Specification)
+to a next level in Vert.x 4, allow us to introduce:
 
 * [Vert.x Json Schema](https://github.com/eclipse-vertx/vertx-json-schema): Extensible sync/async json-schema validator designed for Vert.x JSON types, supporting Json Schema Draft-7 and OpenAPI dialect.
 * [Vert.x Web Validation](https://github.com/vert-x3/vertx-web/tree/master/vertx-web-validation): Extensible sync/async HTTP request validator, providing a DSL to describe expected HTTP requests.
@@ -28,9 +26,9 @@ Vert.x Json Schema is a powerful [Json Schema](https://json-schema.org/) validat
 
 * Async `$ref` resolution
 * Custom keywords/Custom dialects support
-* DSL to build schemas directly in the code
+* A DSL to build schemas
 
-Now combining Vert.x Json Schema and Vert.x Web Validation you can easily validate HTTP requests:
+Combining Vert.x Json Schema and Vert.x Web Validation you can easily validate HTTP requests:
 
 ```java
 ValidationHandler handler = ValidationHandler
@@ -47,10 +45,10 @@ router.post("/{myPathParam}").handler(handler);
 
 Check out the [Web validation examples](https://github.com/vert-x3/vertx-web/blob/master/vertx-web-validation/src/main/java/examples/WebValidationExamples.java) and provide feedback on the APIs!
 
-Thanks to Vert.x Web Validation, now you can use Vert.x Web API Service without using Vert.x Web API Contract:
+Vert.x Web Validation allows you to use Vert.x Web API Service without Vert.x Web API Contract:
 [Vert.x Web API Service example](https://github.com/vert-x3/vertx-web/tree/master/vertx-web-api-service/src/main/java/examples)
 
-If you want to do Contract Driven development, like you used to do in Vert.x 3, you can use Vert.x Web OpenAPI:
+You can achieve Contract Driven development, with Vert.x Web OpenAPI:
 
 ```java
 RouterFactory.create(vertx, "src/main/resources/petstore.yaml",
@@ -93,15 +91,14 @@ RouterFactory.create(vertx, "src/main/resources/petstore.yaml",
 });
 ```
 
-Vert.x Web OpenAPI is going to replace Vert.x Web API Contract but, to ease the migration, we'll continue to support
-Vert.x Web API Contract for the whole lifetime of Vert.x 4.
-We'll provide soon a migration guide for replacing Vert.x Web API Contract.
+Vert.x Web OpenAPI is the new way to do Vert.x Web API Contract, however Vert.x Web API Contract remains supported
+for the whole lifetime of Vert.x 4 to provide a migration path: we will provide soon a migration guide for Vert.x Web API Contract.
 
 Check out the [Web OpenAPI examples](https://github.com/vert-x3/vertx-web/blob/master/vertx-web-openapi/src/main/java/examples/OpenAPI3Examples.java)
 
 #### A new clustering SPI
 
-This milestone introduces a new clustering SPI that allows to:
+This milestone introduces the clustering SPI redesign that allows to:
 
 - simplify both Vert.x core and cluster manager implementations
 - leverage capabilities of some cluster managers (e.g. data loss protection)
@@ -124,34 +121,36 @@ Following-up on the clustering SPI update :
 
 #### Complete refactoring on vertx-auth authn/authz split
 
-With `milestone5` we completed the refactoring to split authentication from authorization. All modules now implement at least one of the 2 interfaces:
+Authentication has been decoupled from authorization, all modules now implement at least one of the two interfaces:
 
-* AuthenticationProvider
-* AuthorizationProvider
+* `AuthenticationProvider`
+* `AuthorizationProvider`
 
-This was a long standing issue, that was blocking many users and a limitation of the old API. You can now, authenticate your users using a property file and authorize against a database if you so wish/need.
+This improvement provides more flexiblity such as user authentication using a property file and authorization against a database.
 
-This milestone also includes a few new modules:
+This milestone also includes a few new implementations:
 
-* `vertx-auth-ldap` which should replace `shiro`
-* `vertx-authproperties` which should replace `shiro`
-* `vertx-auth-sql` which will allow the usage of `sql-client`s as source of user data
-* `vertx-auth-webauthn` which is a new module for `FIDO2` `webauthn` authentication
+* `vertx-auth-ldap` supersedes `shiro`
+* `vertx-authproperties` supersedes `shiro`
+* `vertx-auth-sql` to use `sql-client`s as source of user data
+* `vertx-auth-webauthn` provides `FIDO2` `webauthn` authentication
 
 Many bug fixes have been done and missing features such as `JWK` rotation support for `OAuth2/OIDC`/`JWT` is now implemented.
 
 #### Vertx-web updates
 
-Vert.x-Web also got some updates, all internal state of the module is now immutable which allows it's usage from non single threaded environments such as Quarkus.
+Vert.x-Web also got some updates.
 
-The session handler code, went over a big makeover and you can now use other storages, for example:
+The session handler code now allows other storages:
 
 * `cookie-session-store` - stores all session data in a cookie
 * `redis-session-store` - store all session data in a redis key store database
 
-Sessions can be safer now, as the code has been updated to the latest OWASP recommendations and you can now use `cookieless` sessions, where the session key is passed in the URL.
+Sessions follows the latest OWASP recommendations and allows to now use `cookieless` sessions, where the session key is passed in the URL.
 
-Routers are now proxy aware. When enabled, routers can parse the `Forward` headers and rebind the internal values for protocol, host and port for user convinience. This is quite useful when applications are deployed behind a caching server, which can modify the original request.
+Routers are now proxy aware: when enabled, routers can parse the `Forward` headers and rebind the internal values
+for protocol, host and port for user convinience. This is quite useful when applications are deployed behind
+a caching server, which can modify the original request.
 
 #### JUnit 5 support updates
 
@@ -163,7 +162,7 @@ The `vertx-junit5` module has had the following updates since the last milestone
   * the vertx-junit5 module now only offers APIs for the Vert.x core module (vertx-core),
   * the [reactiverse-junit5-extensions module](https://github.com/reactiverse/reactiverse-junit5-extensions) now hosts extensions that offer extra parameter types like WebClient,
   * the RxJava 1 and 2 bindings are now offered as vertx-junit5-rx-java and vertx-junit5-rx-java2 modules in the vertx-junit5-extensions repository.
-* The `succeeding()` and `failing()` methods in `VertxTestContext` have been deprecated to improve ergonomics, you should now use methods `succeedingThenComplete()` and `failingThenComplete()`.
+* The `succeeding()` and `failing()` methods in `VertxTestContext` have been deprecated to improve ergonomics, you should instead use `succeedingThenComplete()` and `failingThenComplete()`.
 
 #### Ramping up to Vert.x 4
 
