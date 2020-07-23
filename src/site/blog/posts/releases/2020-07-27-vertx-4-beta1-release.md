@@ -1,6 +1,6 @@
 ---
 title: Eclipse Vert.x 4 beta 1 released!
-date: 2019-07-27
+date: 2020-07-23
 template: post.html
 author: vietj
 draft: true
@@ -14,6 +14,25 @@ Vert.x 4 is the evolution of the Vert.x 3.x series that will bring key features 
 
 The new [vertx-json-schema](https://github.com/eclipse-vertx/vertx-json-schema) module now supports the latest Json Schema [Draft2019-09 spec](http://json-schema.org/specification.html). You can finally play with the new `$recursiveRef` to build extensible recursive schemas and with `unevaluatedProperties`/`unevaluatedItems` to define strict schemas. Look at the module [documentation](https://vertx-web-site.github.io/docs/vertx-json-schema/java/) to start using it.  
 
+#### Clustering configuration simplified
+
+In Vert.x 3, cluster host was set to `localhost` by default in `EventBusOptions`.
+Consequently, a lot of new users were confused about why event bus consumers and producers were not able to communicate even if the underlying cluster manager was configured correctly.
+
+Also, when using the CLI tool or the `Launcher` class, Vert.x tried to find a host among available network interfaces if none was provided with the `-cluster-host` argument.
+Sometimes, the host chosen by the cluster manager and Vert.x were not the same.
+
+Starting with Vert.x 4 beta 1, the cluster host default has been removed and, if users don't provide any, Vert.x will ask the cluster manager which one it picked before trying to find one itself.
+This applies whether Vert.x is embedded in any Java program or started with the CLI tool or with the `Launcher` class.
+
+So far, only `vertx-hazelcast` and `vertx-infinispan` cluster managers can provide Vert.x with a cluster host.
+When other cluster managers are used, Vert.x will choose one itself.
+
+#### Cluster manager upgrades
+
+`vertx-hazelcast` has been upgraded to Hazelcast 4.0.2 and `vertx-infinispan` to Infinispan 11.0.1.Final.
+
+
 #### Ramping up to Vert.x 4
 
 Instead of developing all new features exclusively in Vert.x 4, we introduce some of these features in the 3.x branch
@@ -22,7 +41,7 @@ in the 3.x series.
 
 <img src="{{ site_url }}assets/blog/vertx-4-milestone4-release/vertx-4-timeline.png" alt="Screenshot" class="img-responsive">
 
-This is the forth milestone of Vert.x 4, you can of course expect more milestones to outline the progress of the effort.
+This is the first beta relase of Vert.x 4, you can of course expect more betas as we get feedback from the community and fix issues that we failed to catch before.
 
 You can also read the previous milestone announces:
 
@@ -36,9 +55,9 @@ You can also read the previous milestone announces:
 The [deprecations and breaking changes](https://github.com/vert-x3/wiki/wiki/4.0.0-Deprecations-and-breaking-changes)
  can be found on the wiki.
 
-For this release there are no Docker images.,
+For this release there are no Docker images.
 
-The release artifacts have been deployed to [Maven Central](https://search.maven.org/search?q=g:io.vertx%20AND%20v:4.0.0-milestone4) and you can get the distribution on [Maven Central](https://repo1.maven.org/maven2/io/vertx/vertx-stack-manager/4.0.0-milestone4/).
+The release artifacts have been deployed to [Maven Central](https://search.maven.org/search?q=g:io.vertx%20AND%20v:4.0.0.Beta1) and you can get the distribution on [Maven Central](https://repo1.maven.org/maven2/io/vertx/vertx-stack-manager/4.0.0.Beta1/).
 
 You can bootstrap a Vert.x 4.0.0 beta 1 project using https://start.vertx.io.
 
