@@ -1,6 +1,6 @@
 ---
 title: Eclipse Vert.x 4 beta 1 released!
-date: 2020-07-23
+date: 2020-07-28
 template: post.html
 author: vietj
 draft: true
@@ -12,7 +12,7 @@ Vert.x 4 is the evolution of the Vert.x 3.x series that will bring key features 
 
 #### Vert.x Json Schema supports Draft2019-09
 
-The new [vertx-json-schema](https://github.com/eclipse-vertx/vertx-json-schema) module now supports the latest Json Schema [Draft2019-09 spec](http://json-schema.org/specification.html). You can finally play with the new `$recursiveRef` to build extensible recursive schemas and with `unevaluatedProperties`/`unevaluatedItems` to define strict schemas. Look at the module [documentation](https://vertx-web-site.github.io/docs/vertx-json-schema/java/) to start using it.  
+The new [vertx-json-schema](https://github.com/eclipse-vertx/vertx-json-schema) module now supports the latest Json Schema [Draft2019-09 spec](http://json-schema.org/specification.html). You can finally play with the new `$recursiveRef` to build extensible recursive schemas and with `unevaluatedProperties`/`unevaluatedItems` to define strict schemas. Look at the module [documentation](https://vertx-web-site.github.io/docs/vertx-json-schema/java/) to start using it.
 
 #### Clustering configuration simplified
 
