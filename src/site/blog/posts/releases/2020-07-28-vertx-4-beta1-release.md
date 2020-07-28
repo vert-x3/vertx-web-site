@@ -3,7 +3,7 @@ title: Eclipse Vert.x 4 beta 1 released!
 date: 2020-07-28
 template: post.html
 author: vietj
-draft: true
+draft: false
 ---
 
 We are extremely pleased to announce the first 4.0 beta release of Eclipse Vert.x .
