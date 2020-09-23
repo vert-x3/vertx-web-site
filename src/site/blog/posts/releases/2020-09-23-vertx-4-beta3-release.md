@@ -31,6 +31,12 @@ Vert.x core HTTP client has been subject to a few extra improvements since Beta1
 
 #### OAuth2/OIDC PKCE
 
+`OAuth2Handler` can now handle [PKCE](https://tools.ietf.org/html/rfc7636), which means another layer of security to your application.
+
+#### Redis RESP3
+
+The redis client can now speak `RESP3` with redis servers. This means it can handle all the new types and APIs available on redis from all versions (RESP2, redis < 6) and (RESP3, redis >= 6).
+
 
 #### Finally
 
