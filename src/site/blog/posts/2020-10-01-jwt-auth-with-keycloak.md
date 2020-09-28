@@ -180,6 +180,7 @@ Now that we have the necessary building blocks in place, we can finally look at 
 Setting up JWT authentication in a Vert.x is quite easy. At first, we use a `WebClient` to dynamically fetch the JWKS information with the public key 
 from the `/protocol/openid-connect/certs` endpoint relative to our Keycloak issuer URL. After that, we configure a `JWTAuth` instance with some 
 `JWTOptions` and `JWTAuthOptions` to customize the JWT validation. 
+Note that we use Keycloak's realm roles for authorization via the `JWTAuthOptions#setPermissionsClaimKey(..)` method.
 
 In our example the whole JWT authentication setup happens in the method `setupJwtAuth`.
 
