@@ -13,14 +13,14 @@ draft: true
 In this blog post you'll learn:
 
 - JWT foundations
-- How to protected routes with a JWT authentication
-- How to extract of claims from a JWT encoded token
+- How to protect routes with a JWT authentication
+- How to extract claims from a JWT encoded token
 - How to apply RBAC with Keycloak Realm roles
 
 ### Hello again
 
 In my last blog post [Easy SSO for Vert.x with Keycloak](https://vertx.io/blog/easy-sso-for-vert-x-with-keycloak/) we learned how configure single Sign-on
-for a Vert.x web application with Keycloak and OpenID connect. This time we'll see how we can use Keycloak in combination with Vert.x JWT Authentication support to protected an application.
+for a Vert.x web application with Keycloak and OpenID connect. This time we'll see how we can use Keycloak in combination with Vert.x JWT Authentication support to protect an application.
 
 ### Keycloak Setup
 
@@ -47,26 +47,26 @@ docker run \
 
 ## Vert.x Web App
 
-The example web app consists of a single `Verticle`, runs on `http://localhost:3000` and provides a few routes with protected resources. [You can find the complete example here](https://github.com/thomasdarimont/vertx-playground/tree/master/jwt-service-vertx/src/main/java/demo/MainVerticle.java).
+The example web app consists of a single `Verticle`, that runs on `http://localhost:3000` and provides a few routes with protected resources. [You can find the complete example here](https://github.com/thomasdarimont/vertx-playground/tree/master/jwt-service-vertx/src/main/java/demo/MainVerticle.java).
 
 The web app contains the following routes with handlers:
 
-- `/api/greet` - The protected greeting resource, which shows a greeting message, only authenticated users can access this resource.
-- `/api/user` - The protected user resource, which shows some information about the user, only users with role `user` can access this resource.
-- `/api/admin` - The protected user resource, which shows some information about the admin, only users with role `admin` can access this resource.
+- `/api/greet` - The protected greeting resource, which returns a greeting message, only authenticated users can access this resource.
+- `/api/user` - The protected user resource, which returns some information about the user, only users with role `user` can access this resource.
+- `/api/admin` - The protected user resource, which returns some information about the admin, only users with role `admin` can access this resource.
 
-This example is build with Vert.x version 3.9.3.
+This example is built with Vert.x version 3.9.3.
 
 ### Running the app in the console
 
-To run the app, we need to build our app via:
+To run the app, we need to build it first:
 
 ```
 cd jwt-service-vertx
 mvn clean package
 ```
 
-This creates a runnable jar, which we can run via:
+This creates a jar, which we can run:
 
 ```
 java -jar target/*.jar
@@ -76,16 +76,16 @@ Note, that you need to start Keycloak first, since our app will try to fetch con
 
 ### Running the app in the IDE
 
-You can also run the app directly from an IDE like IntelliJ Idea or Eclipse.
-To run the app from an IDE, simply create a launch configuration and use the main class `io.vertx.core.Launcher` and set the the programm arguments to
-`run demo.MainVerticle` with the classpath of the `jwt-service-vertx` module.
+You can also run the app directly from your favourite IDE like IntelliJ Idea or Eclipse.
+To run the app from an IDE, you need to create a launch configuration and use the main class `io.vertx.core.Launcher`. Then set the the program arguments to
+`run demo.MainVerticle` and use the classpath of the `jwt-service-vertx` module.
 
 ## JWT Authentication
 
 ### JWT Foundations
 
 [JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519) is an open standard to securely exchange information between two parties in the form 
-of base64url encoded JSON objects. 
+of [Base64URL](https://base64.guru/standards/base64url) encoded JSON objects. 
 A JWT is just a string which comprises three base64url encoded parts header, payload and a signature, which are separated by a `.`. 
 
 An example JWT can look like this:
@@ -93,7 +93,7 @@ An example JWT can look like this:
 eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjN00xX2hkWjAtWDNyZTl1dmZLSFRDUWRxYXJQYnBMblVJMHltdkF0U1RzIn0.eyJleHAiOjE2MDEzMTg0MjIsImlhdCI6MTYwMTMxODEyMiwianRpIjoiNzYzNWY1YTEtZjFkNy00NTdkLWI4NjktYWQ0OTIzNTJmNGQyIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL3ZlcnR4IiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjI3YjNmYWMwLTlhZWMtNDQyMS04MWNmLWQ0YjAyNDI4ZjkwMSIsInR5cCI6IkJlYXJlciIsImF6cCI6InZlcnR4LXNlcnZpY2UiLCJzZXNzaW9uX3N0YXRlIjoiNjg3MDgyMTMtNDBiNy00NThhLWFlZTEtMzlkNmY5ZGEwN2FkIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwidXNlciJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiVGhlbyBUZXN0ZXIiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJ0ZXN0ZXIiLCJnaXZlbl9uYW1lIjoiVGhlbyIsImZhbWlseV9uYW1lIjoiVGVzdGVyIiwiZW1haWwiOiJ0b20rdGVzdGVyQGxvY2FsaG9zdCJ9.NN1ZGE3f3LHE0u7T6Vfq5yPMKoZ6SmrUxoFopAXZm5wVgMOsJHB8BgHQTDm7u0oTVU0ZHlKH2-o11RKK7Mz0mLqMy2EPdkGY9Bqtj5LZ8oTp8FaVqY1g5Fr5veXYpOMbc2fke-e2hG8sAfSjWz1Mq9BUhJ7HdK7TTIte12pub2nbUs4APYystJWx49cYmUwZ-5c9X295V-NX9UksuMSzFItZ4cACVKi68m9lkR4RuNQKFTuLvWsorz9yRx884e4cnoT_JmfSfYBIl31FfnQzUtCjluUzuD9jVXc_vgC7num_0AreOZiUzpglb8UjKXjswTHF-v_nEIaq7YmM5WKpeg
 ```
 
-The header and payload sections contain information as a json object, whereas the signature is just a plain string. The json objects contain key value pairs which are called `claims`.
+The header and payload sections contain information as a JSON object, whereas the signature is just a plain string. JSON objects contain key value pairs which are called `claims`.
 
 The claims information can be verified and trusted because it is digitally signed with the private key from a public/private key-pair. 
 The signature can later be verified with a corresponding public key. The identifier of the public/private key-pair used to sign a JWT can be 
@@ -108,9 +108,10 @@ An example for a JWT header that references a public/private key-pair looks like
 }
 ```
 
-It is quite common to use JWTs to convey information about authentication (user identitiy) and authorization (user roles, permissions). 
+It is quite common to use JWTs to convey information about authentication (user identity) and authorization (user roles, permissions). 
 OpenID providers such as [Keycloak](https://www.keycloak.org/) can issue OAuth2 access tokens for users to clients in the form of JWTs. 
-This access tokens can then inturn be used the access other services or APIs on behalf of the user. The server which provides those services or APIs is often called a `resource server`.
+This access tokens can then in turn be used the access other services or APIs on behalf of the user. The server providing those services or 
+APIs is often called  `resource server`.
 
 A JWT payload generated by Keycloak looks like this:
 ```
@@ -142,7 +143,7 @@ A JWT payload generated by Keycloak looks like this:
 }
 ```
 
-If a `resource server` receives a request with such an access token, it needs to verify and inspect the access token before it can trust it's contents. 
+If a `resource server` receives a request with such an access token, it needs to verify and inspect the access token before it can trust its content. 
 To verify the token, the `resource server` needs to obtain the `public key` to check the token signature. 
 This `public key` can either configured statically or fetched dynamically from the OpenID Provider by leveraging the `kid` information from the JWT header section. 
 Note that most `OpenID providers`, such as Keycloak, provide a dedicated endpoint for dynamic public key lookups, e.g. `http://localhost:8080/auth/realms/vertx/protocol/openid-connect/certs`.
@@ -292,7 +293,7 @@ private void handleGreet(RoutingContext ctx) {
 To test our application we can use the following `curl` commands in a bash like shell to obtain an JWT access token to call one
 of our endpoints as the user `tester` with the role `user`.
 
-Note that this example uses the cli tool [jq](https://stedolan.github.io/jq/) for json processing.
+Note that this example uses the cli tool [jq](https://stedolan.github.io/jq/) for JSON processing.
 
 ```bash
 KC_USERNAME=tester
@@ -442,7 +443,7 @@ Output:
 
 ### Conclusion
 
-We have learned how to configure a Vert.x application with JWT authentication powered by Keycloak. Although the configuration is quite complete
+We learned how to configure a Vert.x application with JWT authentication powered by Keycloak. Although the configuration is quite complete
 already, there are still some areas that can be improved, like the dynamic JWKS fetching on public-key pair rotation as well as extraction of nested roles.
 
 Nevertheless this can serve as a good starting point for securing your own Vert.x services with JWT and Keycloak.
