@@ -77,7 +77,8 @@ Note, that you need to start Keycloak first, since our app fetches the configura
 
 You can also run the app directly from your favourite IDE like IntelliJ Idea or Eclipse.
 To run the app from an IDE, you need to create a launch configuration and use the main class `io.vertx.core.Launcher`. Then set the the program arguments to
-`run demo.MainVerticle` and use the classpath of the `jwt-service-vertx` module. With that in place you should be able to run the app.
+`run demo.MainVerticle` and use the classpath of the `jwt-service-vertx` module. 
+With that in place you should be able to run the app.
 
 ## JWT Authentication
 
