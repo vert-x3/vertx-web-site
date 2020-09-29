@@ -179,10 +179,9 @@ Now that we have the necessary building blocks in place, we can finally look at 
 
 ### JWT Authentication in Vert.x
 
-Setting up JWT authentication in a Vert.x is quite easy. At first, we use a `WebClient` to dynamically fetch the JWKS information with the public key 
-from the `/protocol/openid-connect/certs` endpoint relative to our Keycloak issuer URL. After that, we configure a `JWTAuth` instance with some 
-`JWTOptions` and `JWTAuthOptions` to customize the JWT validation. 
-Note that we use Keycloak's realm roles for authorization via the `JWTAuthOptions#setPermissionsClaimKey(..)` method.
+Setting up JWT authentication in Vert.x is quite easy. At first, we use a `WebClient` to dynamically fetch the JWKS information with the public key 
+from the `/protocol/openid-connect/certs` endpoint relative to our Keycloak issuer URL. After that, we configure a `JWTAuth` instance and customize the JWT validation via `JWTOptions` and `JWTAuthOptions`. 
+Note that we use Keycloak's realm roles for role based authorization via the `JWTAuthOptions#setPermissionsClaimKey(..)` method.
 
 In our example the whole JWT authentication setup happens in the method `setupJwtAuth`.
 
@@ -266,7 +265,7 @@ private Future<Startup> setupRoutes(Startup startup) {
 }
 ```
 
-### Extracting user information from the JWTUser
+### Extracting user information from JWTUser
 
 To access user information in our `handleGreet` method, we cast the result of the `io.vertx.ext.web.RoutingContext#user` method to `JWTUser` 
 which allows us to access token claim information via the `io.vertx.ext.auth.jwt.impl.JWTUser#principal` JSON object.
