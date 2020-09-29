@@ -48,11 +48,11 @@ docker run \
 
 The example web app consists of a single `Verticle`, that runs on `http://localhost:3000` and provides a few routes with protected resources. [You can find the complete example here](https://github.com/thomasdarimont/vertx-playground/tree/master/jwt-service-vertx/src/main/java/demo/MainVerticle.java).
 
-Our web app contains the following routes with handlers:
+Our web app contains the following protected routes with handlers:
 
-- `/api/greet` - The protected greeting resource, which returns a greeting message, only authenticated users can access this resource.
-- `/api/user` - The protected user resource, which returns some information about the user, only users with role `user` can access this resource.
-- `/api/admin` - The protected user resource, which returns some information about the admin, only users with role `admin` can access this resource.
+- `/api/greet` - The greeting resource, which returns a greeting message, only authenticated users can access this resource.
+- `/api/user` - The user resource, which returns some information about the user, only users with role `user` can access this resource.
+- `/api/admin` - The user resource, which returns some information about the admin, only users with role `admin` can access this resource.
 
 This example is built with Vert.x version 3.9.3.
 
