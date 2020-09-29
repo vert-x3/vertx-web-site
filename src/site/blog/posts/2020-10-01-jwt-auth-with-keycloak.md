@@ -20,8 +20,7 @@ In this blog post you'll learn:
 ### Hello again
 
 In my last blog post [Easy SSO for Vert.x with Keycloak](https://vertx.io/blog/easy-sso-for-vert-x-with-keycloak/) we learned how configure single Sign-on
-for a Vert.x web application with Keycloak and OpenID connect. This time we'll see how we can use Keycloak in combination with Vert.x JWT Authentication support
-to protected an application.
+for a Vert.x web application with Keycloak and OpenID connect. This time we'll see how we can use Keycloak in combination with Vert.x JWT Authentication support to protected an application.
 
 ### Keycloak Setup
 
@@ -55,6 +54,8 @@ The web app contains the following routes with handlers:
 - `/api/greet` - The protected greeting resource, which shows a greeting message, only authenticated users can access this resource.
 - `/api/user` - The protected user resource, which shows some information about the user, only users with role `user` can access this resource.
 - `/api/admin` - The protected user resource, which shows some information about the admin, only users with role `admin` can access this resource.
+
+This example is build with Vert.x version 3.9.3.
 
 ### Running the app in the console
 
@@ -234,7 +235,7 @@ private Future<Startup> setupJwtAuth(Startup startup) {
 
     return promise.future().compose(auth -> {
         jwtAuth = auth;
-        return Promise.succeededPromise(startup).future();
+        return Future.succeededFuture(startup);
     });
 }
 ```
@@ -252,7 +253,7 @@ private Future<Startup> setupRouter(Startup startup) {
 
     router.route("/api/*").handler(JWTAuthHandler.create(jwtAuth));
 
-    return Promise.succeededPromise(startup).future();
+    return Future.succeededFuture(startup);
 }
 
 private Future<Startup> setupRoutes(Startup startup) {
@@ -261,7 +262,7 @@ private Future<Startup> setupRoutes(Startup startup) {
     router.get("/api/user").handler(this::handleUserData);
     router.get("/api/admin").handler(this::handleAdminData);
 
-    return Promise.succeededPromise(startup).future();
+    return Future.succeededFuture(startup);
 }
 ```
 
