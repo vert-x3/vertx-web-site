@@ -25,7 +25,7 @@ In my last blog post [Easy SSO for Vert.x with Keycloak](https://vertx.io/blog/e
 
 To secure our Vert.x app, we need to use a Keycloak server for obtaining JWT tokens. Although [Keycloak has a great getting started guide](https://www.keycloak.org/docs/latest/getting_started/) I wanted to make it a bit easier to put everything together, therefore I prepared a local Keycloak docker container [as described here](https://github.com/thomasdarimont/vertx-playground/tree/master/jwt-service-vertx#start-keycloak-with-the-vertx-realm), which comes with all the required configuration in place, that you can start easily.
 
-The preconfigured Keycloak realm named `vertx` contains a `vertx-service` client for our Vert.x web app and a set
+The preconfigured Keycloak realm named `vertx` contains a `vertx-service` OpenID connect client for our Vert.x web app and a set
 of users for testing. To ease testing, the `vertx-service` is configured with `direct access grant` enabled in Keycloak, which
 enables support for the OAuth2 resource owner password credentials grant (ROPC) flow.
 
