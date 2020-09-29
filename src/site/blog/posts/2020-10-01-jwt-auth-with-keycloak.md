@@ -72,7 +72,7 @@ This creates a jar, which we can run:
 java -jar target/*.jar
 ```
 
-Note, that you need to start Keycloak first, since our app will try to fetch configuration from Keycloak on startup.
+Note, that you need to start Keycloak first, since our app fetches the configuration from Keycloak on startup.
 
 ### Running the app in the IDE
 
