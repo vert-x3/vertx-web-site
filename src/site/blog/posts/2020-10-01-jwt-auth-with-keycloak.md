@@ -1,32 +1,32 @@
 ---
-title: JWT authentication for Vert.x with Keycloak
+title: JWT Authorization for Vert.x with Keycloak
 template: post.html
 date: 2020-10-01
 author: thomasdarimont
 draft: true
 ---
 
-# JWT Authentication for Vert.x with Keycloak
+# JWT Authorization for Vert.x with Keycloak
 
 ## TL;DR
 
 In this blog post you'll learn:
 
 - JWT foundations
-- How to protect routes with a JWT authentication
+- How to protect routes with a JWT Authorization
 - How to extract claims from a JWT encoded token
 - How to apply RBAC with Keycloak Realm roles
 
 ### Hello again
 
-In my last blog post [Easy SSO for Vert.x with Keycloak](https://vertx.io/blog/easy-sso-for-vert-x-with-keycloak/) we learned how to configure single Sign-on for a Vert.x web application with Keycloak and OpenID connect. This time we'll see how we can protect an application with Vert.x's JWT Authentication support and Keycloak.
+Hi there! In my last blog post [Easy SSO for Vert.x with Keycloak](https://vertx.io/blog/easy-sso-for-vert-x-with-keycloak/) we learned how to configure single sign-on for a Vert.x web application with Keycloak and OpenID connect. This time we'll see how we can protect an application with Vert.x's [JWT Authorization](https://vertx.io/docs/vertx-web/java/#_jwt_authorisation) support and Keycloak.
 
 ### Keycloak Setup
 
 To secure our Vert.x app, we need to use a Keycloak server for obtaining JWT tokens. Although [Keycloak has a great getting started guide](https://www.keycloak.org/docs/latest/getting_started/) I wanted to make it a bit easier to put everything together, therefore I prepared a local Keycloak docker container [as described here](https://github.com/thomasdarimont/vertx-playground/tree/master/jwt-service-vertx#start-keycloak-with-the-vertx-realm), which comes with all the required configuration in place, that you can start easily.
 
-The preconfigured Keycloak realm named `vertx` contains a `vertx-service` OpenID connect client for our Vert.x web app and a set
-of users for testing. To ease testing, the `vertx-service` is configured with `direct access grant` enabled in Keycloak, which
+The preconfigured Keycloak realm `vertx` contains a `vertx-service` OpenID connect client for our Vert.x app and a set
+of users for testing. To ease testing, the `vertx-service` is configured with `Direct Access Grant` enabled in Keycloak, which
 enables support for the OAuth2 resource owner password credentials grant (ROPC) flow.
 
 To start Keycloak with the preconfigured realm, just start the docker container with the following command:
@@ -44,9 +44,9 @@ docker run \
   quay.io/keycloak/keycloak:11.0.2
 ```
 
-## Vert.x Web App
+## Vert.x App
 
-The example web app consists of a single `Verticle`, that runs on `http://localhost:3000` and provides a few routes with protected resources. [You can find the complete example here](https://github.com/thomasdarimont/vertx-playground/tree/master/jwt-service-vertx/src/main/java/demo/MainVerticle.java).
+The example app consists of a single `Verticle`, that runs on `http://localhost:3000` and provides a few routes with protected resources. [You can find the complete example here](https://github.com/thomasdarimont/vertx-playground/tree/master/jwt-service-vertx/src/main/java/demo/MainVerticle.java).
 
 Our web app contains the following protected routes with handlers:
 
@@ -71,29 +71,30 @@ This creates a jar, which we can run:
 java -jar target/*.jar
 ```
 
-Note, that you need to start Keycloak first, since our app fetches the configuration from Keycloak on startup.
+Note, that we need to start Keycloak first, since our app fetches the configuration from Keycloak on startup.
 
 ### Running the app in the IDE
 
-You can also run the app directly from your favourite IDE like IntelliJ Idea or Eclipse.
-To run the app from an IDE, you need to create a launch configuration and use the main class `io.vertx.core.Launcher`. Then set the the program arguments to
+We can also run the app directly from your favourite IDE like IntelliJ Idea or Eclipse.
+To run the app from an IDE, we need to create a launch configuration and use the main class `io.vertx.core.Launcher`. Then set the the program arguments to
 `run demo.MainVerticle` and use the classpath of the `jwt-service-vertx` module. 
-With that in place you should be able to run the app.
+With that in place we should be able to run the app.
 
-## JWT Authentication
+## JWT Authorization
 
 ### JWT Foundations
 
 [JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519) is an open standard to securely exchange information between two parties in the form 
 of [Base64URL](https://base64.guru/standards/base64url) encoded JSON objects. 
-A JWT is just a string which comprises three base64url encoded parts header, payload and a signature, which are separated by a `.`. 
+A standard JWT is just a string which comprises three base64url encoded parts header, payload and a signature, which are separated by a "`.`" character. 
+There are other variants of JWT that can have more parts.
 
 An example JWT can look like this:
 ```
 eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjN00xX2hkWjAtWDNyZTl1dmZLSFRDUWRxYXJQYnBMblVJMHltdkF0U1RzIn0.eyJleHAiOjE2MDEzMTg0MjIsImlhdCI6MTYwMTMxODEyMiwianRpIjoiNzYzNWY1YTEtZjFkNy00NTdkLWI4NjktYWQ0OTIzNTJmNGQyIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL3ZlcnR4IiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjI3YjNmYWMwLTlhZWMtNDQyMS04MWNmLWQ0YjAyNDI4ZjkwMSIsInR5cCI6IkJlYXJlciIsImF6cCI6InZlcnR4LXNlcnZpY2UiLCJzZXNzaW9uX3N0YXRlIjoiNjg3MDgyMTMtNDBiNy00NThhLWFlZTEtMzlkNmY5ZGEwN2FkIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwidXNlciJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiVGhlbyBUZXN0ZXIiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJ0ZXN0ZXIiLCJnaXZlbl9uYW1lIjoiVGhlbyIsImZhbWlseV9uYW1lIjoiVGVzdGVyIiwiZW1haWwiOiJ0b20rdGVzdGVyQGxvY2FsaG9zdCJ9.NN1ZGE3f3LHE0u7T6Vfq5yPMKoZ6SmrUxoFopAXZm5wVgMOsJHB8BgHQTDm7u0oTVU0ZHlKH2-o11RKK7Mz0mLqMy2EPdkGY9Bqtj5LZ8oTp8FaVqY1g5Fr5veXYpOMbc2fke-e2hG8sAfSjWz1Mq9BUhJ7HdK7TTIte12pub2nbUs4APYystJWx49cYmUwZ-5c9X295V-NX9UksuMSzFItZ4cACVKi68m9lkR4RuNQKFTuLvWsorz9yRx884e4cnoT_JmfSfYBIl31FfnQzUtCjluUzuD9jVXc_vgC7num_0AreOZiUzpglb8UjKXjswTHF-v_nEIaq7YmM5WKpeg
 ```
 
-The header and payload sections contains information as a JSON object, whereas the signature is just a plain string. JSON objects contain key value pairs which are called `claims`.
+The header and payload sections contain information as a JSON object, whereas the signature is just a plain string. JSON objects contain key value pairs which are called `claims`.
 
 The claims information can be verified and trusted because it is digitally signed with the private key from a public/private key-pair. 
 The signature can later be verified with a corresponding public key. The identifier of the public/private key-pair used to sign a JWT can be 
@@ -108,8 +109,8 @@ An example for a JWT header that references a public/private key-pair looks like
 }
 ```
 
-It is quite common to use JWTs to convey information about authentication (user identity) and authorization (user roles, permissions). 
-OpenID providers such as [Keycloak](https://www.keycloak.org/) can issue OAuth2 access tokens for users to clients in the form of JWTs. 
+It is quite common to use JWTs to convey information about authentication (user identity) and authorization (scopes, user roles, permissions and other claims). 
+OpenID providers such as [Keycloak](https://www.keycloak.org/) support issuing OAuth2 access tokens after authentication for users to clients in the form of JWTs. 
 An access token can then be used to access other services or APIs on behalf of the user. The server providing those services or APIs is often called `resource server`.
 
 An example JWT payload generated by Keycloak looks like this:
@@ -175,15 +176,24 @@ to sign the JWT access token from above. Note the matching `kid` claim from our 
 Now that we have the appropriate public key, we can use the information from the JWT header to validate the signature of the JWT access token.
 If the signature is valid, we can go on and check additional claims from the payload section of the JWT, such as expiration, allowed issuer and audience etc. 
 
-Now that we have the necessary building blocks in place, we can finally look at how to configure JWT authentication in Vert.x.
+Now that we have the necessary building blocks in place, we can finally look at how to configure JWT authorization in Vert.x.
 
-### JWT Authentication in Vert.x
+### JWT Authorization in Vert.x
 
-Setting up JWT authentication in Vert.x is quite easy. At first, we use a `WebClient` to dynamically fetch the JWKS information with the public key 
-from the `/protocol/openid-connect/certs` endpoint relative to our Keycloak issuer URL. After that, we configure a `JWTAuth` instance and customize the JWT validation via `JWTOptions` and `JWTAuthOptions`. 
+Setting up JWT authorization in Vert.x is quite easy. First we need to add the `vertx-auth-jwt` module as a dependency to our project.
+
+```xml
+<dependency>
+    <groupId>io.vertx</groupId>
+    <artifactId>vertx-auth-jwt</artifactId>
+</dependency>
+```
+
+In our example the whole JWT authorization setup happens in the method `setupJwtAuth`.
+
+We use a `WebClient` to dynamically fetch the public key information from the `/protocol/openid-connect/certs` JWKS endpoint relative to our Keycloak issuer URL. 
+After that, we configure a `JWTAuth` instance and customize the JWT validation via `JWTOptions` and `JWTAuthOptions`. 
 Note that we use Keycloak's realm roles for role based authorization via the `JWTAuthOptions#setPermissionsClaimKey(..)` method.
-
-In our example the whole JWT authentication setup happens in the method `setupJwtAuth`.
 
 ```java
 private Future<Startup> setupJwtAuth(Startup startup) {
@@ -239,10 +249,10 @@ private Future<Startup> setupJwtAuth(Startup startup) {
 }
 ```
 
-### Protect routes with JWTAuthHandler
+### Protecting routes with JWTAuthHandler
 
 Now that our `JWTAuth` is configured, we can use the `JWTAuthHandler` in the `setupRouter` method to apply 
-JWT authentication to all routes matching the path pattern `/api/*`. The `JWTAuthHandler` validates received JWTs and performs 
+JWT authorization to all routes matching the path pattern `/api/*`. The `JWTAuthHandler` validates received JWTs and performs 
 additional checks like expiration and allowed issuers. With that in place, we configure our actual routes in `setupRoutes`.
 
 ```java
@@ -286,7 +296,7 @@ private void handleGreet(RoutingContext ctx) {
 }
 ```
 
-### Obtain access token from Keycloak for user `tester`
+### Obtaining an Access Token from Keycloak for user `tester`
 
 To test our application we can use the following `curl` commands in a bash like shell to obtain an JWT access token to call one
 of our endpoints as the user `tester` with the role `user`.
@@ -323,7 +333,7 @@ Example output:
 Hi tester (27b3fac0-9aec-4421-81cf-d4b02428f901) 2020-09-28T21:03:59.254230700Z
 ```
 
-### Role based Access-Control with JWTUser
+### Applying Role-based Access-Control with JWTUser
 
 To leverage support for role based access control (RBAC) we can use the `io.vertx.ext.auth.User#isAuthorised` method
 to check whether the current user has the required role. If the role is present we return some data about the user, otherwise
@@ -397,7 +407,7 @@ Output:
 {"error": "forbidden"}
 ```
 
-### Obtain access token from Keycloak for user `vadmin`
+### Obtaining an Access Token from Keycloak for user `vadmin`
 
 To check access with an `admin` role, we obtain a new token for the user `vadmin` which has the roles `admin` and `user`. 
 
@@ -441,10 +451,10 @@ Output:
 
 ### Conclusion
 
-We learned how to configure a Vert.x application with JWT authentication powered by Keycloak. Although the configuration is quite complete
-already, there are still some areas that can be improved, like the dynamic JWKS fetching on public-key pair rotation as well as extraction of nested roles.
+We learned how to configure a Vert.x application with JWT authorization powered by Keycloak. Although the configuration is quite complete
+already, there are still some parts that can be improved, like the dynamic JWKS fetching on public-key pair rotation as well as extraction of nested roles.
 
-Nevertheless this can serve as a good starting point for securing your own Vert.x services with JWT and Keycloak.
+Nevertheless this is a good starting point for securing your own Vert.x services with JWT and Keycloak.
 
 You can check out the [complete example in keycloak-vertx Examples Repo](https://github.com/thomasdarimont/vertx-playground/tree/master/jwt-service-vertx).
 
