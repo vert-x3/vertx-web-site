@@ -3,7 +3,6 @@ title: JWT Authorization for Vert.x with Keycloak
 template: post.html
 date: 2020-10-01
 author: thomasdarimont
-draft: true
 ---
 
 # JWT Authorization for Vert.x with Keycloak
