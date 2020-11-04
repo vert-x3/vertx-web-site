@@ -15,7 +15,7 @@ Vert.x 4 is the evolution of the Vert.x 3.x series that will bring key features 
 
 #### SockJS JavaScript client
 
-Sockjs eventbus clients are now just published to `NPM` on bugfixes or protocol changes. This means there is no need to constantly upgrade NPM packages for every single release. In order to ensure that the artifact can be used both with vert.x 3 and vert.x 4, a new name has been choosen for it: [https://www.npmjs.com/package/@vertx/eventbus-bridge-client.js](@vertx/eventbus-bridge-client.js)
+Sockjs eventbus clients are now just published to `NPM` on bugfixes or protocol changes. This means there is no need to constantly upgrade NPM packages for every single release. In order to ensure that the artifact can be used both with vert.x 3 and vert.x 4, a new name has been choosen for it: [@vertx/eventbus-bridge-client.js](https://www.npmjs.com/package/@vertx/eventbus-bridge-client.js)
 
 #### Kafka tracing
 
@@ -39,6 +39,8 @@ This is the Beta3 relase of Vert.x 4, you can of course expect another beta as w
 
 You can also read the milestone announces to know more about the overral changes:
 
+- https://vertx.io/blog/eclipse-vert-x-4-beta-3-released
+- https://vertx.io/blog/eclipse-vert-x-4-beta-2-released
 - https://vertx.io/blog/eclipse-vert-x-4-beta-1-released
 - https://vertx.io/blog/eclipse-vert-x-4-milestone-5-released
 - https://vertx.io/blog/eclipse-vert-x-4-milestone-5-released
@@ -52,9 +54,9 @@ The [deprecations and breaking changes](https://github.com/vert-x3/wiki/wiki/4.0
 
 For this release there are no Docker images.
 
-The release artifacts have been deployed to [Maven Central](https://search.maven.org/search?q=g:io.vertx%20AND%20v:4.0.0.Beta1) and you can get the distribution on [Maven Central](https://repo1.maven.org/maven2/io/vertx/vertx-stack-manager/4.0.0.Beta1/).
+The release artifacts have been deployed to [Maven Central](https://search.maven.org/search?q=g:io.vertx%20AND%20v:4.0.0.CR1) and you can get the distribution on [Maven Central](https://repo1.maven.org/maven2/io/vertx/vertx-stack-manager/4.0.0.CR1/).
 
-You can bootstrap a Vert.x 4.0.0.Beta3 project using https://start.vertx.io.
+You can bootstrap a Vert.x 4.0.0.CR1 project using https://start.vertx.io.
 
 The documentation has been deployed on this preview web-site https://vertx-web-site.github.io/docs/
 
