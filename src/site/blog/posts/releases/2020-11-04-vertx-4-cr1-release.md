@@ -15,7 +15,7 @@ Vert.x 4 is the evolution of the Vert.x 3.x series that will bring key features 
 
 #### SockJS JavaScript client
 
-todo
+Sockjs eventbus clients are now just published to `NPM` on bugfixes or protocol changes. This means there is no need to constantly upgrade NPM packages for every single release. In order to ensure that the artifact can be used both with vert.x 3 and vert.x 4, a new name has been choosen for it: [https://www.npmjs.com/package/@vertx/eventbus-bridge-client.js](@vertx/eventbus-bridge-client.js)
 
 #### Kafka tracing
 
@@ -24,6 +24,12 @@ todo
 #### MQTT improvements
 
 #### Web client auth
+
+With this release you will be able to use `Basic`, `Digest` and `Bearer` authentication in a single and concise API: `client.authentication(new Credentials(...))`. This is a type safe alternative to compute the headers yourself.
+
+#### Redis client
+
+Redis clients are now guaranteed to call all handlers on the right event loop. This reduces the context switches and avoid synchronization problems in the code.
 
 #### RabbitMQ TLS support
 
