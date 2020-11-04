@@ -23,6 +23,19 @@ Sockjs eventbus clients are now just published to `NPM` on bugfixes or protocol 
 
 #### MQTT improvements
 
+#### Web
+
+A new shortcut method has been added to `RoutingContext` to allow sending responses from asynchronous calls. For example, returning the content of a file in a single action:
+
+```java
+router.route()
+  .respond(ctx ->
+    vertx.fileSystem()
+      .readFile("somefile.json"));
+```
+
+This method allows composition of `Future`s. The Future result will be processed by the `JSON` codec if no data has been written, otherwise it will use the future success/failure to decide how to terminate the connection. This method should improve the code readablility of current and future application.
+
 #### Web client auth
 
 With this release you will be able to use `Basic`, `Digest` and `Bearer` authentication in a single and concise API: `client.authentication(new Credentials(...))`. This is a type safe alternative to compute the headers yourself.
